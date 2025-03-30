@@ -251,8 +251,9 @@ h2:hover::after {
 
 .cta-button.outline {
     background: transparent;
-    border: 2px solid white;
-    color: white;
+    border: 2px solid var(--accent-color);
+    color: var(--accent-color);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .cta-button::before {
@@ -278,9 +279,9 @@ h2:hover::after {
 }
 
 .cta-button.outline:hover {
-    background: rgba(255, 160, 122, 0.1);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    background: var(--accent-color);
+    color: var(--dark-bg);
+    text-shadow: none;
 }
 
 [data-theme="dark"] .cta-button:not(.outline) {
@@ -291,14 +292,13 @@ h2:hover::after {
 [data-theme="dark"] .cta-button.outline {
     border-color: var(--accent-color);
     color: var(--accent-color);
-}
-
-[data-theme="dark"] .cta-button:not(.outline):hover {
-    background: var(--secondary-color);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 [data-theme="dark"] .cta-button.outline:hover {
-    background: rgba(255, 160, 122, 0.1);
+    background: var(--accent-color);
+    color: var(--dark-bg);
+    text-shadow: none;
 }
 
 /* 章節樣式 */
@@ -1657,131 +1657,142 @@ main {
     display: none !important;
 }
 
-/* 2025現代按鈕基礎樣式 */
+/* 統一按鈕基礎樣式 */
 .link-button,
 .cta-button,
 .team-filter-btn,
 .show-more-btn,
-.filter-btn {
+.filter-btn,
+.hero-buttons .cta-button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 0.9rem 2.2rem;
-    border-radius: 1rem;
+    padding: 1rem 2.5rem;
+    border-radius: 1.2rem;
     background: linear-gradient(135deg, 
-        rgba(139, 69, 19, 0.95), 
-        rgba(101, 67, 33, 0.95));
+        rgba(139, 69, 19, 0.98), 
+        rgba(101, 67, 33, 0.98));
     color: #ffffff;
     text-decoration: none;
-    font-size: 1rem;
-    font-weight: 500;
-    letter-spacing: 0.5px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.8px;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     border: none;
-    gap: 0.8rem;
-    min-width: 160px;
+    gap: 1rem;
+    min-width: 180px;
     position: relative;
     overflow: hidden;
     cursor: pointer;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     box-shadow: 
-        0 2px 10px rgba(139, 69, 19, 0.2),
-        0 6px 15px rgba(0, 0, 0, 0.1);
+        0 4px 15px rgba(139, 69, 19, 0.25),
+        0 8px 25px rgba(0, 0, 0, 0.15);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
-/* 現代懸浮效果 */
+/* 統一懸浮效果 */
 .link-button:hover,
 .cta-button:hover,
 .team-filter-btn:hover,
 .show-more-btn:hover,
-.filter-btn:hover {
-    transform: translateY(-2px);
+.filter-btn:hover,
+.hero-buttons .cta-button:hover {
+    transform: translateY(-3px) scale(1.02);
     box-shadow: 
-        0 4px 15px rgba(139, 69, 19, 0.3),
-        0 8px 20px rgba(0, 0, 0, 0.15);
+        0 6px 20px rgba(139, 69, 19, 0.35),
+        0 12px 30px rgba(0, 0, 0, 0.2);
     background: linear-gradient(135deg, 
-        rgba(210, 105, 30, 0.95), 
-        rgba(139, 69, 19, 0.95));
+        rgba(210, 105, 30, 0.98), 
+        rgba(139, 69, 19, 0.98));
 }
 
-/* 點擊效果 */
+/* 統一點擊效果 */
 .link-button:active,
 .cta-button:active,
 .team-filter-btn:active,
 .show-more-btn:active,
-.filter-btn:active {
-    transform: translateY(1px);
+.filter-btn:active,
+.hero-buttons .cta-button:active {
+    transform: translateY(1px) scale(0.98);
     box-shadow: 
-        0 2px 8px rgba(139, 69, 19, 0.2),
-        0 4px 10px rgba(0, 0, 0, 0.1);
+        0 2px 10px rgba(139, 69, 19, 0.2),
+        0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
-/* 輪廓按鈕樣式 */
+/* 統一輪廓按鈕樣式 */
 .link-button.outline,
 .cta-button.outline,
 .team-filter-btn.outline,
 .show-more-btn.outline,
-.filter-btn.outline {
+.filter-btn.outline,
+.hero-buttons .cta-button.outline {
     background: transparent;
-    border: 2px solid rgba(139, 69, 19, 0.5);
+    border: 2px solid rgba(139, 69, 19, 0.8);
     color: var(--mocha-dark);
     box-shadow: 
-        0 2px 10px rgba(139, 69, 19, 0.1),
-        0 6px 15px rgba(0, 0, 0, 0.05);
+        0 4px 15px rgba(139, 69, 19, 0.15),
+        0 8px 25px rgba(0, 0, 0, 0.08);
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
+    text-shadow: none;
 }
 
 .link-button.outline:hover,
 .cta-button.outline:hover,
 .team-filter-btn.outline:hover,
 .show-more-btn.outline:hover,
-.filter-btn.outline:hover {
+.filter-btn.outline:hover,
+.hero-buttons .cta-button.outline:hover {
     border-color: transparent;
     background: linear-gradient(135deg, 
-        rgba(210, 105, 30, 0.95), 
-        rgba(139, 69, 19, 0.95));
+        rgba(210, 105, 30, 0.98), 
+        rgba(139, 69, 19, 0.98));
     color: #ffffff;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
-/* 深色模式適配 */
+/* 統一深色模式適配 */
 [data-theme="dark"] .link-button,
 [data-theme="dark"] .cta-button,
 [data-theme="dark"] .team-filter-btn,
 [data-theme="dark"] .show-more-btn,
-[data-theme="dark"] .filter-btn {
+[data-theme="dark"] .filter-btn,
+[data-theme="dark"] .hero-buttons .cta-button {
     background: linear-gradient(135deg, 
-        rgba(255, 160, 122, 0.95), 
-        rgba(139, 69, 19, 0.95));
+        rgba(255, 160, 122, 0.98), 
+        rgba(139, 69, 19, 0.98));
     box-shadow: 
-        0 2px 10px rgba(255, 160, 122, 0.2),
-        0 6px 15px rgba(0, 0, 0, 0.2);
+        0 4px 15px rgba(255, 160, 122, 0.25),
+        0 8px 25px rgba(0, 0, 0, 0.2);
 }
 
 [data-theme="dark"] .link-button:hover,
 [data-theme="dark"] .cta-button:hover,
 [data-theme="dark"] .team-filter-btn:hover,
 [data-theme="dark"] .show-more-btn:hover,
-[data-theme="dark"] .filter-btn:hover {
+[data-theme="dark"] .filter-btn:hover,
+[data-theme="dark"] .hero-buttons .cta-button:hover {
     background: linear-gradient(135deg, 
-        rgba(255, 160, 122, 0.95), 
-        rgba(210, 105, 30, 0.95));
+        rgba(255, 160, 122, 0.98), 
+        rgba(210, 105, 30, 0.98));
     box-shadow: 
-        0 4px 15px rgba(255, 160, 122, 0.3),
-        0 8px 20px rgba(0, 0, 0, 0.25);
+        0 6px 20px rgba(255, 160, 122, 0.35),
+        0 12px 30px rgba(0, 0, 0, 0.25);
 }
 
-/* 響應式調整 */
+/* 統一響應式調整 */
 @media (max-width: 768px) {
     .link-button,
     .cta-button,
     .team-filter-btn,
     .show-more-btn,
-    .filter-btn {
-        padding: 0.8rem 1.8rem;
-        font-size: 0.95rem;
-        min-width: 140px;
+    .filter-btn,
+    .hero-buttons .cta-button {
+        padding: 0.9rem 2rem;
+        font-size: 1rem;
+        min-width: 160px;
     }
 }
 
@@ -2027,5 +2038,30 @@ main {
     .student-image {
         width: 100px;
         height: 100px;
+    }
+}
+
+/* 合作按鈕特定樣式 */
+.collaboration-item .link-button {
+    padding: 0.8rem 1.8rem;
+    font-size: 0.95rem;
+    min-width: 140px;
+    border-radius: 1rem;
+}
+
+.collaboration-item .link-button:hover {
+    transform: translateY(-2px) scale(1.01);
+}
+
+.collaboration-item .link-button:active {
+    transform: translateY(1px) scale(0.99);
+}
+
+/* 響應式調整 */
+@media (max-width: 768px) {
+    .collaboration-item .link-button {
+        padding: 0.7rem 1.5rem;
+        font-size: 0.9rem;
+        min-width: 130px;
     }
 } 

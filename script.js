@@ -617,10 +617,10 @@ ${formData.message}
         },
         {
             name: '蔡鼎翔',
-            title: '研究助理（大三）',
+            title: '碩士生',
             research: '橢圓海島抽水最佳化之研析',
             email: 'ding.tsai@g.ncu.edu.tw',
-            type: 'assistant',
+            type: 'master',
             year: 'current',
             image: './images/team/student_tsai.png',
         },
