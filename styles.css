@@ -225,51 +225,38 @@ h2:hover::after {
 
 /* 關於我區塊樣式 */
 .about-section {
-    padding: 4rem 0;
-    background: var(--light-bg);
+    padding: 2rem 0;
+    margin: 2rem auto;
+    max-width: 1200px;
 }
 
-.about-content {
-    display: grid;
-    grid-template-columns: 300px 1fr;
-    gap: 2rem;
-    margin-top: 2rem;
-}
-
-.profile-image {
-    width: 300px;
-    height: 300px;
-    overflow: hidden;
-    border-radius: 15px;
-    box-shadow: var(--shadow-md);
-}
-
-.profile-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    transition: transform 0.3s ease;
-}
-
-.profile-image:hover img {
-    transform: scale(1.05);
-}
-
-.about-text {
-    padding: 1rem;
-}
-
-.about-text h3 {
-    font-size: 1.8rem;
-    margin-bottom: 0.5rem;
+.about-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
     color: var(--text-color);
 }
 
-.about-text .title {
-    font-size: 1.2rem;
-    color: var(--text-secondary);
-    margin-bottom: 1rem;
+.about-section img {
+    max-width: 100%;
+    height: auto;
+    max-height: 500px;
+    object-fit: contain;
+    display: block;
+    margin: 2rem auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.about-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.about-text {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--text-color);
 }
 
 .contact-info {
@@ -485,6 +472,14 @@ footer {
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
         gap: 1.5rem;
     }
+    
+    .about-section img {
+        max-height: 300px;
+    }
+    
+    .about-section h2 {
+        font-size: 2rem;
+    }
 }
 
 @media (max-width: 480px) {
@@ -492,352 +487,6 @@ footer {
         grid-template-columns: 1fr;
         max-width: 300px;
         margin: 0 auto;
-    }
-}
-
-/* 最新公告區塊樣式 */
-.news-section {
-    padding: 4rem 0;
-    background: var(--light-bg);
-}
-
-[data-theme="dark"] .news-section {
-    background: var(--dark-bg);
-}
-
-.news-grid {
-    display: grid;
-    gap: 2rem;
-    margin-top: 2rem;
-}
-
-.news-item {
-    background: var(--card-bg);
-    border-radius: 1rem;
-    padding: 1.5rem;
-    box-shadow: var(--shadow-sm);
-    transition: var(--transition-normal);
-}
-
-.news-item:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-md);
-}
-
-.news-date {
-    font-size: 0.9rem;
-    color: var(--accent-color);
-    margin-bottom: 0.5rem;
-    font-weight: 600;
-}
-
-.news-content h3 {
-    font-size: 1.25rem;
-    margin-bottom: 0.75rem;
-    color: var(--text-color);
-}
-
-.news-content p {
-    color: var(--text-secondary);
-    line-height: 1.6;
-    margin-bottom: 1rem;
-}
-
-.news-tags {
-    display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-}
-
-.tag {
-    background: var(--tag-bg);
-    color: var(--tag-text);
-    padding: 0.25rem 0.75rem;
-    border-radius: 2rem;
-    font-size: 0.85rem;
-    transition: var(--transition-normal);
-}
-
-.tag:hover {
-    background: var(--tag-hover-bg);
-}
-
-/* 深色模式標籤樣式 */
-[data-theme="dark"] .tag {
-    background: var(--tag-dark-bg);
-    color: var(--tag-dark-text);
-}
-
-[data-theme="dark"] .tag:hover {
-    background: var(--tag-dark-hover-bg);
-}
-
-/* 動態游標 */
-.custom-cursor {
-    width: 20px;
-    height: 20px;
-    background: var(--secondary-color);
-    border-radius: 50%;
-    position: fixed;
-    pointer-events: none;
-    z-index: 9999;
-    transition: transform 0.2s ease;
-}
-
-.custom-cursor.active {
-    transform: scale(2);
-    background: var(--accent-color);
-}
-
-/* 深色模式切換按鈕 */
-.theme-toggle {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: var(--secondary-color);
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    z-index: 1000;
-    transition: var(--transition-normal);
-}
-
-.theme-toggle:hover {
-    background: var(--accent-color);
-    color: var(--primary-color);
-}
-
-/* 響應式設計優化 */
-@media (max-width: 1024px) {
-    .section {
-        padding: 3rem 1rem;
-    }
-    
-    .hero-content h1 {
-        font-size: 3rem;
-    }
-    
-    .hero-content h2 {
-        font-size: 1.5rem;
-    }
-    
-    .nav-links {
-        gap: 1rem;
-    }
-    
-    .research-grid {
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    }
-}
-
-@media (max-width: 768px) {
-    /* 導航欄優化 */
-    .nav-container {
-        padding: 0.5rem;
-    }
-    
-    .nav-links {
-        display: none;
-        position: fixed;
-        top: 60px;
-        left: 0;
-        width: 100%;
-        background: var(--light-bg);
-        padding: 1rem;
-        flex-direction: column;
-        align-items: center;
-        gap: 1rem;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    }
-    
-    .nav-links.active {
-        display: flex;
-    }
-    
-    /* 漢堡選單按鈕 */
-    .menu-toggle {
-        display: block;
-        font-size: 1.5rem;
-        cursor: pointer;
-        color: var(--primary-color);
-    }
-    
-    /* 英雄區域優化 */
-    .hero {
-        height: 80vh;
-    }
-    
-    .hero-content h1 {
-        font-size: 2.5rem;
-    }
-    
-    .hero-content h2 {
-        font-size: 1.2rem;
-    }
-    
-    /* 研究興趣區塊優化 */
-    .research-grid {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
-    
-    .research-item {
-        padding: 1.5rem;
-    }
-    
-    /* 團隊成員區塊優化 */
-    .team-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
-    
-    .member-image {
-        height: 200px;
-    }
-    
-    /* 公告區塊優化 */
-    .news-timeline::before {
-        left: 0;
-    }
-    
-    .news-item {
-        width: 100%;
-        padding-left: 2rem;
-        margin-left: 0;
-    }
-    
-    .news-date {
-        left: -100px;
-    }
-    
-    /* 論文發表區塊優化 */
-    .publications-filters {
-        gap: 0.5rem;
-    }
-    
-    .filter-btn {
-        padding: 0.4rem 1rem;
-        font-size: 0.9rem;
-    }
-    
-    .publication-item {
-        padding: 1.5rem;
-    }
-    
-    .publication-content h3 {
-        font-size: 1.1rem;
-    }
-    
-    /* 研究合作機會優化 */
-    .collaboration-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
-    
-    .collaboration-item {
-        padding: 1.5rem;
-    }
-    
-    /* 研究資源優化 */
-    .resources-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
-    
-    .resource-item {
-        padding: 1.5rem;
-    }
-    
-    /* 研究計畫優化 */
-    .projects-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
-    
-    .project-item {
-        padding: 1.5rem;
-    }
-    
-    /* 研究環境優化 */
-    .environment-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
-    
-    .environment-item {
-        padding: 1.5rem;
-    }
-    
-    /* 表單優化 */
-    .form-container {
-        padding: 1.5rem;
-    }
-    
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-        padding: 0.6rem;
-        font-size: 0.9rem;
-    }
-    
-    /* 頁尾優化 */
-    .footer-content {
-        flex-direction: column;
-        gap: 1rem;
-        text-align: center;
-    }
-    
-    .social-links {
-        justify-content: center;
-    }
-
-    .about-content {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
-
-    .profile-image {
-        width: 250px;
-        height: 250px;
-        margin: 0 auto;
-    }
-
-    .contact-info p {
-        justify-content: center;
-    }
-}
-
-@media (max-width: 480px) {
-    .hero-content h1 {
-        font-size: 2rem;
-    }
-    
-    .hero-content h2 {
-        font-size: 1rem;
-    }
-    
-    .section h2 {
-        font-size: 2rem;
-    }
-    
-    .publication-links {
-        flex-direction: column;
-        gap: 0.5rem;
-    }
-    
-    .link-btn {
-        width: 100%;
-        justify-content: center;
-    }
-    
-    .project-details {
-        flex-direction: column;
-        align-items: center;
     }
 }
 
