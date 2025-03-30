@@ -543,4 +543,65 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     
     lazyImages.forEach(img => imageObserver.observe(img));
+});
+
+// 處理研究發表摺疊功能
+document.addEventListener('DOMContentLoaded', function() {
+    const publicationItems = document.querySelectorAll('.publication-item');
+    const showMoreBtn = document.querySelector('.show-more-btn');
+    const ITEMS_TO_SHOW = 3; // 預設顯示的論文數量
+
+    // 初始化：只顯示前幾篇論文
+    publicationItems.forEach((item, index) => {
+        if (index < ITEMS_TO_SHOW) {
+            item.classList.add('visible');
+        }
+    });
+
+    // 點擊"顯示更多"按鈕時的處理
+    if (showMoreBtn) {
+        showMoreBtn.addEventListener('click', function() {
+            publicationItems.forEach(item => {
+                item.classList.add('visible');
+            });
+            this.style.display = 'none'; // 隱藏"顯示更多"按鈕
+        });
+    }
+
+    // 處理年份篩選
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            // 移除所有按鈕的 active 類
+            filterBtns.forEach(b => b.classList.remove('active'));
+            // 添加當前按鈕的 active 類
+            this.classList.add('active');
+
+            const year = this.getAttribute('data-year');
+            let visibleCount = 0;
+
+            publicationItems.forEach((item, index) => {
+                const itemYear = item.getAttribute('data-year');
+                if (year === 'all' || year === itemYear) {
+                    if (visibleCount < ITEMS_TO_SHOW) {
+                        item.classList.add('visible');
+                        visibleCount++;
+                    } else {
+                        item.classList.remove('visible');
+                    }
+                } else {
+                    item.classList.remove('visible');
+                }
+            });
+
+            // 根據篩選結果顯示或隱藏"顯示更多"按鈕
+            if (showMoreBtn) {
+                const totalItems = year === 'all' 
+                    ? publicationItems.length 
+                    : Array.from(publicationItems).filter(item => item.getAttribute('data-year') === year).length;
+                
+                showMoreBtn.style.display = totalItems > ITEMS_TO_SHOW ? 'block' : 'none';
+            }
+        });
+    });
 }); 
