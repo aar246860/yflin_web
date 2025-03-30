@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>個人學術網站</title>
+    <!-- 字體 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- 自定義樣式 -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- 載入動畫 -->
+    <div class="loader-wrapper">
+        <div class="loader"></div>
+    </div>
+
+    <!-- 動態游標 -->
+    <div class="cursor"></div>
+    <div class="cursor-inner"></div>
+
+    <!-- 深色模式切換按鈕 -->
+    <button class="theme-toggle" aria-label="切換深色模式">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <!-- 導航欄 -->
+    <header class="header">
+        <nav class="nav-container">
+            <div class="logo">林穎凡</div>
+            <button class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links">
+                <li><a href="#home">首頁</a></li>
+                <li><a href="#about">關於我</a></li>
+                <li><a href="#research">研究</a></li>
+                <li><a href="#team">團隊</a></li>
+                <li><a href="#news">公告</a></li>
+                <li><a href="#publications">發表</a></li>
+                <li><a href="#teaching">教學</a></li>
+                <li><a href="#contact">聯絡</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- 英雄區域 -->
+        <section id="home" class="hero">
+            <div class="organic-shape"></div>
+            <div class="hero-content">
+                <h1 class="fade-in">林穎凡</h1>
+                <h2 class="fade-in">助理教授</h2>
+                <p class="fade-in">專注於地下水模式開發、熱能儲存技術與環境工程研究</p>
+                <div class="hero-buttons fade-in">
+                    <a href="#about" class="cta-button">了解更多</a>
+                    <a href="#contact" class="cta-button outline">聯絡我</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="section">
+            <h2 class="fade-in">關於我</h2>
+            <div class="about-content">
+                <div class="profile-image slide-in-left"></div>
+                <div class="about-text slide-in-right">
+                    <p>我是一位專注於地下水模式開發與環境工程研究的學者。目前擔任中原大學土木工程學系助理教授，致力於推動地下水資源管理與環境永續發展的研究。</p>
+                    <div class="contact-info">
+                        <p><i class="fas fa-map-marker-alt"></i> 辦公室：土木館506-3室</p>
+                        <p><i class="fas fa-phone"></i> 辦公室電話：03-2654223</p>
+                        <p><i class="fas fa-envelope"></i> Email: yflin1110@cycu.edu.tw</p>
+                    </div>
+                </div>
+                <div class="about-details">
+                    <div class="detail-item">
+                        <h3>學歷</h3>
+                        <ul>
+                            <li>國立陽明交通大學環境工程所 博士</li>
+                            <li>國立陽明交通大學環境工程所 碩士</li>
+                            <li>國立成功大學環境工程學系 學士</li>
+                        </ul>
+                    </div>
+                    <div class="detail-item">
+                        <h3>經歷</h3>
+                        <ul>
+                            <li>國立臺灣大學生物環境系統工程學系 博士後研究員</li>
+                            <li>國立陽明交通大學環境工程所 博士後研究員</li>
+                        </ul>
+                    </div>
+                    <div class="detail-item">
+                        <h3>榮譽事蹟</h3>
+                        <ul>
+                            <li>112年度社團法人台灣農業工程學會論文獎</li>
+                            <li>109年度國科會博士後研究人員學術研究獎</li>
+                            <li>103年度財團法人中興工程顧問社獎學金</li>
+                        </ul>
+                    </div>
+                    <div class="detail-item">
+                        <h3>專業證照</h3>
+                        <ul>
+                            <li>甲級廢水處理專責人員證照</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="research" class="section">
+            <h2 class="fade-in">研究興趣</h2>
+            <div class="research-grid">
+                <a href="research/groundwater.html" class="research-item">
+                    <i class="fas fa-water"></i>
+                    <h3>地下水模式開發與熱能儲存技術</h3>
+                    <p>開發先進的地下水數值模式，研究地下熱能儲存系統的效能與永續性。</p>
+                </a>
+                <a href="research/contaminant.html" class="research-item">
+                    <i class="fas fa-flask"></i>
+                    <h3>多孔介質中溶質傳輸與環境問題解決</h3>
+                    <p>研究污染物在多孔介質中的傳輸機制，開發環境問題的解決方案。</p>
+                </a>
+                <a href="research/coastal.html" class="research-item">
+                    <i class="fas fa-wave-square"></i>
+                    <h3>海岸含水層潮汐響應與鹽水入侵風險評估</h3>
+                    <p>分析海岸地區地下水的潮汐響應，評估鹽水入侵風險。</p>
+                </a>
+                <a href="research/data.html" class="research-item">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>數據驅動技術與訊號分析</h3>
+                    <p>應用先進的數據分析方法於水文與環境系統研究。</p>
+                </a>
+                <a href="research/spatial.html" class="research-item">
+                    <i class="fas fa-map"></i>
+                    <h3>空間統計方法於水文數據分析</h3>
+                    <p>開發創新的空間統計方法，應用於水文數據分析。</p>
+                </a>
+                <a href="research/membrane.html" class="research-item">
+                    <i class="fas fa-tools"></i>
+                    <h3>薄膜力學於水井效能最佳化</h3>
+                    <p>研究薄膜力學在水井設計與效能最佳化中的應用。</p>
+                </a>
+            </div>
+            
+            <div class="grants-section">
+                <h3 class="section-subtitle">國科會計畫</h3>
+                <div class="grants-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>年度</th>
+                                <th>補助類別</th>
+                                <th>學門代碼</th>
+                                <th>計畫名稱</th>
+                                <th>擔任工作</th>
+                                <th>核定經費(新台幣)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>113</td>
+                                <td>專題研究計畫 (新進人員研究計畫)</td>
+                                <td>水利工程</td>
+                                <td>沿海地區水資源管理的創新工具：基於虛井理論的無網格方法研究</td>
+                                <td>計畫主持人</td>
+                                <td>1,834,000</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="team" class="section">
+            <h2 class="fade-in">研究室團隊</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-image">
+                        <i class="fas fa-user-graduate fa-3x"></i>
+                    </div>
+                    <h3>蔡鼎翔</h3>
+                    <p class="member-title">碩士班一年級</p>
+                    <p class="member-description">研究領域：橢圓形海島抽水最佳化問題</p>
+                </div>
+                <div class="team-member">
+                    <div class="member-image">
+                        <i class="fas fa-user-graduate fa-3x"></i>
+                    </div>
+                    <h3>羅于翔</h3>
+                    <p class="member-title">碩士班一年級</p>
+                    <p class="member-description">研究領域：延遲理論應用在熱響應試驗</p>
+                </div>
+                <div class="team-member">
+                    <div class="member-image">
+                        <i class="fas fa-user-tie fa-3x"></i>
+                    </div>
+                    <h3>王湘雯</h3>
+                    <p class="member-title">研究助理（大三）</p>
+                    <p class="member-description">研究領域：研究井內grout的熱傳性質於熱響應試驗</p>
+                </div>
+                <div class="team-member">
+                    <div class="member-image">
+                        <i class="fas fa-user-tie fa-3x"></i>
+                    </div>
+                    <h3>陳浩櫸</h3>
+                    <p class="member-title">研究助理（大三）</p>
+                    <p class="member-description">研究領域：延遲理論的新參數空間分布</p>
+                </div>
+                <div class="team-member">
+                    <div class="member-image">
+                        <i class="fas fa-user-tie fa-3x"></i>
+                    </div>
+                    <h3>邱邵萱</h3>
+                    <p class="member-title">研究助理（大三）</p>
+                    <p class="member-description">研究領域：進行中</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="news" class="section">
+            <h2>最新公告</h2>
+            <div class="news-container">
+                <div class="news-timeline">
+                    <div class="news-item">
+                        <div class="news-date">2024-03-20</div>
+                        <div class="news-content">
+                            <h3>研究室成員參加國際研討會</h3>
+                            <p>本研究室王小明同學與李小華同學參加在美國舉辦的 SIAM Conference on Computational Science and Engineering，並發表研究成果。</p>
+                            <a href="#" class="read-more">閱讀更多</a>
+                        </div>
+                    </div>
+                    <div class="news-item">
+                        <div class="news-date">2024-03-15</div>
+                        <div class="news-content">
+                            <h3>張大千同學獲頒優秀論文獎</h3>
+                            <p>恭喜張大千同學的研究論文「基於深度學習的偏微分方程求解方法」獲選為本年度計算數學學會優秀論文獎。</p>
+                            <a href="#" class="read-more">閱讀更多</a>
+                        </div>
+                    </div>
+                    <div class="news-item">
+                        <div class="news-date">2024-03-10</div>
+                        <div class="news-content">
+                            <h3>研究室舉辦學術交流會</h3>
+                            <p>本研究室將於下週舉辦學術交流會，邀請多位國內外學者分享最新研究進展。歡迎有興趣的同學報名參加。</p>
+                            <a href="#" class="read-more">閱讀更多</a>
+                        </div>
+                    </div>
+                    <div class="news-item">
+                        <div class="news-date">2024-03-05</div>
+                        <div class="news-content">
+                            <h3>陳美玲同學獲選為優秀教學助理</h3>
+                            <p>恭喜陳美玲同學因在「科學計算導論」課程中的優異表現，獲選為本學期優秀教學助理。</p>
+                            <a href="#" class="read-more">閱讀更多</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="publications" class="section">
+            <h2 class="fade-in">研究發表</h2>
+            <div class="publications-container">
+                <div class="publications-filters">
+                    <button class="filter-btn active" data-year="all">全部</button>
+                    <button class="filter-btn" data-year="2025">2025</button>
+                    <button class="filter-btn" data-year="2024">2024</button>
+                    <button class="filter-btn" data-year="2023">2023</button>
+                    <button class="filter-btn" data-year="2022">2022</button>
+                    <button class="filter-btn" data-year="2021">2021</button>
+                    <button class="filter-btn" data-year="2020">2020</button>
+                    <button class="filter-btn" data-year="2019">2019</button>
+                    <button class="filter-btn" data-year="2017">2017</button>
+                    <button class="filter-btn" data-year="2016">2016</button>
+                </div>
+                <div class="publications-grid">
+                    <!-- 2025 -->
+                    <div class="publication-item" data-year="2025">
+                        <div class="publication-date">2025-06</div>
+                        <div class="publication-content">
+                            <h3>Faulty Assumptions: Groundwater Modeling Through Anisotropic Fault Zones</h3>
+                            <p class="authors">Jun-Hong Lin, Ying-Fan Lin*</p>
+                            <p class="journal">Journal of Hydrology</p>
+                            <div class="publication-links">
+                                <a href="#" class="link-btn"><i class="fas fa-file-pdf"></i> PDF</a>
+                                <a href="#" class="link-btn"><i class="fas fa-link"></i> DOI</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 其他論文項目將通過 JavaScript 動態生成 -->
+                </div>
+            </div>
+        </section>
+
+        <section id="teaching" class="section">
+            <h2 class="fade-in">教學課程</h2>
+            <div class="container">
+                <div class="teaching-grid">
+                    <div class="semester">
+                        <h3>112-2 學期</h3>
+                        <ul>
+                            <li>CE492D - 流體力學(一)</li>
+                            <li>CE351K - 流體力學實驗C</li>
+                            <li>CE352K - 流體力學實驗D</li>
+                            <li>CE689R - 地下水理論</li>
+                        </ul>
+                    </div>
+                    <div class="semester">
+                        <h3>113-1 學期</h3>
+                        <ul>
+                            <li>CE170E - 程式語言</li>
+                            <li>CE170F - 程式語言</li>
+                            <li>CE349G - 流體力學實驗A</li>
+                            <li>CE350H - 流體力學實驗B</li>
+                            <li>CE622T - 書報討論(三)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="future" class="section">
+            <div class="container">
+                <h2 class="section-title">未來研究方向</h2>
+                <div class="future-grid">
+                    <div class="future-item">
+                        <i class="fas fa-thermometer-half"></i>
+                        <h3>地下水溫度剖面應用</h3>
+                        <p>研究地下水溫度剖面在鹽水入侵與風險評估中的應用。</p>
+                    </div>
+                    <div class="future-item">
+                        <i class="fas fa-globe"></i>
+                        <h3>氣候變遷與地下熱島效應</h3>
+                        <p>探討氣候變遷與地下熱島效應的交互影響。</p>
+                    </div>
+                    <div class="future-item">
+                        <i class="fas fa-database"></i>
+                        <h3>跨領域數據分析技術</h3>
+                        <p>開發跨領域數據分析技術，應用於水資源與能源管理。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 研究合作機會 -->
+        <section id="collaboration" class="section">
+            <h2 class="fade-in">研究合作機會</h2>
+            <div class="collaboration-grid">
+                <div class="collaboration-item">
+                    <i class="fas fa-handshake"></i>
+                    <h3>跨領域合作</h3>
+                    <p>歡迎與環境工程、地質科學、數據科學等領域學者合作，共同探索地下水系統的複雜性與永續性。</p>
+                    <a href="#contact" class="btn">聯繫合作</a>
+                </div>
+                <div class="collaboration-item">
+                    <i class="fas fa-globe-asia"></i>
+                    <h3>國際合作</h3>
+                    <p>積極尋求國際研究機構合作機會，促進學術交流與研究創新。</p>
+                    <a href="#contact" class="btn">國際合作</a>
+                </div>
+                <div class="collaboration-item">
+                    <i class="fas fa-industry"></i>
+                    <h3>產學合作</h3>
+                    <p>提供產業界技術諮詢與合作機會，將研究成果轉化為實際應用。</p>
+                    <a href="#contact" class="btn">產學合作</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 研究資源 -->
+        <section id="resources" class="section">
+            <h2 class="fade-in">研究資源</h2>
+            <div class="resources-grid">
+                <div class="resource-item">
+                    <i class="fas fa-microscope"></i>
+                    <h3>實驗設備</h3>
+                    <p>先進的地下水模擬系統與分析設備，包括：</p>
+                    <ul>
+                        <li>地下水模擬槽</li>
+                        <li>水質分析儀器</li>
+                        <li>地層透水試驗設備</li>
+                        <li>熱傳導分析系統</li>
+                    </ul>
+                </div>
+                <div class="resource-item">
+                    <i class="fas fa-server"></i>
+                    <h3>計算資源</h3>
+                    <p>高效能計算集群與專業軟體，包括：</p>
+                    <ul>
+                        <li>高性能計算工作站</li>
+                        <li>專業數值模擬軟體</li>
+                        <li>數據分析工具</li>
+                        <li>視覺化系統</li>
+                    </ul>
+                </div>
+                <div class="resource-item">
+                    <i class="fas fa-database"></i>
+                    <h3>數據資源</h3>
+                    <p>豐富的實地觀測數據與模擬結果，包括：</p>
+                    <ul>
+                        <li>長期監測數據</li>
+                        <li>實地試驗資料</li>
+                        <li>數值模擬結果</li>
+                        <li>案例研究資料</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 研究計畫 -->
+        <section id="projects" class="section">
+            <h2 class="fade-in">研究計畫</h2>
+            <div class="projects-grid">
+                <div class="project-item">
+                    <div class="project-image">
+                        <i class="fas fa-water"></i>
+                    </div>
+                    <h3>地下水系統模擬</h3>
+                    <p>開發新型數值方法，提高地下水系統模擬的準確性與效率。</p>
+                    <div class="project-details">
+                        <span><i class="fas fa-calendar"></i> 2024-2025</span>
+                        <span><i class="fas fa-money-bill-wave"></i> 科技部計畫</span>
+                    </div>
+                </div>
+                <div class="project-item">
+                    <div class="project-image">
+                        <i class="fas fa-temperature-high"></i>
+                    </div>
+                    <h3>熱傳導研究</h3>
+                    <p>研究地層熱傳導特性，優化地熱系統設計。</p>
+                    <div class="project-details">
+                        <span><i class="fas fa-calendar"></i> 2024-2025</span>
+                        <span><i class="fas fa-money-bill-wave"></i> 產學合作計畫</span>
+                    </div>
+                </div>
+                <div class="project-item">
+                    <div class="project-image">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>AI應用研究</h3>
+                    <p>整合人工智慧技術，提升地下水系統分析效率。</p>
+                    <div class="project-details">
+                        <span><i class="fas fa-calendar"></i> 2024-2025</span>
+                        <span><i class="fas fa-money-bill-wave"></i> 跨領域計畫</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 研究環境 -->
+        <section id="environment" class="section">
+            <h2 class="fade-in">研究環境</h2>
+            <div class="environment-grid">
+                <div class="environment-item">
+                    <i class="fas fa-university"></i>
+                    <h3>研究空間</h3>
+                    <p>寬敞的研究室與實驗室空間，配備完善的辦公設備。</p>
+                </div>
+                <div class="environment-item">
+                    <i class="fas fa-users"></i>
+                    <h3>團隊氛圍</h3>
+                    <p>積極開放的學術氛圍，促進團隊合作與創新思維。</p>
+                </div>
+                <div class="environment-item">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h3>學習機會</h3>
+                    <p>定期舉辦學術研討會與工作坊，提供持續學習與交流機會。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 研究合作諮詢表單 -->
+        <section id="collaboration-form" class="section">
+            <h2 class="fade-in">研究合作諮詢</h2>
+            <div class="form-container">
+                <form id="collaborationForm">
+                    <div class="form-group">
+                        <label for="name">姓名</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="institution">所屬機構</label>
+                        <input type="text" id="institution" name="institution" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">電子郵件</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="collaboration-type">合作類型</label>
+                        <select id="collaboration-type" name="collaboration-type" required>
+                            <option value="">請選擇</option>
+                            <option value="academic">學術合作</option>
+                            <option value="industry">產學合作</option>
+                            <option value="international">國際合作</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">合作提案說明</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">提交諮詢</button>
+                </form>
+            </div>
+        </section>
+
+        <section id="contact" class="section">
+            <div class="container">
+                <h2 class="section-title">聯絡方式</h2>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <h3>電子郵件</h3>
+                        <p>yflin1110@cycu.edu.tw</p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h3>辦公室</h3>
+                        <p>中原大學土木館506-3室</p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <h3>電話</h3>
+                        <p>03-2654223</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2024 林穎凡教授研究室. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#" aria-label="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
+                <a href="#" aria-label="ResearchGate"><i class="fab fa-researchgate"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 
