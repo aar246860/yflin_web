@@ -34,31 +34,33 @@ hoverElements.forEach(element => {
     });
 });
 
-// 深色模式切換
-const themeToggle = document.querySelector('.theme-toggle');
-const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-
-function toggleTheme() {
-    document.body.dataset.theme = document.body.dataset.theme === 'dark' ? 'light' : 'dark';
-    localStorage.setItem('theme', document.body.dataset.theme);
-    updateThemeIcon();
-}
-
-function updateThemeIcon() {
-    const icon = themeToggle.querySelector('i');
-    icon.className = document.body.dataset.theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
-}
-
-themeToggle.addEventListener('click', toggleTheme);
-
-// 初始化主題
-const savedTheme = localStorage.getItem('theme');
-if (savedTheme) {
-    document.body.dataset.theme = savedTheme;
-} else if (prefersDarkScheme.matches) {
-    document.body.dataset.theme = 'dark';
-}
-updateThemeIcon();
+// 深色模式切換功能
+document.addEventListener('DOMContentLoaded', () => {
+    const themeToggle = document.querySelector('.theme-toggle');
+    const themeIcon = themeToggle.querySelector('i');
+    
+    // 檢查本地存儲中的主題設置
+    const currentTheme = localStorage.getItem('theme');
+    if (currentTheme) {
+        document.documentElement.setAttribute('data-theme', currentTheme);
+        updateThemeIcon(currentTheme === 'dark');
+    }
+    
+    // 切換主題
+    themeToggle.addEventListener('click', () => {
+        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        const newTheme = isDark ? 'light' : 'dark';
+        
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        updateThemeIcon(!isDark);
+    });
+    
+    // 更新圖標
+    function updateThemeIcon(isDark) {
+        themeIcon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
+    }
+});
 
 // 平滑滾動
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -66,12 +68,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
-            const headerOffset = 80;
-            const elementPosition = target.getBoundingClientRect().top;
-            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-            
-            window.scrollTo({
-                top: offsetPosition,
+            target.scrollIntoView({
                 behavior: 'smooth'
             });
         }

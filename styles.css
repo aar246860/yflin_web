@@ -121,6 +121,7 @@ h2:hover::after {
     -webkit-backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--border-color);
     z-index: 1000;
+    padding: 0.5rem 0;
 }
 
 [data-theme="dark"] .header {
@@ -130,7 +131,7 @@ h2:hover::after {
 .nav-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 1rem;
+    padding: 0.5rem 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -146,6 +147,13 @@ h2:hover::after {
     display: flex;
     list-style: none;
     gap: 2rem;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li {
+    margin: 0;
+    padding: 0;
 }
 
 .nav-links a {
@@ -153,6 +161,7 @@ h2:hover::after {
     color: var(--primary-color);
     font-weight: 500;
     transition: var(--transition-normal);
+    white-space: nowrap;
 }
 
 .nav-links a:hover {
@@ -268,6 +277,8 @@ h2:hover::after {
     align-items: center;
     gap: 0.5rem;
     margin-bottom: 0.5rem;
+    color: var(--text-color);
+    font-weight: 500;
 }
 
 .contact-info i {
@@ -698,32 +709,55 @@ footer {
 }
 
 .grants-table {
+    width: 100%;
     overflow-x: auto;
-    margin: 0 -1rem;
-    padding: 0 1rem;
+    margin: 2rem 0;
+    border-radius: 8px;
+    box-shadow: var(--shadow-sm);
 }
 
 .grants-table table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 1rem;
-}
-
-.grants-table th,
-.grants-table td {
-    padding: 1rem;
-    text-align: left;
-    border-bottom: 1px solid var(--border-color);
+    background: var(--card-bg);
 }
 
 .grants-table th {
-    background-color: var(--primary-color);
-    color: white;
-    font-weight: 500;
+    background: var(--primary-color);
+    color: #ffffff;
+    font-weight: 600;
+    padding: 1rem;
+    text-align: left;
+    white-space: nowrap;
+}
+
+.grants-table td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-color);
 }
 
 .grants-table tr:hover {
-    background-color: var(--hover-color);
+    background: var(--hover-bg);
+}
+
+/* 深色模式樣式 */
+[data-theme="dark"] .grants-table table {
+    background: var(--dark-card-bg);
+}
+
+[data-theme="dark"] .grants-table th {
+    background: var(--accent-color);
+    color: #ffffff;
+}
+
+[data-theme="dark"] .grants-table td {
+    color: var(--dark-text);
+    border-bottom: 1px solid var(--dark-border);
+}
+
+[data-theme="dark"] .grants-table tr:hover {
+    background: var(--dark-hover-bg);
 }
 
 @media (max-width: 768px) {
@@ -1218,9 +1252,10 @@ footer {
 }
 
 .member-title {
-    color: var(--secondary-color);
+    color: var(--accent-color);
     font-weight: 600;
     margin-bottom: 0.5rem;
+    font-size: 1.1rem;
 }
 
 .member-description {
@@ -1523,4 +1558,44 @@ footer {
     .blog-post-content {
         padding: 1.5rem;
     }
+}
+
+/* 深色模式切換按鈕 */
+.theme-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--secondary-color);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1000;
+    transition: var(--transition-normal);
+    border: none;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.theme-toggle:hover {
+    background: var(--accent-color);
+    transform: scale(1.1);
+}
+
+/* 國科會計畫表格樣式 */
+.grants-table th {
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: 500;
+}
+
+.grants-table td {
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .grants-table td {
+    color: #ffffff;
 } 
