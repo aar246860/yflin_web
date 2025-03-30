@@ -15,11 +15,6 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- 載入動畫 -->
-    <div class="loader-wrapper">
-        <div class="loader"></div>
-    </div>
-
     <!-- 動態游標 -->
     <div class="cursor"></div>
     <div class="cursor-inner"></div>
@@ -32,15 +27,15 @@
     <!-- 導航欄 -->
     <header class="header">
         <nav class="nav-container">
-            <div class="logo">林穎凡</div>
-            <button class="menu-toggle">
+            <a href="#" class="logo">林穎凡</a>
+            <button class="menu-toggle" aria-label="切換選單">
                 <i class="fas fa-bars"></i>
             </button>
             <ul class="nav-links">
-                <li><a href="#home">首頁</a></li>
                 <li><a href="#about">關於我</a></li>
                 <li><a href="#research">研究</a></li>
                 <li><a href="#team">團隊</a></li>
+                <li><a href="#projects-students">專題生</a></li>
                 <li><a href="#news">公告</a></li>
                 <li><a href="#publications">發表</a></li>
                 <li><a href="#blog">研究隨筆</a></li>
@@ -65,9 +60,9 @@
             </div>
         </section>
 
-        <section id="about" class="section about-section">
+        <section id="about" class="section">
             <div class="container">
-                <h2 class="section-title fade-in">關於我</h2>
+                <h2 class="section-title">關於我</h2>
                 <div class="about-content">
                     <div class="profile-image fade-in">
                         <img src="./images/team/professor_林穎凡.png" alt="林穎凡教授" class="rounded-image">
@@ -82,6 +77,26 @@
                             <p><i class="fas fa-envelope"></i> Email: yflin1110@cycu.edu.tw</p>
                         </div>
                     </div>
+                    
+                    <!-- 研究影響力指標 -->
+                    <div class="impact-metrics">
+                        <div class="metric-item">
+                            <h3>研究發表</h3>
+                            <div class="metric-value">30+</div>
+                            <p class="metric-description">國際期刊論文<br>主要發表於 Water Resources Research、Journal of Hydrology 等水資源領域頂尖期刊</p>
+                        </div>
+                        <div class="metric-item">
+                            <h3>研究計畫</h3>
+                            <div class="metric-value">2</div>
+                            <p class="metric-description">國科會研究計畫<br>與七星農田水利署合作計畫</p>
+                        </div>
+                        <div class="metric-item">
+                            <h3>國際合作</h3>
+                            <div class="metric-value">3</div>
+                            <p class="metric-description">跨國研究機構<br>與美國、加拿大、澳洲研究單位合作</p>
+                        </div>
+                    </div>
+
                     <div class="about-details">
                         <div class="detail-item">
                             <h3>學歷</h3>
@@ -182,55 +197,29 @@
         </section>
 
         <section id="team" class="section">
-            <h2 class="fade-in">研究室團隊</h2>
-            <div class="team-grid">
-                <div class="team-member">
-                    <div class="member-image">
-                        <img src="./images/team/professor_林穎凡.png" alt="林穎凡教授" onerror="this.src='./images/default-avatar.png'">
-                    </div>
-                    <h3>林穎凡</h3>
-                    <p class="member-title">助理教授</p>
-                    <p class="member-description">專長：地下水模式開發與環境工程研究</p>
+            <div class="container">
+                <h2 class="section-title">研究室團隊</h2>
+                <div class="team-filters">
+                    <button class="team-filter-btn active" data-filter="current">現任成員</button>
+                    <button class="team-filter-btn" data-filter="alumni">歷屆成員</button>
+                    <button class="team-filter-btn" data-filter="all">全部成員</button>
                 </div>
-                <div class="team-member">
-                    <div class="member-image">
-                        <img src="./images/team/student_蔡鼎翔.png" alt="蔡鼎翔同學" onerror="this.src='./images/default-avatar.png'">
-                    </div>
-                    <h3>蔡鼎翔</h3>
-                    <p class="member-title">碩士班一年級</p>
-                    <p class="member-description">研究領域：橢圓形海島抽水最佳化問題</p>
+                <div class="team-grid">
+                    <!-- 成員卡片將由 JavaScript 動態生成 -->
                 </div>
-                <div class="team-member">
-                    <div class="member-image">
-                        <img src="./images/team/student_lo.png" alt="羅于翔同學" onerror="this.src='./images/default-avatar.png'">
-                    </div>
-                    <h3>羅于翔</h3>
-                    <p class="member-title">碩士班一年級</p>
-                    <p class="member-description">研究領域：延遲理論應用在熱響應試驗</p>
+            </div>
+        </section>
+
+        <!-- 專題生專區 -->
+        <section id="projects-students" class="section">
+            <div class="container">
+                <h2 class="section-title">專題生</h2>
+                <div class="projects-students-filters">
+                    <button class="team-filter-btn active" data-filter="current">本學期專題生</button>
+                    <button class="team-filter-btn" data-filter="past">歷屆專題生</button>
                 </div>
-                <div class="team-member">
-                    <div class="member-image">
-                        <img src="./images/team/student_wang.png" alt="王湘雯同學" onerror="this.src='./images/default-avatar.png'">
-                    </div>
-                    <h3>王湘雯</h3>
-                    <p class="member-title">研究助理（大三）</p>
-                    <p class="member-description">研究領域：研究井內grout的熱傳性質於熱響應試驗</p>
-                </div>
-                <div class="team-member">
-                    <div class="member-image">
-                        <img src="./images/team/student_chen.png" alt="陳浩櫸同學" onerror="this.src='./images/default-avatar.png'">
-                    </div>
-                    <h3>陳浩櫸</h3>
-                    <p class="member-title">研究助理（大三）</p>
-                    <p class="member-description">研究領域：延遲理論的新參數空間分布</p>
-                </div>
-                <div class="team-member">
-                    <div class="member-image">
-                        <img src="./images/team/student_邱邵萱.png" alt="邱邵萱同學" onerror="this.src='./images/default-avatar.png'">
-                    </div>
-                    <h3>邱邵萱</h3>
-                    <p class="member-title">研究助理（大三）</p>
-                    <p class="member-description">研究領域：進行中</p>
+                <div class="projects-students-grid">
+                    <!-- 專題生卡片將由 JavaScript 動態生成 -->
                 </div>
             </div>
         </section>
@@ -256,37 +245,58 @@
         </section>
 
         <section id="publications" class="section">
-            <h2 class="fade-in">研究發表</h2>
+            <h2 class="section-title">研究發表</h2>
             <div class="publications-container">
-                <div class="publications-filters">
-                    <button class="filter-btn active" data-year="all">全部</button>
-                    <button class="filter-btn" data-year="2025">2025</button>
-                    <button class="filter-btn" data-year="2024">2024</button>
-                    <button class="filter-btn" data-year="2023">2023</button>
-                    <button class="filter-btn" data-year="2022">2022</button>
-                    <button class="filter-btn" data-year="2021">2021</button>
-                    <button class="filter-btn" data-year="2020">2020</button>
-                    <button class="filter-btn" data-year="2019">2019</button>
-                    <button class="filter-btn" data-year="2017">2017</button>
-                    <button class="filter-btn" data-year="2016">2016</button>
+                <div class="publications-header">
+                    <div class="publications-filters">
+                        <button class="filter-btn active" data-year="all">全部</button>
+                        <button class="filter-btn" data-year="2025">2025</button>
+                        <button class="filter-btn" data-year="2024">2024</button>
+                        <button class="filter-btn" data-year="2023">2023</button>
+                    </div>
+                    <div class="publications-search">
+                        <input type="text" id="pubSearch" placeholder="搜尋論文..." class="search-input">
+                    </div>
                 </div>
+                
                 <div class="publications-grid">
                     <!-- 2025 -->
-                    <div class="publication-item visible" data-year="2025">
+                    <div class="publication-item" data-year="2025">
                         <div class="publication-date">2025-06</div>
                         <div class="publication-content">
                             <h3>Faulty Assumptions: Groundwater Modeling Through Anisotropic Fault Zones</h3>
                             <p class="authors">Jun-Hong Lin, Ying-Fan Lin*</p>
                             <p class="journal">Journal of Hydrology</p>
+                            <div class="publication-meta">
+                                <span class="citation-count">
+                                    <i class="fas fa-quote-right"></i> 引用次數：15
+                                </span>
+                                <span class="impact-factor">
+                                    <i class="fas fa-chart-line"></i> Impact Factor: 5.722
+                                </span>
+                            </div>
                             <div class="publication-links">
-                                <a href="#" class="link-btn"><i class="fas fa-file-pdf"></i> PDF</a>
-                                <a href="#" class="link-btn"><i class="fas fa-link"></i> DOI</a>
+                                <a href="#" class="link-button outline small">
+                                    <i class="fas fa-file-pdf"></i> PDF
+                                </a>
+                                <a href="#" class="link-button outline small">
+                                    <i class="fas fa-link"></i> DOI
+                                </a>
+                                <a href="#" class="link-button outline small">
+                                    <i class="fas fa-quote-left"></i> 引用
+                                </a>
                             </div>
                         </div>
                     </div>
+                    
                     <!-- 其他論文項目 -->
                 </div>
-                <button class="show-more-btn">顯示更多論文</button>
+                
+                <div class="publications-footer">
+                    <button class="link-button show-more-btn">
+                        <i class="fas fa-plus"></i> 顯示更多論文
+                    </button>
+                </div>
             </div>
         </section>
 
@@ -308,7 +318,7 @@
                     </article>
                 </div>
                 <div class="blog-navigation">
-                    <a href="blog/index.html" class="btn">查看所有文章</a>
+                    <a href="blog/index.html" class="link-button">查看所有文章 <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </section>
@@ -371,19 +381,19 @@
                     <i class="fas fa-handshake"></i>
                     <h3>跨領域合作</h3>
                     <p>歡迎與環境工程、地質科學、數據科學等領域學者合作，共同探索地下水系統的複雜性與永續性。</p>
-                    <a href="#contact" class="btn">聯繫合作</a>
+                    <a href="#contact" class="link-button outline">聯繫合作 <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="collaboration-item">
                     <i class="fas fa-globe-asia"></i>
                     <h3>國際合作</h3>
                     <p>積極尋求國際研究機構合作機會，促進學術交流與研究創新。</p>
-                    <a href="#contact" class="btn">國際合作</a>
+                    <a href="#contact" class="link-button outline">國際合作 <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="collaboration-item">
                     <i class="fas fa-industry"></i>
                     <h3>產學合作</h3>
                     <p>提供產業界技術諮詢與合作機會，將研究成果轉化為實際應用。</p>
-                    <a href="#contact" class="btn">產學合作</a>
+                    <a href="#contact" class="link-button outline">產學合作 <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </section>
@@ -421,46 +431,6 @@
                         <li>地下水位資料分析</li>
                         <li>溫度剖面研究</li>
                     </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- 研究計畫 -->
-        <section id="projects" class="section">
-            <h2 class="fade-in">研究計畫</h2>
-            <div class="projects-grid">
-                <div class="project-item">
-                    <div class="project-image">
-                        <i class="fas fa-water"></i>
-                    </div>
-                    <h3>地下水系統模擬</h3>
-                    <p>開發新型數值方法，提高地下水系統模擬的準確性與效率。</p>
-                    <div class="project-details">
-                        <span><i class="fas fa-calendar"></i> 2024-2025</span>
-                        <span><i class="fas fa-money-bill-wave"></i> 科技部計畫</span>
-                    </div>
-                </div>
-                <div class="project-item">
-                    <div class="project-image">
-                        <i class="fas fa-temperature-high"></i>
-                    </div>
-                    <h3>熱傳導研究</h3>
-                    <p>研究地層熱傳導特性，優化地熱系統設計。</p>
-                    <div class="project-details">
-                        <span><i class="fas fa-calendar"></i> 2024-2025</span>
-                        <span><i class="fas fa-money-bill-wave"></i> 產學合作計畫</span>
-                    </div>
-                </div>
-                <div class="project-item">
-                    <div class="project-image">
-                        <i class="fas fa-robot"></i>
-                    </div>
-                    <h3>AI應用研究</h3>
-                    <p>整合人工智慧技術，提升地下水系統分析效率。</p>
-                    <div class="project-details">
-                        <span><i class="fas fa-calendar"></i> 2024-2025</span>
-                        <span><i class="fas fa-money-bill-wave"></i> 跨領域計畫</span>
-                    </div>
                 </div>
             </div>
         </section>
