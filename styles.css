@@ -413,88 +413,81 @@ footer {
     transform: translateX(100%);
 }
 
-/* 公告樣式 */
-.news-container {
-    max-width: 800px;
-    margin: 0 auto;
+/* 最新公告區塊樣式 */
+.news-section {
+    padding: 4rem 0;
+    background: var(--light-bg);
 }
 
-.news-timeline {
-    position: relative;
-    padding: 2rem 0;
+[data-theme="dark"] .news-section {
+    background: var(--dark-bg);
 }
 
-.news-timeline::before {
-    content: '';
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 2px;
-    height: 100%;
-    background: var(--secondary-color);
+.news-grid {
+    display: grid;
+    gap: 2rem;
+    margin-top: 2rem;
 }
 
 .news-item {
-    position: relative;
-    margin-bottom: 2rem;
-    width: 50%;
-    padding-right: 2rem;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    position: relative;
-    overflow: hidden;
-}
-
-.news-item:nth-child(even) {
-    margin-left: 50%;
-    padding-right: 0;
-    padding-left: 2rem;
-}
-
-.news-item:hover {
-    transform: translateY(-10px) scale(1.02);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-}
-
-.news-date {
-    position: absolute;
-    right: -100px;
-    top: 0;
-    background: var(--secondary-color);
-    color: white;
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    font-size: 0.9rem;
-}
-
-.news-item:nth-child(even) .news-date {
-    right: auto;
-    left: -100px;
-}
-
-.news-content {
-    background: var(--alpine-oat);
+    background: var(--card-bg);
+    border-radius: 1rem;
     padding: 1.5rem;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.news-content h3 {
-    color: var(--primary-color);
-    margin-bottom: 0.5rem;
-}
-
-.read-more {
-    display: inline-block;
-    margin-top: 1rem;
-    color: var(--secondary-color);
-    text-decoration: none;
-    font-weight: 500;
+    box-shadow: var(--shadow-sm);
     transition: var(--transition-normal);
 }
 
-.read-more:hover {
-    color: var(--primary-color);
+.news-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+}
+
+.news-date {
+    font-size: 0.9rem;
+    color: var(--accent-color);
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.news-content h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+    color: var(--text-color);
+}
+
+.news-content p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.news-tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.tag {
+    background: var(--tag-bg);
+    color: var(--tag-text);
+    padding: 0.25rem 0.75rem;
+    border-radius: 2rem;
+    font-size: 0.85rem;
+    transition: var(--transition-normal);
+}
+
+.tag:hover {
+    background: var(--tag-hover-bg);
+}
+
+/* 深色模式標籤樣式 */
+[data-theme="dark"] .tag {
+    background: var(--tag-dark-bg);
+    color: var(--tag-dark-text);
+}
+
+[data-theme="dark"] .tag:hover {
+    background: var(--tag-dark-hover-bg);
 }
 
 /* 動態游標 */
