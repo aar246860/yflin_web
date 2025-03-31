@@ -1,4 +1,3 @@
-// 頁面初始化
 document.addEventListener('DOMContentLoaded', () => {
     const cursor = document.querySelector('.cursor');
     const cursorInner = document.querySelector('.cursor-inner');
@@ -689,15 +688,63 @@ ${formData.message}
             card.className = 'team-member card-3d';
             card.setAttribute('data-type', member.type);
             
+            // 使用i18n屬性創建卡片內容
+            const currentLang = localStorage.getItem('currentLang') || 'zh-TW';
+            let memberName = member.name;
+            let memberTitle = member.title;
+            let memberResearch = member.research;
+            
+            // 如果是英文並且有對應的翻譯鍵，使用翻譯
+            if (currentLang === 'en' && translations && translations.en) {
+                // 嘗試查找姓名翻譯
+                if (member.type === 'professor' && translations.en['professor_name']) {
+                    memberName = translations.en['professor_name'];
+                } else if (member.name === '蔡鼎翔' && translations.en['student_tsai_name']) {
+                    memberName = translations.en['student_tsai_name'];
+                } else if (member.name === '羅于翔' && translations.en['student_luo_name']) {
+                    memberName = translations.en['student_luo_name'];
+                } else if (member.name === '王湘雯' && translations.en['student_wang_name']) {
+                    memberName = translations.en['student_wang_name'];
+                } else if (member.name === '陳鎬櫸' && translations.en['student_chen_name']) {
+                    memberName = translations.en['student_chen_name'];
+                } else if (member.name === '邱邵萱' && translations.en['student_chiu_name']) {
+                    memberName = translations.en['student_chiu_name'];
+                }
+                
+                // 嘗試查找職位翻譯
+                if (member.type === 'professor' && translations.en['position_assistant_professor']) {
+                    memberTitle = translations.en['position_assistant_professor'];
+                } else if (member.type === 'master' && translations.en['position_masters_student']) {
+                    memberTitle = translations.en['position_masters_student'];
+                } else if (member.type === 'assistant' && translations.en['position_research_assistant']) {
+                    memberTitle = translations.en['position_research_assistant'];
+                }
+                
+                // 嘗試查找研究方向翻譯
+                if (member.research.includes('地下水模擬') && translations.en['research_groundwater']) {
+                    memberResearch = translations.en['research_groundwater'];
+                } else if (member.research.includes('熱響應試驗') && member.name === '羅于翔' && translations.en['research_delay_trt']) {
+                    memberResearch = translations.en['research_delay_trt'];
+                } else if (member.research.includes('grout') && member.name === '王湘雯' && translations.en['research_grout_thermal']) {
+                    memberResearch = translations.en['research_grout_thermal'];
+                } else if (member.research.includes('延遲理論') && member.name === '陳鎬櫸' && translations.en['research_numerical']) {
+                    memberResearch = translations.en['research_numerical'];
+                } else if (member.research.includes('進行中') && translations.en['research_ongoing']) {
+                    memberResearch = translations.en['research_ongoing'];
+                } else if (member.research.includes('橢圓海島') && translations.en['research_elliptical']) {
+                    memberResearch = translations.en['research_elliptical'];
+                }
+            }
+            
             card.innerHTML = `
                 <div class="member-image">
-                    <img src="${member.image}" alt="${member.name}" 
+                    <img src="${member.image}" alt="${memberName}" 
                          onerror="this.src='./images/default-avatar.png'">
                 </div>
                 <div class="member-info">
-                    <h3>${member.name}</h3>
-                    <p class="member-title">${member.title}</p>
-                    <p class="member-research">${member.research}</p>
+                    <h3>${memberName}</h3>
+                    <p class="member-title">${memberTitle}</p>
+                    <p class="member-research">${memberResearch}</p>
                     <a href="mailto:${member.email}" class="member-email">
                         <i class="fas fa-envelope"></i> Email
                     </a>
@@ -740,4 +787,86 @@ ${formData.message}
             generateTeamMembers(btn.dataset.filter);
         });
     });
-}); 
+
+    // 語言切換功能
+    function updateContent(lang) {
+        console.log('Updating content to language:', lang);
+        
+        if (!translations || !translations[lang]) {
+            console.error('Translation object not found for language:', lang);
+            return;
+        }
+        
+        // 更新 HTML 語言屬性
+        document.documentElement.lang = lang;
+        
+        // 更新所有帶有 data-i18n 屬性的元素
+        document.querySelectorAll('[data-i18n]').forEach(element => {
+            const key = element.getAttribute('data-i18n');
+            console.log('Translating element with key:', key);
+            
+            if (!translations[lang][key]) {
+                console.error('Translation not found for key:', key, 'in language:', lang);
+                return;
+            }
+            
+            const translatedText = translations[lang][key];
+            console.log('Translated to:', translatedText);
+            
+            if (element.tagName.toLowerCase() === 'option') {
+                element.value = element.value; // 保持原有的值
+                element.textContent = translatedText;
+            } else {
+                element.textContent = translatedText;
+            }
+        });
+        
+        // 更新所有帶有 data-i18n-placeholder 屬性的元素
+        document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
+            const key = element.getAttribute('data-i18n-placeholder');
+            if (translations[lang][key]) {
+                element.placeholder = translations[lang][key];
+            }
+        });
+        
+        // 更新語言按鈕狀態
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+        });
+        
+        // 保存當前語言設置
+        localStorage.setItem('currentLang', lang);
+        
+        // 重新生成團隊成員卡片以應用新語言
+        generateTeamMembers('current');
+    }
+
+    // 初始化語言設置
+    if (typeof translations === 'undefined') {
+        console.error('translations.js 未正確加載！');
+        return;
+    }
+    
+    console.log('translations.js 已成功加載');
+    
+    // 綁定語言切換按鈕事件
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const lang = btn.getAttribute('data-lang');
+            updateContent(lang);
+        });
+    });
+    
+    // 設置初始語言
+    const savedLang = localStorage.getItem('currentLang') || 'zh-TW';
+    updateContent(savedLang);
+
+    // 確保在DOM加載完成後重新生成團隊成員
+    document.addEventListener('DOMContentLoaded', () => {
+        // 確保重新生成團隊成員以應用當前語言
+        const currentLang = localStorage.getItem('currentLang') || 'zh-TW';
+        if (currentLang === 'en') {
+            generateTeamMembers('current');
+        }
+    });
+});
