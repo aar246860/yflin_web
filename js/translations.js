@@ -37,9 +37,10 @@ const translations = {
 
         // 榮譽事蹟
         'honors_title': '榮譽事蹟',
+        'honor_4': '113年度美國地球物理聯盟 (AGU)《Water Resources Research》2024 優秀審稿人獎 (Outstanding Reviewer)',
         'honor_1': '112年度社團法人台灣農業工程學會論文獎',
-        'honor_2': '109年度原國科會博士後研究人員學術研究獎',
-        'honor_3': '103年度原國科會千里馬計畫社會奬學金',
+        'honor_2': '109年度國科會博士後研究人員學術研究獎',
+        'honor_3': '103年度財團法人中興工程顧問社獎學金',
 
         // 專業證照
         'certification_title': '專業證照',
@@ -137,6 +138,7 @@ const translations = {
         'experience_postdoc_nycu': '國立陽明交通大學環境工程所 博士後研究員',
         
         'honors_title': '榮譽事蹟',
+        'honor_4': '113年度美國地球物理聯盟 (AGU)《Water Resources Research》2024 優秀審稿人獎 (Outstanding Reviewer)',
         'honor_1': '112年度社團法人台灣農業工程學會論文獎',
         'honor_2': '109年度國科會博士後研究人員學術研究獎',
         'honor_3': '103年度財團法人中興工程顧問社獎學金',
@@ -355,6 +357,7 @@ const translations = {
 
         // Honors
         'honors_title': 'Honors and Awards',
+        'honor_4': '2024 Outstanding Reviewer, Water Resources Research (AGU)',
         'honor_1': '2023 Taiwan Society of Agricultural Engineering Paper Award',
         'honor_2': '2020 MOST Postdoctoral Research Academic Award',
         'honor_3': '2014 NSC Thousand Horse Program Social Scholarship',
@@ -455,6 +458,7 @@ const translations = {
         'experience_postdoc_nycu': 'Postdoctoral Researcher, Institute of Environmental Engineering, National Yang Ming Chiao Tung University',
         
         'honors_title': 'Honors',
+        'honor_4': '2024 Outstanding Reviewer, Water Resources Research (AGU)',
         'honor_1': '2023 Taiwan Agricultural Engineering Society Paper Award',
         'honor_2': '2020 MOST Postdoctoral Research Academic Award',
         'honor_3': '2014 Sinotech Engineering Consultants Scholarship',
