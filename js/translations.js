@@ -54,7 +54,7 @@ const translations = {
 
         // 研究計畫
         'research_grants_title': '研究計畫',
-        'research_grants_count': '2',
+        'research_grants_count': '3',
         'research_grants_desc': '國科會研究計畫',
         'research_grants_detail': '與七星農田水利會合作計畫',
 
@@ -156,6 +156,10 @@ const translations = {
         'project_budget': '核定經費(新台幣)',
         'project_type_new': '專題研究計畫 (新進人員研究計畫)',
         'project_field_water': '水利工程',
+        'project_type_general': '專題研究計畫 (一般研究計畫)',
+        'project_name_seawater': '在台灣監測與繪製海水入侵脆弱性之創新方法',
+        'project_name_groundwater': '發展高效率地表地下水文模式並應用於永續地下水補注策略研析',
+        'project_role_co_pi': '共同主持人',
         'project_name_coastal': '沿海地區水資源管理的創新工具：基於虛井理論的無網格方法研究',
         'project_role_pi': '計畫主持人',
 
@@ -375,7 +379,7 @@ const translations = {
 
         // Research Grants
         'research_grants_title': 'Research Grants',
-        'research_grants_count': '2',
+        'research_grants_count': '3',
         'research_grants_desc': 'MOST Research Projects',
         'research_grants_detail': 'Collaboration with Chi-Hsing Irrigation Association',
 
@@ -477,6 +481,10 @@ const translations = {
         'project_budget': 'Budget (NTD)',
         'project_type_new': 'Research Project (New Faculty)',
         'project_field_water': 'Hydraulic Engineering',
+        'project_type_general': 'Research Project (General Research)',
+        'project_name_seawater': 'Innovative Methods for Monitoring and Mapping Seawater Intrusion Vulnerability in Taiwan',
+        'project_name_groundwater': 'Development of a High-Efficiency Surface-Subsurface Hydrological Model and Its Application to Sustainable Groundwater Recharge Strategies',
+        'project_role_co_pi': 'Co-Principal Investigator',
         'project_name_coastal': 'Innovative Tools for Coastal Water Resource Management: A Study of Meshless Methods Based on Virtual Well Theory',
         'project_role_pi': 'Principal Investigator',
 
