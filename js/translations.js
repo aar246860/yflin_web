@@ -180,6 +180,7 @@ const translations = {
         'news_conference': '國際會議',
         'news_achievement': '恭喜王湘雯同學於日本千葉舉辦的2025年地球惑星科學聯合大會(JpGU)發表研究成果！發表題目為: A New Analytical Solution for Thermal Response Tests Considering Finite Borehole Radius and Grout Heat Capacity',
         'news_submission': '王湘雯同學已將研究成果投稿至Renewable Energy (IF: 9.0)',
+        'news_aogs': '恭喜王湘雯同學於新加坡的2025年亞洲大洋洲地球科學學會年會（AOGS）發表研究成果！發表題目為: New analytical solution for thermal response tests: Capturing grout heat storage with field‑scale validation',
 
         // 研究發表
         'publications_section_title': '研究發表',
@@ -504,6 +505,7 @@ const translations = {
         'news_research': 'Research Presentation',
         'news_achievement': 'Congratulations to Hsiang-Wen Wang for presenting her research findings at the 2025 Japan Geoscience Union Meeting (JpGU) in Chiba, Japan! Presentation Title: A New Analytical Solution for Thermal Response Tests Considering Finite Borehole Radius and Grout Heat Capacity',
         'news_submission': 'Hsiang-Wen Wang has submitted her research to Renewable Energy (IF: 9.0)',
+        'news_aogs': 'Congratulations to Hsiang-Wen Wang for presenting her research at the 2025 Asia Oceania Geosciences Society (AOGS) Annual Meeting in Singapore! Presentation Title: New analytical solution for thermal response tests: Capturing grout heat storage with field-scale validation',
         'news_conference': 'International Conference',
 
         // Publications
