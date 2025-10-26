@@ -788,10 +788,41 @@ ${formData.message}
         });
     });
 
+    // 畢業校友分頁切換功能：新增年份按鈕與對應內容區塊即可自動套用
+    const alumniTabs = document.querySelectorAll('.alumni-tab');
+    const alumniPanels = document.querySelectorAll('.alumni-panel');
+
+    if (alumniTabs.length && alumniPanels.length) {
+        // 初始化 aria-hidden 狀態
+        alumniPanels.forEach(panel => {
+            const isActive = panel.classList.contains('active');
+            panel.setAttribute('aria-hidden', isActive ? 'false' : 'true');
+        });
+
+        alumniTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const targetId = tab.getAttribute('data-target');
+                if (!targetId) return;
+
+                alumniTabs.forEach(button => {
+                    const isCurrent = button === tab;
+                    button.classList.toggle('active', isCurrent);
+                    button.setAttribute('aria-selected', isCurrent ? 'true' : 'false');
+                });
+
+                alumniPanels.forEach(panel => {
+                    const isActive = panel.id === targetId;
+                    panel.classList.toggle('active', isActive);
+                    panel.setAttribute('aria-hidden', isActive ? 'false' : 'true');
+                });
+            });
+        });
+    }
+
     // 語言切換功能
     function updateContent(lang) {
         console.log('Updating content to language:', lang);
-        
+
         if (!translations || !translations[lang]) {
             console.error('Translation object not found for language:', lang);
             return;

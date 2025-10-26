@@ -293,6 +293,56 @@
             </div>
         </section>
 
+        <!-- 畢業校友專區 -->
+        <section id="alumni" class="section alumni-section">
+            <div class="container">
+                <h2 class="section-title">實驗室榮譽榜 (Alumni)</h2>
+                <!-- 在此新增年份按鈕，即可擴充更多年份 -->
+                <div class="alumni-tabs" role="tablist">
+                    <button id="alumni-2025-tab" class="alumni-tab active" data-target="alumni-2025" role="tab" aria-controls="alumni-2025" aria-selected="true">2025</button>
+                    <button id="alumni-2024-tab" class="alumni-tab" data-target="alumni-2024" role="tab" aria-controls="alumni-2024" aria-selected="false">2024</button>
+                </div>
+
+                <div class="alumni-contents">
+                    <!-- 若要新增新的年份區塊，複製此 div 並更新 data-target 與 id -->
+                    <div id="alumni-2025" class="alumni-panel active" role="tabpanel" aria-labelledby="alumni-2025-tab">
+                        <div class="alumni-card-grid">
+                            <!-- 新增學生卡片：複製以下區塊並更新文字內容 -->
+                            <article class="alumni-card">
+                                <h3 class="alumni-name">王小明</h3>
+                                <p class="alumni-topic"><strong>專題題目：</strong>以熱傳導作為地下水補注率追蹤劑之數值模擬</p>
+                                <p class="alumni-achievement"><strong>主要成果：</strong>2025 水利工程研討會論文 (口頭發表)</p>
+                                <p class="alumni-future"><strong>畢業去向：</strong>國立台灣大學 土木工程學系碩士班 水利組</p>
+                            </article>
+                            <article class="alumni-card">
+                                <h3 class="alumni-name">陳怡君</h3>
+                                <p class="alumni-topic"><strong>專題題目：</strong>利用機器學習預測河床沖淤深度</p>
+                                <p class="alumni-achievement"><strong>主要成果：</strong>國科會大專生研究計畫 (計畫主持人)</p>
+                                <p class="alumni-future"><strong>畢業去向：</strong>國立交通大學 土木工程學系碩士班</p>
+                            </article>
+                        </div>
+                    </div>
+
+                    <div id="alumni-2024" class="alumni-panel" role="tabpanel" aria-labelledby="alumni-2024-tab">
+                        <div class="alumni-card-grid">
+                            <article class="alumni-card">
+                                <h3 class="alumni-name">李承恩</h3>
+                                <p class="alumni-topic"><strong>專題題目：</strong>抽水試驗之參數最佳化分析網頁平台開發</p>
+                                <p class="alumni-achievement"><strong>主要成果：</strong>發表期刊論文於 (Journal of OOXX)</p>
+                                <p class="alumni-future"><strong>畢業去向：</strong>(尚在準備中)</p>
+                            </article>
+                            <article class="alumni-card">
+                                <h3 class="alumni-name">張雅筑</h3>
+                                <p class="alumni-topic"><strong>專題題目：</strong>多孔介質地下水溫度監測儀表之設計與驗證</p>
+                                <p class="alumni-achievement"><strong>主要成果：</strong>2024 地下水技術應用研討會海報發表</p>
+                                <p class="alumni-future"><strong>畢業去向：</strong>國立成功大學 水利及海洋工程學系碩士班</p>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section id="news" class="section news-section">
             <div class="container">
                 <h2 class="section-title fade-in" data-i18n="news_title">最新公告</h2>

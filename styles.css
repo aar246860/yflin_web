@@ -1950,6 +1950,107 @@ main {
     margin-top: 2rem;
 }
 
+/* 畢業校友區塊樣式 */
+.alumni-section {
+    background: var(--alpine-oat);
+    border-radius: 24px;
+    padding: 3rem 2rem;
+    box-shadow: var(--shadow-lg);
+}
+
+.alumni-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.alumni-tab {
+    border: none;
+    background: rgba(255, 255, 255, 0.6);
+    color: var(--primary-color);
+    padding: 0.75rem 1.5rem;
+    border-radius: 999px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition-fast);
+}
+
+.alumni-tab:hover,
+.alumni-tab:focus {
+    outline: none;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.alumni-tab.active {
+    background: var(--gradient-primary);
+    color: #fff;
+    box-shadow: var(--shadow-md);
+}
+
+.alumni-contents {
+    position: relative;
+}
+
+.alumni-panel {
+    display: none;
+    animation: fadeIn 0.4s ease;
+}
+
+.alumni-panel.active {
+    display: block;
+}
+
+.alumni-card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+}
+
+.alumni-card {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-color);
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.alumni-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-lg);
+}
+
+.alumni-name {
+    margin-bottom: 0.75rem;
+    color: var(--primary-color);
+}
+
+.alumni-card p {
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+    line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+    .alumni-section {
+        padding: 2.5rem 1.5rem;
+    }
+
+    .alumni-tab {
+        flex: 1 1 45%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .alumni-tab {
+        flex: 1 1 100%;
+    }
+}
+
 .project-student-card {
     background: var(--card-bg);
     border-radius: 1rem;
