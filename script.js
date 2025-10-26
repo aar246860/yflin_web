@@ -544,9 +544,7 @@ ${formData.message}
     // 論文搜尋和顯示控制
     const searchInput = document.getElementById('pubSearch');
     const publicationItems = document.querySelectorAll('.publication-item');
-    const showMoreBtn = document.querySelector('.show-more-btn');
     const ITEMS_PER_PAGE = 5;
-    let currentlyShown = ITEMS_PER_PAGE;
 
     // 初始化：只顯示前5篇
     publicationItems.forEach((item, index) => {
@@ -575,31 +573,11 @@ ${formData.message}
             }
         });
 
-        // 如果在搜尋中，隱藏"顯示更多"按鈕
-        showMoreBtn.style.display = searchTerm ? 'none' : 'block';
-        
         // 重置當前顯示數量
         if (!searchTerm) {
-            currentlyShown = ITEMS_PER_PAGE;
             publicationItems.forEach((item, index) => {
                 item.style.display = index < ITEMS_PER_PAGE ? 'block' : 'none';
             });
-        }
-    });
-
-    // 顯示更多按鈕功能
-    showMoreBtn.addEventListener('click', function() {
-        const hiddenItems = Array.from(publicationItems).slice(currentlyShown);
-        
-        hiddenItems.slice(0, ITEMS_PER_PAGE).forEach(item => {
-            item.style.display = 'block';
-        });
-        
-        currentlyShown += ITEMS_PER_PAGE;
-        
-        // 如果沒有更多項目可以顯示，隱藏按鈕
-        if (currentlyShown >= publicationItems.length) {
-            showMoreBtn.style.display = 'none';
         }
     });
 
