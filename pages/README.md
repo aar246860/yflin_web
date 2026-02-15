@@ -1,17 +1,18 @@
-# 網站子頁面
+﻿# pages 目錄（2026 重構）
 
-此資料夾包含網站的所有子頁面。
+目前上線子頁：
+- `research/index.html`
+- `publications/index.html`
+- `team/index.html`
+- `blog/index.html`
+- `blog/posts/research-life.html`
 
-## 資料夾結構
-- `research/` - 研究計畫頁面
-- `teaching/` - 教學課程頁面
-- `team/` - 研究團隊頁面
-- `publications/` - 研究發表頁面
-- `resources/` - 研究資源頁面
-- `contact/` - 聯絡資訊頁面
+所有頁面皆使用：
+- 共用樣式：`/styles/*.css` + `/components/publication-card.css`
+- 共用腳本：`/js/app.js`（模組化初始化）
+- 共用翻譯：`/js/translations_2026.js`
 
-## 更新指南
-1. 每個子頁面都有獨立的 HTML 文件
-2. 共用的樣式在根目錄的 `styles.css`
-3. 特定頁面的樣式在各自的 CSS 文件中
-4. JavaScript 文件放在 `scripts` 資料夾中 
+規則：
+1. 禁止使用 `href="#"` 做假連結。
+2. 新增 UI 必須優先使用 token（`styles/variables.css`）。
+3. 子頁不可假設首頁 DOM 存在，互動必須做元素檢查。

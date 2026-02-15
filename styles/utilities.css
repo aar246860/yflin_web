@@ -1,0 +1,37 @@
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+.muted {
+    color: var(--text-muted);
+}
+
+.center {
+    text-align: center;
+}
+
+.stack-sm {
+    display: grid;
+    gap: var(--space-2);
+}
+
+.stack-md {
+    display: grid;
+    gap: var(--space-3);
+}
+
+.stack-lg {
+    display: grid;
+    gap: var(--space-4);
+}
+
+.is-hidden {
+    display: none !important;
+}

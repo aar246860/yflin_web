@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Research | Ying-Fan Lin Lab</title>
-    <meta name="description" content="Research topics of Ying-Fan Lin Lab: groundwater, thermal storage, and data-centric hydrology.">
+    <title>Publications | Ying-Fan Lin Lab</title>
+    <meta name="description" content="Publication archive of Ying-Fan Lin Research Lab.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&family=Merriweather:opsz,wght@18..144,300..900&display=swap" rel="stylesheet">
@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="../../styles/base.css">
     <link rel="stylesheet" href="../../styles/layout.css">
     <link rel="stylesheet" href="../../styles/components.css">
+    <link rel="stylesheet" href="../../components/publication-card.css">
     <link rel="stylesheet" href="../../styles/utilities.css">
 </head>
 <body>
@@ -48,46 +49,26 @@
     <main class="bento-shell">
         <div class="container stack-lg">
             <section class="glass-panel hero-panel">
-                <span class="eyebrow" data-i18n="page_research_title">研究主題</span>
-                <h1 class="hero-title" data-i18n="page_research_title">研究主題</h1>
-                <p class="hero-subtitle" data-i18n="page_research_intro">我們以理論、數值與資料三軸並行，聚焦可驗證、可部署的地下水與熱能研究。</p>
+                <span class="eyebrow" data-i18n="page_publications_title">發表文獻</span>
+                <h1 class="hero-title" data-i18n="page_publications_title">發表文獻</h1>
+                <p class="hero-subtitle" data-i18n="page_publications_intro">可依年份與關鍵字篩選。</p>
             </section>
 
             <section class="glass-panel section-panel">
-                <div class="highlight-grid">
-                    <article class="glass-panel highlight-card">
-                        <h3 data-i18n="highlight_1_title">Coastal Aquifer Saltwater Risk</h3>
-                        <p data-i18n="highlight_1_desc">結合潮汐訊號與含水層參數，建立可用於政策評估的入侵風險圖資。</p>
-                    </article>
-                    <article class="glass-panel highlight-card">
-                        <h3 data-i18n="highlight_2_title">Borehole Thermal Storage Dynamics</h3>
-                        <p data-i18n="highlight_2_desc">在井筒半徑、灌漿熱容與場址邊界條件下，改進熱響應試驗解釋模型。</p>
-                    </article>
-                    <article class="glass-panel highlight-card">
-                        <h3 data-i18n="highlight_3_title">Signal Decomposition for Pumping Inference</h3>
-                        <p data-i18n="highlight_3_desc">以時空訊號分解推估抽水歷程，支援資料不足情境的地下水管理。</p>
-                    </article>
+                <div class="publications-controls">
+                    <div class="publications-filters" role="tablist" aria-label="Publication year filter">
+                        <button class="filter-chip is-active" type="button" data-year-filter="all" data-i18n="publications_all">全部</button>
+                        <button class="filter-chip" type="button" data-year-filter="2026">2026</button>
+                        <button class="filter-chip" type="button" data-year-filter="2025">2025</button>
+                        <button class="filter-chip" type="button" data-year-filter="2024">2024</button>
+                        <button class="filter-chip" type="button" data-year-filter="2023">2023</button>
+                    </div>
+                    <label class="sr-only" for="publicationSearch" data-i18n="publications_search">搜尋標題、作者、期刊...</label>
+                    <input id="publicationSearch" class="field-input" type="search" data-i18n-placeholder="publications_search" placeholder="搜尋標題、作者、期刊...">
                 </div>
-            </section>
 
-            <section class="glass-panel section-panel stack-md">
-                <h2 data-i18n="news_title">Lab News</h2>
-                <ul class="news-list">
-                    <li class="news-item">
-                        <p class="news-date" data-i18n="news_1_date">2026.01</p>
-                        <div>
-                            <h3 data-i18n="news_1_title">AOGS 2026 論文投稿完成</h3>
-                            <p data-i18n="news_1_desc">完成地下熱響應解析解擴充版本投稿，預計於 2026 夏季會議發表。</p>
-                        </div>
-                    </li>
-                    <li class="news-item">
-                        <p class="news-date" data-i18n="news_2_date">2025.12</p>
-                        <div>
-                            <h3 data-i18n="news_2_title">國科會計畫年度里程碑達成</h3>
-                            <p data-i18n="news_2_desc">完成沿海監測資料整併與脆弱性初步分區成果。</p>
-                        </div>
-                    </li>
-                </ul>
+                <div id="publicationsGrid" class="publications-grid"></div>
+                <p id="publicationsEmpty" class="publications-empty is-hidden" data-i18n="publications_empty">目前沒有符合條件的文獻。</p>
             </section>
         </div>
     </main>

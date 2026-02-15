@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Note | Daily Reflections in Hydro-Science</title>
+    <meta name="description" content="Research reflections from Ying-Fan Lin Lab.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&family=Merriweather:opsz,wght@18..144,300..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../../../styles/variables.css">
+    <link rel="stylesheet" href="../../../styles/base.css">
+    <link rel="stylesheet" href="../../../styles/layout.css">
+    <link rel="stylesheet" href="../../../styles/components.css">
+    <link rel="stylesheet" href="../../../styles/utilities.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container top-nav">
+            <div class="nav-left">
+                <a href="../../../index.html" class="site-logo" data-i18n="hero_title">林穎凡教授研究室</a>
+                <button type="button" class="menu-toggle" data-menu-toggle aria-expanded="false" aria-label="Toggle menu">
+                    <i class="fas fa-bars" aria-hidden="true"></i>
+                </button>
+                <ul class="nav-links" data-nav-links>
+                    <li><a href="../../../index.html" data-i18n="nav_home">首頁</a></li>
+                    <li><a href="../../research/index.html" data-i18n="nav_research">研究</a></li>
+                    <li><a href="../../publications/index.html" data-i18n="nav_publications">文獻</a></li>
+                    <li><a href="../../team/index.html" data-i18n="nav_team">團隊</a></li>
+                    <li><a href="../index.html" data-i18n="nav_blog">隨筆</a></li>
+                    <li><a href="../../../index.html#recruitment" data-i18n="nav_contact">聯絡</a></li>
+                </ul>
+            </div>
+            <div class="nav-right">
+                <div class="lang-switch" aria-label="Language switcher">
+                    <button type="button" data-lang-btn="zh-TW" data-i18n="lang_zh">中</button>
+                    <button type="button" data-lang-btn="en" data-i18n="lang_en">En</button>
+                </div>
+                <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle theme" aria-pressed="false">
+                    <i class="fas fa-moon" aria-hidden="true"></i>
+                </button>
+                <a href="../../../index.html#recruitment" class="btn btn-apply" data-i18n="nav_apply">Apply</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="bento-shell">
+        <div class="container stack-lg">
+            <article class="glass-panel section-panel stack-md">
+                <header>
+                    <span class="eyebrow">Research Notes</span>
+                    <h1>研究生活的日常思考</h1>
+                    <p class="muted">2026-02-15 · Groundwater Modeling · Teaching Reflection</p>
+                </header>
+
+                <p>在地下水研究中，真正困難的地方不是公式推導，而是如何讓公式對真實現地數據保持誠實。每次做模型校正，我都提醒自己：參數調整的終點不是漂亮曲線，而是更好的決策支持。</p>
+                <p>我們最近在熱響應試驗上做了一次小型重構，把灌漿熱容與井筒半徑效應放進同一套可重現流程。這項工作本身不華麗，但它讓學生和合作單位可以更快回答「這個場址到底適不適合部署」的核心問題。</p>
+                <p>研究訓練的價值，在於讓人學會在高不確定性下仍能提出可驗證的問題。這也是我希望研究室同學具備的能力：不只會算，更能清楚說明為什麼這個答案值得被採用。</p>
+
+                <footer>
+                    <a class="btn btn-ghost" href="../index.html">Back to Blog</a>
+                </footer>
+            </article>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <section>
+                <h3 data-i18n="footer_sitemap">Sitemap</h3>
+                <ul class="list-inline">
+                    <li><a href="../../research/index.html" data-i18n="footer_research">研究頁</a></li>
+                    <li><a href="../../publications/index.html" data-i18n="footer_publications">發表文獻</a></li>
+                    <li><a href="../../team/index.html" data-i18n="footer_team">團隊與校友</a></li>
+                    <li><a href="../index.html" data-i18n="footer_blog">研究隨筆</a></li>
+                </ul>
+            </section>
+            <section>
+                <h3 data-i18n="footer_connect">Connect</h3>
+                <ul class="list-inline">
+                    <li><a href="mailto:yflin1110@cycu.edu.tw">Email</a></li>
+                    <li><a href="https://www.researchgate.net/profile/Ying-Fan-Lin" target="_blank" rel="noopener noreferrer">ResearchGate</a></li>
+                    <li><a href="https://scholar.google.com/scholar?q=Ying-Fan+Lin" target="_blank" rel="noopener noreferrer">Google Scholar</a></li>
+                </ul>
+            </section>
+            <section>
+                <p data-i18n="footer_copy">© 2026 林穎凡教授研究室</p>
+            </section>
+        </div>
+    </footer>
+
+    <div class="mobile-apply">
+        <a href="../../../index.html#recruitment" class="btn btn-apply" data-i18n="mobile_apply">Apply to Join</a>
+    </div>
+
+    <script src="../../../js/translations_2026.js"></script>
+    <script type="module" src="../../../js/app.js"></script>
+</body>
+</html>
