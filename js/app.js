@@ -1,6 +1,7 @@
 import { initNavigation } from "./modules/navigation.js";
 import { initTheme } from "./modules/theme.js";
 import { initI18n } from "./modules/i18n.js";
+import { initBlogContent } from "./modules/blog-content.js";
 import { initPublications } from "./modules/publications.js";
 import { initTeam } from "./modules/team.js";
 import { initCollaborationForm } from "./modules/form.js";
@@ -8,6 +9,7 @@ import { initCollaborationForm } from "./modules/form.js";
 document.addEventListener("DOMContentLoaded", () => {
     initTheme(document);
     initI18n(document);
+    initBlogContent(document);
     initNavigation(document);
     initPublications(document);
     initTeam(document);

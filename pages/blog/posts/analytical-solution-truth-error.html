@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytical Solutions & Residuals | Ying-Fan Lin Lab</title>
+    <meta name="description" content="Reflections on analytical solutions, residuals, and Physics-Guided AI workflows.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&family=Merriweather:opsz,wght@18..144,300..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../../../styles/variables.css">
+    <link rel="stylesheet" href="../../../styles/base.css">
+    <link rel="stylesheet" href="../../../styles/layout.css">
+    <link rel="stylesheet" href="../../../styles/components.css">
+    <link rel="stylesheet" href="../../../styles/utilities.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container top-nav">
+            <div class="nav-left">
+                <a href="../../../index.html" class="site-logo" data-i18n="site_logo">林穎凡教授研究室</a>
+                <button type="button" class="menu-toggle" data-menu-toggle aria-expanded="false" aria-label="Toggle menu">
+                    <i class="fas fa-bars" aria-hidden="true"></i>
+                </button>
+                <ul class="nav-links" data-nav-links>
+                    <li><a href="../../../index.html" data-i18n="nav_home">首頁</a></li>
+                    <li><a href="../../research/index.html" data-i18n="nav_research">研究領域</a></li>
+                    <li><a href="../../publications/index.html" data-i18n="nav_publications">著作發表</a></li>
+                    <li><a href="../../team/index.html" data-i18n="nav_team">成員介紹</a></li>
+                    <li><a href="../index.html" data-i18n="nav_blog">研究隨筆</a></li>
+                    <li><a href="../../../index.html#recruitment" data-i18n="nav_contact">聯絡我們</a></li>
+                </ul>
+            </div>
+            <div class="nav-right">
+                <div class="lang-switch" aria-label="Language switcher">
+                    <button type="button" data-lang-btn="zh-TW" data-i18n="lang_zh">中</button>
+                    <button type="button" data-lang-btn="en" data-i18n="lang_en">En</button>
+                </div>
+                <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle theme" aria-pressed="false">
+                    <i class="fas fa-moon" aria-hidden="true"></i>
+                </button>
+                <a href="../../../index.html#recruitment" class="btn btn-apply" data-i18n="nav_apply">加入團隊</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="bento-shell">
+        <div class="container stack-lg">
+            <article class="glass-panel section-panel stack-md">
+                <header class="stack-sm">
+                    <span class="eyebrow">Research Notes</span>
+                    <h1 data-lang-content="zh-TW">在完美公式與混亂現實之間：為什麼我還在推導解析解？</h1>
+                    <h1 data-lang-content="en" hidden aria-hidden="true">Between Perfect Equations and Messy Reality: Why Do I Still Derive Analytical Solutions?</h1>
+                    <p class="muted" data-lang-content="zh-TW">2026-02-15 · Analytical Solution · Physics-Guided AI</p>
+                    <p class="muted" data-lang-content="en" hidden aria-hidden="true">2026-02-15 · Analytical Solution · Physics-Guided AI</p>
+                </header>
+
+                <section class="stack-sm" data-lang-content="zh-TW">
+                    <p>算一算，我研究解析解（Analytical Solution）已經超過十一年。從博士班到博後，無數夜晚都在推導那些可能包含無窮級數的方程式。</p>
+                    <p>學生常問我：「老師，現在數值模式這麼強，甚至 AI 也能快速產生結果，為什麼還要花這麼多力氣推導解析解？」</p>
+                    <p>這是一個好問題。對我來說，解析解不只是答案，而是一把「尺」。</p>
+                    <p>解析解是在嚴格假設下得到的精確數學解，例如均質地層、無限邊界等。它代表物理上的理想狀態。當然，我們都知道真實地下環境絕不理想，存在斷層、污染與各種非均質介質。</p>
+                    <p>但正因為現實複雜，我們更需要這把尺。沒有物理基準，面對混亂數據時，你甚至無法判斷模型偏離了多少。</p>
+                    <p>近年我的研究逐漸轉向「物理導向機器學習（Physics-Guided AI）」，本質上是把過去十多年的物理建模能力，和新一代資料方法整合。</p>
+                    <p>我們不再嘗試用單一完美公式強行解釋所有現象，也不盲信黑盒子的預測。我的做法是先用解析解建立基準（benchmark），定義在理想條件下，地下水流與熱傳應該呈現的行為。</p>
+                    <p>接著把真實觀測資料疊上去，兩者之間必然存在落差，也就是殘差（residual）。</p>
+                    <p>過去很多人把殘差視為雜訊或測量誤差。但在機器學習框架下，我們看到殘差其實含有高價值資訊：它可能反映地層非均質性，也可能暗示尚未被揭示的物理機制。</p>
+                    <p>所以在我的實驗室，數學與 AI 不是對立關係。解析解是導航員，AI 是探險車；前者確保方向正確，後者幫助我們穿越現地的崎嶇地形。</p>
+                    <p>這也是到了 2026 年，我仍堅持推導公式的原因。唯有深刻理解物理本質，才有能力駕馭 AI，而不是被資料牽著走。</p>
+                </section>
+
+                <section class="stack-sm" data-lang-content="en" hidden aria-hidden="true">
+                    <p>I have been working on analytical solutions for more than eleven years. From my PhD to postdoctoral training, I spent countless nights deriving equations, sometimes with infinite-series structures.</p>
+                    <p>Students often ask: "With powerful numerical models and AI tools now available, why still invest so much effort in analytical derivation?"</p>
+                    <p>For me, an analytical solution is not just an answer; it is a ruler.</p>
+                    <p>Analytical solutions are exact mathematical results under strict assumptions, such as homogeneous formations and idealized boundaries. They represent the physics in a controlled, ideal state. Real subsurface environments are never that clean: faults, contamination, and heterogeneity are everywhere.</p>
+                    <p>Precisely because reality is messy, we need that ruler. Without a physical reference, once you face complex data, you cannot even tell how far your model has drifted.</p>
+                    <p>In recent years, my work has moved toward Physics-Guided AI. In essence, this is a synthesis: combining long-developed physical modeling capability with modern data-driven methods.</p>
+                    <p>We neither force reality into one perfect formula nor blindly trust black-box predictions. My workflow starts with an analytical benchmark that defines how groundwater flow and heat transport should behave under ideal conditions.</p>
+                    <p>Then we overlay real observations. The gap between benchmark and reality is inevitable: this is the residual.</p>
+                    <p>Traditionally, residuals were treated as noise or measurement error. With machine learning, however, we now see residuals as information-rich signals. They may encode geological heterogeneity or indicate physical mechanisms not yet identified.</p>
+                    <p>So in my lab, mathematics and AI are not rivals. Analytical solutions are our navigator; AI is our exploration vehicle. One keeps us on the right direction, the other helps us traverse rough terrain.</p>
+                    <p>That is why, even in 2026, I still insist on deriving formulas. Only by understanding physical fundamentals can we truly control AI, instead of being controlled by data.</p>
+                </section>
+
+                <footer>
+                    <a class="btn btn-ghost" href="../index.html" data-lang-content="zh-TW">返回隨筆列表</a>
+                    <a class="btn btn-ghost" href="../index.html" data-lang-content="en" hidden aria-hidden="true">Back to Blog</a>
+                </footer>
+            </article>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <section>
+                <h3 data-i18n="footer_sitemap">網站地圖</h3>
+                <ul class="list-inline">
+                    <li><a href="../../research/index.html" data-i18n="footer_research">研究領域</a></li>
+                    <li><a href="../../publications/index.html" data-i18n="footer_publications">發表著作</a></li>
+                    <li><a href="../../team/index.html" data-i18n="footer_team">團隊與校友</a></li>
+                    <li><a href="../index.html" data-i18n="footer_blog">研究隨筆</a></li>
+                </ul>
+            </section>
+            <section>
+                <h3 data-i18n="footer_connect">聯絡資訊</h3>
+                <ul class="list-inline">
+                    <li><a href="mailto:yflin1110@cycu.edu.tw">Email</a></li>
+                    <li><a href="https://www.researchgate.net/profile/Ying-Fan-Lin" target="_blank" rel="noopener noreferrer">ResearchGate</a></li>
+                    <li><a href="https://scholar.google.com/scholar?q=Ying-Fan+Lin" target="_blank" rel="noopener noreferrer">Google Scholar</a></li>
+                </ul>
+            </section>
+            <section>
+                <p data-i18n="footer_copy">© 2026 林穎凡教授研究室</p>
+            </section>
+        </div>
+    </footer>
+
+    <div class="mobile-apply">
+        <a href="../../../index.html#recruitment" class="btn btn-apply" data-i18n="mobile_apply">加入我們</a>
+    </div>
+
+    <script src="../../../js/translations_2026.js"></script>
+    <script type="module" src="../../../js/app.js"></script>
+</body>
+</html>

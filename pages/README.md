@@ -5,7 +5,8 @@
 - `publications/index.html`
 - `team/index.html`
 - `blog/index.html`
-- `blog/posts/research-life.html`
+- `blog/posts/lagging-darcy-time-scale.html`
+- `blog/posts/analytical-solution-truth-error.html`
 
 所有頁面皆使用：
 - 共用樣式：`/styles/*.css` + `/components/publication-card.css`
