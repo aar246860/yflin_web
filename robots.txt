@@ -1,3 +1,4 @@
 User-agent: *
 Allow: /
-Sitemap: https://aar246860.github.io/yflin_web/sitemap.xml 
+
+Sitemap: https://aar246860.github.io/yflin_web/sitemap.xml

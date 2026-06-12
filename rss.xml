@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Ying-Fan Lin Field Notes</title>
+    <link>https://aar246860.github.io/yflin_web/field-notes/</link>
+    <description>Groundwater memory, transformation uncertainty, and subsurface energy intelligence.</description>
+    <item>
+      <title>Drawdown Is Measured; Transmissivity Is Interpreted</title>
+      <link>https://aar246860.github.io/yflin_web/field-notes/drawdown-is-measured-transmissivity-is-interpreted/</link>
+      <guid>https://aar246860.github.io/yflin_web/field-notes/drawdown-is-measured-transmissivity-is-interpreted/</guid>
+      <pubDate>Fri, 12 Jun 2026 00:00:00 GMT</pubDate>
+      <description>The most useful sentence for explaining transformation uncertainty to groundwater engineers.</description>
+    </item>
+    <item>
+      <title>From Pumping Tests to Decision Uncertainty</title>
+      <link>https://aar246860.github.io/yflin_web/field-notes/from-pumping-tests-to-decision-uncertainty/</link>
+      <guid>https://aar246860.github.io/yflin_web/field-notes/from-pumping-tests-to-decision-uncertainty/</guid>
+      <pubDate>Fri, 12 Jun 2026 00:00:00 GMT</pubDate>
+      <description>A field test becomes valuable when its interpretation uncertainty is propagated into a decision endpoint.</description>
+    </item>
+    <item>
+      <title>Delay Effects in Thermal Response Tests</title>
+      <link>https://aar246860.github.io/yflin_web/field-notes/shallow-geothermal-needs-groundwater-intelligence/</link>
+      <guid>https://aar246860.github.io/yflin_web/field-notes/shallow-geothermal-needs-groundwater-intelligence/</guid>
+      <pubDate>Fri, 12 Jun 2026 00:00:00 GMT</pubDate>
+      <description>TRT and subsurface heat projects inherit groundwater uncertainty when flow, boundary, storage, or memory effects are active.</description>
+    </item>
+    <item>
+      <title>Why Groundwater Response Can Arrive Late</title>
+      <link>https://aar246860.github.io/yflin_web/field-notes/why-groundwater-memory-matters/</link>
+      <guid>https://aar246860.github.io/yflin_web/field-notes/why-groundwater-memory-matters/</guid>
+      <pubDate>Fri, 12 Jun 2026 00:00:00 GMT</pubDate>
+      <description>Delayed response is not only a curve-fitting issue when recovery time or control timing matters.</description>
+    </item>
+  </channel>
+</rss>

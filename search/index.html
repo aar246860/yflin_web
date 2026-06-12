@@ -1,0 +1,26 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v6.4.6"><meta name="description" content="Static Pagefind search for the research website."><link rel="icon" href="/yflin_web/favicon.svg" type="image/svg+xml"><title>Search | Ying-Fan Lin</title><link rel="stylesheet" href="/yflin_web/_astro/BaseLayout.DBza58cK.css"></head> <body> <header class="site-header"> <nav class="nav" aria-label="Primary navigation"> <a class="brand" href="/yflin_web/"> <strong>Ying-Fan Lin</strong> <span>Lagging Theory and delayed-response decisions</span> </a> <div class="nav-links"> <a href="/yflin_web/"> Home </a><a href="/yflin_web/concepts/"> Concepts </a><a href="/yflin_web/field-notes/"> Field Notes </a><a href="/yflin_web/publications/"> Publications </a><a href="/yflin_web/collaborate/"> Collaborate </a><a href="/yflin_web/about/"> About </a> <a class="button primary" href="/yflin_web/collaborate/">Send a response brief</a> </div> </nav> </header> <main data-pagefind-body>  <section class="shell section"> <span class="eyebrow">Static search</span> <h1>Search concepts, notes, and publication clusters.</h1> <div class="search-box" id="search"></div> <p>Pagefind search is generated during the production build and runs entirely as static files.</p> </section> <script>(function(){const pagefindPath = "/yflin_web/pagefind/pagefind.js";
+
+    window.addEventListener("DOMContentLoaded", async () => {
+      const target = document.querySelector("#search");
+      try {
+        const pagefind = await import(pagefindPath);
+        const ui = document.createElement("div");
+        ui.innerHTML = '<input id="pf-query" placeholder="Search the research site" style="width:100%;min-height:2.8rem;border:1px solid #ded7ca;border-radius:8px;padding:.7rem 1rem"><div id="pf-results"></div>';
+        target.appendChild(ui);
+        const input = ui.querySelector("#pf-query");
+        const results = ui.querySelector("#pf-results");
+        input.addEventListener("input", async (event) => {
+          const query = event.target.value.trim();
+          if (!query) {
+            results.innerHTML = "";
+            return;
+          }
+          const search = await pagefind.search(query);
+          const rows = await Promise.all(search.results.slice(0, 8).map((result) => result.data()));
+          results.innerHTML = rows.map((row) => `<p><a href="${row.url}"><strong>${row.meta.title}</strong></a><br>${row.excerpt}</p>`).join("");
+        });
+      } catch (error) {
+        target.innerHTML = "<p>Search is available after running the production build.</p>";
+      }
+    });
+  })();</script>  </main> <footer class="site-footer"> <div class="shell footer-grid"> <section class="stack"> <strong>Ying-Fan Lin</strong> <p>Lagging-response interpretation for groundwater, periodic head signals, thermal response tests, and subsurface energy decisions.</p> </section> <section class="stack"> <strong>Contact</strong> <p><a href="mailto:yflin1110@cycu.edu.tw">yflin1110@cycu.edu.tw</a></p> <p><a href="https://www.researchgate.net/profile/Ying-Fan-Lin" target="_blank" rel="noopener noreferrer">ResearchGate</a></p> <p><a href="https://scholar.google.com/scholar?q=Ying-Fan+Lin" target="_blank" rel="noopener noreferrer">Google Scholar</a></p> </section> <section class="stack"> <strong>Site system</strong> <p>Built as an Astro static research website. Draft generation and evidence checks are designed to run before publication.</p> </section> </div> </footer> </body></html>
