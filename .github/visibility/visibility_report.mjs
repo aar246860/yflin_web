@@ -10,9 +10,22 @@ const distDir = process.env.VISIBILITY_DIST_DIR
   ? path.resolve(root, process.env.VISIBILITY_DIST_DIR)
   : path.join(root, "dist");
 const reportDir = path.join(root, "reports", "visibility");
-const today = new Date().toISOString().slice(0, 10);
+const reportTimeZone = process.env.VISIBILITY_REPORT_TIME_ZONE ?? "Asia/Taipei";
+const today = formatDateInTimeZone(new Date(), reportTimeZone);
 const reportPath = path.join(reportDir, `${today}-lagging-theory-visibility-report.md`);
 const latestReportPath = path.join(reportDir, "latest-lagging-theory-visibility-report.md");
+const latestSummaryPath = path.join(reportDir, "latest-summary.json");
+
+function formatDateInTimeZone(date, timeZone) {
+  const parts = new Intl.DateTimeFormat("en-US", {
+    timeZone,
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit"
+  }).formatToParts(date);
+  const values = Object.fromEntries(parts.map((part) => [part.type, part.value]));
+  return `${values.year}-${values.month}-${values.day}`;
+}
 
 function readJson(filePath) {
   return JSON.parse(fs.readFileSync(filePath, "utf8"));
@@ -621,10 +634,28 @@ const crossref = await queryCrossref(config);
 const openAlex = await queryOpenAlex(config);
 const recommendations = buildRecommendations(config, audit, gsc, crossref, openAlex);
 const report = buildReport(config, audit, gsc, crossref, openAlex, recommendations);
+const summary = {
+  generatedAt: new Date().toISOString(),
+  reportTimeZone,
+  reportDate: today,
+  mode: dryRun ? "dry-run" : "full",
+  site: config.site.baseUrl,
+  reportFile: path.basename(reportPath),
+  artifactName: "weekly-lagging-theory-visibility-report",
+  targetKeywords: config.keywords.length,
+  targetPagesAudited: audit.pageAudits.length,
+  technicalBlockers: audit.blockers.length,
+  technicalWarnings: audit.warnings.length,
+  recommendations: recommendations.length,
+  gscStatus: gsc.status,
+  crossrefStatus: crossref.status,
+  openAlexStatus: openAlex.status
+};
 
 fs.mkdirSync(reportDir, { recursive: true });
 fs.writeFileSync(reportPath, report, "utf8");
 fs.writeFileSync(latestReportPath, report, "utf8");
+fs.writeFileSync(latestSummaryPath, `${JSON.stringify(summary, null, 2)}\n`, "utf8");
 
 console.log(`Visibility report written: ${reportPath}`);
 console.log(`Recommendations: ${recommendations.length}`);
