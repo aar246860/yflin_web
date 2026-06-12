@@ -1,0 +1,23 @@
+1
+00:00:00,000 --> 00:00:04,000
+Lagging Theory is not simple delay.
+
+2
+00:00:04,000 --> 00:00:10,000
+Classical models often assume groundwater flux and hydraulic gradient move together.
+
+3
+00:00:10,000 --> 00:00:17,000
+But real aquifers can respond out of phase.
+
+4
+00:00:17,000 --> 00:00:25,000
+Pathways, storage, drainage, leakage, and hydro-mechanical coupling can make the response asynchronous.
+
+5
+00:00:25,000 --> 00:00:32,000
+A delay shifts a curve. Flux-gradient asynchrony can change the interpreted aquifer.
+
+6
+00:00:32,000 --> 00:00:36,000
+If it changes recovery time or pumping limits, it becomes an engineering risk.
