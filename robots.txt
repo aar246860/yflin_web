@@ -1,4 +1,23 @@
 User-agent: *
 Allow: /
 
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
 Sitemap: https://aar246860.github.io/yflin_web/sitemap.xml
+# AI-readable context: https://aar246860.github.io/yflin_web/llms.txt
