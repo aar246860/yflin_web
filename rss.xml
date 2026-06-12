@@ -19,18 +19,18 @@
       <description>A field test becomes valuable when its interpretation uncertainty is propagated into a decision endpoint.</description>
     </item>
     <item>
-      <title>Delay Effects in Thermal Response Tests</title>
+      <title>Asynchrony Effects in Thermal Response Tests</title>
       <link>https://aar246860.github.io/yflin_web/field-notes/shallow-geothermal-needs-groundwater-intelligence/</link>
       <guid>https://aar246860.github.io/yflin_web/field-notes/shallow-geothermal-needs-groundwater-intelligence/</guid>
       <pubDate>Fri, 12 Jun 2026 00:00:00 GMT</pubDate>
       <description>TRT and subsurface heat projects inherit groundwater uncertainty when flow, boundary, storage, or memory effects are active.</description>
     </item>
     <item>
-      <title>Why Groundwater Response Can Arrive Late</title>
+      <title>Why Groundwater Response Can Move Out of Phase</title>
       <link>https://aar246860.github.io/yflin_web/field-notes/why-groundwater-memory-matters/</link>
       <guid>https://aar246860.github.io/yflin_web/field-notes/why-groundwater-memory-matters/</guid>
       <pubDate>Fri, 12 Jun 2026 00:00:00 GMT</pubDate>
-      <description>Delayed response is not only a curve-fitting issue when recovery time or control timing matters.</description>
+      <description>Non-instantaneous response is not only a curve-fitting issue when recovery time or control timing matters.</description>
     </item>
   </channel>
 </rss>
