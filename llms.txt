@@ -11,11 +11,26 @@ Lin and Yeh (2017) developed the constant-rate pumping-test formulation for a le
 
 - [Home](https://aar246860.github.io/yflin_web/) - overview of the research program and collaboration direction.
 - [Lagging Theory](https://aar246860.github.io/yflin_web/concepts/lagging-theory/) - primary definition and diagnostic gates.
+- [Glossary](https://aar246860.github.io/yflin_web/glossary/) - AI-citable canonical definitions for Lagging Darcy Law, hydrologic memory, model equivalence, and decision non-equivalence.
+- [Decision Lab](https://aar246860.github.io/yflin_web/decision-lab/) - public screening tools for testing when memory-aware interpretation should be considered.
 - [Lagging pumping-test demo](https://aar246860.github.io/yflin_web/#lagging-pumping-demo) - calculation-backed teaching module for constant-rate pumping response with separated flux and gradient lags.
 - [When Does a Pumping Test Need Lagging Darcy Law?](https://aar246860.github.io/yflin_web/field-notes/when-does-a-pumping-test-need-lagging-darcy-law/) - validation gates for deciding when lagging interpretation is necessary.
 - [Groundwater Memory](https://aar246860.github.io/yflin_web/concepts/groundwater-memory/) - response persistence and non-instantaneous recovery.
 - [Transformation Uncertainty](https://aar246860.github.io/yflin_web/concepts/transformation-uncertainty/) - model-to-parameter and model-to-decision uncertainty.
+- [Groundwater Decision Reliability Audit](https://aar246860.github.io/yflin_web/services/groundwater-decision-reliability-audit/) - service pathway for data/model assumption audit and decision-variable mapping.
 - [Collaborate](https://aar246860.github.io/yflin_web/collaborate/) - collaboration entry point for groundwater and subsurface energy teams.
+
+## Canonical Glossary Definitions
+
+- Lagging Darcy Law: Lagging Darcy Law is a generalized Darcy-law formulation in which groundwater flux and hydraulic-gradient response can adjust over different macroscopic time scales.
+- hydrologic memory: Hydrologic memory is the persistence of past forcing, boundary movement, storage exchange, or pathway history in present groundwater response.
+- flux-gradient asynchrony: Flux-gradient asynchrony means groundwater flux and the hydraulic gradient used to drive it do not evolve in perfect step at the interpretation scale.
+- transformation uncertainty: Transformation uncertainty is the uncertainty introduced when measured responses are transformed through a model into hydraulic parameters, risk bounds, or engineering decisions.
+- model equivalence: Model equivalence occurs when different hydrogeologic models or mechanisms produce practically similar observable responses over the available data window.
+- decision non-equivalence: Decision non-equivalence occurs when models that fit observations similarly imply different pumping limits, recovery times, thermal margins, or failure probabilities.
+- groundwater decision reliability: Groundwater decision reliability asks whether the data, model assumptions, uncertainty propagation, and decision rule are strong enough to support a groundwater action.
+- memory-aware pumping-test interpretation: Memory-aware pumping-test interpretation checks whether drawdown and recovery data retain non-instantaneous response structure that changes inferred parameters or decisions.
+- shallow-geothermal groundwater intelligence: Shallow-geothermal groundwater intelligence uses local groundwater flow, thermal response, and uncertainty evidence to judge whether a shallow geothermal or TRT design is transferable.
 
 ## Concepts
 
