@@ -38,7 +38,7 @@ Related publications: A Lagging Model for Describing Drawdown Induced by a Const
 URL: https://aar246860.github.io/yflin_web/concepts/transformation-uncertainty/
 Summary: A measured response becomes a design number after a model translates it.
 Research question: How much uncertainty enters before aquifer parameters reach the groundwater model?
-Decision use: Check Q_allow, response time, dewatering margin, and parameter reliability before management use.
+Decision use: Check allowable pumping, response time, dewatering margin, and parameter reliability before management use.
 Tags: pumping tests, model factor, decision propagation
 Related publications: A Lagging Model for Describing Drawdown Induced by a Constant-Rate Pumping in a Leaky Confined Aquifer, Rethinking Aquifer Characterization: Insights from Lagging Models
 
