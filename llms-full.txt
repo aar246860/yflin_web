@@ -38,7 +38,7 @@ Related publications: A Lagging Model for Describing Drawdown Induced by a Const
 URL: https://aar246860.github.io/yflin_web/concepts/transformation-uncertainty/
 Summary: Once a response is interpreted through a model, the decision inherits the pathway.
 Research question: How much uncertainty is introduced before apparent aquifer parameters enter downstream groundwater models?
-Decision use: Audit Q_allow, response time, dewatering margin, and parameter reliability before management use.
+Decision use: Review Q_allow, response time, dewatering margin, and parameter reliability before management use.
 Tags: pumping tests, model factor, decision propagation
 Related publications: A Lagging Model for Describing Drawdown Induced by a Constant-Rate Pumping in a Leaky Confined Aquifer, Rethinking Aquifer Characterization: Insights from Lagging Models
 
@@ -46,7 +46,7 @@ Related publications: A Lagging Model for Describing Drawdown Induced by a Const
 
 URL: https://aar246860.github.io/yflin_web/concepts/subsurface-energy-intelligence/
 Summary: TRT and shallow geothermal decisions need groundwater-aware asynchrony diagnostics.
-Research question: How should groundwater response and thermal interpretation uncertainty be audited before shallow geothermal deployment?
+Research question: How should groundwater response and thermal interpretation uncertainty be reviewed before shallow geothermal deployment?
 Decision use: Support TRT interpretation, pilot-site design, and water-energy risk communication for industry or government partners.
 Tags: TRT, shallow geothermal, water-energy
 Related publications: Analytical Modeling of Grout Heat Storage Effects in Thermal Response Tests, Application of the Image-Well Method for Transient Borehole Thermal Energy Storage Systems with Complex Boundaries, On Radial Heat Transport in Porous Aquifers with Nonlinear Velocity-dependent Thermal Dispersion
@@ -58,7 +58,7 @@ Related publications: Analytical Modeling of Grout Heat Storage Effects in Therm
 URL: https://aar246860.github.io/yflin_web/field-notes/drawdown-is-measured-transmissivity-is-interpreted/
 Summary: The most useful sentence for explaining transformation uncertainty to groundwater engineers.
 Audience: groundwater consultants, journal reviewers, water managers
-Collaboration relevance: A concise entry point for teams that already run pumping tests but do not audit model-form transfer into parameters.
+Collaboration relevance: A concise entry point for teams that already run pumping tests but do not check model-form transfer into parameters.
 Tags: pumping tests, apparent parameters, model factor
 
 ### Flux-Gradient Asynchrony Is Not Simple Delay
