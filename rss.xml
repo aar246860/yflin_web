@@ -16,14 +16,14 @@
       <link>https://aar246860.github.io/yflin_web/field-notes/flux-gradient-asynchrony-is-not-simple-delay/</link>
       <guid>https://aar246860.github.io/yflin_web/field-notes/flux-gradient-asynchrony-is-not-simple-delay/</guid>
       <pubDate>Fri, 12 Jun 2026 00:00:00 GMT</pubDate>
-      <description>Why Lagging Theory should be framed as asynchronous hydraulic response, not a generic signal shift.</description>
+      <description>Lagging Theory is about asynchronous hydraulic response, not a generic signal shift.</description>
     </item>
     <item>
       <title>From Pumping Tests to Decision Uncertainty</title>
       <link>https://aar246860.github.io/yflin_web/field-notes/from-pumping-tests-to-decision-uncertainty/</link>
       <guid>https://aar246860.github.io/yflin_web/field-notes/from-pumping-tests-to-decision-uncertainty/</guid>
       <pubDate>Fri, 12 Jun 2026 00:00:00 GMT</pubDate>
-      <description>A field test becomes valuable when its interpretation uncertainty is propagated into a decision endpoint.</description>
+      <description>A field test matters when interpretation uncertainty reaches the decision.</description>
     </item>
     <item>
       <title>Asynchrony Effects in Thermal Response Tests</title>
@@ -37,7 +37,7 @@
       <link>https://aar246860.github.io/yflin_web/field-notes/why-groundwater-memory-matters/</link>
       <guid>https://aar246860.github.io/yflin_web/field-notes/why-groundwater-memory-matters/</guid>
       <pubDate>Fri, 12 Jun 2026 00:00:00 GMT</pubDate>
-      <description>Non-instantaneous response is not only a curve-fitting issue when recovery time or control timing matters.</description>
+      <description>Non-instantaneous response is a decision issue when recovery time or control timing matters.</description>
     </item>
   </channel>
 </rss>

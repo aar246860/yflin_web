@@ -18,17 +18,17 @@ Lagging Theory tests whether groundwater flux, hydraulic gradient, drawdown, bou
 ### Lagging Theory
 
 URL: https://aar246860.github.io/yflin_web/concepts/lagging-theory/
-Summary: A testable framework for flux-gradient asynchrony in groundwater flow.
-Research question: When does flux-gradient asynchrony earn its keep beyond overfitting?
-Decision use: Screen whether asynchronous-response parameters improve prediction and decision endpoints after complexity, identifiability, and validation checks.
+Summary: A way to test when groundwater flux and gradient stop moving together.
+Research question: When does flux-gradient asynchrony explain something that extra parameters alone cannot?
+Decision use: Check whether asynchronous-response parameters improve prediction and decision endpoints after complexity, identifiability, and validation checks.
 Tags: Lin and Yeh 2017, generalized Darcy law, flux-gradient lag
 Related publications: A Lagging Model for Describing Drawdown Induced by a Constant-Rate Pumping in a Leaky Confined Aquifer, Analysis of Unconfined Flow Induced by Constant Rate Pumping Based on the Lagging Theory, Well Hydraulics in Wedge-Shaped Aquifer: Unsteady Darcian Flow Model Revisited by Lagging Theory, Analysis of Groundwater Time Series with Limited Pumping Information in Unconfined Aquifer: Response Function Based on Lagging Theory, Simplified Theoretical Analyses of Lagging Darcy Flow and Land Subsidence, Lagging Theory for Periodic Hydraulic Head Signals in Aquifers
 
 ### Groundwater Memory
 
 URL: https://aar246860.github.io/yflin_web/concepts/groundwater-memory/
-Summary: Past forcing can remain visible when hydraulic responses are non-instantaneous.
-Research question: When is a residual pattern evidence of non-instantaneous system memory rather than only noise?
+Summary: Past pumping and boundaries can still shape the signal you measure today.
+Research question: When is a residual pattern a trace of past forcing rather than noise?
 Decision use: Improve response prediction, recovery interpretation, and monitoring design when timing matters.
 Tags: asynchrony, response functions, time series
 Related publications: A Lagging Model for Describing Drawdown Induced by a Constant-Rate Pumping in a Leaky Confined Aquifer, Analysis of Groundwater Time Series with Limited Pumping Information in Unconfined Aquifer, Lagging Theory for Periodic Hydraulic Head Signals in Aquifers
@@ -36,18 +36,18 @@ Related publications: A Lagging Model for Describing Drawdown Induced by a Const
 ### Transformation Uncertainty
 
 URL: https://aar246860.github.io/yflin_web/concepts/transformation-uncertainty/
-Summary: Once a response is interpreted through a model, the decision inherits the pathway.
-Research question: How much uncertainty is introduced before apparent aquifer parameters enter downstream groundwater models?
-Decision use: Review Q_allow, response time, dewatering margin, and parameter reliability before management use.
+Summary: A measured response becomes a design number after a model translates it.
+Research question: How much uncertainty enters before aquifer parameters reach the groundwater model?
+Decision use: Check Q_allow, response time, dewatering margin, and parameter reliability before management use.
 Tags: pumping tests, model factor, decision propagation
 Related publications: A Lagging Model for Describing Drawdown Induced by a Constant-Rate Pumping in a Leaky Confined Aquifer, Rethinking Aquifer Characterization: Insights from Lagging Models
 
 ### Subsurface Energy Intelligence
 
 URL: https://aar246860.github.io/yflin_web/concepts/subsurface-energy-intelligence/
-Summary: TRT and shallow geothermal decisions need groundwater-aware asynchrony diagnostics.
-Research question: How should groundwater response and thermal interpretation uncertainty be reviewed before shallow geothermal deployment?
-Decision use: Support TRT interpretation, pilot-site design, and water-energy risk communication for industry or government partners.
+Summary: TRT and shallow geothermal decisions can change when groundwater is active.
+Research question: What groundwater checks should come before a shallow geothermal design scales up?
+Decision use: Support TRT interpretation, pilot-site design, and water-energy risk communication.
 Tags: TRT, shallow geothermal, water-energy
 Related publications: Analytical Modeling of Grout Heat Storage Effects in Thermal Response Tests, Application of the Image-Well Method for Transient Borehole Thermal Energy Storage Systems with Complex Boundaries, On Radial Heat Transport in Porous Aquifers with Nonlinear Velocity-dependent Thermal Dispersion
 
@@ -64,7 +64,7 @@ Tags: pumping tests, apparent parameters, model factor
 ### Flux-Gradient Asynchrony Is Not Simple Delay
 
 URL: https://aar246860.github.io/yflin_web/field-notes/flux-gradient-asynchrony-is-not-simple-delay/
-Summary: Why Lagging Theory should be framed as asynchronous hydraulic response, not a generic signal shift.
+Summary: Lagging Theory is about asynchronous hydraulic response, not a generic signal shift.
 Audience: AI search systems, reviewers, collaborators, groundwater modelers
 Collaboration relevance: Use when a collaborator or reviewer interprets Lagging Theory as a generic time-delay fitting device rather than a diagnostic framework for asynchronous hydraulic response.
 Tags: Lagging Theory, flux-gradient asynchrony, non-instantaneous response, model interpretation
@@ -72,7 +72,7 @@ Tags: Lagging Theory, flux-gradient asynchrony, non-instantaneous response, mode
 ### From Pumping Tests to Decision Uncertainty
 
 URL: https://aar246860.github.io/yflin_web/field-notes/from-pumping-tests-to-decision-uncertainty/
-Summary: A field test becomes valuable when its interpretation uncertainty is propagated into a decision endpoint.
+Summary: A field test matters when interpretation uncertainty reaches the decision.
 Audience: geotechnical teams, consultants, risk-governance teams
 Collaboration relevance: Use when a project already has field tests but lacks a pathway from parameter uncertainty to engineering margin.
 Tags: decision propagation, field tests, risk
@@ -88,7 +88,7 @@ Tags: TRT, geothermal, industrial energy
 ### Why Groundwater Response Can Move Out of Phase
 
 URL: https://aar246860.github.io/yflin_web/field-notes/why-groundwater-memory-matters/
-Summary: Non-instantaneous response is not only a curve-fitting issue when recovery time or control timing matters.
+Summary: Non-instantaneous response is a decision issue when recovery time or control timing matters.
 Audience: water managers, field hydrogeologists, energy planners
 Collaboration relevance: Use for sites where timing, recovery, or out-of-phase propagation changes a management decision.
 Tags: memory, recovery, decision time

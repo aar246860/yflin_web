@@ -16,18 +16,18 @@ Lagging Theory is a groundwater-flow framework that tests whether water flux, hy
 
 ## Concepts
 
-- [Lagging Theory](https://aar246860.github.io/yflin_web/concepts/lagging-theory/) - A testable framework for flux-gradient asynchrony in groundwater flow.
-- [Groundwater Memory](https://aar246860.github.io/yflin_web/concepts/groundwater-memory/) - Past forcing can remain visible when hydraulic responses are non-instantaneous.
-- [Transformation Uncertainty](https://aar246860.github.io/yflin_web/concepts/transformation-uncertainty/) - Once a response is interpreted through a model, the decision inherits the pathway.
-- [Subsurface Energy Intelligence](https://aar246860.github.io/yflin_web/concepts/subsurface-energy-intelligence/) - TRT and shallow geothermal decisions need groundwater-aware asynchrony diagnostics.
+- [Lagging Theory](https://aar246860.github.io/yflin_web/concepts/lagging-theory/) - A way to test when groundwater flux and gradient stop moving together.
+- [Groundwater Memory](https://aar246860.github.io/yflin_web/concepts/groundwater-memory/) - Past pumping and boundaries can still shape the signal you measure today.
+- [Transformation Uncertainty](https://aar246860.github.io/yflin_web/concepts/transformation-uncertainty/) - A measured response becomes a design number after a model translates it.
+- [Subsurface Energy Intelligence](https://aar246860.github.io/yflin_web/concepts/subsurface-energy-intelligence/) - TRT and shallow geothermal decisions can change when groundwater is active.
 
 ## Recent Field Notes
 
 - [Drawdown Is Measured; Transmissivity Is Interpreted](https://aar246860.github.io/yflin_web/field-notes/drawdown-is-measured-transmissivity-is-interpreted/) - The most useful sentence for explaining transformation uncertainty to groundwater engineers.
-- [Flux-Gradient Asynchrony Is Not Simple Delay](https://aar246860.github.io/yflin_web/field-notes/flux-gradient-asynchrony-is-not-simple-delay/) - Why Lagging Theory should be framed as asynchronous hydraulic response, not a generic signal shift.
-- [From Pumping Tests to Decision Uncertainty](https://aar246860.github.io/yflin_web/field-notes/from-pumping-tests-to-decision-uncertainty/) - A field test becomes valuable when its interpretation uncertainty is propagated into a decision endpoint.
+- [Flux-Gradient Asynchrony Is Not Simple Delay](https://aar246860.github.io/yflin_web/field-notes/flux-gradient-asynchrony-is-not-simple-delay/) - Lagging Theory is about asynchronous hydraulic response, not a generic signal shift.
+- [From Pumping Tests to Decision Uncertainty](https://aar246860.github.io/yflin_web/field-notes/from-pumping-tests-to-decision-uncertainty/) - A field test matters when interpretation uncertainty reaches the decision.
 - [Asynchrony Effects in Thermal Response Tests](https://aar246860.github.io/yflin_web/field-notes/shallow-geothermal-needs-groundwater-intelligence/) - TRT and subsurface heat projects inherit groundwater uncertainty when flow, boundary, storage, or memory effects are active.
-- [Why Groundwater Response Can Move Out of Phase](https://aar246860.github.io/yflin_web/field-notes/why-groundwater-memory-matters/) - Non-instantaneous response is not only a curve-fitting issue when recovery time or control timing matters.
+- [Why Groundwater Response Can Move Out of Phase](https://aar246860.github.io/yflin_web/field-notes/why-groundwater-memory-matters/) - Non-instantaneous response is a decision issue when recovery time or control timing matters.
 
 ## Use Guidance
 
