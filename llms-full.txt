@@ -13,6 +13,12 @@ This file is a compact AI-readable map of the public research website. It is int
 
 Lagging Theory tests whether groundwater flux, hydraulic gradient, drawdown, boundary adjustment, deformation, or thermal response evolve out of phase. The framework is useful only when the asynchronous interpretation improves residual structure, parameter transfer, held-out prediction, and at least one decision endpoint after accounting for complexity and identifiability.
 
+## Interactive Pumping-Test Demo
+
+URL: https://aar246860.github.io/yflin_web/#lagging-pumping-demo
+Purpose: A calculation-backed teaching module for constant-rate pumping response. It compares a classical line-source leaky confined aquifer curve with a Lagging Darcy curve using separated flux and gradient response lags.
+Claim boundary: The demo applies a Lin-Yeh-style first-order lag operator in a simplified Laplace-domain transfer function. It omits wellbore storage and finite well radius and is not a site-specific design calculator.
+
 ## Concepts
 
 ### Lagging Theory
