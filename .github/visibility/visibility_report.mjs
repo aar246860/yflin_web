@@ -242,7 +242,7 @@ async function queryCrossref(config) {
   const results = [];
   const errors = [];
 
-  for (const item of config.scholarlyQueries.slice(0, 4)) {
+  for (const item of config.scholarlyQueries.slice(0, 6)) {
     const params = new URLSearchParams({
       "query.bibliographic": item.query,
       rows: "3"
@@ -279,7 +279,7 @@ async function queryOpenAlex(config) {
   const results = [];
   const errors = [];
 
-  for (const item of config.scholarlyQueries.slice(0, 4)) {
+  for (const item of config.scholarlyQueries.slice(0, 6)) {
     const params = new URLSearchParams({
       search: item.query,
       "per-page": "3",
@@ -634,6 +634,10 @@ const crossref = await queryCrossref(config);
 const openAlex = await queryOpenAlex(config);
 const recommendations = buildRecommendations(config, audit, gsc, crossref, openAlex);
 const report = buildReport(config, audit, gsc, crossref, openAlex, recommendations);
+const priorityCounts = recommendations.reduce((counts, rec) => {
+  counts[rec.priority] = (counts[rec.priority] ?? 0) + 1;
+  return counts;
+}, {});
 const summary = {
   generatedAt: new Date().toISOString(),
   reportTimeZone,
@@ -647,6 +651,14 @@ const summary = {
   technicalBlockers: audit.blockers.length,
   technicalWarnings: audit.warnings.length,
   recommendations: recommendations.length,
+  priorityCounts,
+  topRecommendations: recommendations.slice(0, 5).map((rec) => ({
+    priority: rec.priority,
+    area: rec.area,
+    evidence: rec.evidence,
+    action: rec.action,
+    mode: rec.mode
+  })),
   gscStatus: gsc.status,
   crossrefStatus: crossref.status,
   openAlexStatus: openAlex.status

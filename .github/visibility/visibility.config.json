@@ -15,6 +15,7 @@
     "non-instantaneous hydraulic response",
     "transformation uncertainty groundwater",
     "pumping test lagging theory",
+    "Lagging Darcy Law pumping test",
     "thermal response test uncertainty",
     "groundwater decision uncertainty"
   ],
@@ -44,6 +45,12 @@
       "conversionGoal": "Turn recurring questions into short external-facing notes."
     },
     {
+      "path": "/field-notes/when-does-a-pumping-test-need-lagging-darcy-law/",
+      "role": "pumping-test-validation-note",
+      "primaryKeyword": "Lagging Darcy Law pumping test",
+      "conversionGoal": "Explain when lagging interpretation is necessary and when classical interpretation is enough."
+    },
+    {
       "path": "/publications/",
       "role": "credibility-proof",
       "primaryKeyword": "Ying-Fan Lin groundwater publications",
@@ -60,6 +67,10 @@
     {
       "label": "Lagging Theory by Ying-Fan Lin",
       "query": "\"Lagging Theory\" \"Ying-Fan Lin\""
+    },
+    {
+      "label": "Lagging Darcy Law pumping test",
+      "query": "\"Lagging Darcy Law\" \"pumping test\""
     },
     {
       "label": "Flux-gradient asynchrony",

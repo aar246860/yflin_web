@@ -64,11 +64,17 @@ jobs:
               `- Run: ${runUrl}`,
               `- Artifact: ${summary.artifactName || "weekly-lagging-theory-visibility-report"}`,
               `- Recommendations: ${summary.recommendations ?? "unknown"}`,
+              `- Priority counts: ${Object.entries(summary.priorityCounts || {}).map(([key, value]) => `${key}:${value}`).join(", ") || "unknown"}`,
               `- Technical blockers: ${summary.technicalBlockers ?? "unknown"}`,
               `- Technical warnings: ${summary.technicalWarnings ?? "unknown"}`,
               `- Google Search Console: ${summary.gscStatus || "unknown"}`,
               `- Crossref: ${summary.crossrefStatus || "unknown"}`,
               `- OpenAlex: ${summary.openAlexStatus || "unknown"}`,
+              ``,
+              `Top actions:`,
+              ...(summary.topRecommendations || []).slice(0, 3).map((rec, index) =>
+                `${index + 1}. [${rec.priority}] ${rec.area}: ${rec.action}`
+              ),
               ``,
               `This issue is only a reminder. The full strategy report stays in the workflow artifact.`,
               ``,
