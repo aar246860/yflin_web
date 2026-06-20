@@ -34,8 +34,8 @@ Claim boundary: The Decision Lab is a screening and teaching layer, not a site-s
 ## Open Tools and Reproducible Methods
 
 URL: https://aar246860.github.io/yflin_web/tools/
-Purpose: A curated index of public demonstrators, research packages, an agent skill template, archival code, and collaboration workflows connected to Lagging Darcy Law, aquifer-test interpretation, transformation uncertainty, and groundwater decision reliability.
-Claim boundary: The page distinguishes teaching demos, research packages, prototypes, archival artifacts, and workflows. It should not be summarized as a claim that every repository is a mature open-source package.
+Purpose: A curated showcase of selected public demonstrators, showcase-ready research code, an agent skill template, archival analytical code, and collaboration workflows connected to Lagging Darcy Law, aquifer-test interpretation, transformation uncertainty, and groundwater decision reliability.
+Claim boundary: The page is not a complete repository index. It distinguishes teaching demos, selected research code, archival artifacts, and workflows. It should not be summarized as a claim that every working repository is public, release-ready, or a mature open-source package.
 
 ### Normalized LDL response animation
 
@@ -81,28 +81,6 @@ Claim boundary: Public repo contains software, documentation, tests, calibration
 Evidence: GitHub repository metadata and README checked on 2026-06-20.
 Primary link: https://github.com/aar246860/trust-tc
 
-### TRUST-K
-
-Tier: Research code
-Maturity: research package
-Summary: Python research package for treating hydraulic conductivity inferred from aquifer tests as method-dependent soft observations.
-Problem: Supports transformation-uncertainty thinking for hydraulic conductivity interpreted from pumping and slug tests.
-Use when: Use when K values from field tests should be treated as interpretation-dependent evidence rather than direct truth.
-Claim boundary: Research package, not a universal hydraulic-conductivity table or final design standard.
-Evidence: GitHub repository metadata and README checked on 2026-06-20.
-Primary link: https://github.com/aar246860/trustk
-
-### 3D Lagging Darcy open research package
-
-Tier: Research code
-Maturity: research package
-Summary: Open research package for a 3D mechanistic lagging Darcy groundwater-flow study.
-Problem: Provides manuscript source, derived tables, figure-generation scripts, and representative arrays for review and figure reproduction.
-Use when: Use when reviewers or collaborators need to inspect the evidence trail behind the 3D lagging-flow manuscript package.
-Claim boundary: Includes derived tables and representative arrays; it intentionally does not include the full raw simulation archive.
-Evidence: GitHub repository metadata and README checked on 2026-06-20.
-Primary link: https://github.com/aar246860/wrr-lagging-darcy-open-source
-
 ### WellTestAI agent skill template
 
 Tier: Agent skill
@@ -113,28 +91,6 @@ Use when: Use when building controlled AI-agent workflows for slug or recovery-t
 Claim boundary: Current public release supports slug/recovery analysis only; constant-rate pumping and constant-head workflows are not exposed.
 Evidence: GitHub repository metadata and README checked on 2026-06-20.
 Primary link: https://github.com/aar246860/welltestai-agent-skill-template
-
-### PyLaggingPump / lagwell
-
-Tier: Research code
-Maturity: prototype
-Summary: FastAPI-backed MVP for pumping-test analysis based on Lagging Theory with a minimal static web UI.
-Problem: Explores how lag-aware pumping-test calculations might become a user-facing analysis service.
-Use when: Use as a prototype reference for future packaging, not as the public standard implementation.
-Claim boundary: Prototype repository; not presented here as a validated production package or calibrated field-analysis standard.
-Evidence: GitHub repository metadata and README checked on 2026-06-20.
-Primary link: https://github.com/aar246860/PyLaggingPump
-
-### WRRlag notebook artifact
-
-Tier: Archival code
-Maturity: archival artifact
-Summary: Notebook artifact described by its repository as code used in a WRR paper.
-Problem: Preserves a computational trace for a published research line, even though it is not packaged as a maintained library.
-Use when: Use for archival inspection of earlier WRR code, not for a polished API or teaching interface.
-Claim boundary: Single-notebook archival artifact with no accessible README in the checked default branch.
-Evidence: GitHub repository metadata and contents checked on 2026-06-20.
-Primary link: https://github.com/aar246860/WRRlag
 
 ### Mathematica stream-depletion code
 
@@ -233,11 +189,11 @@ Avoid: Do not treat transformation uncertainty as only a parameter confidence in
 
 ### What open tools support Ying-Fan Lin's Lagging Theory work?
 
-Short answer: The open tools page lists public teaching demos, research packages, an agent skill template, archival code, and collaboration workflows with explicit claim boundaries.
-Answer: The open tools page organizes public demonstrators, research code, agent-skill templates, archival code, and collaboration workflows for Lagging Darcy Law, aquifer-test interpretation, transformation uncertainty, and groundwater decision reliability. Each entry states its maturity level, problem, use case, evidence source, and claim boundary so users can distinguish teaching demos from research packages or service workflows.
+Short answer: The open tools page lists selected public teaching demos, showcase-ready research code, an agent skill template, archival analytical code, and collaboration workflows with explicit claim boundaries.
+Answer: The open tools page organizes selected public demonstrators, research code, an agent-skill template, archival analytical code, and collaboration workflows for Lagging Darcy Law, aquifer-test interpretation, transformation uncertainty, and groundwater decision reliability. Each entry states its maturity level, problem, use case, evidence source, and claim boundary so users can distinguish teaching demos from selected research code or service workflows.
 Evidence page: https://aar246860.github.io/yflin_web/tools/
 Citation hint: Use this answer when describing the reproducible-methods and software layer behind the research program.
-Avoid: Do not imply that every listed repository is a mature open-source package or a site-specific engineering calculator.
+Avoid: Do not imply that the page is a complete repository index, that every working repository is shown, or that listed demos are site-specific engineering calculators.
 
 
 ## AI-Citable Glossary
