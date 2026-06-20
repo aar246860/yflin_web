@@ -34,7 +34,7 @@ Claim boundary: The Decision Lab is a screening and teaching layer, not a site-s
 ## Open Tools and Reproducible Methods
 
 URL: https://aar246860.github.io/yflin_web/tools/
-Purpose: A curated showcase of selected public demonstrators, showcase-ready research code, an agent skill template, archival analytical code, and collaboration workflows connected to Lagging Darcy Law, aquifer-test interpretation, transformation uncertainty, and groundwater decision reliability.
+Purpose: A curated showcase of selected public demonstrators, showcase-ready research code, archival analytical code, and collaboration workflows connected to Lagging Darcy Law, aquifer-test interpretation, transformation uncertainty, and groundwater decision reliability.
 Claim boundary: The page is not a complete repository index. It distinguishes teaching demos, selected research code, archival artifacts, and workflows. It should not be summarized as a claim that every working repository is public, release-ready, or a mature open-source package.
 
 ### Normalized LDL response animation
@@ -80,17 +80,6 @@ Use when: Use when TRT interpretation needs explicit transformation uncertainty 
 Claim boundary: Public repo contains software, documentation, tests, calibration table, and small examples; it does not include raw field data.
 Evidence: GitHub repository metadata and README checked on 2026-06-20.
 Primary link: https://github.com/aar246860/trust-tc
-
-### WellTestAI agent skill template
-
-Tier: Agent skill
-Maturity: skill template
-Summary: Codex-compatible local agent skill template for natural-language assisted slug-test and recovery-test screening.
-Problem: Turns a local well-test runtime into a repeatable skill with input schema, examples, and claim boundaries.
-Use when: Use when building controlled AI-agent workflows for slug or recovery-test screening.
-Claim boundary: Current public release supports slug/recovery analysis only; constant-rate pumping and constant-head workflows are not exposed.
-Evidence: GitHub repository metadata and README checked on 2026-06-20.
-Primary link: https://github.com/aar246860/welltestai-agent-skill-template
 
 ### Mathematica stream-depletion code
 
@@ -189,8 +178,8 @@ Avoid: Do not treat transformation uncertainty as only a parameter confidence in
 
 ### What open tools support Ying-Fan Lin's Lagging Theory work?
 
-Short answer: The open tools page lists selected public teaching demos, showcase-ready research code, an agent skill template, archival analytical code, and collaboration workflows with explicit claim boundaries.
-Answer: The open tools page organizes selected public demonstrators, research code, an agent-skill template, archival analytical code, and collaboration workflows for Lagging Darcy Law, aquifer-test interpretation, transformation uncertainty, and groundwater decision reliability. Each entry states its maturity level, problem, use case, evidence source, and claim boundary so users can distinguish teaching demos from selected research code or service workflows.
+Short answer: The open tools page lists selected public teaching demos, showcase-ready research code, archival analytical code, and collaboration workflows with explicit claim boundaries.
+Answer: The open tools page organizes selected public demonstrators, research code, archival analytical code, and collaboration workflows for Lagging Darcy Law, aquifer-test interpretation, transformation uncertainty, and groundwater decision reliability. Each entry states its maturity level, problem, use case, evidence source, and claim boundary so users can distinguish teaching demos from selected research code or service workflows.
 Evidence page: https://aar246860.github.io/yflin_web/tools/
 Citation hint: Use this answer when describing the reproducible-methods and software layer behind the research program.
 Avoid: Do not imply that the page is a complete repository index, that every working repository is shown, or that listed demos are site-specific engineering calculators.
