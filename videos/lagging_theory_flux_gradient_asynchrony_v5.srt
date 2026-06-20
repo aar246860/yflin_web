@@ -8,7 +8,7 @@ It tests when gradient and flux fall out of sync.
 
 3
 00:00:12,000 --> 00:00:20,000
-Memory can come from storage, leakage, exchange, or coupling.
+Delayed response can come from storage, leakage, exchange, or coupling.
 
 4
 00:00:20,000 --> 00:00:28,000
@@ -16,7 +16,7 @@ A fitted curve can still transfer the wrong parameter.
 
 5
 00:00:28,000 --> 00:00:36,750
-The test is whether pumping limits, recovery time, or risk changes.
+The test is whether pumping limits, recovery time, or a design threshold changes.
 
 6
 00:00:36,750 --> 00:00:42,500

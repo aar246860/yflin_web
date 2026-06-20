@@ -1,6 +1,6 @@
 1
 00:00:00,400 --> 00:00:05,550
-Groundwater lagging is not just a signal delay.
+Groundwater lagging is not just a time shift.
 
 2
 00:00:05,550 --> 00:00:10,700
@@ -8,11 +8,11 @@ Lagging Theory focuses on flux-gradient asynchrony.
 
 3
 00:00:10,700 --> 00:00:16,900
-Gradient and flux can evolve on different response paths.
+Gradient and flux can evolve on different response time scales.
 
 4
 00:00:16,900 --> 00:00:26,050
-Storage, drainage, leakage, pathways, exchange, and coupling can all create memory.
+Storage, drainage, leakage, flow paths, domain exchange, and coupling can all create delayed response.
 
 5
 00:00:26,050 --> 00:00:32,450
@@ -20,8 +20,8 @@ A fitted curve can still transfer the wrong hydraulic parameter.
 
 6
 00:00:32,450 --> 00:00:40,700
-The engineering test is whether memory changes pumping limits, recovery time, or risk.
+The engineering test is whether delayed response changes pumping limits, recovery time, or a design threshold.
 
 7
 00:00:40,700 --> 00:00:45,800
-Lagging Theory turns groundwater memory into a decision test.
+Lagging Theory turns delayed hydraulic response into a decision test.

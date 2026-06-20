@@ -3,7 +3,7 @@
   <channel>
     <title>Ying-Fan Lin Field Notes</title>
     <link>https://aar246860.github.io/yflin_web/field-notes/</link>
-    <description>Groundwater memory, transformation uncertainty, and subsurface energy intelligence.</description>
+    <description>Delayed hydraulic response, transformation uncertainty, and groundwater-influenced subsurface energy interpretation.</description>
     <item>
       <title>When Does a Pumping Test Need Lagging Darcy Law?</title>
       <link>https://aar246860.github.io/yflin_web/field-notes/when-does-a-pumping-test-need-lagging-darcy-law/</link>
@@ -23,7 +23,7 @@
       <link>https://aar246860.github.io/yflin_web/field-notes/flux-gradient-asynchrony-is-not-simple-delay/</link>
       <guid>https://aar246860.github.io/yflin_web/field-notes/flux-gradient-asynchrony-is-not-simple-delay/</guid>
       <pubDate>Fri, 12 Jun 2026 00:00:00 GMT</pubDate>
-      <description>Lagging Theory is about asynchronous hydraulic response, not a generic signal shift.</description>
+      <description>Lagging Theory is about asynchronous hydraulic response, not a generic time shift.</description>
     </item>
     <item>
       <title>From Pumping Tests to Decision Uncertainty</title>
@@ -37,10 +37,10 @@
       <link>https://aar246860.github.io/yflin_web/field-notes/shallow-geothermal-needs-groundwater-intelligence/</link>
       <guid>https://aar246860.github.io/yflin_web/field-notes/shallow-geothermal-needs-groundwater-intelligence/</guid>
       <pubDate>Fri, 12 Jun 2026 00:00:00 GMT</pubDate>
-      <description>TRT and subsurface heat projects inherit groundwater uncertainty when flow, boundary, storage, or memory effects are active.</description>
+      <description>TRT and subsurface heat projects inherit groundwater uncertainty when flow, boundary, storage, or delayed-response effects are active.</description>
     </item>
     <item>
-      <title>Why Groundwater Response Can Move Out of Phase</title>
+      <title>Why Aquifer Response Can Move Out of Phase</title>
       <link>https://aar246860.github.io/yflin_web/field-notes/why-groundwater-memory-matters/</link>
       <guid>https://aar246860.github.io/yflin_web/field-notes/why-groundwater-memory-matters/</guid>
       <pubDate>Fri, 12 Jun 2026 00:00:00 GMT</pubDate>
