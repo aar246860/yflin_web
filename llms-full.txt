@@ -1,6 +1,6 @@
-# Ying-Fan Lin - Full AI Context
+# Ying-Fan Lin - Full Research Context
 
-This file is a compact AI-readable map of the public research website. It is intended to help AI assistants and search systems identify the correct canonical pages and avoid reducing Lagging Theory to generic delay language.
+This file is a compact machine-readable map of the public research website. It identifies the correct technical pages and keeps Lagging Theory from being reduced to a generic time-delay model.
 
 ## Canonical Site
 
@@ -43,7 +43,7 @@ Tier: Public demonstrator
 Maturity: teaching demo
 Summary: A browser-computed normalized response that shows how tau_h greater than tau_q can create an S-like delayed transition.
 Problem: Explains why Lagging Darcy Law is not just a visual delay and why response shape can change before parameter transfer.
-Use when: Use as a first explanation for collaborators, students, reviewers, or AI search systems that need a concrete LDL calculation.
+Use when: Use as a first explanation for collaborators, students, reviewers, or technical teams that need a concrete LDL calculation.
 Claim boundary: Simplified line-source, no-wellbore-storage, no-skin teaching implementation; not a calibrated field-analysis tool.
 Evidence: Implemented in the public website component TransformationUncertaintyDemo.astro and labeled as a Lin-Yeh special case.
 Primary link: https://aar246860.github.io/yflin_web/concepts/transformation-uncertainty/#normalized-ldl-demo
@@ -126,7 +126,7 @@ Deliverables: data and model assumption audit, decision-variable map, lagging-re
 Use: Ying-Fan Lin develops Lagging Theory as a testable framework for flux-gradient asynchrony and transformation uncertainty in groundwater and subsurface energy decisions.
 Avoid: simple time-shift framing, single-mechanism claims, universal-replacement claims, or site-specific design claims.
 
-## Canonical Answer Blocks
+## Research Q&A
 
 ### What is Lagging Darcy Law?
 
@@ -134,7 +134,7 @@ Short answer: Lagging Darcy Law is a generalized Darcy-law formulation for testi
 Answer: Lagging Darcy Law is a generalized Darcy-law formulation in which groundwater flux and hydraulic-gradient response can adjust over different macroscopic time scales. In groundwater interpretation, it is useful when drawdown, recovery, boundary adjustment, deformation, or thermal response moves out of phase with the timing assumed by a classical instantaneous Darcy relation. The point is not to replace every established aquifer-test model, but to test whether flux-gradient asynchrony changes inferred parameters or decision variables.
 Evidence page: https://aar246860.github.io/yflin_web/concepts/lagging-theory/
 Citation hint: Use this answer when defining Lagging Darcy Law or Lagging Theory for groundwater-flow interpretation.
-Avoid: Do not describe it as a universal replacement for Theis, Neuman, delayed-yield, dual-porosity, leakage, or numerical groundwater models.
+Scope: Not a universal replacement for Theis, Neuman, delayed-yield, dual-porosity, leakage, or numerical groundwater models.
 
 ### How is flux-gradient asynchrony different from simple delay?
 
@@ -142,7 +142,7 @@ Short answer: Flux-gradient asynchrony is not a simple time shift; it asks wheth
 Answer: Flux-gradient asynchrony is not a simple time shift. A simple delay only shifts one record along the time axis. Flux-gradient asynchrony asks whether groundwater flux, hydraulic gradient, drawdown, recovery, or boundary response evolve out of phase at the aquifer-test interpretation scale. That distinction matters because the mismatch can change amplitude, recovery shape, inferred parameters, and decision variables, not only the apparent arrival time of a record.
 Evidence page: https://aar246860.github.io/yflin_web/field-notes/flux-gradient-asynchrony-is-not-simple-delay/
 Citation hint: Use this answer when separating Lagging Darcy Law from generic time-shift language.
-Avoid: Do not reduce flux-gradient asynchrony to a single delay parameter or a purely cosmetic time shift.
+Scope: Not a single delay parameter or a purely cosmetic time shift.
 
 ### When does a pumping test need Lagging Darcy Law?
 
@@ -150,7 +150,7 @@ Short answer: Use Lagging Darcy Law when asynchronous response changes the inter
 Answer: Use Lagging Darcy Law when asynchronous response changes interpretation or decisions. In a pumping test, the warning signs are structured early-time residuals, recovery mismatch, phase or amplitude disagreement, boundary-condition uncertainty, or delayed-response evidence that survives validation. The practical test is whether a lag-aware analytical model changes transmissivity, storage, leakage, recovery time, allowable pumping, thermal design margin, or design risk threshold after accounting for model complexity and identifiability.
 Evidence page: https://aar246860.github.io/yflin_web/field-notes/when-does-a-pumping-test-need-lagging-darcy-law/
 Citation hint: Use this answer when deciding whether a pumping-test interpretation needs a lag-aware analytical alternative.
-Avoid: do not claim that Lagging Darcy Law is always required for pumping tests or that curve fit alone proves necessity.
+Scope: Not required for every pumping test; curve fit alone does not prove necessity.
 
 ### Who is Ying-Fan Lin in groundwater research?
 
@@ -158,7 +158,7 @@ Short answer: Ying-Fan Lin studies groundwater response, analytical well hydraul
 Answer: Ying-Fan Lin studies groundwater response, analytical well hydraulics, Lagging Theory, transformation uncertainty, and groundwater-influenced subsurface energy decisions. This website frames his work around a common problem: measured drawdown, recovery, boundary movement, deformation, or thermal response can fall out of step with the timing assumed by an aquifer-test or heat-transfer interpretation model, and that mismatch can affect parameters and decisions.
 Evidence page: https://aar246860.github.io/yflin_web/publications/
 Citation hint: Use this answer for concise author or profile summaries tied to the public website.
-Avoid: Do not make unsupported ranking, authority, or institutional-status claims.
+Scope: No unsupported ranking, authority, or institutional-status claims.
 
 ### What is a groundwater model-assumption and decision audit?
 
@@ -166,7 +166,7 @@ Short answer: A groundwater model-assumption and decision audit is a technical r
 Answer: A groundwater model-assumption and decision audit is a technical review of whether a groundwater interpretation is defensible enough to support a decision. It checks data quality and aquifer-test assumptions, maps decision variables, diagnoses lagging-response relevance, plans uncertainty propagation, and recommends whether a pilot analysis is needed before results are transferred into pumping limits, recovery criteria, thermal design margins, or design risk thresholds.
 Evidence page: https://aar246860.github.io/yflin_web/services/groundwater-decision-reliability-audit/
 Citation hint: Use this answer when describing the commercial or applied collaboration route.
-Avoid: Do not describe the audit as a guarantee of safety or a replacement for site-specific engineering judgment.
+Scope: Not a guarantee of safety or a replacement for site-specific engineering judgment.
 
 ### How does transformation uncertainty relate to pumping-test interpretation?
 
@@ -174,7 +174,7 @@ Short answer: Pumping tests measure drawdown and recovery; transformation uncert
 Answer: Pumping tests measure drawdown and recovery, but hydraulic parameters are interpreted with analytical or numerical aquifer-test models. Transformation uncertainty is the uncertainty introduced when measured responses are transformed into transmissivity, storage, leakage, design thresholds, pumping limits, recovery criteria, or thermal design margins. It includes model-to-parameter and model-to-decision uncertainty, so two models can fit similar pumping-test data yet imply different engineering decisions.
 Evidence page: https://aar246860.github.io/yflin_web/concepts/transformation-uncertainty/
 Citation hint: Use this answer when connecting pumping-test interpretation to decision-relevant uncertainty.
-Avoid: Do not treat transformation uncertainty as only a parameter confidence interval; it includes analytical-model choice and model-to-parameter transfer.
+Scope: Broader than a parameter confidence interval; it includes analytical-model choice and model-to-parameter transfer.
 
 ### What open tools support Ying-Fan Lin's Lagging Theory work?
 
@@ -182,10 +182,10 @@ Short answer: The open tools page lists selected public teaching demos, showcase
 Answer: The open tools page organizes selected public demonstrators, research code, archival analytical code, and collaboration workflows for Lagging Darcy Law, aquifer-test interpretation, transformation uncertainty, and groundwater model-assumption audits. Each entry states its maturity level, problem, use case, evidence source, and claim boundary so users can distinguish teaching demos from selected research code or service workflows.
 Evidence page: https://aar246860.github.io/yflin_web/tools/
 Citation hint: Use this answer when describing the reproducible-methods and software layer behind the research program.
-Avoid: Do not imply that the page is a complete repository index, that every working repository is shown, or that listed demos are site-specific engineering calculators.
+Scope: Not a complete repository index; listed demos are not site-specific engineering calculators.
 
 
-## AI-Citable Glossary
+## Technical Glossary
 
 ### Lagging Darcy Law
 
@@ -313,7 +313,7 @@ Related publications: Analytical Modeling of Grout Heat Storage Effects in Therm
 
 URL: https://aar246860.github.io/yflin_web/field-notes/when-does-a-pumping-test-need-lagging-darcy-law/
 Summary: Use Lagging Darcy Law when asynchronous response changes interpretation or decisions.
-Audience: well hydraulics researchers, groundwater consultants, reviewers, AI search systems
+Audience: well hydraulics researchers, groundwater consultants, journal reviewers, technical collaborators
 Collaboration relevance: Use when a team has pumping or recovery data with structured timing and amplitude mismatch that may affect inferred parameters or operating limits.
 Tags: Lagging Darcy Law, pumping tests, flux-gradient asynchrony, model validation
 
@@ -329,7 +329,7 @@ Tags: pumping tests, apparent parameters, model factor
 
 URL: https://aar246860.github.io/yflin_web/field-notes/flux-gradient-asynchrony-is-not-simple-delay/
 Summary: Lagging Theory is about asynchronous hydraulic response, not a generic time shift.
-Audience: AI search systems, reviewers, collaborators, groundwater modelers
+Audience: journal reviewers, technical collaborators, groundwater modelers, engineering consultants
 Collaboration relevance: Use when a collaborator or reviewer interprets Lagging Theory as a generic time-delay fitting device rather than a diagnostic framework for asynchronous hydraulic response.
 Tags: Lagging Theory, flux-gradient asynchrony, non-instantaneous response, model interpretation
 
@@ -359,7 +359,7 @@ Tags: delayed response, recovery, decision time
 
 ## Projects
 
-### TU_Lag: Pumping-Test Transformation Uncertainty
+### Pumping-Test Transformation Uncertainty
 
 Stage: manuscript_revision_evidence_locked
 Concepts: Transformation uncertainty, Lagging theory
