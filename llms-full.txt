@@ -1,6 +1,6 @@
 # Ying-Fan Lin - Full Research Context
 
-This file is a compact machine-readable map of the public research website. It identifies the correct technical pages and keeps Lagging Theory from being reduced to a generic time-delay model.
+This file is a compact machine-readable map of the public research website. It identifies the correct technical pages and keeps Lagging Theory from being reduced to a generic signal-processing time shift.
 
 ## Canonical Site
 
@@ -16,26 +16,26 @@ This file is a compact machine-readable map of the public research website. It i
 ## Core Research Claim
 
 Lagging Theory tests whether groundwater flux, hydraulic gradient, drawdown, boundary adjustment, deformation, or thermal response evolve out of phase. The framework is useful only when the asynchronous interpretation improves residual structure, parameter transfer, held-out prediction, and at least one decision variable after accounting for complexity and identifiability.
-Lin and Yeh (2017) developed the constant-rate pumping-test version in a leaky confined aquifer by allowing water flux and drawdown gradient to adjust out of phase. Public summaries should not reduce this to a generic time shift or describe it as a universal substitute for Theis, Neuman, delayed-yield, leakage, dual-porosity, or numerical groundwater models.
+Lin and Yeh (2017) developed the constant-rate pumping-test version in a leaky confined aquifer by allowing water flux and drawdown gradient to adjust out of phase. Public summaries should not reduce this to a generic signal-processing time shift or describe it as a universal substitute for Theis, Neuman, delayed-yield, leakage, dual-porosity, or numerical groundwater models.
 
 ## Interactive Pumping-Test Demo
 
 URL: https://aar246860.github.io/yflin_web/#lagging-pumping-demo
 Purpose: A calculation-backed teaching module for constant-rate pumping response. It compares a classical line-source leaky confined aquifer curve with a Lagging Darcy curve using separated flux and gradient response lags.
-Claim boundary: The demo applies a Lin-Yeh-style first-order lag operator in a simplified Laplace-domain transfer function. It omits wellbore storage and finite well radius and is not a site-specific design calculator.
+Scope: The demo applies a Lin-Yeh-style first-order lag operator in a simplified Laplace-domain transfer function. It omits wellbore storage and finite well radius and is not a site-specific design calculator.
 
 ## Decision Lab
 
 URL: https://aar246860.github.io/yflin_web/decision-lab/
 Purpose: Public screening tools for testing whether lag-aware or Lagging Darcy Law interpretation should be considered before a groundwater decision is made.
 Current flagship tool: Lagging Darcy Law Necessity Checker. It evaluates pumping duration, observation window, recovery duration, lag or drainage time scale, boundary response speed, residual-structure severity, and decision type.
-Claim boundary: The Decision Lab is a screening and teaching layer, not a site-specific engineering calculator.
+Scope: The Decision Lab is a screening and teaching layer, not a site-specific engineering calculator.
 
 ## Open Tools and Reproducible Methods
 
 URL: https://aar246860.github.io/yflin_web/tools/
-Purpose: A curated showcase of selected public demonstrators, showcase-ready research code, archival analytical code, and collaboration workflows connected to Lagging Darcy Law, aquifer-test interpretation, transformation uncertainty, and groundwater model-assumption audits.
-Claim boundary: The page is not a complete repository index. It distinguishes teaching demos, selected research code, archival artifacts, and workflows. It should not be summarized as a claim that every working repository is public, release-ready, or a mature open-source package.
+Purpose: A curated showcase of selected public demonstrators, research code, archival analytical code, and collaboration routes connected to Lagging Darcy Law, aquifer-test interpretation, transformation uncertainty, and groundwater model-assumption audits.
+Scope: The page is not a complete repository index. It distinguishes teaching demos, selected research code, archival artifacts, and collaboration routes. It should not be summarized as a claim that every working repository is public, release-ready, or a mature open-source package.
 
 ### Normalized LDL response animation
 
@@ -44,7 +44,7 @@ Maturity: teaching demo
 Summary: A browser-computed normalized response that shows how tau_h greater than tau_q can create an S-like delayed transition.
 Problem: Explains why Lagging Darcy Law is not just a visual delay and why response shape can change before parameter transfer.
 Use when: Use as a first explanation for collaborators, students, reviewers, or technical teams that need a concrete LDL calculation.
-Claim boundary: Simplified line-source, no-wellbore-storage, no-skin teaching implementation; not a calibrated field-analysis tool.
+Scope: Simplified line-source, no-wellbore-storage, no-skin teaching implementation; not a calibrated field-analysis tool.
 Evidence: Implemented in the public website component TransformationUncertaintyDemo.astro and labeled as a Lin-Yeh special case.
 Primary link: https://aar246860.github.io/yflin_web/concepts/transformation-uncertainty/#normalized-ldl-demo
 
@@ -55,7 +55,7 @@ Maturity: teaching demo
 Summary: An interactive constant-rate pumping-test module comparing a classical response and a lag-aware response.
 Problem: Shows when separated flux and gradient response lags can create early-time residual structure and timing shifts.
 Use when: Use before a technical discussion about whether a pumping test needs lag-aware interpretation.
-Claim boundary: Calculation-backed teaching model that omits wellbore storage and finite well radius; site-specific analysis must replace it before design use.
+Scope: Calculation-backed teaching model that omits wellbore storage and finite well radius; site-specific analysis must replace it before design use.
 Evidence: Implemented in LaggingPumpingTestDemo.astro and linked from the home page and Lagging Theory page.
 Primary link: https://aar246860.github.io/yflin_web/#lagging-pumping-demo
 
@@ -66,7 +66,7 @@ Maturity: teaching demo
 Summary: A qualitative screening tool for deciding whether lag-aware aquifer-test interpretation should be checked before decision transfer.
 Problem: Turns pumping duration, observation window, recovery duration, lag or drainage scale, boundary response, residual-structure severity, and decision type into a screening result.
 Use when: Use when a team needs a quick decision about whether conventional interpretation is enough for a first screen.
-Claim boundary: Qualitative screening layer only; not a quantitative aquifer-test inversion or site-specific engineering calculator.
+Scope: Qualitative screening layer only; not a quantitative aquifer-test inversion or site-specific engineering calculator.
 Evidence: Implemented in LDLNecessityChecker.astro and exposed on the Decision Lab page.
 Primary link: https://aar246860.github.io/yflin_web/decision-lab/#ldl-necessity-checker
 
@@ -77,7 +77,7 @@ Maturity: research package
 Summary: MIT-licensed Python research tool for transformation-uncertainty intervals in thermal response test interpretation.
 Problem: Converts apparent TRT estimates into uncertainty intervals, reliability classes, and geothermal design reference factors.
 Use when: Use when TRT interpretation needs explicit transformation uncertainty before shallow-geothermal design transfer.
-Claim boundary: Public repo contains software, documentation, tests, calibration table, and small examples; it does not include raw field data.
+Scope: Public repo contains software, documentation, tests, calibration table, and small examples; it does not include raw field data.
 Evidence: GitHub repository metadata and README checked on 2026-06-20.
 Primary link: https://github.com/aar246860/trust-tc
 
@@ -88,7 +88,7 @@ Maturity: archival artifact
 Summary: Mathematica notebook for evaluating drawdown values in a new stream-depletion solution.
 Problem: Keeps an analytical well-hydraulics computation visible for readers who need to inspect older solution code.
 Use when: Use for archival Mathematica evaluation of the linked stream-depletion solution.
-Claim boundary: Notebook artifact rather than a maintained open-source package.
+Scope: Notebook artifact rather than a maintained open-source package.
 Evidence: GitHub repository metadata and README checked on 2026-06-20.
 Primary link: https://github.com/aar246860/Mathematica-Code-SDR
 
@@ -99,18 +99,18 @@ Maturity: archival artifact
 Summary: Python scripts for approximate Zech solutions under constant-rate and constant-head pumping in confined aquifers.
 Problem: Provides earlier analytical-flow calculation scripts for confined-aquifer pumping cases.
 Use when: Use for inspecting earlier approximate analytical-flow implementations.
-Claim boundary: Standalone scripts, not a maintained Python package or validated design calculator.
+Scope: Standalone scripts, not a maintained Python package or validated design calculator.
 Evidence: GitHub repository metadata and README checked on 2026-06-20.
 Primary link: https://github.com/aar246860/ApproximateAnaFlow
 
 ### Groundwater model-assumption and decision audit
 
 Tier: Collaboration workflow
-Maturity: service workflow
-Summary: A structured workflow for checking whether data, aquifer-test interpretation models, uncertainty propagation, and decision variables support a groundwater action.
+Maturity: service route
+Summary: A structured review of whether data, aquifer-test interpretation models, uncertainty propagation, and decision variables support a groundwater action.
 Problem: Connects analysis tools to real project decisions without exposing confidential datasets or overstating public demos.
 Use when: Use when a consultant, industrial team, or agency needs a bounded pilot before a larger groundwater or subsurface-energy study.
-Claim boundary: Collaboration workflow, not an open-source software package or guarantee of safety.
+Scope: Collaboration route, not an open-source software package or guarantee of safety.
 Evidence: Published service route on this website.
 Primary link: https://aar246860.github.io/yflin_web/services/groundwater-decision-reliability-audit/
 
@@ -178,8 +178,8 @@ Scope: Broader than a parameter confidence interval; it includes analytical-mode
 
 ### What open tools support Ying-Fan Lin's Lagging Theory work?
 
-Short answer: The open tools page lists selected public teaching demos, showcase-ready research code, archival analytical code, and collaboration workflows with explicit claim boundaries.
-Answer: The open tools page organizes selected public demonstrators, research code, archival analytical code, and collaboration workflows for Lagging Darcy Law, aquifer-test interpretation, transformation uncertainty, and groundwater model-assumption audits. Each entry states its maturity level, problem, use case, evidence source, and claim boundary so users can distinguish teaching demos from selected research code or service workflows.
+Short answer: The open tools page lists selected public teaching demos, research code, archival analytical code, and collaboration routes with explicit scope statements.
+Answer: The open tools page organizes selected public demonstrators, research code, archival analytical code, and collaboration routes for Lagging Darcy Law, aquifer-test interpretation, transformation uncertainty, and groundwater model-assumption checks. Each entry states its maturity level, problem, use case, evidence source, and scope so users can distinguish teaching demos from selected research code or service routes.
 Evidence page: https://aar246860.github.io/yflin_web/tools/
 Citation hint: Use this answer when describing the reproducible-methods and software layer behind the research program.
 Scope: Not a complete repository index; listed demos are not site-specific engineering calculators.
@@ -364,7 +364,7 @@ Tags: delayed response, recovery, decision time
 Stage: manuscript_revision_evidence_locked
 Concepts: Transformation uncertainty, Lagging theory
 Source projects: TU_Lag
-Claim boundary: Field data provide diagnostics, not proof of true transmissivity or storage., Benchmark model factors are conditional, not universal design values., Lagging Darcy is a candidate analytical model for interpretation, not a one-model substitute for established aquifer-test methods.
+Scope: Field data provide diagnostics, not proof of true transmissivity or storage., Benchmark model factors are conditional, not universal design values., Lagging Darcy is a candidate analytical model for interpretation, not a one-model substitute for established aquifer-test methods.
 
 ## Summary Instruction
 
