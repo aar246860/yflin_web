@@ -63,7 +63,7 @@ Primary link: https://aar246860.github.io/yflin_web/#lagging-pumping-demo
 
 Tier: Public demonstrator
 Maturity: teaching demo
-Summary: A qualitative screening tool for deciding whether lag-aware aquifer-test interpretation should be checked before decision transfer.
+Summary: A qualitative screening tool for deciding whether lag-aware aquifer-test interpretation should be evaluated before informing engineering decisions.
 Problem: Turns pumping duration, observation window, recovery duration, lag or drainage scale, boundary response, residual-structure severity, and decision type into a screening result.
 Use when: Use when a team needs a quick decision about whether conventional interpretation is enough for a first screen.
 Scope: Qualitative screening layer only; not a quantitative aquifer-test inversion or site-specific engineering calculator.
@@ -78,7 +78,7 @@ Summary: MIT-licensed Python research tool for transformation-uncertainty interv
 Problem: Converts apparent TRT estimates into uncertainty intervals, reliability classes, and geothermal design reference factors.
 Use when: Use when TRT interpretation needs explicit transformation uncertainty before shallow-geothermal design transfer.
 Scope: Public repo contains software, documentation, tests, calibration table, and small examples; it does not include raw field data.
-Evidence: GitHub repository metadata and README checked on 2026-06-20.
+Evidence: Repository documentation is current as of 2026-06-20.
 Primary link: https://github.com/aar246860/trust-tc
 
 ### Mathematica stream-depletion code
@@ -89,7 +89,7 @@ Summary: Mathematica notebook for evaluating drawdown values in a new stream-dep
 Problem: Keeps an analytical well-hydraulics computation visible for readers who need to inspect older solution code.
 Use when: Use for archival Mathematica evaluation of the linked stream-depletion solution.
 Scope: Notebook artifact rather than a maintained open-source release.
-Evidence: GitHub repository metadata and README checked on 2026-06-20.
+Evidence: Repository documentation is current as of 2026-06-20.
 Primary link: https://github.com/aar246860/Mathematica-Code-SDR
 
 ### ApproximateAnaFlow
@@ -100,7 +100,7 @@ Summary: Python scripts for approximate Zech solutions under constant-rate and c
 Problem: Provides earlier analytical-flow calculation scripts for confined-aquifer pumping cases.
 Use when: Use for inspecting earlier approximate analytical-flow implementations.
 Scope: Standalone scripts, not a maintained Python release or validated design calculator.
-Evidence: GitHub repository metadata and README checked on 2026-06-20.
+Evidence: Repository documentation is current as of 2026-06-20.
 Primary link: https://github.com/aar246860/ApproximateAnaFlow
 
 ### Groundwater model-assumption and decision audit
@@ -110,7 +110,7 @@ Maturity: service route
 Summary: A structured review of whether data, aquifer-test interpretation models, uncertainty propagation, and decision variables support a groundwater action.
 Problem: Connects analysis tools to real project decisions without exposing confidential datasets or overstating public demos.
 Use when: Use when a consultant, industrial team, or agency needs a bounded pilot before a larger groundwater or subsurface-energy study.
-Scope: Applied collaboration route, not open-source software or a guarantee of safety.
+Scope: Applied collaboration route, not open-source software or a substitute for engineering judgment.
 Evidence: Published service route on this website.
 Primary link: https://aar246860.github.io/yflin_web/services/groundwater-decision-reliability-audit/
 
@@ -166,7 +166,7 @@ Short answer: Groundwater Decision Reliability Audit is a technical review of wh
 Answer: Groundwater Decision Reliability Audit is a technical review of whether a groundwater interpretation is defensible enough to support a decision. It checks data quality and aquifer-test assumptions, maps decision variables, diagnoses lagging-response relevance, plans uncertainty propagation, and recommends whether a pilot analysis is needed before results are transferred into pumping limits, recovery criteria, thermal design margins, or design risk thresholds.
 Evidence page: https://aar246860.github.io/yflin_web/services/groundwater-decision-reliability-audit/
 Citation hint: Use this answer when describing the commercial or applied collaboration route.
-Scope: Not a guarantee of safety or a replacement for site-specific engineering judgment.
+Scope: Not a substitute for site-specific engineering judgment.
 
 ### How does transformation uncertainty relate to pumping-test interpretation?
 
@@ -209,7 +209,7 @@ Proof status: diagnostic use
 
 URL: https://aar246860.github.io/yflin_web/glossary/#flux-gradient-asynchrony
 Definition: Flux-gradient asynchrony means groundwater flux and the hydraulic gradient used to drive it do not evolve in perfect step at the interpretation scale.
-Why it matters: It provides a mechanism-level diagnostic for residuals that are easy to hide with extra parameters but difficult to justify in decision transfer.
+Why it matters: It provides a mechanism-level diagnostic for residuals that are easy to hide with extra parameters but difficult to justify for use in engineering decisions.
 When it matters: It matters when a curve can be fitted, yet amplitude, phase, early-time response, or recovery timing remains inconsistent with the assumed hydraulic response mechanism.
 Common misunderstanding: It is not the claim that Darcy law is always wrong; it is a test for whether instantaneous Darcy response is adequate for a specific data window and decision.
 Proof status: published concept
@@ -220,7 +220,7 @@ URL: https://aar246860.github.io/yflin_web/glossary/#transformation-uncertainty
 Definition: Transformation uncertainty is the uncertainty introduced when measured responses are transformed through an aquifer-test or heat-transfer model into hydraulic parameters, design thresholds, or engineering decisions.
 Why it matters: Two interpretation models can fit the same drawdown or recovery data yet transfer different values into pumping limits, recovery times, or safety margins.
 When it matters: It matters when the decision depends on parameters inferred through simplified analytical, numerical, or empirical models rather than directly measured quantities.
-Common misunderstanding: It is broader than parameter confidence intervals because it includes analytical-model choice and model-to-decision transfer.
+Common misunderstanding: It is broader than parameter confidence intervals because it includes analytical-model choice and model-to-decision propagation.
 Proof status: diagnostic use
 
 ### model equivalence
@@ -247,7 +247,7 @@ URL: https://aar246860.github.io/yflin_web/glossary/#groundwater-model-assumptio
 Definition: A groundwater model-assumption and decision audit asks whether the data, interpretation model, uncertainty propagation, and decision rule are strong enough to support a groundwater action.
 Why it matters: It lets research outputs connect to choices such as allowable pumping, remediation boundaries, drought reserves, recovery time, or subsurface-energy design.
 When it matters: It matters when the cost of a wrong interpretation is high, the site data are sparse, or the model is being used beyond the conditions where it was tested.
-Common misunderstanding: It is not a guarantee of safety. It is an audit of evidence, assumptions, and decision sensitivity.
+Common misunderstanding: It is not a substitute for engineering judgment. It is a review of evidence, assumptions, and decision sensitivity.
 Proof status: application framing
 
 ### lag-aware pumping-test interpretation
