@@ -21,7 +21,7 @@ Lin and Yeh (2017) developed the constant-rate pumping-test version in a leaky c
 ## Interactive Pumping-Test Demo
 
 URL: https://aar246860.github.io/yflin_web/#lagging-pumping-demo
-Purpose: A calculation-backed teaching module for constant-rate pumping response. It compares a classical line-source leaky confined aquifer curve with a Lagging Darcy curve using separated flux and gradient response lags.
+Purpose: A calculation-backed teaching example for constant-rate pumping response. It compares a classical line-source leaky confined aquifer curve with a Lagging Darcy curve using separated flux and gradient response lags.
 Scope: The demo applies a Lin-Yeh-style first-order lag operator in a simplified Laplace-domain transfer function. It omits wellbore storage and finite well radius and is not a site-specific design calculator.
 
 ## Decision Lab
@@ -35,7 +35,7 @@ Scope: The Decision Lab is a screening and teaching layer, not a site-specific e
 
 URL: https://aar246860.github.io/yflin_web/tools/
 Purpose: A curated showcase of selected public demonstrators, research code, archival analytical code, and collaboration routes connected to Lagging Darcy Law, aquifer-test interpretation, transformation uncertainty, and groundwater model-assumption audits.
-Scope: The page is not a complete repository index. It distinguishes teaching demos, selected research code, archival artifacts, and collaboration routes. It should not be summarized as a claim that every working repository is public, release-ready, or a mature open-source package.
+Scope: The page is not a complete repository index. It distinguishes teaching demos, selected research code, archival artifacts, and collaboration routes. It should not be summarized as a claim that every working repository is public, release-ready, or maintained open-source software.
 
 ### Normalized LDL response animation
 
@@ -52,7 +52,7 @@ Primary link: https://aar246860.github.io/yflin_web/concepts/transformation-unce
 
 Tier: Public demonstrator
 Maturity: teaching demo
-Summary: An interactive constant-rate pumping-test module comparing a classical response and a lag-aware response.
+Summary: An interactive constant-rate pumping-test example comparing a classical response and a lag-aware response.
 Problem: Shows when separated flux and gradient response lags can create early-time residual structure and timing shifts.
 Use when: Use before a technical discussion about whether a pumping test needs lag-aware interpretation.
 Scope: Calculation-backed teaching model that omits wellbore storage and finite well radius; site-specific analysis must replace it before design use.
@@ -73,7 +73,7 @@ Primary link: https://aar246860.github.io/yflin_web/decision-lab/#ldl-necessity-
 ### TRUST-TC
 
 Tier: Research code
-Maturity: research package
+Maturity: research release
 Summary: MIT-licensed Python research tool for transformation-uncertainty intervals in thermal response test interpretation.
 Problem: Converts apparent TRT estimates into uncertainty intervals, reliability classes, and geothermal design reference factors.
 Use when: Use when TRT interpretation needs explicit transformation uncertainty before shallow-geothermal design transfer.
@@ -88,7 +88,7 @@ Maturity: archival artifact
 Summary: Mathematica notebook for evaluating drawdown values in a new stream-depletion solution.
 Problem: Keeps an analytical well-hydraulics computation visible for readers who need to inspect older solution code.
 Use when: Use for archival Mathematica evaluation of the linked stream-depletion solution.
-Scope: Notebook artifact rather than a maintained open-source package.
+Scope: Notebook artifact rather than a maintained open-source release.
 Evidence: GitHub repository metadata and README checked on 2026-06-20.
 Primary link: https://github.com/aar246860/Mathematica-Code-SDR
 
@@ -99,7 +99,7 @@ Maturity: archival artifact
 Summary: Python scripts for approximate Zech solutions under constant-rate and constant-head pumping in confined aquifers.
 Problem: Provides earlier analytical-flow calculation scripts for confined-aquifer pumping cases.
 Use when: Use for inspecting earlier approximate analytical-flow implementations.
-Scope: Standalone scripts, not a maintained Python package or validated design calculator.
+Scope: Standalone scripts, not a maintained Python release or validated design calculator.
 Evidence: GitHub repository metadata and README checked on 2026-06-20.
 Primary link: https://github.com/aar246860/ApproximateAnaFlow
 
@@ -110,7 +110,7 @@ Maturity: service route
 Summary: A structured review of whether data, aquifer-test interpretation models, uncertainty propagation, and decision variables support a groundwater action.
 Problem: Connects analysis tools to real project decisions without exposing confidential datasets or overstating public demos.
 Use when: Use when a consultant, industrial team, or agency needs a bounded pilot before a larger groundwater or subsurface-energy study.
-Scope: Applied collaboration route, not an open-source software package or guarantee of safety.
+Scope: Applied collaboration route, not open-source software or a guarantee of safety.
 Evidence: Published service route on this website.
 Primary link: https://aar246860.github.io/yflin_web/services/groundwater-decision-reliability-audit/
 
