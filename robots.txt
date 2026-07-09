@@ -20,4 +20,4 @@ User-agent: CCBot
 Allow: /
 
 Sitemap: https://aar246860.github.io/yflin_web/sitemap.xml
-# AI-readable context: https://aar246860.github.io/yflin_web/llms.txt
+# Research context map: https://aar246860.github.io/yflin_web/llms.txt
