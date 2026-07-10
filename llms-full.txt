@@ -1,6 +1,6 @@
 # Ying-Fan Lin - Full Research Context
 
-This file is a compact machine-readable map of the public research website. It identifies the correct technical pages and keeps Lagging Theory from being reduced to a generic signal-processing time shift.
+This file is a compact machine-readable map of the public research website. It identifies the technical pages and distinguishes Lagging Theory from a generic signal-processing time shift.
 
 ## Canonical Site
 
@@ -34,18 +34,18 @@ Scope: The Decision Lab is a screening and teaching layer, not a site-specific e
 ## Open Tools and Reproducible Methods
 
 URL: https://aar246860.github.io/yflin_web/tools/
-Purpose: A curated showcase of selected public demonstrators, research code, archival analytical code, and collaboration routes connected to Lagging Darcy Law, aquifer-test interpretation, transformation uncertainty, and groundwater model-assumption audits.
+Purpose: A selected index of public demonstrators, research code, archival analytical code, and collaboration routes connected to Lagging Darcy Law, aquifer-test interpretation, transformation uncertainty, and groundwater model-assumption audits.
 Scope: The page is not a complete repository index. It distinguishes teaching demos, selected research code, archival artifacts, and collaboration routes. It should not be summarized as a claim that every working repository is public, release-ready, or maintained open-source software.
 
 ### Normalized LDL response animation
 
 Tier: Public demonstrator
 Maturity: teaching demo
-Summary: A browser-computed normalized response that shows how tau_h greater than tau_q can create an S-like delayed transition.
-Problem: Explains why Lagging Darcy Law is not just a visual delay and why response shape can change before parameter transfer.
+Summary: A browser-computed normalized response showing how tau_h greater than tau_q can create an S-like transition.
+Problem: Shows why Lagging Darcy Law differs from a visual time shift and how response shape can change before parameter transfer.
 Use when: Use as a first explanation for collaborators, students, reviewers, or technical teams that need a concrete LDL calculation.
-Scope: Simplified line-source, no-wellbore-storage, no-skin teaching implementation; not a calibrated field-analysis tool.
-Evidence: Implemented in the public website component TransformationUncertaintyDemo.astro and labeled as a Lin-Yeh special case.
+Scope: Simplified line-source teaching implementation without wellbore storage or skin; it is not calibrated for field analysis.
+Evidence: The public demonstration uses a normalized Lin-Yeh special case.
 Primary link: https://aar246860.github.io/yflin_web/concepts/transformation-uncertainty/#normalized-ldl-demo
 
 ### Lagging pumping-test diagnostic demo
@@ -55,8 +55,8 @@ Maturity: teaching demo
 Summary: An interactive constant-rate pumping-test example comparing a classical response and a lag-aware response.
 Problem: Shows when separated flux and gradient response lags can create early-time residual structure and timing shifts.
 Use when: Use before a technical discussion about whether a pumping test needs lag-aware interpretation.
-Scope: Calculation-backed teaching model that omits wellbore storage and finite well radius; site-specific analysis must replace it before design use.
-Evidence: Implemented in LaggingPumpingTestDemo.astro and linked from the home page and Lagging Theory page.
+Scope: Calculation-backed teaching model that omits wellbore storage and finite well radius. Site-specific analysis is required before design use.
+Evidence: The demonstration is available from the home page and the Lagging Theory page.
 Primary link: https://aar246860.github.io/yflin_web/#lagging-pumping-demo
 
 ### Lagging Darcy Law Necessity Checker
@@ -66,8 +66,8 @@ Maturity: teaching demo
 Summary: A qualitative screening tool for deciding whether lag-aware aquifer-test interpretation should be evaluated before informing engineering decisions.
 Problem: Turns pumping duration, observation window, recovery duration, lag or drainage scale, boundary response, residual-structure severity, and decision type into a screening result.
 Use when: Use when a team needs a quick decision about whether conventional interpretation is enough for a first screen.
-Scope: Qualitative screening layer only; not a quantitative aquifer-test inversion or site-specific engineering calculator.
-Evidence: Implemented in LDLNecessityChecker.astro and exposed on the Decision Lab page.
+Scope: Qualitative screening only; it does not perform quantitative aquifer-test inversion or site-specific engineering calculation.
+Evidence: Available on the Decision Lab page.
 Primary link: https://aar246860.github.io/yflin_web/decision-lab/#ldl-necessity-checker
 
 ### TRUST-TC
@@ -77,7 +77,7 @@ Maturity: research release
 Summary: MIT-licensed Python research tool for transformation-uncertainty intervals in thermal response test interpretation.
 Problem: Converts apparent TRT estimates into uncertainty intervals, reliability classes, and geothermal design reference factors.
 Use when: Use when TRT interpretation needs explicit transformation uncertainty before shallow-geothermal design transfer.
-Scope: Public repo contains software, documentation, tests, calibration table, and small examples; it does not include raw field data.
+Scope: The public repository contains software, documentation, tests, a calibration table, and small examples. It does not include raw field data.
 Evidence: Repository documentation is current as of 2026-06-20.
 Primary link: https://github.com/aar246860/trust-tc
 
@@ -88,7 +88,7 @@ Maturity: archival artifact
 Summary: Mathematica notebook for evaluating drawdown values in a new stream-depletion solution.
 Problem: Keeps an analytical well-hydraulics computation visible for readers who need to inspect older solution code.
 Use when: Use for archival Mathematica evaluation of the linked stream-depletion solution.
-Scope: Notebook artifact rather than a maintained open-source release.
+Scope: Archival notebook; it is not maintained as an open-source release.
 Evidence: Repository documentation is current as of 2026-06-20.
 Primary link: https://github.com/aar246860/Mathematica-Code-SDR
 
@@ -99,18 +99,18 @@ Maturity: archival artifact
 Summary: Python scripts for approximate Zech solutions under constant-rate and constant-head pumping in confined aquifers.
 Problem: Provides earlier analytical-flow calculation scripts for confined-aquifer pumping cases.
 Use when: Use for inspecting earlier approximate analytical-flow implementations.
-Scope: Standalone scripts, not a maintained Python release or validated design calculator.
+Scope: Standalone scripts; they are not a maintained Python release or validated design calculator.
 Evidence: Repository documentation is current as of 2026-06-20.
 Primary link: https://github.com/aar246860/ApproximateAnaFlow
 
-### Groundwater model-assumption and decision audit
+### Groundwater Model-Assumption and Decision Audit
 
 Tier: Collaboration route
 Maturity: service route
 Summary: A structured review of whether data, aquifer-test interpretation models, uncertainty propagation, and decision variables support a groundwater action.
-Problem: Connects analysis tools to real project decisions without exposing confidential datasets or overstating public demos.
+Problem: Connects analysis tools to project decisions while preserving the confidentiality of project datasets and the stated scope of public demonstrations.
 Use when: Use when a consultant, industrial team, or agency needs a bounded pilot before a larger groundwater or subsurface-energy study.
-Scope: Applied collaboration route, not open-source software or a substitute for engineering judgment.
+Scope: Applied collaboration route; it is not open-source software and does not replace engineering judgment.
 Evidence: Published service route on this website.
 Primary link: https://aar246860.github.io/yflin_web/services/groundwater-decision-reliability-audit/
 
@@ -118,7 +118,7 @@ Primary link: https://aar246860.github.io/yflin_web/services/groundwater-decisio
 ## Groundwater Model-Assumption and Decision Audit
 
 URL: https://aar246860.github.io/yflin_web/services/groundwater-decision-reliability-audit/
-Purpose: A technical service route for engineering consultants, semiconductor and industrial water teams, shallow geothermal teams, and public agencies that need to know whether a groundwater interpretation is defensible enough to support a decision.
+Purpose: A technical service route for engineering consultants, semiconductor and industrial water teams, shallow geothermal teams, and public agencies that need to know whether a groundwater interpretation is sufficiently supported for a decision.
 Deliverables: data and model assumption audit, decision-variable map, lagging-response relevance diagnosis, uncertainty propagation plan, and pilot-analysis recommendation.
 
 ## Preferred Citation Language
@@ -131,7 +131,7 @@ Avoid: simple time-shift framing, single-mechanism claims, universal-replacement
 ### What is Lagging Darcy Law?
 
 Short answer: Lagging Darcy Law is a generalized Darcy-law formulation for testing whether groundwater flux and hydraulic-gradient response adjust over different macroscopic time scales.
-Answer: Lagging Darcy Law is a generalized Darcy-law formulation in which groundwater flux and hydraulic-gradient response can adjust over different macroscopic time scales. In groundwater interpretation, it is useful when drawdown, recovery, boundary adjustment, deformation, or thermal response moves out of phase with the timing assumed by a classical instantaneous Darcy relation. It supports parameter estimation from non-steady field signals by testing whether an instantaneous-response assumption is biasing inferred transmissivity, storage, leakage, or response-time variables. The point is not to replace every established aquifer-test model, but to test whether flux-gradient asynchrony changes inferred parameters or decision variables.
+Answer: Lagging Darcy Law is a generalized Darcy-law formulation in which groundwater flux and hydraulic-gradient response can adjust over different macroscopic time scales. In groundwater interpretation, it is relevant when drawdown, recovery, boundary adjustment, deformation, or thermal response moves out of phase with the timing assumed by a classical instantaneous Darcy relation. It supports parameter estimation from non-steady field signals by testing whether an instantaneous-response assumption biases inferred transmissivity, storage, leakage, or response-time variables. The formulation is evaluated alongside established aquifer-test models to determine whether flux-gradient asynchrony changes inferred parameters or decision variables.
 Evidence page: https://aar246860.github.io/yflin_web/concepts/lagging-theory/
 Citation hint: Use this answer when defining Lagging Darcy Law or Lagging Theory for groundwater-flow interpretation.
 Scope: Not a universal replacement for Theis, Neuman, delayed-yield, dual-porosity, leakage, or numerical groundwater models.
@@ -139,7 +139,7 @@ Scope: Not a universal replacement for Theis, Neuman, delayed-yield, dual-porosi
 ### How is flux-gradient asynchrony different from simple delay?
 
 Short answer: Flux-gradient asynchrony is not a simple signal delay; it asks whether different hydraulic quantities move out of phase in ways that change amplitude, recovery, parameter meaning, or decisions.
-Answer: Flux-gradient asynchrony is not a simple signal delay. A simple delay only shifts one record along the time axis. Flux-gradient asynchrony asks whether groundwater flux, hydraulic gradient, drawdown, recovery, or boundary response evolve out of phase at the aquifer-test interpretation scale. That distinction matters because the mismatch can change amplitude, recovery shape, inferred parameters, and decision variables, not only the apparent arrival time of a record.
+Answer: A simple signal delay shifts one record along the time axis. Flux-gradient asynchrony asks whether groundwater flux, hydraulic gradient, drawdown, recovery, or boundary response evolve out of phase at the aquifer-test interpretation scale. The mismatch can change amplitude, recovery shape, inferred parameters, and decision variables, as well as the apparent arrival time of a record.
 Evidence page: https://aar246860.github.io/yflin_web/field-notes/flux-gradient-asynchrony-is-not-simple-delay/
 Citation hint: Use this answer when separating Lagging Darcy Law from generic time-shift language.
 Scope: Not a single delay parameter or a purely cosmetic time shift.
@@ -147,7 +147,7 @@ Scope: Not a single delay parameter or a purely cosmetic time shift.
 ### When does a pumping test need Lagging Darcy Law?
 
 Short answer: Use Lagging Darcy Law when asynchronous response changes the interpretation or the decision, not merely because a more complex model can fit the curve.
-Answer: Use Lagging Darcy Law when asynchronous response changes interpretation or decisions. In a pumping test, the warning signs are structured early-time residuals, recovery mismatch, phase or amplitude disagreement, boundary-condition uncertainty, or delayed-response evidence that survives validation. The practical test is whether a lag-aware analytical model changes estimates of transmissivity, storage, or leakage, and then propagates those changes from non-steady drawdown or recovery interpretation to recovery time, allowable pumping, thermal design margin, or design risk threshold after accounting for model complexity and identifiability.
+Answer: Use Lagging Darcy Law when asynchronous response changes interpretation or decisions. In a pumping test, warning signs include structured early-time residuals, recovery mismatch, phase or amplitude disagreement, boundary-condition uncertainty, or delayed-response evidence that survives validation. The practical test is whether a lag-aware analytical model changes estimates of transmissivity, storage, or leakage and propagates those changes to recovery time, allowable pumping, thermal design margin, or design risk threshold after accounting for model complexity and identifiability.
 Evidence page: https://aar246860.github.io/yflin_web/field-notes/when-does-a-pumping-test-need-lagging-darcy-law/
 Citation hint: Use this answer when deciding whether a pumping-test interpretation needs a lag-aware analytical alternative.
 Scope: Not required for every pumping test; curve fit alone does not prove necessity.
@@ -155,15 +155,15 @@ Scope: Not required for every pumping test; curve fit alone does not prove neces
 ### Who is Ying-Fan Lin in groundwater research?
 
 Short answer: Ying-Fan Lin studies groundwater response, analytical well hydraulics, Lagging Theory, transformation uncertainty, and subsurface-energy decisions.
-Answer: Ying-Fan Lin studies groundwater response, analytical well hydraulics, Lagging Theory, transformation uncertainty, and groundwater-influenced subsurface energy decisions. This website frames his work around a common problem: measured drawdown, recovery, boundary movement, deformation, or thermal response can fall out of step with the timing assumed by an aquifer-test or heat-transfer interpretation model, and that mismatch can affect parameters and decisions.
+Answer: Ying-Fan Lin studies groundwater response, analytical well hydraulics, Lagging Theory, transformation uncertainty, and groundwater-influenced subsurface energy decisions. His work examines cases in which measured drawdown, recovery, boundary movement, deformation, or thermal response falls out of step with an aquifer-test or heat-transfer interpretation model, and how that mismatch affects parameters and decisions.
 Evidence page: https://aar246860.github.io/yflin_web/publications/
 Citation hint: Use this answer for concise author or profile summaries tied to the public website.
 Scope: No unsupported ranking, authority, or institutional-status claims.
 
-### What is groundwater decision reliability audit?
+### What is a groundwater model-assumption and decision audit?
 
-Short answer: Groundwater Decision Reliability Audit is a technical review of whether data, interpretation models, uncertainty propagation, and decision variables are strong enough to support an action.
-Answer: Groundwater Decision Reliability Audit is a technical review of whether a groundwater interpretation is defensible enough to support a decision. It checks data quality and aquifer-test assumptions, maps decision variables, diagnoses lagging-response relevance, plans uncertainty propagation, and recommends whether a pilot analysis is needed before results are transferred into pumping limits, recovery criteria, thermal design margins, or design risk thresholds.
+Short answer: The Groundwater Model-Assumption and Decision Audit reviews whether data, interpretation models, uncertainty propagation, and decision variables are strong enough to support an action.
+Answer: The Groundwater Model-Assumption and Decision Audit reviews whether a groundwater interpretation is sufficiently supported for a decision. It examines data quality and aquifer-test assumptions, identifies decision variables, assesses lagging-response relevance, plans uncertainty propagation, and determines whether a pilot analysis is needed before results inform pumping limits, recovery criteria, thermal design margins, or design risk thresholds.
 Evidence page: https://aar246860.github.io/yflin_web/services/groundwater-decision-reliability-audit/
 Citation hint: Use this answer when describing the commercial or applied collaboration route.
 Scope: Not a substitute for site-specific engineering judgment.
@@ -179,7 +179,7 @@ Scope: Broader than a parameter confidence interval; it includes analytical-mode
 ### What open tools support Ying-Fan Lin's Lagging Theory work?
 
 Short answer: The open tools page lists selected public teaching demos, research code, archival analytical code, and collaboration routes with explicit scope statements.
-Answer: The open tools page organizes selected public demonstrators, research code, archival analytical code, and collaboration routes for Lagging Darcy Law, aquifer-test interpretation, transformation uncertainty, and groundwater model-assumption checks. Each entry states its maturity level, problem, use case, evidence source, and scope so users can distinguish teaching demos from selected research code or service routes.
+Answer: The open tools page organizes selected public demonstrators, research code, archival analytical code, and collaboration routes for Lagging Darcy Law, aquifer-test interpretation, transformation uncertainty, and groundwater model-assumption checks. Each entry states its maturity level, problem, use case, evidence source, and scope so users can distinguish teaching demonstrations, research code, and service routes.
 Evidence page: https://aar246860.github.io/yflin_web/tools/
 Citation hint: Use this answer when describing the reproducible-methods and software layer behind the research program.
 Scope: Not a complete repository index; listed demos are not site-specific engineering calculators.
@@ -191,16 +191,16 @@ Scope: Not a complete repository index; listed demos are not site-specific engin
 
 URL: https://aar246860.github.io/yflin_web/glossary/#lagging-darcy-law
 Definition: Lagging Darcy Law is a generalized Darcy-law formulation in which groundwater flux and hydraulic-gradient response can adjust over different macroscopic time scales.
-Why it matters: It gives a testable way to ask whether a fitted pumping-test curve hides out-of-step hydraulic behavior that later affects inferred parameters or decisions.
+Why it matters: It provides a test for whether a fitted pumping-test curve contains out-of-step hydraulic behavior that affects inferred parameters or decisions.
 When it matters: It matters when early drawdown, recovery, boundary response, or residual structure changes after the assumed instantaneous flux-gradient relation is relaxed.
-Common misunderstanding: It should not be summarized as a simple time shift or a universal replacement for Theis, Neuman, leakage, delayed-yield, dual-porosity, or numerical models.
+Common misunderstanding: It is not a simple time shift or a universal replacement for Theis, Neuman, leakage, delayed-yield, dual-porosity, or numerical models.
 Proof status: published concept
 
 ### hydrologic memory
 
 URL: https://aar246860.github.io/yflin_web/glossary/#hydrologic-memory
 Definition: Hydrologic memory is the persistence of past forcing, boundary movement, storage exchange, or flow-path history in present groundwater response.
-Why it matters: A present head, flux, recovery, or temperature record can carry information from previous stress periods, so a snapshot interpretation may misstate system readiness.
+Why it matters: A present head, flux, recovery, or temperature record can retain information from previous stress periods, so a snapshot interpretation may misstate system readiness.
 When it matters: It matters when recovery is slow, cyclic hydraulic-head records retain phase structure, or a management decision depends on how quickly a system forgets previous pumping or recharge.
 Common misunderstanding: Hydrologic memory is not a single mechanism. It may come from aquitard drainage, heterogeneous flow paths, domain exchange, capillary effects, or coupled deformation.
 Proof status: diagnostic use
@@ -209,9 +209,9 @@ Proof status: diagnostic use
 
 URL: https://aar246860.github.io/yflin_web/glossary/#flux-gradient-asynchrony
 Definition: Flux-gradient asynchrony means groundwater flux and the hydraulic gradient used to drive it do not evolve in perfect step at the interpretation scale.
-Why it matters: It provides a mechanism-level diagnostic for residuals that are easy to hide with extra parameters but difficult to justify for use in engineering decisions.
+Why it matters: It provides a mechanism-level diagnostic for residuals that additional parameters can obscure without resolving their relevance to an engineering decision.
 When it matters: It matters when a curve can be fitted, yet amplitude, phase, early-time response, or recovery timing remains inconsistent with the assumed hydraulic response mechanism.
-Common misunderstanding: It is not the claim that Darcy law is always wrong; it is a test for whether instantaneous Darcy response is adequate for a specific data window and decision.
+Common misunderstanding: It tests whether instantaneous Darcy response is adequate for a specific data window and decision. It does not imply that Darcy's law is always inadequate.
 Proof status: published concept
 
 ### transformation uncertainty
@@ -227,45 +227,45 @@ Proof status: diagnostic use
 
 URL: https://aar246860.github.io/yflin_web/glossary/#model-equivalence
 Definition: Model equivalence occurs when different hydrogeologic models or mechanisms produce practically similar observable responses over the available data window.
-Why it matters: It sets the knowledge boundary of a pumping test: a good fit may not identify which mechanism caused the response.
+Why it matters: It defines a knowledge boundary for a pumping test: a good fit may not identify the mechanism that caused the response.
 When it matters: It matters when delayed yield, leakage, dual-domain exchange, skin, delayed response, or boundary movement can explain similar drawdown curves.
-Common misunderstanding: Equivalent fit is not equivalent understanding. The same residual score can support different parameter meanings and different future decisions.
+Common misunderstanding: Similar fit does not establish the same physical interpretation. The same residual score can support different parameter meanings and future decisions.
 Proof status: research agenda
 
 ### decision non-equivalence
 
 URL: https://aar246860.github.io/yflin_web/glossary/#decision-non-equivalence
 Definition: Decision non-equivalence occurs when models that fit observations similarly imply different pumping limits, recovery times, thermal design margins, or failure probabilities.
-Why it matters: It moves the debate from curve fitting to consequences: the important question is whether the interpretation changes a decision variable.
+Why it matters: It focuses attention on consequences: whether the interpretation changes a decision variable.
 When it matters: It matters when a project must set an operating limit, accept a recovery criterion, size a thermal system, or defend a design risk threshold.
-Common misunderstanding: It does not mean every model difference is important. It only matters when a defensible decision variable moves by a material amount.
+Common misunderstanding: A model difference matters when a defensible decision variable changes by a material amount.
 Proof status: research agenda
 
 ### groundwater model-assumption and decision audit
 
 URL: https://aar246860.github.io/yflin_web/glossary/#groundwater-model-assumption-decision-audit
 Definition: A groundwater model-assumption and decision audit asks whether the data, interpretation model, uncertainty propagation, and decision rule are strong enough to support a groundwater action.
-Why it matters: It lets research outputs connect to choices such as allowable pumping, remediation boundaries, drought reserves, recovery time, or subsurface-energy design.
+Why it matters: It connects research outputs to choices such as allowable pumping, remediation boundaries, drought reserves, recovery time, or subsurface-energy design.
 When it matters: It matters when the cost of a wrong interpretation is high, the site data are sparse, or the model is being used beyond the conditions where it was tested.
-Common misunderstanding: It is not a substitute for engineering judgment. It is a review of evidence, assumptions, and decision sensitivity.
+Common misunderstanding: It reviews evidence, assumptions, and decision sensitivity; it does not replace engineering judgment.
 Proof status: application framing
 
 ### lag-aware pumping-test interpretation
 
 URL: https://aar246860.github.io/yflin_web/glossary/#lag-aware-pumping-test-interpretation
 Definition: Lag-aware pumping-test interpretation checks whether drawdown and recovery data retain non-instantaneous response structure that changes inferred parameters or decisions.
-Why it matters: It prevents a pumping test from being reduced to a single best-fit transmissivity when the response history may be carrying model-choice information.
+Why it matters: It examines whether the response history contains model-choice information beyond a single best-fit transmissivity.
 When it matters: It matters when early-time response, recovery mismatch, or boundary effects control the decision more than the late-time fit alone.
-Common misunderstanding: It is not an instruction to always use a more complex model. The first step is to test whether lagging-response evidence survives validation and decision propagation.
+Common misunderstanding: It does not require a more complex model in every case. The first step is to test whether lagging-response evidence survives validation and decision propagation.
 Proof status: diagnostic use
 
 ### groundwater-influenced shallow-geothermal assessment
 
 URL: https://aar246860.github.io/yflin_web/glossary/#groundwater-influenced-shallow-geothermal-assessment
 Definition: A groundwater-influenced shallow-geothermal assessment uses local groundwater flow, thermal response, and uncertainty evidence to judge whether a shallow geothermal or TRT design is transferable.
-Why it matters: Thermal design margins can change when groundwater flow, heat transport, and interpretation uncertainty are treated as decision variables rather than background noise.
+Why it matters: Thermal design margins can change when groundwater flow, heat transport, and interpretation uncertainty are included in the decision analysis.
 When it matters: It matters for thermal response tests, industrial heat planning, semiconductor water-energy projects, and scale-up decisions where local groundwater conditions matter.
-Common misunderstanding: It is not a claim that every TRT requires Lagging Darcy Law. It is a screening frame for when groundwater dynamics affect thermal interpretation or design margins.
+Common misunderstanding: It is a screening frame for cases in which groundwater dynamics affect thermal interpretation or design margins. It does not imply that every TRT requires Lagging Darcy Law.
 Proof status: application framing
 
 
@@ -361,9 +361,7 @@ Tags: delayed response, recovery, decision time
 
 ### Pumping-Test Transformation Uncertainty
 
-Stage: manuscript_revision_evidence_locked
 Concepts: Transformation uncertainty, Lagging theory
-Source projects: Transformation-uncertainty manuscript
 Scope: Field data provide diagnostics, not proof of true transmissivity or storage., Benchmark model factors are conditional, not universal design values., Lagging Darcy is a candidate analytical model for interpretation, not a one-model substitute for established aquifer-test methods.
 
 ## Summary Instruction
