@@ -41,7 +41,7 @@ Scope: The page is not a complete repository index. It distinguishes teaching de
 
 Tier: Public demonstrator
 Maturity: teaching demo
-Summary: A browser-computed normalized response showing how tau_h greater than tau_q can create an S-like transition.
+Summary: A browser-computed normalized response showing how the drawdown-gradient lag (τ_s) exceeding the flux lag (τ_q) can produce an S-like transition.
 Problem: Shows why Lagging Darcy Law differs from a visual time shift and how response shape can change before parameter transfer.
 Use when: Use as a first explanation for collaborators, students, reviewers, or technical teams that need a concrete LDL calculation.
 Scope: Simplified line-source teaching implementation without wellbore storage or skin; it is not calibrated for field analysis.
@@ -52,7 +52,7 @@ Primary link: https://aar246860.github.io/yflin_web/concepts/transformation-unce
 
 Tier: Public demonstrator
 Maturity: teaching demo
-Summary: An interactive constant-rate pumping-test example comparing a classical response and a lag-aware response.
+Summary: An interactive constant-rate pumping-test example comparing a Classical Darcy response and a lag-aware response.
 Problem: Shows when separated flux and gradient response lags can create early-time residual structure and timing shifts.
 Use when: Use before a technical discussion about whether a pumping test needs lag-aware interpretation.
 Scope: Calculation-backed teaching model that omits wellbore storage and finite well radius. Site-specific analysis is required before design use.
