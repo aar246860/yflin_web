@@ -1,0 +1,19 @@
+WEBVTT
+
+00:00.300 --> 00:05.300
+Lagging Theory is not a delay model.
+
+00:05.300 --> 00:12.000
+It tests when gradient and flux fall out of sync.
+
+00:12.000 --> 00:20.000
+Delayed response can come from storage, leakage, exchange, or coupling.
+
+00:20.000 --> 00:28.000
+A fitted curve can still transfer the wrong parameter.
+
+00:28.000 --> 00:36.750
+The test is whether pumping limits, recovery time, or a design threshold changes.
+
+00:36.750 --> 00:42.500
+Use lag only when it changes the decision.

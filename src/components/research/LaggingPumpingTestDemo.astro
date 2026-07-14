@@ -1,0 +1,363 @@
+---
+const presets = [
+  {
+    id: "darcy",
+    label: "Classical Darcy",
+    description: "Equal response lags collapse to the Classical Darcy response.",
+    values: { flux: 2, gradient: 2, radius: 35, leakage: 550 },
+  },
+  {
+    id: "early",
+    label: "Early mismatch",
+    description: "Separated lags leave an early-time residual.",
+    values: { flux: 0.4, gradient: 6, radius: 35, leakage: 550 },
+  },
+  {
+    id: "decision",
+    label: "Decision-critical",
+    description: "The lag-aware model changes the early response.",
+    values: { flux: 0.1, gradient: 12, radius: 55, leakage: 380 },
+  },
+];
+---
+
+<section class="shell section ldl-demo" id="lagging-pumping-demo" aria-labelledby="ldl-demo-title" data-ldl-demo>
+  <div class="ldl-demo__copy">
+    <span class="eyebrow">Calculation-backed pumping test</span>
+    <h2 id="ldl-demo-title">When does a pumping test need Lagging Darcy Law?</h2>
+    <p>
+      This interaction uses a constant-rate pumping setting to test the Lin and Yeh
+      (2017) idea: water flux and drawdown gradient may respond at different
+      macroscopic times. When those times separate, the early drawdown curve can
+      carry information that a classical interpretation smooths away.
+    </p>
+  </div>
+
+  <div class="ldl-demo__panel">
+    <div class="ldl-demo__presets" aria-label="Pumping-test presets">
+      {presets.map((preset) => (
+        <button
+          type="button"
+          class="ldl-demo__preset"
+          data-preset={preset.id}
+          data-flux={preset.values.flux}
+          data-gradient={preset.values.gradient}
+          data-radius={preset.values.radius}
+          data-leakage={preset.values.leakage}
+          aria-pressed={preset.id === "early" ? "true" : "false"}
+        >
+          <strong>{preset.label}</strong>
+          <span>{preset.description}</span>
+        </button>
+      ))}
+    </div>
+
+    <div class="ldl-demo__workspace">
+      <div class="ldl-demo__controls" aria-label="Lagging Darcy Law controls">
+        <label>
+          <span>Flux-response lag, τ<sub>q</sub></span>
+          <output data-value-for="flux">0.4 h</output>
+          <input data-control="flux" type="range" min="0" max="8" value="0.4" step="0.1" />
+        </label>
+        <label>
+          <span>Drawdown-gradient lag, τ<sub>s</sub></span>
+          <output data-value-for="gradient">6.0 h</output>
+          <input data-control="gradient" type="range" min="0" max="16" value="6" step="0.1" />
+        </label>
+        <label>
+          <span>Observation radius</span>
+          <output data-value-for="radius">35 m</output>
+          <input data-control="radius" type="range" min="15" max="80" value="35" step="1" />
+        </label>
+        <label>
+          <span>Leakage length</span>
+          <output data-value-for="leakage">550 m</output>
+          <input data-control="leakage" type="range" min="250" max="1100" value="550" step="10" />
+        </label>
+      </div>
+
+      <figure class="ldl-demo__figure">
+        <div class="ldl-demo__legend" aria-hidden="true">
+          <span><i class="ldl-demo__swatch ldl-demo__swatch--classical"></i> Classical Darcy response</span>
+          <span><i class="ldl-demo__swatch ldl-demo__swatch--lagging"></i> lagging response</span>
+          <span><i class="ldl-demo__swatch ldl-demo__swatch--residual"></i> residual</span>
+        </div>
+        <svg class="ldl-demo__chart" viewBox="0 0 860 520" role="img" aria-labelledby="ldl-chart-title ldl-chart-desc">
+          <title id="ldl-chart-title">Classical and Lagging Darcy pumping-test curves</title>
+          <desc id="ldl-chart-desc">A line chart compares classical drawdown, lagging drawdown, and residual through time.</desc>
+          <g data-chart-layer></g>
+        </svg>
+      </figure>
+    </div>
+
+    <div class="ldl-demo__readouts" aria-live="polite">
+      <article>
+        <span>early mismatch</span>
+        <strong data-readout="mismatch">--</strong>
+        <p>largest early residual relative to the classical late-time drawdown</p>
+      </article>
+      <article>
+        <span>early timing shift</span>
+        <strong data-readout="timing">--</strong>
+        <p>change in time to reach a diagnostic drawdown level</p>
+      </article>
+      <article>
+        <span>interpretation status</span>
+        <strong data-readout="status">--</strong>
+        <p data-readout="note">Move the controls to test whether a Classical Darcy interpretation is enough.</p>
+      </article>
+    </div>
+
+    <div class="ldl-demo__equation" aria-label="Calculation note">
+      <p>
+        Calculation note: this teaching model applies the Lin-Yeh lag operator to a
+        line-source leaky confined aquifer transfer function in Laplace space. The
+        browser inverts the response with a 12-term Gaver-Stehfest algorithm and a
+        Bessel K0 approximation. Wellbore storage and finite well radius are not
+        included, so calibrated field analysis should replace this public demo before
+        design use.
+      </p>
+      <p>
+        Diagnostic rule: if τ<sub>q</sub> and τ<sub>s</sub> are equal, the lagging terms
+        cancel and the curve returns to the Classical Darcy response. Setting both to zero
+        gives the Classical Darcy limit directly.
+      </p>
+    </div>
+  </div>
+</section>
+
+<script>
+  const demoRoots = document.querySelectorAll("[data-ldl-demo]");
+
+  const factorial = (n) => {
+    let value = 1;
+    for (let i = 2; i <= n; i += 1) value *= i;
+    return value;
+  };
+
+  const stehfestCoefficients = (n = 12) => {
+    const coefficients = [];
+    for (let i = 1; i <= n; i += 1) {
+      let sum = 0;
+      const kMin = Math.floor((i + 1) / 2);
+      const kMax = Math.min(i, n / 2);
+      for (let k = kMin; k <= kMax; k += 1) {
+        const numerator = Math.pow(k, n / 2) * factorial(2 * k);
+        const denominator =
+          factorial(n / 2 - k) *
+          factorial(k) *
+          factorial(k - 1) *
+          factorial(i - k) *
+          factorial(2 * k - i);
+        sum += numerator / denominator;
+      }
+      coefficients.push(Math.pow(-1, i + n / 2) * sum);
+    }
+    return coefficients;
+  };
+
+  const STEHFEST = stehfestCoefficients(12);
+  const LN2 = Math.log(2);
+  const BASE = {
+    pumpingRate: 120,
+    transmissivity: 45,
+    storativity: 0.00025,
+  };
+
+  function besselI0(x) {
+    const ax = Math.abs(x);
+    if (ax < 3.75) {
+      const y = (x / 3.75) ** 2;
+      return 1 + y * (3.5156229 + y * (3.0899424 + y * (1.2067492 + y * (0.2659732 + y * (0.0360768 + y * 0.0045813)))));
+    }
+    const y = 3.75 / ax;
+    return Math.exp(ax) / Math.sqrt(ax) * (0.39894228 + y * (0.01328592 + y * (0.00225319 + y * (-0.00157565 + y * (0.00916281 + y * (-0.02057706 + y * (0.02635537 + y * (-0.01647633 + y * 0.00392377))))))));
+  }
+
+  function besselK0(x) {
+    if (x <= 0) return Number.POSITIVE_INFINITY;
+    if (x <= 2) {
+      const y = (x * x) / 4;
+      return -Math.log(x / 2) * besselI0(x) + (-0.57721566 + y * (0.4227842 + y * (0.23069756 + y * (0.0348859 + y * (0.00262698 + y * (0.0001075 + y * 0.0000074))))));
+    }
+    const y = 2 / x;
+    return Math.exp(-x) / Math.sqrt(x) * (1.25331414 + y * (-0.07832358 + y * (0.02189568 + y * (-0.01062446 + y * (0.00587872 + y * (-0.0025154 + y * 0.00053208))))));
+  }
+
+  function laplaceDrawdown(p, params) {
+    const lagRatio = (1 + p * params.fluxLag) / (1 + p * params.gradientLag);
+    const radialTerm = (BASE.storativity * p * lagRatio) / BASE.transmissivity;
+    const leakageTerm = 1 / (params.leakageLength * params.leakageLength);
+    const lambda = params.radius * Math.sqrt(Math.max(0, radialTerm + leakageTerm));
+    return (BASE.pumpingRate / (2 * Math.PI * BASE.transmissivity * p)) * besselK0(lambda);
+  }
+
+  function inverseLaplace(time, params) {
+    let sum = 0;
+    for (let i = 1; i <= STEHFEST.length; i += 1) {
+      const p = (i * LN2) / time;
+      sum += STEHFEST[i - 1] * laplaceDrawdown(p, params);
+    }
+    const value = (LN2 / time) * sum;
+    if (!Number.isFinite(value)) return 0;
+    return Math.max(0, value);
+  }
+
+  function logSpace(min, max, count) {
+    const a = Math.log(min);
+    const b = Math.log(max);
+    return Array.from({ length: count }, (_, index) => Math.exp(a + ((b - a) * index) / (count - 1)));
+  }
+
+  function crossingTime(points, target, key) {
+    if (points[0][key] >= target) {
+      return points[0].time;
+    }
+    for (let i = 1; i < points.length; i += 1) {
+      const prev = points[i - 1];
+      const next = points[i];
+      if (prev[key] <= target && next[key] >= target) {
+        const fraction = (target - prev[key]) / Math.max(1e-9, next[key] - prev[key]);
+        return prev.time + fraction * (next.time - prev.time);
+      }
+    }
+    return points[points.length - 1].time;
+  }
+
+  function linePath(points, xScale, yScale, key) {
+    return points
+      .map((point, index) => `${index === 0 ? "M" : "L"} ${xScale(point.time).toFixed(2)} ${yScale(point[key]).toFixed(2)}`)
+      .join(" ");
+  }
+
+  function renderChart(layer, points, metrics) {
+    const x0 = 70;
+    const y0 = 44;
+    const width = 720;
+    const height = 258;
+    const rY0 = 368;
+    const rHeight = 88;
+    const minTime = points[0].time;
+    const maxTime = points[points.length - 1].time;
+    const logMin = Math.log(minTime);
+    const logMax = Math.log(maxTime);
+    const maxDrawdown = Math.max(...points.flatMap((point) => [point.classical, point.lagging]), 0.1) * 1.12;
+    const maxResidual = Math.max(...points.map((point) => Math.abs(point.residual)), 0.01);
+    const xScale = (time) => x0 + ((Math.log(time) - logMin) / (logMax - logMin)) * width;
+    const yScale = (value) => y0 + height - (value / maxDrawdown) * height;
+    const residualScale = (value) => rY0 + rHeight / 2 - (value / maxResidual) * (rHeight / 2);
+    const xTicks = [0.05, 0.1, 0.5, 1, 4, 16, 72];
+    const yTicks = [0, maxDrawdown / 2, maxDrawdown];
+
+    layer.innerHTML = `
+      <rect x="26" y="18" width="808" height="476" rx="8" class="ldl-demo__svg-frame"></rect>
+      ${xTicks.map((tick) => `<path class="ldl-demo__grid" d="M ${xScale(tick).toFixed(2)} ${y0} V ${y0 + height}"></path><text class="ldl-demo__tick" x="${xScale(tick).toFixed(2)}" y="${y0 + height + 28}">${tick >= 1 ? tick.toFixed(0) : tick.toFixed(2)} h</text>`).join("")}
+      ${yTicks.map((tick) => `<path class="ldl-demo__grid" d="M ${x0} ${yScale(tick).toFixed(2)} H ${x0 + width}"></path><text class="ldl-demo__tick ldl-demo__tick--y" x="${x0 - 12}" y="${yScale(tick).toFixed(2)}">${tick.toFixed(2)}</text>`).join("")}
+      <path class="ldl-demo__axis" d="M ${x0} ${y0 + height} H ${x0 + width}"></path>
+      <path class="ldl-demo__axis" d="M ${x0} ${y0} V ${y0 + height}"></path>
+      <rect class="ldl-demo__early-window" x="${xScale(0.05).toFixed(2)}" y="${y0}" width="${(xScale(2) - xScale(0.05)).toFixed(2)}" height="${height}"></rect>
+      <path class="ldl-demo__curve ldl-demo__curve--classical" d="${linePath(points, xScale, yScale, "classical")}"></path>
+      <path class="ldl-demo__curve ldl-demo__curve--lagging" d="${linePath(points, xScale, yScale, "lagging")}"></path>
+      <text class="ldl-demo__axis-label" x="${x0 + 8}" y="${y0 + 22}">drawdown, m</text>
+      <text class="ldl-demo__window-label" x="${xScale(0.08).toFixed(2)}" y="${y0 + 246}">early-time diagnostic window</text>
+      <path class="ldl-demo__axis" d="M ${x0} ${rY0 + rHeight / 2} H ${x0 + width}"></path>
+      <path class="ldl-demo__curve ldl-demo__curve--residual" d="${linePath(points, xScale, residualScale, "residual")}"></path>
+      <text class="ldl-demo__axis-label" x="${x0 + 8}" y="${rY0 - 14}">lagging minus classical residual</text>
+      <text class="ldl-demo__callout" x="${x0 + width - 252}" y="${rY0 + rHeight + 26}">max early mismatch: ${metrics.mismatchText}</text>
+    `;
+  }
+
+  function formatSignedPercent(value) {
+    const sign = value > 0 ? "+" : "";
+    return `${sign}${value.toFixed(0)}%`;
+  }
+
+  function updateDemo(root) {
+    const controls = {
+      flux: root.querySelector('[data-control="flux"]'),
+      gradient: root.querySelector('[data-control="gradient"]'),
+      radius: root.querySelector('[data-control="radius"]'),
+      leakage: root.querySelector('[data-control="leakage"]'),
+    };
+    const values = {
+      flux: Number(controls.flux.value),
+      gradient: Number(controls.gradient.value),
+      radius: Number(controls.radius.value),
+      leakage: Number(controls.leakage.value),
+    };
+
+    root.querySelector('[data-value-for="flux"]').textContent = `${values.flux.toFixed(1)} h`;
+    root.querySelector('[data-value-for="gradient"]').textContent = `${values.gradient.toFixed(1)} h`;
+    root.querySelector('[data-value-for="radius"]').textContent = `${values.radius.toFixed(0)} m`;
+    root.querySelector('[data-value-for="leakage"]').textContent = `${values.leakage.toFixed(0)} m`;
+
+    const common = {
+      radius: values.radius,
+      leakageLength: values.leakage,
+    };
+    const classicalParams = { ...common, fluxLag: 0, gradientLag: 0 };
+    const laggingParams = { ...common, fluxLag: values.flux, gradientLag: values.gradient };
+    const times = logSpace(0.05, 72, 86);
+    const points = times.map((time) => {
+      const classical = inverseLaplace(time, classicalParams);
+      const lagging = inverseLaplace(time, laggingParams);
+      return { time, classical, lagging, residual: lagging - classical };
+    });
+
+    const lateClassical = points[points.length - 1].classical;
+    const earlyPoints = points.filter((point) => point.time <= 2);
+    const maxEarlyResidual = Math.max(...earlyPoints.map((point) => Math.abs(point.residual)));
+    const mismatch = (maxEarlyResidual / Math.max(0.01, lateClassical)) * 100;
+    const target = lateClassical * 0.72;
+    const classicalTime = crossingTime(points, target, "classical");
+    const laggingTime = crossingTime(points, target, "lagging");
+    const timingShift = ((laggingTime / Math.max(0.001, classicalTime)) - 1) * 100;
+    const separation = Math.abs(values.gradient - values.flux);
+
+    let status = "adequate";
+    let note = "The two lags are close enough that the Classical Darcy response is a reasonable first screen.";
+    if (mismatch >= 6 || separation >= 3) {
+      status = "diagnostic";
+      note = "The early residual has structure. A classical late-time fit may hide a model-form change.";
+    }
+    if (mismatch >= 14 || Math.abs(timingShift) >= 35 || separation >= 8) {
+      status = "decision review";
+      note = "The lag-aware model changes the early response enough to audit inferred parameters before using them in a decision.";
+    }
+
+    root.querySelector('[data-readout="mismatch"]').textContent = `${mismatch.toFixed(1)}%`;
+    root.querySelector('[data-readout="timing"]').textContent = formatSignedPercent(timingShift);
+    root.querySelector('[data-readout="status"]').textContent = status;
+    root.querySelector('[data-readout="note"]').textContent = note;
+
+    const layer = root.querySelector("[data-chart-layer]");
+    if (layer) {
+      renderChart(layer, points, { mismatchText: `${mismatch.toFixed(1)}%` });
+    }
+  }
+
+  demoRoots.forEach((root) => {
+    const controls = root.querySelectorAll("[data-control]");
+    const presets = root.querySelectorAll("[data-preset]");
+
+    controls.forEach((control) => {
+      control.addEventListener("input", () => {
+        presets.forEach((preset) => preset.setAttribute("aria-pressed", "false"));
+        updateDemo(root);
+      });
+    });
+
+    presets.forEach((preset) => {
+      preset.addEventListener("click", () => {
+        root.querySelector('[data-control="flux"]').value = preset.dataset.flux;
+        root.querySelector('[data-control="gradient"]').value = preset.dataset.gradient;
+        root.querySelector('[data-control="radius"]').value = preset.dataset.radius;
+        root.querySelector('[data-control="leakage"]').value = preset.dataset.leakage;
+        presets.forEach((item) => item.setAttribute("aria-pressed", item === preset ? "true" : "false"));
+        updateDemo(root);
+      });
+    });
+
+    updateDemo(root);
+  });
+</script>

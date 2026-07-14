@@ -1,0 +1,607 @@
+---
+const decisionModels = [
+  { label: "Theis reference", width: 62, tone: "model" },
+  { label: "Leaky model", width: 49, tone: "gold" },
+  { label: "LDL teaching case", width: 76, tone: "teal" },
+  { label: "Boundary case", width: 56, tone: "brick" },
+];
+
+const fieldConstraints = [
+  "screened intervals inside confined aquifer",
+  "Darcy flow direction: high head to low head",
+  "synthetic pathlines, not particle-tracking output",
+];
+---
+
+<section id="ldl-decision-xray" class="ldl-xray" aria-labelledby="ldl-xray-title" data-ldl-xray>
+  <div class="shell ldl-xray__inner">
+    <div class="ldl-xray__copy">
+      <span class="eyebrow">LDL decision-sensitivity view</span>
+      <h2 id="ldl-xray-title">Examine the model assumption before it informs a groundwater decision.</h2>
+      <p>
+        This teaching visual connects a normalized confined-aquifer schematic,
+        a flux-gradient phase portrait, and an illustrative analytical-model
+        fan. The field panel uses deterministic teaching constraints for layer order,
+        well screens, potentiometric drawdown, and Darcy flow direction before the
+        interpretation becomes a design variable.
+      </p>
+    </div>
+
+    <div class="ldl-xray__board">
+      <figure class="ldl-xray__field" aria-label="Schematic view of an aquifer-test field">
+        <canvas
+          class="ldl-xray__three"
+          data-xray-three
+          aria-label="Interactive Three.js schematic aquifer-test field model"
+        ></canvas>
+        <div class="ldl-xray__field-grid" aria-hidden="true"></div>
+        <div class="ldl-xray__layer ldl-xray__layer--surface" aria-hidden="true">
+          <span>surface observation</span>
+        </div>
+        <div class="ldl-xray__layer ldl-xray__layer--aquitard" aria-hidden="true">
+          <span>aquitard exchange</span>
+        </div>
+        <div class="ldl-xray__layer ldl-xray__layer--aquifer" aria-hidden="true">
+          <span>confined aquifer response</span>
+        </div>
+        <div class="ldl-xray__well ldl-xray__well--pump" aria-hidden="true"></div>
+        <div class="ldl-xray__well ldl-xray__well--obs" aria-hidden="true"></div>
+        <svg viewBox="0 0 760 430" role="img" aria-labelledby="xray-field-title xray-field-desc">
+          <title id="xray-field-title">Aquifer-test teaching scene</title>
+          <desc id="xray-field-desc">
+            A normalized confined-aquifer schematic shows constrained screens, potentiometric drawdown, and synthetic Darcy pathlines.
+          </desc>
+          <defs>
+            <linearGradient id="xrayResidualFill" x1="0" x2="1" y1="0" y2="0">
+              <stop offset="0%" stop-color="var(--signal-measured)" stop-opacity="0.18" />
+              <stop offset="100%" stop-color="var(--risk-boundary)" stop-opacity="0.2" />
+            </linearGradient>
+            <marker id="xrayFlowArrow" markerHeight="9" markerWidth="9" orient="auto" refX="8" refY="4.5">
+              <path d="M0,0 L9,4.5 L0,9 Z" fill="var(--signal-measured)" />
+            </marker>
+            <marker id="xrayHeadArrow" markerHeight="8" markerWidth="8" orient="auto" refX="7" refY="4">
+              <path d="M0,0 L8,4 L0,8 Z" fill="var(--signal-model)" />
+            </marker>
+          </defs>
+          <g class="ldl-xray__field-lines">
+            <path d="M124 82 C176 126 176 270 124 318" />
+            <path d="M256 72 C310 126 310 282 256 334" />
+            <path d="M396 78 C456 138 456 292 396 346" />
+            <path d="M548 96 C608 152 604 284 552 330" />
+          </g>
+          <g class="ldl-xray__waves">
+            <path data-xray-gradient marker-end="url(#xrayHeadArrow)" d="M116 106 H630" />
+            <path data-xray-flux data-xray-pathline marker-end="url(#xrayFlowArrow)" d="M112 294 C218 256 338 250 456 218 C548 194 606 156 638 116" />
+          </g>
+          <path class="ldl-xray__screen-window" data-xray-screen-window d="M206 186 H628" />
+          <path class="ldl-xray__residual" data-xray-residual d="M420 142 C484 112 558 128 614 178 C566 218 496 226 438 196 Z" />
+          <g class="ldl-xray__labels">
+            <text x="96" y="64">higher head</text>
+            <text data-xray-pump-label x="500" y="78">
+              <tspan x="500" dy="0">lower head</tspan>
+              <tspan x="500" dy="21">near pumping well</tspan>
+            </text>
+            <text x="96" y="326">Darcy flow direction</text>
+            <text data-xray-observation-label x="176" y="168">
+              <tspan x="176" dy="0">screened interval</tspan>
+              <tspan x="176" dy="21">inside confined aquifer</tspan>
+            </text>
+            <text x="426" y="236">
+              <tspan x="426" dy="0">LDL response-lag</tspan>
+              <tspan x="426" dy="21">diagnostic</tspan>
+            </text>
+          </g>
+        </svg>
+        <ul class="ldl-xray__constraints" aria-label="Physical constraints used in the schematic">
+          {fieldConstraints.map((constraint) => (
+            <li>{constraint}</li>
+          ))}
+        </ul>
+        <figcaption>
+          Normalized physically constrained teaching schematic. Not field data,
+          not MODFLOW, and not a full LDL numerical solution.
+        </figcaption>
+      </figure>
+
+      <div class="ldl-xray__analysis">
+        <figure class="ldl-xray__phase" aria-label="Normalized flux-gradient phase portrait">
+          <div class="ldl-xray__panel-head">
+            <span>schematic phase portrait</span>
+            <strong>q versus hydraulic gradient</strong>
+          </div>
+          <svg viewBox="0 0 420 330" role="img" aria-labelledby="xray-phase-title xray-phase-desc">
+            <title id="xray-phase-title">Normalized flux-gradient phase portrait</title>
+            <desc id="xray-phase-desc">
+              A straight reference line and an elliptical lag-aware loop compare synchronous and asynchronous response.
+            </desc>
+            <g class="ldl-xray__phase-grid">
+              <path d="M70 42 V270" />
+              <path d="M126 42 V270" />
+              <path d="M182 42 V270" />
+              <path d="M238 42 V270" />
+              <path d="M294 42 V270" />
+              <path d="M350 42 V270" />
+              <path d="M70 78 H350" />
+              <path d="M70 126 H350" />
+              <path d="M70 174 H350" />
+              <path d="M70 222 H350" />
+              <path d="M70 270 H350" />
+            </g>
+            <path class="ldl-xray__phase-axis" d="M70 270 H350" />
+            <path class="ldl-xray__phase-axis" d="M70 270 V42" />
+            <path class="ldl-xray__phase-reference" d="M82 258 L338 54" />
+            <path class="ldl-xray__phase-loop" data-xray-phase-loop />
+            <circle class="ldl-xray__phase-dot" data-xray-phase-dot cx="0" cy="0" r="7" />
+            <text class="ldl-xray__axis-label ldl-xray__axis-label--x" x="210" y="306">hydraulic gradient</text>
+            <text class="ldl-xray__axis-label" x="32" y="62">flux</text>
+          </svg>
+          <figcaption>
+            Conceptual phase portrait of flux-gradient asynchrony. Lag-time behavior is an effective response-time index here, not a measured material constant.
+          </figcaption>
+        </figure>
+
+        <div class="ldl-xray__fan" aria-label="Illustrative transformation uncertainty decision fan">
+          <div class="ldl-xray__panel-head">
+            <span>illustrative model-choice fan</span>
+            <strong>same record, different analytical models</strong>
+          </div>
+          <div class="ldl-xray__fan-list">
+            {decisionModels.map((model) => (
+              <div class={`ldl-xray__fan-row ldl-xray__fan-row--${model.tone}`} style={`--decision-width: ${model.width}%`}>
+                <span>{model.label}</span>
+                <i aria-hidden="true"></i>
+              </div>
+            ))}
+          </div>
+          <p>
+            Bars are schematic decision variables for communication. This is an
+            illustrative transformation-uncertainty fan, not a design reliability result.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const initializedXRay = new WeakSet();
+  const initializedXRayThree = new WeakSet();
+  const xrayDisposers = new WeakMap();
+  const xrayThreeDisposers = new WeakMap();
+  let xrayThreeModulePromise;
+
+  function loadXRayThreeModule() {
+    xrayThreeModulePromise ??= import("three");
+    return xrayThreeModulePromise;
+  }
+
+  function cssColor(name, fallback) {
+    const value = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+    const match = value.match(/^#([0-9a-f]{6})$/i);
+    return match ? Number.parseInt(match[1], 16) : fallback;
+  }
+
+  function phasePoint(theta, lag = 0.72) {
+    const gradient = Math.sin(theta);
+    const flux = Math.sin(theta - lag);
+    return {
+      x: 210 + gradient * 118,
+      y: 156 - flux * 94,
+    };
+  }
+
+  function phasePath(lag = 0.72) {
+    const points = [];
+    for (let i = 0; i <= 120; i += 1) {
+      const point = phasePoint((i / 120) * Math.PI * 2, lag);
+      points.push(`${i === 0 ? "M" : "L"} ${point.x.toFixed(2)} ${point.y.toFixed(2)}`);
+    }
+    return `${points.join(" ")} Z`;
+  }
+
+  function prepareDraw(path) {
+    if (!path) return;
+    const length = path.getTotalLength();
+    path.style.strokeDasharray = String(length);
+    path.style.strokeDashoffset = String(length);
+  }
+
+  function initLDLXRay() {
+    document.querySelectorAll("[data-ldl-xray]").forEach((root) => {
+      if (initializedXRay.has(root)) return;
+      initializedXRay.add(root);
+
+      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const gradient = root.querySelector("[data-xray-gradient]");
+      const flux = root.querySelector("[data-xray-flux]");
+      const residual = root.querySelector("[data-xray-residual]");
+      const phaseLoop = root.querySelector("[data-xray-phase-loop]");
+      const phaseDot = root.querySelector("[data-xray-phase-dot]");
+      const fanRows = [...root.querySelectorAll(".ldl-xray__fan-row")];
+
+      phaseLoop?.setAttribute("d", phasePath());
+      const initialPhasePoint = phasePoint(0);
+      phaseDot?.setAttribute("cx", initialPhasePoint.x.toFixed(2));
+      phaseDot?.setAttribute("cy", initialPhasePoint.y.toFixed(2));
+      [gradient, flux, phaseLoop].forEach(prepareDraw);
+      gsap.set([flux, residual, phaseLoop, phaseDot], { opacity: 0 });
+      gsap.set(fanRows.map((row) => row.querySelector("i")), { "--bar-scale": 0 });
+
+      if (reduce) {
+        [gradient, flux, phaseLoop].forEach((path) => {
+          if (path) path.style.strokeDashoffset = "0";
+        });
+        gsap.set([flux, residual, phaseLoop, phaseDot], { opacity: 1 });
+        gsap.set(fanRows.map((row) => row.querySelector("i")), { "--bar-scale": 1 });
+        return;
+      }
+
+      const timeline = gsap.timeline({
+        defaults: { ease: "power2.out" },
+        scrollTrigger: {
+          trigger: root,
+          start: "top 76%",
+          end: "bottom 40%",
+          scrub: 0.8,
+        },
+      });
+
+      const dotMotion = { theta: 0 };
+
+      timeline
+        .to(gradient, { strokeDashoffset: 0, duration: 0.7 })
+        .to(flux, { opacity: 1, strokeDashoffset: 0, duration: 0.85 }, "-=0.15")
+        .to(residual, { opacity: 1, duration: 0.45 }, "-=0.25")
+        .to(phaseLoop, { opacity: 1, strokeDashoffset: 0, duration: 0.85 }, "-=0.2")
+        .to(phaseDot, { opacity: 1, duration: 0.2 }, "-=0.5")
+        .to(dotMotion, {
+          theta: Math.PI * 2,
+          duration: 0.9,
+          onUpdate: () => {
+            const point = phasePoint(dotMotion.theta);
+            phaseDot?.setAttribute("cx", point.x.toFixed(2));
+            phaseDot?.setAttribute("cy", point.y.toFixed(2));
+          },
+        }, "-=0.82")
+        .to(fanRows.map((row) => row.querySelector("i")), {
+          "--bar-scale": 1,
+          stagger: 0.08,
+          duration: 0.55,
+        }, "-=0.25");
+
+      xrayDisposers.set(root, () => {
+        timeline.scrollTrigger?.kill();
+        timeline.kill();
+        initializedXRay.delete(root);
+        xrayDisposers.delete(root);
+      });
+    });
+  }
+
+  const aquiferTestSchematic = {
+    extents: { width: 8.8, length: 5.2, surfaceDepth: 0 },
+    confinedAquiferId: "confined-aquifer",
+    layers: [
+      { id: "upper-aquitard", label: "upper aquitard", top: 0.12, bottom: 0.82, material: "aquitard" },
+      { id: "confined-aquifer", label: "screened confined aquifer", top: 0.82, bottom: 1.92, material: "aquifer" },
+      { id: "lower-aquitard", label: "lower aquitard", top: 1.92, bottom: 2.48, material: "aquitard" },
+    ],
+    wells: [
+      { id: "observation", label: "observation well", role: "monitor", x: -2.35, z: 1.06, top: 0, bottom: 1.82, screenTop: 0.98, screenBottom: 1.7 },
+      { id: "pumping", label: "pumping well: extraction", role: "sink", x: 2.05, z: -0.44, top: 0, bottom: 1.88, screenTop: 0.98, screenBottom: 1.78 },
+    ],
+    heads: {
+      high: { x: -3.9, z: 1.85 },
+      low: { x: 2.05, z: -0.44 },
+    },
+  };
+
+  function validateSchematicSpec(spec) {
+    const confinedAquifer = spec.layers.find((layer) => layer.id === spec.confinedAquiferId);
+    if (!confinedAquifer) throw new Error("Missing confined aquifer layer.");
+
+    spec.layers.forEach((layer, index) => {
+      if (layer.top >= layer.bottom) throw new Error(`Invalid layer depth order: ${layer.id}`);
+      if (index > 0 && layer.top < spec.layers[index - 1].bottom) {
+        throw new Error(`Overlapping layer sequence near: ${layer.id}`);
+      }
+    });
+
+    spec.wells.forEach((well) => {
+      if (well.screenTop < confinedAquifer.top || well.screenBottom > confinedAquifer.bottom) {
+        throw new Error(`Screen interval must stay inside confined aquifer: ${well.id}`);
+      }
+      if (well.screenTop >= well.screenBottom || well.bottom < well.screenBottom) {
+        throw new Error(`Invalid screen interval: ${well.id}`);
+      }
+    });
+  }
+
+  function createSchematicMaterials(THREE) {
+    return {
+      aquitard: new THREE.MeshStandardMaterial({
+        color: cssColor("--palette-storage", 0xa9b9b0),
+        roughness: 0.94,
+        transparent: true,
+        opacity: 0.28,
+      }),
+      aquifer: new THREE.MeshStandardMaterial({
+        color: cssColor("--palette-water-bright", 0x58aea7),
+        emissive: cssColor("--palette-water-deep", 0x0b4844),
+        emissiveIntensity: 0.08,
+        roughness: 0.82,
+        transparent: true,
+        opacity: 0.44,
+      }),
+      edge: new THREE.LineBasicMaterial({ color: cssColor("--palette-uncertain", 0x57645f), transparent: true, opacity: 0.18 }),
+      casing: new THREE.MeshStandardMaterial({ color: cssColor("--palette-model", 0x173c39), roughness: 0.46 }),
+      screen: new THREE.MeshStandardMaterial({
+        color: cssColor("--palette-water-mid", 0x00776d),
+        emissive: cssColor("--palette-water-deep", 0x003832),
+        emissiveIntensity: 0.28,
+        roughness: 0.38,
+      }),
+      pump: new THREE.MeshStandardMaterial({
+        color: cssColor("--palette-warm", 0x9f3325),
+        emissive: cssColor("--palette-warm", 0x551109),
+        emissiveIntensity: 0.18,
+        roughness: 0.46,
+      }),
+      head: new THREE.LineBasicMaterial({ color: cssColor("--palette-water-deep", 0x6f8aa0), transparent: true, opacity: 0.5 }),
+      flow: new THREE.MeshBasicMaterial({ color: cssColor("--palette-numerical", 0x00776d), transparent: true, opacity: 0.62 }),
+      particle: new THREE.MeshBasicMaterial({ color: cssColor("--palette-water-bright", 0x00a497) }),
+    };
+  }
+
+  function depthToY(depth) {
+    return 0.28 - depth;
+  }
+
+  function layerThickness(layer) {
+    return layer.bottom - layer.top;
+  }
+
+  function layerCenterY(layer) {
+    return depthToY((layer.top + layer.bottom) / 2);
+  }
+
+  function buildLayerMeshes(THREE, group, spec, materials) {
+    spec.layers.forEach((layer) => {
+      const geometry = new THREE.BoxGeometry(spec.extents.width, layerThickness(layer), spec.extents.length);
+      const mesh = new THREE.Mesh(geometry, materials[layer.material]);
+      mesh.position.set(0, layerCenterY(layer), 0);
+      mesh.userData.claimBoundary = "normalized layer geometry";
+      group.add(mesh);
+
+      const edges = new THREE.LineSegments(new THREE.EdgesGeometry(geometry), materials.edge);
+      edges.position.copy(mesh.position);
+      group.add(edges);
+    });
+  }
+
+  function buildWellAssembly(THREE, group, well, materials) {
+    const topY = depthToY(well.top);
+    const bottomY = depthToY(well.bottom);
+    const casingLength = Math.abs(topY - bottomY);
+    const casing = new THREE.Mesh(new THREE.CylinderGeometry(0.055, 0.055, casingLength, 20), materials.casing);
+    casing.position.set(well.x, (topY + bottomY) / 2, well.z);
+    group.add(casing);
+
+    const screenTopY = depthToY(well.screenTop);
+    const screenBottomY = depthToY(well.screenBottom);
+    const screenLength = Math.abs(screenTopY - screenBottomY);
+    const screen = new THREE.Mesh(new THREE.CylinderGeometry(0.13, 0.13, screenLength, 24), materials.screen);
+    screen.position.set(well.x, (screenTopY + screenBottomY) / 2, well.z);
+    screen.userData.claimBoundary = "screen interval constrained inside confined aquifer";
+    group.add(screen);
+
+    const headMaterial = well.role === "sink" ? materials.pump : materials.screen;
+    const cap = new THREE.Mesh(new THREE.SphereGeometry(well.role === "sink" ? 0.17 : 0.13, 24, 16), headMaterial);
+    cap.position.set(well.x, topY + 0.12, well.z);
+    group.add(cap);
+  }
+
+  function normalizedFlowVector(x, z, pump) {
+    const dx = pump.x - x;
+    const dz = pump.z - z;
+    const r2 = Math.max(dx * dx + dz * dz, 0.18);
+    const sink = 1.25 / r2;
+    const vx = 0.45 + sink * dx;
+    const vz = sink * dz;
+    const magnitude = Math.hypot(vx, vz) || 1;
+    return { x: vx / magnitude, z: vz / magnitude };
+  }
+
+  function buildDarcyPathlineCurve(THREE, spec, seedZ) {
+    const pump = spec.wells.find((well) => well.role === "sink");
+    const aquifer = spec.layers.find((layer) => layer.id === spec.confinedAquiferId);
+    const points = [];
+    let x = -spec.extents.width / 2 + 0.48;
+    let z = seedZ;
+    const y = depthToY((aquifer.top + aquifer.bottom) / 2);
+
+    for (let i = 0; i < 84; i += 1) {
+      points.push(new THREE.Vector3(x, y + 0.05, z));
+      const vector = normalizedFlowVector(x, z, pump);
+      x += vector.x * 0.105;
+      z += vector.z * 0.105;
+      if (Math.hypot(pump.x - x, pump.z - z) < 0.28) break;
+    }
+    points.push(new THREE.Vector3(pump.x, y + 0.05, pump.z));
+    return new THREE.CatmullRomCurve3(points, false, "centripetal");
+  }
+
+  function buildDarcyFlowSystem(THREE, group, spec, materials) {
+    const pathlines = [-1.65, -0.65, 0.36, 1.35].map((seedZ) => buildDarcyPathlineCurve(THREE, spec, seedZ));
+
+    pathlines.forEach((curve) => {
+      const tube = new THREE.Mesh(new THREE.TubeGeometry(curve, 80, 0.014, 8, false), materials.flow);
+      tube.userData.claimBoundary = "synthetic pathline, not particle-tracking output";
+      group.add(tube);
+    });
+
+    const arrowDirection = new THREE.Vector3(1, 0, -0.18).normalize();
+    [-1.7, 0, 1.7].forEach((z) => {
+      const arrow = new THREE.ArrowHelper(
+        arrowDirection,
+        new THREE.Vector3(-3.75, depthToY(1.12), z),
+        1.45,
+        cssColor("--palette-water-deep", 0x6f8aa0),
+        0.2,
+        0.09,
+      );
+      arrow.userData.claimBoundary = "head drop direction, high head to low head";
+      group.add(arrow);
+    });
+
+    const particleGeometry = new THREE.SphereGeometry(0.042, 12, 8);
+    const particles = [];
+    pathlines.forEach((curve, curveIndex) => {
+      for (let i = 0; i < 4; i += 1) {
+        const particle = new THREE.Mesh(particleGeometry, materials.particle);
+        group.add(particle);
+        particles.push({ mesh: particle, curve, phase: i / 4 + curveIndex * 0.08 });
+      }
+    });
+    return particles;
+  }
+
+  async function startXRayThreeScene(root) {
+    if (initializedXRayThree.has(root)) return;
+    initializedXRayThree.add(root);
+
+    const canvas = root.querySelector("[data-xray-three]");
+    const field = canvas?.closest(".ldl-xray__field");
+    if (!(canvas instanceof HTMLCanvasElement) || !(field instanceof HTMLElement)) return;
+
+    const THREE = await loadXRayThreeModule();
+
+    let renderer;
+    try {
+      renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+    } catch {
+      root.setAttribute("data-three-fallback", "true");
+      initializedXRayThree.delete(root);
+      return;
+    }
+
+    validateSchematicSpec(aquiferTestSchematic);
+    root.setAttribute("data-three-ready", "true");
+
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const scene = new THREE.Scene();
+    scene.fog = new THREE.Fog(cssColor("--page-depth", 0xf7f3ea), 12, 34);
+
+    const camera = new THREE.PerspectiveCamera(38, 1, 0.1, 80);
+    camera.position.set(7.5, 5.4, 10.5);
+    camera.lookAt(0, -0.75, 0);
+
+    scene.add(new THREE.HemisphereLight(cssColor("--surface", 0xfff8e8), cssColor("--palette-uncertain", 0x6b7772), 2.35));
+    const keyLight = new THREE.DirectionalLight(0xffffff, 2.1);
+    keyLight.position.set(7, 9, 5);
+    scene.add(keyLight);
+
+    const materials = createSchematicMaterials(THREE);
+    const group = new THREE.Group();
+    scene.add(group);
+
+    buildLayerMeshes(THREE, group, aquiferTestSchematic, materials);
+    aquiferTestSchematic.wells.forEach((well) => buildWellAssembly(THREE, group, well, materials));
+    const particles = buildDarcyFlowSystem(THREE, group, aquiferTestSchematic, materials);
+
+    group.rotation.x = -0.08;
+    group.rotation.y = -0.42;
+    group.rotation.z = 0.02;
+
+    function resize() {
+      const rect = field.getBoundingClientRect();
+      const width = Math.max(320, Math.floor(rect.width));
+      const height = Math.max(360, Math.floor(rect.height));
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.setSize(width, height, false);
+      camera.aspect = width / height;
+      camera.updateProjectionMatrix();
+    }
+
+    const resizeObserver = new ResizeObserver(resize);
+    resizeObserver.observe(field);
+    resize();
+
+    let animationFrame = 0;
+    function render(time = 0) {
+      const seconds = time * 0.001;
+      if (!reduce) {
+        group.rotation.y = -0.42 + Math.sin(seconds * 0.24) * 0.045;
+        particles.forEach((particle) => {
+          const point = particle.curve.getPoint((particle.phase + seconds * 0.05) % 1);
+          particle.mesh.position.copy(point);
+        });
+        animationFrame = requestAnimationFrame(render);
+      }
+      renderer.render(scene, camera);
+    }
+
+    function disposeThree() {
+      if (animationFrame) window.cancelAnimationFrame(animationFrame);
+      resizeObserver.disconnect();
+      scene.traverse((object) => {
+        if (object.geometry) object.geometry.dispose();
+        if (object.material) {
+          const materialsList = Array.isArray(object.material) ? object.material : [object.material];
+          materialsList.forEach((material) => material.dispose());
+        }
+      });
+      renderer.dispose();
+      root.removeAttribute("data-three-ready");
+      initializedXRayThree.delete(root);
+      xrayThreeDisposers.delete(root);
+    }
+
+    xrayThreeDisposers.set(root, disposeThree);
+    render();
+  }
+
+  function initXRayThreeScenes() {
+    document.querySelectorAll("[data-ldl-xray]").forEach((root) => {
+      if (initializedXRayThree.has(root)) return;
+
+      if ("IntersectionObserver" in window) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            if (!entries.some((entry) => entry.isIntersecting)) return;
+            observer.disconnect();
+            void startXRayThreeScene(root);
+          },
+          { rootMargin: "360px 0px" },
+        );
+        observer.observe(root);
+        xrayThreeDisposers.set(root, () => {
+          observer.disconnect();
+          initializedXRayThree.delete(root);
+          xrayThreeDisposers.delete(root);
+        });
+        return;
+      }
+
+      void startXRayThreeScene(root);
+    });
+  }
+
+  initLDLXRay();
+  initXRayThreeScenes();
+  document.addEventListener("astro:page-load", () => {
+    initLDLXRay();
+    initXRayThreeScenes();
+  });
+  document.addEventListener("astro:before-swap", () => {
+    document.querySelectorAll("[data-ldl-xray]").forEach((root) => {
+      xrayDisposers.get(root)?.();
+      xrayThreeDisposers.get(root)?.();
+    });
+  });
+</script>

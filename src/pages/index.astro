@@ -1,0 +1,395 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { absoluteUrl, siteRoot } from "../lib/seo";
+import members from "../data/members.generated.json";
+import publications from "../data/publications.generated.json";
+import { activityPhotos, studentPublicationIds } from "../data/groupSite";
+import { researchPrograms } from "../data/researchPrograms";
+
+const concepts = (await getCollection("concepts", ({ data }) => !data.draft)).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+const notes = (await getCollection("field-notes", ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 3);
+const base = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
+const imageVariant = (path: string, width: number, extension: "avif" | "webp") => path.replace(/\.jpg$/i, `-${width}.${extension}`);
+const imageSrcset = (path: string, extension: "avif" | "webp") => [640, 960, 1440].map((width) => `${withBase(imageVariant(path, width, extension))} ${width}w`).join(", ");
+const rootUrl = siteRoot(Astro.site);
+const homeUrl = absoluteUrl("/", Astro.site);
+const selectedPublicationIds = ["2026-01-2", "2026-01-3", "2025-07-8", "2025-03-13", "2024-02-22", "2022-07-31"];
+const selectedPublications = selectedPublicationIds
+  .map((id) => publications.find((publication) => publication.id === id))
+  .filter(Boolean);
+const publicRecords = publications.filter((publication) => ["published", "accepted"].includes(publication.status));
+const studentPublications = publications.filter((publication) => studentPublicationIds.includes(publication.id));
+const roleLabel: Record<string, string> = {
+  team_role_pi: "Faculty",
+  team_role_master: "Graduate student",
+  team_role_ra: "Research assistant",
+};
+const homeSchema = [
+  {
+    "@type": "Organization",
+    "@id": `${homeUrl}#group`,
+    url: homeUrl,
+    name: "Lin Groundwater Hydraulics Group",
+    founder: { "@id": `${rootUrl}/#person` },
+    knowsAbout: researchPrograms.map((program) => program.title),
+  },
+  {
+    "@type": "WebSite",
+    "@id": `${homeUrl}#website`,
+    url: homeUrl,
+    name: "Lin Groundwater Hydraulics Group",
+    inLanguage: "en",
+  },
+];
+---
+
+<BaseLayout
+  title="Lin Groundwater Hydraulics Group"
+  description="Lin Groundwater Hydraulics Group studies analytical well hydraulics, Lagging Theory, transformation uncertainty, and groundwater-informed subsurface energy decisions."
+  current="home"
+  canonicalPath="/"
+  image="/media/team-life/jpgu-2026/jpgu-2026-team-selfie.jpg"
+  schema={homeSchema}
+  translatedPath="/zh/"
+  pageClass="research-home"
+>
+  <section class="home-hero" aria-labelledby="home-title">
+    <div class="home-shell home-hero__grid">
+      <div class="home-hero__copy">
+        <p class="home-kicker">Lin Groundwater Hydraulics Group</p>
+        <h1 id="home-title">Groundwater responses leave traces in time.</h1>
+        <p class="home-hero__lede">
+          We develop analytical, numerical, and data-supported methods for interpreting aquifer tests,
+          transient groundwater signals, and groundwater-influenced thermal systems.
+        </p>
+        <div class="home-actions">
+          <a class="home-button home-button--dark" href={withBase("/projects/")}>Explore the research</a>
+          <a class="home-button home-button--line" href={withBase("/collaborate/")}>Discuss a collaboration</a>
+        </div>
+        <p class="home-hero__note">
+          Directed by Ying-Fan Lin · analytical well hydraulics · groundwater memory · decision-focused uncertainty
+        </p>
+      </div>
+      <figure class="home-hero__media">
+        <picture>
+          <source type="image/avif" srcset={imageSrcset("/media/team-life/jpgu-2026/jpgu-2026-team-selfie.jpg", "avif")} sizes="(max-width: 900px) 100vw, 52vw" />
+          <source type="image/webp" srcset={imageSrcset("/media/team-life/jpgu-2026/jpgu-2026-team-selfie.jpg", "webp")} sizes="(max-width: 900px) 100vw, 52vw" />
+          <img
+            src={withBase("/media/team-life/jpgu-2026/jpgu-2026-team-selfie.jpg")}
+            alt="Groundwater research team outside the JpGU 2026 venue."
+            width="1477"
+            height="1108"
+            fetchpriority="high"
+            decoding="async"
+          />
+        </picture>
+        <figcaption>Team presence at JpGU 2026. Research is built in public exchange and careful technical work.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="home-section home-proof" aria-labelledby="evidence-title">
+    <div class="home-shell">
+      <div class="home-section-heading">
+        <p class="home-kicker">Research leadership</p>
+        <h2 id="evidence-title">A research programme built from equations, records, and decisions.</h2>
+        <p>
+          The group’s work moves from analytical well hydraulics to non-instantaneous responses and model-conditioned
+          uncertainty. The claims below are deliberately tied to the public research record.
+        </p>
+      </div>
+      <div class="home-proof__numbers" aria-label="Public research record">
+        <div><strong>{publicRecords.length}</strong><span>records indexed in the public publication archive</span></div>
+        <div><strong>10+</strong><span>years connecting analytical solutions with field interpretation</span></div>
+        <div><strong>4</strong><span>research lines linking hydraulics, memory, uncertainty, and energy</span></div>
+      </div>
+      <div class="home-proof__grid">
+        <div>
+          <p class="home-kicker">Research trajectory</p>
+          <ol class="home-trajectory">
+            <li><span>Analytical solutions</span><small>Radial flow, boundaries, islands, streams, faults, and near-well effects.</small></li>
+            <li><span>Lagging Theory</span><small>Flux and hydraulic-gradient responses that may not evolve on one time scale.</small></li>
+            <li><span>Transformation uncertainty</span><small>How model choice changes inferred parameters and the decisions that use them.</small></li>
+            <li><span>Subsurface energy</span><small>Thermal response and groundwater context before a system is scaled up.</small></li>
+          </ol>
+        </div>
+        <aside class="home-boundary-note">
+          <p class="home-kicker">Evidence boundary</p>
+          <h3>The website distinguishes a published result from a research question in development.</h3>
+          <p>
+            Publication pages identify the physical system, method, result, and interpretation limits. Concept pages are
+            used for frameworks that are still being tested. This distinction is part of the group’s research practice.
+          </p>
+          <a href={withBase("/about/")}>Read the academic trajectory <span aria-hidden="true">→</span></a>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="home-section home-team" aria-labelledby="team-title">
+    <div class="home-shell">
+      <div class="home-section-heading home-section-heading--split">
+        <div>
+          <p class="home-kicker">People and practice</p>
+          <h2 id="team-title">The work is carried by a group, not a profile page.</h2>
+        </div>
+        <a class="home-text-link" href={withBase("/team/")}>Meet the people <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="home-team__grid">
+        <div class="home-team__people">
+          <p>
+            Students and collaborators learn through derivation, model comparison, figure checking, and direct discussion
+            of what the data can support.
+          </p>
+          <ul>
+            {members.currentMembers.map((member) => (
+              <li>
+                <strong>{member.name.en}</strong>
+                <span>{roleLabel[member.roleKey] ?? "Research member"}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div class="home-team__photos">
+          {activityPhotos.map((photo, index) => (
+            <figure class={`team-photo team-photo--${index + 1}`}>
+              <picture>
+                <source type="image/avif" srcset={imageSrcset(photo.src, "avif")} sizes="(max-width: 640px) 100vw, 34vw" />
+                <source type="image/webp" srcset={imageSrcset(photo.src, "webp")} sizes="(max-width: 640px) 100vw, 34vw" />
+                <img src={withBase(photo.src)} alt={photo.alt} loading="lazy" decoding="async" />
+              </picture>
+              <figcaption>{photo.label}</figcaption>
+            </figure>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="home-section home-programs" aria-labelledby="programs-title">
+    <div class="home-shell">
+      <div class="home-section-heading">
+        <p class="home-kicker">Research lines</p>
+        <h2 id="programs-title">Four questions organize the laboratory.</h2>
+        <p>Each line keeps its own evidence base while sharing one concern: how subsurface processes become defensible decisions.</p>
+      </div>
+      <div class="home-program-list">
+        {researchPrograms.map((program) => (
+          <article class={`home-program home-program--${program.tone}`} id={program.id}>
+            <span class="home-program__number">{program.number}</span>
+            <div class="home-program__body">
+              <h3>{program.title}</h3>
+              <p>{program.description}</p>
+              <p class="home-program__evidence"><strong>Public record:</strong> {program.evidence}</p>
+            </div>
+            <a class="home-text-link" href={withBase(program.link)}>Open research line <span aria-hidden="true">→</span></a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="home-section home-publications" aria-labelledby="outputs-title">
+    <div class="home-shell">
+      <div class="home-section-heading home-section-heading--split">
+        <div>
+          <p class="home-kicker">Selected outputs</p>
+          <h2 id="outputs-title">A publication record that remains searchable and inspectable.</h2>
+          <p>Visual abstracts now sit beside the corresponding paper record, with source notes and captions kept together on the publication page.</p>
+        </div>
+        <a class="home-text-link" href={withBase("/publications/")}>Browse all publications <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="home-publication-list">
+        {selectedPublications.map((publication) => (
+          <article>
+            <time datetime={String(publication?.year)}>{publication?.year}</time>
+            <div>
+              <h3>{publication?.title.en}</h3>
+              <p>{publication?.authors}</p>
+              <span>{publication?.venue} · {publication?.status === "accepted" ? "Accepted" : "Published"}</span>
+              {publication?.publicRecord && <a href={publication.publicRecord} target="_blank" rel="noreferrer">View DOI record</a>}
+            </div>
+          </article>
+        ))}
+      </div>
+      {studentPublications.length > 0 && (
+        <p class="home-student-note">
+          Student-involved work is marked in the publication archive. The public index currently includes {studentPublications.length} explicitly linked student publication record{studentPublications.length === 1 ? "" : "s"}.
+        </p>
+      )}
+    </div>
+  </section>
+
+  <section class="home-section home-collaborate" aria-labelledby="collaborate-title">
+    <div class="home-shell home-collaborate__grid">
+      <div>
+        <p class="home-kicker">Collaboration</p>
+        <h2 id="collaborate-title">Bring the response that does not fit the usual interpretation.</h2>
+      </div>
+      <div>
+        <p>
+          Useful starting material includes an aquifer-test record, a recovery sequence, a TRT, a thermal or hydraulic
+          boundary question, and the decision variable that must be defended.
+        </p>
+        <a class="home-button home-button--dark" href={withBase("/collaborate/")}>Send a technical brief</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="home-section home-notes" aria-labelledby="notes-title">
+    <div class="home-shell">
+      <div class="home-section-heading home-section-heading--split">
+        <div>
+          <p class="home-kicker">Updates</p>
+          <h2 id="notes-title">Short notes from the research line.</h2>
+        </div>
+        <a class="home-text-link" href={withBase("/field-notes/")}>Read all notes <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="home-note-list">
+        {notes.map((note) => (
+          <a href={withBase(`/field-notes/${note.id}/`)}>
+            <time datetime={note.data.date.toISOString().slice(0, 10)}>{note.data.date.toISOString().slice(0, 10)}</time>
+            <span><strong>{note.data.title}</strong>{note.data.subtitle}</span>
+            <span aria-hidden="true">→</span>
+          </a>
+        ))}
+      </div>
+      <div class="home-concepts">
+        {concepts.slice(0, 4).map((concept) => <a href={withBase(`/concepts/${concept.id}/`)}>{concept.data.title}</a>)}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style is:global>
+  .research-home { --home-ink: #14232b; --home-muted: #52636a; --home-paper: #f7f8f5; --home-blue: #0e6670; --home-red: #a14a36; --home-ochre: #a66f25; --home-rule: #d5dfdc; }
+  .home-shell { width: min(1180px, calc(100% - 3rem)); margin: 0 auto; }
+  .home-hero { background: var(--home-paper); border-bottom: 1px solid var(--home-rule); }
+  .home-hero__grid { align-items: stretch; display: grid; grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); min-height: min(720px, calc(100vh - 72px)); }
+  .home-hero__copy { align-content: center; display: grid; gap: 1.3rem; padding: 5rem 3rem 5rem 0; }
+  .home-kicker { color: var(--home-blue); font-size: 0.76rem; font-weight: 750; letter-spacing: 0.08em; line-height: 1.4; margin: 0; text-transform: uppercase; }
+  .home-hero h1 { color: var(--home-ink); font-size: clamp(3.3rem, 5vw, 6.8rem); letter-spacing: 0; line-height: 0.96; max-width: 100%; }
+  .home-hero__lede { color: var(--home-muted); font-size: clamp(1.05rem, 1.45vw, 1.28rem); line-height: 1.7; max-width: 100%; }
+  .home-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+  .home-button { align-items: center; border: 1px solid var(--home-ink); display: inline-flex; font-size: 0.9rem; font-weight: 700; justify-content: center; min-height: 3rem; padding: 0.8rem 1.05rem; transition: transform 160ms ease, background 160ms ease, color 160ms ease; }
+  .home-button:hover, .home-button:focus-visible { transform: translateY(-2px); }
+  .home-button--dark { background: var(--home-ink); color: #fff; }
+  .home-button--line { color: var(--home-ink); }
+  .home-button--line:hover, .home-button--line:focus-visible { background: #fff; }
+  .home-hero__note { border-left: 3px solid var(--home-ochre); color: var(--home-muted); font-size: 0.83rem; line-height: 1.55; margin: 0; max-width: 100%; padding-left: 0.9rem; }
+  .home-hero__media { align-self: stretch; margin: 0; min-height: 520px; position: relative; }
+  .home-hero__media::after { background: linear-gradient(90deg, rgb(20 35 43 / 0.22), transparent 28%), linear-gradient(0deg, rgb(20 35 43 / 0.3), transparent 36%); content: ""; inset: 0; pointer-events: none; position: absolute; }
+  .home-hero__media picture { display: block; height: 100%; }
+  .home-hero__media img { display: block; height: 100%; object-fit: cover; object-position: center; width: 100%; }
+  .home-hero__media figcaption { bottom: 1.2rem; color: #fff; font-size: 0.8rem; line-height: 1.45; max-width: 360px; padding: 0 1.4rem; position: absolute; right: 0; z-index: 1; }
+  .home-section { padding: 7.5rem 0; }
+  .home-section:nth-of-type(even) { background: #fff; }
+  .home-section-heading { display: grid; gap: 0.8rem; max-width: 830px; }
+  .home-section-heading h2 { color: var(--home-ink); font-size: clamp(2.3rem, 4.3vw, 4.6rem); letter-spacing: 0; line-height: 1; }
+  .home-section-heading p:not(.home-kicker) { color: var(--home-muted); font-size: 1.06rem; line-height: 1.75; max-width: 720px; }
+  .home-section-heading--split { align-items: end; display: flex; gap: 2rem; justify-content: space-between; max-width: none; }
+  .home-section-heading--split > div { max-width: 830px; }
+  .home-text-link { color: var(--home-ink); display: inline-flex; font-size: 0.88rem; font-weight: 750; gap: 0.55rem; width: fit-content; }
+  .home-text-link:hover, .home-text-link:focus-visible { color: var(--home-blue); }
+  .home-proof__numbers { border-bottom: 1px solid var(--home-rule); border-top: 1px solid var(--home-rule); display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 3.5rem; }
+  .home-proof__numbers div { display: grid; gap: 0.45rem; padding: 1.5rem 1.1rem 1.5rem 0; }
+  .home-proof__numbers div + div { border-left: 1px solid var(--home-rule); padding-left: 1.1rem; }
+  .home-proof__numbers strong { color: var(--home-ink); font-size: clamp(2.6rem, 5vw, 5rem); font-weight: 650; letter-spacing: 0; line-height: 0.9; }
+  .home-proof__numbers span { color: var(--home-muted); font-size: 0.88rem; line-height: 1.45; max-width: 170px; }
+  .home-proof__grid { display: grid; gap: 5rem; grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.75fr); margin-top: 4.5rem; }
+  .home-trajectory { border-top: 1px solid var(--home-rule); list-style: none; margin: 1.25rem 0 0; padding: 0; }
+  .home-trajectory li { border-bottom: 1px solid var(--home-rule); display: grid; gap: 0.25rem; grid-template-columns: minmax(180px, 0.45fr) 1fr; padding: 1rem 0; }
+  .home-trajectory span { color: var(--home-ink); font-weight: 700; }
+  .home-trajectory small { color: var(--home-muted); font-size: 0.9rem; line-height: 1.55; }
+  .home-boundary-note { border-left: 3px solid var(--home-red); padding: 0.2rem 0 0.2rem 1.35rem; }
+  .home-boundary-note h3 { color: var(--home-ink); font-size: 1.35rem; line-height: 1.35; margin: 0.7rem 0; }
+  .home-boundary-note p:not(.home-kicker) { color: var(--home-muted); line-height: 1.7; margin-bottom: 1.1rem; }
+  .home-team { background: #eef2ef; }
+  .home-team__grid { display: grid; gap: 4rem; grid-template-columns: minmax(220px, 0.55fr) minmax(0, 1.45fr); margin-top: 3.5rem; }
+  .home-team__people > p { color: var(--home-muted); line-height: 1.7; }
+  .home-team__people ul { border-top: 1px solid var(--home-rule); list-style: none; margin: 2rem 0 0; padding: 0; }
+  .home-team__people li { border-bottom: 1px solid var(--home-rule); display: grid; gap: 0.22rem; padding: 0.8rem 0; }
+  .home-team__people strong { color: var(--home-ink); font-size: 0.98rem; }
+  .home-team__people span { color: var(--home-muted); font-size: 0.82rem; }
+  .home-team__photos { display: grid; gap: 0.8rem; grid-template-columns: 1.15fr 0.85fr; grid-template-rows: 1fr 1fr; min-height: 520px; }
+  .team-photo { margin: 0; min-height: 0; overflow: hidden; position: relative; }
+  .team-photo--1 { grid-row: span 2; }
+  .team-photo picture { display: block; height: 100%; }
+  .team-photo img { display: block; height: 100%; object-fit: cover; transition: transform 360ms ease; width: 100%; }
+  .team-photo:hover img { transform: scale(1.035); }
+  .team-photo figcaption { background: linear-gradient(transparent, rgb(20 35 43 / 0.75)); bottom: 0; color: #fff; font-size: 0.76rem; left: 0; padding: 2rem 0.8rem 0.7rem; position: absolute; right: 0; }
+  .home-program-list { border-top: 1px solid var(--home-rule); margin-top: 3.8rem; }
+  .home-program { align-items: start; border-bottom: 1px solid var(--home-rule); display: grid; gap: 2rem; grid-template-columns: 4rem minmax(0, 1fr) auto; padding: 2rem 0; }
+  .home-program__number { color: var(--home-muted); font-variant-numeric: tabular-nums; font-weight: 700; }
+  .home-program__body { max-width: 680px; }
+  .home-program__body h3 { color: var(--home-ink); font-size: clamp(1.45rem, 2vw, 2rem); line-height: 1.15; margin: 0 0 0.6rem; }
+  .home-program__body p { color: var(--home-muted); line-height: 1.68; margin: 0; }
+  .home-program__evidence { border-left: 2px solid var(--home-blue); font-size: 0.83rem; margin-top: 0.9rem !important; padding-left: 0.8rem; }
+  .home-program--lag .home-program__evidence { border-color: var(--home-red); }
+  .home-program--uncertainty .home-program__evidence { border-color: var(--home-ochre); }
+  .home-program--thermal .home-program__evidence { border-color: #8c5a51; }
+  .home-films { background: var(--home-ink); color: #fff; }
+  .home-films .home-section-heading h2, .home-films .home-section-heading p:not(.home-kicker), .home-films .home-text-link { color: #fff; }
+  .home-films .home-kicker { color: #9bc9c4; }
+  .home-film-grid { display: grid; gap: 1.5rem; grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 3.8rem; }
+  .home-film { border-top: 1px solid rgb(255 255 255 / 0.35); display: grid; gap: 0.8rem; padding-top: 1rem; }
+  .home-film__meta { color: #9bc9c4; display: flex; font-size: 0.73rem; font-weight: 750; justify-content: space-between; letter-spacing: 0.06em; text-transform: uppercase; }
+  .home-film video { background: #081116; display: block; height: auto; margin: 0; width: 100%; }
+  .home-film h3 { color: #fff; font-size: 1.25rem; line-height: 1.25; margin: 0; }
+  .home-film p { color: #c9d5d3; font-size: 0.92rem; line-height: 1.62; }
+  .home-film__scope { border-left: 2px solid #d0a95c; font-size: 0.8rem !important; padding-left: 0.7rem; }
+  .home-publication-list { border-top: 1px solid var(--home-rule); margin-top: 3.6rem; }
+  .home-publication-list article { border-bottom: 1px solid var(--home-rule); display: grid; gap: 1rem; grid-template-columns: 4rem minmax(0, 1fr); padding: 1.25rem 0; }
+  .home-publication-list time { color: var(--home-blue); font-size: 0.9rem; font-weight: 750; }
+  .home-publication-list h3 { color: var(--home-ink); font-size: 1rem; line-height: 1.4; margin: 0 0 0.3rem; }
+  .home-publication-list p, .home-publication-list span { color: var(--home-muted); font-size: 0.82rem; line-height: 1.4; margin: 0; }
+  .home-student-note { color: var(--home-muted); font-size: 0.84rem; margin-top: 1.25rem; }
+  .home-collaborate { background: #e5eee9; }
+  .home-collaborate__grid { align-items: end; display: grid; gap: 3rem; grid-template-columns: minmax(0, 1fr) minmax(280px, 0.7fr); }
+  .home-collaborate h2 { color: var(--home-ink); font-size: clamp(2.4rem, 4.5vw, 4.8rem); letter-spacing: 0; line-height: 0.98; }
+  .home-collaborate p { color: var(--home-muted); line-height: 1.7; margin-bottom: 1.5rem; }
+  .home-note-list { border-top: 1px solid var(--home-rule); margin-top: 3.5rem; }
+  .home-note-list a { align-items: start; border-bottom: 1px solid var(--home-rule); display: grid; gap: 1.2rem; grid-template-columns: 7rem minmax(0, 1fr) auto; padding: 1.2rem 0; }
+  .home-note-list a:hover strong, .home-note-list a:focus-visible strong { color: var(--home-blue); }
+  .home-note-list time { color: var(--home-muted); font-size: 0.8rem; }
+  .home-note-list span { color: var(--home-muted); display: grid; gap: 0.25rem; line-height: 1.55; }
+  .home-note-list strong { color: var(--home-ink); }
+  .home-concepts { display: flex; flex-wrap: wrap; gap: 0.65rem; margin-top: 2rem; }
+  .home-concepts a { border: 1px solid var(--home-rule); color: var(--home-muted); font-size: 0.8rem; padding: 0.55rem 0.7rem; }
+  .home-concepts a:hover, .home-concepts a:focus-visible { border-color: var(--home-blue); color: var(--home-blue); }
+  @media (max-width: 900px) {
+    .home-shell { width: min(720px, calc(100% - 2rem)); }
+    .home-hero__grid, .home-proof__grid, .home-team__grid, .home-collaborate__grid { grid-template-columns: 1fr; }
+    .home-hero__copy { padding: 4rem 0 2.5rem; }
+    .home-hero__media { min-height: 420px; }
+    .home-proof__grid, .home-team__grid { gap: 3rem; }
+    .home-program { grid-template-columns: 3rem minmax(0, 1fr); }
+    .home-program > .home-text-link { grid-column: 2; }
+  }
+  @media (max-width: 640px) {
+    .home-section { padding: 5rem 0; }
+    .home-section-heading--split { align-items: start; flex-direction: column; }
+    .home-hero h1 { font-size: clamp(2.8rem, 13vw, 4.5rem); }
+    .home-hero__media { min-height: 330px; }
+    .home-proof__numbers { grid-template-columns: 1fr; }
+    .home-proof__numbers div, .home-proof__numbers div + div { border-left: 0; padding: 1rem 0; }
+    .home-proof__numbers div + div { border-top: 1px solid var(--home-rule); }
+    .home-trajectory li { grid-template-columns: 1fr; }
+    .home-team__photos, .home-film-grid { grid-template-columns: 1fr; grid-template-rows: none; min-height: 0; }
+    .team-photo--1 { grid-row: auto; }
+    .team-photo { aspect-ratio: 4 / 3; }
+    .home-program { gap: 1rem; grid-template-columns: 2rem minmax(0, 1fr); }
+    .home-program > .home-text-link { grid-column: 2; }
+    .home-publication-list article, .home-note-list a { grid-template-columns: 1fr; gap: 0.45rem; }
+    .home-note-list a > span:last-child { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .home-button, .team-photo img { transition: none; }
+  }
+</style>

@@ -1,0 +1,201 @@
+---
+import { Button } from "@/components/starwind/button";
+
+const base = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+const withBase = (path) => `${base}${path.replace(/^\//, "")}`;
+---
+
+<section class="necessity-checker" id="ldl-necessity-checker" aria-labelledby="necessity-checker-title" data-necessity-checker>
+  <div class="necessity-checker__intro">
+    <span class="eyebrow">Screening tool</span>
+    <h2 id="necessity-checker-title">Lagging Darcy Law Necessity Checker</h2>
+    <p>
+      This screening tool asks whether a conventional pumping-test interpretation is likely
+      sufficient, or whether a lag-aware interpretation should be evaluated before the
+      result is used in a decision.
+    </p>
+  </div>
+
+  <div class="necessity-checker__body">
+    <div class="necessity-checker__controls" aria-label="Lagging Darcy Law screening controls">
+      <label>
+        <span>pumping duration</span>
+        <output data-output="pumping">24 h</output>
+        <input data-input="pumping" type="range" min="2" max="240" value="24" step="2" />
+      </label>
+      <label>
+        <span>observation window</span>
+        <output data-output="observation">48 h</output>
+        <input data-input="observation" type="range" min="4" max="336" value="48" step="4" />
+      </label>
+      <label>
+        <span>recovery duration</span>
+        <output data-output="recovery">72 h</output>
+        <input data-input="recovery" type="range" min="0" max="336" value="72" step="4" />
+      </label>
+      <label>
+        <span>memory time scale</span>
+        <output data-output="memory">12 h</output>
+        <input data-input="memory" type="range" min="0" max="240" value="12" step="2" />
+      </label>
+      <label>
+        <span>qualitative boundary response speed</span>
+        <select data-input="boundary">
+          <option value="fast">fast or well constrained</option>
+          <option value="moderate" selected>moderate</option>
+          <option value="slow">slow or poorly constrained</option>
+        </select>
+      </label>
+      <label>
+        <span>drawdown/recovery residual structure</span>
+        <select data-input="mismatch">
+          <option value="low">low: residuals look random</option>
+          <option value="medium" selected>medium: structured early/recovery residuals</option>
+          <option value="high">high: phase, amplitude, or recovery mismatch</option>
+        </select>
+      </label>
+      <label>
+        <span>decision type</span>
+        <select data-input="decision">
+          <option value="parameter">parameter interpretation</option>
+          <option value="pumping">pumping limit</option>
+          <option value="recovery">recovery time</option>
+          <option value="thermal">thermal design margin</option>
+          <option value="risk">design risk threshold</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="necessity-checker__result" aria-live="polite">
+      <div class="necessity-checker__status" data-result-tone="review">
+        <span data-result="status">Lag-aware interpretation should be considered</span>
+        <strong data-result="score">diagnostic</strong>
+      </div>
+      <dl>
+        <div>
+          <dt>Decision variable most exposed</dt>
+          <dd data-result="endpoint">Parameter transfer and recovery interpretation</dd>
+        </div>
+        <div>
+          <dt>Evidence to check next</dt>
+          <dd data-result="evidence">Compare early-time residuals, recovery shape, and boundary assumptions against a lag-aware analytical model.</dd>
+        </div>
+        <div>
+          <dt>Engineer-facing interpretation</dt>
+          <dd data-result="explanation">The lag or drainage time scale is not negligible relative to the test window, so conventional interpretation may be adequate for a first fit but should not be the only basis for a decision variable.</dd>
+        </div>
+      </dl>
+      <p class="necessity-checker__disclaimer">
+        This is a transparent qualitative screening tool, not a site-specific engineering
+        analysis. Field decisions still require calibrated data review, uncertainty propagation,
+        and professional judgment.
+      </p>
+      <div class="action-row">
+        <Button href={withBase("/services/groundwater-decision-reliability-audit/")}>Request a model-assumption audit</Button>
+        <Button href={withBase("/field-notes/when-does-a-pumping-test-need-lagging-darcy-law/")} variant="outline">Read the validation note</Button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const checkerRoots = document.querySelectorAll("[data-necessity-checker]");
+
+  const boundaryWeights = { fast: 0.25, moderate: 0.9, slow: 1.5 };
+  const mismatchWeights = { low: 0.2, medium: 1.1, high: 2.2 };
+  const decisionWeights = { parameter: 0.4, pumping: 1.0, recovery: 0.9, thermal: 1.1, risk: 1.3 };
+  const endpointText = {
+    parameter: "Transmissivity, storage, leakage, and skin interpretation",
+    pumping: "Allowable pumping and drawdown limit",
+    recovery: "Recovery time and post-pumping readiness",
+    thermal: "Thermal design margin and groundwater-influenced TRT interpretation",
+    risk: "Failure probability, design risk threshold, and uncertainty buffer",
+  };
+
+  function hours(value) {
+    return `${Number(value).toFixed(0)} h`;
+  }
+
+  function classify(values) {
+    const activeWindow = Math.max(1, Math.min(values.observation, values.pumping + Math.max(values.recovery, 1)));
+    const memoryRatio = values.memory / activeWindow;
+    const recoveryRatio = values.recovery > 0 ? values.memory / Math.max(1, values.recovery) : values.memory / activeWindow;
+    const score =
+      Math.min(4, memoryRatio * 4) +
+      Math.min(2, recoveryRatio * 1.5) +
+      boundaryWeights[values.boundary] +
+      mismatchWeights[values.mismatch] +
+      decisionWeights[values.decision];
+
+    if (score < 3.2) {
+      return {
+        tone: "adequate",
+        status: "Conventional interpretation is likely sufficient as a first screen",
+        score: "low screening concern",
+        evidence:
+          "Document assumptions and check whether residuals remain random across early, late, and recovery windows.",
+        explanation:
+          "The assumed lag or drainage time scale is small relative to the observation window and the decision exposure is limited. A conventional interpretation can be a reasonable starting point if validation residuals remain unstructured.",
+      };
+    }
+    if (score < 6.2) {
+      return {
+        tone: "review",
+        status: "Lag-aware interpretation should be considered",
+        score: "diagnostic",
+        evidence:
+          "Compare early-time residuals, recovery shape, and boundary assumptions against a lag-aware analytical model.",
+        explanation:
+          "The lag or drainage time scale is material relative to the test or recovery window. A classical fit may still be useful, but the interpretation should be evaluated before parameters are transferred into a decision variable.",
+      };
+    }
+    return {
+      tone: "audit",
+      status: "Model-assumption audit recommended",
+      score: "decision exposed",
+      evidence:
+        "Run a model-choice sensitivity check, held-out validation, and decision propagation for the exposed decision variable.",
+      explanation:
+        "The time-scale mismatch, boundary uncertainty, or residual structure is large enough that curve fit alone is not a defensible decision basis. The next step is to test how the interpretation changes the decision variable.",
+    };
+  }
+
+  function updateChecker(root) {
+    const inputs = Object.fromEntries(
+      [...root.querySelectorAll("[data-input]")].map((input) => [input.dataset.input, input]),
+    );
+    const values = {
+      pumping: Number(inputs.pumping.value),
+      observation: Number(inputs.observation.value),
+      recovery: Number(inputs.recovery.value),
+      memory: Number(inputs.memory.value),
+      boundary: inputs.boundary.value,
+      mismatch: inputs.mismatch.value,
+      decision: inputs.decision.value,
+    };
+
+    root.querySelector('[data-output="pumping"]').textContent = hours(values.pumping);
+    root.querySelector('[data-output="observation"]').textContent = hours(values.observation);
+    root.querySelector('[data-output="recovery"]').textContent = hours(values.recovery);
+    root.querySelector('[data-output="memory"]').textContent = hours(values.memory);
+
+    const result = classify(values);
+    const status = root.querySelector("[data-result-tone]");
+    status.dataset.resultTone = result.tone;
+    root.querySelector('[data-result="status"]').textContent = result.status;
+    root.querySelector('[data-result="score"]').textContent = result.score;
+    root.querySelector('[data-result="endpoint"]').textContent = endpointText[values.decision];
+    root.querySelector('[data-result="evidence"]').textContent = result.evidence;
+    root.querySelector('[data-result="explanation"]').textContent = result.explanation;
+  }
+
+  checkerRoots.forEach((root) => {
+    root.querySelectorAll("[data-input]").forEach((input) => {
+      input.addEventListener("input", () => updateChecker(root));
+      input.addEventListener("change", () => updateChecker(root));
+    });
+    updateChecker(root);
+  });
+</script>

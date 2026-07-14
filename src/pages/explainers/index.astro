@@ -1,0 +1,251 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { Badge } from "@/components/starwind/badge";
+import { Button } from "@/components/starwind/button";
+import { absoluteUrl, siteRoot } from "../../lib/seo";
+
+const base = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
+const rootUrl = siteRoot(Astro.site);
+const pageUrl = absoluteUrl("/explainers/", Astro.site);
+const videoPath = "/videos/explainers/ldl-transformation-uncertainty-short.mp4";
+const posterPath = "/videos/explainers/ldl-transformation-uncertainty-poster.png";
+const videoUrl = absoluteUrl(videoPath, Astro.site);
+const posterUrl = absoluteUrl(posterPath, Astro.site);
+const explainerSchema = [
+  {
+    "@type": "CollectionPage",
+    "@id": `${pageUrl}#collection`,
+    url: pageUrl,
+    name: "Research Explainers",
+    description:
+      "Short visual explainers for Lagging Theory, transformation uncertainty, and groundwater decision reliability.",
+    creator: { "@id": `${rootUrl}/#person` },
+  },
+  {
+    "@type": "VideoObject",
+    "@id": `${pageUrl}#ldl-transformation-uncertainty-video`,
+    name: "Drawdown Is Measured; Transmissivity Is Interpreted",
+    description:
+      "A 45-second Remotion explainer with a normalized Lagging Darcy Law response and transformation uncertainty propagated to groundwater decision variables.",
+    thumbnailUrl: [posterUrl],
+    uploadDate: "2026-07-04",
+    duration: "PT45S",
+    contentUrl: videoUrl,
+    embedUrl: pageUrl,
+    creator: { "@id": `${rootUrl}/#person` },
+    keywords: [
+      "Lagging Theory",
+      "Lagging Darcy Law",
+      "transformation uncertainty",
+      "aquifer-test interpretation",
+      "groundwater decision reliability",
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="Research Explainers"
+  description="Short visual explainers for Lagging Theory, transformation uncertainty, and groundwater decision reliability."
+  current="explainers"
+  canonicalPath="/explainers/"
+  image={posterPath}
+  schema={explainerSchema}
+>
+  <section class="shell section explainer-hero">
+    <div class="explainer-hero__copy">
+      <span class="eyebrow">Research explainers</span>
+      <h1>Short videos for non-instantaneous aquifer-test decisions.</h1>
+      <p class="lede">
+        These short videos introduce Lagging Theory, transformation uncertainty, and groundwater
+        decision reliability without requiring specialist software. Each video states its scope
+        so that the animation remains within the evidence supported by its underlying model.
+      </p>
+      <div class="action-row">
+        <Button href={withBase("/concepts/lagging-theory/")}>Read Lagging Theory</Button>
+        <Button href={withBase("/field-notes/drawdown-is-measured-transmissivity-is-interpreted/")} variant="outline">
+          Read the note
+        </Button>
+      </div>
+    </div>
+    <aside class="explainer-hero__panel">
+      <strong>First visual explainer</strong>
+      <p>
+        A React/Remotion composition draws the video from computed normalized response curves.
+      </p>
+    </aside>
+  </section>
+
+  <section class="shell section explainer-feature" aria-labelledby="ldl-explainer-title">
+    <div class="explainer-feature__media">
+      <video
+        controls
+        muted
+        playsinline
+        preload="metadata"
+        poster={withBase(posterPath)}
+        width="1080"
+        height="1920"
+        aria-label="Short visual explainer about Lagging Theory and transformation uncertainty"
+      >
+        <source src={withBase(videoPath)} type="video/mp4" />
+      </video>
+    </div>
+    <div class="explainer-feature__copy">
+      <Badge variant="primary">45-second short</Badge>
+      <h2 id="ldl-explainer-title">Drawdown is measured; transmissivity is interpreted.</h2>
+      <p>
+        The video shows a measured pumping-test response, overlays a classical analytical model,
+        introduces a normalized LDL response where head-side lag exceeds flux-side lag, and then
+        propagates the interpretation difference to decision variables.
+      </p>
+
+      <div class="explainer-facts">
+        <div>
+          <span>Format</span>
+          <strong>1080 x 1920 MP4</strong>
+        </div>
+        <div>
+          <span>Source</span>
+          <strong>Remotion / React</strong>
+        </div>
+        <div>
+          <span>Scope</span>
+          <strong>normalized teaching response</strong>
+        </div>
+      </div>
+
+      <article class="transcript-card">
+        <span class="eyebrow">Transcript</span>
+        <ol>
+          <li>Drawdown is measured. A pumping test gives a time record, not a unique hydraulic parameter.</li>
+          <li>Transmissivity is interpreted. Different analytical models can explain similar records through different assumptions.</li>
+          <li>Lag is not a generic delay. The head-side lag exceeds the flux-side lag, producing an S-like normalized response.</li>
+          <li>Model choice becomes a decision. Pumping limits, recovery time, and risk margins inherit the interpretation model.</li>
+        </ol>
+      </article>
+    </div>
+  </section>
+
+  <section class="shell section">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Next shorts</span>
+        <h2>Build the video system around repeatable research claims.</h2>
+      </div>
+      <p>
+        The next videos can use the same Remotion structure with different computed curves, field schematics, and decision variables.
+      </p>
+    </div>
+    <p class="lede">
+      Planned follow-ups: competing analytical models for the same record, sparse-borehole
+      uncertainty, and aquifers as thermal batteries for data-center cooling.
+    </p>
+  </section>
+</BaseLayout>
+
+<style>
+  .explainer-hero {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: minmax(0, 1.4fr) minmax(280px, 0.6fr);
+  }
+
+  .explainer-hero__copy {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .explainer-hero__panel,
+  .transcript-card {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 1.5rem;
+  }
+
+  .explainer-hero__panel {
+    align-self: end;
+    display: grid;
+    gap: 0.85rem;
+  }
+
+  .explainer-feature {
+    align-items: start;
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: minmax(280px, 0.64fr) minmax(0, 1fr);
+  }
+
+  .explainer-feature__media {
+    background: linear-gradient(180deg, var(--surface) 0%, var(--surface-muted) 100%);
+    border: 1px solid var(--rule);
+    border-radius: calc(var(--radius) * 2);
+    box-shadow: var(--shadow);
+    padding: 0.85rem;
+  }
+
+  .explainer-feature__media video {
+    aspect-ratio: 9 / 16;
+    background: var(--surface-muted);
+    border-radius: var(--radius);
+    display: block;
+    height: auto;
+    width: 100%;
+  }
+
+  .explainer-feature__copy {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .explainer-facts {
+    display: grid;
+    gap: 0.75rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .explainer-facts div {
+    background: rgb(var(--surface-strong-rgb) / 0.76);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    display: grid;
+    gap: 0.35rem;
+    padding: 1rem;
+  }
+
+  .explainer-facts span {
+    color: var(--text-muted);
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  .explainer-facts strong {
+    color: var(--text);
+    font-size: 0.95rem;
+  }
+
+  .transcript-card ol {
+    color: var(--text-muted);
+    display: grid;
+    gap: 0.75rem;
+    margin: 0.75rem 0 0;
+    padding-left: 1.2rem;
+  }
+
+  @media (max-width: 900px) {
+    .explainer-hero,
+    .explainer-feature {
+      grid-template-columns: 1fr;
+    }
+
+    .explainer-facts {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

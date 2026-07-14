@@ -1,4 +1,4 @@
-name: Weekly deployed visibility loop
+name: Weekly visibility loop
 
 on:
   schedule:
@@ -17,26 +17,23 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Generate deployed-site visibility report
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - name: Generate visibility report
         env:
-          VISIBILITY_DIST_DIR: .
-          VISIBILITY_CONFIG_PATH: .github/visibility/visibility.config.json
           GSC_ACCESS_TOKEN: ${{ secrets.GSC_ACCESS_TOKEN }}
           OPENALEX_API_KEY: ${{ secrets.OPENALEX_API_KEY }}
           OPENALEX_MAILTO: ${{ secrets.OPENALEX_MAILTO }}
           CROSSREF_MAILTO: ${{ secrets.CROSSREF_MAILTO }}
-        run: node .github/visibility/visibility_report.mjs
+        run: npm run visibility:report
       - name: Prepare IndexNow payload
-        env:
-          VISIBILITY_DIST_DIR: .
-          INDEXNOW_HOST: aar246860.github.io
-        run: node .github/visibility/submit_indexnow.mjs --dry-run
+        run: npm run indexnow:dry-run
       - name: Submit IndexNow when configured
         env:
-          VISIBILITY_DIST_DIR: .
           INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
           INDEXNOW_HOST: aar246860.github.io
-        run: node .github/visibility/submit_indexnow.mjs
+        run: npm run indexnow
       - uses: actions/upload-artifact@v4
         with:
           name: weekly-lagging-theory-visibility-report

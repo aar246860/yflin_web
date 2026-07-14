@@ -1,0 +1,10 @@
+extends: existence
+message: "Remove AI or revision residue: '%s'."
+level: error
+ignorecase: true
+tokens:
+  - TODO
+  - revised version
+  - as an AI
+  - "Q:"
+  - "A:"

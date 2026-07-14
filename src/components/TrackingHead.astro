@@ -1,0 +1,62 @@
+---
+const googleSiteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION?.trim();
+const bingSiteVerification = import.meta.env.PUBLIC_BING_SITE_VERIFICATION?.trim();
+const gaMeasurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID?.trim();
+const clarityProjectId = import.meta.env.PUBLIC_CLARITY_PROJECT_ID?.trim();
+const cloudflareAnalyticsToken = import.meta.env.PUBLIC_CLOUDFLARE_ANALYTICS_TOKEN?.trim();
+---
+
+{googleSiteVerification && <meta name="google-site-verification" content={googleSiteVerification} />}
+{bingSiteVerification && <meta name="msvalidate.01" content={bingSiteVerification} />}
+
+{
+  gaMeasurementId && (
+    <>
+      <script async src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`} />
+      <script define:vars={{ gaMeasurementId }}>
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = window.gtag || function gtag(){window.dataLayer.push(arguments);}
+        window.gtag("js", new Date());
+        window.gtag("config", gaMeasurementId, {
+          anonymize_ip: true,
+          send_page_view: false
+        });
+
+        window.__yflinTrackPageView = window.__yflinTrackPageView || function trackPageView() {
+          window.gtag("event", "page_view", {
+            page_title: document.title,
+            page_location: window.location.href,
+            page_path: window.location.pathname + window.location.search
+          });
+        };
+
+        if (!window.__yflinAnalyticsBound) {
+          document.addEventListener("astro:page-load", window.__yflinTrackPageView);
+          window.__yflinAnalyticsBound = true;
+        }
+      </script>
+    </>
+  )
+}
+
+{
+  clarityProjectId && (
+    <script define:vars={{ clarityProjectId }}>
+      (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+      })(window, document, "clarity", "script", clarityProjectId);
+    </script>
+  )
+}
+
+{
+  cloudflareAnalyticsToken && (
+    <script
+      defer
+      src="https://static.cloudflareinsights.com/beacon.min.js"
+      data-cf-beacon={JSON.stringify({ token: cloudflareAnalyticsToken })}
+    />
+  )
+}

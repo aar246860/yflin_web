@@ -1,0 +1,49 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { Button } from "@/components/starwind/button";
+import { trainingModules } from "../../data/groupSite";
+
+const base = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
+---
+
+<BaseLayout
+  title="Training"
+  description="Training materials for students and collaborators in aquifer-test interpretation, transformation uncertainty, research writing, and careful use of computational tools."
+  current="training"
+  canonicalPath="/training/"
+>
+  <section class="shell section group-page-hero">
+    <span class="eyebrow">Training</span>
+    <h1>Training is built around the habits needed to turn groundwater data into defensible claims.</h1>
+    <p class="lede">
+      This page gives students and collaborators a shared starting point before a pumping test,
+      TRT record, or manuscript is used to support a result or decision.
+    </p>
+  </section>
+
+  <section class="shell section training-list" aria-label="Training materials">
+    {trainingModules.map((module, index) => (
+      <article class="training-entry">
+        <span>{String(index + 1).padStart(2, "0")}</span>
+        <div>
+          <h2>{module.title}</h2>
+          <p>{module.outcome}</p>
+          <dl>
+            <div>
+              <dt>Audience</dt>
+              <dd>{module.audience}</dd>
+            </div>
+            <div>
+              <dt>Format</dt>
+              <dd>{module.format}</dd>
+            </div>
+          </dl>
+          <Button href={withBase(module.link)} variant="outline" size="sm">Open related material</Button>
+        </div>
+      </article>
+    ))}
+  </section>
+</BaseLayout>

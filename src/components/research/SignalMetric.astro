@@ -1,0 +1,25 @@
+---
+import { Card, CardContent } from "@/components/starwind/card";
+
+interface Props {
+  label: string;
+  value: string;
+  tone?: "teal" | "brick" | "gold" | "field";
+}
+
+const { label, value, tone = "teal" } = Astro.props;
+const toneClass = {
+  teal: "border-primary/25 bg-primary/5 text-primary",
+  brick: "border-error/25 bg-error/5 text-error",
+  gold: "border-warning/40 bg-warning/25 text-warning-foreground",
+  field: "border-info/70 bg-info/45 text-info-foreground",
+}[tone];
+---
+
+<Card size="sm" class={`research-metric ${toneClass}`}>
+  <CardContent class="grid gap-1 px-4">
+    <strong>{value}</strong>
+    <span>{label}</span>
+  </CardContent>
+</Card>
+

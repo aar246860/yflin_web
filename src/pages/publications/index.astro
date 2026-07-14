@@ -1,0 +1,116 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import publications from "../../data/publications.generated.json";
+import { studentPublicationIds } from "../../data/groupSite";
+import { getPlainLanguage, getPublicationFeature, getVisualStatus } from "../../data/publicationPresentation";
+
+const isStudentInvolved = (id: string) => studentPublicationIds.includes(id);
+const allPublications = publications.filter((pub) => ["published", "accepted"].includes(pub.status)).sort(
+  (a, b) => b.year - a.year || (b.month ?? 0) - (a.month ?? 0),
+);
+const base = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
+const availableFilmCount = allPublications.filter((publication) => getVisualStatus(publication).kind === "available").length;
+---
+
+<BaseLayout title="Publications by Research Concept" description="Ying-Fan Lin publications on Lagging Theory, well hydraulics, transformation uncertainty, and subsurface energy interpretation." current="publications" pageClass="publications-archive">
+  <section class="shell section publications-archive__intro">
+    <span class="eyebrow">Publication map</span>
+    <h1>Publications are grouped by the questions and methods they address.</h1>
+    <p class="lede">The papers trace a progression from analytical well hydraulics to delayed-response interpretation, transformation uncertainty, and groundwater-influenced energy decisions.</p>
+  </section>
+  <section class="shell section publications-archive__header" aria-labelledby="archive-title">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">{allPublications.length} records</span>
+        <h2 id="archive-title">Every paper, with its visual explanation beside it.</h2>
+        <p>Each public record appears once. The left column gives the paper’s question in plain language; the right column holds a source-backed Manim film when its evidence package is ready.</p>
+        <p class="archive-status">{availableFilmCount} of {allPublications.length} publication films are currently available. The remaining films are left clearly marked rather than represented by invented curves or generic motion.</p>
+      </div>
+    </div>
+    <div class="publication-archive" data-publication-archive>
+      {allPublications.map((pub) => (
+        <article class="publication-record">
+          <div class="publication-record__copy">
+            <div class="publication-record__eyebrow">
+              <time datetime={String(pub.year)}>{pub.year}</time>
+              <span>{pub.primaryTheme.replaceAll("-", " ")}</span>
+              {isStudentInvolved(pub.id) && <span>student-involved work</span>}
+            </div>
+            <h3>
+              {getPublicationFeature(pub) ? <a href={withBase(`/publications/${getPublicationFeature(pub)?.id}/`)}>{pub.title.en}</a> : pub.title.en}
+            </h3>
+            <p class="publication-record__authors">{pub.authors}</p>
+            <div class="publication-record__plain">
+              <span class="section-label">In plain language</span>
+              <p>{getPlainLanguage(pub)}</p>
+            </div>
+            <p class="publication-record__venue">{pub.venue} · {pub.status === "accepted" ? "Accepted" : "Published"}</p>
+            <p class="publication-record__meta">
+              {pub.publicRecord && <a href={pub.publicRecord} target="_blank" rel="noreferrer">Open DOI record</a>}
+              {getPublicationFeature(pub) && <a href={withBase(`/publications/${getPublicationFeature(pub)?.id}/`)}>Read the evidence page</a>}
+            </p>
+          </div>
+          <div class="publication-record__visual">
+            {(() => {
+              const visual = getVisualStatus(pub);
+              return visual.kind === "available" && visual.feature ? (
+                <figure class="publication-film">
+                  <div class="publication-film__label"><span>{visual.label}</span><span>source-backed</span></div>
+                  <video controls preload="none" poster={withBase(visual.feature.poster)} width="1280" height="720" aria-label={`Visual abstract for ${pub.title.en}`}>
+                    <source src={withBase(visual.feature.video)} type="video/mp4" />
+                    {visual.feature.captions && <track kind="captions" src={withBase(visual.feature.captions)} srclang="en" label="English captions" default />}
+                    Your browser does not support the video element.
+                  </video>
+                  <figcaption>{visual.note} <a href={withBase(`/publications/${visual.feature.id}/`)}>Open film record</a></figcaption>
+                </figure>
+              ) : (
+                <div class="publication-film-placeholder" role="note">
+                  <span class="section-label">{visual.label}</span>
+                  <p>{visual.note}</p>
+                  <span class="publication-film-placeholder__rule" aria-hidden="true"></span>
+                  <p class="publication-film-placeholder__source">The DOI record remains the source for this paper.</p>
+                </div>
+              );
+            })()}
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .archive-status { border-left: 3px solid var(--signal-model); color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; margin-top: 1rem; max-width: 820px; padding-left: 1rem; }
+  .publications-archive__intro .eyebrow,
+  .publications-archive__header .eyebrow,
+  .publications-archive .section-label,
+  .publications-archive .publication-record__eyebrow,
+  .publications-archive .publication-film__label,
+  .publications-archive .publication-record__meta a,
+  .publications-archive .publication-film figcaption a { color: var(--signal-measured-strong) !important; }
+  .publication-archive { border-top: 1px solid var(--rule); margin-top: var(--space-10); }
+  .publication-record { border-bottom: 1px solid var(--rule); display: grid; gap: var(--space-10); grid-template-columns: minmax(0, 1.02fr) minmax(320px, 0.98fr); padding: var(--space-10) 0; }
+  .publication-record__copy { min-width: 0; }
+  .publication-record__eyebrow { align-items: center; display: flex; flex-wrap: wrap; font-size: 0.75rem; font-weight: 750; gap: 0.55rem; letter-spacing: 0.04em; text-transform: uppercase; }
+  .publication-record__eyebrow span { border-left: 1px solid var(--rule); padding-left: 0.55rem; }
+  .publication-record h3 { font-family: var(--font-sans, Inter, sans-serif); font-size: clamp(1.2rem, 2vw, 1.6rem); line-height: 1.3; margin: 0.8rem 0 0.55rem; }
+  .publication-record h3 a { text-decoration-thickness: 0.08em; text-underline-offset: 0.13em; }
+  .publication-record__authors, .publication-record__venue { color: var(--text-muted); font-size: 0.88rem; line-height: 1.5; margin: 0; }
+  .publication-record__plain { border-left: 3px solid var(--signal-model); margin: var(--space-6) 0; padding-left: 1rem; }
+  .publication-record__plain p { font-size: 1rem; line-height: 1.65; margin: 0.4rem 0 0; max-width: 650px; }
+  .section-label { font-size: 0.72rem; font-weight: 750; letter-spacing: 0.06em; text-transform: uppercase; }
+  .publication-record__meta { align-items: center; display: flex; flex-wrap: wrap; gap: 0.8rem; margin: var(--space-5) 0 0; }
+  .publication-record__meta a { font-size: 0.8rem; font-weight: 700; text-decoration: underline; text-underline-offset: 0.18em; }
+  .publication-record__visual { min-width: 0; }
+  .publication-film { margin: 0; }
+  .publication-film__label { align-items: center; display: flex; font-size: 0.72rem; font-weight: 750; justify-content: space-between; letter-spacing: 0.06em; margin-bottom: 0.55rem; text-transform: uppercase; }
+  .publication-film video { aspect-ratio: 16 / 9; background: var(--text); display: block; height: auto; width: 100%; }
+  .publication-film figcaption { color: var(--text-muted); font-size: 0.78rem; line-height: 1.5; margin-top: 0.65rem; }
+  .publication-film figcaption a { font-weight: 700; text-decoration: underline; text-underline-offset: 0.18em; }
+  .publication-film-placeholder { align-content: center; background: var(--surface-muted); border: 1px solid var(--rule); min-height: 100%; padding: var(--space-8); }
+  .publication-film-placeholder p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.65; margin: 1rem 0 0; max-width: 420px; }
+  .publication-film-placeholder__rule { background: var(--signal-model); display: block; height: 3px; margin-top: 2.5rem; width: 4rem; }
+  .publication-film-placeholder__source { font-size: 0.78rem !important; }
+  @media (max-width: 820px) { .publication-record { grid-template-columns: 1fr; } .publication-film-placeholder { min-height: 0; } }
+</style>

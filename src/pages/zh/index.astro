@@ -1,0 +1,115 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { activityPhotos } from "../../data/groupSite";
+import { researchPrograms } from "../../data/researchPrograms";
+
+const base = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
+---
+
+<BaseLayout
+  title="林穎凡地下水水力學研究群"
+  description="林穎凡地下水水力學研究群，研究解析井力學、地下水記憶效應、轉換不確定性與地下水影響下的地下能源系統。"
+  current="home"
+  canonicalPath="/zh/"
+  translatedPath="/"
+  lang="zh-Hant"
+  pageClass="zh-summary"
+>
+  <section class="zh-hero">
+    <div class="zh-shell zh-hero__grid">
+      <div>
+        <p class="zh-kicker">林穎凡地下水水力學研究群</p>
+        <h1>地下水的反應，會在時間裡留下痕跡。</h1>
+        <p class="zh-lede">
+          我們以解析解、數值方法與資料分析，理解抽水試驗、暫態地下水訊號，以及地下水影響下的熱反應系統。
+        </p>
+        <div class="zh-actions">
+          <a class="zh-button zh-button--dark" href={withBase("/projects/")}>研究主題</a>
+          <a class="zh-button" href={withBase("/collaborate/")}>合作洽談</a>
+        </div>
+      </div>
+      <figure>
+        <img src={withBase("/media/team-life/jpgu-2026/jpgu-2026-team-selfie.jpg")} alt="研究團隊在 JpGU 2026 會場外合影。" width="1200" height="900" fetchpriority="high" />
+        <figcaption>JpGU 2026 研究團隊活動。</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="zh-section" aria-labelledby="zh-programs-title">
+    <div class="zh-shell">
+      <p class="zh-kicker">研究主線</p>
+      <h2 id="zh-programs-title">四個問題，串起研究群的工作。</h2>
+      <p class="zh-lede zh-lede--small">每條主線各自累積證據，但共同關心地下過程如何轉化為可以辯護的工程判斷。</p>
+      <div class="zh-programs">
+        {researchPrograms.map((program) => (
+          <article>
+            <span>{program.number}</span>
+            <div>
+              <h3>{program.title}</h3>
+              <p>{program.description}</p>
+              <a href={withBase(program.link)}>查看研究主線 <span aria-hidden="true">→</span></a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="zh-section zh-section--tint" aria-labelledby="zh-team-title">
+    <div class="zh-shell">
+      <p class="zh-kicker">團隊工作</p>
+      <h2 id="zh-team-title">研究不是單一個人的展示。</h2>
+      <p class="zh-lede zh-lede--small">學生與合作夥伴透過推導、模型比較、圖表檢查與現地問題討論，一起把資料轉成可靠的研究成果。</p>
+      <div class="zh-photos">
+        {activityPhotos.map((photo) => (
+          <figure><img src={withBase(photo.src)} alt={photo.alt} loading="lazy" /><figcaption>{photo.label}</figcaption></figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="zh-section">
+    <div class="zh-shell zh-cta">
+      <div>
+        <p class="zh-kicker">合作入口</p>
+        <h2>帶著尚未解決的抽水試驗、熱反應試驗或地下水決策問題來談。</h2>
+      </div>
+      <a class="zh-button zh-button--dark" href={withBase("/collaborate/")}>提出合作問題</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style is:global>
+  .zh-summary { --zh-ink: #14232b; --zh-muted: #52636a; --zh-paper: #f7f8f5; --zh-blue: #0e6670; --zh-rule: #d5dfdc; }
+  .zh-shell { margin: 0 auto; width: min(1180px, calc(100% - 3rem)); }
+  .zh-hero { background: var(--zh-paper); border-bottom: 1px solid var(--zh-rule); padding: 5rem 0; }
+  .zh-hero__grid { align-items: center; display: grid; gap: 4rem; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); }
+  .zh-kicker { color: var(--zh-blue); font-size: 0.78rem; font-weight: 750; letter-spacing: 0.08em; margin: 0 0 1rem; }
+  .zh-summary h1 { color: var(--zh-ink); font-size: clamp(3rem, 6vw, 6rem); letter-spacing: -0.05em; line-height: 1; }
+  .zh-summary h2 { color: var(--zh-ink); font-size: clamp(2.3rem, 4vw, 4.2rem); letter-spacing: -0.04em; line-height: 1.03; }
+  .zh-summary h3 { color: var(--zh-ink); font-size: 1.35rem; line-height: 1.35; }
+  .zh-lede { color: var(--zh-muted); font-size: 1.1rem; line-height: 1.8; margin: 1.3rem 0 0; max-width: 660px; }
+  .zh-lede--small { font-size: 1rem; }
+  .zh-hero figure { margin: 0; }
+  .zh-hero img { display: block; height: auto; width: 100%; }
+  .zh-hero figcaption, .zh-photos figcaption { color: var(--zh-muted); font-size: 0.8rem; line-height: 1.5; margin-top: 0.55rem; }
+  .zh-actions { display: flex; flex-wrap: wrap; gap: 0.7rem; margin-top: 1.7rem; }
+  .zh-button { border: 1px solid var(--zh-ink); color: var(--zh-ink); display: inline-flex; font-weight: 750; padding: 0.85rem 1.1rem; }
+  .zh-button--dark { background: var(--zh-ink); color: #fff; }
+  .zh-section { padding: 6rem 0; }
+  .zh-section--tint { background: #eef2ef; }
+  .zh-programs { border-top: 1px solid var(--zh-rule); margin-top: 3rem; }
+  .zh-programs article { border-bottom: 1px solid var(--zh-rule); display: grid; gap: 1.4rem; grid-template-columns: 3rem 1fr; padding: 1.4rem 0; }
+  .zh-programs article > span { color: var(--zh-muted); font-weight: 750; }
+  .zh-programs h3 { margin: 0 0 0.3rem; }
+  .zh-programs p { color: var(--zh-muted); line-height: 1.7; margin: 0 0 0.65rem; }
+  .zh-programs a { color: var(--zh-blue); font-size: 0.88rem; font-weight: 750; }
+  .zh-photos { display: grid; gap: 0.8rem; grid-template-columns: repeat(4, 1fr); margin-top: 2.5rem; }
+  .zh-photos figure { margin: 0; }
+  .zh-photos img { aspect-ratio: 1 / 1; display: block; object-fit: cover; width: 100%; }
+  .zh-cta { align-items: end; display: grid; gap: 2rem; grid-template-columns: 1fr auto; }
+  .zh-cta h2 { max-width: 780px; }
+  @media (max-width: 800px) { .zh-shell { width: min(100% - 2rem, 720px); } .zh-hero__grid, .zh-cta { grid-template-columns: 1fr; } .zh-photos { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 500px) { .zh-section { padding: 4.5rem 0; } .zh-photos { grid-template-columns: 1fr; } }
+</style>

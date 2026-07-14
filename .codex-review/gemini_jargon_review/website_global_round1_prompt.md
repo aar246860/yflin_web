@@ -1,0 +1,5860 @@
+# Strict Gemini Review Prompt: AI Residue, Software Jargon, and Journal Fit
+
+Use this prompt when asking Gemini to review an academic manuscript that may have been edited by multiple AI agents. Paste or upload the manuscript content after the prompt. Do not ask Gemini to verify citations from memory; use it to identify issues that need human or source-backed checking.
+
+```text
+You are acting as a strict external manuscript reviewer and language auditor.
+
+Context:
+This manuscript may have been edited by several AI agents. It may contain traces of AI-generated writing, software-engineering vocabulary, prompt-like instructions, over-structured prose, inflated claims, or terminology that does not fit the target journal audience.
+
+Target:
+Review the manuscript as a scientific paper for the target journal named by the author. Assume the audience is domain scientists, not software engineers, unless a specific section is clearly about code availability or reproducible implementation.
+
+Your tasks:
+1. Identify AI-agent residue:
+   - prompt-like wording,
+   - generic transition phrases,
+   - repetitive section logic,
+   - inflated or vague claims,
+   - self-referential language about the writing process,
+   - phrases that sound like an AI explaining its own design choices.
+
+2. Identify software or computer-science wording that does not belong in the main scientific argument:
+   - workflow, pipeline, API, package interface, deterministic script, benchmark suite, gate, validator, routing, fallback, visual grammar, stress test, automated agent, prompt, iteration loop.
+   For each issue, say whether it should be removed, replaced with domain language, or moved to a code/data availability section.
+
+3. Check journal fit:
+   - Does the abstract read like a scientific contribution rather than a software note?
+   - Does the introduction motivate a field problem rather than a tool-building exercise?
+   - Are methods, results, figures, limitations, and code availability separated clearly?
+   - Are claims appropriate for a Method/Technical Note style article?
+
+4. Check overclaiming:
+   - Flag any claim that appears unsupported by figures, validation, datasets, citations, or stated methods.
+   - Do not invent references or facts.
+   - Mark uncertain claims as "needs verification", not as wrong.
+
+5. Check figure-caption consistency:
+   - Does each figure caption describe every subpanel?
+   - Does the caption state what data or synthetic example is being shown?
+   - Does the caption avoid claiming reader-performance improvement unless a reader study exists?
+
+6. Provide exact revision guidance:
+   - List high-priority fixes first.
+   - For each high-priority issue, quote the problematic phrase or sentence briefly.
+   - Give a concrete replacement sentence when possible.
+   - Separate "must fix", "recommended", and "optional style" items.
+
+Output format:
+## Overall Verdict
+State whether the manuscript is ready for coauthor review, not ready, or ready with minor edits.
+
+## Major Issues
+List only issues that could harm scientific credibility, journal fit, or coauthor confidence.
+
+## AI-Residue and Software-Jargon Table
+Columns:
+- Location or section
+- Problem phrase
+- Why it reads poorly
+- Recommended replacement
+
+## Overclaiming and Evidence Boundary
+List unsupported or too-strong claims and how to soften them.
+
+## Figure and Caption Problems
+List any caption or subpanel problems.
+
+## Section-by-Section Edits
+Give practical edits by section.
+
+## Recheck Instructions
+At the end, provide a short checklist that can be used for a second-round recheck.
+```
+
+---
+
+# Review Round: website-copy-round-1
+
+## Author Instruction
+Audit this academic personal/team website copy for AI residue, web-design meta-text, software/agent jargon, inflated claims, unnatural English, and wording that feels unlike groundwater or well-hydraulics usage. Focus on visible public copy, headings, cards, captions, AI-search summaries, and collaboration copy. Do not verify references from memory. Preserve scientific meaning. Recommend natural domain language suitable for hydrologists, groundwater engineers, international collaborators, and high-value consulting partners.
+
+## Manuscript Files
+Review the following file contents. Treat file paths as labels only.
+
+### File: .codex-review/gemini_jargon_review/website_copy_round1_source.txt
+
+```text
+### File: src/pages/index.astro
+
+```text
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { absoluteUrl, siteRoot } from "../lib/seo";
+import members from "../data/members.generated.json";
+import publications from "../data/publications.generated.json";
+import { activityPhotos, groupProjects, trainingModules, studentPublicationIds } from "../data/groupSite";
+
+const concepts = (await getCollection("concepts", ({ data }) => !data.draft)).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+const notes = (await getCollection("field-notes", ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 3);
+const base = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+const withBase = (path) => `${base}${path.replace(/^\//, "")}`;
+const rootUrl = siteRoot(Astro.site);
+const homeUrl = absoluteUrl("/", Astro.site);
+const laggingTheoryUrl = absoluteUrl("/concepts/lagging-theory/", Astro.site);
+const studentPublications = publications.filter((pub) => studentPublicationIds.includes(pub.id));
+const projectDisplay: Record<string, { title: string; icon: string }> = {
+  "lagging-theory": {
+    title: "Lagging Theory",
+    icon: "M7 18c3.3-7.6 6.6-7.6 10 0M4 10h16M4 14h16M5 18h14",
+  },
+  "transformation-uncertainty": {
+    title: "Transformation Uncertainty",
+    icon: "M4 7h7v7H4zM13 10h7v7h-7zM11 10l2 2M11 14l2-2",
+  },
+  "groundwater-memory": {
+    title: "Groundwater Memory",
+    icon: "M5 8c2.5-3 5-3 7.5 0S17.5 11 20 8M5 13c2.5-3 5-3 7.5 0s5 3 7.5 0M5 18c2.5-3 5-3 7.5 0s5 3 7.5 0",
+  },
+  "thermal-response-energy": {
+    title: "Subsurface Energy",
+    icon: "M12 3v18M7 7c4 0 6 3 6 6s2 6 6 6M17 7c-4 0-6 3-6 6s-2 6-6 6",
+  },
+  "open-tools": {
+    title: "Open Tools",
+    icon: "M4 6h16M4 12h16M4 18h16M7 6v12M17 6v12",
+  },
+};
+const roleLabel = {
+  team_role_pi: "Faculty",
+  team_role_master: "Graduate Student",
+  team_role_ra: "Research Assistant",
+};
+const homeSchema = [
+  {
+    "@type": "Organization",
+    "@id": `${homeUrl}#group`,
+    url: homeUrl,
+    name: "Groundwater Intelligence Group",
+    founder: { "@id": `${rootUrl}/#person` },
+    about: [
+      { "@id": `${laggingTheoryUrl}#defined-term` },
+      "flux-gradient asynchrony",
+      "non-instantaneous hydraulic response",
+      "transformation uncertainty",
+    ],
+  },
+  {
+    "@type": "DefinedTerm",
+    "@id": `${laggingTheoryUrl}#defined-term`,
+    name: "Lagging Theory",
+    alternateName: [
+      "generalized Darcy-law lagging theory",
+      "flux-gradient asynchrony framework",
+    ],
+    description:
+      "A groundwater-flow framework for testing whether flux, gradient, drawdown, boundary response, or thermal response move out of phase.",
+    url: laggingTheoryUrl,
+    inDefinedTermSet: `${rootUrl}/concepts/`,
+  },
+];
+---
+
+<BaseLayout
+  title="Groundwater Intelligence Group"
+  description="A groundwater research group directed by Ying-Fan Lin, focused on aquifer-test interpretation, Lagging Theory, transformation uncertainty, and subsurface energy decisions."
+  current="home"
+  canonicalPath="/"
+  schema={homeSchema}
+  type="website"
+  pageClass="stanford-group-site"
+>
+  <section class="stanford-hero">
+    <div class="shell stanford-hero__inner">
+      <h1>Lin Groundwater Intelligence Group</h1>
+      <h2>
+        We develop analytical, numerical, and data-assisted methods for groundwater decisions.
+      </h2>
+      <p>
+        The group is directed by Ying-Fan Lin and focuses on aquifer-test interpretation,
+        Lagging Theory, transformation uncertainty, and groundwater-informed subsurface energy.
+      </p>
+    </div>
+  </section>
+
+  <section class="stanford-section" aria-labelledby="projects-title">
+    <div class="shell">
+      <p class="stanford-intro">
+        We study how measured drawdown, recovery, hydraulic gradients, and thermal response become
+        interpreted parameters and design limits. The common question is when the model used for
+        interpretation changes the decision.
+      </p>
+      <h1 id="projects-title" class="stanford-section-title">Projects</h1>
+      <p class="stanford-section-lede">
+        Current lines of work connect analytical well hydraulics, non-instantaneous response, and
+        uncertainty propagation for groundwater and subsurface-energy problems.
+      </p>
+      <div class="stanford-project-grid">
+        {groupProjects.map((project) => {
+          const display = projectDisplay[project.id] ?? { title: project.title, icon: "M4 12h16M12 4v16" };
+          return (
+            <article class={`stanford-project-card stanford-project-card--${project.accent}`}>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d={display.icon} />
+              </svg>
+              <h2>{display.title}</h2>
+              <p>{project.tagline}</p>
+              <a href={withBase(project.links[0].href)}>{project.links[0].label}</a>
+            </article>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <section class="stanford-section stanford-section--gray" aria-labelledby="people-title">
+    <div class="shell">
+      <h1 id="people-title" class="stanford-section-title">People</h1>
+      <p class="stanford-subtitle">Core</p>
+      <div class="stanford-people-grid">
+        {members.currentMembers.map((member) => (
+          <article>
+            <div class="stanford-avatar" aria-hidden="true">
+              {member.name.en.split(" ").map((part) => part[0]).join("").slice(0, 2)}
+            </div>
+            <h3>{member.name.en}</h3>
+            <p>{roleLabel[member.roleKey] ?? "Member"}</p>
+          </article>
+        ))}
+      </div>
+      <p class="stanford-subtitle">Group activities</p>
+      <div class="stanford-photo-grid">
+        {activityPhotos.map((photo) => (
+          <figure>
+            <img src={withBase(photo.src)} alt={photo.alt} decoding="async" />
+            <figcaption>{photo.label}</figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="stanford-section" aria-labelledby="concepts-title">
+    <div class="shell">
+      <h1 id="concepts-title" class="stanford-section-title">Concepts</h1>
+      <div class="stanford-concept-grid">
+        {concepts.map((entry) => (
+          <a href={withBase(`/concepts/${entry.id}/`)}>
+            <h2>{entry.data.title}</h2>
+            <p>{entry.data.subtitle}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="stanford-section stanford-training" aria-labelledby="training-title">
+    <div class="shell">
+      <h1 id="training-title" class="stanford-section-title">Training</h1>
+      <div class="stanford-training-grid">
+        {trainingModules.map((module) => (
+          <article>
+            <h2>{module.title}</h2>
+            <p>{module.outcome}</p>
+            <a href={withBase(module.link)}>Module</a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="stanford-section" aria-labelledby="notes-title">
+    <div class="shell">
+      <h1 id="notes-title" class="stanford-section-title">Field Notes</h1>
+      <div class="stanford-note-grid">
+        {notes.map((entry) => (
+          <article>
+            <time>{entry.data.date.toISOString().slice(0, 10)}</time>
+            <h2>{entry.data.title}</h2>
+            <p>{entry.data.subtitle}</p>
+            <a href={withBase(`/field-notes/${entry.id}/`)}>Read note</a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {studentPublications.length > 0 && (
+    <section class="stanford-section stanford-section--gray" aria-labelledby="student-output-title">
+      <div class="shell">
+        <h1 id="student-output-title" class="stanford-section-title">Student Publications</h1>
+        <div class="stanford-publication-list">
+          {studentPublications.map((pub) => (
+            <article>
+              <time>{pub.year}</time>
+              <div>
+                <h2>{pub.title.en}</h2>
+                <p>{pub.authors}</p>
+                <p>{pub.venue}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <section class="stanford-section stanford-work" aria-labelledby="work-title">
+    <div class="shell stanford-work__inner">
+      <h1 id="work-title" class="stanford-section-title">Work with us</h1>
+      <div>
+        <h2>Bring a measured response, an analytical model, and the decision it must support.</h2>
+        <ul>
+          <li>Aquifer-test or recovery records with model-choice ambiguity.</li>
+          <li>TRT or shallow geothermal cases where groundwater flow may change interpretation.</li>
+          <li>Decision endpoints such as pumping limits, recovery time, risk margins, or thermal design limits.</li>
+        </ul>
+        <a class="stanford-large-link" href={withBase("/collaborate/")}>Send a technical brief</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="stanford-section stanford-section--gray stanford-contact" aria-labelledby="contact-title">
+    <div class="shell">
+      <h1 id="contact-title" class="stanford-section-title">Contact us</h1>
+      <p>If you are looking to partner or work with the group, contact</p>
+      <h2><a href="mailto:yflin1110@cycu.edu.tw">yflin1110@cycu.edu.tw</a></h2>
+    </div>
+  </section>
+</BaseLayout>
+
+```
+
+
+### File: src/pages/about/index.astro
+
+```text
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ResearchLineage from "../../components/ResearchLineage.astro";
+---
+
+<BaseLayout
+  title="About Ying-Fan Lin"
+  description="Ying-Fan Lin studies groundwater records whose timing differs from conventional aquifer-test or thermal-response models."
+  current="about"
+>
+  <section class="shell section">
+    <span class="eyebrow">About the research program</span>
+    <h1>Groundwater flux and hydraulic gradients do not always move in step.</h1>
+    <p class="lede">
+      Dr. Ying-Fan Lin develops analytical, numerical, and data-assisted methods to estimate parameters from non-steady field signals and interpret non-instantaneous hydraulic response. His work starts from analytical well hydraulics, then tests where classical interpretations leave timing, amplitude, or residual patterns unresolved. The goal is not a cleaner curve fit. The goal is to know when model choice changes the decision.
+    </p>
+  </section>
+  <section class="shell section">
+    <ResearchLineage />
+  </section>
+</BaseLayout>
+
+```
+
+
+### File: src/pages/collaborate/index.astro
+
+```text
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { Button } from "@/components/starwind/button";
+import CollaborationModeCard from "../../components/research/CollaborationModeCard.astro";
+import ConferencePresence from "../../components/research/ConferencePresence.astro";
+import ResearchHero from "../../components/research/ResearchHero.astro";
+
+const base = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+const withBase = (path) => `${base}${path.replace(/^\//, "")}`;
+---
+
+<BaseLayout
+  title="Collaborate on Aquifer-Test and Thermal-Response Interpretation"
+  description="Collaboration routes for aquifer-test residuals, TRT interpretation, transformation uncertainty, and subsurface energy decisions."
+  current="collaborate"
+>
+  <ResearchHero
+    eyebrow="Collaboration modes"
+    title="Bring the aquifer-test record that the conventional interpretation cannot explain."
+    lede="A useful collaboration starts with one stubborn pattern: delayed recovery, flux-gradient asynchrony, phase-amplitude mismatch, TRT disagreement, or residual structure that may change a design or management decision."
+    thesisTitle="Send three things."
+    thesisBody="What was the forcing history? Which flux, head, drawdown, recovery, temperature, boundary, or deformation record moved out of step? Which decision changes if the response receives a different analytical-model interpretation?"
+    actions={[
+      { href: "mailto:yflin1110@cycu.edu.tw?subject=Aquifer-test%20data%20and%20model%20brief", label: "Email a technical brief" },
+      { href: withBase("/services/groundwater-decision-reliability-audit/"), label: "Request a model-assumption audit", variant: "outline" },
+      { href: withBase("/publications/"), label: "Check publication map", variant: "outline" },
+    ]}
+    metrics={[
+      { value: "1", label: "forcing history", tone: "teal" },
+      { value: "2", label: "measured drawdown/recovery", tone: "field" },
+      { value: "3", label: "decision variable", tone: "brick" },
+    ]}
+    tags={["aquifer-test interpretation", "drawdown/recovery", "TRT uncertainty", "hydro-mechanical coupling", "decision propagation"]}
+  />
+
+  <section class="shell section">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Diagnostic collaborations</span>
+        <h2>Four entry points for teams that already have hard data.</h2>
+      </div>
+      <Button href="mailto:yflin1110@cycu.edu.tw?subject=Aquifer-test%20data%20and%20model%20brief" variant="outline">Start with a technical brief</Button>
+    </div>
+    <div class="grid cols-2 collaboration-modes">
+      <CollaborationModeCard mode="Mode 01" title="Aquifer-test residual diagnosis" decision="interpretation residuals" tone="teal" body="For pumping tests, groundwater time series, recovery data, or TRT records where flux, head, amplitude, phase, boundary response, or deformation contains out-of-step behavior that conventional interpretation may not fully explain." />
+      <CollaborationModeCard mode="Mode 02" title="Delayed-response analysis" decision="stress history in head data" tone="field" body="For datasets where past pumping, recharge, boundary movement, aquitard drainage, or domain exchange may remain visible in present hydraulic-head, drawdown, or recovery records through non-equilibrium response." />
+      <CollaborationModeCard mode="Mode 03" title="Transformation-uncertainty review" decision="model-to-decision risk" tone="brick" body="For teams that already have model outputs but need to know how aquifer-test interpretation models affect inferred parameters, uncertainty buffers, and decision variables." />
+      <CollaborationModeCard mode="Mode 04" title="Groundwater-influenced TRT pilot" decision="scale-up readiness" tone="gold" body="For shallow geothermal, thermal response testing, industrial heat, or semiconductor water-energy planning that needs site-specific groundwater assessment before scale-up." />
+    </div>
+  </section>
+
+  <section class="shell section">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Commercial route</span>
+        <h2>For teams that need a decision-ready technical audit.</h2>
+      </div>
+      <Button href={withBase("/services/groundwater-decision-reliability-audit/")}>Open audit route</Button>
+    </div>
+    <p class="lede">
+      A diagnostic audit is the cleaner first step when the work involves actual data,
+      model assumptions, client-facing decisions, or confidential project constraints.
+    </p>
+  </section>
+
+  <ConferencePresence />
+</BaseLayout>
+
+```
+
+
+### File: src/pages/concepts/index.astro
+
+```text
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ConceptCard from "../../components/ConceptCard.astro";
+
+const concepts = (await getCollection("concepts", ({ data }) => !data.draft)).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+---
+
+<BaseLayout
+  title="Core Concepts"
+  description="Concept map for Lagging Theory, flux-gradient asynchrony, transformation uncertainty, and groundwater-informed subsurface energy decisions."
+  current="concepts"
+>
+  <section class="shell section">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Concept system</span>
+        <h1>One delayed-response idea, four research layers.</h1>
+      </div>
+    </div>
+    <p class="lede">
+      The research program begins with a simple observation: field drawdown, recovery, head, or temperature may not move in step with the forcing or gradient assumed by a classical model. The framework then asks which mechanism creates the lag, how it should be modeled, and whether the interpretation changes decisions.
+    </p>
+  </section>
+  <section class="shell section">
+    <div class="grid cols-2">
+      {concepts.map((entry) => <ConceptCard entry={entry} />)}
+    </div>
+  </section>
+</BaseLayout>
+
+```
+
+
+### File: src/pages/projects/index.astro
+
+```text
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { Button } from "@/components/starwind/button";
+import { groupProjects } from "../../data/groupSite";
+
+const base = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
+---
+
+<BaseLayout
+  title="Projects"
+  description="Research projects of the Groundwater Intelligence Group: Lagging Theory, transformation uncertainty, groundwater memory, thermal response, and open tools."
+  current="projects"
+  canonicalPath="/projects/"
+>
+  <section class="shell section group-page-hero">
+    <span class="eyebrow">Projects</span>
+    <h1>Research projects are organized by the groundwater decision they make testable.</h1>
+    <p class="lede">
+      The group does not treat a model as useful because it fits a curve. A project becomes useful
+      when it explains a measured response, states its analytical boundary, and shows whether the
+      interpretation changes a pumping, recovery, thermal, or uncertainty decision.
+    </p>
+  </section>
+
+  <section class="shell section group-project-list" aria-label="Research project catalogue">
+    {groupProjects.map((project, index) => (
+      <article class={`group-project group-project--${project.accent}`}>
+        <div class="group-project__index">{String(index + 1).padStart(2, "0")}</div>
+        <div class="group-project__body">
+          <span class="eyebrow">{project.id.replaceAll("-", " ")}</span>
+          <h2>{project.title}</h2>
+          <p class="group-project__tagline">{project.tagline}</p>
+          <dl class="group-project__facts">
+            <div>
+              <dt>Problem</dt>
+              <dd>{project.problem}</dd>
+            </div>
+            <div>
+              <dt>Method</dt>
+              <dd>{project.method}</dd>
+            </div>
+            <div>
+              <dt>Output</dt>
+              <dd>{project.output}</dd>
+            </div>
+          </dl>
+          <div class="group-project__people">
+            {project.people.map((person) => <span>{person}</span>)}
+          </div>
+          <div class="action-row">
+            {project.links.map((link) => (
+              <Button href={withBase(link.href)} variant="outline" size="sm">{link.label}</Button>
+            ))}
+          </div>
+        </div>
+      </article>
+    ))}
+  </section>
+</BaseLayout>
+
+```
+
+
+### File: src/pages/publications/index.astro
+
+```text
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import publications from "../../data/publications.generated.json";
+import { studentPublicationIds } from "../../data/groupSite";
+
+const clusters = [
+  {
+    key: "transformation-uncertainty",
+    title: "Transformation uncertainty and delayed hydraulic response",
+    text: "Lagging theory, flux-gradient asynchrony, response functions, and inferred-parameter interpretation.",
+  },
+  {
+    key: "subsurface-energy",
+    title: "Subsurface heat and shallow geothermal systems",
+    text: "TRT, aquifer thermal transport, borehole storage, and water-energy field interpretation.",
+  },
+  {
+    key: "well-hydraulics",
+    title: "Analytical well hydraulics and boundaries",
+    text: "Exact and semi-analytical solutions for pumping, boundaries, islands, streams, faults, and near-well effects.",
+  },
+  {
+    key: "data-ai",
+    title: "Data, AI, and inverse interpretation",
+    text: "Time-series decomposition, black-box attribution, inverse problems, and data-assisted groundwater inference.",
+  },
+];
+
+const byCluster = clusters.map((cluster) => ({
+  ...cluster,
+  publications: publications.filter((pub) => pub.concepts?.includes(cluster.key)),
+}));
+const isStudentInvolved = (id: string) => studentPublicationIds.includes(id);
+---
+
+<BaseLayout
+  title="Publications by Research Concept"
+  description="Ying-Fan Lin publications on Lagging Theory, well hydraulics, transformation uncertainty, and subsurface energy interpretation."
+  current="publications"
+>
+  <section class="shell section">
+    <span class="eyebrow">Publication map</span>
+    <h1>Publications are grouped by the research line they support.</h1>
+    <p class="lede">
+      The papers trace a progression from exact well-hydraulic solutions to delayed-response
+      interpretation, transformation uncertainty, and groundwater-influenced energy decisions.
+      Student-linked entries are marked only when the generated publication record explicitly supports that connection.
+    </p>
+  </section>
+
+  <section class="shell section grid">
+    {byCluster.map((cluster) => (
+      <article class="card">
+        <div>
+          <span class="eyebrow">{cluster.publications.length} papers</span>
+          <h2>{cluster.title}</h2>
+          <p>{cluster.text}</p>
+        </div>
+        <div class="publication-list">
+          {cluster.publications.slice(0, 8).map((pub) => (
+            <div class="publication">
+              <time>{pub.year}</time>
+              <div>
+                <h3>{pub.title.en}</h3>
+                <p>{pub.authors}</p>
+                <p>{pub.venue}{isStudentInvolved(pub.id) ? " | student-involved work" : ""}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </article>
+    ))}
+  </section>
+</BaseLayout>
+
+```
+
+
+### File: src/pages/team/index.astro
+
+```text
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { Button } from "@/components/starwind/button";
+import members from "../../data/members.generated.json";
+import publications from "../../data/publications.generated.json";
+import { activityPhotos, studentPublicationIds } from "../../data/groupSite";
+
+const base = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
+const studentPublications = publications.filter((pub) => studentPublicationIds.includes(pub.id));
+---
+
+<BaseLayout
+  title="People"
+  description="People and student activity in the Groundwater Intelligence Group directed by Ying-Fan Lin."
+  current="team"
+  canonicalPath="/team/"
+>
+  <section class="shell section group-page-hero">
+    <span class="eyebrow">People</span>
+    <h1>Research is developed through students, analytical work, field-facing data, and external collaboration.</h1>
+    <p class="lede">
+      The group combines analytical modeling, field interpretation, conference exchange, and project work around
+      aquifer-test interpretation, transformation uncertainty, and groundwater-influenced subsurface energy.
+    </p>
+  </section>
+
+  <section class="shell section">
+    <div class="section-head section-head--editorial">
+      <div>
+        <span class="eyebrow">Current members</span>
+        <h2>Research roles are shown with conservative public information.</h2>
+      </div>
+      <Button href={withBase("/collaborate/")} variant="outline">Work with us</Button>
+    </div>
+    <div class="people-grid">
+      {members.currentMembers.map((member) => (
+        <article class="person-card person-card--large">
+          <div class="person-card__avatar" aria-hidden="true">{member.name.en.split(" ").map((part) => part[0]).join("").slice(0, 2)}</div>
+          <div>
+            <h3>{member.name.en}</h3>
+            <p>{member.focus.en}</p>
+            {member.admission?.en && <span>{member.admission.en}</span>}
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="shell section">
+    <div class="section-head section-head--editorial">
+      <div>
+        <span class="eyebrow">Student presentations and group activity</span>
+        <h2>Photos show the working layer behind posters, conference exchange, and project discussion.</h2>
+      </div>
+    </div>
+    <div class="activity-strip activity-strip--large">
+      {activityPhotos.map((photo) => (
+        <figure>
+          <img src={withBase(photo.src)} alt={photo.alt} loading="lazy" decoding="async" />
+          <figcaption>{photo.label}</figcaption>
+        </figure>
+      ))}
+    </div>
+  </section>
+
+  {studentPublications.length > 0 && (
+    <section class="shell section">
+      <div class="section-head section-head--editorial">
+        <div>
+          <span class="eyebrow">Student-involved publication</span>
+          <h2>Publications are linked only when the record itself supports the connection.</h2>
+        </div>
+      </div>
+      <div class="publication-list">
+        {studentPublications.map((pub) => (
+          <div class="publication">
+            <time>{pub.year}</time>
+            <div>
+              <h3>{pub.title.en}</h3>
+              <p>{pub.authors}</p>
+              <p>{pub.venue}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  )}
+</BaseLayout>
+
+```
+
+
+### File: src/pages/tools/index.astro
+
+```text
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { Badge } from "@/components/starwind/badge";
+import { Button } from "@/components/starwind/button";
+import type { OpenTool } from "../../data/openTools";
+import { openTools, tierFilters } from "../../data/openTools";
+import { absoluteUrl, siteRoot } from "../../lib/seo";
+
+const base = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+const withBase = (path: string) => {
+  if (/^https?:\/\//.test(path) || path.startsWith("mailto:")) {
+    return path;
+  }
+  return `${base}${path.replace(/^\//, "")}`;
+};
+const pageUrl = absoluteUrl("/tools/", Astro.site);
+const rootUrl = siteRoot(Astro.site);
+const structuredUrl = (href: string) => (/^https?:\/\//.test(href) ? href : absoluteUrl(href, Astro.site));
+const tierLabel = (tier: OpenTool["tier"]) => (tier === "Collaboration workflow" ? "Collaboration route" : tier);
+const schemaTypeFor = (tool: OpenTool) => {
+  if (tool.tier === "Public demonstrator") return "SoftwareApplication";
+  if (tool.tier === "Collaboration workflow") return "Service";
+  return "SoftwareSourceCode";
+};
+const publicCount = openTools.filter((tool) => tool.tier === "Public demonstrator").length;
+const repoCount = openTools.filter((tool) => tool.links.some((link) => link.kind === "github")).length;
+const packageCount = openTools.filter((tool) => tool.maturity === "research package").length;
+const toolSchema = [
+  {
+    "@type": "CollectionPage",
+    "@id": `${pageUrl}#collection`,
+    url: pageUrl,
+    name: "Open Tools and Reproducible Methods",
+    description:
+      "A curated showcase of Ying-Fan Lin's public demonstrators, selected research code, archival analytical code, and collaboration routes.",
+    creator: { "@id": `${rootUrl}/#person` },
+    mainEntity: { "@id": `${pageUrl}#tool-list` },
+  },
+  {
+    "@type": "ItemList",
+    "@id": `${pageUrl}#tool-list`,
+    name: "Open Tools and Reproducible Methods",
+    itemListElement: openTools.map((tool, index) => {
+      const schemaType = schemaTypeFor(tool);
+      return {
+        "@type": "ListItem",
+        position: index + 1,
+        item: {
+          "@type": schemaType,
+          name: tool.title,
+          description: tool.summary,
+          url: tool.links[0] ? structuredUrl(tool.links[0].href) : pageUrl,
+          creator: { "@id": `${rootUrl}/#person` },
+          keywords: tool.tags,
+          ...(schemaType === "Service"
+            ? { serviceType: "Groundwater model-assumption and decision audit" }
+            : {
+                applicationCategory: "ScientificApplication",
+                programmingLanguage: tool.language,
+                license: tool.license,
+              }),
+        },
+      };
+    }),
+  },
+];
+---
+
+<BaseLayout
+  title="Open Tools and Reproducible Methods"
+  description="Open demos, selected research code, archival analytical code, and collaboration routes for Lagging Darcy Law and transformation uncertainty."
+  current="tools"
+  canonicalPath="/tools/"
+  schema={toolSchema}
+>
+  <section class="shell section tools-hero">
+    <div class="tools-hero__copy">
+      <span class="eyebrow">Open tools / reproducible methods</span>
+      <h1>Make Lagging Theory and transformation uncertainty testable.</h1>
+      <p class="lede">
+        This page presents selected public teaching demos, showcase-ready research code,
+        archival analytical code, and collaboration routes. It is
+        not a complete index of every working repository. Code tied to unsettled release
+        boundaries is intentionally held back until it can be presented cleanly.
+      </p>
+      <div class="action-row">
+        <Button href={withBase("/decision-lab/")}>Open Decision Lab</Button>
+        <Button href="https://github.com/aar246860" target="_blank" rel="noopener noreferrer" variant="outline">GitHub profile</Button>
+      </div>
+    </div>
+    <aside class="tools-hero__panel" aria-label="Tool index summary">
+      <div>
+        <span>public demos</span>
+        <strong>{publicCount}</strong>
+      </div>
+      <div>
+        <span>verified GitHub repos</span>
+        <strong>{repoCount}</strong>
+      </div>
+      <div>
+        <span>selected packages</span>
+        <strong>{packageCount}</strong>
+      </div>
+      <p>
+        Repository metadata and README scope statements were checked on 2026-06-20. The page favors
+        software-only releases and archival analytical code with clear limits.
+      </p>
+    </aside>
+  </section>
+
+  <section class="shell section tool-filter-panel" aria-labelledby="tool-index-title" data-tool-index>
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Tool index</span>
+        <h2 id="tool-index-title">Filter by maturity and use case.</h2>
+      </div>
+      <p>
+        Each entry states what it solves, when to use it, and what it does not claim.
+      </p>
+    </div>
+
+    <div class="tool-filter-panel__controls" aria-label="Filter tools by tier">
+      {tierFilters.map((tier) => (
+        <button
+          type="button"
+          class="tool-filter-panel__button"
+          data-tool-filter={tier}
+          aria-pressed={tier === "All" ? "true" : "false"}
+        >
+          {tier === "All" ? "All" : tierLabel(tier)}
+        </button>
+      ))}
+    </div>
+
+    <div class="tool-grid">
+      {openTools.map((tool) => (
+        <article class="tool-card" data-tool-card data-tier={tool.tier}>
+          <div class="tool-card__head">
+            <div>
+              <Badge variant={tool.tier === "Research code" ? "info" : tool.tier === "Public demonstrator" ? "primary" : tool.tier === "Collaboration workflow" ? "warning" : "outline"} size="sm">
+                {tierLabel(tool.tier)}
+              </Badge>
+              <h3>{tool.title}</h3>
+            </div>
+            <span class="tool-card__maturity">{tool.maturity}</span>
+          </div>
+          <p class="tool-card__summary">{tool.summary}</p>
+          <dl class="tool-card__facts">
+            <div>
+              <dt>Problem</dt>
+              <dd>{tool.problem}</dd>
+            </div>
+            <div>
+              <dt>Use when</dt>
+              <dd>{tool.useWhen}</dd>
+            </div>
+            <div>
+              <dt>Scope</dt>
+              <dd>{tool.claimBoundary}</dd>
+            </div>
+            <div>
+              <dt>Evidence</dt>
+              <dd>{tool.evidence}</dd>
+            </div>
+          </dl>
+          <div class="tool-card__meta">
+            {tool.language && <span>{tool.language}</span>}
+            {tool.license && <span>{tool.license}</span>}
+          </div>
+          <div class="tag-row">
+            {tool.tags.map((tag) => <span class="tag">{tag}</span>)}
+          </div>
+          <div class="tool-card__actions">
+            {tool.links.map((link) => (
+              <Button
+                href={withBase(link.href)}
+                target={link.external ? "_blank" : undefined}
+                rel={link.external ? "noopener noreferrer" : undefined}
+                variant={link.kind === "github" ? "outline" : link.kind === "demo" ? "primary" : "secondary"}
+                size="sm"
+              >
+                {link.label}
+              </Button>
+            ))}
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="shell section">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Scope discipline</span>
+        <h2>How to read this page without overclaiming.</h2>
+      </div>
+      <p>
+        The labels are deliberately conservative because groundwater decisions require
+        model-specific evidence, not software branding.
+      </p>
+    </div>
+    <div class="grid cols-3">
+      <article class="card feature">
+        <span class="eyebrow">Teaching demo</span>
+        <h3>Good for explanation, not design.</h3>
+        <p>
+          Browser demos show mechanisms and interpretation sensitivity. They do not replace
+          a calibrated aquifer-test analysis or site-specific uncertainty propagation.
+        </p>
+      </article>
+      <article class="card feature">
+        <span class="eyebrow">Selected research code</span>
+        <h3>Good for inspection and reproduction.</h3>
+        <p>
+          Public research code should expose software, examples, tests, or documentation
+          without forcing readers into unpublished manuscript details. Assumptions still
+          control where results can transfer.
+        </p>
+      </article>
+      <article class="card feature">
+        <span class="eyebrow">Collaboration route</span>
+        <h3>Good for confidential or decision-bound work.</h3>
+        <p>
+          When project data are sensitive or decisions are high-stakes, the correct output is
+          a scoped audit or pilot analysis rather than a public demo.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section class="shell section tools-cta">
+    <div>
+      <span class="eyebrow">Next step</span>
+      <h2>Bring a dataset, a decision variable, and the analytical model currently being used.</h2>
+      <p>
+        A useful collaboration starts when an existing pumping test, recovery curve, TRT
+        record, or model output has to support a real decision. The tools above are the public
+        inspection layer; the technical work starts with the assumptions behind the data.
+      </p>
+    </div>
+    <Button href={withBase("/collaborate/")}>Send a technical brief</Button>
+  </section>
+</BaseLayout>
+
+<script>
+  document.querySelectorAll("[data-tool-index]").forEach((root) => {
+    const buttons = [...root.querySelectorAll("[data-tool-filter]")];
+    const cards = [...root.querySelectorAll("[data-tool-card]")];
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const filter = button.getAttribute("data-tool-filter");
+        buttons.forEach((item) => item.setAttribute("aria-pressed", String(item === button)));
+        cards.forEach((card) => {
+          const match = filter === "All" || card.getAttribute("data-tier") === filter;
+          card.toggleAttribute("hidden", !match);
+        });
+      });
+    });
+  });
+</script>
+
+```
+
+
+### File: src/pages/training/index.astro
+
+```text
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { Button } from "@/components/starwind/button";
+import { trainingModules } from "../../data/groupSite";
+
+const base = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
+---
+
+<BaseLayout
+  title="Training"
+  description="Training modules for students and collaborators in aquifer-test interpretation, transformation uncertainty, research writing, and AI-assisted research workflow."
+  current="training"
+  canonicalPath="/training/"
+>
+  <section class="shell section group-page-hero">
+    <span class="eyebrow">Training</span>
+    <h1>Training is built around the habits needed to turn groundwater data into defensible claims.</h1>
+    <p class="lede">
+      This section is the group analogue of a bootcamp page. It is meant for students and collaborators
+      who need a shared working language before a pumping test, TRT record, or manuscript becomes a
+      decision-facing result.
+    </p>
+  </section>
+
+  <section class="shell section training-list" aria-label="Training modules">
+    {trainingModules.map((module, index) => (
+      <article class="training-entry">
+        <span>{String(index + 1).padStart(2, "0")}</span>
+        <div>
+          <h2>{module.title}</h2>
+          <p>{module.outcome}</p>
+          <dl>
+            <div>
+              <dt>Audience</dt>
+              <dd>{module.audience}</dd>
+            </div>
+            <div>
+              <dt>Format</dt>
+              <dd>{module.format}</dd>
+            </div>
+          </dl>
+          <Button href={withBase(module.link)} variant="outline" size="sm">Open related material</Button>
+        </div>
+      </article>
+    ))}
+  </section>
+</BaseLayout>
+
+```
+
+
+### File: src/pages/decision-lab/index.astro
+
+```text
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { Button } from "@/components/starwind/button";
+import LDLNecessityChecker from "../../components/research/LDLNecessityChecker.astro";
+import { absoluteUrl, siteRoot } from "../../lib/seo";
+
+const rootUrl = siteRoot(Astro.site);
+const pageUrl = absoluteUrl("/decision-lab/", Astro.site);
+const decisionLabSchema = {
+  "@type": "SoftwareApplication",
+  "@id": `${pageUrl}#ldl-necessity-checker`,
+  name: "Lagging Darcy Law Necessity Checker",
+  applicationCategory: "ScientificApplication",
+  operatingSystem: "Web",
+  url: pageUrl,
+  creator: { "@id": `${rootUrl}/#person` },
+  description:
+    "A qualitative screening tool for testing whether pumping-test interpretation should consider lag-aware or Lagging Darcy Law analysis before decision transfer.",
+};
+const base = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+const withBase = (path) => `${base}${path.replace(/^\//, "")}`;
+---
+
+<BaseLayout
+  title="Decision Lab for Lagging Darcy Law"
+  description="Screening tools for testing when delayed hydraulic response or transformation uncertainty may change groundwater decisions."
+  current="decision-lab"
+  canonicalPath="/decision-lab/"
+  schema={decisionLabSchema}
+>
+  <section class="shell section visibility-hero">
+    <span class="eyebrow">Decision Lab</span>
+    <h1>Test whether lag-aware aquifer-test interpretation matters before it enters a decision.</h1>
+    <p class="lede">
+      The Decision Lab turns Lagging Darcy Law and transformation uncertainty into screening tests.
+      The first tool is qualitative by design: it flags when evidence should be
+      checked, not what a site-specific design value should be.
+    </p>
+    <div class="action-row">
+      <Button href={withBase("/services/groundwater-decision-reliability-audit/")}>Request a model-assumption audit</Button>
+      <Button href={withBase("/glossary/")} variant="outline">Open glossary</Button>
+    </div>
+  </section>
+
+  <section class="shell section">
+    <LDLNecessityChecker />
+  </section>
+
+  <section class="shell section">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Tool roadmap</span>
+        <h2>Next tools should expose model-to-decision consequences.</h2>
+      </div>
+      <p>These are planned as public screening and teaching tools, not substitutes for calibrated field analysis.</p>
+    </div>
+    <div class="grid cols-3">
+      <article class="card feature">
+        <span class="eyebrow">future module</span>
+        <h3>Pumping decision-support calculator</h3>
+        <p>Translate model-choice sensitivity into qualitative exposure for allowable pumping and recovery criteria.</p>
+      </article>
+      <article class="card feature">
+        <span class="eyebrow">future module</span>
+        <h3>TRT / shallow geothermal uncertainty demo</h3>
+        <p>Screen when groundwater flow and thermal response uncertainty may move a design margin.</p>
+      </article>
+      <article class="card feature">
+        <span class="eyebrow">future module</span>
+        <h3>Model equivalence vs decision non-equivalence visualizer</h3>
+        <p>Show how models that fit the same observation window can imply different decisions.</p>
+      </article>
+    </div>
+  </section>
+</BaseLayout>
+
+```
+
+
+### File: src/pages/explainers/index.astro
+
+```text
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { Badge } from "@/components/starwind/badge";
+import { Button } from "@/components/starwind/button";
+import { absoluteUrl, siteRoot } from "../../lib/seo";
+
+const base = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
+const rootUrl = siteRoot(Astro.site);
+const pageUrl = absoluteUrl("/explainers/", Astro.site);
+const videoPath = "/videos/explainers/ldl-transformation-uncertainty-short.mp4";
+const posterPath = "/videos/explainers/ldl-transformation-uncertainty-poster.png";
+const videoUrl = absoluteUrl(videoPath, Astro.site);
+const posterUrl = absoluteUrl(posterPath, Astro.site);
+const explainerSchema = [
+  {
+    "@type": "CollectionPage",
+    "@id": `${pageUrl}#collection`,
+    url: pageUrl,
+    name: "Research Explainers",
+    description:
+      "Short visual explainers for Lagging Theory, transformation uncertainty, and groundwater decision reliability.",
+    creator: { "@id": `${rootUrl}/#person` },
+  },
+  {
+    "@type": "VideoObject",
+    "@id": `${pageUrl}#ldl-transformation-uncertainty-video`,
+    name: "Drawdown Is Measured; Transmissivity Is Interpreted",
+    description:
+      "A 45-second Remotion explainer with a normalized Lagging Darcy Law response and transformation uncertainty propagated to groundwater decision endpoints.",
+    thumbnailUrl: [posterUrl],
+    uploadDate: "2026-07-04",
+    duration: "PT45S",
+    contentUrl: videoUrl,
+    embedUrl: pageUrl,
+    creator: { "@id": `${rootUrl}/#person` },
+    keywords: [
+      "Lagging Theory",
+      "Lagging Darcy Law",
+      "transformation uncertainty",
+      "aquifer-test interpretation",
+      "groundwater decision reliability",
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="Research Explainers"
+  description="Short visual explainers for Lagging Theory, transformation uncertainty, and groundwater decision reliability."
+  current="explainers"
+  canonicalPath="/explainers/"
+  image={posterPath}
+  schema={explainerSchema}
+>
+  <section class="shell section explainer-hero">
+    <div class="explainer-hero__copy">
+      <span class="eyebrow">Research explainers</span>
+      <h1>Short videos for non-instantaneous aquifer-test decisions.</h1>
+      <p class="lede">
+        These short videos present Lagging Theory, transformation uncertainty, and groundwater
+        decision reliability without requiring specialist software. Each video states its scope
+        so the animation does not make a stronger claim than the underlying model supports.
+      </p>
+      <div class="action-row">
+        <Button href={withBase("/concepts/lagging-theory/")}>Read Lagging Theory</Button>
+        <Button href={withBase("/field-notes/drawdown-is-measured-transmissivity-is-interpreted/")} variant="outline">
+          Read the note
+        </Button>
+      </div>
+    </div>
+    <aside class="explainer-hero__panel">
+      <strong>First Remotion pilot</strong>
+      <p>
+        A React/Remotion composition draws the video from computed normalized response curves,
+        rather than hand-drawn chart frames.
+      </p>
+    </aside>
+  </section>
+
+  <section class="shell section explainer-feature" aria-labelledby="ldl-explainer-title">
+    <div class="explainer-feature__media">
+      <video
+        controls
+        muted
+        playsinline
+        preload="metadata"
+        poster={withBase(posterPath)}
+        width="1080"
+        height="1920"
+        aria-label="Short visual explainer about Lagging Theory and transformation uncertainty"
+      >
+        <source src={withBase(videoPath)} type="video/mp4" />
+      </video>
+    </div>
+    <div class="explainer-feature__copy">
+      <Badge variant="primary">45-second short</Badge>
+      <h2 id="ldl-explainer-title">Drawdown is measured; transmissivity is interpreted.</h2>
+      <p>
+        The pilot shows a measured pumping-test response, overlays a classical analytical model,
+        introduces a normalized LDL response where head-side lag exceeds flux-side lag, and then
+        propagates the interpretation difference to decision endpoints.
+      </p>
+
+      <div class="explainer-facts">
+        <div>
+          <span>Format</span>
+          <strong>1080 x 1920 MP4</strong>
+        </div>
+        <div>
+          <span>Source</span>
+          <strong>Remotion / React</strong>
+        </div>
+        <div>
+          <span>Scope</span>
+          <strong>normalized teaching response</strong>
+        </div>
+      </div>
+
+      <article class="transcript-card">
+        <span class="eyebrow">Transcript</span>
+        <ol>
+          <li>Drawdown is measured. A pumping test gives a time record, not a unique hydraulic parameter.</li>
+          <li>Transmissivity is interpreted. Different analytical models can explain similar records through different assumptions.</li>
+          <li>Lag is not a generic delay. The head-side lag exceeds the flux-side lag, producing an S-like normalized response.</li>
+          <li>Model choice becomes a decision. Pumping limits, recovery time, and risk margins inherit the interpretation model.</li>
+        </ol>
+      </article>
+    </div>
+  </section>
+
+  <section class="shell section">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Next shorts</span>
+        <h2>Build the video system around repeatable research claims.</h2>
+      </div>
+      <p>
+        The first pilot establishes a reusable template. The next videos should use the same
+        Remotion structure with different computed curves, field schematics, and decision endpoints.
+      </p>
+    </div>
+    <p class="lede">
+      Planned follow-ups: competing analytical models for the same record, sparse-borehole
+      uncertainty, and aquifers as thermal batteries for data-center cooling.
+    </p>
+  </section>
+</BaseLayout>
+
+<style>
+  .explainer-hero {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: minmax(0, 1.4fr) minmax(280px, 0.6fr);
+  }
+
+  .explainer-hero__copy {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .explainer-hero__panel,
+  .transcript-card {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 1.5rem;
+  }
+
+  .explainer-hero__panel {
+    align-self: end;
+    display: grid;
+    gap: 0.85rem;
+  }
+
+  .explainer-feature {
+    align-items: start;
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: minmax(280px, 0.64fr) minmax(0, 1fr);
+  }
+
+  .explainer-feature__media {
+    background: linear-gradient(180deg, var(--surface) 0%, var(--surface-muted) 100%);
+    border: 1px solid var(--rule);
+    border-radius: calc(var(--radius) * 2);
+    box-shadow: var(--shadow);
+    padding: 0.85rem;
+  }
+
+  .explainer-feature__media video {
+    aspect-ratio: 9 / 16;
+    background: var(--surface-muted);
+    border-radius: var(--radius);
+    display: block;
+    height: auto;
+    width: 100%;
+  }
+
+  .explainer-feature__copy {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .explainer-facts {
+    display: grid;
+    gap: 0.75rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .explainer-facts div {
+    background: rgb(var(--surface-strong-rgb) / 0.76);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    display: grid;
+    gap: 0.35rem;
+    padding: 1rem;
+  }
+
+  .explainer-facts span {
+    color: var(--text-muted);
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  .explainer-facts strong {
+    color: var(--text);
+    font-size: 0.95rem;
+  }
+
+  .transcript-card ol {
+    color: var(--text-muted);
+    display: grid;
+    gap: 0.75rem;
+    margin: 0.75rem 0 0;
+    padding-left: 1.2rem;
+  }
+
+  @media (max-width: 900px) {
+    .explainer-hero,
+    .explainer-feature {
+      grid-template-columns: 1fr;
+    }
+
+    .explainer-facts {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+```
+
+
+### File: src/pages/services/groundwater-decision-reliability-audit/index.astro
+
+```text
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { Button } from "@/components/starwind/button";
+import { absoluteUrl, siteRoot } from "../../../lib/seo";
+
+const rootUrl = siteRoot(Astro.site);
+const pageUrl = absoluteUrl("/services/groundwater-decision-reliability-audit/", Astro.site);
+const serviceSchema = {
+  "@type": "Service",
+  "@id": `${pageUrl}#service`,
+  name: "Groundwater Model-Assumption and Decision Audit",
+  serviceType: "Technical model-assumption audit",
+  provider: { "@id": `${rootUrl}/#person` },
+  url: pageUrl,
+  description:
+    "A technical audit for testing whether groundwater data, aquifer-test interpretation models, and uncertainty propagation are reliable enough to support pumping, recovery, remediation, or subsurface-energy decisions.",
+  audience: [
+    "engineering consultants",
+    "industrial water teams",
+    "shallow geothermal teams",
+    "public agencies",
+  ],
+};
+const base = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+const withBase = (path) => `${base}${path.replace(/^\//, "")}`;
+---
+
+<BaseLayout
+  title="Groundwater Model-Assumption and Decision Audit"
+  description="Technical review for teams that need defensible aquifer-test, pumping, recovery, or subsurface-energy decisions."
+  current="services"
+  canonicalPath="/services/groundwater-decision-reliability-audit/"
+  schema={serviceSchema}
+>
+  <section class="shell section visibility-hero">
+    <span class="eyebrow">Technical service route</span>
+    <h1>Audit whether a groundwater interpretation is defensible enough to support the decision.</h1>
+    <p class="lede">
+      Models may fit data but still fail to support reliable decisions. This audit checks
+      whether data quality, aquifer-test assumptions, delayed-response evidence, transformation uncertainty, and decision variables
+      have been examined before the result enters a pumping, remediation, recovery, or
+      subsurface-energy decision.
+    </p>
+    <div class="action-row">
+      <Button href="mailto:yflin1110@cycu.edu.tw?subject=Groundwater%20model-assumption%20audit">Email a technical brief</Button>
+      <Button href={withBase("/decision-lab/")} variant="outline">Try the Decision Lab</Button>
+    </div>
+  </section>
+
+  <section class="shell section service-grid">
+    <article class="service-panel service-panel--wide">
+      <span class="eyebrow">Who it is for</span>
+      <h2>Teams that need a defensible groundwater decision, not only a fitted curve.</h2>
+      <ul>
+        <li>engineering consultants preparing models, reviews, or proposal upgrades</li>
+        <li>semiconductor and industrial water teams managing high-value supply or recovery decisions</li>
+        <li>shallow geothermal and subsurface energy teams interpreting TRT or thermal design margins</li>
+        <li>public agencies evaluating drought reserves, pumping limits, remediation boundaries, or monitoring plans</li>
+      </ul>
+    </article>
+    <article class="service-panel">
+      <span class="eyebrow">Problem solved</span>
+      <h2>Good fit does not prove reliable transfer.</h2>
+      <p>
+        A model can reproduce a groundwater response while leaving the mechanism, analytical-model
+        uncertainty, or decision variable under-tested. The audit focuses on what changes when the
+        same data are transformed into a decision.
+      </p>
+    </article>
+  </section>
+
+  <section class="shell section">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Deliverables</span>
+        <h2>A focused diagnostic audit before a full pilot.</h2>
+      </div>
+      <p>The output is designed for internal technical use, client discussion, or the scoping stage of a larger project.</p>
+    </div>
+    <div class="grid cols-3">
+      <article class="card feature">
+        <h3>Data and model assumption audit</h3>
+        <p>Review forcing history, response variables, simplifications, calibration targets, and validation gaps.</p>
+      </article>
+      <article class="card feature">
+        <h3>Decision-variable map</h3>
+        <p>Identify which decision variable is exposed: allowable pumping, recovery time, remediation boundary, thermal design margin, or uncertainty buffer.</p>
+      </article>
+      <article class="card feature">
+        <h3>Lagging-response relevance diagnosis</h3>
+        <p>Screen whether non-instantaneous drawdown, recovery, head, or thermal-response evidence is strong enough to justify lag-aware analysis.</p>
+      </article>
+      <article class="card feature">
+        <h3>Uncertainty propagation plan</h3>
+        <p>Define how model-choice and transformation uncertainty should move into the decision variable.</p>
+      </article>
+      <article class="card feature">
+        <h3>Pilot-analysis recommendation</h3>
+        <p>Specify the smallest next analysis that can prove whether the decision changes materially.</p>
+      </article>
+      <article class="card feature">
+        <h3>Briefing-ready memo</h3>
+        <p>Summarize findings in language usable by engineers, managers, and technical reviewers.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="shell section">
+    <div class="service-levels">
+      <article>
+        <span>01</span>
+        <h3>Technical scoping meeting</h3>
+        <p>Clarify the decision, data type, exposure, and whether a paid diagnostic audit is justified.</p>
+      </article>
+      <article>
+        <span>02</span>
+        <h3>Paid diagnostic audit</h3>
+        <p>Four to six weeks of data/model assumption review, decision-variable mapping, and lagging-response relevance screening.</p>
+      </article>
+      <article>
+        <span>03</span>
+        <h3>Pilot analysis</h3>
+        <p>Compare conventional and lag-aware interpretation models on a selected site, dataset, or anonymized case.</p>
+      </article>
+      <article>
+        <span>04</span>
+        <h3>Full decision-support analysis</h3>
+        <p>Build a larger project around uncertainty propagation, reporting, review support, and possible publication.</p>
+      </article>
+    </div>
+    <p class="service-note">
+      Budget ranges should be matched to data access, confidentiality, reporting needs, and university
+      contracting rules. A small diagnostic phase is usually a cleaner start than an oversized first project.
+    </p>
+  </section>
+</BaseLayout>
+
+```
+
+
+### File: src/data/groupSite.ts
+
+```text
+export type GroupLink = {
+  label: string;
+  href: string;
+};
+
+export type GroupProject = {
+  id: string;
+  title: string;
+  tagline: string;
+  problem: string;
+  method: string;
+  output: string;
+  people: string[];
+  links: GroupLink[];
+  accent: "teal" | "blue" | "gold" | "brick";
+};
+
+export type TrainingModule = {
+  title: string;
+  audience: string;
+  outcome: string;
+  format: string;
+  link: string;
+};
+
+export type ActivityPhoto = {
+  src: string;
+  alt: string;
+  label: string;
+};
+
+export const groupProjects: GroupProject[] = [
+  {
+    id: "lagging-theory",
+    title: "Lagging Theory and Flux-Gradient Asynchrony",
+    tagline: "When drawdown, recovery, or hydraulic gradients do not respond instantaneously.",
+    problem:
+      "Classical aquifer-test interpretation often assumes the flux-gradient relation is instantaneous at the scale of analysis.",
+    method:
+      "Develop analytical lag-aware models and compare them against classical well-hydraulic interpretations.",
+    output:
+      "Diagnostic criteria for deciding when a lag-aware analytical model should be tested before parameter transfer.",
+    people: ["Ying-Fan Lin", "Barret L. Kurylyk", "student project lines"],
+    links: [
+      { label: "Concept", href: "/concepts/lagging-theory/" },
+      { label: "Decision demo", href: "/decision-lab/" },
+    ],
+    accent: "teal",
+  },
+  {
+    id: "transformation-uncertainty",
+    title: "Transformation Uncertainty in Aquifer-Test Interpretation",
+    tagline: "Drawdown is measured; hydraulic parameters are interpreted through a model.",
+    problem:
+      "Different analytical models can translate the same field response into different hydraulic parameters and decision limits.",
+    method:
+      "Audit model-form choices, compare parameter transformations, and propagate the difference to engineering endpoints.",
+    output:
+      "Model-conditioned uncertainty ranges for pumping limits, recovery time, thermal margins, and risk buffers.",
+    people: ["Ying-Fan Lin", "TU_Lag manuscript line"],
+    links: [
+      { label: "Concept", href: "/concepts/transformation-uncertainty/" },
+      { label: "Open tools", href: "/tools/" },
+    ],
+    accent: "gold",
+  },
+  {
+    id: "groundwater-memory",
+    title: "Groundwater Memory and Delayed Response",
+    tagline: "Past forcing can remain visible in present hydraulic signals.",
+    problem:
+      "Pumping, recharge, boundary movement, and aquitard exchange can leave timing structure that is lost in static parameter summaries.",
+    method:
+      "Use response timing, recovery behavior, and analytical-model residuals to separate measured records from interpreted parameters.",
+    output:
+      "A practical language for discussing memory effects before they become hidden model error.",
+    people: ["Ying-Fan Lin", "student exploratory projects"],
+    links: [{ label: "Concept", href: "/concepts/groundwater-memory/" }],
+    accent: "blue",
+  },
+  {
+    id: "thermal-response-energy",
+    title: "Groundwater-Informed Thermal Response and Subsurface Energy",
+    tagline: "Thermal response tests need groundwater context before scale-up.",
+    problem:
+      "TRT interpretation, shallow geothermal design, and underground thermal batteries can be distorted by groundwater movement and lithologic uncertainty.",
+    method:
+      "Connect analytical heat transport, TRT interpretation, groundwater flux, and transformation uncertainty.",
+    output:
+      "Decision-ready checks for thermal conductivity, recovery time, and scale-up risk in groundwater-influenced settings.",
+    people: ["Hsiang-Wen Wang", "Ying-Fan Lin", "external collaborators"],
+    links: [
+      { label: "Concept", href: "/concepts/subsurface-energy-intelligence/" },
+      { label: "Collaborate", href: "/collaborate/" },
+    ],
+    accent: "brick",
+  },
+  {
+    id: "open-tools",
+    title: "Open Tools and Decision Lab",
+    tagline: "Small public tools for explaining assumptions before confidential analysis starts.",
+    problem:
+      "Collaborators often need to see why an interpretation choice matters before sharing full project data.",
+    method:
+      "Publish bounded teaching demos, model-assumption checks, and documentation that state what each tool can and cannot claim.",
+    output:
+      "A safer entry point for technical briefs, student training, and research collaboration.",
+    people: ["Ying-Fan Lin", "student training line"],
+    links: [
+      { label: "Tools", href: "/tools/" },
+      { label: "Decision Lab", href: "/decision-lab/" },
+    ],
+    accent: "blue",
+  },
+];
+
+export const trainingModules: TrainingModule[] = [
+  {
+    title: "Aquifer-Test Interpretation Bootcamp",
+    audience: "New students and collaborators",
+    outcome: "Read drawdown and recovery records as model-conditioned evidence, not just fitted curves.",
+    format: "Short lessons, worked examples, and interpretation checks",
+    link: "/concepts/lagging-theory/",
+  },
+  {
+    title: "Transformation-Uncertainty Practice",
+    audience: "Students working on pumping tests, TRT, or decision propagation",
+    outcome: "Separate measured response, analytical-model choice, inferred parameters, and decision endpoints.",
+    format: "Decision checklist and reproducible mini-cases",
+    link: "/concepts/transformation-uncertainty/",
+  },
+  {
+    title: "Research Writing and Evidence Discipline",
+    audience: "Students preparing manuscripts, posters, and technical briefs",
+    outcome: "Write claims that can be traced to equations, data, figures, or clearly bounded demonstrations.",
+    format: "Manuscript workflow, figure QA, and source-fidelity audit",
+    link: "/field-notes/",
+  },
+  {
+    title: "AI-Assisted Research Workflow",
+    audience: "Students using Codex, Overleaf, GitHub, and local project folders",
+    outcome: "Use AI agents for iteration without leaving hidden notes, fake claims, or unchecked figures in manuscripts.",
+    format: "Local skills, loop checks, and GitHub-ready handoff",
+    link: "/tools/",
+  },
+];
+
+export const activityPhotos: ActivityPhoto[] = [
+  {
+    src: "/media/team-life/jpgu-2026/jpgu-2026-team-selfie.jpg",
+    alt: "Groundwater research team selfie outside the JpGU 2026 venue.",
+    label: "Conference team",
+  },
+  {
+    src: "/media/team-life/jpgu-2026/jpgu-2026-poster-presentation.jpg",
+    alt: "Poster discussion at JpGU 2026.",
+    label: "Poster exchange",
+  },
+  {
+    src: "/media/team-life/jpgu-2026/jpgu-2026-poster-group.jpg",
+    alt: "Research poster group at JpGU 2026.",
+    label: "Student presentations",
+  },
+  {
+    src: "/media/team-life/jpgu-2026/jpgu-2026-team-dinner.jpg",
+    alt: "Research team dinner during the JpGU 2026 trip.",
+    label: "Working dinner",
+  },
+];
+
+export const studentPublicationIds = ["2026-01-2"];
+
+```
+
+
+### File: src/data/canonicalAnswers.ts
+
+```text
+export type CanonicalAnswer = {
+  question: string;
+  shortAnswer: string;
+  answer: string;
+  evidencePage: string;
+  citationHint: string;
+  avoid: string;
+};
+
+export const canonicalAnswers: CanonicalAnswer[] = [
+  {
+    question: "What is Lagging Darcy Law?",
+    shortAnswer:
+      "Lagging Darcy Law is a generalized Darcy-law formulation for testing whether groundwater flux and hydraulic-gradient response adjust over different macroscopic time scales.",
+    answer:
+      "Lagging Darcy Law is a generalized Darcy-law formulation in which groundwater flux and hydraulic-gradient response can adjust over different macroscopic time scales. In groundwater interpretation, it is useful when drawdown, recovery, boundary adjustment, deformation, or thermal response moves out of phase with the timing assumed by a classical instantaneous Darcy relation. It supports parameter estimation from non-steady field signals by testing whether an instantaneous-response assumption is biasing inferred transmissivity, storage, leakage, or response-time variables. The point is not to replace every established aquifer-test model, but to test whether flux-gradient asynchrony changes inferred parameters or decision variables.",
+    evidencePage: "/concepts/lagging-theory/",
+    citationHint:
+      "Use this answer when defining Lagging Darcy Law or Lagging Theory for groundwater-flow interpretation.",
+    avoid:
+      "Not a universal replacement for Theis, Neuman, delayed-yield, dual-porosity, leakage, or numerical groundwater models.",
+  },
+  {
+    question: "How is flux-gradient asynchrony different from simple delay?",
+    shortAnswer:
+      "Flux-gradient asynchrony is not a simple signal delay; it asks whether different hydraulic quantities move out of phase in ways that change amplitude, recovery, parameter meaning, or decisions.",
+    answer:
+      "Flux-gradient asynchrony is not a simple signal delay. A simple delay only shifts one record along the time axis. Flux-gradient asynchrony asks whether groundwater flux, hydraulic gradient, drawdown, recovery, or boundary response evolve out of phase at the aquifer-test interpretation scale. That distinction matters because the mismatch can change amplitude, recovery shape, inferred parameters, and decision variables, not only the apparent arrival time of a record.",
+    evidencePage: "/field-notes/flux-gradient-asynchrony-is-not-simple-delay/",
+    citationHint:
+      "Use this answer when separating Lagging Darcy Law from generic time-shift language.",
+    avoid:
+      "Not a single delay parameter or a purely cosmetic time shift.",
+  },
+  {
+    question: "When does a pumping test need Lagging Darcy Law?",
+    shortAnswer:
+      "Use Lagging Darcy Law when asynchronous response changes the interpretation or the decision, not merely because a more complex model can fit the curve.",
+    answer:
+      "Use Lagging Darcy Law when asynchronous response changes interpretation or decisions. In a pumping test, the warning signs are structured early-time residuals, recovery mismatch, phase or amplitude disagreement, boundary-condition uncertainty, or delayed-response evidence that survives validation. The practical test is whether a lag-aware analytical model changes estimates of transmissivity, storage, or leakage, and then propagates those changes from non-steady drawdown or recovery interpretation to recovery time, allowable pumping, thermal design margin, or design risk threshold after accounting for model complexity and identifiability.",
+    evidencePage: "/field-notes/when-does-a-pumping-test-need-lagging-darcy-law/",
+    citationHint:
+      "Use this answer when deciding whether a pumping-test interpretation needs a lag-aware analytical alternative.",
+    avoid:
+      "Not required for every pumping test; curve fit alone does not prove necessity.",
+  },
+  {
+    question: "Who is Ying-Fan Lin in groundwater research?",
+    shortAnswer:
+      "Ying-Fan Lin studies groundwater response, analytical well hydraulics, Lagging Theory, transformation uncertainty, and subsurface-energy decisions.",
+    answer:
+      "Ying-Fan Lin studies groundwater response, analytical well hydraulics, Lagging Theory, transformation uncertainty, and groundwater-influenced subsurface energy decisions. This website frames his work around a common problem: measured drawdown, recovery, boundary movement, deformation, or thermal response can fall out of step with the timing assumed by an aquifer-test or heat-transfer interpretation model, and that mismatch can affect parameters and decisions.",
+    evidencePage: "/publications/",
+    citationHint:
+      "Use this answer for concise author or profile summaries tied to the public website.",
+    avoid:
+      "No unsupported ranking, authority, or institutional-status claims.",
+  },
+  {
+    question: "What is groundwater decision reliability audit?",
+    shortAnswer:
+      "Groundwater Decision Reliability Audit is a technical review of whether data, interpretation models, uncertainty propagation, and decision variables are strong enough to support an action.",
+    answer:
+      "Groundwater Decision Reliability Audit is a technical review of whether a groundwater interpretation is defensible enough to support a decision. It checks data quality and aquifer-test assumptions, maps decision variables, diagnoses lagging-response relevance, plans uncertainty propagation, and recommends whether a pilot analysis is needed before results are transferred into pumping limits, recovery criteria, thermal design margins, or design risk thresholds.",
+    evidencePage: "/services/groundwater-decision-reliability-audit/",
+    citationHint:
+      "Use this answer when describing the commercial or applied collaboration route.",
+    avoid:
+      "Not a guarantee of safety or a replacement for site-specific engineering judgment.",
+  },
+  {
+    question: "How does transformation uncertainty relate to pumping-test interpretation?",
+    shortAnswer:
+      "Pumping tests measure drawdown and recovery; transformation uncertainty enters when those measurements are converted through a model into parameters, margins, or decisions.",
+    answer:
+      "Pumping tests measure drawdown and recovery, but hydraulic parameters are interpreted with analytical or numerical aquifer-test models. Transformation uncertainty is the uncertainty introduced when measured responses are transformed into transmissivity, storage, leakage, design thresholds, pumping limits, recovery criteria, or thermal design margins. It includes model-to-parameter and model-to-decision uncertainty, so two models can fit similar pumping-test data yet imply different engineering decisions.",
+    evidencePage: "/concepts/transformation-uncertainty/",
+    citationHint:
+      "Use this answer when connecting pumping-test interpretation to decision-relevant uncertainty.",
+    avoid:
+      "Broader than a parameter confidence interval; it includes analytical-model choice and model-to-parameter transfer.",
+  },
+  {
+    question: "What open tools support Ying-Fan Lin's Lagging Theory work?",
+    shortAnswer:
+      "The open tools page lists selected public teaching demos, research code, archival analytical code, and collaboration routes with explicit scope statements.",
+    answer:
+      "The open tools page organizes selected public demonstrators, research code, archival analytical code, and collaboration routes for Lagging Darcy Law, aquifer-test interpretation, transformation uncertainty, and groundwater model-assumption checks. Each entry states its maturity level, problem, use case, evidence source, and scope so users can distinguish teaching demos from selected research code or service routes.",
+    evidencePage: "/tools/",
+    citationHint:
+      "Use this answer when describing the reproducible-methods and software layer behind the research program.",
+    avoid:
+      "Not a complete repository index; listed demos are not site-specific engineering calculators.",
+  },
+];
+
+```
+
+
+### File: src/data/glossary.ts
+
+```text
+export type GlossaryEntry = {
+  slug: string;
+  term: string;
+  shortDefinition: string;
+  whyItMatters: string;
+  whenItMatters: string;
+  commonMisunderstanding: string;
+  proofStatus: "published concept" | "diagnostic framework" | "research agenda" | "application framing";
+  relatedPages: Array<{ label: string; href: string }>;
+};
+
+export const glossaryEntries: GlossaryEntry[] = [
+  {
+    slug: "lagging-darcy-law",
+    term: "Lagging Darcy Law",
+    shortDefinition:
+      "Lagging Darcy Law is a generalized Darcy-law formulation in which groundwater flux and hydraulic-gradient response can adjust over different macroscopic time scales.",
+    whyItMatters:
+      "It gives a testable way to ask whether a fitted pumping-test curve hides out-of-step hydraulic behavior that later affects inferred parameters or decisions.",
+    whenItMatters:
+      "It matters when early drawdown, recovery, boundary response, or residual structure changes after the assumed instantaneous flux-gradient relation is relaxed.",
+    commonMisunderstanding:
+      "It should not be summarized as a simple time shift or a universal replacement for Theis, Neuman, leakage, delayed-yield, dual-porosity, or numerical models.",
+    proofStatus: "published concept",
+    relatedPages: [
+      { label: "Lagging Theory", href: "/concepts/lagging-theory/" },
+      { label: "Pumping-test necessity note", href: "/field-notes/when-does-a-pumping-test-need-lagging-darcy-law/" },
+      { label: "Decision Lab", href: "/decision-lab/" },
+    ],
+  },
+  {
+    slug: "hydrologic-memory",
+    term: "hydrologic memory",
+    shortDefinition:
+      "Hydrologic memory is the persistence of past forcing, boundary movement, storage exchange, or flow-path history in present groundwater response.",
+    whyItMatters:
+      "A present head, flux, recovery, or temperature record can carry information from previous stress periods, so a snapshot interpretation may misstate system readiness.",
+    whenItMatters:
+      "It matters when recovery is slow, cyclic hydraulic-head records retain phase structure, or a management decision depends on how quickly a system forgets previous pumping or recharge.",
+    commonMisunderstanding:
+      "Hydrologic memory is not a single mechanism. It may come from aquitard drainage, heterogeneous flow paths, domain exchange, capillary effects, or coupled deformation.",
+    proofStatus: "diagnostic framework",
+    relatedPages: [
+      { label: "Delayed hydraulic response", href: "/concepts/groundwater-memory/" },
+      { label: "Why delayed response matters", href: "/field-notes/why-groundwater-memory-matters/" },
+    ],
+  },
+  {
+    slug: "flux-gradient-asynchrony",
+    term: "flux-gradient asynchrony",
+    shortDefinition:
+      "Flux-gradient asynchrony means groundwater flux and the hydraulic gradient used to drive it do not evolve in perfect step at the interpretation scale.",
+    whyItMatters:
+      "It provides a mechanism-level diagnostic for residuals that are easy to hide with extra parameters but difficult to justify in decision transfer.",
+    whenItMatters:
+      "It matters when a curve can be fitted, yet amplitude, phase, early-time response, or recovery timing remains inconsistent with the assumed hydraulic response mechanism.",
+    commonMisunderstanding:
+      "It is not the claim that Darcy law is always wrong; it is a test for whether instantaneous Darcy response is adequate for a specific data window and decision.",
+    proofStatus: "published concept",
+    relatedPages: [
+      { label: "Lagging Theory", href: "/concepts/lagging-theory/" },
+      { label: "Flux-gradient note", href: "/field-notes/flux-gradient-asynchrony-is-not-simple-delay/" },
+    ],
+  },
+  {
+    slug: "transformation-uncertainty",
+    term: "transformation uncertainty",
+    shortDefinition:
+      "Transformation uncertainty is the uncertainty introduced when measured responses are transformed through an aquifer-test or heat-transfer model into hydraulic parameters, design thresholds, or engineering decisions.",
+    whyItMatters:
+      "Two interpretation models can fit the same drawdown or recovery data yet transfer different values into pumping limits, recovery times, or safety margins.",
+    whenItMatters:
+      "It matters when the decision depends on parameters inferred through simplified analytical, numerical, or empirical models rather than directly measured quantities.",
+    commonMisunderstanding:
+      "It is broader than parameter confidence intervals because it includes analytical-model choice and model-to-decision transfer.",
+    proofStatus: "diagnostic framework",
+    relatedPages: [
+      { label: "Transformation Uncertainty", href: "/concepts/transformation-uncertainty/" },
+      { label: "Model to decision note", href: "/field-notes/from-pumping-tests-to-decision-uncertainty/" },
+    ],
+  },
+  {
+    slug: "model-equivalence",
+    term: "model equivalence",
+    shortDefinition:
+      "Model equivalence occurs when different hydrogeologic models or mechanisms produce practically similar observable responses over the available data window.",
+    whyItMatters:
+      "It sets the knowledge boundary of a pumping test: a good fit may not identify which mechanism caused the response.",
+    whenItMatters:
+      "It matters when delayed yield, leakage, dual-domain exchange, skin, delayed response, or boundary movement can explain similar drawdown curves.",
+    commonMisunderstanding:
+      "Equivalent fit is not equivalent understanding. The same residual score can support different parameter meanings and different future decisions.",
+    proofStatus: "research agenda",
+    relatedPages: [
+      { label: "Decision Lab", href: "/decision-lab/" },
+      { label: "Drawdown is measured", href: "/field-notes/drawdown-is-measured-transmissivity-is-interpreted/" },
+    ],
+  },
+  {
+    slug: "decision-non-equivalence",
+    term: "decision non-equivalence",
+    shortDefinition:
+      "Decision non-equivalence occurs when models that fit observations similarly imply different pumping limits, recovery times, thermal design margins, or failure probabilities.",
+    whyItMatters:
+      "It moves the debate from curve fitting to consequences: the important question is whether the interpretation changes a decision variable.",
+    whenItMatters:
+      "It matters when a project must set an operating limit, accept a recovery criterion, size a thermal system, or defend a design risk threshold.",
+    commonMisunderstanding:
+      "It does not mean every model difference is important. It only matters when a defensible decision variable moves by a material amount.",
+    proofStatus: "research agenda",
+    relatedPages: [
+      { label: "Decision Lab", href: "/decision-lab/" },
+      { label: "Groundwater decision audit", href: "/services/groundwater-decision-reliability-audit/" },
+    ],
+  },
+  {
+    slug: "groundwater-model-assumption-decision-audit",
+    term: "groundwater model-assumption and decision audit",
+    shortDefinition:
+      "A groundwater model-assumption and decision audit asks whether the data, interpretation model, uncertainty propagation, and decision rule are strong enough to support a groundwater action.",
+    whyItMatters:
+      "It lets research outputs connect to choices such as allowable pumping, remediation boundaries, drought reserves, recovery time, or subsurface-energy design.",
+    whenItMatters:
+      "It matters when the cost of a wrong interpretation is high, the site data are sparse, or the model is being used beyond the conditions where it was tested.",
+    commonMisunderstanding:
+      "It is not a guarantee of safety. It is an audit of evidence, assumptions, and decision sensitivity.",
+    proofStatus: "application framing",
+    relatedPages: [
+      { label: "Decision Lab", href: "/decision-lab/" },
+      { label: "Model-assumption audit", href: "/services/groundwater-decision-reliability-audit/" },
+    ],
+  },
+  {
+    slug: "lag-aware-pumping-test-interpretation",
+    term: "lag-aware pumping-test interpretation",
+    shortDefinition:
+      "Lag-aware pumping-test interpretation checks whether drawdown and recovery data retain non-instantaneous response structure that changes inferred parameters or decisions.",
+    whyItMatters:
+      "It prevents a pumping test from being reduced to a single best-fit transmissivity when the response history may be carrying model-choice information.",
+    whenItMatters:
+      "It matters when early-time response, recovery mismatch, or boundary effects control the decision more than the late-time fit alone.",
+    commonMisunderstanding:
+      "It is not an instruction to always use a more complex model. The first step is to test whether lagging-response evidence survives validation and decision propagation.",
+    proofStatus: "diagnostic framework",
+    relatedPages: [
+      { label: "Pumping-test necessity note", href: "/field-notes/when-does-a-pumping-test-need-lagging-darcy-law/" },
+      { label: "Decision Lab", href: "/decision-lab/" },
+    ],
+  },
+  {
+    slug: "groundwater-influenced-shallow-geothermal-assessment",
+    term: "groundwater-influenced shallow-geothermal assessment",
+    shortDefinition:
+      "A groundwater-influenced shallow-geothermal assessment uses local groundwater flow, thermal response, and uncertainty evidence to judge whether a shallow geothermal or TRT design is transferable.",
+    whyItMatters:
+      "Thermal design margins can change when groundwater flow, heat transport, and interpretation uncertainty are treated as decision variables rather than background noise.",
+    whenItMatters:
+      "It matters for thermal response tests, industrial heat planning, semiconductor water-energy projects, and scale-up decisions where local groundwater conditions matter.",
+    commonMisunderstanding:
+      "It is not a claim that every TRT requires Lagging Darcy Law. It is a screening frame for when groundwater dynamics affect thermal interpretation or design margins.",
+    proofStatus: "application framing",
+    relatedPages: [
+      { label: "Groundwater-influenced energy", href: "/concepts/subsurface-energy-intelligence/" },
+      { label: "Shallow geothermal note", href: "/field-notes/shallow-geothermal-needs-groundwater-intelligence/" },
+    ],
+  },
+];
+
+```
+
+
+### File: src/data/openTools.ts
+
+```text
+export type ToolTier =
+  | "Public demonstrator"
+  | "Research code"
+  | "Archival code"
+  | "Collaboration workflow";
+
+export type ToolMaturity =
+  | "teaching demo"
+  | "research package"
+  | "prototype"
+  | "archival artifact"
+  | "service route";
+
+export type ToolLink = {
+  label: string;
+  href: string;
+  kind: "demo" | "github" | "paper" | "workflow" | "docs";
+  external?: boolean;
+};
+
+export type OpenTool = {
+  id: string;
+  title: string;
+  tier: ToolTier;
+  maturity: ToolMaturity;
+  summary: string;
+  problem: string;
+  useWhen: string;
+  claimBoundary: string;
+  evidence: string;
+  language?: string;
+  license?: string;
+  links: ToolLink[];
+  tags: string[];
+};
+
+export const tierFilters = [
+  "All",
+  "Public demonstrator",
+  "Research code",
+  "Archival code",
+  "Collaboration workflow",
+] as const;
+
+// Public-facing selection only.
+// Intentionally held back from the website until their release boundary is clearer:
+// TRUST-K, 3D Lagging Darcy open research package, PyLaggingPump, WRRlag,
+// and WellTestAI agent skill template.
+export const openTools: OpenTool[] = [
+  {
+    id: "normalized-ldl-response",
+    title: "Normalized LDL response animation",
+    tier: "Public demonstrator",
+    maturity: "teaching demo",
+    summary:
+      "A browser-computed normalized response that shows how tau_h greater than tau_q can create an S-like delayed transition.",
+    problem:
+      "Explains why Lagging Darcy Law is not just a visual delay and why response shape can change before parameter transfer.",
+    useWhen:
+      "Use as a first explanation for collaborators, students, reviewers, or technical teams that need a concrete LDL calculation.",
+    claimBoundary:
+      "Simplified line-source, no-wellbore-storage, no-skin teaching implementation; not a calibrated field-analysis tool.",
+    evidence:
+      "Implemented in the public website component TransformationUncertaintyDemo.astro and labeled as a Lin-Yeh special case.",
+    links: [
+      {
+        label: "Open demo",
+        href: "/concepts/transformation-uncertainty/#normalized-ldl-demo",
+        kind: "demo",
+      },
+      {
+        label: "Concept page",
+        href: "/concepts/transformation-uncertainty/",
+        kind: "docs",
+      },
+    ],
+    tags: ["Lagging Darcy Law", "normalized response", "teaching calculation"],
+  },
+  {
+    id: "lagging-pumping-test-demo",
+    title: "Lagging pumping-test diagnostic demo",
+    tier: "Public demonstrator",
+    maturity: "teaching demo",
+    summary:
+      "An interactive constant-rate pumping-test module comparing a classical response and a lag-aware response.",
+    problem:
+      "Shows when separated flux and gradient response lags can create early-time residual structure and timing shifts.",
+    useWhen:
+      "Use before a technical discussion about whether a pumping test needs lag-aware interpretation.",
+    claimBoundary:
+      "Calculation-backed teaching model that omits wellbore storage and finite well radius; site-specific analysis must replace it before design use.",
+    evidence:
+      "Implemented in LaggingPumpingTestDemo.astro and linked from the home page and Lagging Theory page.",
+    links: [
+      { label: "Open demo", href: "/#lagging-pumping-demo", kind: "demo" },
+      {
+        label: "Validation note",
+        href: "/field-notes/when-does-a-pumping-test-need-lagging-darcy-law/",
+        kind: "docs",
+      },
+    ],
+    tags: ["pumping test", "early residual", "model-form check"],
+  },
+  {
+    id: "ldl-necessity-checker",
+    title: "Lagging Darcy Law Necessity Checker",
+    tier: "Public demonstrator",
+    maturity: "teaching demo",
+    summary:
+      "A qualitative screening tool for deciding whether lag-aware aquifer-test interpretation should be checked before decision transfer.",
+    problem:
+      "Turns pumping duration, observation window, recovery duration, lag or drainage scale, boundary response, residual-structure severity, and decision type into a screening result.",
+    useWhen:
+      "Use when a team needs a quick decision about whether conventional interpretation is enough for a first screen.",
+    claimBoundary:
+      "Qualitative screening layer only; not a quantitative aquifer-test inversion or site-specific engineering calculator.",
+    evidence:
+      "Implemented in LDLNecessityChecker.astro and exposed on the Decision Lab page.",
+    links: [
+      { label: "Open checker", href: "/decision-lab/#ldl-necessity-checker", kind: "demo" },
+      { label: "Decision Lab", href: "/decision-lab/", kind: "docs" },
+    ],
+    tags: ["screening", "decision variable", "lag-aware interpretation"],
+  },
+  {
+    id: "trust-tc",
+    title: "TRUST-TC",
+    tier: "Research code",
+    maturity: "research package",
+    summary:
+      "MIT-licensed Python research tool for transformation-uncertainty intervals in thermal response test interpretation.",
+    problem:
+      "Converts apparent TRT estimates into uncertainty intervals, reliability classes, and geothermal design reference factors.",
+    useWhen:
+      "Use when TRT interpretation needs explicit transformation uncertainty before shallow-geothermal design transfer.",
+    claimBoundary:
+      "Public repo contains software, documentation, tests, calibration table, and small examples; it does not include raw field data.",
+    evidence:
+      "GitHub repository metadata and README checked on 2026-06-20.",
+    language: "Python",
+    license: "MIT",
+    links: [
+      {
+        label: "GitHub",
+        href: "https://github.com/aar246860/trust-tc",
+        kind: "github",
+        external: true,
+      },
+      {
+        label: "Energy concept",
+        href: "/concepts/subsurface-energy-intelligence/",
+        kind: "docs",
+      },
+    ],
+    tags: ["TRT", "thermal conductivity", "transformation uncertainty"],
+  },
+  {
+    id: "mathematica-sdr",
+    title: "Mathematica stream-depletion code",
+    tier: "Archival code",
+    maturity: "archival artifact",
+    summary:
+      "Mathematica notebook for evaluating drawdown values in a new stream-depletion solution.",
+    problem:
+      "Keeps an analytical well-hydraulics computation visible for readers who need to inspect older solution code.",
+    useWhen:
+      "Use for archival Mathematica evaluation of the linked stream-depletion solution.",
+    claimBoundary:
+      "Notebook artifact rather than a maintained open-source package.",
+    evidence:
+      "GitHub repository metadata and README checked on 2026-06-20.",
+    language: "Mathematica",
+    license: "No license asserted in GitHub metadata",
+    links: [
+      {
+        label: "GitHub",
+        href: "https://github.com/aar246860/Mathematica-Code-SDR",
+        kind: "github",
+        external: true,
+      },
+    ],
+    tags: ["stream depletion", "Mathematica", "analytical solution"],
+  },
+  {
+    id: "approximate-ana-flow",
+    title: "ApproximateAnaFlow",
+    tier: "Archival code",
+    maturity: "archival artifact",
+    summary:
+      "Python scripts for approximate Zech solutions under constant-rate and constant-head pumping in confined aquifers.",
+    problem:
+      "Provides earlier analytical-flow calculation scripts for confined-aquifer pumping cases.",
+    useWhen:
+      "Use for inspecting earlier approximate analytical-flow implementations.",
+    claimBoundary:
+      "Standalone scripts, not a maintained Python package or validated design calculator.",
+    evidence:
+      "GitHub repository metadata and README checked on 2026-06-20.",
+    language: "Python",
+    license: "No license asserted in GitHub metadata",
+    links: [
+      {
+        label: "GitHub",
+        href: "https://github.com/aar246860/ApproximateAnaFlow",
+        kind: "github",
+        external: true,
+      },
+    ],
+    tags: ["confined aquifer", "Zech solution", "Python scripts"],
+  },
+  {
+    id: "decision-reliability-audit",
+    title: "Groundwater model-assumption and decision audit",
+    tier: "Collaboration workflow",
+    maturity: "service route",
+    summary:
+      "A structured review of whether data, aquifer-test interpretation models, uncertainty propagation, and decision variables support a groundwater action.",
+    problem:
+      "Connects analysis tools to real project decisions without exposing confidential datasets or overstating public demos.",
+    useWhen:
+      "Use when a consultant, industrial team, or agency needs a bounded pilot before a larger groundwater or subsurface-energy study.",
+    claimBoundary:
+      "Collaboration route, not an open-source software package or guarantee of safety.",
+    evidence:
+      "Published service route on this website.",
+    links: [
+      {
+        label: "Open route",
+        href: "/services/groundwater-decision-reliability-audit/",
+        kind: "workflow",
+      },
+      { label: "Collaborate", href: "/collaborate/", kind: "workflow" },
+    ],
+    tags: ["model assumptions", "audit", "pilot analysis"],
+  },
+];
+
+```
+
+
+### File: src/components/CollaborationCTA.astro
+
+```text
+---
+import { Badge } from "@/components/starwind/badge";
+import { Button } from "@/components/starwind/button";
+
+const base = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+const withBase = (path) => `${base}${path.replace(/^\//, "")}`;
+---
+
+<section class="cta-band">
+  <div class="shell grid cols-2">
+    <div class="stack">
+      <Badge variant="outline" size="sm">Collaboration entry</Badge>
+      <h2>Bring the aquifer-test or TRT record that still does not fit its assumed interpretation model.</h2>
+      <p>A useful starting point is a specific diagnostic issue: delayed recovery, phase-amplitude disagreement, TRT drift, boundary-condition sensitivity, or residual structure that may change a pumping limit, recovery schedule, design threshold, or energy design.</p>
+    </div>
+    <div class="stack">
+      <p>Send the forcing history, the measured drawdown, recovery, head, or temperature record, the suspected model-assumption issue, and the decision that depends on the interpretation.</p>
+      <div class="action-row">
+        <Button href="mailto:yflin1110@cycu.edu.tw?subject=Aquifer-test%20data%20and%20model%20brief" variant="secondary">Send a data/model brief</Button>
+        <Button href={withBase("/collaborate/")} variant="outline">Choose a collaboration mode</Button>
+      </div>
+    </div>
+  </div>
+</section>
+
+```
+
+
+### File: src/components/ConceptCard.astro
+
+```text
+---
+import MethodCard from "./research/MethodCard.astro";
+
+const { entry } = Astro.props;
+const data = entry.data;
+const base = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+const withBase = (path) => `${base}${path.replace(/^\//, "")}`;
+const evidenceLabels = {
+  supported: "Published evidence",
+  diagnostic: "Diagnostic framework",
+  limited: "Limited evidence",
+  conceptual: "Conceptual framing",
+};
+---
+
+<MethodCard
+  eyebrow={data.concept}
+  title={data.title}
+  body={data.subtitle}
+  href={withBase(`/concepts/${entry.id}/`)}
+  actionLabel="Read concept"
+  meta={evidenceLabels[data.evidenceLevel] ?? data.evidenceLevel}
+/>
+
+```
+
+
+### File: src/components/EvidenceBadge.astro
+
+```text
+---
+const { level } = Astro.props;
+const labels = {
+  supported: "Published evidence",
+  diagnostic: "Diagnostic framework",
+  limited: "Limited evidence",
+  conceptual: "Conceptual framing",
+};
+---
+
+<span class:list={["badge", level]}>{labels[level] ?? level}</span>
+
+```
+
+
+### File: src/components/ResearchLineage.astro
+
+```text
+---
+const items = [
+  {
+    year: "2016-2020",
+    title: "Analytical well hydraulics and boundary physics",
+    text: "Exact and semi-analytical models establish the reference behavior for pumping, Robin-type boundaries, solute diffusion, heat transport, and near-well effects.",
+  },
+  {
+    year: "2017-2026",
+    title: "Lagging Theory and delayed hydraulic response",
+    text: "Lagging Theory starts from flux-gradient asynchrony, then extends to free-surface drainage, periodic hydraulic-head records, subsidence, and field time series.",
+  },
+  {
+    year: "2024-2026",
+    title: "Transformation uncertainty",
+    text: "Transformation uncertainty separates measured field response from interpreted parameters and traces how conceptual-model bias enters engineering design decisions.",
+  },
+  {
+    year: "2026+",
+    title: "Groundwater-influenced subsurface energy",
+    text: "TRT, aquifer thermal response, shallow geothermal systems, and industrial water-energy planning become field settings for aquifer-test interpretation and uncertainty propagation.",
+  },
+];
+---
+
+<div class="lineage">
+  {items.map((item) => (
+    <article class="lineage-item">
+      <span class="eyebrow">{item.year}</span>
+      <h3>{item.title}</h3>
+      <p>{item.text}</p>
+    </article>
+  ))}
+</div>
+
+```
+
+
+### File: src/components/SiteHeader.astro
+
+```text
+---
+const { current = "" } = Astro.props;
+const base = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+const withBase = (path) => `${base}${path.replace(/^\//, "")}`;
+const links = [
+  { href: "/", label: "Home", key: "home" },
+  { href: "/projects/", label: "Projects", key: "projects" },
+  { href: "/team/", label: "People", key: "team" },
+  { href: "/training/", label: "Training", key: "training" },
+  { href: "/publications/", label: "Publications", key: "publications" },
+  { href: "/field-notes/", label: "Notes", key: "field-notes" },
+  { href: "/collaborate/", label: "Work With Us", key: "collaborate" },
+  { href: "/tools/", label: "Tools", key: "tools" },
+];
+---
+
+<header class="site-header">
+  <nav class="nav" aria-label="Primary navigation">
+    <a class="brand" href={withBase("/")}>
+      <strong>Lin Groundwater Group</strong>
+      <span>Ying-Fan Lin</span>
+    </a>
+    <div class="nav-links">
+      {links.map((link) => (
+        <a href={withBase(link.href)} aria-current={current === link.key ? "page" : undefined}>
+          {link.label}
+        </a>
+      ))}
+    </div>
+  </nav>
+</header>
+
+```
+
+
+### File: src/components/SiteFooter.astro
+
+```text
+<footer class="site-footer">
+  <div class="shell footer-grid">
+    <section class="stack">
+      <strong>Groundwater Intelligence Group</strong>
+      <p>Analytical models, field interpretation, and decision-focused uncertainty checks for aquifer tests, recovery records, TRT, and subsurface energy questions.</p>
+    </section>
+    <section class="stack">
+      <strong>Contact</strong>
+      <p><a href="mailto:yflin1110@cycu.edu.tw">yflin1110@cycu.edu.tw</a></p>
+      <p><a href="https://www.researchgate.net/profile/Ying-Fan-Lin" target="_blank" rel="noopener noreferrer">ResearchGate</a></p>
+      <p><a href="https://scholar.google.com/citations?user=PW0RFf0AAAAJ&hl=en&oi=ao" target="_blank" rel="noopener noreferrer">Google Scholar</a></p>
+      <p><a href="https://github.com/aar246860" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+    </section>
+    <section class="stack">
+      <strong>Research resources</strong>
+      <p><a href="/yflin_web/projects/">Projects</a></p>
+      <p><a href="/yflin_web/team/">People</a></p>
+      <p><a href="/yflin_web/training/">Training</a></p>
+      <p><a href="/yflin_web/tools/">Open tools</a></p>
+      <p><a href="/yflin_web/collaborate/">Work with us</a></p>
+    </section>
+  </div>
+</footer>
+
+```
+
+
+### File: src/components/research/ResearchHero.astro
+
+```text
+---
+import { Badge } from "@/components/starwind/badge";
+import { Button } from "@/components/starwind/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/starwind/card";
+import SignalMetric from "./SignalMetric.astro";
+
+interface Action {
+  href: string;
+  label: string;
+  variant?: "default" | "outline" | "secondary";
+}
+
+interface Metric {
+  label: string;
+  value: string;
+  tone?: "teal" | "brick" | "gold" | "field";
+}
+
+interface Props {
+  eyebrow: string;
+  title: string;
+  lede: string;
+  thesisTitle: string;
+  thesisBody: string;
+  visualSrc?: string;
+  visualAlt?: string;
+  tags?: string[];
+  metrics?: Metric[];
+  actions?: Action[];
+}
+
+const {
+  eyebrow,
+  title,
+  lede,
+  thesisTitle,
+  thesisBody,
+  visualSrc,
+  visualAlt = "",
+  tags = [],
+  metrics = [],
+  actions = [],
+} = Astro.props;
+const hasVisualSlot = Astro.slots.has("visual");
+---
+
+<section class="research-hero">
+  <div class="shell research-hero__inner">
+    <div class="research-hero__copy">
+      <Badge variant="outline" size="sm">{eyebrow}</Badge>
+      <h1>{title}</h1>
+      <p class="lede">{lede}</p>
+      {actions.length > 0 && (
+        <div class="research-hero__actions">
+          {actions.map((action) => (
+            <Button href={action.href} variant={action.variant ?? "default"} size="md">
+              {action.label}
+            </Button>
+          ))}
+        </div>
+      )}
+    </div>
+    <Card class="research-hero__panel">
+      <CardHeader>
+        <Badge variant="outline" size="sm">Operating thesis</Badge>
+        <CardTitle>{thesisTitle}</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <p>{thesisBody}</p>
+        {(visualSrc || hasVisualSlot) && (
+          <figure class="research-hero__visual">
+            {hasVisualSlot ? <slot name="visual" /> : <img src={visualSrc} alt={visualAlt} loading="eager" decoding="async" />}
+          </figure>
+        )}
+        {metrics.length > 0 && (
+          <div class="research-hero__metrics">
+            {metrics.map((metric) => <SignalMetric {...metric} />)}
+          </div>
+        )}
+        {tags.length > 0 && (
+          <div class="research-hero__tags">
+            {tags.map((tag) => <Badge variant="secondary" size="sm">{tag}</Badge>)}
+          </div>
+        )}
+      </CardContent>
+    </Card>
+  </div>
+</section>
+
+```
+
+
+### File: src/components/research/HomepageTeamPresence.astro
+
+```text
+---
+const base = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+const withBase = (path) => `${base}${path.replace(/^\//, "")}`;
+
+const photos = [
+  {
+    id: "A",
+    className: "team-life__photo team-life__photo--wide",
+    src: withBase("/media/team-life/jpgu-2026/jpgu-2026-team-selfie.jpg"),
+    alt: "Research group selfie outside the JpGU 2026 venue.",
+    caption: "Conference team",
+    focus: "center center",
+  },
+  {
+    id: "B",
+    className: "team-life__photo",
+    src: withBase("/media/team-life/jpgu-2026/jpgu-2026-team-dinner.jpg"),
+    alt: "Research team dinner during the JpGU 2026 conference trip.",
+    caption: "Working dinner",
+    focus: "center center",
+  },
+  {
+    id: "F",
+    className: "team-life__photo",
+    src: withBase("/media/team-life/jpgu-2026/jpgu-2026-poster-group.jpg"),
+    alt: "Research poster group at JpGU 2026.",
+    caption: "Poster session",
+    focus: "center center",
+  },
+  {
+    id: "I",
+    className: "team-life__photo team-life__photo--wide",
+    src: withBase("/media/team-life/jpgu-2026/jpgu-2026-poster-presentation.jpg"),
+    alt: "Poster presentation discussion at JpGU 2026.",
+    caption: "Poster exchange",
+    focus: "center center",
+  },
+];
+---
+
+<section class="shell section team-life" aria-labelledby="team-life-title">
+  <div class="team-life__inner">
+    <div class="team-life__copy">
+      <span class="eyebrow">Research in practice</span>
+      <h2 id="team-life-title">The analysis is tested through people, posters, and field-facing questions.</h2>
+      <p>
+        These photos show the social layer of the research: presenters explaining evidence,
+        collaborators testing interpretations, and repeated conversations that turn a difficult
+        response pattern into a shared problem.
+      </p>
+      <div class="tag-row" aria-label="Research activity tags">
+        <span class="tag">JpGU 2026</span>
+        <span class="tag">poster sessions</span>
+        <span class="tag">team travel</span>
+        <span class="tag">working meals</span>
+      </div>
+    </div>
+
+    <div class="team-life__mosaic" aria-label="Research team activity photos">
+      {
+        photos.map((photo) => (
+          <figure class={photo.className} style={`--focus: ${photo.focus};`}>
+            <img src={photo.src} alt={photo.alt} loading="lazy" decoding="async" />
+            <figcaption>
+              <span>{photo.id}</span>
+              {photo.caption}
+            </figcaption>
+          </figure>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+```
+
+
+### File: src/components/research/ConferencePresence.astro
+
+```text
+---
+const base = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+const withBase = (path) => `${base}${path.replace(/^\//, "")}`;
+
+const mainPhotos = [
+  {
+    id: "J041",
+    src: withBase("/media/conference/jpgu-2026/j041-jpgu-2026.jpg"),
+    alt: "Poster discussion at JpGU 2026.",
+    caption: "Poster discussion",
+  },
+  {
+    id: "J090",
+    src: withBase("/media/conference/jpgu-2026/j090-jpgu-2026.jpg"),
+    alt: "Team presence at the JpGU 2026 venue.",
+    caption: "Conference identity",
+  },
+  {
+    id: "J040",
+    src: withBase("/media/conference/jpgu-2026/j040-jpgu-2026.jpg"),
+    alt: "Research group standing in front of a JpGU 2026 conference poster.",
+    caption: "Team presentation",
+  },
+  {
+    id: "J075",
+    src: withBase("/media/conference/jpgu-2026/j075-jpgu-2026.jpg"),
+    alt: "Researchers discussing posters at JpGU 2026.",
+    caption: "Research exchange",
+  },
+];
+
+const stripPhotos = [
+  {
+    id: "J012",
+    src: withBase("/media/conference/jpgu-2026/j012-jpgu-2026.jpg"),
+    alt: "Conference identity photo at JpGU 2026.",
+  },
+  {
+    id: "J029",
+    src: withBase("/media/conference/jpgu-2026/j029-jpgu-2026.jpg"),
+    alt: "Team presence photo at JpGU 2026.",
+  },
+  {
+    id: "J049",
+    src: withBase("/media/conference/jpgu-2026/j049-jpgu-2026.jpg"),
+    alt: "Poster presentation at JpGU 2026.",
+  },
+];
+---
+
+<section class="shell section conference-presence" aria-labelledby="conference-presence-title">
+  <div class="conference-presence__inner">
+    <div class="conference-presence__copy">
+      <span class="eyebrow">Conference presence</span>
+      <h2 id="conference-presence-title">The work is built in conversation.</h2>
+      <p>
+        Research on asynchronous groundwater response grows through poster exchange,
+        poster presentations, and cross-site discussion. These photos document working
+        context, research exchange, and openness to collaboration.
+      </p>
+      <div class="tag-row" aria-label="Conference context tags">
+        <span class="tag">JpGU 2026</span>
+        <span class="tag">poster exchange</span>
+        <span class="tag">team presence</span>
+      </div>
+    </div>
+
+    <div class="conference-presence__photos" aria-label="JpGU 2026 conference presence photos">
+      {
+        mainPhotos.map((photo) => (
+          <figure class="conference-presence__photo">
+            <img src={photo.src} alt={photo.alt} loading="lazy" decoding="async" />
+            <figcaption>
+              <span>{photo.id}</span>
+              {photo.caption}
+            </figcaption>
+          </figure>
+        ))
+      }
+    </div>
+  </div>
+
+  <div class="conference-presence__strip" aria-label="Additional approved JpGU 2026 photos">
+    {
+      stripPhotos.map((photo) => (
+        <img src={photo.src} alt={photo.alt} loading="lazy" decoding="async" />
+      ))
+    }
+  </div>
+</section>
+
+```
+
+
+### File: src/components/research/DecisionImpactLab.astro
+
+```text
+---
+const labId = "decision-impact-lab";
+---
+
+<section class="shell section decision-lab" id={labId} aria-labelledby="decision-lab-title" data-decision-lab>
+  <div class="decision-lab__copy">
+    <span class="eyebrow">Conceptual decision sketch</span>
+    <h2 id="decision-lab-title">A small lag can move an engineering decision.</h2>
+    <p>
+      Lagging Theory is not a decorative parameter. It asks whether unresolved flux-gradient asynchrony
+      changes the decision behind a pumping test, recovery curve, or thermal response test.
+    </p>
+  </div>
+
+  <div class="decision-lab__panel">
+    <div class="decision-lab__control">
+      <label for="lag-strength">Asynchrony strength</label>
+      <input id="lag-strength" type="range" min="0" max="100" value="38" step="1" data-lag-input />
+      <div class="decision-lab__scale" aria-hidden="true">
+        <span>Darcy-like</span>
+        <span>lag-dominant</span>
+      </div>
+    </div>
+
+    <div class="decision-lab__readouts" aria-live="polite">
+      <article class="decision-lab__readout decision-lab__readout--teal">
+        <span>illustrative pumping factor</span>
+        <strong data-q-allow>0.81x</strong>
+        <p>allowable pumping relative to a classical interpretation</p>
+      </article>
+      <article class="decision-lab__readout decision-lab__readout--gold">
+        <span>illustrative recovery factor</span>
+        <strong data-recovery>1.44x</strong>
+        <p>time needed before the system looks recovered</p>
+      </article>
+      <article class="decision-lab__readout decision-lab__readout--brick">
+        <span>illustrative design margin</span>
+        <strong data-risk>+29%</strong>
+        <p>decision margin exposed by transformation uncertainty</p>
+      </article>
+    </div>
+
+    <div class="decision-lab__chart" aria-label="Conceptual decision-variable chart">
+      <div class="decision-lab__row">
+        <span>classical interpretation</span>
+        <div class="decision-lab__track">
+          <i class="decision-lab__bar decision-lab__bar--classical" style="--width: 74%;"></i>
+        </div>
+      </div>
+      <div class="decision-lab__row">
+        <span>lag-aware analytical model</span>
+        <div class="decision-lab__track">
+          <i class="decision-lab__bar decision-lab__bar--lag" data-lag-bar style="--width: 61%;"></i>
+        </div>
+      </div>
+    </div>
+
+    <p class="decision-lab__note" data-lab-note>
+      In this conceptual regime, the residual structure is large enough to review before assigning
+      transmissivity, storage, recovery time, or a thermal design margin.
+    </p>
+    <p class="decision-lab__disclaimer">
+      These normalized values are for communication. They are not site-specific design
+      recommendations; calibrated model results must replace them before use.
+    </p>
+  </div>
+</section>
+
+<script>
+  const labs = document.querySelectorAll("[data-decision-lab]");
+
+  labs.forEach((lab) => {
+    const input = lab.querySelector("[data-lag-input]");
+    const qAllow = lab.querySelector("[data-q-allow]");
+    const recovery = lab.querySelector("[data-recovery]");
+    const risk = lab.querySelector("[data-risk]");
+    const lagBar = lab.querySelector("[data-lag-bar]");
+    const note = lab.querySelector("[data-lab-note]");
+
+    if (!(input instanceof HTMLInputElement) || !qAllow || !recovery || !risk || !lagBar || !note) {
+      return;
+    }
+
+    const update = () => {
+      const strength = Number(input.value) / 100;
+      const q = 1 - 0.5 * strength;
+      const r = 1 + 1.15 * strength;
+      const p = Math.round(76 * strength);
+      const width = Math.max(22, Math.round(74 - 44 * strength));
+
+      qAllow.textContent = `${q.toFixed(2)}x`;
+      recovery.textContent = `${r.toFixed(2)}x`;
+      risk.textContent = `+${p}%`;
+      lagBar.style.setProperty("--width", `${width}%`);
+
+      if (strength < 0.2) {
+        note.textContent = "In this conceptual regime, a classical interpretation may be adequate, but the parameter should not enter a design calculation until the team checks the residual pattern.";
+      } else if (strength < 0.58) {
+        note.textContent = "In this conceptual regime, the residual structure is large enough to review before assigning transmissivity, storage, recovery time, or a thermal design margin.";
+      } else {
+        note.textContent = "In this conceptual regime, the selected interpretation model can control the engineering decision, so the lag-aware formulation becomes a competing analytical model, not a cosmetic fit.";
+      }
+    };
+
+    input.addEventListener("input", update);
+    update();
+  });
+</script>
+
+```
+
+
+### File: src/components/research/LDLNecessityChecker.astro
+
+```text
+---
+import { Button } from "@/components/starwind/button";
+
+const base = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+const withBase = (path) => `${base}${path.replace(/^\//, "")}`;
+---
+
+<section class="necessity-checker" id="ldl-necessity-checker" aria-labelledby="necessity-checker-title" data-necessity-checker>
+  <div class="necessity-checker__intro">
+    <span class="eyebrow">Screening tool</span>
+    <h2 id="necessity-checker-title">Lagging Darcy Law Necessity Checker</h2>
+    <p>
+      This screening tool asks whether a conventional pumping-test interpretation is likely
+      sufficient, or whether a lag-aware interpretation should be checked before the
+      result is used in a decision.
+    </p>
+  </div>
+
+  <div class="necessity-checker__body">
+    <div class="necessity-checker__controls" aria-label="Lagging Darcy Law screening controls">
+      <label>
+        <span>pumping duration</span>
+        <output data-output="pumping">24 h</output>
+        <input data-input="pumping" type="range" min="2" max="240" value="24" step="2" />
+      </label>
+      <label>
+        <span>observation window</span>
+        <output data-output="observation">48 h</output>
+        <input data-input="observation" type="range" min="4" max="336" value="48" step="4" />
+      </label>
+      <label>
+        <span>recovery duration</span>
+        <output data-output="recovery">72 h</output>
+        <input data-input="recovery" type="range" min="0" max="336" value="72" step="4" />
+      </label>
+      <label>
+        <span>lag / drainage time scale</span>
+        <output data-output="memory">12 h</output>
+        <input data-input="memory" type="range" min="0" max="240" value="12" step="2" />
+      </label>
+      <label>
+        <span>qualitative boundary response speed</span>
+        <select data-input="boundary">
+          <option value="fast">fast or well constrained</option>
+          <option value="moderate" selected>moderate</option>
+          <option value="slow">slow or poorly constrained</option>
+        </select>
+      </label>
+      <label>
+        <span>drawdown/recovery residual structure</span>
+        <select data-input="mismatch">
+          <option value="low">low: residuals look random</option>
+          <option value="medium" selected>medium: structured early/recovery residuals</option>
+          <option value="high">high: phase, amplitude, or recovery mismatch</option>
+        </select>
+      </label>
+      <label>
+        <span>decision type</span>
+        <select data-input="decision">
+          <option value="parameter">parameter interpretation</option>
+          <option value="pumping">pumping limit</option>
+          <option value="recovery">recovery time</option>
+          <option value="thermal">thermal design margin</option>
+          <option value="risk">design risk threshold</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="necessity-checker__result" aria-live="polite">
+      <div class="necessity-checker__status" data-result-tone="review">
+        <span data-result="status">Lag-aware interpretation should be checked</span>
+        <strong data-result="score">diagnostic</strong>
+      </div>
+      <dl>
+        <div>
+          <dt>Decision variable most exposed</dt>
+          <dd data-result="endpoint">Parameter transfer and recovery interpretation</dd>
+        </div>
+        <div>
+          <dt>Evidence to check next</dt>
+          <dd data-result="evidence">Compare early-time residuals, recovery shape, and boundary assumptions against a lag-aware analytical model.</dd>
+        </div>
+        <div>
+          <dt>Engineer-facing interpretation</dt>
+          <dd data-result="explanation">The lag or drainage time scale is not negligible relative to the test window, so conventional interpretation may be adequate for a first fit but should not be the only basis for a decision variable.</dd>
+        </div>
+      </dl>
+      <p class="necessity-checker__disclaimer">
+        This is a transparent qualitative screening tool, not a site-specific engineering
+        analysis. Field decisions still require calibrated data review, uncertainty propagation,
+        and professional judgment.
+      </p>
+      <div class="action-row">
+        <Button href={withBase("/services/groundwater-decision-reliability-audit/")}>Request a model-assumption audit</Button>
+        <Button href={withBase("/field-notes/when-does-a-pumping-test-need-lagging-darcy-law/")} variant="outline">Read the validation note</Button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const checkerRoots = document.querySelectorAll("[data-necessity-checker]");
+
+  const boundaryWeights = { fast: 0.25, moderate: 0.9, slow: 1.5 };
+  const mismatchWeights = { low: 0.2, medium: 1.1, high: 2.2 };
+  const decisionWeights = { parameter: 0.4, pumping: 1.0, recovery: 0.9, thermal: 1.1, risk: 1.3 };
+  const endpointText = {
+    parameter: "Transmissivity, storage, leakage, and skin interpretation",
+    pumping: "Allowable pumping and drawdown limit",
+    recovery: "Recovery time and post-pumping readiness",
+    thermal: "Thermal design margin and groundwater-influenced TRT interpretation",
+    risk: "Failure probability, design risk threshold, and uncertainty buffer",
+  };
+
+  function hours(value) {
+    return `${Number(value).toFixed(0)} h`;
+  }
+
+  function classify(values) {
+    const activeWindow = Math.max(1, Math.min(values.observation, values.pumping + Math.max(values.recovery, 1)));
+    const memoryRatio = values.memory / activeWindow;
+    const recoveryRatio = values.recovery > 0 ? values.memory / Math.max(1, values.recovery) : values.memory / activeWindow;
+    const score =
+      Math.min(4, memoryRatio * 4) +
+      Math.min(2, recoveryRatio * 1.5) +
+      boundaryWeights[values.boundary] +
+      mismatchWeights[values.mismatch] +
+      decisionWeights[values.decision];
+
+    if (score < 3.2) {
+      return {
+        tone: "adequate",
+        status: "Conventional interpretation is likely sufficient as a first screen",
+        score: "low screening concern",
+        evidence:
+          "Document assumptions and check whether residuals remain random across early, late, and recovery windows.",
+        explanation:
+          "The assumed lag or drainage time scale is small relative to the observation window and the decision exposure is limited. A conventional interpretation can be a reasonable starting point if validation residuals remain unstructured.",
+      };
+    }
+    if (score < 6.2) {
+      return {
+        tone: "review",
+        status: "Lag-aware interpretation should be considered",
+        score: "diagnostic",
+        evidence:
+          "Compare early-time residuals, recovery shape, and boundary assumptions against a lag-aware analytical model.",
+        explanation:
+          "The lag or drainage time scale is material relative to the test or recovery window. A classical fit may still be useful, but the interpretation should be checked before parameters are transferred into a decision variable.",
+      };
+    }
+    return {
+      tone: "audit",
+      status: "Model-assumption audit recommended",
+      score: "decision exposed",
+      evidence:
+        "Run a model-choice sensitivity check, held-out validation, and decision propagation for the exposed decision variable.",
+      explanation:
+        "The time-scale mismatch, boundary uncertainty, or residual structure is large enough that curve fit alone is not a defensible decision basis. The next step is to test how the interpretation changes the decision variable.",
+    };
+  }
+
+  function updateChecker(root) {
+    const inputs = Object.fromEntries(
+      [...root.querySelectorAll("[data-input]")].map((input) => [input.dataset.input, input]),
+    );
+    const values = {
+      pumping: Number(inputs.pumping.value),
+      observation: Number(inputs.observation.value),
+      recovery: Number(inputs.recovery.value),
+      memory: Number(inputs.memory.value),
+      boundary: inputs.boundary.value,
+      mismatch: inputs.mismatch.value,
+      decision: inputs.decision.value,
+    };
+
+    root.querySelector('[data-output="pumping"]').textContent = hours(values.pumping);
+    root.querySelector('[data-output="observation"]').textContent = hours(values.observation);
+    root.querySelector('[data-output="recovery"]').textContent = hours(values.recovery);
+    root.querySelector('[data-output="memory"]').textContent = hours(values.memory);
+
+    const result = classify(values);
+    const status = root.querySelector("[data-result-tone]");
+    status.dataset.resultTone = result.tone;
+    root.querySelector('[data-result="status"]').textContent = result.status;
+    root.querySelector('[data-result="score"]').textContent = result.score;
+    root.querySelector('[data-result="endpoint"]').textContent = endpointText[values.decision];
+    root.querySelector('[data-result="evidence"]').textContent = result.evidence;
+    root.querySelector('[data-result="explanation"]').textContent = result.explanation;
+  }
+
+  checkerRoots.forEach((root) => {
+    root.querySelectorAll("[data-input]").forEach((input) => {
+      input.addEventListener("input", () => updateChecker(root));
+      input.addEventListener("change", () => updateChecker(root));
+    });
+    updateChecker(root);
+  });
+</script>
+
+```
+
+
+### File: src/components/research/ModelToDecisionPath.astro
+
+```text
+---
+const stages = [
+  {
+    code: "01",
+    title: "Measured field record",
+    body: "Drawdown, recovery, temperature, boundary movement, or deformation arrives with timing and amplitude.",
+    tokens: ["forcing history", "drawdown/recovery", "residual pattern"],
+  },
+  {
+    code: "02",
+    title: "Analytical model",
+    body: "An aquifer-test model translates the measured record into inferred properties. The model may be classical, lag-aware, or competing.",
+    tokens: ["model form", "lag parameter", "identifiability"],
+  },
+  {
+    code: "03",
+    title: "Decision variable",
+    body: "The interpretation matters when it changes allowable pumping, recovery time, thermal design margin, or uncertainty buffer.",
+    tokens: ["allowable pumping", "recovery time", "design threshold"],
+  },
+];
+---
+
+<section class="shell section diagnostic-path" aria-labelledby="diagnostic-path-title" data-signal-system>
+  <div class="diagnostic-path__head">
+    <span class="eyebrow">Interpretation chain</span>
+    <h2 id="diagnostic-path-title">From measured response to engineering consequence.</h2>
+    <p>
+      The chain is built around a simple test: does a measured drawdown, recovery, head, or
+      temperature record follow the timing assumed by the interpretation model, and does that difference reach a decision variable?
+    </p>
+  </div>
+
+  <div class="diagnostic-path__board">
+    <div class="diagnostic-path__signal" aria-label="Conceptual asynchronous aquifer-response sketch">
+      <div class="diagnostic-path__signal-meta">
+        <span>field record</span>
+        <strong>model-timing mismatch</strong>
+      </div>
+      <svg viewBox="0 0 760 260" role="img" aria-labelledby="path-signal-title path-signal-desc">
+        <title id="path-signal-title">Measured aquifer response compared with model timing</title>
+        <desc id="path-signal-desc">Two curves show a measured aquifer response moving out of phase with the timing assumed by a model.</desc>
+        <defs>
+          <linearGradient id="pathDecisionFill" x1="0" x2="1" y1="0" y2="0">
+            <stop offset="0%" stop-color="var(--signal-measured)" stop-opacity="0.2" />
+            <stop offset="100%" stop-color="var(--risk-boundary)" stop-opacity="0.2" />
+          </linearGradient>
+        </defs>
+        <rect x="22" y="22" width="716" height="216" rx="8" class="diagnostic-path__frame" />
+        <g class="diagnostic-path__grid">
+          <path d="M72 58 H694" />
+          <path d="M72 108 H694" />
+          <path d="M72 158 H694" />
+          <path d="M72 208 H694" />
+          <path d="M176 42 V220" />
+          <path d="M280 42 V220" />
+          <path d="M384 42 V220" />
+          <path d="M488 42 V220" />
+          <path d="M592 42 V220" />
+        </g>
+        <path class="diagnostic-path__model" d="M72 184 C140 78 214 78 282 184 C350 78 424 78 492 184 C560 78 628 92 694 146" />
+        <path class="diagnostic-path__field" d="M72 196 C156 154 194 64 284 104 C370 142 414 224 510 126 C586 48 632 100 694 190" />
+        <rect x="292" y="54" width="168" height="150" rx="8" class="diagnostic-path__decision-window" />
+        <path class="diagnostic-path__arrow" d="M322 184 H392" />
+        <path class="diagnostic-path__arrow" d="M500 184 H574" />
+        <g class="diagnostic-path__labels">
+          <text x="90" y="55">model timing</text>
+          <text x="92" y="210">measured response</text>
+          <text x="314" y="78">diagnostic window</text>
+          <text x="560" y="76">design consequence</text>
+        </g>
+      </svg>
+    </div>
+
+    <div class="diagnostic-path__steps">
+      {stages.map((stage) => (
+        <article class="diagnostic-path__step">
+          <span>{stage.code}</span>
+          <h3>{stage.title}</h3>
+          <p>{stage.body}</p>
+          <div class="diagnostic-path__tokens">
+            {stage.tokens.map((token) => <b>{token}</b>)}
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+```
+
+
+### File: src/components/research/LDLDecisionXRayHero.astro
+
+```text
+---
+const decisionModels = [
+  { label: "Theis reference", width: 62, tone: "model" },
+  { label: "Leaky model", width: 49, tone: "gold" },
+  { label: "LDL teaching case", width: 76, tone: "teal" },
+  { label: "Boundary case", width: 56, tone: "brick" },
+];
+
+const fieldConstraints = [
+  "screened intervals inside confined aquifer",
+  "Darcy flow direction: high head to low head",
+  "synthetic pathlines, not particle-tracking output",
+];
+---
+
+<section id="ldl-decision-xray" class="ldl-xray" aria-labelledby="ldl-xray-title" data-ldl-xray>
+  <div class="shell ldl-xray__inner">
+    <div class="ldl-xray__copy">
+      <span class="eyebrow">LDL Decision X-Ray</span>
+      <h2 id="ldl-xray-title">Expose the model assumption before it becomes a groundwater decision.</h2>
+      <p>
+        This teaching visual connects a normalized confined-aquifer schematic,
+        a flux-gradient phase portrait, and an illustrative analytical-model
+        fan. The field panel uses deterministic teaching constraints for layer order,
+        well screens, potentiometric drawdown, and Darcy flow direction before the
+        interpretation becomes a design endpoint.
+      </p>
+    </div>
+
+    <div class="ldl-xray__board">
+      <figure class="ldl-xray__field" aria-label="Schematic x-ray view of an aquifer-test field">
+        <canvas
+          class="ldl-xray__three"
+          data-xray-three
+          aria-label="Interactive Three.js schematic aquifer-test field model"
+        ></canvas>
+        <div class="ldl-xray__field-grid" aria-hidden="true"></div>
+        <div class="ldl-xray__layer ldl-xray__layer--surface" aria-hidden="true">
+          <span>surface observation</span>
+        </div>
+        <div class="ldl-xray__layer ldl-xray__layer--aquitard" aria-hidden="true">
+          <span>aquitard exchange</span>
+        </div>
+        <div class="ldl-xray__layer ldl-xray__layer--aquifer" aria-hidden="true">
+          <span>confined aquifer response</span>
+        </div>
+        <div class="ldl-xray__well ldl-xray__well--pump" aria-hidden="true"></div>
+        <div class="ldl-xray__well ldl-xray__well--obs" aria-hidden="true"></div>
+        <svg viewBox="0 0 760 430" role="img" aria-labelledby="xray-field-title xray-field-desc">
+          <title id="xray-field-title">Aquifer-test x-ray teaching scene</title>
+          <desc id="xray-field-desc">
+            A normalized confined-aquifer schematic shows constrained screens, potentiometric drawdown, and synthetic Darcy pathlines.
+          </desc>
+          <defs>
+            <linearGradient id="xrayResidualFill" x1="0" x2="1" y1="0" y2="0">
+              <stop offset="0%" stop-color="var(--signal-measured)" stop-opacity="0.18" />
+              <stop offset="100%" stop-color="var(--risk-boundary)" stop-opacity="0.2" />
+            </linearGradient>
+            <marker id="xrayFlowArrow" markerHeight="9" markerWidth="9" orient="auto" refX="8" refY="4.5">
+              <path d="M0,0 L9,4.5 L0,9 Z" fill="var(--signal-measured)" />
+            </marker>
+            <marker id="xrayHeadArrow" markerHeight="8" markerWidth="8" orient="auto" refX="7" refY="4">
+              <path d="M0,0 L8,4 L0,8 Z" fill="var(--signal-model)" />
+            </marker>
+          </defs>
+          <g class="ldl-xray__field-lines">
+            <path d="M124 82 C176 126 176 270 124 318" />
+            <path d="M256 72 C310 126 310 282 256 334" />
+            <path d="M396 78 C456 138 456 292 396 346" />
+            <path d="M548 96 C608 152 604 284 552 330" />
+          </g>
+          <g class="ldl-xray__waves">
+            <path data-xray-gradient marker-end="url(#xrayHeadArrow)" d="M116 106 H630" />
+            <path data-xray-flux data-xray-pathline marker-end="url(#xrayFlowArrow)" d="M112 294 C218 256 338 250 456 218 C548 194 606 156 638 116" />
+          </g>
+          <path class="ldl-xray__screen-window" data-xray-screen-window d="M206 186 H628" />
+          <path class="ldl-xray__residual" data-xray-residual d="M420 142 C484 112 558 128 614 178 C566 218 496 226 438 196 Z" />
+          <g class="ldl-xray__labels">
+            <text x="96" y="64">higher head</text>
+            <text data-xray-pump-label x="500" y="78">
+              <tspan x="500" dy="0">lower head</tspan>
+              <tspan x="500" dy="21">near pumping well</tspan>
+            </text>
+            <text x="96" y="326">Darcy flow direction</text>
+            <text data-xray-observation-label x="176" y="168">
+              <tspan x="176" dy="0">screened interval</tspan>
+              <tspan x="176" dy="21">inside confined aquifer</tspan>
+            </text>
+            <text x="426" y="236">
+              <tspan x="426" dy="0">LDL response-lag</tspan>
+              <tspan x="426" dy="21">diagnostic</tspan>
+            </text>
+          </g>
+        </svg>
+        <ul class="ldl-xray__constraints" aria-label="Physical constraints used in the schematic">
+          {fieldConstraints.map((constraint) => (
+            <li>{constraint}</li>
+          ))}
+        </ul>
+        <figcaption>
+          Normalized physically constrained teaching schematic. Not field data,
+          not MODFLOW, and not a full LDL numerical solution.
+        </figcaption>
+      </figure>
+
+      <div class="ldl-xray__analysis">
+        <figure class="ldl-xray__phase" aria-label="Normalized flux-gradient phase portrait">
+          <div class="ldl-xray__panel-head">
+            <span>schematic phase portrait</span>
+            <strong>q versus hydraulic gradient</strong>
+          </div>
+          <svg viewBox="0 0 420 330" role="img" aria-labelledby="xray-phase-title xray-phase-desc">
+            <title id="xray-phase-title">Normalized flux-gradient phase portrait</title>
+            <desc id="xray-phase-desc">
+              A straight reference line and an elliptical lag-aware loop compare synchronous and asynchronous response.
+            </desc>
+            <g class="ldl-xray__phase-grid">
+              <path d="M70 42 V270" />
+              <path d="M126 42 V270" />
+              <path d="M182 42 V270" />
+              <path d="M238 42 V270" />
+              <path d="M294 42 V270" />
+              <path d="M350 42 V270" />
+              <path d="M70 78 H350" />
+              <path d="M70 126 H350" />
+              <path d="M70 174 H350" />
+              <path d="M70 222 H350" />
+              <path d="M70 270 H350" />
+            </g>
+            <path class="ldl-xray__phase-axis" d="M70 270 H350" />
+            <path class="ldl-xray__phase-axis" d="M70 270 V42" />
+            <path class="ldl-xray__phase-reference" d="M82 258 L338 54" />
+            <path class="ldl-xray__phase-loop" data-xray-phase-loop />
+            <circle class="ldl-xray__phase-dot" data-xray-phase-dot cx="0" cy="0" r="7" />
+            <text class="ldl-xray__axis-label ldl-xray__axis-label--x" x="210" y="306">hydraulic gradient</text>
+            <text class="ldl-xray__axis-label" x="32" y="62">flux</text>
+          </svg>
+          <figcaption>
+            Conceptual phase portrait of flux-gradient asynchrony. Lag-time behavior is an effective response-time index here, not a measured material constant.
+          </figcaption>
+        </figure>
+
+        <div class="ldl-xray__fan" aria-label="Illustrative transformation uncertainty decision fan">
+          <div class="ldl-xray__panel-head">
+            <span>illustrative model-choice fan</span>
+            <strong>same record, different analytical models</strong>
+          </div>
+          <div class="ldl-xray__fan-list">
+            {decisionModels.map((model) => (
+              <div class={`ldl-xray__fan-row ldl-xray__fan-row--${model.tone}`} style={`--decision-width: ${model.width}%`}>
+                <span>{model.label}</span>
+                <i aria-hidden="true"></i>
+              </div>
+            ))}
+          </div>
+          <p>
+            Bars are schematic decision endpoints for communication. This is an
+            illustrative transformation-uncertainty fan, not a design reliability result.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const initializedXRay = new WeakSet();
+  const initializedXRayThree = new WeakSet();
+  const xrayDisposers = new WeakMap();
+  const xrayThreeDisposers = new WeakMap();
+  let xrayThreeModulePromise;
+
+  function loadXRayThreeModule() {
+    xrayThreeModulePromise ??= import("three");
+    return xrayThreeModulePromise;
+  }
+
+  function phasePoint(theta, lag = 0.72) {
+    const gradient = Math.sin(theta);
+    const flux = Math.sin(theta - lag);
+    return {
+      x: 210 + gradient * 118,
+      y: 156 - flux * 94,
+    };
+  }
+
+  function phasePath(lag = 0.72) {
+    const points = [];
+    for (let i = 0; i <= 120; i += 1) {
+      const point = phasePoint((i / 120) * Math.PI * 2, lag);
+      points.push(`${i === 0 ? "M" : "L"} ${point.x.toFixed(2)} ${point.y.toFixed(2)}`);
+    }
+    return `${points.join(" ")} Z`;
+  }
+
+  function prepareDraw(path) {
+    if (!path) return;
+    const length = path.getTotalLength();
+    path.style.strokeDasharray = String(length);
+    path.style.strokeDashoffset = String(length);
+  }
+
+  function initLDLXRay() {
+    document.querySelectorAll("[data-ldl-xray]").forEach((root) => {
+      if (initializedXRay.has(root)) return;
+      initializedXRay.add(root);
+
+      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const gradient = root.querySelector("[data-xray-gradient]");
+      const flux = root.querySelector("[data-xray-flux]");
+      const residual = root.querySelector("[data-xray-residual]");
+      const phaseLoop = root.querySelector("[data-xray-phase-loop]");
+      const phaseDot = root.querySelector("[data-xray-phase-dot]");
+      const fanRows = [...root.querySelectorAll(".ldl-xray__fan-row")];
+
+      phaseLoop?.setAttribute("d", phasePath());
+      const initialPhasePoint = phasePoint(0);
+      phaseDot?.setAttribute("cx", initialPhasePoint.x.toFixed(2));
+      phaseDot?.setAttribute("cy", initialPhasePoint.y.toFixed(2));
+      [gradient, flux, phaseLoop].forEach(prepareDraw);
+      gsap.set([flux, residual, phaseLoop, phaseDot], { opacity: 0 });
+      gsap.set(fanRows.map((row) => row.querySelector("i")), { "--bar-scale": 0 });
+
+      if (reduce) {
+        [gradient, flux, phaseLoop].forEach((path) => {
+          if (path) path.style.strokeDashoffset = "0";
+        });
+        gsap.set([flux, residual, phaseLoop, phaseDot], { opacity: 1 });
+        gsap.set(fanRows.map((row) => row.querySelector("i")), { "--bar-scale": 1 });
+        return;
+      }
+
+      const timeline = gsap.timeline({
+        defaults: { ease: "power2.out" },
+        scrollTrigger: {
+          trigger: root,
+          start: "top 76%",
+          end: "bottom 40%",
+          scrub: 0.8,
+        },
+      });
+
+      const dotMotion = { theta: 0 };
+
+      timeline
+        .to(gradient, { strokeDashoffset: 0, duration: 0.7 })
+        .to(flux, { opacity: 1, strokeDashoffset: 0, duration: 0.85 }, "-=0.15")
+        .to(residual, { opacity: 1, duration: 0.45 }, "-=0.25")
+        .to(phaseLoop, { opacity: 1, strokeDashoffset: 0, duration: 0.85 }, "-=0.2")
+        .to(phaseDot, { opacity: 1, duration: 0.2 }, "-=0.5")
+        .to(dotMotion, {
+          theta: Math.PI * 2,
+          duration: 0.9,
+          onUpdate: () => {
+            const point = phasePoint(dotMotion.theta);
+            phaseDot?.setAttribute("cx", point.x.toFixed(2));
+            phaseDot?.setAttribute("cy", point.y.toFixed(2));
+          },
+        }, "-=0.82")
+        .to(fanRows.map((row) => row.querySelector("i")), {
+          "--bar-scale": 1,
+          stagger: 0.08,
+          duration: 0.55,
+        }, "-=0.25");
+
+      xrayDisposers.set(root, () => {
+        timeline.scrollTrigger?.kill();
+        timeline.kill();
+        initializedXRay.delete(root);
+        xrayDisposers.delete(root);
+      });
+    });
+  }
+
+  const aquiferTestSchematic = {
+    extents: { width: 8.8, length: 5.2, surfaceDepth: 0 },
+    confinedAquiferId: "confined-aquifer",
+    layers: [
+      { id: "upper-aquitard", label: "upper aquitard", top: 0.12, bottom: 0.82, material: "aquitard" },
+      { id: "confined-aquifer", label: "screened confined aquifer", top: 0.82, bottom: 1.92, material: "aquifer" },
+      { id: "lower-aquitard", label: "lower aquitard", top: 1.92, bottom: 2.48, material: "aquitard" },
+    ],
+    wells: [
+      { id: "observation", label: "observation well", role: "monitor", x: -2.35, z: 1.06, top: 0, bottom: 1.82, screenTop: 0.98, screenBottom: 1.7 },
+      { id: "pumping", label: "pumping well: extraction", role: "sink", x: 2.05, z: -0.44, top: 0, bottom: 1.88, screenTop: 0.98, screenBottom: 1.78 },
+    ],
+    heads: {
+      high: { x: -3.9, z: 1.85 },
+      low: { x: 2.05, z: -0.44 },
+    },
+  };
+
+  function validateSchematicSpec(spec) {
+    const confinedAquifer = spec.layers.find((layer) => layer.id === spec.confinedAquiferId);
+    if (!confinedAquifer) throw new Error("Missing confined aquifer layer.");
+
+    spec.layers.forEach((layer, index) => {
+      if (layer.top >= layer.bottom) throw new Error(`Invalid layer depth order: ${layer.id}`);
+      if (index > 0 && layer.top < spec.layers[index - 1].bottom) {
+        throw new Error(`Overlapping layer sequence near: ${layer.id}`);
+      }
+    });
+
+    spec.wells.forEach((well) => {
+      if (well.screenTop < confinedAquifer.top || well.screenBottom > confinedAquifer.bottom) {
+        throw new Error(`Screen interval must stay inside confined aquifer: ${well.id}`);
+      }
+      if (well.screenTop >= well.screenBottom || well.bottom < well.screenBottom) {
+        throw new Error(`Invalid screen interval: ${well.id}`);
+      }
+    });
+  }
+
+  function createSchematicMaterials(THREE) {
+    return {
+      aquitard: new THREE.MeshStandardMaterial({
+        color: 0xa9b9b0,
+        roughness: 0.94,
+        transparent: true,
+        opacity: 0.28,
+      }),
+      aquifer: new THREE.MeshStandardMaterial({
+        color: 0x58aea7,
+        emissive: 0x0b4844,
+        emissiveIntensity: 0.08,
+        roughness: 0.82,
+        transparent: true,
+        opacity: 0.44,
+      }),
+      edge: new THREE.LineBasicMaterial({ color: 0x57645f, transparent: true, opacity: 0.18 }),
+      casing: new THREE.MeshStandardMaterial({ color: 0x173c39, roughness: 0.46 }),
+      screen: new THREE.MeshStandardMaterial({
+        color: 0x00776d,
+        emissive: 0x003832,
+        emissiveIntensity: 0.28,
+        roughness: 0.38,
+      }),
+      pump: new THREE.MeshStandardMaterial({
+        color: 0x9f3325,
+        emissive: 0x551109,
+        emissiveIntensity: 0.18,
+        roughness: 0.46,
+      }),
+      head: new THREE.LineBasicMaterial({ color: 0x6f8aa0, transparent: true, opacity: 0.5 }),
+      flow: new THREE.MeshBasicMaterial({ color: 0x00776d, transparent: true, opacity: 0.62 }),
+      particle: new THREE.MeshBasicMaterial({ color: 0x00a497 }),
+    };
+  }
+
+  function depthToY(depth) {
+    return 0.28 - depth;
+  }
+
+  function layerThickness(layer) {
+    return layer.bottom - layer.top;
+  }
+
+  function layerCenterY(layer) {
+    return depthToY((layer.top + layer.bottom) / 2);
+  }
+
+  function buildLayerMeshes(THREE, group, spec, materials) {
+    spec.layers.forEach((layer) => {
+      const geometry = new THREE.BoxGeometry(spec.extents.width, layerThickness(layer), spec.extents.length);
+      const mesh = new THREE.Mesh(geometry, materials[layer.material]);
+      mesh.position.set(0, layerCenterY(layer), 0);
+      mesh.userData.claimBoundary = "normalized layer geometry";
+      group.add(mesh);
+
+      const edges = new THREE.LineSegments(new THREE.EdgesGeometry(geometry), materials.edge);
+      edges.position.copy(mesh.position);
+      group.add(edges);
+    });
+  }
+
+  function buildWellAssembly(THREE, group, well, materials) {
+    const topY = depthToY(well.top);
+    const bottomY = depthToY(well.bottom);
+    const casingLength = Math.abs(topY - bottomY);
+    const casing = new THREE.Mesh(new THREE.CylinderGeometry(0.055, 0.055, casingLength, 20), materials.casing);
+    casing.position.set(well.x, (topY + bottomY) / 2, well.z);
+    group.add(casing);
+
+    const screenTopY = depthToY(well.screenTop);
+    const screenBottomY = depthToY(well.screenBottom);
+    const screenLength = Math.abs(screenTopY - screenBottomY);
+    const screen = new THREE.Mesh(new THREE.CylinderGeometry(0.13, 0.13, screenLength, 24), materials.screen);
+    screen.position.set(well.x, (screenTopY + screenBottomY) / 2, well.z);
+    screen.userData.claimBoundary = "screen interval constrained inside confined aquifer";
+    group.add(screen);
+
+    const headMaterial = well.role === "sink" ? materials.pump : materials.screen;
+    const cap = new THREE.Mesh(new THREE.SphereGeometry(well.role === "sink" ? 0.17 : 0.13, 24, 16), headMaterial);
+    cap.position.set(well.x, topY + 0.12, well.z);
+    group.add(cap);
+  }
+
+  function normalizedFlowVector(x, z, pump) {
+    const dx = pump.x - x;
+    const dz = pump.z - z;
+    const r2 = Math.max(dx * dx + dz * dz, 0.18);
+    const sink = 1.25 / r2;
+    const vx = 0.45 + sink * dx;
+    const vz = sink * dz;
+    const magnitude = Math.hypot(vx, vz) || 1;
+    return { x: vx / magnitude, z: vz / magnitude };
+  }
+
+  function buildDarcyPathlineCurve(THREE, spec, seedZ) {
+    const pump = spec.wells.find((well) => well.role === "sink");
+    const aquifer = spec.layers.find((layer) => layer.id === spec.confinedAquiferId);
+    const points = [];
+    let x = -spec.extents.width / 2 + 0.48;
+    let z = seedZ;
+    const y = depthToY((aquifer.top + aquifer.bottom) / 2);
+
+    for (let i = 0; i < 84; i += 1) {
+      points.push(new THREE.Vector3(x, y + 0.05, z));
+      const vector = normalizedFlowVector(x, z, pump);
+      x += vector.x * 0.105;
+      z += vector.z * 0.105;
+      if (Math.hypot(pump.x - x, pump.z - z) < 0.28) break;
+    }
+    points.push(new THREE.Vector3(pump.x, y + 0.05, pump.z));
+    return new THREE.CatmullRomCurve3(points, false, "centripetal");
+  }
+
+  function buildDarcyFlowSystem(THREE, group, spec, materials) {
+    const pathlines = [-1.65, -0.65, 0.36, 1.35].map((seedZ) => buildDarcyPathlineCurve(THREE, spec, seedZ));
+
+    pathlines.forEach((curve) => {
+      const tube = new THREE.Mesh(new THREE.TubeGeometry(curve, 80, 0.014, 8, false), materials.flow);
+      tube.userData.claimBoundary = "synthetic pathline, not particle-tracking output";
+      group.add(tube);
+    });
+
+    const arrowDirection = new THREE.Vector3(1, 0, -0.18).normalize();
+    [-1.7, 0, 1.7].forEach((z) => {
+      const arrow = new THREE.ArrowHelper(
+        arrowDirection,
+        new THREE.Vector3(-3.75, depthToY(1.12), z),
+        1.45,
+        0x6f8aa0,
+        0.2,
+        0.09,
+      );
+      arrow.userData.claimBoundary = "head drop direction, high head to low head";
+      group.add(arrow);
+    });
+
+    const particleGeometry = new THREE.SphereGeometry(0.042, 12, 8);
+    const particles = [];
+    pathlines.forEach((curve, curveIndex) => {
+      for (let i = 0; i < 4; i += 1) {
+        const particle = new THREE.Mesh(particleGeometry, materials.particle);
+        group.add(particle);
+        particles.push({ mesh: particle, curve, phase: i / 4 + curveIndex * 0.08 });
+      }
+    });
+    return particles;
+  }
+
+  async function startXRayThreeScene(root) {
+    if (initializedXRayThree.has(root)) return;
+    initializedXRayThree.add(root);
+
+    const canvas = root.querySelector("[data-xray-three]");
+    const field = canvas?.closest(".ldl-xray__field");
+    if (!(canvas instanceof HTMLCanvasElement) || !(field instanceof HTMLElement)) return;
+
+    const THREE = await loadXRayThreeModule();
+
+    let renderer;
+    try {
+      renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+    } catch {
+      root.setAttribute("data-three-fallback", "true");
+      initializedXRayThree.delete(root);
+      return;
+    }
+
+    validateSchematicSpec(aquiferTestSchematic);
+    root.setAttribute("data-three-ready", "true");
+
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const scene = new THREE.Scene();
+    scene.fog = new THREE.Fog(0xf7f3ea, 12, 34);
+
+    const camera = new THREE.PerspectiveCamera(38, 1, 0.1, 80);
+    camera.position.set(7.5, 5.4, 10.5);
+    camera.lookAt(0, -0.75, 0);
+
+    scene.add(new THREE.HemisphereLight(0xfff8e8, 0x6b7772, 2.35));
+    const keyLight = new THREE.DirectionalLight(0xffffff, 2.1);
+    keyLight.position.set(7, 9, 5);
+    scene.add(keyLight);
+
+    const materials = createSchematicMaterials(THREE);
+    const group = new THREE.Group();
+    scene.add(group);
+
+    buildLayerMeshes(THREE, group, aquiferTestSchematic, materials);
+    aquiferTestSchematic.wells.forEach((well) => buildWellAssembly(THREE, group, well, materials));
+    const particles = buildDarcyFlowSystem(THREE, group, aquiferTestSchematic, materials);
+
+    group.rotation.x = -0.08;
+    group.rotation.y = -0.42;
+    group.rotation.z = 0.02;
+
+    function resize() {
+      const rect = field.getBoundingClientRect();
+      const width = Math.max(320, Math.floor(rect.width));
+      const height = Math.max(360, Math.floor(rect.height));
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.setSize(width, height, false);
+      camera.aspect = width / height;
+      camera.updateProjectionMatrix();
+    }
+
+    const resizeObserver = new ResizeObserver(resize);
+    resizeObserver.observe(field);
+    resize();
+
+    let animationFrame = 0;
+    function render(time = 0) {
+      const seconds = time * 0.001;
+      if (!reduce) {
+        group.rotation.y = -0.42 + Math.sin(seconds * 0.24) * 0.045;
+        particles.forEach((particle) => {
+          const point = particle.curve.getPoint((particle.phase + seconds * 0.05) % 1);
+          particle.mesh.position.copy(point);
+        });
+        animationFrame = requestAnimationFrame(render);
+      }
+      renderer.render(scene, camera);
+    }
+
+    function disposeThree() {
+      if (animationFrame) window.cancelAnimationFrame(animationFrame);
+      resizeObserver.disconnect();
+      scene.traverse((object) => {
+        if (object.geometry) object.geometry.dispose();
+        if (object.material) {
+          const materialsList = Array.isArray(object.material) ? object.material : [object.material];
+          materialsList.forEach((material) => material.dispose());
+        }
+      });
+      renderer.dispose();
+      root.removeAttribute("data-three-ready");
+      initializedXRayThree.delete(root);
+      xrayThreeDisposers.delete(root);
+    }
+
+    xrayThreeDisposers.set(root, disposeThree);
+    render();
+  }
+
+  function initXRayThreeScenes() {
+    document.querySelectorAll("[data-ldl-xray]").forEach((root) => {
+      if (initializedXRayThree.has(root)) return;
+
+      if ("IntersectionObserver" in window) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            if (!entries.some((entry) => entry.isIntersecting)) return;
+            observer.disconnect();
+            void startXRayThreeScene(root);
+          },
+          { rootMargin: "360px 0px" },
+        );
+        observer.observe(root);
+        xrayThreeDisposers.set(root, () => {
+          observer.disconnect();
+          initializedXRayThree.delete(root);
+          xrayThreeDisposers.delete(root);
+        });
+        return;
+      }
+
+      void startXRayThreeScene(root);
+    });
+  }
+
+  initLDLXRay();
+  initXRayThreeScenes();
+  document.addEventListener("astro:page-load", () => {
+    initLDLXRay();
+    initXRayThreeScenes();
+  });
+  document.addEventListener("astro:before-swap", () => {
+    document.querySelectorAll("[data-ldl-xray]").forEach((root) => {
+      xrayDisposers.get(root)?.();
+      xrayThreeDisposers.get(root)?.();
+    });
+  });
+</script>
+
+```
+
+
+### File: src/components/research/FluxGradientAsynchronyRive.astro
+
+```text
+---
+import { existsSync } from "node:fs";
+
+const presets = [
+  { key: "sync", label: "synchronous", lag: 0.04 },
+  { key: "mild", label: "diagnostic", lag: 0.24 },
+  { key: "strong", label: "decision exposed", lag: 0.42 },
+];
+const base = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+const hasRiveAsset = existsSync(new URL("../../../public/animations/flux-gradient-asynchrony.riv", import.meta.url));
+const riveSrc = hasRiveAsset ? `${base}animations/flux-gradient-asynchrony.riv` : undefined;
+---
+
+<section
+  id="asynchrony-state-machine"
+  class="shell section rive-asynchrony"
+  aria-labelledby="rive-asynchrony-title"
+  data-rive-asynchrony
+  data-rive-src={riveSrc}
+>
+  <div class="section-head">
+    <div>
+      <span class="eyebrow">Rive runtime integration</span>
+      <h2 id="rive-asynchrony-title">Flux-gradient asynchrony is more than a cosmetic time shift.</h2>
+    </div>
+    <p>
+      This block can run a Rive state machine when a matching .riv asset is exported.
+      Until that authored asset exists, the SVG calculation fallback keeps the same
+      states: synchronous response, diagnostic asynchrony, and decision-exposed interpretation.
+    </p>
+  </div>
+
+  <div class="rive-asynchrony__board">
+    <div class="rive-asynchrony__stage">
+      <canvas
+        class="rive-asynchrony__canvas"
+        data-rive-canvas
+        width="860"
+        height="420"
+        aria-label="Rive flux-gradient asynchrony state machine"
+        hidden
+      ></canvas>
+      <svg data-rive-fallback viewBox="0 0 860 420" role="img" aria-labelledby="rive-asynchrony-svg-title rive-asynchrony-svg-desc">
+        <title id="rive-asynchrony-svg-title">Flux-gradient asynchrony state-machine schematic</title>
+        <desc id="rive-asynchrony-svg-desc">
+          Hydraulic gradient, flux response, and residual envelope change as the lag control increases.
+        </desc>
+        <defs>
+          <linearGradient id="asynchronyEnvelope" x1="0" x2="1" y1="0" y2="0">
+            <stop offset="0%" stop-color="var(--signal-measured)" stop-opacity="0.1" />
+            <stop offset="100%" stop-color="var(--risk-boundary)" stop-opacity="0.2" />
+          </linearGradient>
+          <marker id="asynchronyArrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+            <path d="M0,0 L8,4 L0,8 Z" fill="var(--risk-boundary)" />
+          </marker>
+        </defs>
+        <rect class="rive-asynchrony__frame" x="26" y="26" width="808" height="368" rx="18" />
+        <g class="rive-asynchrony__grid">
+          <path d="M86 92 H752" />
+          <path d="M86 172 H752" />
+          <path d="M86 252 H752" />
+          <path d="M86 332 H752" />
+        </g>
+        <path class="rive-asynchrony__envelope" data-asynchrony-envelope />
+        <path class="rive-asynchrony__curve rive-asynchrony__curve--gradient" data-asynchrony-gradient />
+        <path class="rive-asynchrony__curve rive-asynchrony__curve--flux" data-asynchrony-flux />
+        <path class="rive-asynchrony__curve rive-asynchrony__curve--residual" data-asynchrony-residual />
+        <path class="rive-asynchrony__offset" data-asynchrony-offset marker-end="url(#asynchronyArrow)" />
+        <g class="rive-asynchrony__labels">
+          <text x="96" y="72">hydraulic gradient</text>
+          <text x="96" y="220">flux response</text>
+          <text x="584" y="360">diagnostic residual</text>
+          <text x="548" y="112" data-asynchrony-state>diagnostic asynchrony</text>
+        </g>
+      </svg>
+    </div>
+
+    <div class="rive-asynchrony__controls">
+      <label>
+        <span>asynchrony level</span>
+        <output data-asynchrony-output>0.24 cycle</output>
+        <input data-asynchrony-input type="range" min="0" max="0.46" value="0.24" step="0.01" />
+      </label>
+      <div class="rive-asynchrony__presets" aria-label="Asynchrony presets">
+        {presets.map((preset) => (
+          <button type="button" data-asynchrony-preset={preset.lag} aria-pressed={preset.key === "mild" ? "true" : "false"}>
+            {preset.label}
+          </button>
+        ))}
+      </div>
+      <dl>
+        <div>
+          <dt>Interpretation</dt>
+          <dd data-asynchrony-interpretation>Structured residuals should be checked against a lag-aware analytical model.</dd>
+        </div>
+        <div>
+          <dt>Scope</dt>
+          <dd data-rive-runtime-status>SVG fallback is active because no authored .riv asset is deployed yet. Conceptual state-machine schematic; not a calibrated aquifer mechanism diagnosis.</dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<script>
+  const initializedAsynchrony = new WeakSet();
+  const activeRiveInstances = new Set();
+  const riveInputsByRoot = new WeakMap();
+
+  function wavePath(lag, amplitude, yCenter, phase = 0) {
+    const points = [];
+    const x0 = 86;
+    const width = 666;
+    for (let i = 0; i <= 100; i += 1) {
+      const progress = i / 100;
+      const x = x0 + progress * width;
+      const y = yCenter - Math.sin((progress - lag + phase) * Math.PI * 2.25) * amplitude;
+      points.push(`${i === 0 ? "M" : "L"} ${x.toFixed(2)} ${y.toFixed(2)}`);
+    }
+    return points.join(" ");
+  }
+
+  function residualPath(lag) {
+    const points = [];
+    const x0 = 86;
+    const width = 666;
+    for (let i = 0; i <= 100; i += 1) {
+      const progress = i / 100;
+      const gradient = Math.sin(progress * Math.PI * 2.25);
+      const flux = Math.sin((progress - lag) * Math.PI * 2.25);
+      const residual = (flux - gradient) * 0.5;
+      const x = x0 + progress * width;
+      const y = 314 - residual * 52;
+      points.push(`${i === 0 ? "M" : "L"} ${x.toFixed(2)} ${y.toFixed(2)}`);
+    }
+    return points.join(" ");
+  }
+
+  function envelopePath(lag) {
+    const x0 = 86;
+    const width = 666;
+    const center = 314;
+    const spread = 18 + lag * 116;
+    return `M ${x0} ${center - spread} H ${x0 + width} V ${center + spread} H ${x0} Z`;
+  }
+
+  function classify(lag) {
+    if (lag < 0.1) {
+      return {
+        state: "near-synchronous response",
+        interpretation: "The flux and gradient traces are close enough for a classical interpretation to be a reasonable first screen.",
+      };
+    }
+    if (lag < 0.32) {
+      return {
+        state: "diagnostic asynchrony",
+        interpretation: "Structured residuals should be checked against a lag-aware analytical model.",
+      };
+    }
+    return {
+      state: "decision-exposed asynchrony",
+      interpretation: "The phase and residual structure are large enough to audit model choice before using the interpretation in a decision variable.",
+    };
+  }
+
+  function updateAsynchrony(root, lag) {
+    root.querySelector("[data-asynchrony-gradient]")?.setAttribute("d", wavePath(0, 48, 132));
+    root.querySelector("[data-asynchrony-flux]")?.setAttribute("d", wavePath(lag, 48, 212));
+    root.querySelector("[data-asynchrony-residual]")?.setAttribute("d", residualPath(lag));
+    root.querySelector("[data-asynchrony-envelope]")?.setAttribute("d", envelopePath(lag));
+    root.querySelector("[data-asynchrony-offset]")?.setAttribute(
+      "d",
+      `M ${(422 + lag * 260).toFixed(2)} 132 H ${(422 + lag * 260 + 72).toFixed(2)}`,
+    );
+    const result = classify(lag);
+    root.querySelector("[data-asynchrony-output]").textContent = `${lag.toFixed(2)} cycle`;
+    root.querySelector("[data-asynchrony-state]").textContent = result.state;
+    root.querySelector("[data-asynchrony-interpretation]").textContent = result.interpretation;
+    root.querySelectorAll("[data-asynchrony-preset]").forEach((button) => {
+      button.setAttribute("aria-pressed", Math.abs(Number(button.dataset.asynchronyPreset) - lag) < 0.005 ? "true" : "false");
+    });
+    syncRiveInput(root, lag);
+  }
+
+  function syncRiveInput(root, lag) {
+    const input = riveInputsByRoot.get(root);
+    if (input && typeof input.value !== "undefined") {
+      input.value = Math.round(lag * 100);
+    }
+  }
+
+  async function maybeInitRiveRuntime(root, input) {
+    const canvas = root.querySelector("[data-rive-canvas]");
+    const fallback = root.querySelector("[data-rive-fallback]");
+    const status = root.querySelector("[data-rive-runtime-status]");
+    const src = root.dataset.riveSrc;
+    if (!(canvas instanceof HTMLCanvasElement) || !src) return;
+
+    try {
+      const probe = await fetch(src, { method: "HEAD", cache: "no-cache" });
+      if (!probe.ok) {
+        if (status) status.textContent = "SVG fallback is active because no authored .riv asset is deployed yet. Conceptual state-machine schematic; not a calibrated aquifer mechanism diagnosis.";
+        return;
+      }
+
+      const { Rive, Layout, Fit, Alignment } = await import("@rive-app/canvas");
+      canvas.hidden = false;
+      fallback?.setAttribute("hidden", "");
+      const rive = new Rive({
+        canvas,
+        src,
+        stateMachines: "FluxGradientAsynchrony",
+        autoplay: true,
+        layout: new Layout({ fit: Fit.Contain, alignment: Alignment.Center }),
+        onLoad: () => {
+          const asynchronyInput = rive
+            .stateMachineInputs("FluxGradientAsynchrony")
+            ?.find((candidate) => candidate.name === "asynchronyLevel");
+          if (asynchronyInput) {
+            riveInputsByRoot.set(root, asynchronyInput);
+            syncRiveInput(root, Number(input.value));
+          }
+          if (status) status.textContent = "Rive .riv asset loaded. State machine input: asynchronyLevel.";
+        },
+        onLoadError: () => {
+          canvas.hidden = true;
+          fallback?.removeAttribute("hidden");
+          if (status) status.textContent = "Rive asset failed to load; SVG fallback remains active.";
+        },
+      });
+      activeRiveInstances.add(rive);
+    } catch (error) {
+      console.warn("Rive runtime fallback active", error);
+      canvas.hidden = true;
+      fallback?.removeAttribute("hidden");
+      if (status) status.textContent = "Rive runtime unavailable; SVG fallback remains active.";
+    }
+  }
+
+  function initAsynchrony() {
+    document.querySelectorAll("[data-rive-asynchrony]").forEach((root) => {
+      if (initializedAsynchrony.has(root)) return;
+      initializedAsynchrony.add(root);
+      const input = root.querySelector("[data-asynchrony-input]");
+      if (!(input instanceof HTMLInputElement)) return;
+
+      input.addEventListener("input", () => updateAsynchrony(root, Number(input.value)));
+      root.querySelectorAll("[data-asynchrony-preset]").forEach((button) => {
+        button.addEventListener("click", () => {
+          input.value = button.dataset.asynchronyPreset;
+          updateAsynchrony(root, Number(input.value));
+        });
+      });
+      updateAsynchrony(root, Number(input.value));
+      maybeInitRiveRuntime(root, input);
+    });
+  }
+
+  function destroyRiveRuntime() {
+    activeRiveInstances.forEach((rive) => {
+      try {
+        rive.cleanup();
+      } catch (error) {
+        console.warn("Rive cleanup failed", error);
+      }
+    });
+    activeRiveInstances.clear();
+  }
+
+  initAsynchrony();
+  document.addEventListener("astro:page-load", initAsynchrony);
+  document.addEventListener("astro:before-swap", destroyRiveRuntime);
+</script>
+
+```
+
+
+### File: src/components/research/TransformationUncertaintyDemo.astro
+
+```text
+---
+const scenes = [
+  {
+    label: "LDL response",
+    eyebrow: "Scene 1",
+    title: "The curve is a normalized LDL response.",
+    body:
+      "The browser first computes drawdown from a simplified line-source special case of the Lin-Yeh lagging-flow equation, then normalizes the response to reveal the transition shape.",
+    focus: "Normalized LDL response",
+    feature: "computed, not sketched",
+  },
+  {
+    label: "Classical",
+    eyebrow: "Scene 2",
+    title: "The classical curve is the zero-lag limit.",
+    body:
+      "Set both lag times to zero and the browser computes the classical leaky confined aquifer response. This gives the reference interpretation.",
+    focus: "Zero lag",
+    feature: "classical limit",
+  },
+  {
+    label: "Equal lag",
+    eyebrow: "Scene 3",
+    title: "Equal lags collapse back to classical behavior.",
+    body:
+      "In the Lin-Yeh formulation, equal flux and gradient lags cancel inside the transfer function. The curve nearly hides inside the classical reference.",
+    focus: "Equal lag",
+    feature: "cancellation check",
+  },
+  {
+    label: "Separated lag",
+    eyebrow: "Scene 4",
+    title: "A larger head-side lag creates the delayed transition.",
+    body:
+      "When the head-side lag is larger than the flux lag, the normalized LDL response shows the S-like transition that raw drawdown can visually hide.",
+    focus: "tau h > tau q",
+    feature: "S-like delay",
+  },
+  {
+    label: "Decision case",
+    eyebrow: "Scene 5",
+    title: "A stronger separation moves the decision window.",
+    body:
+      "Changing lag times, observation radius, and leakage length within the same analytical solution changes the normalized response before any external reliability calculation is added.",
+    focus: "Decision-sensitive response",
+    feature: "computed spread",
+  },
+  {
+    label: "Audit",
+    eyebrow: "Scene 6",
+    title: "Transformation uncertainty begins at interpretation.",
+    body:
+      "The uncertainty is not invented after the groundwater model. It starts when drawdown or recovery is interpreted with an aquifer-test analytical model and converted into parameters and decision variables.",
+    focus: "Interpretation audit",
+    feature: "why it matters",
+  },
+];
+
+const modelCases = [
+  { key: "classical", label: "Classical", note: "tau q = 0, tau h = 0", tone: "ink" },
+  { key: "equal", label: "Equal lag", note: "tau q = tau h", tone: "gold" },
+  { key: "mild", label: "tau h > tau q", note: "delayed transition", tone: "teal" },
+  { key: "strong", label: "Decision case", note: "larger head-side lag", tone: "brick" },
+];
+---
+
+<section class="shell section tu-demo" id="normalized-ldl-demo" aria-labelledby="tu-demo-title" data-tu-demo>
+  <div class="tu-demo__copy">
+    <span class="eyebrow">Calculation-backed concept animation</span>
+    <h2 id="tu-demo-title">One normalized LDL response can lead to different aquifer-test interpretations.</h2>
+    <p>
+      This explainer uses a simplified Lin-Yeh (2017) lagging-flow special case for every
+      plotted curve. The animation shows normalized response shape, but the lines are still
+      generated from model calculations.
+    </p>
+  </div>
+
+  <div
+    class="tu-story"
+    data-tu-story
+    data-scene="0"
+    aria-label="Narrative animation showing lagging Darcy response interpretation and transformation uncertainty"
+  >
+    <div class="tu-story__stage">
+      <div class="tu-story__narration" aria-live="polite">
+        <span data-story-eyebrow>{scenes[0].eyebrow}</span>
+        <h3 data-story-title>{scenes[0].title}</h3>
+        <p data-story-body>{scenes[0].body}</p>
+      </div>
+
+      <div class="tu-story__visual">
+        <svg viewBox="0 0 920 520" role="img" aria-labelledby="tu-story-title tu-story-desc">
+          <title id="tu-story-title">Lagging Darcy model narrative animation</title>
+          <desc id="tu-story-desc">
+            A normalized line-source lagging-flow response is compared against zero-lag,
+            equal-lag, head-side-lag-greater-than-flux-lag, and decision-sensitive cases.
+          </desc>
+          <defs>
+            <linearGradient id="tuStoryField" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0%" stop-color="var(--signal-measured)" stop-opacity="0.15" />
+              <stop offset="100%" stop-color="var(--decision-teal)" stop-opacity="0.04" />
+            </linearGradient>
+            <filter id="tuStoryGlow">
+              <feGaussianBlur stdDeviation="5" result="blur" />
+              <feMerge>
+                <feMergeNode in="blur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+          </defs>
+
+          <rect x="26" y="26" width="868" height="468" rx="18" class="tu-story__paper" />
+          <g class="tu-story__aquifer" aria-hidden="true">
+            <path d="M68 380 C160 336 240 404 326 360 C412 316 494 382 586 338 C672 300 758 338 850 304" />
+            <path d="M68 420 C168 392 250 446 350 404 C452 362 538 426 650 382 C730 350 794 368 850 348" />
+          </g>
+
+          <g class="tu-story__chart">
+            <path class="tu-story__axis" d="M104 104 V374 H690" />
+            <text x="112" y="86" class="tu-story__axis-label">normalized response</text>
+            <text x="620" y="405" class="tu-story__axis-label">time</text>
+            <g class="tu-story__grid">
+              <path d="M104 154 H690" />
+              <path d="M104 214 H690" />
+              <path d="M104 274 H690" />
+              <path d="M104 334 H690" />
+            </g>
+
+            <path class="tu-story__curve tu-story__curve--strong" data-story-model="strong" pathLength="1" />
+            <path class="tu-story__curve tu-story__curve--classical" data-story-model="classical" pathLength="1" />
+            <path class="tu-story__curve tu-story__curve--equal" data-story-model="equal" pathLength="1" />
+            <path class="tu-story__curve tu-story__curve--mild" data-story-model="mild" pathLength="1" />
+
+            <g class="tu-story__feature tu-story__feature--slope" data-story-feature="classical">
+              <path d="M356 170 L406 154" />
+              <rect class="tu-story__feature-label-bg" x="226" y="148" width="146" height="36" rx="10" />
+              <text x="242" y="172">zero-lag limit</text>
+            </g>
+            <g class="tu-story__feature tu-story__feature--bend" data-story-feature="equal">
+              <path d="M516 164 L620 150" />
+              <rect class="tu-story__feature-label-bg" x="378" y="118" width="156" height="36" rx="10" />
+              <text x="394" y="142">lag cancellation</text>
+            </g>
+            <g class="tu-story__feature tu-story__feature--memory" data-story-feature="mild">
+              <path d="M412 228 C382 216 360 196 384 174" />
+              <rect class="tu-story__feature-label-bg" x="292" y="236" width="138" height="36" rx="10" />
+              <text x="308" y="260">S-like delay</text>
+            </g>
+            <g class="tu-story__feature tu-story__feature--context" data-story-feature="strong">
+              <path d="M602 142 C588 154 586 166 596 174" />
+              <rect class="tu-story__feature-label-bg" x="462" y="98" width="142" height="36" rx="10" />
+              <text x="478" y="122">decision spread</text>
+            </g>
+          </g>
+
+          <g class="tu-story__model-orbits" aria-hidden="true">
+            {modelCases.map((modelCase, index) => (
+              <g class={`tu-story__orbit tu-story__orbit--${modelCase.tone}`} data-story-token={modelCase.key}>
+                <circle cx={720} cy={144 + index * 54} r="17" />
+                <text x="752" y={150 + index * 54}>{modelCase.label}</text>
+              </g>
+            ))}
+          </g>
+
+          <g class="tu-story__decision" data-story-decision>
+            <text x="704" y="346" class="tu-story__decision-label">time-to-threshold</text>
+            <rect x="704" y="362" width="148" height="16" rx="8" class="tu-story__decision-base" />
+            <rect x="704" y="392" width="88" height="16" rx="8" class="tu-story__decision-option tu-story__decision-option--a" data-decision-bar="classical" />
+            <rect x="704" y="392" width="128" height="16" rx="8" class="tu-story__decision-option tu-story__decision-option--b" data-decision-bar="mild" />
+            <rect x="704" y="392" width="60" height="16" rx="8" class="tu-story__decision-option tu-story__decision-option--c" data-decision-bar="strong" />
+            <path d="M704 430 H852" class="tu-story__decision-rule" />
+            <text x="704" y="456" class="tu-story__decision-note" data-decision-note>LDL shifts threshold timing</text>
+          </g>
+        </svg>
+      </div>
+
+      <div class="tu-story__caption">
+        <span data-story-focus>{scenes[0].focus}</span>
+        <strong data-story-feature-label>{scenes[0].feature}</strong>
+      </div>
+    </div>
+
+    <div class="tu-story__controls" aria-label="Animation controls">
+      <button class="tu-story__control" type="button" data-story-action="back" aria-label="Previous scene">Back</button>
+      <button class="tu-story__control tu-story__control--primary" type="button" data-story-action="toggle">Pause</button>
+      <button class="tu-story__control" type="button" data-story-action="next" aria-label="Next scene">Next</button>
+      <button class="tu-story__control" type="button" data-story-action="replay">Replay</button>
+    </div>
+
+    <div class="tu-story__timeline" aria-label="Story timeline">
+      {scenes.map((scene, index) => (
+        <button
+          type="button"
+          data-story-step={index}
+          aria-label={`Show ${scene.label}`}
+          aria-current={index === 0 ? "step" : "false"}
+        >
+          <i></i>
+          <span>{scene.label}</span>
+        </button>
+      ))}
+    </div>
+
+    <div class="tu-story__cards" aria-label="Calculated lagging Darcy cases">
+      {modelCases.map((modelCase) => (
+        <article class={`tu-story__card tu-story__card--${modelCase.tone}`} data-story-card={modelCase.key}>
+          <span>{modelCase.note}</span>
+          <h3>{modelCase.label}</h3>
+        </article>
+      ))}
+    </div>
+  </div>
+
+  <div class="tu-demo__panel tu-demo__panel--compact">
+    <div class="tu-demo__readouts" aria-label="What the animation means">
+      <article>
+        <span>Calculation</span>
+        <strong>Lin-Yeh special case</strong>
+        <p>All response curves are generated in the browser, then normalized to compare response shape.</p>
+      </article>
+      <article>
+        <span>Transformation</span>
+        <strong>analytical model</strong>
+        <p>The curve becomes apparent parameters through assumptions about lag times, radius, and leakage length.</p>
+      </article>
+      <article>
+        <span>Decision effect</span>
+        <strong>threshold shift</strong>
+        <p>Allowable pumping, recovery time, or design threshold changes when inferred parameters change.</p>
+      </article>
+    </div>
+    <p class="tu-demo__note">
+      The plotted curves are calculation-backed teaching cases: zero lag, equal lag, separated
+      lag with the head-side lag greater than the flux lag, and a stronger decision-sensitive case. They are
+      not hand-drawn concept curves.
+    </p>
+    <p class="tu-demo__disclaimer">
+      Values are normalized for communication and use a public teaching implementation of the
+      no-wellbore-storage, no-skin, line-source special case of the Lin-Yeh (2017)
+      leaky-confined lagging-flow equation with a 12-term Gaver-Stehfest inversion. This is
+      not the full finite-radius, wellbore-storage, and skin solution used for calibrated field
+      analysis, and it is not an engineering recommendation. Here tau h denotes the
+      head- or drawdown-gradient-side lag used for communication; the 2017 pumping-test paper
+      denotes that side as tau s.
+    </p>
+  </div>
+</section>
+
+<script>
+  const storyData = [
+    {
+      eyebrow: "Scene 1",
+      title: "The curve is a normalized LDL response.",
+      body:
+        "The browser first computes drawdown from a simplified line-source special case of the Lin-Yeh lagging-flow equation, then normalizes the response to reveal the transition shape.",
+      focus: "Normalized LDL response",
+      feature: "computed, not sketched",
+    },
+    {
+      eyebrow: "Scene 2",
+      title: "The classical curve is the zero-lag limit.",
+      body:
+        "Set both lag times to zero and the browser computes the classical leaky confined aquifer response. This gives the reference interpretation.",
+      focus: "Zero lag",
+      feature: "classical limit",
+    },
+    {
+      eyebrow: "Scene 3",
+      title: "Equal lags collapse back to classical behavior.",
+      body:
+        "In the Lin-Yeh formulation, equal flux and gradient lags cancel inside the transfer function. The curve nearly hides inside the classical reference.",
+      focus: "Equal lag",
+      feature: "cancellation check",
+    },
+    {
+      eyebrow: "Scene 4",
+      title: "A larger head-side lag creates the delayed transition.",
+      body:
+        "When the head-side lag is larger than the flux lag, the normalized LDL response shows the S-like transition that raw drawdown can visually hide.",
+      focus: "tau h > tau q",
+      feature: "S-like delay",
+    },
+    {
+      eyebrow: "Scene 5",
+      title: "A stronger separation moves the decision window.",
+      body:
+        "Changing lag times, observation radius, and leakage length within the same analytical solution changes the normalized response before any external reliability calculation is added.",
+      focus: "Decision-sensitive response",
+      feature: "computed spread",
+    },
+    {
+      eyebrow: "Scene 6",
+      title: "Transformation uncertainty begins at interpretation.",
+      body:
+        "The uncertainty is not invented after the groundwater model. It starts when drawdown or recovery is interpreted with an aquifer-test analytical model and converted into parameters and decision variables.",
+      focus: "Interpretation audit",
+      feature: "why it matters",
+    },
+  ];
+
+  const sceneToModel = ["strong", "classical", "equal", "mild", "strong", "decision"];
+
+  const factorial = (n) => {
+    let value = 1;
+    for (let i = 2; i <= n; i += 1) value *= i;
+    return value;
+  };
+
+  const stehfestCoefficients = (n = 12) => {
+    const coefficients = [];
+    for (let i = 1; i <= n; i += 1) {
+      let sum = 0;
+      const kMin = Math.floor((i + 1) / 2);
+      const kMax = Math.min(i, n / 2);
+      for (let k = kMin; k <= kMax; k += 1) {
+        const numerator = Math.pow(k, n / 2) * factorial(2 * k);
+        const denominator =
+          factorial(n / 2 - k) *
+          factorial(k) *
+          factorial(k - 1) *
+          factorial(i - k) *
+          factorial(2 * k - i);
+        sum += numerator / denominator;
+      }
+      coefficients.push(Math.pow(-1, i + n / 2) * sum);
+    }
+    return coefficients;
+  };
+
+  const STEHFEST = stehfestCoefficients(12);
+  const LN2 = Math.log(2);
+  const BASE = {
+    pumpingRate: 120,
+    transmissivity: 12,
+    storativity: 0.004,
+  };
+  const CASES = {
+    classical: { fluxLag: 0, gradientLag: 0, radius: 35, leakageLength: 1200 },
+    equal: { fluxLag: 30, gradientLag: 30, radius: 35, leakageLength: 1200 },
+    mild: { fluxLag: 1, gradientLag: 300, radius: 35, leakageLength: 1200 },
+    strong: { fluxLag: 0.1, gradientLag: 300, radius: 80, leakageLength: 1200 },
+  };
+
+  function besselI0(x) {
+    const ax = Math.abs(x);
+    if (ax < 3.75) {
+      const y = (x / 3.75) ** 2;
+      return 1 + y * (3.5156229 + y * (3.0899424 + y * (1.2067492 + y * (0.2659732 + y * (0.0360768 + y * 0.0045813)))));
+    }
+    const y = 3.75 / ax;
+    return Math.exp(ax) / Math.sqrt(ax) * (0.39894228 + y * (0.01328592 + y * (0.00225319 + y * (-0.00157565 + y * (0.00916281 + y * (-0.02057706 + y * (0.02635537 + y * (-0.01647633 + y * 0.00392377))))))));
+  }
+
+  function besselK0(x) {
+    if (x <= 0) return Number.POSITIVE_INFINITY;
+    if (x <= 2) {
+      const y = (x * x) / 4;
+      return -Math.log(x / 2) * besselI0(x) + (-0.57721566 + y * (0.4227842 + y * (0.23069756 + y * (0.0348859 + y * (0.00262698 + y * (0.0001075 + y * 0.0000074))))));
+    }
+    const y = 2 / x;
+    return Math.exp(-x) / Math.sqrt(x) * (1.25331414 + y * (-0.07832358 + y * (0.02189568 + y * (-0.01062446 + y * (0.00587872 + y * (-0.0025154 + y * 0.00053208))))));
+  }
+
+  function laplaceDrawdown(p, params) {
+    const lagRatio = (1 + p * params.fluxLag) / (1 + p * params.gradientLag);
+    const radialTerm = (BASE.storativity * p * lagRatio) / BASE.transmissivity;
+    const leakageTerm = 1 / (params.leakageLength * params.leakageLength);
+    const lambda = params.radius * Math.sqrt(Math.max(0, radialTerm + leakageTerm));
+    return (BASE.pumpingRate / (2 * Math.PI * BASE.transmissivity * p)) * besselK0(lambda);
+  }
+
+  function inverseLaplace(time, params) {
+    let sum = 0;
+    for (let i = 1; i <= STEHFEST.length; i += 1) {
+      const p = (i * LN2) / time;
+      sum += STEHFEST[i - 1] * laplaceDrawdown(p, params);
+    }
+    const value = (LN2 / time) * sum;
+    if (!Number.isFinite(value)) return 0;
+    return Math.max(0, value);
+  }
+
+  function logSpace(min, max, count) {
+    const a = Math.log(min);
+    const b = Math.log(max);
+    return Array.from({ length: count }, (_, index) => Math.exp(a + ((b - a) * index) / (count - 1)));
+  }
+
+  function crossingTime(points, target, key) {
+    if (points[0][key] >= target) return points[0].time;
+    for (let i = 1; i < points.length; i += 1) {
+      const prev = points[i - 1];
+      const next = points[i];
+      if (prev[key] <= target && next[key] >= target) {
+        const fraction = (target - prev[key]) / Math.max(1e-9, next[key] - prev[key]);
+        return prev.time + fraction * (next.time - prev.time);
+      }
+    }
+    return points[points.length - 1].time;
+  }
+
+  function calculateStoryCurves() {
+    const keys = ["classical", "equal", "mild", "strong"];
+    const times = logSpace(1, 100000, 94);
+    const rawRows = times.map((time) => ({
+      time,
+      classical: inverseLaplace(time, CASES.classical),
+      equal: inverseLaplace(time, CASES.equal),
+      mild: inverseLaplace(time, CASES.mild),
+      strong: inverseLaplace(time, CASES.strong),
+    }));
+    const normalized = Object.fromEntries(
+      keys.map((key) => {
+        const values = rawRows.map((row) => row[key]);
+        const min = Math.min(...values);
+        const max = Math.max(...values);
+        const range = Math.max(1e-9, max - min);
+        return [key, values.map((value) => (value - min) / range)];
+      })
+    );
+    const rows = rawRows.map((row, index) => ({
+      time: row.time,
+      classical: normalized.classical[index],
+      equal: normalized.equal[index],
+      mild: normalized.mild[index],
+      strong: normalized.strong[index],
+    }));
+
+    const x0 = 104;
+    const y0 = 104;
+    const width = 586;
+    const height = 270;
+    const logMin = Math.log(times[0]);
+    const logMax = Math.log(times[times.length - 1]);
+    const xScale = (time) => x0 + ((Math.log(time) - logMin) / (logMax - logMin)) * width;
+    const yScale = (value) => y0 + height - (0.08 + value * 0.84) * height;
+    const pathFor = (key) =>
+      rows.map((row, index) => `${index === 0 ? "M" : "L"} ${xScale(row.time).toFixed(2)} ${yScale(row[key]).toFixed(2)}`).join(" ");
+
+    const target = 0.65;
+    const classicalTime = crossingTime(rows, target, "classical");
+    const mildTime = crossingTime(rows, target, "mild");
+    const strongTime = crossingTime(rows, target, "strong");
+    const decisionTimes = { classical: classicalTime, mild: mildTime, strong: strongTime };
+    const timeValues = Object.values(decisionTimes);
+    const timeMin = Math.min(...timeValues);
+    const timeMax = Math.max(...timeValues);
+    const logDecisionMin = Math.log(Math.max(1e-6, timeMin));
+    const logDecisionMax = Math.log(Math.max(timeMin * 1.01, timeMax));
+    const decisionWidthFor = (time) =>
+      48 + ((Math.log(Math.max(1e-6, time)) - logDecisionMin) / (logDecisionMax - logDecisionMin)) * 100;
+
+    return {
+      paths: {
+        classical: pathFor("classical"),
+        equal: pathFor("equal"),
+        mild: pathFor("mild"),
+        strong: pathFor("strong"),
+      },
+      decisionBars: Object.fromEntries(
+        Object.entries(decisionTimes).map(([key, time]) => [key, decisionWidthFor(time).toFixed(1)])
+      ),
+    };
+  }
+
+  const storyCurves = calculateStoryCurves();
+
+  document.querySelectorAll("[data-tu-story]").forEach((root) => {
+    let sceneIndex = 0;
+    let playing = true;
+    let timer = null;
+
+    Object.entries(storyCurves.paths).forEach(([key, path]) => {
+      root.querySelector(`[data-story-model="${key}"]`)?.setAttribute("d", path);
+    });
+
+    Object.entries(storyCurves.decisionBars).forEach(([key, width]) => {
+      root.querySelector(`[data-decision-bar="${key}"]`)?.setAttribute("width", width);
+    });
+
+    const nodes = {
+      eyebrow: root.querySelector("[data-story-eyebrow]"),
+      title: root.querySelector("[data-story-title]"),
+      body: root.querySelector("[data-story-body]"),
+      focus: root.querySelector("[data-story-focus]"),
+      feature: root.querySelector("[data-story-feature-label]"),
+      toggle: root.querySelector('[data-story-action="toggle"]'),
+      steps: [...root.querySelectorAll("[data-story-step]")],
+      cards: [...root.querySelectorAll("[data-story-card]")],
+      decisionNote: root.querySelector("[data-decision-note]"),
+    };
+
+    if (nodes.decisionNote) {
+      nodes.decisionNote.textContent = "LDL shifts threshold timing";
+    }
+
+    const setPlaying = (nextPlaying) => {
+      playing = nextPlaying;
+      nodes.toggle.textContent = playing ? "Pause" : "Play";
+      if (timer) {
+        window.clearInterval(timer);
+        timer = null;
+      }
+      if (playing) {
+        timer = window.setInterval(() => {
+          setScene((sceneIndex + 1) % storyData.length);
+        }, 4300);
+      }
+    };
+
+    function setScene(nextIndex) {
+      sceneIndex = (nextIndex + storyData.length) % storyData.length;
+      const scene = storyData[sceneIndex];
+      const activeModel = sceneToModel[sceneIndex];
+      root.dataset.scene = String(sceneIndex);
+      root.dataset.model = activeModel;
+      nodes.eyebrow.textContent = scene.eyebrow;
+      nodes.title.textContent = scene.title;
+      nodes.body.textContent = scene.body;
+      nodes.focus.textContent = scene.focus;
+      nodes.feature.textContent = scene.feature;
+      nodes.steps.forEach((step, index) => {
+        step.setAttribute("aria-current", index === sceneIndex ? "step" : "false");
+      });
+      nodes.cards.forEach((card) => {
+        card.toggleAttribute("data-active", card.dataset.storyCard === activeModel);
+      });
+    }
+
+    root.addEventListener("click", (event) => {
+      const target = event.target.closest("button");
+      if (!target) return;
+
+      if (target.matches("[data-story-step]")) {
+        setScene(Number(target.dataset.storyStep));
+        setPlaying(false);
+        return;
+      }
+
+      const action = target.dataset.storyAction;
+      if (action === "back") {
+        setScene(sceneIndex - 1);
+        setPlaying(false);
+      }
+      if (action === "next") {
+        setScene(sceneIndex + 1);
+        setPlaying(false);
+      }
+      if (action === "replay") {
+        setScene(0);
+        setPlaying(true);
+      }
+      if (action === "toggle") {
+        setPlaying(!playing);
+      }
+    });
+
+    setScene(0);
+    setPlaying(true);
+  });
+</script>
+
+```
+
+
+### File: src/components/research/LaggingPumpingTestDemo.astro
+
+```text
+---
+const presets = [
+  {
+    id: "darcy",
+    label: "Darcy-like",
+    description: "Equal response lags collapse to the classical curve.",
+    values: { flux: 2, gradient: 2, radius: 35, leakage: 550 },
+  },
+  {
+    id: "early",
+    label: "Early mismatch",
+    description: "Separated lags leave an early-time residual.",
+    values: { flux: 0.4, gradient: 6, radius: 35, leakage: 550 },
+  },
+  {
+    id: "decision",
+    label: "Decision-critical",
+    description: "The lag-aware model changes the early response.",
+    values: { flux: 0.1, gradient: 12, radius: 55, leakage: 380 },
+  },
+];
+---
+
+<section class="shell section ldl-demo" id="lagging-pumping-demo" aria-labelledby="ldl-demo-title" data-ldl-demo>
+  <div class="ldl-demo__copy">
+    <span class="eyebrow">Calculation-backed pumping test</span>
+    <h2 id="ldl-demo-title">When does a pumping test need Lagging Darcy Law?</h2>
+    <p>
+      This interaction uses a constant-rate pumping setting to test the Lin and Yeh
+      (2017) idea: water flux and drawdown gradient may respond at different
+      macroscopic times. When those times separate, the early drawdown curve can
+      carry information that a classical interpretation smooths away.
+    </p>
+  </div>
+
+  <div class="ldl-demo__panel">
+    <div class="ldl-demo__presets" aria-label="Pumping-test presets">
+      {presets.map((preset) => (
+        <button
+          type="button"
+          class="ldl-demo__preset"
+          data-preset={preset.id}
+          data-flux={preset.values.flux}
+          data-gradient={preset.values.gradient}
+          data-radius={preset.values.radius}
+          data-leakage={preset.values.leakage}
+          aria-pressed={preset.id === "early" ? "true" : "false"}
+        >
+          <strong>{preset.label}</strong>
+          <span>{preset.description}</span>
+        </button>
+      ))}
+    </div>
+
+    <div class="ldl-demo__workspace">
+      <div class="ldl-demo__controls" aria-label="Lagging Darcy Law controls">
+        <label>
+          <span>Flux response lag</span>
+          <output data-value-for="flux">0.4 h</output>
+          <input data-control="flux" type="range" min="0" max="8" value="0.4" step="0.1" />
+        </label>
+        <label>
+          <span>Gradient development lag</span>
+          <output data-value-for="gradient">6.0 h</output>
+          <input data-control="gradient" type="range" min="0" max="16" value="6" step="0.1" />
+        </label>
+        <label>
+          <span>Observation radius</span>
+          <output data-value-for="radius">35 m</output>
+          <input data-control="radius" type="range" min="15" max="80" value="35" step="1" />
+        </label>
+        <label>
+          <span>Leakage length</span>
+          <output data-value-for="leakage">550 m</output>
+          <input data-control="leakage" type="range" min="250" max="1100" value="550" step="10" />
+        </label>
+      </div>
+
+      <figure class="ldl-demo__figure">
+        <div class="ldl-demo__legend" aria-hidden="true">
+          <span><i class="ldl-demo__swatch ldl-demo__swatch--classical"></i> classical pumping response</span>
+          <span><i class="ldl-demo__swatch ldl-demo__swatch--lagging"></i> lagging response</span>
+          <span><i class="ldl-demo__swatch ldl-demo__swatch--residual"></i> residual</span>
+        </div>
+        <svg class="ldl-demo__chart" viewBox="0 0 860 520" role="img" aria-labelledby="ldl-chart-title ldl-chart-desc">
+          <title id="ldl-chart-title">Classical and Lagging Darcy pumping-test curves</title>
+          <desc id="ldl-chart-desc">A line chart compares classical drawdown, lagging drawdown, and residual through time.</desc>
+          <g data-chart-layer></g>
+        </svg>
+      </figure>
+    </div>
+
+    <div class="ldl-demo__readouts" aria-live="polite">
+      <article>
+        <span>early mismatch</span>
+        <strong data-readout="mismatch">--</strong>
+        <p>largest early residual relative to the classical late-time drawdown</p>
+      </article>
+      <article>
+        <span>early timing shift</span>
+        <strong data-readout="timing">--</strong>
+        <p>change in time to reach a diagnostic drawdown level</p>
+      </article>
+      <article>
+        <span>interpretation status</span>
+        <strong data-readout="status">--</strong>
+        <p data-readout="note">Move the controls to test whether classical Darcy is enough.</p>
+      </article>
+    </div>
+
+    <div class="ldl-demo__equation" aria-label="Calculation note">
+      <p>
+        Calculation note: this teaching model applies the Lin-Yeh lag operator to a
+        line-source leaky confined aquifer transfer function in Laplace space. The
+        browser inverts the response with a 12-term Gaver-Stehfest algorithm and a
+        Bessel K0 approximation. Wellbore storage and finite well radius are not
+        included, so calibrated field analysis should replace this public demo before
+        design use.
+      </p>
+      <p>
+        Diagnostic rule: if the flux lag and gradient lag are equal, the lagging term
+        cancels and the curve returns to the classical response.
+      </p>
+    </div>
+  </div>
+</section>
+
+<script>
+  const demoRoots = document.querySelectorAll("[data-ldl-demo]");
+
+  const factorial = (n) => {
+    let value = 1;
+    for (let i = 2; i <= n; i += 1) value *= i;
+    return value;
+  };
+
+  const stehfestCoefficients = (n = 12) => {
+    const coefficients = [];
+    for (let i = 1; i <= n; i += 1) {
+      let sum = 0;
+      const kMin = Math.floor((i + 1) / 2);
+      const kMax = Math.min(i, n / 2);
+      for (let k = kMin; k <= kMax; k += 1) {
+        const numerator = Math.pow(k, n / 2) * factorial(2 * k);
+        const denominator =
+          factorial(n / 2 - k) *
+          factorial(k) *
+          factorial(k - 1) *
+          factorial(i - k) *
+          factorial(2 * k - i);
+        sum += numerator / denominator;
+      }
+      coefficients.push(Math.pow(-1, i + n / 2) * sum);
+    }
+    return coefficients;
+  };
+
+  const STEHFEST = stehfestCoefficients(12);
+  const LN2 = Math.log(2);
+  const BASE = {
+    pumpingRate: 120,
+    transmissivity: 45,
+    storativity: 0.00025,
+  };
+
+  function besselI0(x) {
+    const ax = Math.abs(x);
+    if (ax < 3.75) {
+      const y = (x / 3.75) ** 2;
+      return 1 + y * (3.5156229 + y * (3.0899424 + y * (1.2067492 + y * (0.2659732 + y * (0.0360768 + y * 0.0045813)))));
+    }
+    const y = 3.75 / ax;
+    return Math.exp(ax) / Math.sqrt(ax) * (0.39894228 + y * (0.01328592 + y * (0.00225319 + y * (-0.00157565 + y * (0.00916281 + y * (-0.02057706 + y * (0.02635537 + y * (-0.01647633 + y * 0.00392377))))))));
+  }
+
+  function besselK0(x) {
+    if (x <= 0) return Number.POSITIVE_INFINITY;
+    if (x <= 2) {
+      const y = (x * x) / 4;
+      return -Math.log(x / 2) * besselI0(x) + (-0.57721566 + y * (0.4227842 + y * (0.23069756 + y * (0.0348859 + y * (0.00262698 + y * (0.0001075 + y * 0.0000074))))));
+    }
+    const y = 2 / x;
+    return Math.exp(-x) / Math.sqrt(x) * (1.25331414 + y * (-0.07832358 + y * (0.02189568 + y * (-0.01062446 + y * (0.00587872 + y * (-0.0025154 + y * 0.00053208))))));
+  }
+
+  function laplaceDrawdown(p, params) {
+    const lagRatio = (1 + p * params.fluxLag) / (1 + p * params.gradientLag);
+    const radialTerm = (BASE.storativity * p * lagRatio) / BASE.transmissivity;
+    const leakageTerm = 1 / (params.leakageLength * params.leakageLength);
+    const lambda = params.radius * Math.sqrt(Math.max(0, radialTerm + leakageTerm));
+    return (BASE.pumpingRate / (2 * Math.PI * BASE.transmissivity * p)) * besselK0(lambda);
+  }
+
+  function inverseLaplace(time, params) {
+    let sum = 0;
+    for (let i = 1; i <= STEHFEST.length; i += 1) {
+      const p = (i * LN2) / time;
+      sum += STEHFEST[i - 1] * laplaceDrawdown(p, params);
+    }
+    const value = (LN2 / time) * sum;
+    if (!Number.isFinite(value)) return 0;
+    return Math.max(0, value);
+  }
+
+  function logSpace(min, max, count) {
+    const a = Math.log(min);
+    const b = Math.log(max);
+    return Array.from({ length: count }, (_, index) => Math.exp(a + ((b - a) * index) / (count - 1)));
+  }
+
+  function crossingTime(points, target, key) {
+    if (points[0][key] >= target) {
+      return points[0].time;
+    }
+    for (let i = 1; i < points.length; i += 1) {
+      const prev = points[i - 1];
+      const next = points[i];
+      if (prev[key] <= target && next[key] >= target) {
+        const fraction = (target - prev[key]) / Math.max(1e-9, next[key] - prev[key]);
+        return prev.time + fraction * (next.time - prev.time);
+      }
+    }
+    return points[points.length - 1].time;
+  }
+
+  function linePath(points, xScale, yScale, key) {
+    return points
+      .map((point, index) => `${index === 0 ? "M" : "L"} ${xScale(point.time).toFixed(2)} ${yScale(point[key]).toFixed(2)}`)
+      .join(" ");
+  }
+
+  function renderChart(layer, points, metrics) {
+    const x0 = 70;
+    const y0 = 44;
+    const width = 720;
+    const height = 258;
+    const rY0 = 368;
+    const rHeight = 88;
+    const minTime = points[0].time;
+    const maxTime = points[points.length - 1].time;
+    const logMin = Math.log(minTime);
+    const logMax = Math.log(maxTime);
+    const maxDrawdown = Math.max(...points.flatMap((point) => [point.classical, point.lagging]), 0.1) * 1.12;
+    const maxResidual = Math.max(...points.map((point) => Math.abs(point.residual)), 0.01);
+    const xScale = (time) => x0 + ((Math.log(time) - logMin) / (logMax - logMin)) * width;
+    const yScale = (value) => y0 + height - (value / maxDrawdown) * height;
+    const residualScale = (value) => rY0 + rHeight / 2 - (value / maxResidual) * (rHeight / 2);
+    const xTicks = [0.05, 0.1, 0.5, 1, 4, 16, 72];
+    const yTicks = [0, maxDrawdown / 2, maxDrawdown];
+
+    layer.innerHTML = `
+      <rect x="26" y="18" width="808" height="476" rx="8" class="ldl-demo__svg-frame"></rect>
+      ${xTicks.map((tick) => `<path class="ldl-demo__grid" d="M ${xScale(tick).toFixed(2)} ${y0} V ${y0 + height}"></path><text class="ldl-demo__tick" x="${xScale(tick).toFixed(2)}" y="${y0 + height + 28}">${tick >= 1 ? tick.toFixed(0) : tick.toFixed(2)} h</text>`).join("")}
+      ${yTicks.map((tick) => `<path class="ldl-demo__grid" d="M ${x0} ${yScale(tick).toFixed(2)} H ${x0 + width}"></path><text class="ldl-demo__tick ldl-demo__tick--y" x="${x0 - 12}" y="${yScale(tick).toFixed(2)}">${tick.toFixed(2)}</text>`).join("")}
+      <path class="ldl-demo__axis" d="M ${x0} ${y0 + height} H ${x0 + width}"></path>
+      <path class="ldl-demo__axis" d="M ${x0} ${y0} V ${y0 + height}"></path>
+      <rect class="ldl-demo__early-window" x="${xScale(0.05).toFixed(2)}" y="${y0}" width="${(xScale(2) - xScale(0.05)).toFixed(2)}" height="${height}"></rect>
+      <path class="ldl-demo__curve ldl-demo__curve--classical" d="${linePath(points, xScale, yScale, "classical")}"></path>
+      <path class="ldl-demo__curve ldl-demo__curve--lagging" d="${linePath(points, xScale, yScale, "lagging")}"></path>
+      <text class="ldl-demo__axis-label" x="${x0 + 8}" y="${y0 + 22}">drawdown, m</text>
+      <text class="ldl-demo__window-label" x="${xScale(0.08).toFixed(2)}" y="${y0 + 246}">early-time diagnostic window</text>
+      <path class="ldl-demo__axis" d="M ${x0} ${rY0 + rHeight / 2} H ${x0 + width}"></path>
+      <path class="ldl-demo__curve ldl-demo__curve--residual" d="${linePath(points, xScale, residualScale, "residual")}"></path>
+      <text class="ldl-demo__axis-label" x="${x0 + 8}" y="${rY0 - 14}">lagging minus classical residual</text>
+      <text class="ldl-demo__callout" x="${x0 + width - 252}" y="${rY0 + rHeight + 26}">max early mismatch: ${metrics.mismatchText}</text>
+    `;
+  }
+
+  function formatSignedPercent(value) {
+    const sign = value > 0 ? "+" : "";
+    return `${sign}${value.toFixed(0)}%`;
+  }
+
+  function updateDemo(root) {
+    const controls = {
+      flux: root.querySelector('[data-control="flux"]'),
+      gradient: root.querySelector('[data-control="gradient"]'),
+      radius: root.querySelector('[data-control="radius"]'),
+      leakage: root.querySelector('[data-control="leakage"]'),
+    };
+    const values = {
+      flux: Number(controls.flux.value),
+      gradient: Number(controls.gradient.value),
+      radius: Number(controls.radius.value),
+      leakage: Number(controls.leakage.value),
+    };
+
+    root.querySelector('[data-value-for="flux"]').textContent = `${values.flux.toFixed(1)} h`;
+    root.querySelector('[data-value-for="gradient"]').textContent = `${values.gradient.toFixed(1)} h`;
+    root.querySelector('[data-value-for="radius"]').textContent = `${values.radius.toFixed(0)} m`;
+    root.querySelector('[data-value-for="leakage"]').textContent = `${values.leakage.toFixed(0)} m`;
+
+    const common = {
+      radius: values.radius,
+      leakageLength: values.leakage,
+    };
+    const classicalParams = { ...common, fluxLag: 0, gradientLag: 0 };
+    const laggingParams = { ...common, fluxLag: values.flux, gradientLag: values.gradient };
+    const times = logSpace(0.05, 72, 86);
+    const points = times.map((time) => {
+      const classical = inverseLaplace(time, classicalParams);
+      const lagging = inverseLaplace(time, laggingParams);
+      return { time, classical, lagging, residual: lagging - classical };
+    });
+
+    const lateClassical = points[points.length - 1].classical;
+    const earlyPoints = points.filter((point) => point.time <= 2);
+    const maxEarlyResidual = Math.max(...earlyPoints.map((point) => Math.abs(point.residual)));
+    const mismatch = (maxEarlyResidual / Math.max(0.01, lateClassical)) * 100;
+    const target = lateClassical * 0.72;
+    const classicalTime = crossingTime(points, target, "classical");
+    const laggingTime = crossingTime(points, target, "lagging");
+    const timingShift = ((laggingTime / Math.max(0.001, classicalTime)) - 1) * 100;
+    const separation = Math.abs(values.gradient - values.flux);
+
+    let status = "adequate";
+    let note = "The two lags are close enough that the classical response is a reasonable first screen.";
+    if (mismatch >= 6 || separation >= 3) {
+      status = "diagnostic";
+      note = "The early residual has structure. A classical late-time fit may hide a model-form change.";
+    }
+    if (mismatch >= 14 || Math.abs(timingShift) >= 35 || separation >= 8) {
+      status = "decision review";
+      note = "The lag-aware model changes the early response enough to audit inferred parameters before using them in a decision.";
+    }
+
+    root.querySelector('[data-readout="mismatch"]').textContent = `${mismatch.toFixed(1)}%`;
+    root.querySelector('[data-readout="timing"]').textContent = formatSignedPercent(timingShift);
+    root.querySelector('[data-readout="status"]').textContent = status;
+    root.querySelector('[data-readout="note"]').textContent = note;
+
+    const layer = root.querySelector("[data-chart-layer]");
+    if (layer) {
+      renderChart(layer, points, { mismatchText: `${mismatch.toFixed(1)}%` });
+    }
+  }
+
+  demoRoots.forEach((root) => {
+    const controls = root.querySelectorAll("[data-control]");
+    const presets = root.querySelectorAll("[data-preset]");
+
+    controls.forEach((control) => {
+      control.addEventListener("input", () => {
+        presets.forEach((preset) => preset.setAttribute("aria-pressed", "false"));
+        updateDemo(root);
+      });
+    });
+
+    presets.forEach((preset) => {
+      preset.addEventListener("click", () => {
+        root.querySelector('[data-control="flux"]').value = preset.dataset.flux;
+        root.querySelector('[data-control="gradient"]').value = preset.dataset.gradient;
+        root.querySelector('[data-control="radius"]').value = preset.dataset.radius;
+        root.querySelector('[data-control="leakage"]').value = preset.dataset.leakage;
+        presets.forEach((item) => item.setAttribute("aria-pressed", item === preset ? "true" : "false"));
+        updateDemo(root);
+      });
+    });
+
+    updateDemo(root);
+  });
+</script>
+
+```
+
+
+### File: src/components/research/ScientificScrollStory.astro
+
+```text
+---
+const steps = [
+  {
+    label: "01",
+    title: "Theis reference",
+    body:
+      "Start with the familiar confined-aquifer interpretation: drawdown is translated through an analytical model into transmissivity and storage.",
+  },
+  {
+    label: "02",
+    title: "Lag-aware response",
+    body:
+      "When flux and hydraulic-gradient development are not synchronous, the early and recovery windows can carry structured residuals.",
+  },
+  {
+    label: "03",
+    title: "Transformation uncertainty",
+    body:
+      "The decision changes when the same measured response is converted through different model assumptions.",
+  },
+];
+---
+
+<section id="scroll-story" class="scientific-scroll" aria-labelledby="scientific-scroll-title" data-scientific-scroll>
+  <div class="shell scientific-scroll__inner">
+    <div class="scientific-scroll__copy">
+      <span class="eyebrow">Aquifer-test interpretation story</span>
+      <h2 id="scientific-scroll-title">From Theis drawdown to lag-aware decision uncertainty.</h2>
+      <p>
+        A familiar Theis-style drawdown response gives the reference case. The lag-aware
+        overlay then shows how asynchronous response can change residual structure and
+        the decision window that follows from an analytical interpretation.
+      </p>
+      <div class="scientific-scroll__steps">
+        {steps.map((step) => (
+          <article class="scientific-scroll__step" data-scroll-step>
+            <span>{step.label}</span>
+            <h3>{step.title}</h3>
+            <p>{step.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+
+    <figure class="scientific-scroll__figure" aria-label="Scroll-driven aquifer-test interpretation story">
+      <svg viewBox="0 0 900 620" role="img" aria-labelledby="scroll-story-title scroll-story-desc">
+        <title id="scroll-story-title">Theis, lag-aware response, and transformation uncertainty</title>
+        <desc id="scroll-story-desc">
+          A calculated Theis reference curve, a normalized lag-aware teaching overlay,
+          and model-to-decision uncertainty bands are animated as the reader scrolls.
+        </desc>
+        <defs>
+          <linearGradient id="scientificScrollBand" x1="0" x2="1" y1="0" y2="0">
+            <stop offset="0%" stop-color="var(--signal-measured)" stop-opacity="0.18" />
+            <stop offset="100%" stop-color="var(--risk-boundary)" stop-opacity="0.2" />
+          </linearGradient>
+          <marker id="scientificScrollArrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+            <path d="M0,0 L8,4 L0,8 Z" fill="var(--risk-boundary)" />
+          </marker>
+        </defs>
+        <rect class="scientific-scroll__frame" x="34" y="34" width="832" height="552" rx="18" />
+        <g class="scientific-scroll__grid">
+          <path d="M104 110 H760" />
+          <path d="M104 190 H760" />
+          <path d="M104 270 H760" />
+          <path d="M104 350 H760" />
+          <path d="M104 430 H760" />
+          <path d="M212 82 V468" />
+          <path d="M320 82 V468" />
+          <path d="M428 82 V468" />
+          <path d="M536 82 V468" />
+          <path d="M644 82 V468" />
+        </g>
+        <path class="scientific-scroll__axis" d="M104 468 H760" />
+        <path class="scientific-scroll__axis" d="M104 82 V468" />
+        <text class="scientific-scroll__axis-label" x="116" y="72">drawdown response</text>
+        <text class="scientific-scroll__axis-label" x="680" y="504">log time</text>
+
+        <path class="scientific-scroll__band" data-scroll-band />
+        <path class="scientific-scroll__curve scientific-scroll__curve--theis" data-scroll-curve="theis" />
+        <path class="scientific-scroll__curve scientific-scroll__curve--ldl" data-scroll-curve="ldl" />
+        <path class="scientific-scroll__curve scientific-scroll__curve--observed" data-scroll-curve="observed" />
+
+        <g class="scientific-scroll__threshold" data-scroll-threshold>
+          <path d="M584 94 V468" />
+          <path d="M636 94 V468" />
+          <path d="M584 122 H636" marker-end="url(#scientificScrollArrow)" />
+          <text x="532" y="108">decision window</text>
+        </g>
+
+        <g class="scientific-scroll__legend">
+          <text x="112" y="538">Theis reference</text>
+          <text x="348" y="538">lag-aware overlay</text>
+          <text x="606" y="538">measured record</text>
+        </g>
+      </svg>
+      <figcaption>
+        Simplified public explainer: not a calibrated field inversion.
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const initializedScrollStories = new WeakSet();
+  const scrollStoryDisposers = new WeakMap();
+  const EULER_GAMMA = 0.5772156649;
+
+  function expIntegralE1(x) {
+    if (x <= 0) return 20;
+    if (x < 1) {
+      let sum = 0;
+      let term = 1;
+      for (let k = 1; k <= 18; k += 1) {
+        term *= -x / k;
+        sum += term / k;
+      }
+      return Math.max(0, -EULER_GAMMA - Math.log(x) - sum);
+    }
+
+    let term = 1;
+    let sum = 1;
+    for (let k = 1; k <= 12; k += 1) {
+      term *= -k / x;
+      sum += term;
+    }
+    return Math.max(0, (Math.exp(-x) / x) * sum);
+  }
+
+  function makeCurves() {
+    const rows = [];
+    const count = 96;
+    const tMin = 0.04;
+    const tMax = 96;
+    const logMin = Math.log(tMin);
+    const logMax = Math.log(tMax);
+    const r = 35;
+    const s = 0.00035;
+    const t = 42;
+
+    for (let i = 0; i < count; i += 1) {
+      const time = Math.exp(logMin + ((logMax - logMin) * i) / (count - 1));
+      const u = (r * r * s) / (4 * t * time);
+      const theis = expIntegralE1(u);
+      const normalizedTime = (Math.log(time) - logMin) / (logMax - logMin);
+      const ldl = 1 / (1 + Math.exp(-(normalizedTime - 0.48) * 9.5));
+      const observed = 0.72 * ldl + 0.28 * (1 / (1 + Math.exp(-(normalizedTime - 0.35) * 7)));
+      rows.push({ time, theis, ldl, observed });
+    }
+
+    const normalize = (key) => {
+      const values = rows.map((row) => row[key]);
+      const min = Math.min(...values);
+      const max = Math.max(...values);
+      const range = Math.max(1e-9, max - min);
+      rows.forEach((row) => {
+        row[`${key}Norm`] = (row[key] - min) / range;
+      });
+    };
+
+    normalize("theis");
+    normalize("ldl");
+    normalize("observed");
+    return rows;
+  }
+
+  function pathFor(rows, key) {
+    const x0 = 104;
+    const y0 = 82;
+    const width = 656;
+    const height = 386;
+    return rows
+      .map((row, index) => {
+        const x = x0 + (index / (rows.length - 1)) * width;
+        const y = y0 + height - (0.08 + row[key] * 0.84) * height;
+        return `${index === 0 ? "M" : "L"} ${x.toFixed(2)} ${y.toFixed(2)}`;
+      })
+      .join(" ");
+  }
+
+  function bandPath(rows) {
+    const x0 = 104;
+    const y0 = 82;
+    const width = 656;
+    const height = 386;
+    const top = rows.map((row, index) => {
+      const x = x0 + (index / (rows.length - 1)) * width;
+      const y = y0 + height - (0.12 + Math.max(row.theisNorm, row.ldlNorm) * 0.78) * height;
+      return `${index === 0 ? "M" : "L"} ${x.toFixed(2)} ${y.toFixed(2)}`;
+    });
+    const bottom = [...rows].reverse().map((row, reverseIndex) => {
+      const index = rows.length - 1 - reverseIndex;
+      const x = x0 + (index / (rows.length - 1)) * width;
+      const y = y0 + height - (0.08 + Math.min(row.theisNorm, row.ldlNorm) * 0.78) * height;
+      return `L ${x.toFixed(2)} ${y.toFixed(2)}`;
+    });
+    return `${top.join(" ")} ${bottom.join(" ")} Z`;
+  }
+
+  function preparePath(path) {
+    const length = path.getTotalLength();
+    path.style.strokeDasharray = String(length);
+    path.style.strokeDashoffset = String(length);
+  }
+
+  function initScientificScrollStories() {
+    document.querySelectorAll("[data-scientific-scroll]").forEach((root) => {
+      if (initializedScrollStories.has(root)) return;
+      initializedScrollStories.add(root);
+
+      const rows = makeCurves();
+      const theis = root.querySelector('[data-scroll-curve="theis"]');
+      const ldl = root.querySelector('[data-scroll-curve="ldl"]');
+      const observed = root.querySelector('[data-scroll-curve="observed"]');
+      const band = root.querySelector("[data-scroll-band]");
+      const threshold = root.querySelector("[data-scroll-threshold]");
+      const steps = [...root.querySelectorAll("[data-scroll-step]")];
+      const paths = [theis, ldl, observed].filter(Boolean);
+      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      theis?.setAttribute("d", pathFor(rows, "theisNorm"));
+      ldl?.setAttribute("d", pathFor(rows, "ldlNorm"));
+      observed?.setAttribute("d", pathFor(rows, "observedNorm"));
+      band?.setAttribute("d", bandPath(rows));
+
+      paths.forEach(preparePath);
+      gsap.set([ldl, observed, band, threshold], { opacity: 0 });
+      gsap.set(steps.slice(1), { opacity: 0.44 });
+
+      if (reduce) {
+        paths.forEach((path) => {
+          path.style.strokeDashoffset = "0";
+        });
+        gsap.set([ldl, observed, band, threshold, steps], { opacity: 1 });
+        return;
+      }
+
+      const timeline = gsap.timeline({
+        defaults: { ease: "power2.out" },
+        scrollTrigger: {
+          trigger: root,
+          start: "top 72%",
+          end: "bottom 42%",
+          scrub: 0.75,
+        },
+      });
+
+      scrollStoryDisposers.set(root, () => {
+        timeline.scrollTrigger?.kill();
+        timeline.kill();
+        initializedScrollStories.delete(root);
+        scrollStoryDisposers.delete(root);
+      });
+
+      timeline
+        .to(theis, { strokeDashoffset: 0, duration: 0.8 })
+        .to(steps[0], { opacity: 1, duration: 0.2 }, "<")
+        .to(ldl, { opacity: 1, strokeDashoffset: 0, duration: 0.9 })
+        .to(steps[1], { opacity: 1, duration: 0.2 }, "<")
+        .to(observed, { opacity: 1, strokeDashoffset: 0, duration: 0.9 })
+        .to(band, { opacity: 1, duration: 0.55 }, "<")
+        .to(threshold, { opacity: 1, duration: 0.45 }, "<")
+        .to(steps[2], { opacity: 1, duration: 0.2 }, "<");
+    });
+  }
+
+  initScientificScrollStories();
+  document.addEventListener("astro:page-load", initScientificScrollStories);
+  document.addEventListener("astro:before-swap", () => {
+    document.querySelectorAll("[data-scientific-scroll]").forEach((root) => {
+      scrollStoryDisposers.get(root)?.();
+    });
+  });
+</script>
+
+```
+
+
+### File: src/components/research/KnowledgePanel.astro
+
+```text
+---
+import { Badge } from "@/components/starwind/badge";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/starwind/card";
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  body: string;
+  tone?: "default" | "teal" | "brick" | "gold" | "field";
+}
+
+const { eyebrow, title, body, tone = "default" } = Astro.props;
+const toneClass = {
+  default: "",
+  teal: "border-primary/35 bg-primary/5",
+  brick: "border-error/25 bg-error/5",
+  gold: "border-warning/45 bg-warning/20",
+  field: "border-info/80 bg-info/35",
+}[tone];
+---
+
+<Card class={`knowledge-panel ${toneClass}`}>
+  <CardHeader>
+    {eyebrow && <Badge variant="outline" size="sm">{eyebrow}</Badge>}
+    <CardTitle>{title}</CardTitle>
+  </CardHeader>
+  <CardContent>
+    <p>{body}</p>
+  </CardContent>
+</Card>
+
+
+```
+
+
+### File: src/content/projects/tu-lag.md
+
+```text
+---
+title: "Pumping-Test Transformation Uncertainty"
+stage: "manuscript_revision_evidence_locked"
+targetJournal: "Journal of Hydrology"
+updated: 2026-06-12
+sourceProjects: ["TU_Lag"]
+concepts: ["Transformation uncertainty", "Lagging theory"]
+evidenceLevel: "supported"
+claimBoundary:
+  - "Field data provide diagnostics, not proof of true transmissivity or storage."
+  - "Benchmark model factors are conditional, not universal design values."
+  - "Lagging Darcy is a candidate analytical model for interpretation, not a one-model substitute for established aquifer-test methods."
+collaborationRelevance: "Best first public anchor for a collaboration-facing transformation uncertainty program."
+---
+
+This project anchors the public transformation-uncertainty program for aquifer-test interpretation. It connects measured drawdown and recovery records to model-conditioned parameters, uncertainty bounds, and engineering decision variables.
+
+```
+
+
+### File: src/content/concepts/groundwater-memory.md
+
+```text
+---
+title: "Delayed Hydraulic Response"
+subtitle: "Past pumping and boundaries can still shape the head record measured today."
+lang: "en"
+translationKey: "concept-groundwater-memory"
+date: 2026-06-12
+updated: 2026-06-12
+concept: "Delayed hydraulic response"
+tags: ["asynchrony", "response functions", "time series"]
+evidenceLevel: "diagnostic"
+sourceProjects: ["Lagging_Darcy_WRR_20260607", "Memory_in_Well_Hydraulics_ADWR_LaTeX", "Donggang_Pumping_Latent_Atlas"]
+relatedPublications:
+  - "A Lagging Model for Describing Drawdown Induced by a Constant-Rate Pumping in a Leaky Confined Aquifer"
+  - "Analysis of Groundwater Time Series with Limited Pumping Information in Unconfined Aquifer"
+  - "Lagging Theory for Periodic Hydraulic Head Signals in Aquifers"
+audience: ["hydrogeologists", "time-series modelers", "water managers"]
+collaborationRelevance: "Use when non-instantaneous response, recovery, periodic forcing, or unexplained residual structure affects groundwater interpretation."
+summaryZh: "地下水記憶指的是現在的水力訊號仍保留過去抽水、補注、邊界或介質交換的影響，重點是辨識非瞬時反應是否會改變解釋與決策。"
+draft: false
+order: 2
+researchQuestion: "When is a residual pattern a trace of past forcing, drainage, or boundary response rather than noise?"
+decisionUse: "Improve response prediction, recovery interpretation, and monitoring design when timing matters."
+---
+
+## A Working Definition
+
+Delayed hydraulic response is not a loose metaphor here. It means that today's hydraulic-head, drawdown, recovery, or temperature record may still carry past gradients, boundary forcing, drainage, or domain exchange because flux, head, free-surface movement, or boundary response did not adjust instantly.
+
+Mechanisms can include asynchronous Darcy flux, capillary-fringe drainage, delayed yield, fracture-matrix exchange, aquitard leakage, wellbore or boundary storage, hydro-mechanical coupling, and effective averaging over heterogeneous flow paths.
+
+The point is not to rename every non-equilibrium model. The point is to make non-instantaneous response checkable across models and applications.
+
+The question is not whether memory sounds attractive. The question is whether the present field record contains recoverable information about a specific lagging mechanism or analytical representation.
+
+## Relation to Lagging Theory
+
+Lagging Theory represents delayed hydraulic response by placing causal asynchrony inside the flux-gradient relation or related free-surface and periodic-response formulations. Its value depends on comparison with conventional alternatives, not on claiming a single physical explanation.
+
+## Research Direction
+
+The next step is to connect delayed-response signatures to decision consequences:
+
+- how quickly drawdown propagates to a control point;
+- how long recovery should take after pumping stops;
+- whether phase and amplitude imply inconsistent diffusivities under a classical model;
+- whether thermal response tests under- or over-estimate effective formation properties;
+- whether field time series contain site-scale storage release that changes management timing.
+
+```
+
+
+### File: src/content/concepts/lagging-theory.md
+
+```text
+---
+title: "Lagging Theory"
+subtitle: "A way to test when groundwater flux and gradient stop moving together."
+metaDescription: "Lagging Theory tests flux-gradient asynchrony in groundwater pumping, recovery, periodic head, and thermal-response interpretation."
+lang: "en"
+translationKey: "concept-lagging-theory"
+date: 2026-06-12
+updated: 2026-06-12
+concept: "Lagging theory"
+tags: ["Lin and Yeh 2017", "generalized Darcy law", "flux-gradient lag"]
+evidenceLevel: "diagnostic"
+sourceProjects: ["TU_Lag", "Lag_TRT", "Lagging_Darcy_WRR_20260607"]
+relatedPublications:
+  - "A Lagging Model for Describing Drawdown Induced by a Constant-Rate Pumping in a Leaky Confined Aquifer"
+  - "Analysis of Unconfined Flow Induced by Constant Rate Pumping Based on the Lagging Theory"
+  - "Well Hydraulics in Wedge-Shaped Aquifer: Unsteady Darcian Flow Model Revisited by Lagging Theory"
+  - "Analysis of Groundwater Time Series with Limited Pumping Information in Unconfined Aquifer: Response Function Based on Lagging Theory"
+  - "Simplified Theoretical Analyses of Lagging Darcy Flow and Land Subsidence"
+  - "Lagging Theory for Periodic Hydraulic Head Signals in Aquifers"
+audience: ["well hydraulics researchers", "reviewers", "method developers"]
+collaborationRelevance: "Use when a team sees timing or amplitude mismatch and needs to know whether it improves prediction beyond curve fit."
+summaryZh: "延遲理論不是把反應曲線簡單平移，而是檢驗通量、梯度、水頭、邊界或自由水面是否存在非同步反應，並追問這種非同步是否改變工程判斷。"
+draft: false
+order: 1
+researchQuestion: "When does flux-gradient asynchrony explain something that extra parameters alone cannot?"
+decisionUse: "Check whether asynchronous-response parameters improve prediction and decision variables after complexity, identifiability, and validation checks."
+---
+
+## The Core Mechanism
+
+Lagging Theory begins with one change to the usual groundwater-flow assumption. Classical Darcy's law treats water flux and hydraulic gradient as simultaneous at the continuum scale. Lin and Yeh (2017) allowed water flux and drawdown gradient to move out of phase in a constant-rate pumping-test formulation.
+
+The word "lag" does not mean that every case is a simple time shift. In field systems, out-of-step behavior may come from tortuous flow paths, inertial effects, hydro-mechanical coupling, fracture-matrix or pore-domain exchange, capillary drainage, leakage, boundary storage, or unresolved heterogeneity.
+
+The two lag times in the 2017 formulation have different diagnostic meanings:
+
+- flux lag reflects fast transient adjustment, including inertial effects in high-permeability paths;
+- gradient or head-development lag reflects structural interaction, including noninterconnected pores, noninterconnected fractures, or non-equilibrium exchange between communicating domains.
+
+If the two lags are equal, the lagging effect disappears in the 2017 formulation. If flux lag and head or gradient lag differ, the response can depart from classical diffusion in a way that has physical content.
+
+## AI-Readable Definition
+
+Lagging Theory tests whether flux, hydraulic gradient, drawdown, boundary movement, or thermal response move asynchronously. It is not a generic time-shift model. The same observed lag can come from tortuous flow paths, inter-domain exchange, delayed drainage, fracture-matrix communication, aquitard leakage, hydro-mechanical coupling, inertial effects, or unresolved heterogeneity.
+
+The testable claim is narrow. If asynchronous response matters, a lagging formulation should improve residual structure, parameter transfer, held-out prediction, and at least one engineering decision variable after complexity and identifiability checks.
+
+## Extensions
+
+The later research line keeps the same discipline but changes the response surface:
+
+- in unconfined aquifers, lag times enter the free-surface condition and represent capillary-fringe release and capillary-suction drainage;
+- in periodic head signals, flux lag and head lag separate amplitude damping from phase offset, addressing phase-amplitude diffusivity mismatch;
+- in engineering interpretation, the lagging equation becomes one candidate analytical model for transforming measured response into inferred properties and decision variables.
+
+Lagging Theory should not be sold as a superior substitute for Darcy, Theis, Neuman, delayed-yield, leakage, or dual-porosity models. Its value comes from testing a specific possibility: the hydraulic response may contain flux-gradient asynchrony.
+
+## Minimum Gates
+
+A lagging model should pass more than calibration fit:
+
+1. Residual structure improves in a meaningful way.
+2. Complexity penalties do not erase the gain.
+3. Parameters are identifiable enough for the intended decision.
+4. Synthetic known-truth coverage is acceptable.
+5. Field prediction improves on held-out time, recovery, or wells.
+6. The difference propagates to an engineering decision variable.
+
+For pumping-test applications, see [When Does a Pumping Test Need Lagging Darcy Law?](/yflin_web/field-notes/when-does-a-pumping-test-need-lagging-darcy-law/).
+
+## Why Keep It
+
+If a lagging equation resembles dual-porosity, delayed-yield, or other non-equilibrium models, that overlap is useful rather than embarrassing. It gives a compact way to test whether flow-path adjustment, inter-domain exchange, capillary drainage, hydro-mechanical coupling, or field-scale delayed response affects the interpretation.
+
+```
+
+
+### File: src/content/concepts/subsurface-energy-intelligence.md
+
+```text
+---
+title: "Groundwater-Influenced Subsurface Energy"
+subtitle: "TRT and shallow geothermal decisions can change when groundwater is active."
+lang: "en"
+translationKey: "concept-subsurface-energy-intelligence"
+date: 2026-06-12
+updated: 2026-06-12
+concept: "Groundwater-influenced subsurface energy"
+tags: ["TRT", "shallow geothermal", "water-energy"]
+evidenceLevel: "diagnostic"
+sourceProjects: ["TRUST_TC", "TRUST_paddy", "MLS_GPOT", "Lag_TRT"]
+relatedPublications:
+  - "Analytical Modeling of Grout Heat Storage Effects in Thermal Response Tests"
+  - "Application of the Image-Well Method for Transient Borehole Thermal Energy Storage Systems with Complex Boundaries"
+  - "On Radial Heat Transport in Porous Aquifers with Nonlinear Velocity-dependent Thermal Dispersion"
+audience: ["geothermal teams", "industrial energy planners", "semiconductor water-energy teams"]
+collaborationRelevance: "Use when a thermal project depends on groundwater conditions, TRT interpretation, or uncertainty in underground heat transport."
+summaryZh: "淺層地熱與熱反應試驗不只是熱傳問題；地下水流、邊界、儲熱、異質性與非同步水力反應都可能改變參數解釋與設計裕度。"
+draft: false
+order: 4
+researchQuestion: "What groundwater checks should come before a shallow geothermal design scales up?"
+decisionUse: "Support TRT interpretation, pilot-site design, and water-energy risk communication."
+---
+
+## Why This Is Not Just Thermal Engineering
+
+Thermal response tests and shallow geothermal systems are often treated as heat-transfer problems. In real aquifers, groundwater flow, heterogeneity, boundary conditions, grout heat storage, and field support can change the inferred parameters.
+
+TRT and shallow geothermal designs can be biased when groundwater movement, grout heat storage, phase-amplitude mismatch, or non-instantaneous thermal-hydraulic response is treated as a nuisance. The goal is to turn groundwater-aware interpretation into design margins that teams can defend.
+
+That makes groundwater-influenced subsurface energy a natural application for the same aquifer-test interpretation logic:
+
+```text
+field record
+-> interpretation model
+-> apparent thermal or hydraulic parameter
+-> uncertainty class
+-> deployment decision
+```
+
+## Collaboration Fit
+
+The strongest external collaboration is not a generic geothermal study. It is a field pilot where the decision depends on whether thermal or hydraulic parameters are reliable enough for design.
+
+Good fit:
+
+- industrial water-energy planning;
+- shallow geothermal pilots in groundwater-active settings;
+- TRT datasets where early-time and late-time behavior imply different properties;
+- field sites where boundary effects, groundwater flow, or delayed-response effects may change inferred properties.
+
+```
+
+
+### File: src/content/concepts/transformation-uncertainty.md
+
+```text
+---
+title: "Transformation Uncertainty"
+subtitle: "A measured response becomes a design number after a model translates it."
+lang: "en"
+translationKey: "concept-transformation-uncertainty"
+date: 2026-06-12
+updated: 2026-06-22
+concept: "Transformation uncertainty"
+tags: ["pumping tests", "model factor", "decision propagation"]
+evidenceLevel: "supported"
+sourceProjects: ["TU_Lag"]
+relatedPublications:
+  - "A Lagging Model for Describing Drawdown Induced by a Constant-Rate Pumping in a Leaky Confined Aquifer"
+  - "Rethinking Aquifer Characterization: Insights from Lagging Models"
+audience: ["groundwater researchers", "geotechnical engineers", "risk analysts"]
+collaborationRelevance: "Use when a field team has drawdown or recovery data but needs to know how much the selected analytical model changes design conclusions."
+summaryZh: "轉移不確定性關注從觀測反應到表觀參數再到工程決策的轉換誤差，尤其是不同解釋模型會如何改變允許抽水、反應時間與安全裕度。"
+draft: false
+order: 3
+researchQuestion: "How much uncertainty enters before aquifer parameters reach the groundwater model?"
+decisionUse: "Check allowable pumping, response time, dewatering margin, and parameter reliability before management use."
+---
+
+## What It Changes
+
+Classical groundwater studies often treat aquifer-test parameters as inputs to later uncertainty analysis. This work moves the review one step earlier.
+
+The measured object is the drawdown or recovery response. Transmissivity and storage are interpreted with an aquifer-test model: Theis, leaky aquifer, lagging Darcy, dual-porosity, a numerical inverse model, or another response model. Each analytical model carries its own bias, dispersion, identifiability limits, and support scale.
+
+Drawdown, recovery, and temperature are measured. Aquifer and thermal properties are inferred through analytical or numerical interpretation models. Transformation uncertainty follows the full chain from measured record to apparent parameter to engineering decision variable.
+
+## Data-Assisted Role
+
+Data-assisted methods are useful only when they remain attached to the physical interpretation problem. Here, they can support record organization, candidate-model comparison, sensitivity checks, diagnostic review, and evidence organization when the results are validated against analytical-model behavior. They do not replace analytical-model checks, identifiability analysis, held-out prediction, or decision-level uncertainty propagation.
+
+## Evidence Boundary
+
+The current TU_Lag evidence ledger supports cautious wording:
+
+- pumping-test transmissivity and storage are inferred parameters produced by an interpretation model;
+- the study reviews front-end drawdown-to-parameter transformation uncertainty;
+- a 10,000-scenario numerical benchmark provides conditional transformation model factors for four aquifer-test interpretation models;
+- field cases provide diagnostics, not proof of true aquifer parameters.
+
+The website should not claim that mature groundwater uncertainty methods are absent, nor should it imply that one analytical model replaces established hydrogeology.
+
+## Why It Matters
+
+Engineering decisions inherit interpretation choices. A fitted parameter can look precise while still carrying transformation error from model form, time window, boundary simplification, and field support.
+
+The collaboration value is concrete: identify where interpretation uncertainty changes allowable pumping, response time, recovery planning, or design threshold.
+
+```
+
+
+### File: src/content/field-notes/drawdown-is-measured-transmissivity-is-interpreted.md
+
+```text
+---
+title: "Drawdown Is Measured; Transmissivity Is Interpreted"
+subtitle: "The most useful sentence for explaining transformation uncertainty to groundwater engineers."
+lang: "en"
+translationKey: "note-drawdown-transmissivity"
+date: 2026-06-12
+updated: 2026-06-12
+concept: "Transformation uncertainty"
+tags: ["pumping tests", "apparent parameters", "model factor"]
+evidenceLevel: "supported"
+sourceProjects: ["TU_Lag"]
+relatedPublications:
+  - "Rethinking Aquifer Characterization: Insights from Lagging Models"
+  - "Analytical Framework for Fast Identification of Hydrogeological Boundaries and Aquifer Parameters in Confined Aquifers"
+audience: ["groundwater consultants", "journal reviewers", "water managers"]
+collaborationRelevance: "A concise entry point for teams that already run pumping tests but do not check model-form transfer into parameters."
+summaryZh: "抽水試驗量到的是降深或恢復曲線；透水係數與儲水係數是透過模型路徑解釋出來的表觀參數，因此前端轉換誤差需要被稽核。"
+draft: false
+noteType: "method-note"
+---
+
+Groundwater professionals often speak as if a pumping test gives transmissivity and storage. More precisely, a pumping test gives drawdown or recovery. A model then transforms that response into apparent transmissivity and storage.
+
+That distinction is not semantic. It decides where uncertainty enters the analysis.
+
+If the interpretation model changes, the apparent parameter set can change. If the parameter set changes, predicted drawdown, allowable pumping, recovery time, and design threshold can change.
+
+The practical implication is simple: before debating downstream uncertainty in a groundwater model, check the front-end transformation from measured drawdown or recovery to interpreted aquifer parameters.
+
+```
+
+
+### File: src/content/field-notes/flux-gradient-asynchrony-is-not-simple-delay.md
+
+```text
+---
+title: "Flux-Gradient Asynchrony Is Not Simple Delay"
+subtitle: "Lagging Theory is about asynchronous hydraulic response, not a generic time shift."
+lang: "en"
+translationKey: "field-note-flux-gradient-asynchrony-not-simple-delay"
+date: 2026-06-12
+updated: 2026-06-12
+concept: "Lagging theory"
+tags: ["Lagging Theory", "flux-gradient asynchrony", "non-instantaneous response", "model interpretation"]
+evidenceLevel: "diagnostic"
+sourceProjects: ["TU_Lag", "Lagging_Darcy_WRR_20260607"]
+relatedPublications:
+  - "A Lagging Model for Describing Drawdown Induced by a Constant-Rate Pumping in a Leaky Confined Aquifer"
+  - "Lagging Theory for Periodic Hydraulic Head Signals in Aquifers"
+audience: ["journal reviewers", "technical collaborators", "groundwater modelers", "engineering consultants"]
+collaborationRelevance: "Use when a collaborator or reviewer interprets Lagging Theory as a generic time-delay fitting device rather than a diagnostic framework for asynchronous hydraulic response."
+summaryZh: "這篇短文釐清延遲理論不是把訊號往後平移，而是檢驗水流通量、水力梯度、水頭、邊界反應與熱反應是否不同步，並判斷這種不同步是否影響工程決策。"
+draft: false
+noteType: "method-note"
+---
+
+## The Misreading
+
+The word "lag" can sound like a simple time-shift device: move a curve later in time, fit the data better, and call the problem solved. That is not the intended role of Lagging Theory in groundwater interpretation.
+
+In the Lagging Theory research line, lag is a diagnostic trace of asynchronous hydraulic response. The question is not only whether a response arrives later. The question is whether flux, hydraulic gradient, drawdown, recovery, free-surface movement, deformation, or thermal response evolve out of phase in a way that changes parameter interpretation or engineering decisions.
+
+## Why Asynchrony Can Appear
+
+Groundwater systems can look delayed for several reasons:
+
+- flow paths can be tortuous or heterogeneous;
+- connected and weakly connected pore domains can exchange water at different rates;
+- fracture and matrix continua can equilibrate at different speeds;
+- capillary-fringe drainage can release water non-instantaneously;
+- aquitards and boundaries can store and release water;
+- hydro-mechanical coupling can make pore pressure and deformation adjust together but not instantaneously;
+- inertial effects can matter in high-permeability or rapidly forced flow paths.
+
+These mechanisms are not identical. Their mathematical signatures can overlap. That is why the value of Lagging Theory is not that it names one universal cause. Its value is that it supplies a compact test for whether a classical instantaneous-response interpretation is sufficient.
+
+## The Practical Test
+
+A lagging interpretation should be kept only when it passes decision-oriented checks:
+
+1. It reduces structured residuals, not just total error.
+2. It survives complexity penalties and identifiability checks.
+3. It improves held-out prediction, recovery, or independent observation.
+4. It changes a decision variable such as transmissivity, storage, pumping limit, recovery time, thermal response estimate, or uncertainty buffer.
+5. It remains interpretable within the known hydrogeologic setting.
+
+If these checks fail, the lagging model is only an over-parameterized curve fit. If they pass, the lag is evidence that asynchronous hydraulic response should be reviewed before making a decision.
+
+```
+
+
+### File: src/content/field-notes/from-pumping-tests-to-decision-uncertainty.md
+
+```text
+---
+title: "From Pumping Tests to Decision Uncertainty"
+subtitle: "A field test matters when interpretation uncertainty reaches the decision."
+lang: "en"
+translationKey: "note-pumping-decision-uncertainty"
+date: 2026-06-12
+updated: 2026-06-12
+concept: "Transformation uncertainty"
+tags: ["decision propagation", "field tests", "risk"]
+evidenceLevel: "supported"
+sourceProjects: ["TU_Lag"]
+relatedPublications:
+  - "A Semi-Analytical Solution for Slug Test by Considering Near-Well Formation Damage and Nonlinear Flow"
+  - "Advanced Analytical Model for Interpreting Oscillatory Pumping Tests With Wellbore Skin and Rate-Dependent Skin Effects"
+audience: ["geotechnical teams", "consultants", "risk-governance teams"]
+collaborationRelevance: "Use when a project already has field tests but lacks a quantitative link from parameter uncertainty to engineering margin."
+summaryZh: "抽水試驗的價值不只在取得參數，而在於把不同解釋路徑造成的不確定性傳遞到允許抽水、持續時間、恢復與安全裕度。"
+draft: false
+noteType: "method-note"
+---
+
+The practical output of an aquifer test is rarely the parameter itself. The practical output is a decision:
+
+- how much can be pumped;
+- how long pumping can continue;
+- how much residual head is acceptable;
+- how conservative the design threshold should be;
+- whether recovery will be fast enough.
+
+Transformation uncertainty becomes useful when it reaches that decision variable. Otherwise it remains a methodological concern with unclear practical force.
+
+The operating rule for future papers is therefore strict: a new interpretation framework should show where a flux-gradient mismatch, analytical-model choice, or fitted difference changes a decision, not only where it changes a curve.
+
+```
+
+
+### File: src/content/field-notes/shallow-geothermal-needs-groundwater-intelligence.md
+
+```text
+---
+title: "Asynchrony Effects in Thermal Response Tests"
+subtitle: "TRT and subsurface heat projects inherit groundwater uncertainty when flow, boundary, storage, or delayed-response effects are active."
+lang: "en"
+translationKey: "note-geothermal-groundwater-intelligence"
+date: 2026-06-12
+updated: 2026-06-12
+concept: "Groundwater-influenced subsurface energy"
+tags: ["TRT", "geothermal", "industrial energy"]
+evidenceLevel: "diagnostic"
+sourceProjects: ["TRUST_TC", "TRUST_paddy", "MLS_GPOT", "Lag_TRT"]
+relatedPublications:
+  - "Analytical Modeling of Grout Heat Storage Effects in Thermal Response Tests"
+  - "Application of the Image-Well Method for Transient Borehole Thermal Energy Storage Systems with Complex Boundaries"
+audience: ["geothermal developers", "industrial partners", "government energy programs"]
+collaborationRelevance: "Use as the public-facing bridge between groundwater expertise and high-value subsurface energy partners."
+summaryZh: "熱反應試驗中的早期與晚期行為可能受到地下水流、邊界、孔隙交換與儲熱效應影響，因此需要用地下水觀點稽核參數解釋。"
+draft: false
+noteType: "collaboration-brief"
+---
+
+Shallow geothermal projects often begin with thermal language: conductivity, heat capacity, borehole resistance, and thermal response tests.
+
+In groundwater-active settings, that is not enough. Flow can advect heat, boundaries can distort response, phase and amplitude can imply different properties, and early-time borehole storage can be confused with formation properties.
+
+This is where a site-specific groundwater assessment becomes valuable. The goal is not to make every energy project into a groundwater paper. The goal is to know when groundwater conditions control the reliability of the thermal interpretation.
+
+For industry partners, the question is concrete: does the TRT or thermal field interpretation support scale-up, or does it need a model-assumption review first?
+
+```
+
+
+### File: src/content/field-notes/when-does-a-pumping-test-need-lagging-darcy-law.md
+
+```text
+---
+title: "When Does a Pumping Test Need Lagging Darcy Law?"
+subtitle: "Use Lagging Darcy Law when asynchronous response changes interpretation or decisions."
+metaDescription: "A field note on when pumping-test interpretation needs Lagging Darcy Law, how it differs from simple delay, and which validation gates make the claim defensible."
+lang: "en"
+translationKey: "field-note-pumping-test-lagging-darcy-law"
+date: 2026-06-13
+updated: 2026-06-13
+concept: "Lagging theory"
+tags: ["Lagging Darcy Law", "pumping tests", "flux-gradient asynchrony", "model validation"]
+evidenceLevel: "diagnostic"
+sourceProjects: ["TU_Lag", "Lagging_Darcy_WRR_20260607"]
+relatedPublications:
+  - "A Lagging Model for Describing Drawdown Induced by a Constant-Rate Pumping in a Leaky Confined Aquifer"
+  - "Analysis of Unconfined Flow Induced by Constant Rate Pumping Based on the Lagging Theory"
+  - "Rethinking Aquifer Characterization: Insights from Lagging Models"
+audience: ["well hydraulics researchers", "groundwater consultants", "journal reviewers", "technical collaborators"]
+collaborationRelevance: "Use when a team has pumping or recovery data with structured timing and amplitude mismatch that may affect inferred parameters or operating limits."
+summaryZh: "這篇短文說明抽水試驗何時需要考慮 Lagging Darcy Law：不是只要反應變慢就使用，而是當非同步反應改善殘差、預測、參數轉移並改變工程端點時才有必要。"
+draft: false
+noteType: "method-note"
+---
+
+## Short Answer
+
+A pumping test does not need Lagging Darcy Law simply because the drawdown curve looks slow. It needs a lagging interpretation when the classical model leaves a structured mismatch that survives validation and changes an engineering decision variable.
+
+The useful question is therefore not "can a lagging model fit the curve?" The useful question is:
+
+> Does flux-gradient asynchrony explain a repeated timing or amplitude pattern that changes inferred parameters, recovery time, pumping limits, or uncertainty buffers?
+
+If the answer is no, a classical Theis, leaky-aquifer, delayed-yield, dual-porosity, or numerical inverse model may be enough.
+
+## What Classical Interpretation Assumes
+
+Most pumping-test interpretations treat the hydraulic gradient and water flux as effectively synchronized at the scale of the governing equation. The measured drawdown is transformed into inferred transmissivity, storage, leakage, boundary distance, or related parameters through the selected aquifer-test model.
+
+That assumption is often reasonable. Lagging Theory should not be used as a reflexive replacement for established aquifer-test models.
+
+## What Lagging Darcy Law Tests
+
+Lin and Yeh (2017) introduced a generalized Darcy-law formulation for constant-rate pumping in a leaky confined aquifer. The key idea is not a generic time shift. The formulation allows water flux and drawdown gradient to adjust out of phase.
+
+That distinction matters because different mechanisms can produce similar non-instantaneous signatures:
+
+- tortuous or heterogeneous flow paths;
+- exchange between connected and weakly connected pore domains;
+- fracture-matrix or aquitard communication;
+- capillary or boundary storage release;
+- hydro-mechanical adjustment;
+- inertial effects in rapidly forced or high-permeability flow paths.
+
+Lagging Darcy Law is useful when it turns these possible mechanisms into testable consequences rather than extra fitting freedom.
+
+## Diagnostic Signs
+
+A pumping test becomes a candidate for lagging interpretation when several signs appear together:
+
+1. Early-time or recovery residuals keep the same shape across wells, repeats, or time windows.
+2. A classical model can match the middle curve but misses timing, amplitude, or recovery structure.
+3. The inferred transmissivity or storage changes when the interpretation window changes.
+4. A lagging model improves held-out response beyond the calibration interval.
+5. The parameter change propagates to a decision variable such as allowable pumping, recovery time, dewatering criterion, or design risk threshold.
+
+One sign alone is not enough. A lagging model with extra parameters can always look attractive if it is judged by fit alone.
+
+## Minimum Validation Gates
+
+For a defensible study, the lagging interpretation should pass five gates:
+
+1. Null synthetic test: when the true system is classical, the analysis should not invent lag.
+2. Lag synthetic test: when the true system is asynchronous, the classical model should show a measurable parameter or decision bias.
+3. Complexity check: the gain should survive AIC, BIC, cross-validation, or another penalty suitable for the dataset.
+4. Field block validation: the same residual pattern should appear outside the calibration window, well, or event.
+5. Decision propagation: the difference should reach inferred parameters or operating criteria, not stop at curve appearance.
+
+These gates protect Lagging Theory from becoming an over-parameterized curve-fitting label.
+
+## When Not To Use It
+
+Do not use Lagging Darcy Law when the apparent mismatch is better explained by known wellbore storage, skin, rate change, boundary mis-specification, barometric correction, water-level noise, or missing pumping history.
+
+Also do not use it when the lag parameters are not identifiable enough for the intended decision. A model can be mathematically interesting and still too weak for an engineering recommendation.
+
+## Practical Position
+
+Lagging Darcy Law earns its place when it does three things at once:
+
+1. explains asynchronous residual structure;
+2. improves prediction or transfer beyond a classical model;
+3. changes a decision variable after uncertainty and identifiability are checked.
+
+That is the strongest public claim for the framework. It is narrower than saying "all delayed groundwater responses need Lagging Theory," and stronger because it is testable.
+
+```
+
+
+### File: src/content/field-notes/why-groundwater-memory-matters.md
+
+```text
+---
+title: "Why Aquifer Response Can Move Out of Phase"
+subtitle: "Non-instantaneous response is a decision issue when recovery time or control timing matters."
+lang: "en"
+translationKey: "note-groundwater-memory-decisions"
+date: 2026-06-12
+updated: 2026-06-12
+concept: "Delayed hydraulic response"
+tags: ["delayed response", "recovery", "decision time"]
+evidenceLevel: "diagnostic"
+sourceProjects: ["Lagging_Darcy_WRR_20260607", "Donggang_Pumping_Latent_Atlas"]
+relatedPublications:
+  - "Lagging Theory for Periodic Hydraulic Head Signals in Aquifers"
+  - "Analysis of Groundwater Time Series with Limited Pumping Information in Unconfined Aquifer"
+audience: ["water managers", "field hydrogeologists", "energy planners"]
+collaborationRelevance: "Use for sites where timing, recovery, or out-of-phase propagation changes a management decision."
+summaryZh: "當抽水、補注、邊界或熱反應與傳統模型假設不同步時，問題不只是擬合曲線，而是這種非同步是否改變管理時程與工程決策。"
+draft: false
+noteType: "essay"
+---
+
+A non-instantaneous response is easy to dismiss as a detail of model fitting. It becomes harder to dismiss when the decision itself is temporal.
+
+Examples:
+
+- when a dewatering plan must know how quickly drawdown reaches a control boundary;
+- when a groundwater reserve plan must know how long recovery takes after emergency pumping;
+- when a TRT interpretation must decide which part of the thermal response represents the formation rather than the borehole.
+
+Delayed hydraulic response is not about adding a lag parameter for its own sake. It asks whether flux, head, boundary, deformation, or thermal response moves out of step in a way that changes the action.
+
+```
+```

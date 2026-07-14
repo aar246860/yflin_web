@@ -1,0 +1,138 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { Button } from "@/components/starwind/button";
+import { absoluteUrl, siteRoot } from "../../../lib/seo";
+
+const rootUrl = siteRoot(Astro.site);
+const pageUrl = absoluteUrl("/services/groundwater-decision-reliability-audit/", Astro.site);
+const serviceSchema = {
+  "@type": "Service",
+  "@id": `${pageUrl}#service`,
+  name: "Groundwater Model-Assumption and Decision Audit",
+  serviceType: "Technical model-assumption audit",
+  provider: { "@id": `${rootUrl}/#person` },
+  url: pageUrl,
+  description:
+    "A technical audit for testing whether groundwater data, aquifer-test interpretation models, and uncertainty propagation are reliable enough to support pumping, recovery, remediation, or subsurface-energy decisions.",
+  audience: [
+    "engineering consultants",
+    "industrial water teams",
+    "shallow geothermal teams",
+    "public agencies",
+  ],
+};
+const base = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+const withBase = (path) => `${base}${path.replace(/^\//, "")}`;
+---
+
+<BaseLayout
+  title="Groundwater Model-Assumption and Decision Audit"
+  description="Technical review for teams that need defensible aquifer-test, pumping, recovery, or subsurface-energy decisions."
+  current="services"
+  canonicalPath="/services/groundwater-decision-reliability-audit/"
+  schema={serviceSchema}
+>
+  <section class="shell section visibility-hero">
+    <span class="eyebrow">Technical service route</span>
+    <h1>Assess whether a groundwater interpretation is sufficiently supported for the decision.</h1>
+    <p class="lede">
+      Models may fit data without supporting a reliable decision. This audit examines
+      whether data quality, aquifer-test assumptions, delayed-response evidence, transformation uncertainty, and decision variables
+      have been examined before the result enters a pumping, remediation, recovery, or
+      subsurface-energy decision.
+    </p>
+    <div class="action-row">
+      <Button href="mailto:yflin1110@cycu.edu.tw?subject=Groundwater%20model-assumption%20audit">Email a technical brief</Button>
+      <Button href={withBase("/decision-lab/")} variant="outline">Try the Decision Lab</Button>
+    </div>
+  </section>
+
+  <section class="shell section service-grid">
+    <article class="service-panel service-panel--wide">
+      <span class="eyebrow">Who it is for</span>
+      <h2>Teams that need a groundwater decision supported by more than a fitted curve.</h2>
+      <ul>
+        <li>engineering consultants preparing models, reviews, or proposal upgrades</li>
+        <li>semiconductor and industrial water teams managing high-value supply or recovery decisions</li>
+        <li>shallow geothermal and subsurface energy teams interpreting TRT or thermal design margins</li>
+        <li>public agencies evaluating drought reserves, pumping limits, remediation boundaries, or monitoring plans</li>
+      </ul>
+    </article>
+    <article class="service-panel">
+      <span class="eyebrow">Problem solved</span>
+      <h2>A good fit alone does not establish reliable transfer.</h2>
+      <p>
+        A model can reproduce a groundwater response while leaving the mechanism, analytical-model
+        uncertainty, or decision variable insufficiently examined. The audit focuses on how the
+        same data change when they are transformed into a decision.
+      </p>
+    </article>
+  </section>
+
+  <section class="shell section">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Deliverables</span>
+        <h2>A focused review before a full pilot analysis.</h2>
+      </div>
+      <p>The output is designed for internal technical use, client discussion, or the scoping stage of a larger project.</p>
+    </div>
+    <div class="grid cols-3">
+      <article class="card feature">
+        <h3>Data and model assumption audit</h3>
+        <p>Review forcing history, response variables, simplifications, calibration targets, and validation gaps.</p>
+      </article>
+      <article class="card feature">
+        <h3>Decision-variable map</h3>
+        <p>Identify which decision variable is exposed: allowable pumping, recovery time, remediation boundary, thermal design margin, or uncertainty buffer.</p>
+      </article>
+      <article class="card feature">
+        <h3>Lagging-response relevance diagnosis</h3>
+        <p>Screen whether non-instantaneous drawdown, recovery, head, or thermal-response evidence is strong enough to justify lag-aware analysis.</p>
+      </article>
+      <article class="card feature">
+        <h3>Uncertainty propagation plan</h3>
+        <p>Define how model-choice and transformation uncertainty should move into the decision variable.</p>
+      </article>
+      <article class="card feature">
+        <h3>Pilot-analysis recommendation</h3>
+        <p>Specify the smallest next analysis that can determine whether the decision changes materially.</p>
+      </article>
+      <article class="card feature">
+        <h3>Briefing-ready memo</h3>
+        <p>Summarize findings in language usable by engineers, managers, and technical reviewers.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="shell section">
+    <div class="service-levels">
+      <article>
+        <span>01</span>
+        <h3>Technical scoping meeting</h3>
+        <p>Clarify the decision, data type, exposure, and whether a paid diagnostic audit is appropriate.</p>
+      </article>
+      <article>
+        <span>02</span>
+        <h3>Paid diagnostic audit</h3>
+        <p>Four to six weeks of data/model assumption review, decision-variable mapping, and lagging-response relevance screening.</p>
+      </article>
+      <article>
+        <span>03</span>
+        <h3>Pilot analysis</h3>
+        <p>Compare conventional and lag-aware interpretation models on a selected site, dataset, or anonymized case.</p>
+      </article>
+      <article>
+        <span>04</span>
+        <h3>Full decision-support analysis</h3>
+        <p>Build a larger project around uncertainty propagation, reporting, review support, and possible publication.</p>
+      </article>
+    </div>
+    <p class="service-note">
+      Budget ranges should be matched to data access, confidentiality, reporting needs, and university
+      contracting rules. A small diagnostic phase often provides a clearer basis for the first project.
+    </p>
+  </section>
+</BaseLayout>

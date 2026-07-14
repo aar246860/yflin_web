@@ -1,0 +1,28 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import FieldNoteCard from "../../components/FieldNoteCard.astro";
+
+const notes = (await getCollection("field-notes", ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime(),
+);
+---
+
+<BaseLayout
+  title="Field Notes"
+  description="Short concept papers for non-instantaneous aquifer response problems in pumping tests, thermal response tests, and subsurface energy decisions."
+  current="field-notes"
+>
+  <section class="shell section">
+    <span class="eyebrow">Research notes</span>
+    <h1>Short concept papers for non-instantaneous aquifer response problems.</h1>
+    <p class="lede">
+      These notes explain how flux-gradient asynchrony, delayed hydraulic response, transformation uncertainty, and thermal interpretation connect to engineering decisions.
+    </p>
+  </section>
+  <section class="shell section">
+    <div class="grid cols-2">
+      {notes.map((entry) => <FieldNoteCard entry={entry} />)}
+    </div>
+  </section>
+</BaseLayout>

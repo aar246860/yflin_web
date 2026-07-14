@@ -1,0 +1,81 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { glossaryEntries } from "../../data/glossary";
+import { absoluteUrl, siteRoot } from "../../lib/seo";
+
+const rootUrl = siteRoot(Astro.site);
+const pageUrl = absoluteUrl("/glossary/", Astro.site);
+const glossarySchema = [
+  {
+    "@type": "DefinedTermSet",
+    "@id": `${pageUrl}#term-set`,
+    name: "Lagging Darcy Law and aquifer-test interpretation glossary",
+    url: pageUrl,
+    inLanguage: "en",
+    creator: { "@id": `${rootUrl}/#person` },
+    hasDefinedTerm: glossaryEntries.map((entry) => ({ "@id": `${pageUrl}#${entry.slug}` })),
+  },
+  ...glossaryEntries.map((entry) => ({
+    "@type": "DefinedTerm",
+    "@id": `${pageUrl}#${entry.slug}`,
+    name: entry.term,
+    description: entry.shortDefinition,
+    inDefinedTermSet: `${pageUrl}#term-set`,
+  })),
+];
+const base = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+const withBase = (path) => `${base}${path.replace(/^\//, "")}`;
+---
+
+<BaseLayout
+  title="Glossary for Lagging Darcy Law and Aquifer-Test Interpretation"
+  description="Definitions for Lagging Darcy Law, flux-gradient asynchrony, transformation uncertainty, and decision non-equivalence."
+  current="glossary"
+  canonicalPath="/glossary/"
+  schema={glossarySchema}
+>
+  <section class="shell section visibility-hero">
+    <span class="eyebrow">Technical glossary</span>
+    <h1>Definitions for aquifer response, model assumptions, and use in engineering decisions.</h1>
+    <p class="lede">
+      These entries are written for researchers and engineering consultants who need precise language for
+      delayed hydraulic response, transformation uncertainty, and decision-relevant model assumptions.
+    </p>
+  </section>
+
+  <section class="shell section glossary-grid" aria-label="Glossary entries">
+    {glossaryEntries.map((entry) => (
+      <article class="glossary-entry" id={entry.slug}>
+        <div class="glossary-entry__header">
+          <span class="eyebrow">{entry.proofStatus}</span>
+          <h2>{entry.term}</h2>
+        </div>
+        <dl>
+          <div>
+            <dt>Definition</dt>
+            <dd>{entry.shortDefinition}</dd>
+          </div>
+          <div>
+            <dt>Why it matters</dt>
+            <dd>{entry.whyItMatters}</dd>
+          </div>
+          <div>
+            <dt>When it matters</dt>
+            <dd>{entry.whenItMatters}</dd>
+          </div>
+          <div>
+            <dt>Common misunderstanding</dt>
+            <dd>{entry.commonMisunderstanding}</dd>
+          </div>
+        </dl>
+        <div class="tag-row">
+          {entry.relatedPages.map((page) => (
+            <a class="tag" href={withBase(page.href)}>{page.label}</a>
+          ))}
+        </div>
+      </article>
+    ))}
+  </section>
+</BaseLayout>

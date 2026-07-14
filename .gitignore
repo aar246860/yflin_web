@@ -1,1 +1,52 @@
+# build output
+dist/
+# generated types
+.astro/
+
+# dependencies
+node_modules/
+__pycache__/
+*.py[cod]
+*.pyc
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+
+# environment variables
+.env
+.env.production
+.env.*
+
+# local review and rendering artifacts
+.codex-review/
+.omo/evidence/
+.superpowers/
+media-qa/
+test-results/
 reports/
+research-videos/*/rendered*/
+research-videos/*/debug-render*/
+research-videos/**/__pycache__/
+research-videos/**/*.log
+research-videos/sources/
+research-videos/source-index.json
+research-videos/source-pdfs/
+research-videos/source-text/
+research-videos/papers/
+research-videos/*/release*/
+research-videos/*/media/
+docs/research-video-source-availability-*.md
+docs/research-video-render-summary-*.json
+preview-*.log
+*.trace.json
+*.heapsnapshot
+
+# macOS-specific files
+.DS_Store
+
+# jetbrains setting folder
+.idea/

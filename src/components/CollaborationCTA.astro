@@ -1,0 +1,26 @@
+---
+import { Badge } from "@/components/starwind/badge";
+import { Button } from "@/components/starwind/button";
+
+const base = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+const withBase = (path) => `${base}${path.replace(/^\//, "")}`;
+---
+
+<section class="cta-band">
+  <div class="shell grid cols-2">
+    <div class="stack">
+      <Badge variant="outline" size="sm">Collaboration entry</Badge>
+      <h2>Bring the aquifer-test or TRT record that remains unresolved under its current interpretation model.</h2>
+      <p>A useful starting point is a specific issue: delayed recovery, phase-amplitude disagreement, TRT drift, boundary-condition sensitivity, or residual structure that may change a pumping limit, recovery schedule, design threshold, or energy design.</p>
+    </div>
+    <div class="stack">
+      <p>Send the forcing history, the measured drawdown, recovery, head, or temperature record, the suspected model-assumption issue, and the decision that depends on the interpretation.</p>
+      <div class="action-row">
+        <Button href="mailto:yflin1110@cycu.edu.tw?subject=Aquifer-test%20data%20and%20model%20brief" variant="secondary">Send a data/model brief</Button>
+        <Button href={withBase("/collaborate/")} variant="outline">Choose a collaboration mode</Button>
+      </div>
+    </div>
+  </div>
+</section>

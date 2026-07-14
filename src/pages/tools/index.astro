@@ -1,0 +1,261 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { Badge } from "@/components/starwind/badge";
+import { Button } from "@/components/starwind/button";
+import type { OpenTool } from "../../data/openTools";
+import { openTools, tierFilters } from "../../data/openTools";
+import { absoluteUrl, siteRoot } from "../../lib/seo";
+
+const base = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+const withBase = (path: string) => {
+  if (/^https?:\/\//.test(path) || path.startsWith("mailto:")) {
+    return path;
+  }
+  return `${base}${path.replace(/^\//, "")}`;
+};
+const pageUrl = absoluteUrl("/tools/", Astro.site);
+const rootUrl = siteRoot(Astro.site);
+const structuredUrl = (href: string) => (/^https?:\/\//.test(href) ? href : absoluteUrl(href, Astro.site));
+const tierLabel = (tier: OpenTool["tier"]) => tier;
+const schemaTypeFor = (tool: OpenTool) => {
+  if (tool.tier === "Public demonstrator") return "SoftwareApplication";
+  if (tool.tier === "Collaboration route") return "Service";
+  return "SoftwareSourceCode";
+};
+const publicCount = openTools.filter((tool) => tool.tier === "Public demonstrator").length;
+const repoCount = openTools.filter((tool) => tool.links.some((link) => link.kind === "github")).length;
+const releaseCount = openTools.filter((tool) => tool.maturity === "research release").length;
+const toolSchema = [
+  {
+    "@type": "CollectionPage",
+    "@id": `${pageUrl}#collection`,
+    url: pageUrl,
+    name: "Open Tools and Reproducible Methods",
+    description:
+      "A selected index of Ying-Fan Lin's public demonstrators, research code, archival analytical code, and collaboration routes.",
+    creator: { "@id": `${rootUrl}/#person` },
+    mainEntity: { "@id": `${pageUrl}#tool-list` },
+  },
+  {
+    "@type": "ItemList",
+    "@id": `${pageUrl}#tool-list`,
+    name: "Open Tools and Reproducible Methods",
+    itemListElement: openTools.map((tool, index) => {
+      const schemaType = schemaTypeFor(tool);
+      return {
+        "@type": "ListItem",
+        position: index + 1,
+        item: {
+          "@type": schemaType,
+          name: tool.title,
+          description: tool.summary,
+          url: tool.links[0] ? structuredUrl(tool.links[0].href) : pageUrl,
+          creator: { "@id": `${rootUrl}/#person` },
+          keywords: tool.tags,
+          ...(schemaType === "Service"
+            ? { serviceType: "Groundwater Model-Assumption and Decision Audit" }
+            : {
+                applicationCategory: "ScientificApplication",
+                programmingLanguage: tool.language,
+                license: tool.license,
+              }),
+        },
+      };
+    }),
+  },
+];
+---
+
+<BaseLayout
+  title="Open Tools and Reproducible Examples"
+  description="Open demos, selected research code, archival analytical code, and collaboration routes for Lagging Darcy Law and transformation uncertainty."
+  current="tools"
+  canonicalPath="/tools/"
+  schema={toolSchema}
+>
+  <section class="shell section tools-hero">
+    <div class="tools-hero__copy">
+      <span class="eyebrow">Open tools / reproducible examples</span>
+      <h1>Make Lagging Theory and transformation uncertainty testable.</h1>
+      <p class="lede">
+        The list below separates public teaching demos, selected research code,
+        archival analytical code, and collaboration routes. Some working repositories
+        remain private while manuscripts, data permissions, or documentation are still pending.
+      </p>
+      <div class="action-row">
+        <Button href={withBase("/decision-lab/")}>Open Decision Lab</Button>
+        <Button href="https://github.com/aar246860" target="_blank" rel="noopener noreferrer" variant="outline">GitHub profile</Button>
+      </div>
+    </div>
+    <aside class="tools-hero__panel" aria-label="Tool index summary">
+      <div>
+        <span>public demos</span>
+        <strong>{publicCount}</strong>
+      </div>
+      <div>
+        <span>verified GitHub repos</span>
+        <strong>{repoCount}</strong>
+      </div>
+      <div>
+        <span>research releases</span>
+        <strong>{releaseCount}</strong>
+      </div>
+      <p>
+        Repository documentation is current as of 2026-06-20. Entries are
+        included only when their assumptions and limits can be stated plainly.
+      </p>
+    </aside>
+  </section>
+
+  <section class="shell section tool-filter-panel" aria-labelledby="tool-index-title" data-tool-index>
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Tool index</span>
+        <h2 id="tool-index-title">Browse by maturity and use case.</h2>
+      </div>
+      <p>
+        Each entry states its problem, intended use, and scope.
+      </p>
+    </div>
+
+    <div class="tool-filter-panel__controls" aria-label="Filter tools by tier">
+      {tierFilters.map((tier) => (
+        <button
+          type="button"
+          class="tool-filter-panel__button"
+          data-tool-filter={tier}
+          aria-pressed={tier === "All" ? "true" : "false"}
+        >
+          {tier === "All" ? "All" : tierLabel(tier)}
+        </button>
+      ))}
+    </div>
+
+    <div class="tool-grid">
+      {openTools.map((tool) => (
+        <article class="tool-card" data-tool-card data-tier={tool.tier}>
+          <div class="tool-card__head">
+            <div>
+              <Badge variant={tool.tier === "Research code" ? "info" : tool.tier === "Public demonstrator" ? "primary" : tool.tier === "Collaboration route" ? "warning" : "outline"} size="sm">
+                {tierLabel(tool.tier)}
+              </Badge>
+              <h3>{tool.title}</h3>
+            </div>
+            <span class="tool-card__maturity">{tool.maturity}</span>
+          </div>
+          <p class="tool-card__summary">{tool.summary}</p>
+          <dl class="tool-card__facts">
+            <div>
+              <dt>Problem</dt>
+              <dd>{tool.problem}</dd>
+            </div>
+            <div>
+              <dt>Use when</dt>
+              <dd>{tool.useWhen}</dd>
+            </div>
+            <div>
+              <dt>Scope</dt>
+              <dd>{tool.claimBoundary}</dd>
+            </div>
+            <div>
+              <dt>Evidence</dt>
+              <dd>{tool.evidence}</dd>
+            </div>
+          </dl>
+          <div class="tool-card__meta">
+            {tool.language && <span>{tool.language}</span>}
+            {tool.license && <span>{tool.license}</span>}
+          </div>
+          <div class="tag-row">
+            {tool.tags.map((tag) => <span class="tag">{tag}</span>)}
+          </div>
+          <div class="tool-card__actions">
+            {tool.links.map((link) => (
+              <Button
+                href={withBase(link.href)}
+                target={link.external ? "_blank" : undefined}
+                rel={link.external ? "noopener noreferrer" : undefined}
+                variant={link.kind === "github" ? "outline" : link.kind === "demo" ? "primary" : "secondary"}
+                size="sm"
+              >
+                {link.label}
+              </Button>
+            ))}
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="shell section">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Scope</span>
+        <h2>What the labels mean.</h2>
+      </div>
+      <p>
+        The labels keep teaching demos, research code, and applied services separate because
+        groundwater decisions depend on model-specific evidence.
+      </p>
+    </div>
+    <div class="grid cols-3">
+      <article class="card feature">
+        <span class="eyebrow">Teaching demo</span>
+        <h3>For explanation, not design calculation.</h3>
+        <p>
+          Browser demos show mechanisms and interpretation sensitivity. They do not replace
+          a calibrated aquifer-test analysis or site-specific uncertainty propagation.
+        </p>
+      </article>
+      <article class="card feature">
+        <span class="eyebrow">Selected research code</span>
+        <h3>For inspection and reproduction.</h3>
+        <p>
+          Selected research code shares examples, tests, or documentation without forcing readers
+          into unpublished manuscript details. Assumptions still control where results can transfer.
+        </p>
+      </article>
+      <article class="card feature">
+        <span class="eyebrow">Collaboration route</span>
+        <h3>For confidential or decision-bound work.</h3>
+        <p>
+          When project data are sensitive or decisions are high-stakes, the correct output is
+          a scoped audit or pilot analysis rather than a public demo.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section class="shell section tools-cta">
+    <div>
+      <span class="eyebrow">Next step</span>
+      <h2>Bring a dataset, a decision variable, and the analytical model currently being used.</h2>
+      <p>
+        Collaboration begins when an existing pumping test, recovery curve, TRT record, or model
+        output must support a decision. The tools above provide public inspection; the technical
+        work begins with the assumptions behind the data.
+      </p>
+    </div>
+    <Button href={withBase("/collaborate/")}>Send a technical brief</Button>
+  </section>
+</BaseLayout>
+
+<script>
+  document.querySelectorAll("[data-tool-index]").forEach((root) => {
+    const buttons = [...root.querySelectorAll("[data-tool-filter]")];
+    const cards = [...root.querySelectorAll("[data-tool-card]")];
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const filter = button.getAttribute("data-tool-filter");
+        buttons.forEach((item) => item.setAttribute("aria-pressed", String(item === button)));
+        cards.forEach((card) => {
+          const match = filter === "All" || card.getAttribute("data-tier") === filter;
+          card.toggleAttribute("hidden", !match);
+        });
+      });
+    });
+  });
+</script>

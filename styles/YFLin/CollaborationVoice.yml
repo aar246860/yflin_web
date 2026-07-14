@@ -1,0 +1,8 @@
+extends: substitution
+message: "Use precise collaboration language instead of generic promotion."
+level: suggestion
+ignorecase: true
+swap:
+  leverage synergies: work together on a defined decision
+  cutting-edge: current
+  unlock potential: make the decision auditable

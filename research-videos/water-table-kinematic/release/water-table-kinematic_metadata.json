@@ -1,0 +1,12 @@
+{
+  "title": "Water-table kinematic conditions with unsaturated-flow insight",
+  "description": "3B1B-style research animation generated with Manim Community.",
+  "generated_at": "2026-07-11T02:24:05.973271+00:00",
+  "artifacts": {
+    "mp4": "water-table-kinematic.mp4",
+    "contact_sheet": "water-table-kinematic_contact_sheet.png",
+    "html": "water-table-kinematic.html",
+    "qa_notes": "water-table-kinematic_qa.md"
+  },
+  "ffprobe": "codec_name=h264\nprofile=Constrained Baseline\nwidth=1280\nheight=720\npix_fmt=yuv420p\nlevel=31\nduration=14.000000\nnb_frames=420\nformat_name=mov,mp4,m4a,3gp,3g2,mj2\nduration=14.000000\nsize=304169\n"
+}

@@ -1,0 +1,274 @@
+---
+import { existsSync } from "node:fs";
+
+const presets = [
+  { key: "sync", label: "synchronous", lag: 0.04 },
+  { key: "mild", label: "diagnostic", lag: 0.24 },
+  { key: "strong", label: "decision exposed", lag: 0.42 },
+];
+const base = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+const hasRiveAsset = existsSync(new URL("../../../public/animations/flux-gradient-asynchrony.riv", import.meta.url));
+const riveSrc = hasRiveAsset ? `${base}animations/flux-gradient-asynchrony.riv` : undefined;
+---
+
+<section
+  id="asynchrony-state-machine"
+  class="shell section rive-asynchrony"
+  aria-labelledby="rive-asynchrony-title"
+  data-rive-asynchrony
+  data-rive-src={riveSrc}
+>
+  <div class="section-head">
+    <div>
+      <span class="eyebrow">Asynchrony visual</span>
+      <h2 id="rive-asynchrony-title">Flux-gradient asynchrony changes more than the timing of a curve.</h2>
+    </div>
+    <p>
+      The visual separates three interpretation states: synchronous response,
+      diagnostic asynchrony, and a response pattern large enough to affect a decision.
+    </p>
+  </div>
+
+  <div class="rive-asynchrony__board">
+    <div class="rive-asynchrony__stage">
+      <canvas
+        class="rive-asynchrony__canvas"
+        data-rive-canvas
+        width="860"
+        height="420"
+        aria-label="Rive flux-gradient asynchrony state machine"
+        hidden
+      ></canvas>
+      <svg data-rive-fallback viewBox="0 0 860 420" role="img" aria-labelledby="rive-asynchrony-svg-title rive-asynchrony-svg-desc">
+        <title id="rive-asynchrony-svg-title">Flux-gradient asynchrony state-machine schematic</title>
+        <desc id="rive-asynchrony-svg-desc">
+          Hydraulic gradient, flux response, and residual envelope change as the lag control increases.
+        </desc>
+        <defs>
+          <linearGradient id="asynchronyEnvelope" x1="0" x2="1" y1="0" y2="0">
+            <stop offset="0%" stop-color="var(--signal-measured)" stop-opacity="0.1" />
+            <stop offset="100%" stop-color="var(--risk-boundary)" stop-opacity="0.2" />
+          </linearGradient>
+          <marker id="asynchronyArrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+            <path d="M0,0 L8,4 L0,8 Z" fill="var(--risk-boundary)" />
+          </marker>
+        </defs>
+        <rect class="rive-asynchrony__frame" x="26" y="26" width="808" height="368" rx="18" />
+        <g class="rive-asynchrony__grid">
+          <path d="M86 92 H752" />
+          <path d="M86 172 H752" />
+          <path d="M86 252 H752" />
+          <path d="M86 332 H752" />
+        </g>
+        <path class="rive-asynchrony__envelope" data-asynchrony-envelope />
+        <path class="rive-asynchrony__curve rive-asynchrony__curve--gradient" data-asynchrony-gradient />
+        <path class="rive-asynchrony__curve rive-asynchrony__curve--flux" data-asynchrony-flux />
+        <path class="rive-asynchrony__curve rive-asynchrony__curve--residual" data-asynchrony-residual />
+        <path class="rive-asynchrony__offset" data-asynchrony-offset marker-end="url(#asynchronyArrow)" />
+        <g class="rive-asynchrony__labels">
+          <text x="96" y="72">hydraulic gradient</text>
+          <text x="96" y="220">flux response</text>
+          <text x="584" y="360">diagnostic residual</text>
+          <text x="548" y="112" data-asynchrony-state>diagnostic asynchrony</text>
+        </g>
+      </svg>
+    </div>
+
+    <div class="rive-asynchrony__controls">
+      <label>
+        <span>asynchrony level</span>
+        <output data-asynchrony-output>0.24 cycle</output>
+        <input data-asynchrony-input type="range" min="0" max="0.46" value="0.24" step="0.01" />
+      </label>
+      <div class="rive-asynchrony__presets" aria-label="Asynchrony presets">
+        {presets.map((preset) => (
+          <button type="button" data-asynchrony-preset={preset.lag} aria-pressed={preset.key === "mild" ? "true" : "false"}>
+            {preset.label}
+          </button>
+        ))}
+      </div>
+      <dl>
+        <div>
+          <dt>Interpretation</dt>
+          <dd data-asynchrony-interpretation>Structured residuals should be checked against a lag-aware analytical model.</dd>
+        </div>
+        <div>
+          <dt>Scope</dt>
+          <dd data-rive-runtime-status>Conceptual state-machine schematic; not a calibrated aquifer mechanism diagnosis.</dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<script>
+  const initializedAsynchrony = new WeakSet();
+  const activeRiveInstances = new Set();
+  const riveInputsByRoot = new WeakMap();
+
+  function wavePath(lag, amplitude, yCenter, phase = 0) {
+    const points = [];
+    const x0 = 86;
+    const width = 666;
+    for (let i = 0; i <= 100; i += 1) {
+      const progress = i / 100;
+      const x = x0 + progress * width;
+      const y = yCenter - Math.sin((progress - lag + phase) * Math.PI * 2.25) * amplitude;
+      points.push(`${i === 0 ? "M" : "L"} ${x.toFixed(2)} ${y.toFixed(2)}`);
+    }
+    return points.join(" ");
+  }
+
+  function residualPath(lag) {
+    const points = [];
+    const x0 = 86;
+    const width = 666;
+    for (let i = 0; i <= 100; i += 1) {
+      const progress = i / 100;
+      const gradient = Math.sin(progress * Math.PI * 2.25);
+      const flux = Math.sin((progress - lag) * Math.PI * 2.25);
+      const residual = (flux - gradient) * 0.5;
+      const x = x0 + progress * width;
+      const y = 314 - residual * 52;
+      points.push(`${i === 0 ? "M" : "L"} ${x.toFixed(2)} ${y.toFixed(2)}`);
+    }
+    return points.join(" ");
+  }
+
+  function envelopePath(lag) {
+    const x0 = 86;
+    const width = 666;
+    const center = 314;
+    const spread = 18 + lag * 116;
+    return `M ${x0} ${center - spread} H ${x0 + width} V ${center + spread} H ${x0} Z`;
+  }
+
+  function classify(lag) {
+    if (lag < 0.1) {
+      return {
+        state: "near-synchronous response",
+        interpretation: "The flux and gradient traces are close enough for a classical interpretation to be a reasonable first screen.",
+      };
+    }
+    if (lag < 0.32) {
+      return {
+        state: "diagnostic asynchrony",
+        interpretation: "Structured residuals should be checked against a lag-aware analytical model.",
+      };
+    }
+    return {
+      state: "decision-exposed asynchrony",
+      interpretation: "The phase and residual structure are large enough to audit model choice before using the interpretation in a decision variable.",
+    };
+  }
+
+  function updateAsynchrony(root, lag) {
+    root.querySelector("[data-asynchrony-gradient]")?.setAttribute("d", wavePath(0, 48, 132));
+    root.querySelector("[data-asynchrony-flux]")?.setAttribute("d", wavePath(lag, 48, 212));
+    root.querySelector("[data-asynchrony-residual]")?.setAttribute("d", residualPath(lag));
+    root.querySelector("[data-asynchrony-envelope]")?.setAttribute("d", envelopePath(lag));
+    root.querySelector("[data-asynchrony-offset]")?.setAttribute(
+      "d",
+      `M ${(422 + lag * 260).toFixed(2)} 132 H ${(422 + lag * 260 + 72).toFixed(2)}`,
+    );
+    const result = classify(lag);
+    root.querySelector("[data-asynchrony-output]").textContent = `${lag.toFixed(2)} cycle`;
+    root.querySelector("[data-asynchrony-state]").textContent = result.state;
+    root.querySelector("[data-asynchrony-interpretation]").textContent = result.interpretation;
+    root.querySelectorAll("[data-asynchrony-preset]").forEach((button) => {
+      button.setAttribute("aria-pressed", Math.abs(Number(button.dataset.asynchronyPreset) - lag) < 0.005 ? "true" : "false");
+    });
+    syncRiveInput(root, lag);
+  }
+
+  function syncRiveInput(root, lag) {
+    const input = riveInputsByRoot.get(root);
+    if (input && typeof input.value !== "undefined") {
+      input.value = Math.round(lag * 100);
+    }
+  }
+
+  async function maybeInitRiveRuntime(root, input) {
+    const canvas = root.querySelector("[data-rive-canvas]");
+    const fallback = root.querySelector("[data-rive-fallback]");
+    const status = root.querySelector("[data-rive-runtime-status]");
+    const src = root.dataset.riveSrc;
+    if (!(canvas instanceof HTMLCanvasElement) || !src) return;
+
+    try {
+      const probe = await fetch(src, { method: "HEAD", cache: "no-cache" });
+      if (!probe.ok) {
+        if (status) status.textContent = "Conceptual state-machine schematic; not a calibrated aquifer mechanism diagnosis.";
+        return;
+      }
+
+      const { Rive, Layout, Fit, Alignment } = await import("@rive-app/canvas");
+      canvas.hidden = false;
+      fallback?.setAttribute("hidden", "");
+      const rive = new Rive({
+        canvas,
+        src,
+        stateMachines: "FluxGradientAsynchrony",
+        autoplay: true,
+        layout: new Layout({ fit: Fit.Contain, alignment: Alignment.Center }),
+        onLoad: () => {
+          const asynchronyInput = rive
+            .stateMachineInputs("FluxGradientAsynchrony")
+            ?.find((candidate) => candidate.name === "asynchronyLevel");
+          if (asynchronyInput) {
+            riveInputsByRoot.set(root, asynchronyInput);
+            syncRiveInput(root, Number(input.value));
+          }
+          if (status) status.textContent = "Conceptual state-machine schematic; not a calibrated aquifer mechanism diagnosis.";
+        },
+        onLoadError: () => {
+          canvas.hidden = true;
+          fallback?.removeAttribute("hidden");
+          if (status) status.textContent = "Conceptual state-machine schematic; not a calibrated aquifer mechanism diagnosis.";
+        },
+      });
+      activeRiveInstances.add(rive);
+    } catch (error) {
+      console.warn("Asynchrony visual used the SVG schematic", error);
+      canvas.hidden = true;
+      fallback?.removeAttribute("hidden");
+      if (status) status.textContent = "Conceptual state-machine schematic; not a calibrated aquifer mechanism diagnosis.";
+    }
+  }
+
+  function initAsynchrony() {
+    document.querySelectorAll("[data-rive-asynchrony]").forEach((root) => {
+      if (initializedAsynchrony.has(root)) return;
+      initializedAsynchrony.add(root);
+      const input = root.querySelector("[data-asynchrony-input]");
+      if (!(input instanceof HTMLInputElement)) return;
+
+      input.addEventListener("input", () => updateAsynchrony(root, Number(input.value)));
+      root.querySelectorAll("[data-asynchrony-preset]").forEach((button) => {
+        button.addEventListener("click", () => {
+          input.value = button.dataset.asynchronyPreset;
+          updateAsynchrony(root, Number(input.value));
+        });
+      });
+      updateAsynchrony(root, Number(input.value));
+      maybeInitRiveRuntime(root, input);
+    });
+  }
+
+  function destroyRiveRuntime() {
+    activeRiveInstances.forEach((rive) => {
+      try {
+        rive.cleanup();
+      } catch (error) {
+        console.warn("Rive cleanup failed", error);
+      }
+    });
+    activeRiveInstances.clear();
+  }
+
+  initAsynchrony();
+  document.addEventListener("astro:page-load", initAsynchrony);
+  document.addEventListener("astro:before-swap", destroyRiveRuntime);
+</script>

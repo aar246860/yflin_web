@@ -1,0 +1,31 @@
+---
+import { Badge } from "@/components/starwind/badge";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/starwind/card";
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  body: string;
+  tone?: "default" | "teal" | "brick" | "gold" | "field";
+}
+
+const { eyebrow, title, body, tone = "default" } = Astro.props;
+const toneClass = {
+  default: "",
+  teal: "border-primary/35 bg-primary/5",
+  brick: "border-error/25 bg-error/5",
+  gold: "border-warning/45 bg-warning/20",
+  field: "border-info/80 bg-info/35",
+}[tone];
+---
+
+<Card class={`knowledge-panel ${toneClass}`}>
+  <CardHeader>
+    {eyebrow && <Badge variant="outline" size="sm">{eyebrow}</Badge>}
+    <CardTitle>{title}</CardTitle>
+  </CardHeader>
+  <CardContent>
+    <p>{body}</p>
+  </CardContent>
+</Card>
+

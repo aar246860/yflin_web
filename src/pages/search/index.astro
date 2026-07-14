@@ -1,0 +1,46 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const base = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+const pagefindPath = `${base}pagefind/pagefind.js`;
+---
+
+<BaseLayout
+  title="Search"
+  description="Static Pagefind search for the research website."
+  current="search"
+>
+  <section class="shell section">
+    <span class="eyebrow">Static search</span>
+    <h1>Search concepts, notes, and publication clusters.</h1>
+    <div class="search-box" id="search"></div>
+    <p>Pagefind search is generated during the production build and runs entirely as static files.</p>
+  </section>
+  <script define:vars={{ pagefindPath }}>
+    window.addEventListener("DOMContentLoaded", async () => {
+      const target = document.querySelector("#search");
+      try {
+        const pagefind = await import(pagefindPath);
+        const ui = document.createElement("div");
+        ui.innerHTML = '<input id="pf-query" placeholder="Search the research site" style="width:100%;min-height:2.8rem;border:1px solid #ded7ca;border-radius:8px;padding:.7rem 1rem"><div id="pf-results"></div>';
+        target.appendChild(ui);
+        const input = ui.querySelector("#pf-query");
+        const results = ui.querySelector("#pf-results");
+        input.addEventListener("input", async (event) => {
+          const query = event.target.value.trim();
+          if (!query) {
+            results.innerHTML = "";
+            return;
+          }
+          const search = await pagefind.search(query);
+          const rows = await Promise.all(search.results.slice(0, 8).map((result) => result.data()));
+          results.innerHTML = rows.map((row) => `<p><a href="${row.url}"><strong>${row.meta.title}</strong></a><br>${row.excerpt}</p>`).join("");
+        });
+      } catch (error) {
+        target.innerHTML = "<p>Search is available after running the production build.</p>";
+      }
+    });
+  </script>
+</BaseLayout>

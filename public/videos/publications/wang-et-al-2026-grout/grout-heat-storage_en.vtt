@@ -1,0 +1,28 @@
+WEBVTT
+
+00:00.000 --> 00:02.000
+Thermal response test: a borehole, grout, fluid, and surrounding ground.
+
+00:02.000 --> 00:04.000
+Early heating contains information about the grout's heat capacity.
+
+00:04.000 --> 00:06.000
+The short-time predictions separate across the three analytical treatments.
+
+00:06.000 --> 00:08.000
+The composite cylindrical source retains grout storage in the inner boundary.
+
+00:08.000 --> 00:10.000
+The reported field comparison gives the CCS the lowest RMSE.
+
+00:10.000 --> 00:12.000
+Grout capacity matters earlier; ground conductivity matters later.
+
+00:12.000 --> 00:14.000
+The reported uncertainty analysis identifies a transition near 42 hours.
+
+00:14.000 --> 00:16.300
+Practical stability is reported around 48 to 50 hours for this study.
+
+00:16.300 --> 00:18.134
+The duration result is source-conditioned, not a universal TRT rule.

@@ -1,0 +1,50 @@
+09:06:13 [content] Syncing content
+09:06:13 [content] Synced content
+09:06:13 [types] Generated 1.07s
+09:06:13 [build] output: "static"
+09:06:13 [build] mode: "static"
+09:06:13 [build] directory: C:\Users\YFLin\OneDrive - 中原大學\中原林穎凡資料夾\0web_page_Codex\yflin_web_astro\dist\
+09:06:13 [build] Collecting build info...
+09:06:13 [build] ✓ Completed in 1.14s.
+09:06:13 [build] Building static entrypoints...
+09:06:17 [vite] ✓ built in 3.95s
+09:06:18 [vite] ✓ built in 277ms
+09:06:18 [build] Rearranging server assets...
+
+ generating static routes 
+09:06:18   ├─ /about/index.html (+37ms) 
+09:06:18   ├─ /collaborate/index.html (+57ms) 
+09:06:18   ├─ /concepts/groundwater-memory/index.html (+13ms) 
+09:06:18   ├─ /concepts/lagging-theory/index.html (+9ms) 
+09:06:18   ├─ /concepts/subsurface-energy-intelligence/index.html (+9ms) 
+09:06:18   ├─ /concepts/transformation-uncertainty/index.html (+17ms) 
+09:06:18   ├─ /concepts/index.html (+23ms) 
+09:06:18   ├─ /decision-lab/index.html (+14ms) 
+09:06:18   ├─ /explainers/index.html (+19ms) 
+09:06:18   ├─ /field-notes/drawdown-is-measured-transmissivity-is-interpreted/index.html (+8ms) 
+09:06:18   ├─ /field-notes/flux-gradient-asynchrony-is-not-simple-delay/index.html (+8ms) 
+09:06:18   ├─ /field-notes/from-pumping-tests-to-decision-uncertainty/index.html (+6ms) 
+09:06:18   ├─ /field-notes/shallow-geothermal-needs-groundwater-intelligence/index.html (+6ms) 
+09:06:18   ├─ /field-notes/when-does-a-pumping-test-need-lagging-darcy-law/index.html (+9ms) 
+09:06:18   ├─ /field-notes/why-groundwater-memory-matters/index.html (+7ms) 
+09:06:18   ├─ /field-notes/index.html (+21ms) 
+09:06:18   ├─ /glossary/index.html (+22ms) 
+09:06:18   ├─ /llms-full.txt (+32ms) 
+09:06:18   ├─ /llms.txt (+23ms) 
+09:06:18   ├─ /network/index.html (+22ms) 
+09:06:18   ├─ /projects/index.html (+36ms) 
+09:06:18   ├─ /publications/lin-yeh-2017/index.html (+9ms) 
+09:06:18   ├─ /publications/index.html (+14ms) 
+09:06:18   ├─ /rss.xml (+9ms) 
+09:06:18   ├─ /search/index.html (+16ms) 
+09:06:18   ├─ /services/groundwater-decision-reliability-audit/index.html (+25ms) 
+09:06:18   ├─ /sitemap.xml (+24ms) 
+09:06:18   ├─ /team/index.html (+22ms) 
+09:06:18   ├─ /tools/index.html (+22ms) 
+09:06:18   ├─ /training/index.html (+22ms) 
+09:06:19   ├─ /index.html (+20ms) 
+09:06:19 ✓ Completed in 744ms.
+
+09:06:19 [build] ✓ Completed in 5.12s.
+09:06:19 [build] 27 page(s) built in 6.35s
+09:06:19 [build] Complete!

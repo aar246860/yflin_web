@@ -1,0 +1,35 @@
+---
+import { Badge } from "@/components/starwind/badge";
+import { Button } from "@/components/starwind/button";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/starwind/card";
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  body: string;
+  href?: string;
+  actionLabel?: string;
+  meta?: string;
+}
+
+const { eyebrow, title, body, href, actionLabel = "Read more", meta } = Astro.props;
+---
+
+<Card class="method-card">
+  <CardHeader>
+    <div class="method-card__meta">
+      {eyebrow && <Badge variant="outline" size="sm">{eyebrow}</Badge>}
+      {meta && <span>{meta}</span>}
+    </div>
+    <CardTitle>{title}</CardTitle>
+  </CardHeader>
+  <CardContent>
+    <p>{body}</p>
+  </CardContent>
+  {href && (
+    <CardFooter>
+      <Button href={href} variant="outline" size="sm">{actionLabel}</Button>
+    </CardFooter>
+  )}
+</Card>
+

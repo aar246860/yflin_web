@@ -1,0 +1,71 @@
+---
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import EvidenceBadge from "../../components/EvidenceBadge.astro";
+import CollaborationCTA from "../../components/CollaborationCTA.astro";
+import LaggingPumpingTestDemo from "../../components/research/LaggingPumpingTestDemo.astro";
+import TransformationUncertaintyDemo from "../../components/research/TransformationUncertaintyDemo.astro";
+import { absoluteUrl, siteRoot } from "../../lib/seo";
+
+export async function getStaticPaths() {
+  const entries = await getCollection("concepts", ({ data }) => !data.draft);
+  return entries.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const rootUrl = siteRoot(Astro.site);
+const pagePath = `/concepts/${entry.id}/`;
+const pageUrl = absoluteUrl(pagePath, Astro.site);
+const description = entry.data.metaDescription ?? entry.data.subtitle;
+const conceptSchema = [
+  {
+    "@type": "DefinedTerm",
+    "@id": `${pageUrl}#defined-term`,
+    name: entry.data.title,
+    description,
+    url: pageUrl,
+    inDefinedTermSet: absoluteUrl("/concepts/", Astro.site),
+    keywords: entry.data.tags,
+  },
+  {
+    "@type": "Article",
+    "@id": `${pageUrl}#article`,
+    headline: entry.data.title,
+    description,
+    url: pageUrl,
+    mainEntityOfPage: { "@id": `${pageUrl}#webpage` },
+    author: { "@id": `${rootUrl}/#person` },
+    datePublished: entry.data.date.toISOString(),
+    dateModified: entry.data.updated.toISOString(),
+    about: { "@id": `${pageUrl}#defined-term` },
+    keywords: entry.data.tags,
+  },
+];
+---
+
+<BaseLayout
+  title={entry.data.title}
+  description={description}
+  current="concepts"
+  canonicalPath={pagePath}
+  schema={conceptSchema}
+  type="article"
+>
+  <article class="article">
+    <header>
+      <div class="tag-row">
+        <EvidenceBadge level={entry.data.evidenceLevel} />
+        {entry.data.tags.map((tag) => <span class="tag">{tag}</span>)}
+      </div>
+      <h1>{entry.data.title}</h1>
+      <p class="lede">{entry.data.subtitle}</p>
+    </header>
+    <div class="article-body">
+      <Content />
+    </div>
+  </article>
+  {entry.id === "lagging-theory" && <LaggingPumpingTestDemo />}
+  {entry.id === "transformation-uncertainty" && <TransformationUncertaintyDemo />}
+  <CollaborationCTA />
+</BaseLayout>

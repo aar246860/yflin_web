@@ -1,0 +1,88 @@
+---
+const stages = [
+  {
+    code: "01",
+    title: "Measured field record",
+    body: "Drawdown, recovery, temperature, boundary movement, or deformation arrives with timing and amplitude.",
+    tokens: ["forcing history", "drawdown/recovery", "residual pattern"],
+  },
+  {
+    code: "02",
+    title: "Analytical model",
+    body: "An aquifer-test model translates the measured record into inferred properties. The model may be classical, lag-aware, or competing.",
+    tokens: ["model form", "lag parameter", "identifiability"],
+  },
+  {
+    code: "03",
+    title: "Decision variable",
+    body: "The interpretation matters when it changes allowable pumping, recovery time, thermal design margin, or uncertainty buffer.",
+    tokens: ["allowable pumping", "recovery time", "design threshold"],
+  },
+];
+---
+
+<section class="shell section diagnostic-path" aria-labelledby="diagnostic-path-title" data-signal-system>
+  <div class="diagnostic-path__head">
+    <span class="eyebrow">Interpretation chain</span>
+    <h2 id="diagnostic-path-title">From measured response to engineering consequence.</h2>
+    <p>
+      The chain is built around a simple test: does a measured drawdown, recovery, head, or
+      temperature record follow the timing assumed by the interpretation model, and does that difference reach a decision variable?
+    </p>
+  </div>
+
+  <div class="diagnostic-path__board">
+    <div class="diagnostic-path__signal" aria-label="Conceptual asynchronous aquifer-response sketch">
+      <div class="diagnostic-path__signal-meta">
+        <span>field record</span>
+        <strong>model-timing mismatch</strong>
+      </div>
+      <svg viewBox="0 0 760 260" role="img" aria-labelledby="path-signal-title path-signal-desc">
+        <title id="path-signal-title">Measured aquifer response compared with model timing</title>
+        <desc id="path-signal-desc">Two curves show a measured aquifer response moving out of phase with the timing assumed by a model.</desc>
+        <defs>
+          <linearGradient id="pathDecisionFill" x1="0" x2="1" y1="0" y2="0">
+            <stop offset="0%" stop-color="var(--signal-measured)" stop-opacity="0.2" />
+            <stop offset="100%" stop-color="var(--risk-boundary)" stop-opacity="0.2" />
+          </linearGradient>
+        </defs>
+        <rect x="22" y="22" width="716" height="216" rx="8" class="diagnostic-path__frame" />
+        <g class="diagnostic-path__grid">
+          <path d="M72 58 H694" />
+          <path d="M72 108 H694" />
+          <path d="M72 158 H694" />
+          <path d="M72 208 H694" />
+          <path d="M176 42 V220" />
+          <path d="M280 42 V220" />
+          <path d="M384 42 V220" />
+          <path d="M488 42 V220" />
+          <path d="M592 42 V220" />
+        </g>
+        <path class="diagnostic-path__model" d="M72 184 C140 78 214 78 282 184 C350 78 424 78 492 184 C560 78 628 92 694 146" />
+        <path class="diagnostic-path__field" d="M72 196 C156 154 194 64 284 104 C370 142 414 224 510 126 C586 48 632 100 694 190" />
+        <rect x="292" y="54" width="168" height="150" rx="8" class="diagnostic-path__decision-window" />
+        <path class="diagnostic-path__arrow" d="M322 184 H392" />
+        <path class="diagnostic-path__arrow" d="M500 184 H574" />
+        <g class="diagnostic-path__labels">
+          <text x="90" y="55">model timing</text>
+          <text x="92" y="210">measured response</text>
+          <text x="314" y="78">diagnostic window</text>
+          <text x="560" y="76">design consequence</text>
+        </g>
+      </svg>
+    </div>
+
+    <div class="diagnostic-path__steps">
+      {stages.map((stage) => (
+        <article class="diagnostic-path__step">
+          <span>{stage.code}</span>
+          <h3>{stage.title}</h3>
+          <p>{stage.body}</p>
+          <div class="diagnostic-path__tokens">
+            {stage.tokens.map((token) => <b>{token}</b>)}
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

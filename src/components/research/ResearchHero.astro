@@ -1,0 +1,88 @@
+---
+import { Badge } from "@/components/starwind/badge";
+import { Button } from "@/components/starwind/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/starwind/card";
+import SignalMetric from "./SignalMetric.astro";
+
+interface Action {
+  href: string;
+  label: string;
+  variant?: "default" | "outline" | "secondary";
+}
+
+interface Metric {
+  label: string;
+  value: string;
+  tone?: "teal" | "brick" | "gold" | "field";
+}
+
+interface Props {
+  eyebrow: string;
+  title: string;
+  lede: string;
+  thesisTitle: string;
+  thesisBody: string;
+  visualSrc?: string;
+  visualAlt?: string;
+  tags?: string[];
+  metrics?: Metric[];
+  actions?: Action[];
+}
+
+const {
+  eyebrow,
+  title,
+  lede,
+  thesisTitle,
+  thesisBody,
+  visualSrc,
+  visualAlt = "",
+  tags = [],
+  metrics = [],
+  actions = [],
+} = Astro.props;
+const hasVisualSlot = Astro.slots.has("visual");
+---
+
+<section class="research-hero">
+  <div class="shell research-hero__inner">
+    <div class="research-hero__copy">
+      <Badge variant="outline" size="sm">{eyebrow}</Badge>
+      <h1>{title}</h1>
+      <p class="lede">{lede}</p>
+      {actions.length > 0 && (
+        <div class="research-hero__actions">
+          {actions.map((action) => (
+            <Button href={action.href} variant={action.variant ?? "default"} size="md">
+              {action.label}
+            </Button>
+          ))}
+        </div>
+      )}
+    </div>
+    <Card class="research-hero__panel">
+      <CardHeader>
+        <Badge variant="outline" size="sm">Operating thesis</Badge>
+        <CardTitle>{thesisTitle}</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <p>{thesisBody}</p>
+        {(visualSrc || hasVisualSlot) && (
+          <figure class="research-hero__visual">
+            {hasVisualSlot ? <slot name="visual" /> : <img src={visualSrc} alt={visualAlt} loading="eager" decoding="async" />}
+          </figure>
+        )}
+        {metrics.length > 0 && (
+          <div class="research-hero__metrics">
+            {metrics.map((metric) => <SignalMetric {...metric} />)}
+          </div>
+        )}
+        {tags.length > 0 && (
+          <div class="research-hero__tags">
+            {tags.map((tag) => <Badge variant="secondary" size="sm">{tag}</Badge>)}
+          </div>
+        )}
+      </CardContent>
+    </Card>
+  </div>
+</section>

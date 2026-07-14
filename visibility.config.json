@@ -1,0 +1,112 @@
+{
+  "site": {
+    "name": "Ying-Fan Lin Research Website",
+    "baseUrl": "https://aar246860.github.io/yflin_web",
+    "gscSiteUrl": "https://aar246860.github.io/yflin_web/",
+    "indexNowHost": "aar246860.github.io"
+  },
+  "keywords": [
+    "lagging theory groundwater",
+    "Lin Yeh lagging theory",
+    "asynchronous hydraulic response",
+    "flux-gradient asynchrony",
+    "groundwater memory",
+    "delayed hydraulic response",
+    "non-instantaneous hydraulic response",
+    "transformation uncertainty groundwater",
+    "pumping test lagging theory",
+    "Lagging Darcy Law pumping test",
+    "thermal response test uncertainty",
+    "groundwater decision uncertainty"
+  ],
+  "targetPages": [
+    {
+      "path": "/",
+      "role": "research-program-entry",
+      "primaryKeyword": "lagging theory groundwater",
+      "conversionGoal": "Move readers to the Lagging Theory page or collaboration brief."
+    },
+    {
+      "path": "/concepts/",
+      "role": "concept-map",
+      "primaryKeyword": "groundwater memory transformation uncertainty",
+      "conversionGoal": "Clarify the conceptual system behind the research program."
+    },
+    {
+      "path": "/concepts/lagging-theory/",
+      "role": "canonical-definition",
+      "primaryKeyword": "lagging theory groundwater",
+      "conversionGoal": "Make AI/search systems cite the canonical definition."
+    },
+    {
+      "path": "/field-notes/",
+      "role": "evidence-and-translation",
+      "primaryKeyword": "asynchronous hydraulic response",
+      "conversionGoal": "Turn recurring questions into short external-facing notes."
+    },
+    {
+      "path": "/field-notes/when-does-a-pumping-test-need-lagging-darcy-law/",
+      "role": "pumping-test-validation-note",
+      "primaryKeyword": "Lagging Darcy Law pumping test",
+      "conversionGoal": "Explain when lagging interpretation is necessary and when classical interpretation is enough."
+    },
+    {
+      "path": "/publications/",
+      "role": "credibility-proof",
+      "primaryKeyword": "Ying-Fan Lin groundwater publications",
+      "conversionGoal": "Connect claims to publications."
+    },
+    {
+      "path": "/collaborate/",
+      "role": "collaboration-conversion",
+      "primaryKeyword": "groundwater subsurface energy collaboration",
+      "conversionGoal": "Convert high-value teams into response briefs."
+    }
+  ],
+  "scholarlyQueries": [
+    {
+      "label": "Lagging Theory by Ying-Fan Lin",
+      "query": "\"Lagging Theory\" \"Ying-Fan Lin\""
+    },
+    {
+      "label": "Lagging Darcy Law pumping test",
+      "query": "\"Lagging Darcy Law\" \"pumping test\""
+    },
+    {
+      "label": "Flux-gradient asynchrony",
+      "query": "\"flux-gradient asynchrony\""
+    },
+    {
+      "label": "Groundwater memory and lagging flow",
+      "query": "\"groundwater memory\" \"lagging\""
+    },
+    {
+      "label": "Transformation uncertainty in groundwater",
+      "query": "\"transformation uncertainty\" groundwater"
+    }
+  ],
+  "strategyThresholds": {
+    "lowCtr": 0.015,
+    "usefulImpressions": 50,
+    "weakAveragePosition": 20,
+    "highPositionLowCtr": 8,
+    "minimumMetaDescriptionCharacters": 130,
+    "maximumMetaDescriptionCharacters": 165
+  },
+  "safeAutomation": {
+    "canAutoPatch": [
+      "metadata diagnostics",
+      "internal-link recommendations",
+      "llms.txt readiness recommendations",
+      "IndexNow payload preparation",
+      "weekly Markdown report generation"
+    ],
+    "requiresHumanReview": [
+      "new theory claims",
+      "collaboration positioning",
+      "external posts",
+      "field-note publication",
+      "claims about competitors or institutions"
+    ]
+  }
+}

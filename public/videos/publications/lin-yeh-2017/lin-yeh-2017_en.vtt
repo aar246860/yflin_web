@@ -1,0 +1,28 @@
+WEBVTT
+
+00:00.000 --> 00:01.700
+The paper begins with a leaky confined aquifer and a constant-rate pumping test.
+
+00:01.700 --> 00:03.750
+Drawdown is recorded through time at observation wells.
+
+00:03.750 --> 00:05.800
+The Rapid City comparison uses five wells at reported distances from RC-5.
+
+00:05.800 --> 00:07.850
+The classical radial relation pairs radial flux with the drawdown gradient.
+
+00:07.850 --> 00:09.900
+The lagging formulation assigns a phase lag to the radial flux.
+
+00:09.900 --> 00:11.950
+A second phase lag is assigned to the drawdown gradient.
+
+00:11.950 --> 00:14.000
+Equal lags cancel; setting both lags to zero gives Classical Darcy.
+
+00:14.000 --> 00:16.167
+The field comparison reports early-time fit improvement and a bounded lag spread.
+
+00:16.167 --> 00:18.733
+The fitted lag remains diagnostic of the test and model context, not universal.
