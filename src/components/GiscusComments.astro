@@ -1,0 +1,103 @@
+---
+interface Props {
+  pageTitle: string;
+}
+
+const { pageTitle } = Astro.props;
+const discussionCategoryUrl =
+  "https://github.com/aar246860/yflin_web/discussions/categories/general";
+
+const giscusConfig = {
+  repo: "aar246860/yflin_web",
+  repoId: "R_kgDOOREF5Q",
+  category: "General",
+  categoryId: "DIC_kwDOOREF5c4C_Eto",
+};
+---
+
+<section class="comments-panel" aria-labelledby="comments-title">
+  <div class="comments-panel__header">
+    <div>
+      <span class="eyebrow">Open discussion</span>
+      <h2 id="comments-title">Discuss this note</h2>
+    </div>
+    <a href={discussionCategoryUrl} target="_blank" rel="noopener noreferrer">
+      GitHub Discussions
+    </a>
+  </div>
+  <p>
+    Public comments are best for technical questions, interpretation issues, and reading notes.
+    For unpublished data or collaboration details, use a private technical brief instead.
+  </p>
+  <div class="comments-panel__frame" data-page-title={pageTitle}>
+    <p class="comments-panel__fallback" data-comments-fallback>
+      The embedded discussion loads through GitHub. If it does not appear, open
+      <a href={discussionCategoryUrl} target="_blank" rel="noopener noreferrer">
+        GitHub Discussions
+      </a>.
+    </p>
+    <script
+      src="https://giscus.app/client.js"
+      data-repo={giscusConfig.repo}
+      data-repo-id={giscusConfig.repoId}
+      data-category={giscusConfig.category}
+      data-category-id={giscusConfig.categoryId}
+      data-mapping="pathname"
+      data-strict="1"
+      data-reactions-enabled="1"
+      data-emit-metadata="0"
+      data-input-position="top"
+      data-theme="light"
+      data-lang="en"
+      data-loading="lazy"
+      crossorigin="anonymous"
+      async>
+    </script>
+    <script is:inline>
+      (() => {
+        const panel = document.currentScript?.closest(".comments-panel");
+        if (!panel) return;
+
+        const fallback = panel.querySelector("[data-comments-fallback]");
+        const categoryUrl = panel.querySelector(".comments-panel__header a")?.href;
+
+        window.addEventListener("message", (event) => {
+          if (event.origin !== "https://giscus.app") return;
+          const payload = event.data;
+          if (!payload || typeof payload !== "object" || !payload.giscus) return;
+
+          const message = payload.giscus;
+          if (message.resizeHeight) {
+            panel.classList.add("comments-panel--ready");
+            panel.classList.remove("comments-panel--pending");
+          }
+
+          if (message.error && !String(message.error).includes("Discussion not found")) {
+            panel.classList.add("comments-panel--error");
+            panel.classList.remove("comments-panel--ready", "comments-panel--pending");
+            if (fallback && categoryUrl) {
+              fallback.innerHTML =
+                'The embedded comment box is temporarily unavailable. Continue the public thread in <a href="' +
+                categoryUrl +
+                '" target="_blank" rel="noopener noreferrer">GitHub Discussions</a>.';
+            }
+          }
+        });
+
+        window.setTimeout(() => {
+          if (
+            !panel.classList.contains("comments-panel--ready") &&
+            !panel.classList.contains("comments-panel--error")
+          ) {
+            panel.classList.add("comments-panel--pending");
+          }
+        }, 8000);
+      })();
+    </script>
+    <noscript>
+      <p>
+        Comments use GitHub Discussions. Enable JavaScript or open the discussion category directly.
+      </p>
+    </noscript>
+  </div>
+</section>

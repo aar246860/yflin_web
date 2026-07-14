@@ -1,0 +1,20 @@
+name: Pre-publish gate
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run content:sync
+      - run: npm run evidence:gate
+      - run: npm run lint:prose
+      - run: npm run build

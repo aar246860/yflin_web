@@ -1,0 +1,10 @@
+extends: existence
+message: "Avoid hype or unsupported positioning: '%s'."
+level: warning
+ignorecase: true
+tokens:
+  - groundbreaking
+  - revolutionary
+  - game-changing
+  - world-leading
+  - guarantees

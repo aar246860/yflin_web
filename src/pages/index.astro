@@ -1,0 +1,246 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { absoluteUrl, siteRoot } from "../lib/seo";
+import members from "../data/members.generated.json";
+import publications from "../data/publications.generated.json";
+import { activityPhotos, groupProjects, trainingModules, studentPublicationIds } from "../data/groupSite";
+
+const concepts = (await getCollection("concepts", ({ data }) => !data.draft)).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+const notes = (await getCollection("field-notes", ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 3);
+const base = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+const withBase = (path) => `${base}${path.replace(/^\//, "")}`;
+const rootUrl = siteRoot(Astro.site);
+const homeUrl = absoluteUrl("/", Astro.site);
+const laggingTheoryUrl = absoluteUrl("/concepts/lagging-theory/", Astro.site);
+const studentPublications = publications.filter((pub) => studentPublicationIds.includes(pub.id));
+const projectDisplay: Record<string, { title: string; icon: string }> = {
+  "lagging-theory": {
+    title: "Lagging Theory",
+    icon: "M7 18c3.3-7.6 6.6-7.6 10 0M4 10h16M4 14h16M5 18h14",
+  },
+  "transformation-uncertainty": {
+    title: "Transformation Uncertainty",
+    icon: "M4 7h7v7H4zM13 10h7v7h-7zM11 10l2 2M11 14l2-2",
+  },
+  "groundwater-memory": {
+    title: "Groundwater Memory",
+    icon: "M5 8c2.5-3 5-3 7.5 0S17.5 11 20 8M5 13c2.5-3 5-3 7.5 0s5 3 7.5 0M5 18c2.5-3 5-3 7.5 0s5 3 7.5 0",
+  },
+  "thermal-response-energy": {
+    title: "Subsurface Energy",
+    icon: "M12 3v18M7 7c4 0 6 3 6 6s2 6 6 6M17 7c-4 0-6 3-6 6s-2 6-6 6",
+  },
+  "open-tools": {
+    title: "Open Tools",
+    icon: "M4 6h16M4 12h16M4 18h16M7 6v12M17 6v12",
+  },
+};
+const roleLabel = {
+  team_role_pi: "Faculty",
+  team_role_master: "Graduate Student",
+  team_role_ra: "Research Assistant",
+};
+const homeSchema = [
+  {
+    "@type": "Organization",
+    "@id": `${homeUrl}#group`,
+    url: homeUrl,
+    name: "Lin Groundwater Hydraulics Group",
+    founder: { "@id": `${rootUrl}/#person` },
+    about: [
+      { "@id": `${laggingTheoryUrl}#defined-term` },
+      "flux-gradient asynchrony",
+      "non-instantaneous hydraulic response",
+      "transformation uncertainty",
+    ],
+  },
+  {
+    "@type": "DefinedTerm",
+    "@id": `${laggingTheoryUrl}#defined-term`,
+    name: "Lagging Theory",
+    alternateName: [
+      "generalized Darcy-law lagging theory",
+      "flux-gradient asynchrony in groundwater flow",
+    ],
+    description:
+      "A groundwater-flow formulation for testing whether flux, gradient, drawdown, boundary response, or thermal response move out of phase.",
+    url: laggingTheoryUrl,
+    inDefinedTermSet: `${rootUrl}/concepts/`,
+  },
+];
+---
+
+<BaseLayout
+  title="Lin Groundwater Hydraulics Group"
+  description="A groundwater research group directed by Ying-Fan Lin, focused on aquifer-test interpretation, Lagging Theory, transformation uncertainty, and subsurface energy decisions."
+  current="home"
+  canonicalPath="/"
+  schema={homeSchema}
+  type="website"
+  pageClass="stanford-group-site"
+>
+  <section class="stanford-hero">
+    <div class="shell stanford-hero__inner">
+      <h1>Lin Groundwater Hydraulics Group</h1>
+      <h2>
+        We develop analytical, numerical, and data-supported methods for groundwater interpretation and decisions.
+      </h2>
+      <p>
+        The group is directed by Ying-Fan Lin and focuses on aquifer-test interpretation,
+        Lagging Theory, transformation uncertainty, and subsurface energy systems influenced by groundwater flow.
+      </p>
+    </div>
+  </section>
+
+  <section class="stanford-section" aria-labelledby="projects-title">
+    <div class="shell">
+      <p class="stanford-intro">
+        We study how measured drawdown, recovery, hydraulic gradients, and thermal response become
+        interpreted parameters and design limits. The common question is when the model used for
+        interpretation changes the decision.
+      </p>
+      <h1 id="projects-title" class="stanford-section-title">Projects</h1>
+      <p class="stanford-section-lede">
+        Current work connects analytical well hydraulics, non-instantaneous response, and
+        uncertainty propagation in groundwater and subsurface-energy problems.
+      </p>
+      <div class="stanford-project-grid">
+        {groupProjects.map((project) => {
+          const display = projectDisplay[project.id] ?? { title: project.title, icon: "M4 12h16M12 4v16" };
+          return (
+            <article class={`stanford-project-card stanford-project-card--${project.accent}`}>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d={display.icon} />
+              </svg>
+              <h2>{display.title}</h2>
+              <p>{project.tagline}</p>
+              <a href={withBase(project.links[0].href)}>{project.links[0].label}</a>
+            </article>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <section class="stanford-section stanford-section--gray" aria-labelledby="people-title">
+    <div class="shell">
+      <h1 id="people-title" class="stanford-section-title">People</h1>
+      <p class="stanford-subtitle">Core</p>
+      <div class="stanford-people-grid">
+        {members.currentMembers.map((member) => (
+          <article>
+            <div class="stanford-avatar" aria-hidden="true">
+              {member.name.en.split(" ").map((part) => part[0]).join("").slice(0, 2)}
+            </div>
+            <h3>{member.name.en}</h3>
+            <p>{roleLabel[member.roleKey] ?? "Member"}</p>
+          </article>
+        ))}
+      </div>
+      <p class="stanford-subtitle">Group activities</p>
+      <div class="stanford-photo-grid">
+        {activityPhotos.map((photo) => (
+          <figure>
+            <img src={withBase(photo.src)} alt={photo.alt} decoding="async" />
+            <figcaption>{photo.label}</figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="stanford-section" aria-labelledby="concepts-title">
+    <div class="shell">
+      <h1 id="concepts-title" class="stanford-section-title">Concepts</h1>
+      <div class="stanford-concept-grid">
+        {concepts.map((entry) => (
+          <a href={withBase(`/concepts/${entry.id}/`)}>
+            <h2>{entry.data.title}</h2>
+            <p>{entry.data.subtitle}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="stanford-section stanford-training" aria-labelledby="training-title">
+    <div class="shell">
+      <h1 id="training-title" class="stanford-section-title">Training</h1>
+      <div class="stanford-training-grid">
+        {trainingModules.map((module) => (
+          <article>
+            <h2>{module.title}</h2>
+            <p>{module.outcome}</p>
+            <a href={withBase(module.link)}>Open training material</a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="stanford-section" aria-labelledby="notes-title">
+    <div class="shell">
+      <h1 id="notes-title" class="stanford-section-title">Field Notes</h1>
+      <div class="stanford-note-grid">
+        {notes.map((entry) => (
+          <article>
+            <time>{entry.data.date.toISOString().slice(0, 10)}</time>
+            <h2>{entry.data.title}</h2>
+            <p>{entry.data.subtitle}</p>
+            <a href={withBase(`/field-notes/${entry.id}/`)}>Read note</a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {studentPublications.length > 0 && (
+    <section class="stanford-section stanford-section--gray" aria-labelledby="student-output-title">
+      <div class="shell">
+        <h1 id="student-output-title" class="stanford-section-title">Student Publications</h1>
+        <div class="stanford-publication-list">
+          {studentPublications.map((pub) => (
+            <article>
+              <time>{pub.year}</time>
+              <div>
+                <h2>{pub.title.en}</h2>
+                <p>{pub.authors}</p>
+                <p>{pub.venue}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <section class="stanford-section stanford-work" aria-labelledby="work-title">
+    <div class="shell stanford-work__inner">
+      <h1 id="work-title" class="stanford-section-title">Work with us</h1>
+      <div>
+        <h2>Bring a measured response, the analytical model used to interpret it, and the decision it must support.</h2>
+        <ul>
+          <li>Aquifer-test or recovery records with model-choice ambiguity.</li>
+          <li>TRT or shallow geothermal cases where groundwater flow may change interpretation.</li>
+          <li>Decision variables such as pumping limits, recovery time, risk margins, or thermal design limits.</li>
+        </ul>
+        <a class="stanford-large-link" href={withBase("/collaborate/")}>Send a technical brief</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="stanford-section stanford-section--gray stanford-contact" aria-labelledby="contact-title">
+    <div class="shell">
+      <h1 id="contact-title" class="stanford-section-title">Contact</h1>
+      <p>If you are looking to partner or work with the group, contact</p>
+      <h2><a href="mailto:yflin1110@cycu.edu.tw">yflin1110@cycu.edu.tw</a></h2>
+    </div>
+  </section>
+</BaseLayout>

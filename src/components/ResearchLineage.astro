@@ -1,0 +1,34 @@
+---
+const items = [
+  {
+    year: "2016-2020",
+    title: "Analytical well hydraulics and boundary physics",
+    text: "Exact and semi-analytical models establish the reference behavior for pumping, Robin-type boundaries, solute diffusion, heat transport, and near-well effects.",
+  },
+  {
+    year: "2017-2026",
+    title: "Lagging Theory and asynchronous hydraulic response",
+    text: "Lagging Theory starts from flux-gradient asynchrony, then extends to free-surface drainage, periodic hydraulic-head records, subsidence, and field time series.",
+  },
+  {
+    year: "2024-2026",
+    title: "Transformation uncertainty",
+    text: "Transformation uncertainty separates measured field response from interpreted parameters and traces how conceptual-model bias enters engineering design decisions.",
+  },
+  {
+    year: "2026+",
+    title: "Groundwater-influenced subsurface energy",
+    text: "TRT, aquifer thermal response, shallow geothermal systems, and industrial water-energy planning become field settings for aquifer-test interpretation and uncertainty propagation.",
+  },
+];
+---
+
+<div class="lineage">
+  {items.map((item) => (
+    <article class="lineage-item">
+      <span class="eyebrow">{item.year}</span>
+      <h3>{item.title}</h3>
+      <p>{item.text}</p>
+    </article>
+  ))}
+</div>

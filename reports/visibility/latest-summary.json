@@ -1,0 +1,59 @@
+{
+  "generatedAt": "2026-06-22T21:57:51.023Z",
+  "reportTimeZone": "Asia/Taipei",
+  "reportDate": "2026-06-23",
+  "mode": "full",
+  "site": "https://aar246860.github.io/yflin_web",
+  "reportFile": "2026-06-23-lagging-theory-visibility-report.md",
+  "artifactName": "weekly-lagging-theory-visibility-report",
+  "targetKeywords": 12,
+  "targetPagesAudited": 7,
+  "technicalBlockers": 0,
+  "technicalWarnings": 0,
+  "recommendations": 6,
+  "priorityCounts": {
+    "P1": 2,
+    "P2": 3,
+    "P3": 1
+  },
+  "topRecommendations": [
+    {
+      "priority": "P1",
+      "area": "ai-search-readiness",
+      "evidence": "LLM context is missing phrase: not a generic signal-processing time shift.",
+      "action": "Add a concise canonical definition to `llms.txt` or `llms-full.txt`.",
+      "mode": "safe-automation"
+    },
+    {
+      "priority": "P1",
+      "area": "measurement-setup",
+      "evidence": "Set `GSC_ACCESS_TOKEN` to include Google Search Console rows.",
+      "action": "Set up `GSC_ACCESS_TOKEN` for the scheduled workflow or export GSC rows manually before strategy review.",
+      "mode": "human-review"
+    },
+    {
+      "priority": "P2",
+      "area": "metadata",
+      "evidence": "/ meta description is 171 characters.",
+      "action": "Compress the description so search snippets do not truncate the core claim.",
+      "mode": "safe-automation"
+    },
+    {
+      "priority": "P2",
+      "area": "metadata",
+      "evidence": "/concepts/ meta description is 169 characters.",
+      "action": "Compress the description so search snippets do not truncate the core claim.",
+      "mode": "safe-automation"
+    },
+    {
+      "priority": "P2",
+      "area": "metadata",
+      "evidence": "/collaborate/ meta description is 170 characters.",
+      "action": "Compress the description so search snippets do not truncate the core claim.",
+      "mode": "safe-automation"
+    }
+  ],
+  "gscStatus": "skipped",
+  "crossrefStatus": "ok",
+  "openAlexStatus": "skipped"
+}

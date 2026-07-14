@@ -1,0 +1,21 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ResearchLineage from "../../components/ResearchLineage.astro";
+---
+
+<BaseLayout
+  title="About Ying-Fan Lin"
+  description="Ying-Fan Lin studies groundwater records whose timing differs from conventional aquifer-test or thermal-response models."
+  current="about"
+>
+  <section class="shell section">
+    <span class="eyebrow">About the research program</span>
+    <h1>Groundwater flux and hydraulic gradients do not always move in step.</h1>
+    <p class="lede">
+      Dr. Ying-Fan Lin develops analytical, numerical, and data-supported methods to estimate parameters from non-steady field signals and interpret non-instantaneous hydraulic response. His work begins with analytical well hydraulics and examines cases in which classical interpretations leave timing, amplitude, or residual patterns unresolved. It asks when model choice changes the decision supported by the analysis.
+    </p>
+  </section>
+  <section class="shell section">
+    <ResearchLineage />
+  </section>
+</BaseLayout>

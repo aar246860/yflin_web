@@ -1,0 +1,92 @@
+---
+const base = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+const withBase = (path) => `${base}${path.replace(/^\//, "")}`;
+
+const mainPhotos = [
+  {
+    id: "J041",
+    src: withBase("/media/conference/jpgu-2026/j041-jpgu-2026.jpg"),
+    alt: "Poster discussion at JpGU 2026.",
+    caption: "Poster discussion",
+  },
+  {
+    id: "J090",
+    src: withBase("/media/conference/jpgu-2026/j090-jpgu-2026.jpg"),
+    alt: "Team presence at the JpGU 2026 venue.",
+    caption: "Conference identity",
+  },
+  {
+    id: "J040",
+    src: withBase("/media/conference/jpgu-2026/j040-jpgu-2026.jpg"),
+    alt: "Research group standing in front of a JpGU 2026 conference poster.",
+    caption: "Team presentation",
+  },
+  {
+    id: "J075",
+    src: withBase("/media/conference/jpgu-2026/j075-jpgu-2026.jpg"),
+    alt: "Researchers discussing posters at JpGU 2026.",
+    caption: "Research exchange",
+  },
+];
+
+const stripPhotos = [
+  {
+    id: "J012",
+    src: withBase("/media/conference/jpgu-2026/j012-jpgu-2026.jpg"),
+    alt: "Conference identity photo at JpGU 2026.",
+  },
+  {
+    id: "J029",
+    src: withBase("/media/conference/jpgu-2026/j029-jpgu-2026.jpg"),
+    alt: "Team presence photo at JpGU 2026.",
+  },
+  {
+    id: "J049",
+    src: withBase("/media/conference/jpgu-2026/j049-jpgu-2026.jpg"),
+    alt: "Poster presentation at JpGU 2026.",
+  },
+];
+---
+
+<section class="shell section conference-presence" aria-labelledby="conference-presence-title">
+  <div class="conference-presence__inner">
+    <div class="conference-presence__copy">
+      <span class="eyebrow">Conference presence</span>
+      <h2 id="conference-presence-title">Research develops through exchange.</h2>
+      <p>
+        Research on asynchronous groundwater response advances through poster sessions,
+        technical discussion, and exchange across sites. These photographs record the
+        settings in which ideas, evidence, and collaborations are discussed.
+      </p>
+      <div class="tag-row" aria-label="Conference context tags">
+        <span class="tag">JpGU 2026</span>
+        <span class="tag">poster exchange</span>
+        <span class="tag">team presence</span>
+      </div>
+    </div>
+
+    <div class="conference-presence__photos" aria-label="JpGU 2026 conference presence photos">
+      {
+        mainPhotos.map((photo) => (
+          <figure class="conference-presence__photo">
+            <img src={photo.src} alt={photo.alt} loading="lazy" decoding="async" />
+            <figcaption>
+              <span>{photo.id}</span>
+              {photo.caption}
+            </figcaption>
+          </figure>
+        ))
+      }
+    </div>
+  </div>
+
+  <div class="conference-presence__strip" aria-label="Additional approved JpGU 2026 photos">
+    {
+      stripPhotos.map((photo) => (
+        <img src={photo.src} alt={photo.alt} loading="lazy" decoding="async" />
+      ))
+    }
+  </div>
+</section>

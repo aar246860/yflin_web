@@ -1,0 +1,34 @@
+---
+import { Badge } from "@/components/starwind/badge";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/starwind/card";
+
+interface Props {
+  mode: string;
+  title: string;
+  body: string;
+  decision: string;
+  tone?: "teal" | "brick" | "gold" | "field";
+}
+
+const { mode, title, body, decision, tone = "teal" } = Astro.props;
+const toneClass = {
+  teal: "border-primary/30",
+  brick: "border-error/25",
+  gold: "border-warning/50",
+  field: "border-info/80",
+}[tone];
+---
+
+<Card class={`collaboration-mode-card ${toneClass}`}>
+  <CardHeader>
+    <div class="mode-card__header">
+      <Badge variant="outline" size="sm">{mode}</Badge>
+      <span>{decision}</span>
+    </div>
+    <CardTitle>{title}</CardTitle>
+  </CardHeader>
+  <CardContent>
+    <p>{body}</p>
+  </CardContent>
+</Card>
+

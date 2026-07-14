@@ -1,0 +1,124 @@
+---
+const states = [
+  {
+    label: "record",
+    title: "Measured response",
+    body: "drawdown, recovery, head, temperature",
+    tone: "teal",
+  },
+  {
+    label: "model",
+    title: "Interpretation model",
+    body: "Theis, leaky, lag-aware, or competing model",
+    tone: "field",
+  },
+  {
+    label: "decision",
+    title: "Engineering decision",
+    body: "pumping limit, recovery time, design threshold",
+    tone: "brick",
+  },
+];
+const base = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+const lottieSrc = `${base}animations/decision-chain.lottie`;
+---
+
+<section class="shell micro-motion" aria-labelledby="micro-motion-title" data-dotlottie-motion data-lottie-src={lottieSrc}>
+  <div class="micro-motion__head">
+    <span class="eyebrow">Decision chain visual</span>
+    <h2 id="micro-motion-title">Keep the decision chain visible while the reader moves through the site.</h2>
+  </div>
+  <figure class="micro-motion__player" aria-label="Animation showing the interpretation decision chain">
+    <canvas
+      data-dotlottie-canvas
+      width="500"
+      height="220"
+      aria-label="Animated chain from measured response to model interpretation to use in engineering decisions"
+    ></canvas>
+    <figcaption data-dotlottie-status>
+      Conceptual motion graphic; not a calibrated aquifer simulation.
+    </figcaption>
+  </figure>
+  <div class="micro-motion__rail" aria-label="Animated model review states">
+    {states.map((state, index) => (
+      <article class={`micro-motion__item micro-motion__item--${state.tone}`} style={`--delay: ${index * 180}ms`}>
+        <svg viewBox="0 0 80 80" aria-hidden="true">
+          <circle class="micro-motion__orbit" cx="40" cy="40" r="26" />
+          <circle class="micro-motion__pulse" cx="40" cy="40" r="10" />
+          <path class="micro-motion__check" d="M28 41 L36 49 L54 31" />
+        </svg>
+        <div>
+          <span>{state.label}</span>
+          <h3>{state.title}</h3>
+          <p>{state.body}</p>
+        </div>
+      </article>
+    ))}
+  </div>
+</section>
+
+<script>
+  const initializedLottieMotion = new WeakSet();
+  const activeLottiePlayers = new Set();
+
+  async function initDotLottieMotion() {
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    document.querySelectorAll("[data-dotlottie-motion]").forEach(async (root) => {
+      if (initializedLottieMotion.has(root)) return;
+      initializedLottieMotion.add(root);
+
+      const canvas = root.querySelector("[data-dotlottie-canvas]");
+      const status = root.querySelector("[data-dotlottie-status]");
+      if (!(canvas instanceof HTMLCanvasElement)) return;
+
+      if (prefersReducedMotion) {
+        if (status) status.textContent = "Motion paused because reduced-motion is enabled.";
+        return;
+      }
+
+      try {
+        const { DotLottie } = await import("@lottiefiles/dotlottie-web");
+        const player = new DotLottie({
+          canvas,
+          src: root.dataset.lottieSrc,
+          autoplay: true,
+          loop: true,
+          speed: 0.78,
+          backgroundColor: "transparent",
+          renderConfig: {
+            autoResize: true,
+            freezeOnOffscreen: true,
+            devicePixelRatio: Math.min(window.devicePixelRatio || 1, 2),
+          },
+        });
+        activeLottiePlayers.add(player);
+        player.addEventListener("load", () => {
+          if (status) status.textContent = "Conceptual motion graphic; not a calibrated aquifer simulation.";
+        });
+        player.addEventListener("loadError", () => {
+          if (status) status.textContent = "Conceptual motion graphic; not a calibrated aquifer simulation.";
+        });
+      } catch (error) {
+        console.warn("dotLottie motion could not initialize", error);
+        if (status) status.textContent = "Conceptual motion graphic; not a calibrated aquifer simulation.";
+      }
+    });
+  }
+
+  function destroyDotLottieMotion() {
+    activeLottiePlayers.forEach((player) => {
+      try {
+        player.destroy();
+      } catch (error) {
+        console.warn("dotLottie cleanup failed", error);
+      }
+    });
+    activeLottiePlayers.clear();
+  }
+
+  initDotLottieMotion();
+  document.addEventListener("astro:page-load", initDotLottieMotion);
+  document.addEventListener("astro:before-swap", destroyDotLottieMotion);
+</script>

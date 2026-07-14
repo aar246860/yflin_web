@@ -1,0 +1,11 @@
+---
+const { level } = Astro.props;
+const labels = {
+  supported: "Published evidence",
+  diagnostic: "Diagnostic use",
+  limited: "Limited evidence",
+  conceptual: "Conceptual framing",
+};
+---
+
+<span class:list={["badge", level]}>{labels[level] ?? level}</span>

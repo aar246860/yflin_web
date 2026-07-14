@@ -1,0 +1,279 @@
+---
+const steps = [
+  {
+    label: "01",
+    title: "Theis reference",
+    body:
+      "Start with the familiar confined-aquifer interpretation: drawdown is translated through an analytical model into transmissivity and storage.",
+  },
+  {
+    label: "02",
+    title: "Lag-aware response",
+    body:
+      "When flux and hydraulic-gradient development are not synchronous, the early and recovery windows can carry structured residuals.",
+  },
+  {
+    label: "03",
+    title: "Transformation uncertainty",
+    body:
+      "The decision changes when the same measured response is converted through different model assumptions.",
+  },
+];
+---
+
+<section id="scroll-story" class="scientific-scroll" aria-labelledby="scientific-scroll-title" data-scientific-scroll>
+  <div class="shell scientific-scroll__inner">
+    <div class="scientific-scroll__copy">
+      <span class="eyebrow">Aquifer-test interpretation story</span>
+      <h2 id="scientific-scroll-title">From Theis drawdown to lag-aware decision uncertainty.</h2>
+      <p>
+        A familiar Theis-style drawdown response gives the reference case. The lag-aware
+        overlay then shows how asynchronous response can change residual structure and
+        the decision window that follows from an analytical interpretation.
+      </p>
+      <div class="scientific-scroll__steps">
+        {steps.map((step) => (
+          <article class="scientific-scroll__step" data-scroll-step>
+            <span>{step.label}</span>
+            <h3>{step.title}</h3>
+            <p>{step.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+
+    <figure class="scientific-scroll__figure" aria-label="Scroll-driven aquifer-test interpretation story">
+      <svg viewBox="0 0 900 620" role="img" aria-labelledby="scroll-story-title scroll-story-desc">
+        <title id="scroll-story-title">Theis, lag-aware response, and transformation uncertainty</title>
+        <desc id="scroll-story-desc">
+          A calculated Theis reference curve, a normalized lag-aware teaching overlay,
+          and model-to-decision uncertainty bands are animated as the reader scrolls.
+        </desc>
+        <defs>
+          <linearGradient id="scientificScrollBand" x1="0" x2="1" y1="0" y2="0">
+            <stop offset="0%" stop-color="var(--signal-measured)" stop-opacity="0.18" />
+            <stop offset="100%" stop-color="var(--risk-boundary)" stop-opacity="0.2" />
+          </linearGradient>
+          <marker id="scientificScrollArrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+            <path d="M0,0 L8,4 L0,8 Z" fill="var(--risk-boundary)" />
+          </marker>
+        </defs>
+        <rect class="scientific-scroll__frame" x="34" y="34" width="832" height="552" rx="18" />
+        <g class="scientific-scroll__grid">
+          <path d="M104 110 H760" />
+          <path d="M104 190 H760" />
+          <path d="M104 270 H760" />
+          <path d="M104 350 H760" />
+          <path d="M104 430 H760" />
+          <path d="M212 82 V468" />
+          <path d="M320 82 V468" />
+          <path d="M428 82 V468" />
+          <path d="M536 82 V468" />
+          <path d="M644 82 V468" />
+        </g>
+        <path class="scientific-scroll__axis" d="M104 468 H760" />
+        <path class="scientific-scroll__axis" d="M104 82 V468" />
+        <text class="scientific-scroll__axis-label" x="116" y="72">drawdown response</text>
+        <text class="scientific-scroll__axis-label" x="680" y="504">log time</text>
+
+        <path class="scientific-scroll__band" data-scroll-band />
+        <path class="scientific-scroll__curve scientific-scroll__curve--theis" data-scroll-curve="theis" />
+        <path class="scientific-scroll__curve scientific-scroll__curve--ldl" data-scroll-curve="ldl" />
+        <path class="scientific-scroll__curve scientific-scroll__curve--observed" data-scroll-curve="observed" />
+
+        <g class="scientific-scroll__threshold" data-scroll-threshold>
+          <path d="M584 94 V468" />
+          <path d="M636 94 V468" />
+          <path d="M584 122 H636" marker-end="url(#scientificScrollArrow)" />
+          <text x="532" y="108">decision window</text>
+        </g>
+
+        <g class="scientific-scroll__legend">
+          <text x="112" y="538">Theis reference</text>
+          <text x="348" y="538">lag-aware overlay</text>
+          <text x="606" y="538">measured record</text>
+        </g>
+      </svg>
+      <figcaption>
+        Simplified public explainer: not a calibrated field inversion.
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const initializedScrollStories = new WeakSet();
+  const scrollStoryDisposers = new WeakMap();
+  const EULER_GAMMA = 0.5772156649;
+
+  function expIntegralE1(x) {
+    if (x <= 0) return 20;
+    if (x < 1) {
+      let sum = 0;
+      let term = 1;
+      for (let k = 1; k <= 18; k += 1) {
+        term *= -x / k;
+        sum += term / k;
+      }
+      return Math.max(0, -EULER_GAMMA - Math.log(x) - sum);
+    }
+
+    let term = 1;
+    let sum = 1;
+    for (let k = 1; k <= 12; k += 1) {
+      term *= -k / x;
+      sum += term;
+    }
+    return Math.max(0, (Math.exp(-x) / x) * sum);
+  }
+
+  function makeCurves() {
+    const rows = [];
+    const count = 96;
+    const tMin = 0.04;
+    const tMax = 96;
+    const logMin = Math.log(tMin);
+    const logMax = Math.log(tMax);
+    const r = 35;
+    const s = 0.00035;
+    const t = 42;
+
+    for (let i = 0; i < count; i += 1) {
+      const time = Math.exp(logMin + ((logMax - logMin) * i) / (count - 1));
+      const u = (r * r * s) / (4 * t * time);
+      const theis = expIntegralE1(u);
+      const normalizedTime = (Math.log(time) - logMin) / (logMax - logMin);
+      const ldl = 1 / (1 + Math.exp(-(normalizedTime - 0.48) * 9.5));
+      const observed = 0.72 * ldl + 0.28 * (1 / (1 + Math.exp(-(normalizedTime - 0.35) * 7)));
+      rows.push({ time, theis, ldl, observed });
+    }
+
+    const normalize = (key) => {
+      const values = rows.map((row) => row[key]);
+      const min = Math.min(...values);
+      const max = Math.max(...values);
+      const range = Math.max(1e-9, max - min);
+      rows.forEach((row) => {
+        row[`${key}Norm`] = (row[key] - min) / range;
+      });
+    };
+
+    normalize("theis");
+    normalize("ldl");
+    normalize("observed");
+    return rows;
+  }
+
+  function pathFor(rows, key) {
+    const x0 = 104;
+    const y0 = 82;
+    const width = 656;
+    const height = 386;
+    return rows
+      .map((row, index) => {
+        const x = x0 + (index / (rows.length - 1)) * width;
+        const y = y0 + height - (0.08 + row[key] * 0.84) * height;
+        return `${index === 0 ? "M" : "L"} ${x.toFixed(2)} ${y.toFixed(2)}`;
+      })
+      .join(" ");
+  }
+
+  function bandPath(rows) {
+    const x0 = 104;
+    const y0 = 82;
+    const width = 656;
+    const height = 386;
+    const top = rows.map((row, index) => {
+      const x = x0 + (index / (rows.length - 1)) * width;
+      const y = y0 + height - (0.12 + Math.max(row.theisNorm, row.ldlNorm) * 0.78) * height;
+      return `${index === 0 ? "M" : "L"} ${x.toFixed(2)} ${y.toFixed(2)}`;
+    });
+    const bottom = [...rows].reverse().map((row, reverseIndex) => {
+      const index = rows.length - 1 - reverseIndex;
+      const x = x0 + (index / (rows.length - 1)) * width;
+      const y = y0 + height - (0.08 + Math.min(row.theisNorm, row.ldlNorm) * 0.78) * height;
+      return `L ${x.toFixed(2)} ${y.toFixed(2)}`;
+    });
+    return `${top.join(" ")} ${bottom.join(" ")} Z`;
+  }
+
+  function preparePath(path) {
+    const length = path.getTotalLength();
+    path.style.strokeDasharray = String(length);
+    path.style.strokeDashoffset = String(length);
+  }
+
+  function initScientificScrollStories() {
+    document.querySelectorAll("[data-scientific-scroll]").forEach((root) => {
+      if (initializedScrollStories.has(root)) return;
+      initializedScrollStories.add(root);
+
+      const rows = makeCurves();
+      const theis = root.querySelector('[data-scroll-curve="theis"]');
+      const ldl = root.querySelector('[data-scroll-curve="ldl"]');
+      const observed = root.querySelector('[data-scroll-curve="observed"]');
+      const band = root.querySelector("[data-scroll-band]");
+      const threshold = root.querySelector("[data-scroll-threshold]");
+      const steps = [...root.querySelectorAll("[data-scroll-step]")];
+      const paths = [theis, ldl, observed].filter(Boolean);
+      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      theis?.setAttribute("d", pathFor(rows, "theisNorm"));
+      ldl?.setAttribute("d", pathFor(rows, "ldlNorm"));
+      observed?.setAttribute("d", pathFor(rows, "observedNorm"));
+      band?.setAttribute("d", bandPath(rows));
+
+      paths.forEach(preparePath);
+      gsap.set([ldl, observed, band, threshold], { opacity: 0 });
+      gsap.set(steps.slice(1), { opacity: 0.44 });
+
+      if (reduce) {
+        paths.forEach((path) => {
+          path.style.strokeDashoffset = "0";
+        });
+        gsap.set([ldl, observed, band, threshold, steps], { opacity: 1 });
+        return;
+      }
+
+      const timeline = gsap.timeline({
+        defaults: { ease: "power2.out" },
+        scrollTrigger: {
+          trigger: root,
+          start: "top 72%",
+          end: "bottom 42%",
+          scrub: 0.75,
+        },
+      });
+
+      scrollStoryDisposers.set(root, () => {
+        timeline.scrollTrigger?.kill();
+        timeline.kill();
+        initializedScrollStories.delete(root);
+        scrollStoryDisposers.delete(root);
+      });
+
+      timeline
+        .to(theis, { strokeDashoffset: 0, duration: 0.8 })
+        .to(steps[0], { opacity: 1, duration: 0.2 }, "<")
+        .to(ldl, { opacity: 1, strokeDashoffset: 0, duration: 0.9 })
+        .to(steps[1], { opacity: 1, duration: 0.2 }, "<")
+        .to(observed, { opacity: 1, strokeDashoffset: 0, duration: 0.9 })
+        .to(band, { opacity: 1, duration: 0.55 }, "<")
+        .to(threshold, { opacity: 1, duration: 0.45 }, "<")
+        .to(steps[2], { opacity: 1, duration: 0.2 }, "<");
+    });
+  }
+
+  initScientificScrollStories();
+  document.addEventListener("astro:page-load", initScientificScrollStories);
+  document.addEventListener("astro:before-swap", () => {
+    document.querySelectorAll("[data-scientific-scroll]").forEach((root) => {
+      scrollStoryDisposers.get(root)?.();
+    });
+  });
+</script>

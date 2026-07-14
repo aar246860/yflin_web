@@ -1,0 +1,12 @@
+{
+  "title": "Lin and Yeh (2017): A Pumping Test with Hydraulic Memory",
+  "description": "A calculation- and source-backed visual abstract of the Lagging Darcy pumping-test model and its Rapid City field comparison.",
+  "generated_at": "2026-07-11T00:25:18.462282+00:00",
+  "artifacts": {
+    "mp4": "lin-yeh-2017-visual-abstract.mp4",
+    "contact_sheet": "lin-yeh-2017-visual-abstract_contact_sheet.png",
+    "html": "lin-yeh-2017-visual-abstract.html",
+    "qa_notes": "lin-yeh-2017-visual-abstract_qa.md"
+  },
+  "ffprobe": "codec_name=h264\nprofile=Constrained Baseline\nwidth=1280\nheight=720\npix_fmt=yuv420p\nlevel=31\nduration=32.366667\nnb_frames=971\nformat_name=mov,mp4,m4a,3gp,3g2,mj2\nduration=32.366667\nsize=1063097\n"
+}

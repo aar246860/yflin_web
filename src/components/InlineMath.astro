@@ -1,0 +1,24 @@
+---
+type Props = {
+  readonly label: string;
+};
+
+const { label } = Astro.props;
+---
+
+<span class="inline-math" role="math" aria-label={label}><slot /></span>
+
+<style>
+  .inline-math {
+    display: inline-flex;
+    align-items: baseline;
+    white-space: nowrap;
+    font-family: "STIX Two Math", "Cambria Math", "Times New Roman", serif;
+    font-variant-numeric: lining-nums tabular-nums;
+  }
+
+  .inline-math :global(math) {
+    font-family: inherit;
+    font-size: 1em;
+  }
+</style>

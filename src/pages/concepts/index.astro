@@ -1,0 +1,32 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ConceptCard from "../../components/ConceptCard.astro";
+
+const concepts = (await getCollection("concepts", ({ data }) => !data.draft)).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+---
+
+<BaseLayout
+  title="Core Concepts"
+  description="Concept map for Lagging Theory, flux-gradient asynchrony, transformation uncertainty, and subsurface energy decisions influenced by groundwater flow."
+  current="concepts"
+>
+  <section class="shell section">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Research concepts</span>
+        <h1>From delayed response to groundwater decisions.</h1>
+      </div>
+    </div>
+    <p class="lede">
+      The research program begins with a simple observation: field drawdown, recovery, head, or temperature may not move in step with the forcing or gradient assumed by a classical model. The next question is which mechanism creates the lag, how it should be modeled, and whether the interpretation changes a decision.
+    </p>
+  </section>
+  <section class="shell section">
+    <div class="grid cols-2">
+      {concepts.map((entry) => <ConceptCard entry={entry} />)}
+    </div>
+  </section>
+</BaseLayout>

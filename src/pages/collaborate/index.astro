@@ -1,0 +1,69 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { Button } from "@/components/starwind/button";
+import CollaborationModeCard from "../../components/research/CollaborationModeCard.astro";
+import ConferencePresence from "../../components/research/ConferencePresence.astro";
+import ResearchHero from "../../components/research/ResearchHero.astro";
+
+const base = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+const withBase = (path) => `${base}${path.replace(/^\//, "")}`;
+---
+
+<BaseLayout
+  title="Collaborate on Aquifer-Test and Thermal-Response Interpretation"
+  description="Collaboration routes for aquifer-test residuals, TRT interpretation, transformation uncertainty, and subsurface energy decisions."
+  current="collaborate"
+>
+  <ResearchHero
+    eyebrow="Collaboration modes"
+    title="Bring the aquifer-test record that remains unresolved under the conventional interpretation."
+    lede="A useful collaboration begins with a specific pattern: delayed recovery, flux-gradient asynchrony, phase-amplitude mismatch, TRT disagreement, or residual structure that may change a design or management decision."
+    thesisTitle="Send three things."
+    thesisBody="What was the forcing history? Which flux, head, drawdown, recovery, temperature, boundary, or deformation record moved out of step? Which decision changes if the response is interpreted with a different analytical model?"
+    actions={[
+      { href: "mailto:yflin1110@cycu.edu.tw?subject=Aquifer-test%20data%20and%20model%20brief", label: "Email a technical brief" },
+      { href: withBase("/services/groundwater-decision-reliability-audit/"), label: "Request a model-assumption audit", variant: "outline" },
+      { href: withBase("/publications/"), label: "Check publication map", variant: "outline" },
+    ]}
+    metrics={[
+      { value: "1", label: "forcing history", tone: "teal" },
+      { value: "2", label: "measured drawdown/recovery", tone: "field" },
+      { value: "3", label: "decision variable", tone: "brick" },
+    ]}
+    tags={["aquifer-test interpretation", "drawdown/recovery", "TRT uncertainty", "hydro-mechanical coupling", "decision variables"]}
+  />
+
+  <section class="shell section">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Diagnostic collaborations</span>
+        <h2>Four entry points for teams with field or operational data.</h2>
+      </div>
+      <Button href="mailto:yflin1110@cycu.edu.tw?subject=Aquifer-test%20data%20and%20model%20brief" variant="outline">Start with a technical brief</Button>
+    </div>
+    <div class="grid cols-2 collaboration-modes">
+      <CollaborationModeCard mode="Mode 01" title="Aquifer-test residual diagnosis" decision="interpretation residuals" tone="teal" body="For pumping tests, groundwater time series, recovery data, or TRT records where flux, head, amplitude, phase, boundary response, or deformation contains out-of-step behavior that conventional interpretation may not fully explain." />
+      <CollaborationModeCard mode="Mode 02" title="Delayed-response analysis" decision="stress history in head data" tone="field" body="For datasets where past pumping, recharge, boundary movement, aquitard drainage, or domain exchange may remain visible in present hydraulic-head, drawdown, or recovery records through non-equilibrium response." />
+      <CollaborationModeCard mode="Mode 03" title="Transformation-uncertainty review" decision="model-to-decision risk" tone="brick" body="For teams that already have model outputs but need to know how aquifer-test interpretation models affect inferred parameters, uncertainty buffers, and decision variables." />
+      <CollaborationModeCard mode="Mode 04" title="Groundwater-influenced TRT pilot" decision="scale-up readiness" tone="gold" body="For shallow geothermal, thermal response testing, industrial heat, or semiconductor water-energy planning that needs site-specific groundwater assessment before scale-up." />
+    </div>
+  </section>
+
+  <section class="shell section">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Commercial route</span>
+        <h2>For teams that need a decision-ready technical audit.</h2>
+      </div>
+      <Button href={withBase("/services/groundwater-decision-reliability-audit/")}>Open audit route</Button>
+    </div>
+    <p class="lede">
+      A diagnostic audit is an appropriate first step when the work involves field data,
+      model assumptions, client-facing decisions, or confidential project constraints.
+    </p>
+  </section>
+
+  <ConferencePresence />
+</BaseLayout>

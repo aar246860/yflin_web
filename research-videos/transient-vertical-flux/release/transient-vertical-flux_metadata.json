@@ -1,0 +1,12 @@
+{
+  "title": "Transient vertical groundwater flux from temperature-depth profiles",
+  "description": "3B1B-style research animation generated with Manim Community.",
+  "generated_at": "2026-07-11T02:24:05.981271+00:00",
+  "artifacts": {
+    "mp4": "transient-vertical-flux.mp4",
+    "contact_sheet": "transient-vertical-flux_contact_sheet.png",
+    "html": "transient-vertical-flux.html",
+    "qa_notes": "transient-vertical-flux_qa.md"
+  },
+  "ffprobe": "codec_name=h264\nprofile=Constrained Baseline\nwidth=1280\nheight=720\npix_fmt=yuv420p\nlevel=31\nduration=10.500000\nnb_frames=315\nformat_name=mov,mp4,m4a,3gp,3g2,mj2\nduration=10.500000\nsize=286436\n"
+}

@@ -1,0 +1,12 @@
+{
+  "title": "Image-well solution for island aquifers",
+  "description": "3B1B-style research animation generated with Manim Community.",
+  "generated_at": "2026-07-11T02:24:06.166493+00:00",
+  "artifacts": {
+    "mp4": "island-image-well.mp4",
+    "contact_sheet": "island-image-well_contact_sheet.png",
+    "html": "island-image-well.html",
+    "qa_notes": "island-image-well_qa.md"
+  },
+  "ffprobe": "codec_name=h264\nprofile=Constrained Baseline\nwidth=1280\nheight=720\npix_fmt=yuv420p\nlevel=31\nduration=11.800000\nnb_frames=354\nformat_name=mov,mp4,m4a,3gp,3g2,mj2\nduration=11.800000\nsize=421929\n"
+}

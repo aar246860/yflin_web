@@ -1,0 +1,75 @@
+---
+const base = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+const withBase = (path) => `${base}${path.replace(/^\//, "")}`;
+
+const photos = [
+  {
+    id: "A",
+    className: "team-life__photo team-life__photo--wide",
+    src: withBase("/media/team-life/jpgu-2026/jpgu-2026-team-selfie.jpg"),
+    alt: "Research group selfie outside the JpGU 2026 venue.",
+    caption: "Conference team",
+    focus: "center center",
+  },
+  {
+    id: "B",
+    className: "team-life__photo",
+    src: withBase("/media/team-life/jpgu-2026/jpgu-2026-team-dinner.jpg"),
+    alt: "Research team dinner during the JpGU 2026 conference trip.",
+    caption: "Working dinner",
+    focus: "center center",
+  },
+  {
+    id: "F",
+    className: "team-life__photo",
+    src: withBase("/media/team-life/jpgu-2026/jpgu-2026-poster-group.jpg"),
+    alt: "Research poster group at JpGU 2026.",
+    caption: "Poster session",
+    focus: "center center",
+  },
+  {
+    id: "I",
+    className: "team-life__photo team-life__photo--wide",
+    src: withBase("/media/team-life/jpgu-2026/jpgu-2026-poster-presentation.jpg"),
+    alt: "Poster presentation discussion at JpGU 2026.",
+    caption: "Poster exchange",
+    focus: "center center",
+  },
+];
+---
+
+<section class="shell section team-life" aria-labelledby="team-life-title">
+  <div class="team-life__inner">
+    <div class="team-life__copy">
+      <span class="eyebrow">Research in practice</span>
+      <h2 id="team-life-title">The analysis is tested through people, posters, and field-facing questions.</h2>
+      <p>
+        These photos show the social layer of the research: presenters explaining evidence,
+        collaborators testing interpretations, and repeated conversations that turn a difficult
+        response pattern into a shared problem.
+      </p>
+      <div class="tag-row" aria-label="Research activity tags">
+        <span class="tag">JpGU 2026</span>
+        <span class="tag">poster sessions</span>
+        <span class="tag">team travel</span>
+        <span class="tag">working meals</span>
+      </div>
+    </div>
+
+    <div class="team-life__mosaic" aria-label="Research team activity photos">
+      {
+        photos.map((photo) => (
+          <figure class={photo.className} style={`--focus: ${photo.focus};`}>
+            <img src={photo.src} alt={photo.alt} loading="lazy" decoding="async" />
+            <figcaption>
+              <span>{photo.id}</span>
+              {photo.caption}
+            </figcaption>
+          </figure>
+        ))
+      }
+    </div>
+  </div>
+</section>

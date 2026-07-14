@@ -1,0 +1,10 @@
+# This file is used internally by FFMPEG.
+file 'file:C:/Users/YFLin/OneDrive - 中原大學/中原林穎凡資料夾/0web_page_Codex/yflin_web_astro/media/videos/published_research_visuals/720p30/partial_movie_files/WaterTableKinematic/3072997530_4218358038_223132457.mp4'
+file 'file:C:/Users/YFLin/OneDrive - 中原大學/中原林穎凡資料夾/0web_page_Codex/yflin_web_astro/media/videos/published_research_visuals/720p30/partial_movie_files/WaterTableKinematic/65210378_3109740256_1289902137.mp4'
+file 'file:C:/Users/YFLin/OneDrive - 中原大學/中原林穎凡資料夾/0web_page_Codex/yflin_web_astro/media/videos/published_research_visuals/720p30/partial_movie_files/WaterTableKinematic/65210378_591026694_1406196158.mp4'
+file 'file:C:/Users/YFLin/OneDrive - 中原大學/中原林穎凡資料夾/0web_page_Codex/yflin_web_astro/media/videos/published_research_visuals/720p30/partial_movie_files/WaterTableKinematic/65210378_1152775417_301559490.mp4'
+file 'file:C:/Users/YFLin/OneDrive - 中原大學/中原林穎凡資料夾/0web_page_Codex/yflin_web_astro/media/videos/published_research_visuals/720p30/partial_movie_files/WaterTableKinematic/65210378_740938563_1482497068.mp4'
+file 'file:C:/Users/YFLin/OneDrive - 中原大學/中原林穎凡資料夾/0web_page_Codex/yflin_web_astro/media/videos/published_research_visuals/720p30/partial_movie_files/WaterTableKinematic/65210378_2561874686_2567072164.mp4'
+file 'file:C:/Users/YFLin/OneDrive - 中原大學/中原林穎凡資料夾/0web_page_Codex/yflin_web_astro/media/videos/published_research_visuals/720p30/partial_movie_files/WaterTableKinematic/65210378_1432596116_615520619.mp4'
+file 'file:C:/Users/YFLin/OneDrive - 中原大學/中原林穎凡資料夾/0web_page_Codex/yflin_web_astro/media/videos/published_research_visuals/720p30/partial_movie_files/WaterTableKinematic/65210378_3231199022_3391619592.mp4'
+file 'file:C:/Users/YFLin/OneDrive - 中原大學/中原林穎凡資料夾/0web_page_Codex/yflin_web_astro/media/videos/published_research_visuals/720p30/partial_movie_files/WaterTableKinematic/65210378_2872842549_39764787.mp4'

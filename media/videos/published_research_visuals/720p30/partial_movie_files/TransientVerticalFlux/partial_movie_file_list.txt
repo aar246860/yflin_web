@@ -1,0 +1,8 @@
+# This file is used internally by FFMPEG.
+file 'file:C:/Users/YFLin/OneDrive - 中原大學/中原林穎凡資料夾/0web_page_Codex/yflin_web_astro/media/videos/published_research_visuals/720p30/partial_movie_files/TransientVerticalFlux/3072997530_409687810_223132457.mp4'
+file 'file:C:/Users/YFLin/OneDrive - 中原大學/中原林穎凡資料夾/0web_page_Codex/yflin_web_astro/media/videos/published_research_visuals/720p30/partial_movie_files/TransientVerticalFlux/65210378_229157712_1427257091.mp4'
+file 'file:C:/Users/YFLin/OneDrive - 中原大學/中原林穎凡資料夾/0web_page_Codex/yflin_web_astro/media/videos/published_research_visuals/720p30/partial_movie_files/TransientVerticalFlux/65210378_1848598973_3509748414.mp4'
+file 'file:C:/Users/YFLin/OneDrive - 中原大學/中原林穎凡資料夾/0web_page_Codex/yflin_web_astro/media/videos/published_research_visuals/720p30/partial_movie_files/TransientVerticalFlux/65210378_3306042038_2987828549.mp4'
+file 'file:C:/Users/YFLin/OneDrive - 中原大學/中原林穎凡資料夾/0web_page_Codex/yflin_web_astro/media/videos/published_research_visuals/720p30/partial_movie_files/TransientVerticalFlux/65210378_1561782943_223132457.mp4'
+file 'file:C:/Users/YFLin/OneDrive - 中原大學/中原林穎凡資料夾/0web_page_Codex/yflin_web_astro/media/videos/published_research_visuals/720p30/partial_movie_files/TransientVerticalFlux/65210378_3101433616_165411579.mp4'
+file 'file:C:/Users/YFLin/OneDrive - 中原大學/中原林穎凡資料夾/0web_page_Codex/yflin_web_astro/media/videos/published_research_visuals/720p30/partial_movie_files/TransientVerticalFlux/65210378_2872842549_945505853.mp4'

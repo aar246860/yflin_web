@@ -1,0 +1,62 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import publications from "../../data/publications.generated.json";
+import { publicationFeatures } from "../../data/publicationFeatures";
+import { studentPublicationIds } from "../../data/groupSite";
+
+const clusters = [
+  { key: "transformation-uncertainty", title: "Transformation uncertainty and delayed hydraulic response", text: "Lagging Theory, flux-gradient asynchrony, response functions, and inferred-parameter interpretation." },
+  { key: "subsurface-energy", title: "Subsurface heat and shallow geothermal systems", text: "TRT, aquifer thermal transport, borehole storage, and water-energy field interpretation." },
+  { key: "well-hydraulics", title: "Analytical well hydraulics and boundaries", text: "Exact and semi-analytical solutions for pumping, boundaries, islands, streams, faults, and near-well effects." },
+  { key: "data-ai", title: "Data, AI, and inverse interpretation", text: "Time-series decomposition, inverse problems, and data-supported groundwater inference." },
+];
+const byCluster = clusters.map((cluster) => ({ ...cluster, publications: publications.filter((pub) => pub.concepts?.includes(cluster.key)) }));
+const isStudentInvolved = (id: string) => studentPublicationIds.includes(id);
+const base = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+const featuredByTitle = new Map(publicationFeatures.map((feature) => [feature.title, `${base}publications/${feature.id}/`]));
+---
+
+<BaseLayout title="Publications by Research Concept" description="Ying-Fan Lin publications on Lagging Theory, well hydraulics, transformation uncertainty, and subsurface energy interpretation." current="publications">
+  <section class="shell section">
+    <span class="eyebrow">Publication map</span>
+    <h1>Publications are grouped by the questions and methods they address.</h1>
+    <p class="lede">The papers trace a progression from analytical well hydraulics to delayed-response interpretation, transformation uncertainty, and groundwater-influenced energy decisions.</p>
+  </section>
+  <section class="shell section" aria-labelledby="featured-publications-title">
+    <span class="eyebrow">Publication features</span>
+    <h2 id="featured-publications-title">Selected papers, explained from physical setting to evidence boundary.</h2>
+    <div class="grid">
+      {publicationFeatures.map((feature) => (
+        <article class="card">
+          <span class="eyebrow">{feature.venue} · {feature.year}</span>
+          <h3><a href={`${base}publications/${feature.id}/`}>{feature.title}</a></h3>
+          <p>{feature.researchQuestion}</p>
+          <a href={`${base}publications/${feature.id}/`}>Read the research feature <span aria-hidden="true">→</span></a>
+        </article>
+      ))}
+    </div>
+  </section>
+  <section class="shell section grid">
+    {byCluster.map((cluster) => (
+      <article class="card">
+        <div>
+          <span class="eyebrow">{cluster.publications.length} papers</span>
+          <h2>{cluster.title}</h2>
+          <p>{cluster.text}</p>
+        </div>
+        <div class="publication-list">
+          {cluster.publications.slice(0, 8).map((pub) => (
+            <div class="publication">
+              <time>{pub.year}</time>
+              <div>
+                <h3>{featuredByTitle.has(pub.title.en) ? <a href={featuredByTitle.get(pub.title.en)}>{pub.title.en}</a> : pub.title.en}</h3>
+                <p>{pub.authors}</p>
+                <p>{pub.venue}{isStudentInvolved(pub.id) ? " | student-involved work" : ""}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </article>
+    ))}
+  </section>
+</BaseLayout>

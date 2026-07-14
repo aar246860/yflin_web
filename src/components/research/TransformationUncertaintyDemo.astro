@@ -1,0 +1,562 @@
+---
+const scenes = [
+  {
+    label: "LDL response",
+    eyebrow: "Scene 1",
+    title: "The curve is a normalized LDL response.",
+    body:
+      "The browser first computes drawdown from a simplified line-source special case of the Lin-Yeh lagging-flow equation, then normalizes the response to reveal the transition shape.",
+    focus: "Normalized LDL response",
+    feature: "computed, not sketched",
+  },
+  {
+    label: "Classical",
+    eyebrow: "Scene 2",
+    title: "The Classical Darcy limit provides the reference curve.",
+    body:
+      "Set both lag times to zero and the browser computes the classical leaky confined aquifer response. This gives the reference interpretation.",
+    focus: "Classical Darcy limit",
+    feature: "reference response",
+  },
+  {
+    label: "Equal lag",
+    eyebrow: "Scene 3",
+    title: "Equal lags collapse back to classical behavior.",
+    body:
+      "In the Lin-Yeh formulation, equal flux and gradient lags cancel inside the transfer function. The curve nearly hides inside the classical reference.",
+    focus: "Equal lag",
+    feature: "cancellation check",
+  },
+  {
+    label: "Separated lag",
+    eyebrow: "Scene 4",
+    title: "A larger drawdown-gradient lag creates the delayed transition.",
+    body:
+      "When the drawdown-gradient lag is larger than the flux lag, the normalized LDL response shows the S-like transition that raw drawdown can visually hide.",
+    focus: "τ_s > τ_q",
+    feature: "S-like delay",
+  },
+  {
+    label: "Decision case",
+    eyebrow: "Scene 5",
+    title: "A stronger separation moves the decision window.",
+    body:
+      "Changing lag times, observation radius, and leakage length within the same analytical solution changes the normalized response before any external reliability calculation is added.",
+    focus: "Decision-sensitive response",
+    feature: "computed spread",
+  },
+  {
+    label: "Audit",
+    eyebrow: "Scene 6",
+    title: "Transformation uncertainty begins at interpretation.",
+    body:
+      "The uncertainty is not invented after the groundwater model. It starts when drawdown or recovery is interpreted with an aquifer-test analytical model and converted into parameters and decision variables.",
+    focus: "Interpretation audit",
+    feature: "why it matters",
+  },
+];
+
+const modelCases = [
+  { key: "classical", label: "Classical Darcy", note: "τ_q = 0, τ_s = 0", tone: "ink" },
+  { key: "equal", label: "Equal lag", note: "τ_q = τ_s", tone: "gold" },
+  { key: "mild", label: "τ_s > τ_q", note: "delayed transition", tone: "teal" },
+  { key: "strong", label: "Decision case", note: "larger τ_s − τ_q separation", tone: "brick" },
+];
+---
+
+<section class="shell section tu-demo" id="normalized-ldl-demo" aria-labelledby="tu-demo-title" data-tu-demo>
+  <div class="tu-demo__copy">
+    <span class="eyebrow">Calculation-backed concept animation</span>
+    <h2 id="tu-demo-title">One normalized LDL response can lead to different aquifer-test interpretations.</h2>
+    <p>
+      This explainer uses a simplified Lin-Yeh (2017) lagging-flow special case for every
+      plotted curve. The animation shows normalized response shape, but the lines are still
+      generated from model calculations.
+    </p>
+  </div>
+
+  <div
+    class="tu-story"
+    data-tu-story
+    data-scene="0"
+    aria-label="Narrative animation showing lagging Darcy response interpretation and transformation uncertainty"
+  >
+    <div class="tu-story__stage">
+      <div class="tu-story__narration" aria-live="polite">
+        <span data-story-eyebrow>{scenes[0].eyebrow}</span>
+        <h3 data-story-title>{scenes[0].title}</h3>
+        <p data-story-body>{scenes[0].body}</p>
+      </div>
+
+      <div class="tu-story__visual">
+        <svg viewBox="0 0 920 520" role="img" aria-labelledby="tu-story-title tu-story-desc">
+          <title id="tu-story-title">Lagging Darcy model narrative animation</title>
+          <desc id="tu-story-desc">
+            A normalized line-source lagging-flow response is compared against the Classical
+            Darcy limit, an equal-lag case, a drawdown-gradient-lag-dominant case, and a
+            decision-sensitive case.
+          </desc>
+          <defs>
+            <linearGradient id="tuStoryField" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0%" stop-color="var(--signal-measured)" stop-opacity="0.15" />
+              <stop offset="100%" stop-color="var(--decision-teal)" stop-opacity="0.04" />
+            </linearGradient>
+            <filter id="tuStoryGlow">
+              <feGaussianBlur stdDeviation="5" result="blur" />
+              <feMerge>
+                <feMergeNode in="blur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+          </defs>
+
+          <rect x="26" y="26" width="868" height="468" rx="18" class="tu-story__paper" />
+          <g class="tu-story__aquifer" aria-hidden="true">
+            <path d="M68 380 C160 336 240 404 326 360 C412 316 494 382 586 338 C672 300 758 338 850 304" />
+            <path d="M68 420 C168 392 250 446 350 404 C452 362 538 426 650 382 C730 350 794 368 850 348" />
+          </g>
+
+          <g class="tu-story__chart">
+            <path class="tu-story__axis" d="M104 104 V374 H690" />
+            <text x="112" y="86" class="tu-story__axis-label">normalized response</text>
+            <text x="620" y="405" class="tu-story__axis-label">time</text>
+            <g class="tu-story__grid">
+              <path d="M104 154 H690" />
+              <path d="M104 214 H690" />
+              <path d="M104 274 H690" />
+              <path d="M104 334 H690" />
+            </g>
+
+            <path class="tu-story__curve tu-story__curve--strong" data-story-model="strong" pathLength="1" />
+            <path class="tu-story__curve tu-story__curve--classical" data-story-model="classical" pathLength="1" />
+            <path class="tu-story__curve tu-story__curve--equal" data-story-model="equal" pathLength="1" />
+            <path class="tu-story__curve tu-story__curve--mild" data-story-model="mild" pathLength="1" />
+
+            <g class="tu-story__feature tu-story__feature--slope" data-story-feature="classical">
+              <path d="M356 170 L406 154" />
+              <rect class="tu-story__feature-label-bg" x="226" y="148" width="146" height="36" rx="10" />
+              <text x="242" y="172">Classical Darcy</text>
+            </g>
+            <g class="tu-story__feature tu-story__feature--bend" data-story-feature="equal">
+              <path d="M516 164 L620 150" />
+              <rect class="tu-story__feature-label-bg" x="378" y="118" width="156" height="36" rx="10" />
+              <text x="394" y="142">lag cancellation</text>
+            </g>
+            <g class="tu-story__feature tu-story__feature--memory" data-story-feature="mild">
+              <path d="M412 228 C382 216 360 196 384 174" />
+              <rect class="tu-story__feature-label-bg" x="292" y="236" width="138" height="36" rx="10" />
+              <text x="308" y="260">S-like delay</text>
+            </g>
+            <g class="tu-story__feature tu-story__feature--context" data-story-feature="strong">
+              <path d="M602 142 C588 154 586 166 596 174" />
+              <rect class="tu-story__feature-label-bg" x="462" y="98" width="142" height="36" rx="10" />
+              <text x="478" y="122">decision spread</text>
+            </g>
+          </g>
+
+          <g class="tu-story__model-orbits" aria-hidden="true">
+            {modelCases.map((modelCase, index) => (
+              <g class={`tu-story__orbit tu-story__orbit--${modelCase.tone}`} data-story-token={modelCase.key}>
+                <circle cx={720} cy={144 + index * 54} r="17" />
+                <text x="752" y={150 + index * 54}>{modelCase.label}</text>
+              </g>
+            ))}
+          </g>
+
+          <g class="tu-story__decision" data-story-decision>
+            <text x="704" y="346" class="tu-story__decision-label">time-to-threshold</text>
+            <rect x="704" y="362" width="148" height="16" rx="8" class="tu-story__decision-base" />
+            <rect x="704" y="392" width="88" height="16" rx="8" class="tu-story__decision-option tu-story__decision-option--a" data-decision-bar="classical" />
+            <rect x="704" y="392" width="128" height="16" rx="8" class="tu-story__decision-option tu-story__decision-option--b" data-decision-bar="mild" />
+            <rect x="704" y="392" width="60" height="16" rx="8" class="tu-story__decision-option tu-story__decision-option--c" data-decision-bar="strong" />
+            <path d="M704 430 H852" class="tu-story__decision-rule" />
+            <text x="704" y="456" class="tu-story__decision-note" data-decision-note>LDL shifts threshold timing</text>
+          </g>
+        </svg>
+      </div>
+
+      <div class="tu-story__caption">
+        <span data-story-focus>{scenes[0].focus}</span>
+        <strong data-story-feature-label>{scenes[0].feature}</strong>
+      </div>
+    </div>
+
+    <div class="tu-story__controls" aria-label="Animation controls">
+      <button class="tu-story__control" type="button" data-story-action="back" aria-label="Previous scene">Back</button>
+      <button class="tu-story__control tu-story__control--primary" type="button" data-story-action="toggle">Pause</button>
+      <button class="tu-story__control" type="button" data-story-action="next" aria-label="Next scene">Next</button>
+      <button class="tu-story__control" type="button" data-story-action="replay">Replay</button>
+    </div>
+
+    <div class="tu-story__timeline" aria-label="Story timeline">
+      {scenes.map((scene, index) => (
+        <button
+          type="button"
+          data-story-step={index}
+          aria-label={`Show ${scene.label}`}
+          aria-current={index === 0 ? "step" : "false"}
+        >
+          <i></i>
+          <span>{scene.label}</span>
+        </button>
+      ))}
+    </div>
+
+    <div class="tu-story__cards" aria-label="Calculated lagging Darcy cases">
+      {modelCases.map((modelCase) => (
+        <article class={`tu-story__card tu-story__card--${modelCase.tone}`} data-story-card={modelCase.key}>
+          <span>{modelCase.note}</span>
+          <h3>{modelCase.label}</h3>
+        </article>
+      ))}
+    </div>
+  </div>
+
+  <div class="tu-demo__panel tu-demo__panel--compact">
+    <div class="tu-demo__readouts" aria-label="What the animation means">
+      <article>
+        <span>Calculation</span>
+        <strong>Lin-Yeh special case</strong>
+        <p>All response curves are generated in the browser, then normalized to compare response shape.</p>
+      </article>
+      <article>
+        <span>Transformation</span>
+        <strong>analytical model</strong>
+        <p>The curve becomes apparent parameters through assumptions about lag times, radius, and leakage length.</p>
+      </article>
+      <article>
+        <span>Decision effect</span>
+        <strong>threshold shift</strong>
+        <p>Allowable pumping, recovery time, or design threshold changes when inferred parameters change.</p>
+      </article>
+    </div>
+    <p class="tu-demo__note">
+      The plotted curves are calculation-backed teaching cases: the Classical Darcy limit,
+      equal-lag cancellation, separated lag with τ<sub>s</sub> greater than τ<sub>q</sub>, and a
+      stronger decision-sensitive case. They are
+      not hand-drawn concept curves.
+    </p>
+    <p class="tu-demo__disclaimer">
+      Values are normalized for communication and use a public teaching implementation of the
+      no-wellbore-storage, no-skin, line-source special case of the Lin-Yeh (2017)
+      leaky-confined lagging-flow equation with a 12-term Gaver-Stehfest inversion. This is
+      not the full finite-radius, wellbore-storage, and skin solution used for calibrated field
+      analysis, and it is not an engineering recommendation. Symbols follow Lin and Yeh
+      (2017): τ<sub>q</sub> is the water-flux lag and τ<sub>s</sub> is the drawdown-gradient lag.
+    </p>
+  </div>
+</section>
+
+<script>
+  const storyData = [
+    {
+      eyebrow: "Scene 1",
+      title: "The curve is a normalized LDL response.",
+      body:
+        "The browser first computes drawdown from a simplified line-source special case of the Lin-Yeh lagging-flow equation, then normalizes the response to reveal the transition shape.",
+      focus: "Normalized LDL response",
+      feature: "computed, not sketched",
+    },
+    {
+      eyebrow: "Scene 2",
+      title: "The Classical Darcy limit provides the reference curve.",
+      body:
+        "Set both lag times to zero and the browser computes the classical leaky confined aquifer response. This gives the reference interpretation.",
+      focus: "Classical Darcy limit",
+      feature: "reference response",
+    },
+    {
+      eyebrow: "Scene 3",
+      title: "Equal lags collapse back to classical behavior.",
+      body:
+        "In the Lin-Yeh formulation, equal flux and gradient lags cancel inside the transfer function. The curve nearly hides inside the classical reference.",
+      focus: "Equal lag",
+      feature: "cancellation check",
+    },
+    {
+      eyebrow: "Scene 4",
+      title: "A larger drawdown-gradient lag creates the delayed transition.",
+      body:
+        "When the drawdown-gradient lag is larger than the flux lag, the normalized LDL response shows the S-like transition that raw drawdown can visually hide.",
+      focus: "τ_s > τ_q",
+      feature: "S-like delay",
+    },
+    {
+      eyebrow: "Scene 5",
+      title: "A stronger separation moves the decision window.",
+      body:
+        "Changing lag times, observation radius, and leakage length within the same analytical solution changes the normalized response before any external reliability calculation is added.",
+      focus: "Decision-sensitive response",
+      feature: "computed spread",
+    },
+    {
+      eyebrow: "Scene 6",
+      title: "Transformation uncertainty begins at interpretation.",
+      body:
+        "The uncertainty is not invented after the groundwater model. It starts when drawdown or recovery is interpreted with an aquifer-test analytical model and converted into parameters and decision variables.",
+      focus: "Interpretation audit",
+      feature: "why it matters",
+    },
+  ];
+
+  const sceneToModel = ["strong", "classical", "equal", "mild", "strong", "decision"];
+
+  const factorial = (n) => {
+    let value = 1;
+    for (let i = 2; i <= n; i += 1) value *= i;
+    return value;
+  };
+
+  const stehfestCoefficients = (n = 12) => {
+    const coefficients = [];
+    for (let i = 1; i <= n; i += 1) {
+      let sum = 0;
+      const kMin = Math.floor((i + 1) / 2);
+      const kMax = Math.min(i, n / 2);
+      for (let k = kMin; k <= kMax; k += 1) {
+        const numerator = Math.pow(k, n / 2) * factorial(2 * k);
+        const denominator =
+          factorial(n / 2 - k) *
+          factorial(k) *
+          factorial(k - 1) *
+          factorial(i - k) *
+          factorial(2 * k - i);
+        sum += numerator / denominator;
+      }
+      coefficients.push(Math.pow(-1, i + n / 2) * sum);
+    }
+    return coefficients;
+  };
+
+  const STEHFEST = stehfestCoefficients(12);
+  const LN2 = Math.log(2);
+  const BASE = {
+    pumpingRate: 120,
+    transmissivity: 12,
+    storativity: 0.004,
+  };
+  const CASES = {
+    classical: { fluxLag: 0, gradientLag: 0, radius: 35, leakageLength: 1200 },
+    equal: { fluxLag: 30, gradientLag: 30, radius: 35, leakageLength: 1200 },
+    mild: { fluxLag: 1, gradientLag: 300, radius: 35, leakageLength: 1200 },
+    strong: { fluxLag: 0.1, gradientLag: 300, radius: 80, leakageLength: 1200 },
+  };
+
+  function besselI0(x) {
+    const ax = Math.abs(x);
+    if (ax < 3.75) {
+      const y = (x / 3.75) ** 2;
+      return 1 + y * (3.5156229 + y * (3.0899424 + y * (1.2067492 + y * (0.2659732 + y * (0.0360768 + y * 0.0045813)))));
+    }
+    const y = 3.75 / ax;
+    return Math.exp(ax) / Math.sqrt(ax) * (0.39894228 + y * (0.01328592 + y * (0.00225319 + y * (-0.00157565 + y * (0.00916281 + y * (-0.02057706 + y * (0.02635537 + y * (-0.01647633 + y * 0.00392377))))))));
+  }
+
+  function besselK0(x) {
+    if (x <= 0) return Number.POSITIVE_INFINITY;
+    if (x <= 2) {
+      const y = (x * x) / 4;
+      return -Math.log(x / 2) * besselI0(x) + (-0.57721566 + y * (0.4227842 + y * (0.23069756 + y * (0.0348859 + y * (0.00262698 + y * (0.0001075 + y * 0.0000074))))));
+    }
+    const y = 2 / x;
+    return Math.exp(-x) / Math.sqrt(x) * (1.25331414 + y * (-0.07832358 + y * (0.02189568 + y * (-0.01062446 + y * (0.00587872 + y * (-0.0025154 + y * 0.00053208))))));
+  }
+
+  function laplaceDrawdown(p, params) {
+    const lagRatio = (1 + p * params.fluxLag) / (1 + p * params.gradientLag);
+    const radialTerm = (BASE.storativity * p * lagRatio) / BASE.transmissivity;
+    const leakageTerm = 1 / (params.leakageLength * params.leakageLength);
+    const lambda = params.radius * Math.sqrt(Math.max(0, radialTerm + leakageTerm));
+    return (BASE.pumpingRate / (2 * Math.PI * BASE.transmissivity * p)) * besselK0(lambda);
+  }
+
+  function inverseLaplace(time, params) {
+    let sum = 0;
+    for (let i = 1; i <= STEHFEST.length; i += 1) {
+      const p = (i * LN2) / time;
+      sum += STEHFEST[i - 1] * laplaceDrawdown(p, params);
+    }
+    const value = (LN2 / time) * sum;
+    if (!Number.isFinite(value)) return 0;
+    return Math.max(0, value);
+  }
+
+  function logSpace(min, max, count) {
+    const a = Math.log(min);
+    const b = Math.log(max);
+    return Array.from({ length: count }, (_, index) => Math.exp(a + ((b - a) * index) / (count - 1)));
+  }
+
+  function crossingTime(points, target, key) {
+    if (points[0][key] >= target) return points[0].time;
+    for (let i = 1; i < points.length; i += 1) {
+      const prev = points[i - 1];
+      const next = points[i];
+      if (prev[key] <= target && next[key] >= target) {
+        const fraction = (target - prev[key]) / Math.max(1e-9, next[key] - prev[key]);
+        return prev.time + fraction * (next.time - prev.time);
+      }
+    }
+    return points[points.length - 1].time;
+  }
+
+  function calculateStoryCurves() {
+    const keys = ["classical", "equal", "mild", "strong"];
+    const times = logSpace(1, 100000, 94);
+    const rawRows = times.map((time) => ({
+      time,
+      classical: inverseLaplace(time, CASES.classical),
+      equal: inverseLaplace(time, CASES.equal),
+      mild: inverseLaplace(time, CASES.mild),
+      strong: inverseLaplace(time, CASES.strong),
+    }));
+    const normalized = Object.fromEntries(
+      keys.map((key) => {
+        const values = rawRows.map((row) => row[key]);
+        const min = Math.min(...values);
+        const max = Math.max(...values);
+        const range = Math.max(1e-9, max - min);
+        return [key, values.map((value) => (value - min) / range)];
+      })
+    );
+    const rows = rawRows.map((row, index) => ({
+      time: row.time,
+      classical: normalized.classical[index],
+      equal: normalized.equal[index],
+      mild: normalized.mild[index],
+      strong: normalized.strong[index],
+    }));
+
+    const x0 = 104;
+    const y0 = 104;
+    const width = 586;
+    const height = 270;
+    const logMin = Math.log(times[0]);
+    const logMax = Math.log(times[times.length - 1]);
+    const xScale = (time) => x0 + ((Math.log(time) - logMin) / (logMax - logMin)) * width;
+    const yScale = (value) => y0 + height - (0.08 + value * 0.84) * height;
+    const pathFor = (key) =>
+      rows.map((row, index) => `${index === 0 ? "M" : "L"} ${xScale(row.time).toFixed(2)} ${yScale(row[key]).toFixed(2)}`).join(" ");
+
+    const target = 0.65;
+    const classicalTime = crossingTime(rows, target, "classical");
+    const mildTime = crossingTime(rows, target, "mild");
+    const strongTime = crossingTime(rows, target, "strong");
+    const decisionTimes = { classical: classicalTime, mild: mildTime, strong: strongTime };
+    const timeValues = Object.values(decisionTimes);
+    const timeMin = Math.min(...timeValues);
+    const timeMax = Math.max(...timeValues);
+    const logDecisionMin = Math.log(Math.max(1e-6, timeMin));
+    const logDecisionMax = Math.log(Math.max(timeMin * 1.01, timeMax));
+    const decisionWidthFor = (time) =>
+      48 + ((Math.log(Math.max(1e-6, time)) - logDecisionMin) / (logDecisionMax - logDecisionMin)) * 100;
+
+    return {
+      paths: {
+        classical: pathFor("classical"),
+        equal: pathFor("equal"),
+        mild: pathFor("mild"),
+        strong: pathFor("strong"),
+      },
+      decisionBars: Object.fromEntries(
+        Object.entries(decisionTimes).map(([key, time]) => [key, decisionWidthFor(time).toFixed(1)])
+      ),
+    };
+  }
+
+  const storyCurves = calculateStoryCurves();
+
+  document.querySelectorAll("[data-tu-story]").forEach((root) => {
+    let sceneIndex = 0;
+    let playing = true;
+    let timer = null;
+
+    Object.entries(storyCurves.paths).forEach(([key, path]) => {
+      root.querySelector(`[data-story-model="${key}"]`)?.setAttribute("d", path);
+    });
+
+    Object.entries(storyCurves.decisionBars).forEach(([key, width]) => {
+      root.querySelector(`[data-decision-bar="${key}"]`)?.setAttribute("width", width);
+    });
+
+    const nodes = {
+      eyebrow: root.querySelector("[data-story-eyebrow]"),
+      title: root.querySelector("[data-story-title]"),
+      body: root.querySelector("[data-story-body]"),
+      focus: root.querySelector("[data-story-focus]"),
+      feature: root.querySelector("[data-story-feature-label]"),
+      toggle: root.querySelector('[data-story-action="toggle"]'),
+      steps: [...root.querySelectorAll("[data-story-step]")],
+      cards: [...root.querySelectorAll("[data-story-card]")],
+      decisionNote: root.querySelector("[data-decision-note]"),
+    };
+
+    if (nodes.decisionNote) {
+      nodes.decisionNote.textContent = "LDL shifts threshold timing";
+    }
+
+    const setPlaying = (nextPlaying) => {
+      playing = nextPlaying;
+      nodes.toggle.textContent = playing ? "Pause" : "Play";
+      if (timer) {
+        window.clearInterval(timer);
+        timer = null;
+      }
+      if (playing) {
+        timer = window.setInterval(() => {
+          setScene((sceneIndex + 1) % storyData.length);
+        }, 4300);
+      }
+    };
+
+    function setScene(nextIndex) {
+      sceneIndex = (nextIndex + storyData.length) % storyData.length;
+      const scene = storyData[sceneIndex];
+      const activeModel = sceneToModel[sceneIndex];
+      root.dataset.scene = String(sceneIndex);
+      root.dataset.model = activeModel;
+      nodes.eyebrow.textContent = scene.eyebrow;
+      nodes.title.textContent = scene.title;
+      nodes.body.textContent = scene.body;
+      nodes.focus.textContent = scene.focus;
+      nodes.feature.textContent = scene.feature;
+      nodes.steps.forEach((step, index) => {
+        step.setAttribute("aria-current", index === sceneIndex ? "step" : "false");
+      });
+      nodes.cards.forEach((card) => {
+        card.toggleAttribute("data-active", card.dataset.storyCard === activeModel);
+      });
+    }
+
+    root.addEventListener("click", (event) => {
+      const target = event.target.closest("button");
+      if (!target) return;
+
+      if (target.matches("[data-story-step]")) {
+        setScene(Number(target.dataset.storyStep));
+        setPlaying(false);
+        return;
+      }
+
+      const action = target.dataset.storyAction;
+      if (action === "back") {
+        setScene(sceneIndex - 1);
+        setPlaying(false);
+      }
+      if (action === "next") {
+        setScene(sceneIndex + 1);
+        setPlaying(false);
+      }
+      if (action === "replay") {
+        setScene(0);
+        setPlaying(true);
+      }
+      if (action === "toggle") {
+        setPlaying(!playing);
+      }
+    });
+
+    setScene(0);
+    setPlaying(true);
+  });
+</script>

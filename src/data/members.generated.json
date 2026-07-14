@@ -1,0 +1,85 @@
+{
+  "currentMembers": [
+    {
+      "name": {
+        "zh-TW": "林穎凡",
+        "en": "Ying-Fan Lin"
+      },
+      "roleKey": "team_role_pi",
+      "focus": {
+        "zh-TW": "地下水模擬、地下水資源管理",
+        "en": "Groundwater modeling, coastal aquifers, thermal transport, and inverse problems"
+      },
+      "photo": "professor_林穎凡.png"
+    },
+    {
+      "name": {
+        "zh-TW": "蔡鼎翔",
+        "en": "Ding-Xiang Tsai"
+      },
+      "roleKey": "team_role_master",
+      "focus": {
+        "zh-TW": "橢圓海島抽水最佳化之研析",
+        "en": "Pumping optimization for elliptical islands"
+      },
+      "photo": "student_tsai.png"
+    },
+    {
+      "name": {
+        "zh-TW": "羅于翔",
+        "en": "Yu-Xiang Lo"
+      },
+      "roleKey": "team_role_master",
+      "focus": {
+        "zh-TW": "延遲理論應用在熱響應試驗",
+        "en": "Lagging theory applications in thermal response tests"
+      },
+      "photo": "student_lo.png"
+    },
+    {
+      "name": {
+        "zh-TW": "王湘雯",
+        "en": "Xiang-Wen Wang"
+      },
+      "roleKey": "team_role_ra",
+      "focus": {
+        "zh-TW": "研究井內grout的熱傳性質於熱響應試驗",
+        "en": "Thermal properties of borehole grout in thermal response tests"
+      },
+      "admission": {
+        "zh-TW": "國立台灣大學 生物環境系統工程學系（尚未畢業）",
+        "en": "National Taiwan University, Department of Bioenvironmental Systems Engineering (not yet graduated)"
+      },
+      "photo": "student_wang.png"
+    },
+    {
+      "name": {
+        "zh-TW": "陳鎬櫸",
+        "en": "Hao-Ju Chen"
+      },
+      "roleKey": "team_role_ra",
+      "focus": {
+        "zh-TW": "延遲理論的新參數空間分布",
+        "en": "New spatial parameter distributions in lagging theory"
+      },
+      "admission": {
+        "zh-TW": "國立陽明交通大學 土木工程學系（尚未畢業）",
+        "en": "National Yang Ming Chiao Tung University, Department of Civil Engineering (not yet graduated)"
+      },
+      "photo": "student_chen.png"
+    },
+    {
+      "name": {
+        "zh-TW": "邱邵萱",
+        "en": "Shao-Hsuan Chiu"
+      },
+      "roleKey": "team_role_ra",
+      "focus": {
+        "zh-TW": "進行中",
+        "en": "In progress"
+      },
+      "photo": "student_chiu.png"
+    }
+  ],
+  "alumniMembers": []
+}

@@ -1,0 +1,6 @@
+
+> yflin_web_astro@0.0.1 preview
+> astro preview --host 127.0.0.1 --port 4388
+
+[42m[1m astro [22m[49m [32mv6.4.6[39m [2mready in[22m 19 [2mms[22m
+[2m┃[22m Local    [36mhttp://127.0.0.1:4388/yflin_web[39m

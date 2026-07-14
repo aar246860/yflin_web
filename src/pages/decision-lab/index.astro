@@ -1,0 +1,77 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { Button } from "@/components/starwind/button";
+import LDLNecessityChecker from "../../components/research/LDLNecessityChecker.astro";
+import { absoluteUrl, siteRoot } from "../../lib/seo";
+
+const rootUrl = siteRoot(Astro.site);
+const pageUrl = absoluteUrl("/decision-lab/", Astro.site);
+const decisionLabSchema = {
+  "@type": "SoftwareApplication",
+  "@id": `${pageUrl}#ldl-necessity-checker`,
+  name: "Lagging Darcy Law Necessity Checker",
+  applicationCategory: "ScientificApplication",
+  operatingSystem: "Web",
+  url: pageUrl,
+  creator: { "@id": `${rootUrl}/#person` },
+  description:
+    "A qualitative screening tool for testing whether pumping-test interpretation should consider lag-aware or Lagging Darcy Law analysis before informing engineering decisions.",
+};
+const base = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+const withBase = (path) => `${base}${path.replace(/^\//, "")}`;
+---
+
+<BaseLayout
+  title="Decision Lab for Lagging Darcy Law"
+  description="Screening tools for testing when delayed hydraulic response or transformation uncertainty may change groundwater decisions."
+  current="decision-lab"
+  canonicalPath="/decision-lab/"
+  schema={decisionLabSchema}
+>
+  <section class="shell section visibility-hero">
+    <span class="eyebrow">Decision Lab</span>
+    <h1>Test whether lag-aware aquifer-test interpretation changes an engineering decision variable.</h1>
+    <p class="lede">
+      The Decision Lab provides screening tools for Lagging Darcy Law and transformation uncertainty.
+      The first tool is qualitative by design. It identifies when alternative
+      interpretations warrant evaluation; it does not provide a site-specific design value.
+    </p>
+    <div class="action-row">
+      <Button href={withBase("/services/groundwater-decision-reliability-audit/")}>Request a model-assumption audit</Button>
+      <Button href={withBase("/glossary/")} variant="outline">Open glossary</Button>
+    </div>
+  </section>
+
+  <section class="shell section">
+    <LDLNecessityChecker />
+  </section>
+
+  <section class="shell section">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Tool roadmap</span>
+        <h2>Planned tools will examine model-to-decision consequences.</h2>
+      </div>
+      <p>These public screening and teaching tools will complement, not replace, calibrated field analysis.</p>
+    </div>
+    <div class="grid cols-3">
+      <article class="card feature">
+        <span class="eyebrow">in preparation</span>
+        <h3>Pumping decision-support calculator</h3>
+        <p>Translate model-choice sensitivity into qualitative uncertainty for allowable pumping and recovery criteria.</p>
+      </article>
+      <article class="card feature">
+        <span class="eyebrow">in preparation</span>
+        <h3>TRT / shallow geothermal uncertainty demo</h3>
+        <p>Screen when groundwater flow and thermal response uncertainty may alter a design limit.</p>
+      </article>
+      <article class="card feature">
+        <span class="eyebrow">in preparation</span>
+        <h3>Model equivalence vs decision non-equivalence visualizer</h3>
+        <p>Show how models that fit the same observation window can imply different decisions.</p>
+      </article>
+    </div>
+  </section>
+</BaseLayout>

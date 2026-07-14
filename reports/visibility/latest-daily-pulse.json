@@ -1,0 +1,17 @@
+{
+  "generatedAt": "2026-06-22T22:45:24.236Z",
+  "reportTimeZone": "Asia/Taipei",
+  "reportDate": "2026-06-23",
+  "liveSiteUrl": "https://aar246860.github.io/yflin_web",
+  "status": "ok",
+  "blockers": 0,
+  "warnings": 1,
+  "checkedUrls": 12,
+  "expectedGaId": "G-0JHBH3R12D",
+  "artifactName": "daily-visibility-pulse-report",
+  "reportFile": "2026-06-23-daily-pulse.md",
+  "topBlockers": [],
+  "topWarnings": [
+    "AI-search answerability phrase is missing: not a simple signal delay."
+  ]
+}

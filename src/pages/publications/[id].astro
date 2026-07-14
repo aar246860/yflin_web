@@ -1,0 +1,117 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { publicationFeatures, type PublicationFeature } from "../../data/publicationFeatures";
+
+export function getStaticPaths() {
+  return publicationFeatures.map((publication) => ({
+    params: { id: publication.id },
+    props: { publication },
+  }));
+}
+
+interface Props { publication: PublicationFeature; }
+const { publication } = Astro.props;
+const doiUrl = `https://doi.org/${publication.doi}`;
+const base = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
+---
+
+<BaseLayout
+  title={publication.title}
+  description={`${publication.authors.join(", ")} (${publication.year}): ${publication.researchQuestion}`}
+  current="publications"
+  canonicalPath={`/publications/${publication.id}/`}
+  type="article"
+>
+  <article class="publication-feature">
+    <header class="shell feature-header">
+      <a class="back-link" href={withBase("/publications/")}>Publications</a>
+      <span class="eyebrow">Representative publication</span>
+      <h1>{publication.title}</h1>
+      <p class="lede">{publication.authors.join(", ")} · {publication.venue} · {publication.year}</p>
+      <a class="doi-link" href={doiUrl} rel="external">DOI {publication.doi}</a>
+    </header>
+
+    <div class="shell feature-grid">
+      <div class="feature-main">
+        <section aria-labelledby="question-heading">
+          <span class="section-label">Research question</span>
+          <h2 id="question-heading">{publication.questionHeading}</h2>
+          <p>{publication.researchQuestion}</p>
+        </section>
+        <section aria-labelledby="system-heading">
+          <span class="section-label">Physical system</span>
+          <h2 id="system-heading">{publication.systemHeading}</h2>
+          <p>{publication.physicalSystem}</p>
+        </section>
+        <section aria-labelledby="method-heading">
+          <span class="section-label">Method</span>
+          <h2 id="method-heading">{publication.methodHeading}</h2>
+          <p>{publication.methodSummary}</p>
+          {publication.relation === "lagging-darcy" && (
+            <>
+              <div class="equation" role="img" aria-label="Radial flux at time t plus tau q equals negative hydraulic conductivity times the radial drawdown gradient at time t plus tau s">
+                <math display="block">
+                  <msub><mi>q</mi><mi>r</mi></msub><mo>(</mo><mi>r</mi><mo>,</mo><mi>t</mi><mo>+</mo><msub><mi>τ</mi><mi>q</mi></msub><mo>)</mo>
+                  <mo>=</mo><mo>−</mo><mi>K</mi>
+                  <mfrac><mrow><mo>∂</mo><mi>s</mi><mo>(</mo><mi>r</mi><mo>,</mo><mi>t</mi><mo>+</mo><msub><mi>τ</mi><mi>s</mi></msub><mo>)</mo></mrow><mrow><mo>∂</mo><mi>r</mi></mrow></mfrac>
+                </math>
+              </div>
+              <p>Equal response times cancel in the constitutive relation. Setting both to zero gives the Classical Darcy limit.</p>
+            </>
+          )}
+        </section>
+        <section aria-labelledby="result-heading">
+          <span class="section-label">Result</span>
+          <h2 id="result-heading">{publication.resultHeading}</h2>
+          <p>{publication.result}</p>
+        </section>
+        <section aria-labelledby="video-heading">
+          <span class="section-label">Video</span>
+          <h2 id="video-heading">Animated research summary</h2>
+          <video controls preload="metadata" poster={withBase(publication.poster)} width="1280" height="720">
+            <source src={withBase(publication.video)} type="video/mp4" />
+            Your browser does not support the video element.
+          </video>
+          <p class="media-scope">The animation explains the paper's physical and mathematical logic. Conceptual curves are not presented as new field observations.</p>
+        </section>
+      </div>
+      <aside aria-label="Publication evidence and citation">
+        <section>
+          <span class="section-label">Evidence boundary</span>
+          <p>{publication.evidence}</p>
+          <p>{publication.interpretationBoundary}</p>
+        </section>
+        <section>
+          <span class="section-label">Citation</span>
+          <p>{publication.citation}</p>
+          <a href={doiUrl} rel="external">Open the DOI record</a>
+        </section>
+      </aside>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .publication-feature { padding-bottom: var(--space-20); }
+  .feature-header { display: grid; gap: var(--space-4); padding: var(--space-16) 0; }
+  .feature-header h1 { max-width: 960px; }
+  .back-link, .doi-link { width: fit-content; }
+  .back-link::before { content: "← "; }
+  .feature-grid { display: grid; gap: var(--space-12); grid-template-columns: minmax(0, 2fr) minmax(280px, 1fr); }
+  .feature-main, aside { align-content: start; display: grid; gap: var(--space-12); }
+  section { border-top: 1px solid var(--rule); padding-top: var(--space-6); }
+  section h2 { margin: var(--space-3) 0 var(--space-4); }
+  section p { max-width: 760px; }
+  .section-label { color: var(--signal-measured); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; }
+  .equation { background: var(--surface-muted); border-left: 4px solid var(--signal-model); margin: var(--space-6) 0; overflow-x: auto; padding: var(--space-6); }
+  .equation math { font-size: 1.25rem; }
+  aside section { background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; padding: var(--space-6); }
+  aside p, .media-scope { color: var(--text-muted); }
+  video { aspect-ratio: 16 / 9; background: var(--text); display: block; height: auto; margin-top: var(--space-6); max-width: 100%; width: 100%; }
+  .media-scope { font-size: 0.875rem; }
+  @media (max-width: 800px) {
+    .feature-header { padding: var(--space-12) 0; }
+    .feature-grid { grid-template-columns: 1fr; }
+  }
+</style>

@@ -1,0 +1,62 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { Button } from "@/components/starwind/button";
+import { groupProjects } from "../../data/groupSite";
+
+const base = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
+---
+
+<BaseLayout
+  title="Projects"
+  description="Research projects of the Lin Groundwater Hydraulics Group: Lagging Theory, transformation uncertainty, groundwater memory, thermal response, and open tools."
+  current="projects"
+  canonicalPath="/projects/"
+>
+  <section class="shell section group-page-hero">
+    <span class="eyebrow">Projects</span>
+    <h1>Research projects are organized by the groundwater decision they make testable.</h1>
+    <p class="lede">
+      A project is evaluated by whether it explains a measured response, states the boundary of its
+      analytical model, and shows whether the interpretation changes a pumping, recovery, thermal,
+      or uncertainty decision.
+    </p>
+  </section>
+
+  <section class="shell section group-project-list" aria-label="Research project catalogue">
+    {groupProjects.map((project, index) => (
+      <article class={`group-project group-project--${project.accent}`}>
+        <div class="group-project__index">{String(index + 1).padStart(2, "0")}</div>
+        <div class="group-project__body">
+          <span class="eyebrow">{project.id.replaceAll("-", " ")}</span>
+          <h2>{project.title}</h2>
+          <p class="group-project__tagline">{project.tagline}</p>
+          <dl class="group-project__facts">
+            <div>
+              <dt>Problem</dt>
+              <dd>{project.problem}</dd>
+            </div>
+            <div>
+              <dt>Method</dt>
+              <dd>{project.method}</dd>
+            </div>
+            <div>
+              <dt>Output</dt>
+              <dd>{project.output}</dd>
+            </div>
+          </dl>
+          <div class="group-project__people">
+            {project.people.map((person) => <span>{person}</span>)}
+          </div>
+          <div class="action-row">
+            {project.links.map((link) => (
+              <Button href={withBase(link.href)} variant="outline" size="sm">{link.label}</Button>
+            ))}
+          </div>
+        </div>
+      </article>
+    ))}
+  </section>
+</BaseLayout>

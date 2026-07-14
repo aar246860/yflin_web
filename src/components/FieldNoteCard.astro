@@ -1,0 +1,25 @@
+---
+import MethodCard from "./research/MethodCard.astro";
+
+const { entry } = Astro.props;
+const data = entry.data;
+const base = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+const withBase = (path) => `${base}${path.replace(/^\//, "")}`;
+const noteTypeLabels = {
+  "method-note": "Method note",
+  "field-note": "Field note",
+  "concept-note": "Concept note",
+  "technical-note": "Technical note",
+};
+---
+
+<MethodCard
+  eyebrow={noteTypeLabels[data.noteType] ?? data.noteType}
+  title={data.title}
+  body={data.subtitle}
+  href={withBase(`/field-notes/${entry.id}/`)}
+  actionLabel="Read note"
+  meta={data.date.toISOString().slice(0, 10)}
+/>

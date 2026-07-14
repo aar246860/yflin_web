@@ -1,0 +1,56 @@
+---
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import EvidenceBadge from "../../components/EvidenceBadge.astro";
+import GiscusComments from "../../components/GiscusComments.astro";
+import { absoluteUrl, siteRoot } from "../../lib/seo";
+
+export async function getStaticPaths() {
+  const entries = await getCollection("field-notes", ({ data }) => !data.draft);
+  return entries.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const rootUrl = siteRoot(Astro.site);
+const pagePath = `/field-notes/${entry.id}/`;
+const pageUrl = absoluteUrl(pagePath, Astro.site);
+const description = entry.data.metaDescription ?? entry.data.subtitle;
+const noteSchema = {
+  "@type": "Article",
+  "@id": `${pageUrl}#article`,
+  headline: entry.data.title,
+  description,
+  url: pageUrl,
+  mainEntityOfPage: { "@id": `${pageUrl}#webpage` },
+  author: { "@id": `${rootUrl}/#person` },
+  datePublished: entry.data.date.toISOString(),
+  dateModified: entry.data.updated.toISOString(),
+  about: entry.data.tags,
+  keywords: entry.data.tags,
+};
+---
+
+<BaseLayout
+  title={entry.data.title}
+  description={description}
+  current="field-notes"
+  canonicalPath={pagePath}
+  schema={noteSchema}
+  type="article"
+>
+  <article class="article">
+    <header>
+      <div class="tag-row">
+        <EvidenceBadge level={entry.data.evidenceLevel} />
+        {entry.data.tags.map((tag) => <span class="tag">{tag}</span>)}
+      </div>
+      <h1>{entry.data.title}</h1>
+      <p class="lede">{entry.data.subtitle}</p>
+    </header>
+    <div class="article-body">
+      <Content />
+    </div>
+  </article>
+  <GiscusComments pageTitle={entry.data.title} />
+</BaseLayout>

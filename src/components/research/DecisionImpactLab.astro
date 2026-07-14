@@ -1,0 +1,108 @@
+---
+const labId = "decision-impact-lab";
+---
+
+<section class="shell section decision-lab" id={labId} aria-labelledby="decision-lab-title" data-decision-lab>
+  <div class="decision-lab__copy">
+    <span class="eyebrow">Conceptual decision sketch</span>
+    <h2 id="decision-lab-title">A small lag can move an engineering decision.</h2>
+    <p>
+      Lagging Theory is not a decorative parameter. It asks whether unresolved flux-gradient asynchrony
+      changes the decision behind a pumping test, recovery curve, or thermal response test.
+    </p>
+  </div>
+
+  <div class="decision-lab__panel">
+    <div class="decision-lab__control">
+      <label for="lag-strength">Asynchrony strength</label>
+      <input id="lag-strength" type="range" min="0" max="100" value="38" step="1" data-lag-input />
+      <div class="decision-lab__scale" aria-hidden="true">
+        <span>Classical Darcy</span>
+        <span>lag-dominant</span>
+      </div>
+    </div>
+
+    <div class="decision-lab__readouts" aria-live="polite">
+      <article class="decision-lab__readout decision-lab__readout--teal">
+        <span>illustrative pumping factor</span>
+        <strong data-q-allow>0.81x</strong>
+        <p>allowable pumping relative to a classical interpretation</p>
+      </article>
+      <article class="decision-lab__readout decision-lab__readout--gold">
+        <span>illustrative recovery factor</span>
+        <strong data-recovery>1.44x</strong>
+        <p>time needed before the system looks recovered</p>
+      </article>
+      <article class="decision-lab__readout decision-lab__readout--brick">
+        <span>illustrative design margin</span>
+        <strong data-risk>+29%</strong>
+        <p>decision margin exposed by transformation uncertainty</p>
+      </article>
+    </div>
+
+    <div class="decision-lab__chart" aria-label="Conceptual decision-variable chart">
+      <div class="decision-lab__row">
+        <span>classical interpretation</span>
+        <div class="decision-lab__track">
+          <i class="decision-lab__bar decision-lab__bar--classical" style="--width: 74%;"></i>
+        </div>
+      </div>
+      <div class="decision-lab__row">
+        <span>lag-aware analytical model</span>
+        <div class="decision-lab__track">
+          <i class="decision-lab__bar decision-lab__bar--lag" data-lag-bar style="--width: 61%;"></i>
+        </div>
+      </div>
+    </div>
+
+    <p class="decision-lab__note" data-lab-note>
+      In this conceptual regime, the residual structure is large enough to review before assigning
+      transmissivity, storage, recovery time, or a thermal design margin.
+    </p>
+    <p class="decision-lab__disclaimer">
+      These normalized values are for communication. They are not site-specific design
+      recommendations; calibrated model results must replace them before use.
+    </p>
+  </div>
+</section>
+
+<script>
+  const labs = document.querySelectorAll("[data-decision-lab]");
+
+  labs.forEach((lab) => {
+    const input = lab.querySelector("[data-lag-input]");
+    const qAllow = lab.querySelector("[data-q-allow]");
+    const recovery = lab.querySelector("[data-recovery]");
+    const risk = lab.querySelector("[data-risk]");
+    const lagBar = lab.querySelector("[data-lag-bar]");
+    const note = lab.querySelector("[data-lab-note]");
+
+    if (!(input instanceof HTMLInputElement) || !qAllow || !recovery || !risk || !lagBar || !note) {
+      return;
+    }
+
+    const update = () => {
+      const strength = Number(input.value) / 100;
+      const q = 1 - 0.5 * strength;
+      const r = 1 + 1.15 * strength;
+      const p = Math.round(76 * strength);
+      const width = Math.max(22, Math.round(74 - 44 * strength));
+
+      qAllow.textContent = `${q.toFixed(2)}x`;
+      recovery.textContent = `${r.toFixed(2)}x`;
+      risk.textContent = `+${p}%`;
+      lagBar.style.setProperty("--width", `${width}%`);
+
+      if (strength < 0.2) {
+        note.textContent = "In this conceptual regime, a classical interpretation may be adequate, but the parameter should not enter a design calculation until the team checks the residual pattern.";
+      } else if (strength < 0.58) {
+        note.textContent = "In this conceptual regime, the residual structure is large enough to review before assigning transmissivity, storage, recovery time, or a thermal design margin.";
+      } else {
+        note.textContent = "In this conceptual regime, the selected interpretation model can control the engineering decision, so the lag-aware formulation becomes a competing analytical model, not a cosmetic fit.";
+      }
+    };
+
+    input.addEventListener("input", update);
+    update();
+  });
+</script>

@@ -1,0 +1,54 @@
+<div class="lag-signature" aria-label="Lagging Theory signature visual">
+  <div class="lag-signature__meta">
+    <span>response signature</span>
+    <strong>flux-gradient asynchrony</strong>
+  </div>
+  <svg viewBox="0 0 720 320" role="img" aria-labelledby="lag-signature-title lag-signature-desc">
+    <title id="lag-signature-title">Classical Darcy and Lagging Theory responses</title>
+    <desc id="lag-signature-desc">The lag-aware aquifer response moves out of phase and changes decision variables.</desc>
+    <defs>
+      <linearGradient id="lagFill" x1="0" x2="1" y1="0" y2="1">
+        <stop offset="0%" stop-color="var(--signal-measured)" stop-opacity="0.22" />
+        <stop offset="100%" stop-color="var(--risk-boundary)" stop-opacity="0.08" />
+      </linearGradient>
+      <marker id="arrowTeal" markerHeight="7" markerWidth="7" orient="auto" refX="6" refY="3.5">
+        <path d="M0,0 L7,3.5 L0,7 Z" fill="var(--signal-measured)" />
+      </marker>
+      <marker id="arrowBrick" markerHeight="7" markerWidth="7" orient="auto" refX="6" refY="3.5">
+        <path d="M0,0 L7,3.5 L0,7 Z" fill="var(--risk-boundary)" />
+      </marker>
+    </defs>
+    <rect class="lag-signature__frame" x="18" y="18" width="684" height="284" rx="8" />
+    <path class="lag-signature__band" d="M74 236 C164 106 260 98 356 154 C455 212 554 98 646 82 L646 270 L74 270 Z" />
+    <g class="lag-signature__grid">
+      <path d="M74 70 H646" />
+      <path d="M74 120 H646" />
+      <path d="M74 170 H646" />
+      <path d="M74 220 H646" />
+      <path d="M170 48 V270" />
+      <path d="M265 48 V270" />
+      <path d="M360 48 V270" />
+      <path d="M455 48 V270" />
+      <path d="M550 48 V270" />
+    </g>
+    <path class="lag-signature__axis" d="M74 270 H646" marker-end="url(#arrowTeal)" />
+    <path class="lag-signature__axis" d="M74 270 V48" marker-end="url(#arrowTeal)" />
+    <path class="lag-signature__darcy" d="M74 218 C132 82 214 82 272 218 C330 82 412 82 470 218 C528 82 590 82 646 176" />
+    <path class="lag-signature__lag" d="M74 238 C142 190 198 72 270 126 C344 180 398 250 476 142 C548 44 604 116 646 208" />
+    <path class="lag-signature__offset" d="M272 218 H326" marker-end="url(#arrowBrick)" />
+    <path class="lag-signature__offset" d="M470 218 H526" marker-end="url(#arrowBrick)" />
+    <g class="lag-signature__labels">
+      <text x="96" y="58">forcing / gradient.</text>
+      <text x="440" y="92">Lagging Theory.</text>
+      <text x="486" y="198">Classical Darcy.</text>
+      <text x="286" y="208">phase offset.</text>
+      <text x="512" y="254">decision change.</text>
+    </g>
+  </svg>
+  <div class="lag-signature__footer">
+    <span>measured record</span>
+    <span>model timing</span>
+    <span>lag-aware model</span>
+    <span>decision change</span>
+  </div>
+</div>

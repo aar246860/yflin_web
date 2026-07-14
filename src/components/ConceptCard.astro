@@ -1,0 +1,25 @@
+---
+import MethodCard from "./research/MethodCard.astro";
+
+const { entry } = Astro.props;
+const data = entry.data;
+const base = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+const withBase = (path) => `${base}${path.replace(/^\//, "")}`;
+const evidenceLabels = {
+  supported: "Published evidence",
+  diagnostic: "Diagnostic use",
+  limited: "Limited evidence",
+  conceptual: "Conceptual framing",
+};
+---
+
+<MethodCard
+  eyebrow={data.concept}
+  title={data.title}
+  body={data.subtitle}
+  href={withBase(`/concepts/${entry.id}/`)}
+  actionLabel="Read concept"
+  meta={evidenceLabels[data.evidenceLevel] ?? data.evidenceLevel}
+/>

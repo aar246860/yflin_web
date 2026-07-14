@@ -1,0 +1,9 @@
+# This file is used internally by FFMPEG.
+file 'file:C:/Users/YFLin/OneDrive - 中原大學/中原林穎凡資料夾/0web_page_Codex/yflin_web_astro/media/videos/published_research_visuals/720p30/partial_movie_files/IslandImageWell/3072997530_1197595723_223132457.mp4'
+file 'file:C:/Users/YFLin/OneDrive - 中原大學/中原林穎凡資料夾/0web_page_Codex/yflin_web_astro/media/videos/published_research_visuals/720p30/partial_movie_files/IslandImageWell/65210378_1465746979_1030600435.mp4'
+file 'file:C:/Users/YFLin/OneDrive - 中原大學/中原林穎凡資料夾/0web_page_Codex/yflin_web_astro/media/videos/published_research_visuals/720p30/partial_movie_files/IslandImageWell/65210378_1228136463_2346106531.mp4'
+file 'file:C:/Users/YFLin/OneDrive - 中原大學/中原林穎凡資料夾/0web_page_Codex/yflin_web_astro/media/videos/published_research_visuals/720p30/partial_movie_files/IslandImageWell/65210378_3243367141_1512460148.mp4'
+file 'file:C:/Users/YFLin/OneDrive - 中原大學/中原林穎凡資料夾/0web_page_Codex/yflin_web_astro/media/videos/published_research_visuals/720p30/partial_movie_files/IslandImageWell/65210378_483103502_1515096301.mp4'
+file 'file:C:/Users/YFLin/OneDrive - 中原大學/中原林穎凡資料夾/0web_page_Codex/yflin_web_astro/media/videos/published_research_visuals/720p30/partial_movie_files/IslandImageWell/65210378_151276963_3584373640.mp4'
+file 'file:C:/Users/YFLin/OneDrive - 中原大學/中原林穎凡資料夾/0web_page_Codex/yflin_web_astro/media/videos/published_research_visuals/720p30/partial_movie_files/IslandImageWell/65210378_452102208_2837922444.mp4'
+file 'file:C:/Users/YFLin/OneDrive - 中原大學/中原林穎凡資料夾/0web_page_Codex/yflin_web_astro/media/videos/published_research_visuals/720p30/partial_movie_files/IslandImageWell/65210378_2872842549_1036064562.mp4'
