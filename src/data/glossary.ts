@@ -115,7 +115,7 @@ export const glossaryEntries: GlossaryEntry[] = [
   },
   {
     slug: "groundwater-model-assumption-decision-audit",
-    term: "groundwater model-assumption and decision audit",
+    term: "groundwater decision reliability",
     shortDefinition:
       "A groundwater model-assumption and decision audit asks whether the data, interpretation model, uncertainty propagation, and decision rule are strong enough to support a groundwater action.",
     whyItMatters:
@@ -132,7 +132,7 @@ export const glossaryEntries: GlossaryEntry[] = [
   },
   {
     slug: "lag-aware-pumping-test-interpretation",
-    term: "lag-aware pumping-test interpretation",
+    term: "memory-aware pumping-test interpretation",
     shortDefinition:
       "Lag-aware pumping-test interpretation checks whether drawdown and recovery data retain non-instantaneous response structure that changes inferred parameters or decisions.",
     whyItMatters:
@@ -149,7 +149,7 @@ export const glossaryEntries: GlossaryEntry[] = [
   },
   {
     slug: "groundwater-influenced-shallow-geothermal-assessment",
-    term: "groundwater-influenced shallow-geothermal assessment",
+    term: "shallow-geothermal groundwater intelligence",
     shortDefinition:
       "A groundwater-influenced shallow-geothermal assessment uses local groundwater flow, thermal response, and uncertainty evidence to judge whether a shallow geothermal or TRT design is transferable.",
     whyItMatters:

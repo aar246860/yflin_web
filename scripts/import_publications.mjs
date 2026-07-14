@@ -8,6 +8,7 @@ const sourcePath = path.join(oldSite, "js", "modules", "data.js");
 const outDir = path.join(root, "src", "data");
 const outPath = path.join(outDir, "publications.generated.json");
 const memberPath = path.join(outDir, "members.generated.json");
+const metadataPath = path.join(root, "scripts", "publication_metadata.json");
 
 function classifyPublication(pub) {
   const text = `${pub.title?.en ?? ""} ${pub.venue ?? ""}`.toLowerCase();
@@ -57,13 +58,34 @@ function loadGeneratedData() {
   };
 }
 
+function loadPublicationMetadata() {
+  if (!fs.existsSync(metadataPath)) {
+    throw new Error(`Publication metadata missing: ${metadataPath}`);
+  }
+  return JSON.parse(fs.readFileSync(metadataPath, "utf8"));
+}
+
 const sourceExists = fs.existsSync(sourcePath);
 const data = sourceExists ? loadOldData() : loadGeneratedData();
-const publications = data.publicationsData.map((pub, index) => ({
-  ...pub,
+const metadata = loadPublicationMetadata();
+const publications = data.publicationsData.map((pub, index) => {
+  const { pdf: _pdf, code: _code, ...publication } = pub;
+  return {
+  ...publication,
   id: `${pub.year}-${String(pub.month ?? 1).padStart(2, "0")}-${index + 1}`,
   concepts: classifyPublication(pub),
-}));
+  };
+}).map((pub) => {
+  const record = metadata[pub.id];
+  if (!record) throw new Error(`No publication metadata for ${pub.id}: ${pub.title.en}`);
+  return {
+    ...pub,
+    ...record,
+    status: record.status ?? "published",
+    publicRecord: record.doi ? `https://doi.org/${record.doi}` : null,
+    evidenceBoundary: record.evidenceBoundary ?? "Public bibliographic record; interpretation details remain conditioned on the cited publication.",
+  };
+});
 
 fs.mkdirSync(outDir, { recursive: true });
 fs.writeFileSync(outPath, `${JSON.stringify(publications, null, 2)}\n`, "utf8");

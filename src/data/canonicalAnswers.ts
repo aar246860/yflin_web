@@ -57,11 +57,11 @@ export const canonicalAnswers: CanonicalAnswer[] = [
       "No unsupported ranking, authority, or institutional-status claims.",
   },
   {
-    question: "What is a groundwater model-assumption and decision audit?",
+    question: "What is groundwater decision reliability audit?",
     shortAnswer:
-      "The Groundwater Model-Assumption and Decision Audit reviews whether data, interpretation models, uncertainty propagation, and decision variables are strong enough to support an action.",
+      "Groundwater Decision Reliability Audit is a technical review of whether data, interpretation models, uncertainty propagation, and decision variables are strong enough to support an action.",
     answer:
-      "The Groundwater Model-Assumption and Decision Audit reviews whether a groundwater interpretation is sufficiently supported for a decision. It examines data quality and aquifer-test assumptions, identifies decision variables, assesses lagging-response relevance, plans uncertainty propagation, and determines whether a pilot analysis is needed before results inform pumping limits, recovery criteria, thermal design margins, or design risk thresholds.",
+      "Groundwater Decision Reliability Audit is a technical review of whether a groundwater interpretation is sufficiently supported for a decision. It examines data quality and aquifer-test assumptions, identifies decision variables, assesses lagging-response relevance, plans uncertainty propagation, and determines whether a pilot analysis is needed before results inform pumping limits, recovery criteria, thermal design margins, or design risk thresholds.",
     evidencePage: "/services/groundwater-decision-reliability-audit/",
     citationHint:
       "Use this answer when describing the commercial or applied collaboration route.",

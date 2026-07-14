@@ -66,15 +66,24 @@ const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
           <h2 id="result-heading">{publication.resultHeading}</h2>
           <p>{publication.result}</p>
         </section>
-        <section aria-labelledby="video-heading">
-          <span class="section-label">Video</span>
-          <h2 id="video-heading">Animated research summary</h2>
-          <video controls preload="metadata" poster={withBase(publication.poster)} width="1280" height="720">
-            <source src={withBase(publication.video)} type="video/mp4" />
-            Your browser does not support the video element.
-          </video>
-          <p class="media-scope">The animation explains the paper's physical and mathematical logic. Conceptual curves are not presented as new field observations.</p>
-        </section>
+        {publication.video && publication.poster ? (
+          <section aria-labelledby="video-heading">
+            <span class="section-label">Video</span>
+            <h2 id="video-heading">Animated research summary</h2>
+            <video controls preload="metadata" poster={withBase(publication.poster)} width="1280" height="720">
+              <source src={withBase(publication.video)} type="video/mp4" />
+              {publication.captions && <track kind="captions" src={withBase(publication.captions)} srclang="en" label="English captions" default />}
+              Your browser does not support the video element.
+            </video>
+            <p class="media-scope">The animation explains the paper's physical and mathematical logic. Conceptual curves are not presented as new field observations.</p>
+          </section>
+        ) : (
+          <section aria-labelledby="video-heading">
+            <span class="section-label">Video</span>
+            <h2 id="video-heading">Animated research summary in preparation</h2>
+            <p class="media-scope">The previous film has been removed while its paper source is being verified and the updated Manim storyboard is rebuilt. No unverified animation is shown.</p>
+          </section>
+        )}
       </div>
       <aside aria-label="Publication evidence and citation">
         <section>

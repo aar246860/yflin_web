@@ -17,8 +17,9 @@ export type PublicationFeature = {
   readonly evidence: string;
   readonly interpretationBoundary: string;
   readonly relation?: "lagging-darcy";
-  readonly video: string;
-  readonly poster: string;
+  readonly video?: string;
+  readonly poster?: string;
+  readonly captions?: string;
 };
 
 export const publicationFeatures = [
@@ -39,8 +40,9 @@ export const publicationFeatures = [
     evidence: "The field comparison uses drawdown observations from five monitoring wells in Rapid City. It supports improved early-time agreement for this test and model configuration; it does not establish one lag pair for all aquifers.",
     interpretationBoundary: "Estimated lags are conditioned on the test data, boundary assumptions, leakage representation, finite well radius, wellbore storage, skin, and the selected model. They are fitted model parameters, not universal material constants.",
     relation: "lagging-darcy",
-    video: "/videos/publications/lin-yeh-2017/lin-yeh-2017-visual-abstract.mp4",
-    poster: "/videos/publications/lin-yeh-2017/lin-yeh-2017-visual-abstract_poster.png",
+    video: "/videos/publications/lin-yeh-2017/lin-yeh-2017.mp4",
+    poster: "/videos/publications/lin-yeh-2017/lin-yeh-2017_poster.png",
+    captions: "/videos/publications/lin-yeh-2017/lin-yeh-2017_en.vtt",
   },
   {
     id: "lin-et-al-2025-island",
@@ -58,8 +60,6 @@ export const publicationFeatures = [
     result: "Convergence tests and comparisons with an established solution support the formulation, and an island example based loosely on Kinmen demonstrates multi-well pumping optimization subject to an interface-depth limit.",
     evidence: "The paper uses analytical and numerical checks plus an illustrative optimization example. No observational field data were used in the published study.",
     interpretationBoundary: "The solution is conditioned on its sharp-interface, aquifer-property, boundary, and superposition assumptions. The demonstration is not a site-specific safe-yield estimate for Kinmen.",
-    video: "/videos/publications/lin-et-al-2025-island/island-image-well.mp4",
-    poster: "/videos/publications/lin-et-al-2025-island/island-image-well_poster.png",
   },
   {
     id: "lin-et-al-2022-transient-flux",
@@ -77,8 +77,6 @@ export const publicationFeatures = [
     result: "The analytical solution agrees closely with a finite-element reference, the numerical experiment recovers the prescribed transient flux, and the field estimate is reported to be close to measured flux.",
     evidence: "Support comes from numerical verification, a synthetic inversion experiment, sensitivity analysis, and a field application. The website animation is conceptual rather than a digitization of the field record.",
     interpretationBoundary: "Flux estimates remain conditioned on the heat-transfer model, thermal properties, boundary temperature history, profile sampling, and inversion setup.",
-    video: "/videos/publications/lin-et-al-2022-transient-flux/transient-vertical-flux.mp4",
-    poster: "/videos/publications/lin-et-al-2022-transient-flux/transient-vertical-flux_poster.png",
   },
   {
     id: "lin-lin-2025-water-table",
@@ -96,7 +94,26 @@ export const publicationFeatures = [
     result: "Application to pumping tests at the Boise Hydrogeophysical Research Site supports improved drawdown agreement and addresses specific-yield underestimation while retaining analytical tractability.",
     evidence: "The paper derives the condition from coupled equations, examines limiting behavior, and evaluates it against a published field pumping-test series.",
     interpretationBoundary: "The reduction assumes an unsaturated zone that is thin relative to aquifer thickness and the stated hydraulic-property models. Its field result is site and model conditioned.",
-    video: "/videos/publications/lin-lin-2025-water-table/water-table-kinematic.mp4",
-    poster: "/videos/publications/lin-lin-2025-water-table/water-table-kinematic_poster.png",
+  },
+  {
+    id: "wang-et-al-2026-grout",
+    title: "Analytical Modeling of Grout Heat Storage Effects in Thermal Response Tests: Toward Faster and More Reliable Parameter Estimation",
+    authors: ["Hsiang-Wen Wang", "Ying-Fan Lin", "Chia-Hao Chang", "Bo-Tsen Wang", "Hikari Fujii", "Yu-Feng Forrest Lin", "Kuo-Hsin Yang", "Jui-Pin Tsai"],
+    year: 2026, venue: "Case Studies in Thermal Engineering",
+    doi: "10.1016/j.csite.2026.107695",
+    citation: "Wang, H.-W., Lin, Y.-F., et al. (2026). Case Studies in Thermal Engineering, 78, 107695.",
+    questionHeading: "When does grout heat storage matter in a thermal response test?",
+    researchQuestion: "The paper asks how a borehole grout's heat capacity changes early-time temperature responses and the timing of reliable thermal-property estimation.",
+    systemHeading: "A borehole heat exchanger with a composite cylindrical source",
+    physicalSystem: "A thermal response test in a 54 m borehole, with grout storage represented at the inner boundary and radial heat transfer through the surrounding ground.",
+    methodHeading: "Retain grout capacity in the analytical boundary condition",
+    methodSummary: "The composite cylindrical source formulation keeps grout volumetric heat capacity in a dynamic inner boundary condition and compares it with ILS and ICSS treatments.",
+    resultHeading: "Early and late parts of the test carry different information",
+    result: "The reported comparison gives RMSE values of 0.12 degrees C for CCS, 0.16 degrees C for ILS, and 0.25 degrees C for ICSS; grout capacity matters earlier, while ground conductivity becomes more influential later.",
+    evidence: "The animation follows the paper's analytical, numerical, sensitivity, duration, and distributed-TRT evidence map. It uses source-reported values where stated and schematic curves where the paper explains a mechanism.",
+    interpretationBoundary: "The reported transition near 42 hours and practical stability around 48 to 50 hours are conditioned on the study's borehole, properties, and model assumptions; they are not universal TRT duration rules.",
+    video: "/videos/publications/wang-et-al-2026-grout/grout-heat-storage.mp4",
+    poster: "/videos/publications/wang-et-al-2026-grout/grout-heat-storage_poster.png",
+    captions: "/videos/publications/wang-et-al-2026-grout/grout-heat-storage_en.vtt",
   },
 ] as const satisfies readonly PublicationFeature[];

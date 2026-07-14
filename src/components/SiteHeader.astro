@@ -8,12 +8,9 @@ const links = [
   { href: "/", label: "Home", key: "home" },
   { href: "/projects/", label: "Projects", key: "projects" },
   { href: "/team/", label: "People", key: "team" },
-  { href: "/network/", label: "Network", key: "network" },
-  { href: "/training/", label: "Training", key: "training" },
   { href: "/publications/", label: "Publications", key: "publications" },
-  { href: "/field-notes/", label: "Notes", key: "field-notes" },
-  { href: "/collaborate/", label: "Work With Us", key: "collaborate" },
-  { href: "/tools/", label: "Tools", key: "tools" },
+  { href: "/field-notes/", label: "Updates", key: "field-notes" },
+  { href: "/collaborate/", label: "Collaborate", key: "collaborate" },
 ];
 ---
 
@@ -29,6 +26,7 @@ const links = [
           {link.label}
         </a>
       ))}
+      <a class="nav-language" href={withBase("/zh/")} lang="zh-Hant">中文摘要</a>
     </div>
   </nav>
 </header>
