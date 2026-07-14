@@ -23,7 +23,7 @@ function walk(dir) {
 }
 
 function frontmatter(text) {
-  const match = text.match(/^---\n([\s\S]*?)\n---/);
+  const match = text.match(/^---\r?\n([\s\S]*?)\r?\n---/);
   return match?.[1] ?? "";
 }
 
@@ -62,3 +62,5 @@ if (issues.length) {
 }
 
 console.log("Evidence gate passed.");
+
+
