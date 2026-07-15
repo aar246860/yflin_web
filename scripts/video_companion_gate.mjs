@@ -1,37 +1,44 @@
 import fs from "node:fs";
+import path from "node:path";
 
-const required = [
-  {
-    sourceDir: "research-videos/lin-yeh-2017/release-strict",
-    transcriptDir: "research-videos/lin-yeh-2017",
-    storyboard: "lin-yeh-2017_storyboard.md",
-    transcript: "transcript.md",
-    artifacts: [
-      "public/videos/publications/lin-yeh-2017/lin-yeh-2017.mp4",
-      "public/videos/publications/lin-yeh-2017/lin-yeh-2017_poster.png",
-      "public/videos/publications/lin-yeh-2017/lin-yeh-2017_en.vtt",
-    ],
-  },
-  {
-    sourceDir: "research-videos/grout-heat-storage/release-strict",
-    transcriptDir: "research-videos/grout-heat-storage",
-    storyboard: "grout-heat-storage_storyboard.md",
-    transcript: "transcript.md",
-    artifacts: [
-      "public/videos/publications/wang-et-al-2026-grout/grout-heat-storage.mp4",
-      "public/videos/publications/wang-et-al-2026-grout/grout-heat-storage_poster.png",
-      "public/videos/publications/wang-et-al-2026-grout/grout-heat-storage_en.vtt",
-    ],
-  },
-];
+const filmsPath = path.join("src", "data", "publicationFilms.generated.json");
+const films = JSON.parse(fs.readFileSync(filmsPath, "utf8"));
 const missing = [];
-for (const film of required) {
-  if (!fs.existsSync(`${film.sourceDir}/${film.storyboard}`)) missing.push(`${film.sourceDir}/${film.storyboard}`);
-  if (!fs.existsSync(`${film.transcriptDir}/${film.transcript}`)) missing.push(`${film.transcriptDir}/${film.transcript}`);
-  for (const artifact of film.artifacts) if (!fs.existsSync(artifact)) missing.push(artifact);
+
+if (films.length !== 39 || new Set(films.map((film) => film.doi)).size !== 39) {
+  missing.push(`${filmsPath}: expected 39 unique publication films, received ${films.length}`);
 }
+
+for (const film of films) {
+  const releaseDir = path.join("research-videos", "papers", film.id, "release");
+  const sourceText = path.join("research-videos", "source-text", `${film.id}.txt`);
+  const requiredFiles = [
+    `${film.id}_scene.py`,
+    `${film.id}_storyboard.md`,
+    `${film.id}_transcript.md`,
+    `${film.id}_en.vtt`,
+    `${film.id}_semantic_audit.json`,
+    `${film.id}_visual_qa.json`,
+    `${film.id}_contact_sheet.png`,
+    `${film.id}.mp4`,
+    `${film.id}_poster.png`,
+  ];
+
+  if (!fs.existsSync(sourceText)) missing.push(sourceText);
+  for (const file of requiredFiles) {
+    const target = path.join(releaseDir, file);
+    if (!fs.existsSync(target)) missing.push(target);
+  }
+
+  for (const publicArtifact of [film.video, film.poster, film.captions]) {
+    const target = path.join("public", publicArtifact.replace(/^\//, ""));
+    if (!fs.existsSync(target)) missing.push(target);
+  }
+}
+
 if (missing.length) {
   console.error(`Missing research film companion artifacts:\n${missing.join("\n")}`);
   process.exit(1);
 }
-console.log(`Video companion gate passed: ${required.length} films have source, transcript, MP4, poster, and captions`);
+
+console.log(`Video companion gate passed: ${films.length} films have source, storyboard, transcript, MP4, poster, captions, and QA evidence`);
