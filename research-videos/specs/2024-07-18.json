@@ -1,0 +1,441 @@
+{
+  "schemaVersion": 1,
+  "id": "2024-07-18",
+  "doi": "10.1002/htj.23140",
+  "title": "Application of the Image-Well Method for Transient Borehole Thermal Energy Storage Systems with Complex Boundaries",
+  "sourceArtifact": "research-videos/source-pdfs/2024-07-18.pdf",
+  "research": {
+    "question": "Can an image-well analytical model predict transient borehole thermal energy storage temperatures inside irregular insulated boundaries with useful accuracy and lower computational cost?",
+    "system": "Clusters of borehole heat exchangers inside an irregular two-dimensional insulated BTES boundary, represented by infinite line-source temperature kernels and boundary image nodes.",
+    "inputData": "BHE coordinates and heat rates, ground conductivity and diffusivity, borehole thermal resistance, boundary geometry, heating-cooling schedules, finite-element verification cases, and Drake Landing operating conditions.",
+    "method": "Superpose weighted line-source kernels at BHE and boundary nodes, collocate the no-flux boundary, solve the resulting linear system, apply temporal superposition, and assess parameter sensitivity with the Morris method.",
+    "benchmark": "Four BHE arrangements are compared with finite-element simulations; the reported root-mean-square temperature difference is 0.012 degrees C and computation is reduced by 67 percent.",
+    "uncertainty": "Morris elementary effects rank global parameter influence, but the model assumes infinitely long BHEs and omits seasonal surface, finite-bottom, unsaturated-flow, and buoyancy effects.",
+    "conclusion": "The image-well method reproduces the finite-element temperature field efficiently, supports irregular insulated boundaries and seasonal cycling, and quantifies how boundary representation changes BTES energy estimates."
+  },
+  "narrative": {
+    "throughline": "Turn an irregular insulated wall into a ring of thermal image wells whose weights cancel boundary-normal heat flux while preserving the evolving BHE temperature field.",
+    "audienceStartingPoint": "An infinite line-source solution gives a fast temperature response for a borehole in an unbounded medium.",
+    "stakes": "Real storage fields have irregular insulation boundaries, while repeated meshed simulations can be costly during design and uncertainty analysis.",
+    "resolution": "Boundary collocation retains the analytical kernel, enforces the irregular wall through solved image weights, and recovers a continuous transient temperature field."
+  },
+  "background": [
+    {
+      "id": "B01",
+      "premise": "A BTES field functions as a thermal battery that stores surplus heat in boreholes for later recovery.",
+      "visibleEvidence": "A borehole cluster warms during charging and cools during extraction while a seasonal energy meter reverses direction.",
+      "whyNow": "Storage can buffer the intermittency of renewable heat supplies.",
+      "boundary": "The paper analyzes subsurface sensible-heat storage around BHEs rather than electrical battery behavior.",
+      "locator": "PDF page 2, Section 1 Introduction",
+      "sourceExcerpt": "These systems use the earth as a thermal battery, storing heat in boreholes during surplus periods and retrieving it when needed",
+      "anchorTerms": [
+        "thermal battery",
+        "storing heat in boreholes"
+      ],
+      "visualObject": "Seasonally charged BHE cluster",
+      "motionPurpose": "Establish cyclic heat injection and recovery as the original physical object.",
+      "stepDetail": "Pulse heat outward during charging and reverse the pulses during recovery.",
+      "transitionBridge": "The useful kernel is fast, but its default outer geometry is too simple.",
+      "minimalText": "Thermal battery"
+    },
+    {
+      "id": "B02",
+      "premise": "Standard analytical BTES solutions gain efficiency by imposing simplified boundaries that may not match installed systems.",
+      "visibleEvidence": "A circular or infinite analytical domain fails to align with an irregular insulated perimeter.",
+      "whyNow": "Boundary mismatch changes heat retention and predicted operating temperature.",
+      "boundary": "The limitation concerns the boundary conditions of common analytical solutions, not analytical modeling in general.",
+      "locator": "PDF page 2, Section 1 Introduction",
+      "sourceExcerpt": "the applications of analytical solutions can be limited as they invoke simplified boundary conditions that may not reflect typical setups",
+      "anchorTerms": [
+        "analytical solutions",
+        "simplified boundary conditions"
+      ],
+      "visualObject": "Irregular wall over an unbounded kernel field",
+      "motionPurpose": "Expose normal heat-flux arrows crossing a boundary that should insulate.",
+      "stepDetail": "Overlay the real polygonal boundary on an unbounded radial temperature field.",
+      "transitionBridge": "The solution kernel is retained while the boundary is reconstructed with images.",
+      "minimalText": "Irregular boundary"
+    }
+  ],
+  "methods": [
+    {
+      "id": "M01",
+      "input": "A homogeneous conductive medium with a line heat source",
+      "operation": "Select line-source kernel",
+      "output": "Transient radial temperature response for one BHE",
+      "validity": "The adopted kernel assumes an infinitely long line source and the thermal conditions stated in Equations 2-4.",
+      "locator": "PDF page 4, Section 2.1 Infinite line source solution, Equations 2-4",
+      "sourceExcerpt": "To limit confounding factors in the model, the infinite line source solution is adopted and subjected to the following conditions",
+      "anchorTerms": [
+        "infinite line source solution",
+        "following conditions"
+      ],
+      "visualObject": "Radial line-source temperature kernel",
+      "motionPurpose": "Grow a continuous thermal halo from one vertical BHE.",
+      "stepDetail": "Reveal concentric temperature contours around a single line source.",
+      "transitionBridge": "The dimensional kernel is compressed into reusable scaled coordinates.",
+      "minimalText": "Line source"
+    },
+    {
+      "id": "M02",
+      "input": "Dimensional line-source temperature solution",
+      "operation": "Normalize thermal solution",
+      "output": "Dimensionless temperature, Fourier number, radius, and resistance",
+      "validity": "The scaling uses the paper's heat rate, conductivity, borehole radius, diffusivity, and thermal resistance definitions.",
+      "locator": "PDF page 5, Section 2.1, Equations 7-8",
+      "sourceExcerpt": "To simplify the model and solution expressions, Equation (7) is made nondimensional. The dimensionless parameters and variables are",
+      "anchorTerms": [
+        "made nondimensional",
+        "dimensionless parameters"
+      ],
+      "visualObject": "Dimensionless kernel coordinates",
+      "motionPurpose": "Rescale radius, time, and temperature into one portable kernel.",
+      "stepDetail": "Replace dimensional axis labels with theta, Fo, delta, and zeta.",
+      "transitionBridge": "Copies of this kernel can now represent real and image wells.",
+      "minimalText": "Dimensionless kernel"
+    },
+    {
+      "id": "M03",
+      "input": "Dimensionless kernels centered on BHE and boundary nodes",
+      "operation": "Combine image wells",
+      "output": "Weighted temperature-field expansion",
+      "validity": "Linearity permits superposition under the conductive model and fixed kernel assumptions.",
+      "locator": "PDF page 5, Section 2.2 Developing a BTES model using the image-well method, Equation 9",
+      "sourceExcerpt": "the temperature distribution can be expressed as the linear combination of Equation (8) with different coefficients of heat exchange magnitude",
+      "anchorTerms": [
+        "temperature distribution",
+        "linear combination"
+      ],
+      "visualObject": "Real BHE kernels plus boundary-node kernels",
+      "motionPurpose": "Merge many halos into one composite temperature surface.",
+      "stepDetail": "Place a kernel at each BHE and image node with an adjustable weight.",
+      "transitionBridge": "The adjustable boundary kernels need conditions that determine their weights.",
+      "minimalText": "Kernel superposition"
+    },
+    {
+      "id": "M04",
+      "input": "Insulated perimeter and collocation nodes",
+      "operation": "Construct collocation system",
+      "output": "Linear equations enforcing zero normal heat flux",
+      "validity": "Boundary accuracy depends on the spatial discretization and placement of boundary nodes.",
+      "locator": "PDF page 6, Section 2.2, Equations 12-15",
+      "sourceExcerpt": "The discretization of the condition shown in Equation (12) in space is required. The equivalent analytical approach is",
+      "anchorTerms": [
+        "discretization",
+        "Equation (12)"
+      ],
+      "visualObject": "Boundary collocation matrix",
+      "motionPurpose": "Convert each no-flux boundary marker into one matrix row.",
+      "stepDetail": "Sample the perimeter and stack normal derivatives of every image kernel at those nodes.",
+      "transitionBridge": "The completed matrix fixes the unknown boundary weights.",
+      "minimalText": "No-flux collocation"
+    },
+    {
+      "id": "M05",
+      "input": "Boundary collocation matrix A and BHE forcing vector B",
+      "operation": "Solve boundary weights",
+      "output": "Image-well weight vector w",
+      "validity": "The linear system must be sufficiently resolved and numerically solvable for the chosen node geometry.",
+      "locator": "PDF page 7, Section 2.2, Equations 15-16",
+      "sourceExcerpt": "Finally, the weights can be solved using linear algebra: (15) Aw = B",
+      "anchorTerms": [
+        "weights",
+        "linear algebra"
+      ],
+      "visualObject": "Solved image-weight vector",
+      "motionPurpose": "Lock each image halo to its boundary-canceling magnitude.",
+      "stepDetail": "Propagate the matrix solution back to the perimeter nodes as signed weights.",
+      "transitionBridge": "The weighted expansion can now be evaluated everywhere inside the store.",
+      "minimalText": "Solve Aw = B"
+    },
+    {
+      "id": "M06",
+      "input": "BHE sources and solved image-well weights",
+      "operation": "Evaluate temperature field",
+      "output": "Continuous spatiotemporal BTES temperature distribution",
+      "validity": "The field applies within the conductive, homogeneous, infinite-BHE model domain.",
+      "locator": "PDF page 7, Section 2.2, Equation 9 workflow",
+      "sourceExcerpt": "Subsequently, the spatiotemporal temperature distribution in the BTES region can be evaluated. The procedure to calculate the spatiotemporal temperature distribution",
+      "anchorTerms": [
+        "spatiotemporal temperature distribution",
+        "BTES region"
+      ],
+      "visualObject": "Irregular-domain temperature contours",
+      "motionPurpose": "Fill the insulated polygon with a continuously evolving thermal field.",
+      "stepDetail": "Evaluate the weighted kernel sum on a dense interior grid.",
+      "transitionBridge": "The continuous field is tested against a meshed numerical reference.",
+      "minimalText": "Temperature field"
+    },
+    {
+      "id": "M07",
+      "input": "Image-well and finite-element temperature distributions for four BHE arrangements",
+      "operation": "Validate numerical agreement",
+      "output": "Temperature-difference maps against the finite-element benchmark",
+      "validity": "Agreement is demonstrated for the reported verification scenarios and parameter settings.",
+      "locator": "PDF page 8, Section 2.3 Model verification, comparison paragraph",
+      "sourceExcerpt": "temperature distribution generated from Equtaion (9) are compared with results from a standard numerical finite element model",
+      "anchorTerms": [
+        "temperature distribution",
+        "finite element model"
+      ],
+      "visualObject": "Analytical and finite-element contour overlays",
+      "motionPurpose": "Reveal residual temperature only where the two fields differ.",
+      "stepDetail": "Evaluate both temperature fields on the same domain; subtract them; display the temperature-difference map.",
+      "transitionBridge": "The verified pair supplies the matched computational-time comparison in M08.",
+      "minimalText": "RMSE 0.012 C"
+    },
+    {
+      "id": "M08",
+      "input": "Image-well and finite-element computational times for the reported verification simulations",
+      "operation": "Compare computational time",
+      "output": "A reported 67 percent reduction for the image-well method",
+      "validity": "The comparison is the wall-clock result reported for the paper's simulation setup, not a general complexity bound.",
+      "locator": "PDF page 12, Section 3.1 Assessment of the image-well method for BTES systems",
+      "sourceExcerpt": "the image‐well method reduced the computational time by 67% compared to the finite element model.",
+      "anchorTerms": [
+        "computational time",
+        "67%"
+      ],
+      "visualObject": "Matched finite-element and image-well runtime bars",
+      "motionPurpose": "Give the reported runtime reduction a dedicated comparison step.",
+      "stepDetail": "Align the two reported simulation runtimes and mark the 67 percent difference.",
+      "transitionBridge": "The verified efficient kernel enters Morris sampling in M09.",
+      "minimalText": "67% runtime reduction"
+    },
+    {
+      "id": "M09",
+      "input": "Feasible ranges for BTES model parameters",
+      "operation": "Sample Morris factors",
+      "output": "Sampled values for each Morris input factor",
+      "validity": "Results reflect the feasible ranges and sampling design adopted in the global sensitivity analysis.",
+      "locator": "PDF page 9, Section 2.4 Global sensitivity analysis",
+      "sourceExcerpt": "requires three steps for each parameter: (1) sampling each parameter",
+      "anchorTerms": [
+        "each parameter",
+        "sampling"
+      ],
+      "visualObject": "Morris parameter lattice",
+      "motionPurpose": "Select baseline points across each feasible parameter range.",
+      "stepDetail": "Select one value for every input parameter within its feasible range; retain the sampled factor vector.",
+      "transitionBridge": "The sampled factors define the perturbation matrix in M10.",
+      "minimalText": "Morris sampling"
+    },
+    {
+      "id": "M10",
+      "input": "Sampled parameter points and Morris step size",
+      "operation": "Construct perturbation matrix",
+      "output": "One-factor-at-a-time parameter combinations",
+      "validity": "Each trajectory changes one parameter per step according to the reported binary perturbation design.",
+      "locator": "PDF pages 9-10, Section 2.4 Global sensitivity analysis",
+      "sourceExcerpt": "within its feasible range, (2) constructing a perturbation matrix with columns and",
+      "anchorTerms": [
+        "feasible range",
+        "perturbation matrix"
+      ],
+      "visualObject": "Binary perturbation matrix",
+      "motionPurpose": "Turn sampled factors into ordered single-axis changes.",
+      "stepDetail": "Illuminate one changing matrix column in each successive row.",
+      "transitionBridge": "Every controlled change yields one temperature effect.",
+      "minimalText": "Perturb one factor"
+    },
+    {
+      "id": "M11",
+      "input": "One-factor-at-a-time parameter combinations",
+      "operation": "Compute temperature outputs",
+      "output": "Temperature predictions for each sampled parameter combination",
+      "validity": "Equation 9 is evaluated under the paper's 10 x 10 BHE arrangement, selected parameter ranges, 90-day season, and central observation point.",
+      "locator": "PDF page 10, Section 2.4 Morris analysis application, Equation 9",
+      "sourceExcerpt": "the temperature predictions (output) are computed using Equation (9).",
+      "anchorTerms": [
+        "temperature predictions",
+        "Equation (9)"
+      ],
+      "visualObject": "Sampled BTES temperature outputs",
+      "motionPurpose": "Run each Morris parameter combination through the verified temperature kernel.",
+      "stepDetail": "Evaluate Equation 9 once for every row of the Morris design.",
+      "transitionBridge": "Paired sampled temperatures provide the differences used by Equation 20.",
+      "minimalText": "Sampled temperatures"
+    },
+    {
+      "id": "M12",
+      "input": "Temperature predictions for each sampled parameter combination",
+      "operation": "Calculate elementary effects",
+      "output": "Elementary effects for each parameter across Morris samples",
+      "validity": "Equation 20 defines each elementary effect as the temperature-output change divided by the Morris step size.",
+      "locator": "PDF page 10, Section 2.4 Global sensitivity analysis, Equation 20",
+      "sourceExcerpt": "rows containing 1 and 0, and (3) evaluating the elementary effect on temperature",
+      "anchorTerms": [
+        "elementary effect",
+        "temperature"
+      ],
+      "visualObject": "Elementary-effect distributions by parameter",
+      "motionPurpose": "Convert each paired temperature change into one elementary-effect value.",
+      "stepDetail": "Form one Equation 20 difference quotient for every Morris perturbation.",
+      "transitionBridge": "The collection of effects for each parameter becomes the input to the absolute-mean calculation in M13.",
+      "minimalText": "Elementary effects"
+    },
+    {
+      "id": "M13",
+      "input": "Elementary effects for each parameter across Morris samples",
+      "operation": "Calculate absolute mean indicator",
+      "output": "Mu-star overall-effect coordinate for each parameter",
+      "validity": "Equation 21 defines mu-star as the absolute mean of the sampled elementary effects.",
+      "locator": "PDF page 10, Section 2.4 Global sensitivity analysis, Equation 21",
+      "sourceExcerpt": "μ* signifies the overall effect of input parameters on the system",
+      "anchorTerms": [
+        "overall effect",
+        "input parameters"
+      ],
+      "visualObject": "Elementary-effect magnitudes condensing onto the Morris horizontal axis",
+      "motionPurpose": "Assign each parameter its overall-effect coordinate without mixing in variability.",
+      "stepDetail": "Take the absolute mean of each parameter's elementary effects and place the result on the mu-star axis.",
+      "transitionBridge": "The same elementary effects supply the standard-deviation coordinate in M14.",
+      "minimalText": "Absolute mean effect"
+    },
+    {
+      "id": "M14",
+      "input": "Elementary effects and their parameter-specific absolute means",
+      "operation": "Calculate standard deviation indicator",
+      "output": "Sigma interaction coordinate for each parameter",
+      "validity": "Equation 22 defines sigma from elementary-effect variability and the paper interprets it as nonlinear interaction with other parameters.",
+      "locator": "PDF page 10, Section 2.4 Global sensitivity analysis, Equation 22",
+      "sourceExcerpt": "σ represents the nonlinear interaction between the input parameter and others.",
+      "anchorTerms": [
+        "nonlinear interaction",
+        "input parameter"
+      ],
+      "visualObject": "Elementary-effect spread rising onto the Morris vertical axis",
+      "motionPurpose": "Assign each parameter its variability coordinate separately from overall effect.",
+      "stepDetail": "Calculate each parameter's elementary-effect standard deviation and place the result on the sigma axis.",
+      "transitionBridge": "The completed Morris coordinates give way to seasonal cycling in M15.",
+      "minimalText": "Effect standard deviation"
+    },
+    {
+      "id": "M15",
+      "input": "Heating and cooling start times with fixed BHE heat rates",
+      "operation": "Apply temporal superposition",
+      "output": "Seasonal charging and discharging temperature history",
+      "validity": "The superposition assumes the linear conductive kernel and piecewise heat-rate transitions used by the paper.",
+      "locator": "PDF page 10, Section 2.5 Model application",
+      "sourceExcerpt": "phase transitions in BHEs are managed using temporal superposition to Equation (9). For example, T (q, t) indicates the heating phase",
+      "anchorTerms": [
+        "temporal superposition",
+        "heating phase"
+      ],
+      "visualObject": "Signed thermal pulse timeline",
+      "motionPurpose": "Build cooling and reheating from shifted copies of the kernel response.",
+      "stepDetail": "Add signed response curves at each operating-phase transition.",
+      "transitionBridge": "Seasonal operation can now be tested inside alternative perimeter shapes in M16.",
+      "minimalText": "Seasonal cycles"
+    },
+    {
+      "id": "M16",
+      "input": "Quadrilateral, octagonal, dodecagonal, and hexadecagonal insulated boundaries",
+      "operation": "Compare boundary geometries",
+      "output": "Shape-dependent charging and discharging temperature histories",
+      "validity": "The comparison is limited to the four boundary geometries and parameter scenarios evaluated in the paper.",
+      "locator": "PDF pages 10-11, Section 2.5 Model application; Figure 5B",
+      "sourceExcerpt": "four different boundary shapes are evaluated",
+      "anchorTerms": [
+        "boundary shapes",
+        "evaluated"
+      ],
+      "visualObject": "Four boundary outlines beside their charging and discharging temperature traces",
+      "motionPurpose": "Compare the reported thermal response of the four evaluated geometries.",
+      "stepDetail": "Hold operating conditions fixed; evaluate each boundary shape; overlay the four temperature histories.",
+      "transitionBridge": "The boundary-driven temperature difference becomes an energy quantity in M17.",
+      "minimalText": "Boundary-shape response"
+    },
+    {
+      "id": "M17",
+      "input": "Average bounded-versus-unbounded temperature difference with volumetric heat capacity, storage area, and BHE length",
+      "operation": "Calculate energy increment",
+      "output": "An additional 3.24 to 16.2 MWh per year for the reported BHE lengths",
+      "validity": "The calculation applies the paper's octagonal boundary area and the two stated BHE lengths to the mean temperature difference.",
+      "locator": "PDF page 14, Section 3.4 Case study with heating and cooling cycles",
+      "sourceExcerpt": "By multiplying the average temperature difference by the volumetric capacity, the area of the",
+      "anchorTerms": [
+        "average temperature difference",
+        "volumetric capacity"
+      ],
+      "visualObject": "Average temperature difference converting into two annual energy bars",
+      "motionPurpose": "Own the conversion from the modeled temperature difference to the reported storage increment.",
+      "stepDetail": "Multiply the mean temperature difference by volumetric heat capacity, storage area, and each reported BHE length.",
+      "transitionBridge": "The owned runtime and energy results return to the insulated Drake Landing field.",
+      "minimalText": "3.24-16.2 MWh/year"
+    }
+  ],
+  "symbols": [
+    {
+      "latex": "T(r,t)",
+      "firstUseOwner": "B01",
+      "visualObject": "Radial temperature field",
+      "meaning": "Ground temperature around a BHE",
+      "unit": "degrees C",
+      "transition": "Rescale this field to theta in M02."
+    },
+    {
+      "latex": "q",
+      "firstUseOwner": "B01",
+      "visualObject": "BHE heat-rate arrow",
+      "meaning": "Constant line heat flux",
+      "unit": "W/m",
+      "transition": "Reverse the arrow during temporal superposition."
+    },
+    {
+      "latex": "theta",
+      "firstUseOwner": "M02",
+      "visualObject": "Dimensionless temperature contour",
+      "meaning": "Dimensionless temperature response",
+      "unit": "dimensionless",
+      "transition": "Duplicate the contour at every real and image node."
+    },
+    {
+      "latex": "Fo=alpha t/r_b^2",
+      "firstUseOwner": "M02",
+      "visualObject": "Dimensionless time dial",
+      "meaning": "Fourier number",
+      "unit": "dimensionless",
+      "transition": "Advance the dial to animate transient diffusion."
+    },
+    {
+      "latex": "w=(omega_1,...,omega_N)",
+      "firstUseOwner": "M03",
+      "visualObject": "Image-weight vector",
+      "meaning": "Boundary image-well weights",
+      "unit": "dimensionless",
+      "transition": "Solve and attach the weights to collocation nodes in M05."
+    },
+    {
+      "latex": "mu^*",
+      "firstUseOwner": "M13",
+      "visualObject": "Horizontal Morris coordinate",
+      "meaning": "Absolute mean elementary effect",
+      "unit": "output unit per parameter unit",
+      "transition": "Use as the horizontal ranking axis."
+    },
+    {
+      "latex": "sigma",
+      "firstUseOwner": "M14",
+      "visualObject": "Vertical Morris coordinate",
+      "meaning": "Standard deviation of elementary effects",
+      "unit": "output unit per parameter unit",
+      "transition": "Use as the interaction and nonlinearity axis."
+    }
+  ],
+  "return": {
+    "visualObject": "Drake Landing BHE field inside its insulated boundary with seasonal temperature contours and a finite-element residual inset",
+    "claim": "For the reported conductive BTES cases, image-well boundary collocation delivers finite-element-comparable temperatures with substantially lower computational cost and exposes boundary-related storage differences.",
+    "claimBoundary": "The result does not include finite BHE bottoms, seasonal surface forcing, unsaturated thermal coupling, or buoyancy-driven flow, so those settings require a more complete model.",
+    "locator": "PDF page 16, Section 4 Conclusions and Section 3.5 Advantages and limitations of Image-Well method",
+    "sourceExcerpt": "this solution demonstrates comparable accuracy while significantly reducing computational cost by 67%. Additionally, compared to the existing infinite line source solution",
+    "minimalText": "Accurate field, 67% less computation"
+  },
+  "visual": {
+    "systemType": "thermal_borehole",
+    "primaryObject": "BHE cluster inside an irregular insulated boundary",
+    "accentObject": "Weighted image wells on boundary collocation nodes",
+    "measuredQuantity": "Transient ground temperature",
+    "geometryNotes": "Render BHEs as vertical line sources in plan view, discretize the polygonal insulation perimeter with image nodes, morph temperature halos into a weighted continuous field, and use a timeline for seasonal superposition."
+  }
+}

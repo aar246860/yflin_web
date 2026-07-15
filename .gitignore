@@ -39,6 +39,7 @@ research-videos/source-text/
 research-videos/papers/
 research-videos/*/release*/
 research-videos/*/media/
+research-videos/render-pilot*/
 docs/research-video-source-availability-*.md
 docs/research-video-render-summary-*.json
 preview-*.log

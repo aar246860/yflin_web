@@ -1,0 +1,195 @@
+{
+  "schemaVersion": 1,
+  "id": "2026-01-4",
+  "doi": "10.1016/j.jhydrol.2025.134525",
+  "title": "Reply to the Comment by Anderson and Bakker on \"Faulty Assumptions: Groundwater Modeling Through Anisotropic Fault Zones\" by Lin and Lin (2025)",
+  "sourceArtifact": "research-videos/source-pdfs/2026-01-4.pdf",
+  "research": {
+    "question": "Is the transient zero-thickness interface for an anisotropic fault a defensible first-order representation, and over what fault-width, time, and anisotropy regimes does it approximate a finite-width fault zone?",
+    "system": "A pumped aquifer-fault-aquifer system in which a finite-width anisotropic fault is reduced to an imperfect zero-thickness interface carrying drawdown and normal-flux jumps.",
+    "inputData": "Analytical drawdown fields for fault-width ratios 0.1, 1, and 10, anisotropy ratios 0.1, 1, and 10, dimensionless times 10, 10^3, and 10^6, plus late-time fields at dimensionless time 10^12.",
+    "method": "Re-derive the interface from a first-order thin-layer expansion, show how the cross-fault gradient is retained through a cross-sectional average, and benchmark the interface solution against a transient full two-dimensional three-zone reference.",
+    "benchmark": "The full two-dimensional transient aquifer-fault-aquifer solution, with the Anderson (2006) steady-state solution included in late-time comparisons.",
+    "uncertainty": "Approximation error is expressed as RMSE and as kernel-density distributions of absolute relative drawdown error, with 5% and 10% engineering tolerances.",
+    "conclusion": "The interface and Anderson formulations are first-order thin-layer approximations; the transient interface generally stays within 5-10% for faults no wider than the well-to-fault distance, while thick faults and very early strongly anisotropic transients can require an explicit two-dimensional model."
+  },
+  "narrative": {
+    "throughline": "Collapse a finite anisotropic fault into an interface, then make the discarded thickness visible as a measured error rather than an unexamined assumption.",
+    "audienceStartingPoint": "The audience can read pumping-induced drawdown contours and understands that a narrow fault can redirect groundwater flow.",
+    "stakes": "Using an interface outside its thin-layer regime can bias near-fault drawdown, whereas always resolving the fault as a two-dimensional subdomain adds unnecessary complexity.",
+    "resolution": "The derivation identifies the approximation order and the benchmark maps the practical boundary between interface and explicit-fault models."
+  },
+  "background": [
+    {
+      "id": "B01",
+      "premise": "The comment raises three issues concerning the scope, steady-state equivalence, and unquantified transient error of the anisotropic-fault interface.",
+      "visibleEvidence": "Three callouts attach to the same fault cross-section: wording scope, conductive-fault equivalence, and approximation error.",
+      "whyNow": "These are the three questions the reply must resolve before its derivation or benchmark has meaning.",
+      "boundary": "The critique is restricted to transient anisotropic fault scenarios, not all earlier interface formulas.",
+      "locator": "PDF page 1, Abstract and Section 1",
+      "sourceExcerpt": "The comment raises three issues: first, our use of the phrase",
+      "anchorTerms": ["comment", "three issues"],
+      "visualObject": "A pumped aquifer split by a finite fault, with three question markers anchored to the interface.",
+      "motionPurpose": "Reveal the three challenged claims one at a time on a single scientific object.",
+      "stepDetail": "Show the well and fault; expose the scope question; add the steady conductive limit; finish with an empty error gauge.",
+      "transitionBridge": "The empty error gauge becomes the quantitative target of the later benchmark.",
+      "minimalText": "Three questions"
+    },
+    {
+      "id": "B02",
+      "premise": "A thin layer can be represented by a zero-thickness fault interface that retains leading-order fault-width effects and omits higher-order contributions.",
+      "visibleEvidence": "A finite fault strip narrows into a line while first-order resistance, conductance, storage, and tangential-flow traces remain attached.",
+      "whyNow": "The viewer must see what survives the geometric collapse before judging whether one-dimensional interface behavior was assumed or derived.",
+      "boundary": "The reduction is first order by design and is not an exact replacement for a finite-width two-dimensional domain.",
+      "locator": "PDF page 2, Section 3.1, Equations (1)-(4b) and Figure 1",
+      "sourceExcerpt": "A thin layer, first order re-derivation shows that both our interface and the Anderson",
+      "anchorTerms": ["thin layer", "interface"],
+      "visualObject": "A finite-width fault strip collapsing onto a Wentzell-Robin interface with retained first-order traces.",
+      "motionPurpose": "Make approximation order visible as geometry disappears but leading contributions persist.",
+      "stepDetail": "Narrow the strip continuously; keep the leading interface traces at full opacity; fade the higher-order thickness bands.",
+      "transitionBridge": "The surviving traces become the inputs to the thin-layer derivation.",
+      "minimalText": "First order"
+    }
+  ],
+  "methods": [
+    {
+      "id": "M01",
+      "input": "The full two-dimensional drawdown field inside a fault of width w_f.",
+      "operation": "Expand the fault drawdown about one interface",
+      "output": "A Taylor series ordered by powers of w_f.",
+      "validity": "The fault width is small relative to the adjacent-aquifer characteristic length.",
+      "locator": "PDF page 2, Section 3.1, Equation (2)",
+      "sourceExcerpt": "Consider the drawdown within the fault is expanded in a Taylor series",
+      "anchorTerms": ["drawdown within the fault", "Taylor series"],
+      "visualObject": "A drawdown profile across the fault with value, slope, and curvature terms peeled into separate layers.",
+      "motionPurpose": "Turn the cross-fault profile into thickness-ordered contributions.",
+      "stepDetail": "Pin the profile at the left interface; draw its tangent; separate the value, linear, and curvature contributions by powers of fault width.",
+      "transitionBridge": "The ordered layers permit the higher-order geometry to be removed explicitly.",
+      "minimalText": "Expand in w_f"
+    },
+    {
+      "id": "M02",
+      "input": "The thickness-ordered Taylor expansion of fault drawdown.",
+      "operation": "Select first-order thickness terms",
+      "output": "A Wentzell dynamic flux-jump condition on the zero-thickness interface.",
+      "validity": "Terms of order w_f^2 and higher are consistently omitted in the thin-layer limit.",
+      "locator": "PDF page 2, Section 3.1, Equations (3)-(4b)",
+      "sourceExcerpt": "This is equivalent to the imperfect interface condition for the flux jump",
+      "anchorTerms": ["interface condition", "flux jump"],
+      "visualObject": "The linear Taylor layer folds onto the interface and becomes a normal-flux jump bracket.",
+      "motionPurpose": "Show that the interface condition is the visible remainder of the truncation.",
+      "stepDetail": "Fade the curvature layer; preserve the value and slope layers; fold them onto the interface; attach the resulting flux-jump bracket.",
+      "transitionBridge": "The bracket raises the remaining question of whether tangential variation was lost.",
+      "minimalText": "Retain O(w_f)"
+    },
+    {
+      "id": "M03",
+      "input": "The full fault-zone flow equation across the interval from 0 to w_f.",
+      "operation": "Integrate the equation across the fault width",
+      "output": "A conductive-fault boundary whose averaged drawdown retains shear-flux along the interface.",
+      "validity": "The integrated balance preserves the tangential term through the average drawdown even after the width is collapsed.",
+      "locator": "PDF page 2, Section 3.2, Equation (5) and Figure 2",
+      "sourceExcerpt": "the conductive-fault boundary discussed in Anderson (2006) also characterizes the shear-flux along the",
+      "anchorTerms": ["conductive-fault boundary", "shear-flux"],
+      "visualObject": "Tangential gradient traces on both fault faces merge into a symmetric cross-sectional average trace.",
+      "motionPurpose": "Reveal where the apparently missing two-dimensional information resides in the interface variable.",
+      "stepDetail": "Sweep a bracket across the fault width; collect the two face gradients; merge them into the average-drawdown curve along the interface.",
+      "transitionBridge": "The derived interface can now be tested against a fault that retains its full width.",
+      "minimalText": "Gradient retained"
+    },
+    {
+      "id": "M04",
+      "input": "A three-zone aquifer-fault-aquifer domain with finite fault width, anisotropic coefficients, pumping, initial conditions, and interface continuity.",
+      "operation": "Solve the transient full two-dimensional reference problem",
+      "output": "A finite-width reference drawdown field for the aquifer and fault zones.",
+      "validity": "The reference explicitly resolves two-dimensional flow within the fault and enforces drawdown and normal-flux continuity at both fault faces.",
+      "locator": "PDF pages 3-4, Section 3.3.3, Equations (7)-(10)",
+      "sourceExcerpt": "To validate this first-order approximation, we applied a full 2D solution of the three-zone model as a reference",
+      "anchorTerms": ["full 2D solution", "three-zone model"],
+      "visualObject": "The interface line reopens into a finite fault subdomain carrying a resolved two-dimensional drawdown field.",
+      "motionPurpose": "Produce an independent comparison field that does not discard fault width.",
+      "stepDetail": "Reopen the interface; restore the fault material coefficients; enforce continuity at both faces; propagate pumping drawdown through all three zones.",
+      "transitionBridge": "The resolved field aligns beside the interface field for pointwise comparison.",
+      "minimalText": "Full 2D reference"
+    },
+    {
+      "id": "M05",
+      "input": "Paired interface and full-reference drawdown values over all grid points, times, width ratios, and anisotropy ratios.",
+      "operation": "Compute drawdown RMSE",
+      "output": "Scenario-specific RMSE values for interface-to-reference drawdown differences.",
+      "validity": "The paper computes RMSE over the same co-registered spatial comparison interval for each thickness and anisotropy scenario.",
+      "locator": "PDF pages 4-5, Section 3.3.4, Figures 3-7",
+      "sourceExcerpt": "root mean square error (RMSE) values computed over",
+      "anchorTerms": ["root mean square error", "computed"],
+      "visualObject": "Co-registered interface and reference contours collapsing into one RMSE marker for each scenario",
+      "motionPurpose": "Reduce each paired field comparison to a scenario-level discrepancy measure.",
+      "stepDetail": "Align the two fields; form pointwise differences; square them; average over the comparison grid; reveal the RMSE marker.",
+      "transitionBridge": "Pointwise relative errors from all scenarios are assembled into distributions in M06.",
+      "minimalText": "Drawdown RMSE"
+    },
+    {
+      "id": "M06",
+      "input": "Absolute relative drawdown errors from all grid points times and anisotropy scenarios.",
+      "operation": "Estimate error densities",
+      "output": "Kernel-density error distributions against 5% and 10% tolerances.",
+      "validity": "The paper aggregates the pointwise error dataset across the stated spatial grid and transient scenarios before estimating its density.",
+      "locator": "PDF pages 5-6, Section 3.3.5, Figure 8",
+      "sourceExcerpt": "kernel density estimates of the absolute relative drawdown",
+      "anchorTerms": ["kernel density estimates", "relative drawdown"],
+      "visualObject": "Pointwise error clouds resolving into density curves crossed by 5% and 10% tolerance lines",
+      "motionPurpose": "Expose what fraction of the tested domain lies within each engineering tolerance.",
+      "stepDetail": "Gather the pointwise errors; form one density per width ratio; draw the 5% line; draw the 10% line; shade the accepted mass.",
+      "transitionBridge": "The threshold crossings map directly back onto fault thickness and transient regime.",
+      "minimalText": "5% | 10%"
+    }
+  ],
+  "symbols": [
+    {
+      "latex": "w_f",
+      "firstUseOwner": "B02",
+      "visualObject": "Brace spanning the finite fault strip",
+      "meaning": "Physical fault-core width",
+      "unit": "L",
+      "transition": "The brace contracts with the fault strip and remains as a width label."
+    },
+    {
+      "latex": "\\alpha = w_f/L",
+      "firstUseOwner": "M04",
+      "visualObject": "Fault-width brace divided by the well-to-fault distance arrow",
+      "meaning": "Dimensionless fault-width ratio",
+      "unit": "dimensionless",
+      "transition": "The two geometric lengths transform into a ratio label beside the domain."
+    },
+    {
+      "latex": "s_D",
+      "firstUseOwner": "M04",
+      "visualObject": "Color field of dimensionless pumping drawdown",
+      "meaning": "Dimensionless drawdown",
+      "unit": "dimensionless",
+      "transition": "A color-scale swatch becomes the MathTex field label."
+    },
+    {
+      "latex": "e = |(s_{IF,D}-s_{Ref,D})/s_{Ref,D}|",
+      "firstUseOwner": "M05",
+      "visualObject": "Pointwise gap between aligned interface and reference drawdown values",
+      "meaning": "Absolute relative drawdown error",
+      "unit": "dimensionless",
+      "transition": "The visible pointwise gap moves to the numerator and the reference value becomes the denominator."
+    }
+  ],
+  "return": {
+    "visualObject": "The density curves and tolerance lines fold back onto the original finite fault, coloring thin and moderate widths as interface-suitable and the thick early-time anisotropic regime as explicit-2D territory.",
+    "claim": "For the tested parameter combinations, the first-order interface reproduces full two-dimensional drawdown within customary engineering tolerances over most of the domain when the fault-width ratio is at or below one.",
+    "claimBoundary": "Larger deviations occur for markedly thick faults and at very early times under strong anisotropy; the benchmark covers the paper's tested widths, times, anisotropy ratios, and flow assumptions rather than every natural fault.",
+    "locator": "PDF pages 5-7, Section 3.3.5, Figure 8, and Section 4",
+    "sourceExcerpt": "Larger deviations mainly arise at very early times under strong anisotropy or when the fault is markedly thick.",
+    "minimalText": "Thin: interface | Thick/early: 2D"
+  },
+  "visual": {
+    "systemType": "geophysical_field",
+    "primaryObject": "Pumped aquifer-fault-aquifer cross-section with a fault that transforms between finite width and an interface",
+    "accentObject": "Absolute-relative-error density with 5% and 10% tolerance lines",
+    "measuredQuantity": "Dimensionless drawdown and its approximation error",
+    "geometryNotes": "Keep the well and fault orientation fixed while the fault strip narrows to a line; preserve normal and tangential directions, compare co-registered drawdown fields, and return the error thresholds to the fault-width geometry."
+  }
+}

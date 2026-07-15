@@ -1,0 +1,407 @@
+{
+  "schemaVersion": 1,
+  "id": "2019-04-38",
+  "doi": "10.1029/2018WR023893",
+  "title": "Analysis of Unconfined Flow Induced by Constant Rate Pumping Based on the Lagging Theory",
+  "sourceArtifact": "research-videos/source-pdfs/2019-04-38.pdf",
+  "research": {
+    "question": "Can two lag times embedded in Darcy's law represent delayed capillary-fringe drainage during constant-rate pumping and improve unconfined-aquifer parameter estimates?",
+    "system": "A homogeneous anisotropic unconfined aquifer of finite saturated thickness, pumped by a partially penetrating finite-radius well with wellbore storage and observed at radial distances from the well.",
+    "inputData": "Constant-rate pumping-test drawdown records from Cape Cod, Massachusetts; Canadian Forces Base Borden, Ontario; and Saint Pardon de Conques, Gironde, together with site geometry and pumping conditions reported for those tests.",
+    "method": "Introduce flux and drawdown lag times into the free-surface condition, solve the resulting axisymmetric model by Laplace and Weber transforms with numerical inversion, examine normalized sensitivities, and estimate hydraulic and lag parameters by nonlinear least squares.",
+    "benchmark": "Compare predictions and field-data fits against the Neuman, Moench, Tartakovsky-Neuman, and Malama solutions using standard error of estimate and mean error.",
+    "uncertainty": "The two lag times are phenomenological parameters rather than direct unsaturated-zone measurements; fitted values vary with observation distance, and the Borden flux-lag trend is an explicit exception to the otherwise near-linear distance relation.",
+    "conclusion": "The two-lag model fits the three field data sets well, yields specific-yield estimates in laboratory-supported ranges, and attributes stronger drawdown sensitivity to the drawdown lag than to the flux lag."
+  },
+  "narrative": {
+    "throughline": "Follow an S-shaped pumping response from its delayed capillary-fringe mechanism, through a two-lag free-surface law, to field-calibrated drawdown curves and distance-dependent lag times.",
+    "audienceStartingPoint": "The audience knows that constant-rate pumping lowers an unconfined water table but may expect drainage to respond instantaneously.",
+    "stakes": "Treating gravity drainage as instantaneous can distort the intermediate-time response and produce anomalously small specific-yield estimates.",
+    "resolution": "Two distinct lag times make the delayed release visible, remain reducible to established free-surface models, and improve agreement with pumping-test observations."
+  },
+  "background": [
+    {
+      "id": "B01",
+      "premise": "Measured unconfined-aquifer drawdown commonly forms an S-shaped curve with early, intermediate, and late segments supplied by different storage mechanisms.",
+      "visibleEvidence": "A time-drawdown trace bends through three labeled segments as aquifer storage gives way to gravity drainage and later combined release.",
+      "whyNow": "The segmented curve is the observable phenomenon that the lagging model must explain.",
+      "boundary": "The segmentation describes constant-rate pumping in an unconfined aquifer, not every pumping configuration.",
+      "locator": "PDF page 1, Section 1 Introduction",
+      "sourceExcerpt": "continues long enough. The temporal distribution of measured drawdown data",
+      "anchorTerms": [
+        "measured drawdown",
+        "S‐shaped curve"
+      ],
+      "visualObject": "Three-segment time-drawdown curve beside a pumping well cross-section",
+      "motionPurpose": "Reveal the observed temporal structure before introducing a mechanism",
+      "stepDetail": "Trace the curve from the first segment through the delayed middle segment to the late segment while the contributing storage regions illuminate in sequence.",
+      "transitionBridge": "Hold on the intermediate bend and move upward to the capillary fringe that delays drainage.",
+      "minimalText": "Three drawdown segments"
+    },
+    {
+      "id": "B02",
+      "premise": "Capillary force retains pore water above a declining water table, so drainage takes time and requires an explicit time lag.",
+      "visibleEvidence": "Menisci in large and small pores drain at different suction levels while water remains temporarily stored above the falling water table.",
+      "whyNow": "This delayed release supplies the physical rationale for lagging the vertical flux and water-table response.",
+      "boundary": "The model summarizes capillary-fringe behavior phenomenologically rather than resolving a full variably saturated flow field.",
+      "locator": "PDF page 2, Section 1 Introduction",
+      "sourceExcerpt": "takes time to complete the drainage, and the time lag",
+      "anchorTerms": [
+        "takes time",
+        "time lag"
+      ],
+      "visualObject": "Falling water table with retained capillary water and pore-scale menisci",
+      "motionPurpose": "Make the delayed drainage mechanism spatially concrete",
+      "stepDetail": "Lower the water table first, keep water suspended in the capillary fringe, and release it progressively toward the aquifer.",
+      "transitionBridge": "Compress the pore-scale delay into two clocks attached to the free surface.",
+      "minimalText": "Drainage is delayed"
+    },
+    {
+      "id": "B03",
+      "premise": "Instantaneous complete drainage at the water table can fail to provide an accurate estimate of specific yield.",
+      "visibleEvidence": "An instantaneous-drainage model curve misses the delayed segment and points to a lower specific-yield estimate.",
+      "whyNow": "Parameter bias turns the drainage mechanism into a practical aquifer-test interpretation problem.",
+      "boundary": "The source states that failure may occur; it does not claim that every instantaneous-drainage fit is inaccurate.",
+      "locator": "PDF page 4, Section 2.1 Model Description",
+      "sourceExcerpt": "water table may sometimes fail to give an accurate estimate",
+      "anchorTerms": [
+        "instantaneous and complete drainage",
+        "accurate estimate of speciﬁc yield"
+      ],
+      "visualObject": "Two competing free-surface responses linked to contrasting specific-yield estimates",
+      "motionPurpose": "Connect a modeling assumption to an estimable hydraulic parameter",
+      "stepDetail": "Overlay instantaneous and delayed drainage responses, then highlight the specific-yield value associated with the mismatched curve.",
+      "transitionBridge": "Replace the instantaneous free-surface arrow with a lag-aware governing system.",
+      "minimalText": "Specific yield can be biased"
+    }
+  ],
+  "methods": [
+    {
+      "id": "M01",
+      "input": "Axisymmetric drawdown in a homogeneous anisotropic unconfined aquifer",
+      "operation": "Form unconfined flow equation",
+      "output": "A radial-vertical groundwater-flow equation for drawdown",
+      "validity": "The aquifer is treated as homogeneous and anisotropic with radial symmetry around the pumping well.",
+      "locator": "PDF page 3, Section 2.1 Model Description, Equation 1",
+      "sourceExcerpt": "governing equation describing the drawdown distribution in the unconﬁned aquifer",
+      "anchorTerms": [
+        "drawdown distribution",
+        "unconﬁned aquifer"
+      ],
+      "visualObject": "Cylindrical aquifer domain with radial and vertical derivative axes",
+      "motionPurpose": "Establish the field equation that all later boundary physics constrain",
+      "stepDetail": "Map radial and vertical conductivity terms onto the aquifer cross-section and expose the drawdown field inside it.",
+      "transitionBridge": "Move from the aquifer interior to the finite-radius pumping boundary.",
+      "minimalText": "Axisymmetric aquifer flow"
+    },
+    {
+      "id": "M02",
+      "input": "Pumping discharge at a partially penetrating finite-radius well",
+      "operation": "Apply wellbore boundary condition",
+      "output": "An inner flux condition containing wellbore storage",
+      "validity": "The storage term applies at the pumping well and uses the modeled pumping-well water level.",
+      "locator": "PDF page 4, Section 2.1 Model Description, Equation 3",
+      "sourceExcerpt": "term of equation (3) represents the water ﬂux across the",
+      "anchorTerms": [
+        "water ﬂux across the wellbore",
+        "wellbore storage"
+      ],
+      "visualObject": "Pumping-well cylinder with an inflow arrow and a changing internal water column",
+      "motionPurpose": "Separate aquifer inflow from water released by the well casing",
+      "stepDetail": "Route part of the imposed discharge through the aquifer wall and the remainder through the changing well water level.",
+      "transitionBridge": "Lift the view from the well screen to the moving free surface.",
+      "minimalText": "Include wellbore storage"
+    },
+    {
+      "id": "M03",
+      "input": "Vertical Darcy flux and aquifer drawdown at the free surface",
+      "operation": "Apply lagged Darcy relation",
+      "output": "A free-surface relation with flux lag tau_q and drawdown lag tau_s",
+      "validity": "tau_q represents rapid capillary-fringe release linked to vertical hydraulic gradient; tau_s represents delayed excess-storage drainage linked to capillary suction.",
+      "locator": "PDF page 4, Section 2.1 Model Description, Equation 7b",
+      "sourceExcerpt": "lag times [T] of the ﬂux and aquifer drawdown, respectively.",
+      "anchorTerms": [
+        "lag times",
+        "ﬂux and aquifer drawdown"
+      ],
+      "visualObject": "Free surface carrying separate flux and drawdown clock markers",
+      "motionPurpose": "Assign distinct physical roles to the two delay parameters",
+      "stepDetail": "Offset the vertical-flux arrow by tau_q and the free-surface displacement by tau_s on a common time axis.",
+      "transitionBridge": "Expand the delayed quantities into a tractable first-order relation.",
+      "minimalText": "Two lag times"
+    },
+    {
+      "id": "M04",
+      "input": "Time-shifted flux and drawdown terms in the lagged free-surface relation",
+      "operation": "Expand lag relation",
+      "output": "A first-order Taylor representation of the delayed relation",
+      "validity": "Only the first-order Taylor representation is retained.",
+      "locator": "PDF page 4, Section 2.1 Model Description, Equation 8",
+      "sourceExcerpt": "Employing the Taylor series expansion, the ﬁrst‐order representation of equation",
+      "anchorTerms": [
+        "Taylor series expansion",
+        "ﬁrst‐order representation"
+      ],
+      "visualObject": "Shifted time traces collapsing into value and first-derivative terms",
+      "motionPurpose": "Turn conceptual delays into solvable local terms",
+      "stepDetail": "Replace each shifted quantity with its present value plus its lag-weighted temporal derivative.",
+      "transitionBridge": "Insert the first-order lag law into the water-table kinematic condition.",
+      "minimalText": "First-order lag expansion"
+    },
+    {
+      "id": "M05",
+      "input": "First-order lag representation and free-surface mass balance",
+      "operation": "Derive free-surface equation",
+      "output": "A linearized free-surface equation containing tau_q and tau_s",
+      "validity": "The boundary reduces to the Neuman form when both lag times vanish and to the cited Moench form under its stated parameter correspondence.",
+      "locator": "PDF page 5, Section 2.1 Model Description, Equation 9",
+      "sourceExcerpt": "free surface equation (i.e., Kz∂s/∂z = − Sy∂s/∂t) if neglecting",
+      "anchorTerms": [
+        "linearized free surface equation",
+        "lagging effect"
+      ],
+      "visualObject": "Water-table boundary equation with two highlighted lag coefficients",
+      "motionPurpose": "Show where the lag physics enters the aquifer model",
+      "stepDetail": "Substitute the expanded lag law into the free-surface balance and retain the resulting linear boundary terms.",
+      "transitionBridge": "Rescale the physical domain and parameters for transform solution.",
+      "minimalText": "Lag-aware free surface"
+    },
+    {
+      "id": "M06",
+      "input": "Dimensional drawdown variables geometry conductivities storage terms and lag times",
+      "operation": "Normalize model variables",
+      "output": "A dimensionless pumping model and dimensionless lag parameters",
+      "validity": "The definitions follow Equation 10 and preserve radial anisotropy and well geometry.",
+      "locator": "PDF page 5, Section 2.2 Dimensionless Solution in Laplace Domain, Equation 10",
+      "sourceExcerpt": "Domain The dimensionless variables and parameters are deﬁned as follows:",
+      "anchorTerms": [
+        "dimensionless variables",
+        "parameters"
+      ],
+      "visualObject": "Dimensional symbols passing through a scaling frame into dimensionless symbols",
+      "motionPurpose": "Consolidate scales before applying integral transforms",
+      "stepDetail": "Scale drawdown, radius, depth, time, conductivities, storage, and both lag times according to Equation 10.",
+      "transitionBridge": "Send the dimensionless equations into Laplace-time and Weber-radius domains.",
+      "minimalText": "Dimensionless system"
+    },
+    {
+      "id": "M07",
+      "input": "Dimensionless radial-vertical equations and boundary conditions",
+      "operation": "Transform temporal equations",
+      "output": "Governing equations represented in the Laplace parameter p",
+      "validity": "Appendix A defines the Laplace transform and maps first time derivatives to multiplication by p after applying the initial conditions.",
+      "locator": "PDF page 13, Appendix A, Equations (A1)-(A3)",
+      "sourceExcerpt": "The Laplace transform, its inverse transform, and property of the ﬁrst derivative",
+      "anchorTerms": [
+        "Laplace transform",
+        "first derivative"
+      ],
+      "visualObject": "Time-dependent equations folding onto a p-axis",
+      "motionPurpose": "Isolate the temporal transform used in the semianalytical solution",
+      "stepDetail": "Transform each time derivative into the Laplace parameter p.",
+      "transitionBridge": "The Laplace-domain equations still retain finite-radius radial structure.",
+      "minimalText": "Laplace p-domain"
+    },
+    {
+      "id": "M08",
+      "input": "Laplace-domain radial equations with a finite-radius well boundary",
+      "operation": "Transform radial equations",
+      "output": "Drawdown and well-level amplitudes in the Laplace-Weber domain",
+      "validity": "The Weber transform accommodates cylindrical lower boundaries of Dirichlet Neumann or Robin type.",
+      "locator": "PDF page 13, Appendix A, Equations (A4)-(A6); PDF page 5, Equations (17a)-(17b)",
+      "sourceExcerpt": "the Weber transform, its inverse transform, and property for the Neumann‐type boundary condition are respectively written as",
+      "anchorTerms": [
+        "Weber transform",
+        "boundary condition"
+      ],
+      "visualObject": "Finite-radius radial profiles folding onto Weber parameter a",
+      "motionPurpose": "Map cylindrical radius independently of the preceding time transform",
+      "stepDetail": "Transform the radial equations with the Weber kernel.",
+      "transitionBridge": "The solved amplitudes are ready for inverse radial transformation.",
+      "minimalText": "Weber a-domain"
+    },
+    {
+      "id": "M09",
+      "input": "Transformed drawdown solution in Weber space",
+      "operation": "Transform Weber solution",
+      "output": "A radial drawdown integral in the Laplace domain",
+      "validity": "The inverse Weber expression is evaluated over the transform variable as given in Equation 18.",
+      "locator": "PDF page 6, Section 2.2 Dimensionless Solution in Laplace Domain, Equation 18",
+      "sourceExcerpt": "the inverse Weber transform, the drawdown solution in Laplace domain",
+      "anchorTerms": [
+        "inverse Weber transform",
+        "drawdown solution"
+      ],
+      "visualObject": "Weber spectrum integrating back into concentric radial drawdown rings",
+      "motionPurpose": "Recover spatial drawdown before recovering physical time",
+      "stepDetail": "Integrate the transformed amplitudes against the Weber kernel to restore radial position.",
+      "transitionBridge": "Carry the radial solution into numerical inversion of the remaining Laplace coordinate.",
+      "minimalText": "Recover radial drawdown"
+    },
+    {
+      "id": "M10",
+      "input": "Radial drawdown solution in the Laplace domain",
+      "operation": "Transform Laplace solution",
+      "output": "Transient drawdown in the time domain",
+      "validity": "The paper uses the Crump algorithm for numerical Laplace inversion and numerical quadrature for the radial integral.",
+      "locator": "PDF page 6, Section 2.2 Dimensionless Solution in Laplace Domain, Equation 18",
+      "sourceExcerpt": "the time domain is obtained by numerically inverting equation (18)",
+      "anchorTerms": [
+        "drawdown",
+        "time domain"
+      ],
+      "visualObject": "Laplace-domain response resolving into a transient time-drawdown curve",
+      "motionPurpose": "Return the semianalytical solution to the observable time axis",
+      "stepDetail": "Apply Crump inversion to each observation location and reveal the resulting temporal response.",
+      "transitionBridge": "Perturb each parameter around the recovered solution to inspect response sensitivity.",
+      "minimalText": "Transient drawdown"
+    },
+    {
+      "id": "M11",
+      "input": "Transient solution and each hydraulic or lag parameter P_k",
+      "operation": "Calculate sensitivity coefficients",
+      "output": "Dimensionless sensitivity curves X_k for drawdown",
+      "validity": "The derivative uses a forward finite difference with Delta P_k set to 10^-3 P_k.",
+      "locator": "PDF page 7, Section 3.2 Sensitivity Analysis, Equations 25-26",
+      "sourceExcerpt": "forward ﬁnite difference formula is used to approximate the ﬁrst",
+      "anchorTerms": [
+        "forward ﬁnite difference",
+        "ﬁrst derivative"
+      ],
+      "visualObject": "Parameter perturbation controls feeding a family of normalized sensitivity curves",
+      "motionPurpose": "Rank which parameters most strongly alter temporal drawdown",
+      "stepDetail": "Perturb one parameter by 10^-3 of its value, evaluate the drawdown difference, and scale the derivative by that parameter.",
+      "transitionBridge": "Use the sensitivity-informed model to estimate parameters from field curves.",
+      "minimalText": "Normalized sensitivity"
+    },
+    {
+      "id": "M12",
+      "input": "Four observed drawdown series from the Cape Cod constant-rate pumping test",
+      "operation": "Fit aquifer parameters",
+      "output": "Cape Cod hydraulic parameter estimates with SEE and ME for four observation wells",
+      "validity": "The five solutions are coupled to the Levenberg-Marquardt algorithm and Table 1 reports Cape Cod estimates and prediction errors.",
+      "locator": "PDF pages 7-9, Section 3.3 Pumping Test Data Analysis: Cape Cod Site, Table 1 and Figure 4",
+      "sourceExcerpt": "Table 1 lists the aquifer parameters estimated by the ﬁve",
+      "anchorTerms": [
+        "aquifer parameters",
+        "Levenberg Marquardt algorithm"
+      ],
+      "visualObject": "Four Cape Cod observation-well panels with five fitted model curves",
+      "motionPurpose": "Test whether the lagged model explains the Cape Cod pumping response",
+      "stepDetail": "Fit the five solutions to the four Cape Cod observation-well series.",
+      "transitionBridge": "The same five-solution fit is applied independently to the Borden observations.",
+      "minimalText": "Cape Cod field test"
+    },
+    {
+      "id": "M13",
+      "input": "Four observed drawdown series from the Canadian Forces Base Borden constant-rate pumping test",
+      "operation": "Fit Borden parameters",
+      "output": "Borden hydraulic and lag parameter estimates with SEE and ME for four piezometers",
+      "validity": "The five solutions used for Cape Cod are fitted to the digitized Borden records; Table 2 and Figure 5 report estimates and fit behavior, including the early WD1A limitation.",
+      "locator": "PDF pages 9-11, Section 3.4 Pumping Test Data Analysis: Borden Site, Table 2 and Figure 5",
+      "sourceExcerpt": "The recorded drawdown data are analyzed based on the same solutions as those used for the Cape Cod site.",
+      "anchorTerms": ["recorded drawdown data", "Cape Cod site"],
+      "visualObject": "Four Borden piezometer panels with five fitted model curves",
+      "motionPurpose": "Estimate the Borden aquifer and lag parameters as an independent field operation.",
+      "stepDetail": "Fit the five solutions to WD1A, WD1B, WD2A, and WD4A.",
+      "transitionBridge": "A separate two-well fit owns the Saint Pardon evidence.",
+      "minimalText": "Borden field test"
+    },
+    {
+      "id": "M14",
+      "input": "Drawdown series from the 10 m and 30 m Saint Pardon de Conques observation wells",
+      "operation": "Fit Saint Pardon parameters",
+      "output": "Saint Pardon hydraulic and lag parameter estimates with SEE and ME for both wells",
+      "validity": "The estimates and prediction errors are those reported in Table 3; Figure 6 shows the fit differences at 10 m and 30 m.",
+      "locator": "PDF pages 11-12, Section 3.5 Pumping Test Data Analysis: Saint Pardon de Conques Site, Table 3 and Figure 6",
+      "sourceExcerpt": "The estimated parameters are listed in Table 3.",
+      "anchorTerms": ["estimated parameters", "Table 3"],
+      "visualObject": "Two Saint Pardon observation-well panels with five fitted model curves",
+      "motionPurpose": "Estimate the Saint Pardon aquifer and lag parameters as its own field operation.",
+      "stepDetail": "Fit the five solutions independently to the 10 m and 30 m records.",
+      "transitionBridge": "The Cape Cod, Borden, and Saint Pardon fit outputs now return together to the field aquifers.",
+      "minimalText": "Saint Pardon field test"
+    }
+  ],
+  "symbols": [
+    {
+      "latex": "s(r,z,t)",
+      "firstUseOwner": "M01",
+      "visualObject": "Drawdown field inside the aquifer",
+      "meaning": "Aquifer drawdown",
+      "unit": "L",
+      "transition": "Grow from the water-level decline into the full radial-vertical field"
+    },
+    {
+      "latex": "H(t)",
+      "firstUseOwner": "M02",
+      "visualObject": "Water-level drop inside the pumping well",
+      "meaning": "Pumping-well water level relative to its initial condition",
+      "unit": "L",
+      "transition": "Attach to the wellbore-storage term"
+    },
+    {
+      "latex": "\\tau_q",
+      "firstUseOwner": "M03",
+      "visualObject": "Clock on the vertical flux arrow",
+      "meaning": "Lag time associated with vertical flux and rapid pore-water release from the capillary fringe",
+      "unit": "T",
+      "transition": "Shift the flux response along the time axis"
+    },
+    {
+      "latex": "\\tau_s",
+      "firstUseOwner": "M03",
+      "visualObject": "Clock on free-surface drawdown",
+      "meaning": "Lag time associated with drawdown and excess storage retained by capillary suction",
+      "unit": "T",
+      "transition": "Shift the free-surface response along the time axis"
+    },
+    {
+      "latex": "K_r",
+      "firstUseOwner": "M01",
+      "visualObject": "Horizontal conductivity arrow",
+      "meaning": "Radial hydraulic conductivity",
+      "unit": "L T^-1",
+      "transition": "Stretch along the radial coordinate"
+    },
+    {
+      "latex": "K_z",
+      "firstUseOwner": "M01",
+      "visualObject": "Vertical conductivity arrow",
+      "meaning": "Vertical hydraulic conductivity",
+      "unit": "L T^-1",
+      "transition": "Rotate from the radial arrow to the vertical coordinate"
+    },
+    {
+      "latex": "S_y",
+      "firstUseOwner": "B03",
+      "visualObject": "Drainable-water fraction beside the falling water table",
+      "meaning": "Specific yield",
+      "unit": "dimensionless",
+      "transition": "Resolve from retained capillary water into the fitted parameter"
+    },
+    {
+      "latex": "X_k",
+      "firstUseOwner": "M11",
+      "visualObject": "Normalized sensitivity curve for parameter k",
+      "meaning": "Normalized sensitivity of drawdown to input parameter P_k",
+      "unit": "L",
+      "transition": "Emerge from a small parameter perturbation and drawdown difference"
+    }
+  ],
+  "return": {
+    "visualObject": "Cape Cod, Borden, and Saint Pardon field drawdown panels with their independently fitted present-solution curves and specific-yield estimates",
+    "claim": "Across the three owned site-fit operations, the present two-lag solution gives very good fits to observed drawdown and estimates specific yield within the cited laboratory-supported ranges.",
+    "claimBoundary": "The return consumes only the Cape Cod, Borden, and Saint Pardon fit outputs; it remains conditional on the homogeneous axisymmetric model, linearized free-surface treatment, selected comparison solutions, digitized records, and site-specific fit limitations.",
+    "locator": "PDF page 13, Section 4 Concluding Remarks, finding 4",
+    "sourceExcerpt": "present solution provides very good ﬁts to ﬁeld observed drawdown",
+    "minimalText": "Delayed drainage fits the field response"
+  },
+  "visual": {
+    "systemType": "radial_well",
+    "primaryObject": "Finite-radius partially penetrating pumping well in an unconfined aquifer with a moving water table",
+    "accentObject": "Capillary fringe carrying separate flux-lag and drawdown-lag clocks",
+    "measuredQuantity": "Transient drawdown at observation wells",
+    "geometryNotes": "Use an axisymmetric radial-vertical section with saturated thickness b, well radius r_w, observation radius r, and elevation z. Transform the physical section into dimensionless coordinates, then into Laplace-time and Weber-radius domains before reconstructing the three-segment time-drawdown curves."
+  }
+}

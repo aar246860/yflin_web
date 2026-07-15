@@ -1,0 +1,393 @@
+{
+  "schemaVersion": 1,
+  "id": "2025-07-9",
+  "doi": "10.1029/2024WR039810",
+  "title": "On Radial Heat Transport in Porous Aquifers with Nonlinear Velocity-dependent Thermal Dispersion",
+  "sourceArtifact": "research-videos/source-pdfs/2025-07-9.pdf",
+  "research": {
+    "question": "How does nonlinear velocity-dependent thermal dispersion alter radial heat transport and thermal recovery in single-well aquifer thermal energy storage tests?",
+    "system": "A confined porous aquifer between conductive bedrock and caprock, subjected to heated-water injection, optional chase and rest, and extraction through one mixed wellbore in radial axisymmetric flow.",
+    "inputData": "Thermal and hydraulic properties, phase-specific rates and temperatures, nonlinear dispersivity beta_l and exponent m, synthetic parameter ranges, and field records from a 1000-minute Zhengzhou test and a three-month Alabama test.",
+    "method": "Embed D = k/(rho c) + beta v^m in coupled heat equations, solve with axisymmetric finite elements and wellbore ODEs, validate the linear special case, rank sensitivity, compare nonlinear and linear dispersion, calculate recovery, and fit both field tests.",
+    "benchmark": "The semi-analytical linear-dispersion model, prior ATES models, synthetic NLTD curves interpreted with LTD, and observed thermal breakthrough curves at two sites.",
+    "uncertainty": "Morris indices report parameter sensitivity and interaction effects rather than predictive uncertainty. Field inversion is nonunique in beta_l and m, so beta_l is fitted for each m and the maximum R-squared pair is selected; no confidence intervals are given.",
+    "conclusion": "Nonlinear dispersion strongly controls breakthrough and recovery, linear models can severely underestimate near-well diffusivity and recovery, and fitted dispersion behavior differs across test duration."
+  },
+  "narrative": {
+    "throughline": "Because radial velocity accelerates toward a well, raising velocity to a fitted exponent reshapes where injected heat travels and how much returns.",
+    "audienceStartingPoint": "The audience understands injecting hot water into an aquifer and later pumping it back, but may assume dispersion grows linearly with flow speed.",
+    "stakes": "A wrong velocity-dispersion law can misestimate the heat plume and recovery efficiency used to design an ATES operation.",
+    "resolution": "The nonlinear plume returns to the wellbore as measured breakthrough and recovery, with nonuniqueness, LTE, homogeneity, Darcy-flow, and buoyancy limits visible."
+  },
+  "background": [
+    {
+      "id": "B01",
+      "premise": "A single-well push-pull test injects thermal energy into an aquifer and later extracts it through the same well.",
+      "visibleEvidence": "A radial hot-water plume expands during injection, rests, and contracts toward the well during extraction.",
+      "whyNow": "This establishes the physical cycle and measured recovery object.",
+      "boundary": "The modeled field cases are confined aquifers and exclude temperature-driven buoyancy.",
+      "locator": "PDF page 1, Section 1 Introduction",
+      "sourceExcerpt": "the which is commonly applied to simulate and evaluate geothermal energy storage",
+      "anchorTerms": [
+        "simulate and evaluate",
+        "geothermal energy storage"
+      ],
+      "visualObject": "Radial inject-rest-extract thermal plume",
+      "motionPurpose": "Make thermal recovery a reversible-looking radial cycle with irreversible spreading.",
+      "stepDetail": "Push a hot annulus outward, pause its advection, pull it inward, and leave unrecovered heat in the aquifer.",
+      "transitionBridge": "The retained plume shape depends on how dispersion changes with radial velocity.",
+      "minimalText": "Push rest pull"
+    },
+    {
+      "id": "B02",
+      "premise": "Radial Darcian velocity decreases with distance from the well so thermal dispersion varies spatially.",
+      "visibleEvidence": "Velocity arrows are longest near the screen and shorten outward across concentric rings.",
+      "whyNow": "This radial gradient makes a constant or linear dispersion simplification consequential.",
+      "boundary": "The study assumes Darcy flow despite the high near-well velocity.",
+      "locator": "PDF page 2, Section 1 Introduction",
+      "sourceExcerpt": "remain constant around a well but decreases linearly as radial distance increases.",
+      "anchorTerms": [
+        "constant around a well",
+        "radial distance"
+      ],
+      "visualObject": "Concentric radial velocity field around the well",
+      "motionPurpose": "Reveal the strong near-well velocity gradient before defining D(v).",
+      "stepDetail": "Emit equal flow across expanding circumferences, shorten arrows with radius, and color the near-well zone as the high-velocity region.",
+      "transitionBridge": "The velocity field becomes the input to the nonlinear diffusivity law.",
+      "minimalText": "Velocity falls with radius"
+    },
+    {
+      "id": "B03",
+      "premise": "Laboratory evidence supports a power-law rather than universally linear relation between thermal dispersion and velocity.",
+      "visibleEvidence": "Literature data bend away from a straight line as thermal-front velocity rises.",
+      "whyNow": "This is the empirical basis for introducing exponent m.",
+      "boundary": "The exponent depends on medium and conditions; the paper does not establish a universal value.",
+      "locator": "PDF pages 2-3, Section 1 Introduction, Figure 1",
+      "sourceExcerpt": "conducted experiments using different diameter spheres to study the relationship between different velocities and thermal dispersion, and his experimental results clearly indicated that the relationship between these two factors follows a power law with a coefficient.",
+      "anchorTerms": [
+        "thermal dispersion",
+        "power law"
+      ],
+      "visualObject": "Velocity-diffusivity data with linear and power-law curves",
+      "motionPurpose": "Bend the linear relation into the empirically supported nonlinear family.",
+      "stepDetail": "Plot literature observations, draw the linear baseline, reveal curvature at higher velocity, and introduce m as the curvature control.",
+      "transitionBridge": "The power law is inserted into effective thermal diffusivity.",
+      "minimalText": "D depends on v^m"
+    }
+  ],
+  "methods": [
+    {
+      "id": "M01",
+      "input": "Thermal conduction properties thermal-front velocity and dispersivity",
+      "operation": "Combine effective diffusivity terms",
+      "output": "D = k/(rho c) + beta_l,t v^m",
+      "validity": "The empirical relation combines conductive diffusion with nonlinear mechanical thermal dispersion documented in prior experiments.",
+      "locator": "PDF pages 3-5, Section 2.1, Equation (1), Figure 1",
+      "sourceExcerpt": "effective thermal diffusivity with nonlinear velocity‐dependent thermal dispersion in heat transport processes",
+      "anchorTerms": [
+        "effective thermal diffusivity",
+        "thermal dispersion"
+      ],
+      "visualObject": "Conductive spread and velocity-powered dispersive spread merging into D",
+      "motionPurpose": "Show the two physical contributions before the compact formula appears.",
+      "stepDetail": "Diffuse a stationary heat spot, stretch a flow-driven plume by v^m, scale it by beta, and combine both widths into D.",
+      "transitionBridge": "The spatially varying D enters the aquifer heat balance.",
+      "minimalText": "Conduction plus beta v^m"
+    },
+    {
+      "id": "M02",
+      "input": "Radial aquifer bedrock caprock and mixed wellbore",
+      "operation": "Form coupled heat equations",
+      "output": "Aquifer advection-dispersion-conduction balance with conductive confining layers and mixed well boundary",
+      "validity": "Local thermal equilibrium is assumed in the aquifer and only conduction is permitted in caprock and bedrock.",
+      "locator": "PDF pages 5-6, Section 2.2, Equations (2)-(5), Figure 2",
+      "sourceExcerpt": "takes into account thermal convection, conduction, nonlinear velocity‐dependent thermal dispersion, and wellbore",
+      "anchorTerms": [
+        "thermal convection",
+        "wellbore"
+      ],
+      "visualObject": "Axisymmetric thermal aquifer coupled vertically to conductive layers and radially to a mixing well",
+      "motionPurpose": "Route each heat-transfer mechanism through its correct physical domain.",
+      "stepDetail": "Place convection and dispersion in the aquifer, place conduction in all layers, enforce temperature continuity, and connect the well boundary to its mixed temperature.",
+      "transitionBridge": "The nonlinear spatial coefficients require numerical solution.",
+      "minimalText": "Coupled radial heat model"
+    },
+    {
+      "id": "M03",
+      "input": "The coupled nonlinear initial-boundary model",
+      "operation": "Simulate axisymmetric temperature",
+      "output": "Spatiotemporal temperature fields and wellbore breakthrough curves",
+      "validity": "COMSOL stabilized convection-dispersion and domain ODE solvers use a refined 55397-element axisymmetric mesh and 60-second time step.",
+      "locator": "PDF pages 7-8, Section 2.3",
+      "sourceExcerpt": "Equations 1–4 is impractical due to the complexity of nonlinear velocity‐dependent thermal",
+      "anchorTerms": [
+        "impractical",
+        "complexity"
+      ],
+      "visualObject": "Triangular axisymmetric mesh carrying a moving thermal plume",
+      "motionPurpose": "Resolve the nonlinear plume while preserving wellbore mixing as a separate state.",
+      "stepDetail": "Mesh the radial section, refine layer interfaces, advance temperature at 60-second steps, and exchange temperature with the wellbore ODE.",
+      "transitionBridge": "The m = 1 limit provides an analytical benchmark.",
+      "minimalText": "Finite-element plume"
+    },
+    {
+      "id": "M04",
+      "input": "The finite-element model with m = 1",
+      "operation": "Validate linear limit",
+      "output": "Small-RMSE agreement with the prior semi-analytical LTD solution",
+      "validity": "At m = 1 the proposed NLTD formulation reduces to the same linear-dispersion physics as the benchmark.",
+      "locator": "PDF page 8, Section 2.3, Supporting Information Section S2",
+      "sourceExcerpt": "The present model reduces to the semi‐analytical solution of Shi, Wang, et al. (2023) when m = 1.",
+      "anchorTerms": [
+        "semi‐analytical solution",
+        "m = 1"
+      ],
+      "visualObject": "Numerical and semi-analytical wellbore curves converging in the m = 1 plane",
+      "motionPurpose": "Verify implementation on the exact parameter limit shared by both models.",
+      "stepDetail": "Set m to one, run both formulations, overlay breakthrough curves, and display the small residual.",
+      "transitionBridge": "Verified simulations support global parameter screening.",
+      "minimalText": "m = 1 benchmark"
+    },
+    {
+      "id": "M05",
+      "input": "Thirteen thermal hydraulic geometric and operational parameters",
+      "operation": "Compute Morris effects",
+      "output": "Time-dependent absolute-mean and interaction sensitivity rankings",
+      "validity": "One hundred Morris samples across literature-based ranges screen global influence with limited computational cost.",
+      "locator": "PDF pages 8-12, Section 2.4 and Section 3.1, Equations (6a)-(6d), Figure 4",
+      "sourceExcerpt": "highlights that the output BTCs are significantly influenced by nonlinear velocity‐dependent thermal",
+      "anchorTerms": [
+        "output BTCs",
+        "significantly influenced"
+      ],
+      "visualObject": "Morris effect curves with m rising above operational and material parameters",
+      "motionPurpose": "Render parameter sensitivity and interaction effects as ranked curve magnitudes.",
+      "stepDetail": "Sample parameter trajectories, calculate elementary effects, aggregate absolute means and standard deviations, and rank them through test phases.",
+      "transitionBridge": "The dominant nonlinear terms are isolated in direct NLTD-LTD comparisons.",
+      "minimalText": "m controls the BTC"
+    },
+    {
+      "id": "M06",
+      "input": "Matched nonlinear and linear dispersion simulations across velocity and dispersivity",
+      "operation": "Compare coupled plume-BTC responses",
+      "output": "Paired spatial-temperature plumes and wellbore breakthrough curves",
+      "validity": "The response comparison holds wellbore volume and common operating conditions fixed while varying thermal dispersivity or exponent.",
+      "locator": "PDF page 14, Section 3.2.3, Figure 7",
+      "sourceExcerpt": "Thermal BTCs at the wellbore and the spatial temperature distributions at t = 130 min for different βl values are shown",
+      "anchorTerms": [
+        "Thermal BTCs",
+        "spatial temperature distributions"
+      ],
+      "visualObject": "Paired radial temperature plumes linked to their wellbore thermal breakthrough curves",
+      "motionPurpose": "Keep each plume attached to its breakthrough response so spatial spreading and wellbore temperature are compared together.",
+      "stepDetail": "Align the radial domains; reveal each temperature distribution; attach its wellbore BTC; mark the response differences.",
+      "transitionBridge": "One nonlinear breakthrough curve becomes synthetic calibration data for the linear baseline.",
+      "minimalText": "Plume and BTC response"
+    },
+    {
+      "id": "M07",
+      "input": "Synthetic NLTD thermal breakthrough curves used as measurements",
+      "operation": "Fit LTD dispersivity",
+      "output": "A calibrated linear-dispersion baseline for each predefined nonlinear dispersivity",
+      "validity": "The source fits the LTD model to generated NLTD breakthrough curves before comparing effective diffusivity.",
+      "locator": "PDF pages 14-15, Section 3.2.3, Table 5",
+      "sourceExcerpt": "to estimate the effective thermal diffusivity or thermal dispersivity",
+      "anchorTerms": [
+        "estimate",
+        "thermal dispersivity"
+      ],
+      "visualObject": "Synthetic NLTD breakthrough points pulling an LTD curve toward its calibrated dispersivity",
+      "motionPurpose": "Establish a fitted LTD baseline before any model-to-model diffusivity ratio is formed.",
+      "stepDetail": "Retain the synthetic NLTD measurements; draw a trial LTD curve; adjust its dispersivity; settle on the best-fit baseline.",
+      "transitionBridge": "The calibrated LTD parameters leave the NLTD diffusivity field to be produced first.",
+      "minimalText": "Calibrate LTD baseline"
+    },
+    {
+      "id": "M08",
+      "input": "Predefined NLTD dispersivity exponents and extraction-phase radial velocity field",
+      "operation": "Calculate NLTD diffusivity distribution",
+      "output": "Radial extraction-phase NLTD effective-diffusivity distributions for the predefined cases",
+      "validity": "Equation 1 combines conductive diffusivity with the nonlinear velocity-dependent dispersion term using each predefined NLTD parameter set.",
+      "locator": "PDF page 15, Section 3.2.3, Figure 8a",
+      "sourceExcerpt": "dispersion (NLTD, solid curves) and linear thermal dispersion (LTD, scatter",
+      "anchorTerms": [
+        "NLTD, solid curves",
+        "linear thermal dispersion"
+      ],
+      "visualObject": "Extraction-phase radial velocity resolving through Equation 1 into separate NLTD diffusivity curves",
+      "motionPurpose": "Produce the nonlinear diffusivity field independently before introducing the fitted linear baseline.",
+      "stepDetail": "Retain the radial velocity field; apply each predefined nonlinear parameter set; calculate diffusivity by radius; preserve the NLTD curve family.",
+      "transitionBridge": "The fixed radial coordinates and fitted LTD parameters now produce the linear diffusivity field.",
+      "minimalText": "NLTD diffusivity field"
+    },
+    {
+      "id": "M09",
+      "input": "Best-fit LTD dispersivities and the same extraction-phase radial velocity coordinates",
+      "operation": "Calculate LTD diffusivity distribution",
+      "output": "Radial extraction-phase LTD effective-diffusivity distributions for the fitted cases",
+      "validity": "Each LTD distribution uses the best-fit linear dispersivity paired to its predefined NLTD case in Table 5 and the same extraction-phase locations.",
+      "locator": "PDF page 15, Section 3.2.3, Table 5 and Figure 8a",
+      "sourceExcerpt": "LTD models for different βl in the extraction phase",
+      "anchorTerms": [
+        "LTD models",
+        "extraction phase"
+      ],
+      "visualObject": "Fitted linear dispersivities resolving into LTD diffusivity points on the NLTD radial coordinates",
+      "motionPurpose": "Produce the calibrated linear diffusivity field independently so the ratio has two explicit operands.",
+      "stepDetail": "Retain the fitted LTD cases; evaluate linear diffusivity at each radial coordinate; preserve the LTD point distributions beside the NLTD curves.",
+      "transitionBridge": "The two independently produced diffusivity distributions align pointwise for division.",
+      "minimalText": "LTD diffusivity field"
+    },
+    {
+      "id": "M10",
+      "input": "Matched NLTD and calibrated LTD effective-diffusivity distributions",
+      "operation": "Calculate diffusivity ratio",
+      "output": "NLTD-to-LTD effective-diffusivity ratio distributions around the well",
+      "validity": "The paper calculates the ratio from the paired extraction-phase diffusivity distributions shown in Figure 8a.",
+      "locator": "PDF page 15, Section 3.2.3, Figure 8",
+      "sourceExcerpt": "the ratios of the effective thermal diffusivity of NLTD model to the effective thermal diffusivity of LTD model in Figure 8a are calculated",
+      "anchorTerms": [
+        "ratios",
+        "effective thermal diffusivity"
+      ],
+      "visualObject": "Pointwise NLTD diffusivity divided by calibrated LTD diffusivity across radial distance",
+      "motionPurpose": "Quantify the near-well discrepancy only after both diffusivity fields share a calibrated basis.",
+      "stepDetail": "Align radial positions; divide paired diffusivities; plot the ratio by distance; retain the near-well maximum region.",
+      "transitionBridge": "The quantified diffusivity discrepancy moves into the energy-recovery calculation.",
+      "minimalText": "D_NLTD / D_LTD"
+    },
+    {
+      "id": "M11",
+      "input": "Injection and extraction wellbore temperatures with rate ratio lambda",
+      "operation": "Calculate thermal recovery",
+      "output": "Efficiency eta across dispersivity and injection-extraction rate ratio",
+      "validity": "Integrated extracted heat above ambient is divided by integrated injected heat above ambient.",
+      "locator": "PDF pages 9 and 14-16, Equation (7), Section 3.2.4, Figure 9",
+      "sourceExcerpt": "recovery efficiency is also used to evaluate how nonlinear velocity‐dependent thermal dispersion",
+      "anchorTerms": [
+        "recovery efficiency",
+        "thermal dispersion"
+      ],
+      "visualObject": "Injected and recovered heat areas under wellbore temperature curves",
+      "motionPurpose": "Convert breakthrough geometry into an operational energy-return fraction.",
+      "stepDetail": "Shade injected heat, shade extracted heat, divide the areas, and plot eta against lambda for both dispersion models.",
+      "transitionBridge": "Field records test whether the nonlinear model improves actual recovery interpretation.",
+      "minimalText": "eta = recovered divided by injected"
+    },
+    {
+      "id": "M12",
+      "input": "Field observations and one candidate nonlinear exponent m",
+      "operation": "Fit dispersivity by least squares",
+      "output": "Best-fit beta value conditional on the candidate exponent",
+      "validity": "The paper treats beta and m as nonunique jointly and fits beta separately for each tested m.",
+      "locator": "PDF pages 17-18, Sections 3.3.1-3.3.2",
+      "sourceExcerpt": "we applied the least squares method to determine the coefficient",
+      "anchorTerms": [
+        "least squares",
+        "coefficient"
+      ],
+      "visualObject": "One m value fixing a vertical slice through the beta-m fit surface",
+      "motionPurpose": "Show the conditional fit before selecting among exponent candidates.",
+      "stepDetail": "Hold m fixed; vary beta; minimize the field breakthrough residual; retain the conditional beta estimate.",
+      "transitionBridge": "Conditional fits across candidate exponents are compared in M13.",
+      "minimalText": "Fit beta for each m"
+    },
+    {
+      "id": "M13",
+      "input": "Conditional beta estimates across candidate m values",
+      "operation": "Select the maximum R-squared pair",
+      "output": "One reported beta-m pair for each field site",
+      "validity": "The selected pair is the best within the tested candidate set, not a proof of parameter uniqueness.",
+      "locator": "PDF pages 17-18, Sections 3.3.1-3.3.2, Figures 11-12",
+      "sourceExcerpt": "the result with the largest R‐squared value (R2) is chosen",
+      "anchorTerms": [
+        "largest",
+        "R‐squared value"
+      ],
+      "visualObject": "R-squared ridge with the reported site maximum marked",
+      "motionPurpose": "Make model selection distinct from the preceding conditional fits.",
+      "stepDetail": "Compare the conditional R-squared values; locate the maximum; retain its beta-m pair.",
+      "transitionBridge": "The selected pair drives the field prediction in M14.",
+      "minimalText": "Select reported pair"
+    },
+    {
+      "id": "M14",
+      "input": "Observed thermal breakthrough curves and model predictions for the Zhengzhou and Alabama tests",
+      "operation": "Compare field breakthrough curves",
+      "output": "Improved interpretation of observations from two in situ thermal SWPP tests",
+      "validity": "Both sites support comparison of observed thermal breakthrough curves with prior models; experimental recovery is compared only for Zhengzhou.",
+      "locator": "PDF pages 17-18, Sections 3.3.1-3.3.2, Figures 11-12; PDF page 19, Section 4",
+      "sourceExcerpt": "The capabilities of new model are further demonstrated through two in situ thermal SWPP tests were performed at different sites, one lasting 1,000 min and the other spanning 3 months. The results show that incorporating nonlinear velocity‐ dependent thermal dispersion into models significantly enhances their ability to interpret field data.",
+      "anchorTerms": [
+        "two in situ thermal SWPP tests",
+        "interpret field data"
+      ],
+      "visualObject": "Zhengzhou and Alabama observed breakthrough curves overlaid with nonlinear and prior-model predictions",
+      "motionPurpose": "Compare field breakthrough fit at the short and long test scales without assigning Alabama a recovery result.",
+      "stepDetail": "Align each site's observed breakthrough curve with its model predictions and compare the fitted responses.",
+      "transitionBridge": "The two fitted breakthrough responses return to the radial well with the Zhengzhou-only recovery boundary visible.",
+      "minimalText": "Two-site BTC fits"
+    }
+  ],
+  "symbols": [
+    {
+      "latex": "D=k/(\\rho c)+\\beta_{l,t}v^m",
+      "firstUseOwner": "M01",
+      "visualObject": "Combined conductive and dispersive plume width",
+      "meaning": "Effective thermal diffusivity",
+      "unit": "L^2 T^{-1}",
+      "transition": "Combine the two heat-spreading widths into D."
+    },
+    {
+      "latex": "m",
+      "firstUseOwner": "B03",
+      "visualObject": "Curvature of the velocity-diffusivity relation",
+      "meaning": "Empirical thermal-front velocity exponent",
+      "unit": "dimensionless",
+      "transition": "Attach m to the curve-bending control."
+    },
+    {
+      "latex": "\\beta_l",
+      "firstUseOwner": "M01",
+      "visualObject": "Scale of longitudinal thermal spreading",
+      "meaning": "Longitudinal thermal dispersivity",
+      "unit": "depends on m",
+      "transition": "Label the dispersive-width scale beta_l."
+    },
+    {
+      "latex": "\\lambda=Q_{inj}/Q_{ext}",
+      "firstUseOwner": "M09",
+      "visualObject": "Ratio of injection and extraction arrows",
+      "meaning": "Injection-extraction rate ratio",
+      "unit": "dimensionless",
+      "transition": "Combine the two rate arrows into lambda."
+    },
+    {
+      "latex": "\\eta=E_{ext}/E_{inj}",
+      "firstUseOwner": "M07",
+      "visualObject": "Ratio of recovered and injected heat areas",
+      "meaning": "Thermal recovery efficiency",
+      "unit": "%",
+      "transition": "Divide the two shaded energy areas and label eta."
+    }
+  ],
+  "return": {
+    "visualObject": "The radial ATES well with its nonlinear diffusivity field and paired Zhengzhou and Alabama breakthrough-fit overlays",
+    "claim": "Across the two field tests incorporating nonlinear velocity-dependent thermal dispersion improves interpretation of heat transport dynamics.",
+    "claimBoundary": "Experimental recovery is compared only for Zhengzhou; Alabama supports breakthrough-fit improvement only. The model also assumes homogeneous media local thermal equilibrium Darcy flow and no temperature-dependent density or buoyancy; beta_l-m inversion is nonunique and the proposed links to particle size LTNE and test duration remain inferences requiring experiments.",
+    "locator": "PDF pages 17-19, Sections 3.3.1-3.4 and Section 4 Summary and Concluding Remarks",
+    "sourceExcerpt": "incorporation of nonlinear velocity‐dependent thermal dispersion in models improves their ability to characterize heat transport dynamics in ATES systems",
+    "anchorTerms": [
+      "nonlinear velocity‐dependent thermal dispersion",
+      "heat transport dynamics"
+    ],
+    "minimalText": "Two-site fit, Zhengzhou-only recovery"
+  },
+  "visual": {
+    "systemType": "thermal_borehole",
+    "primaryObject": "Axisymmetric single-well thermal push-pull plume in a confined aquifer",
+    "accentObject": "Near-well nonlinear diffusivity field controlled by beta_l and m",
+    "measuredQuantity": "Wellbore temperature breakthrough and thermal recovery efficiency",
+    "geometryNotes": "Use concentric radial rings with velocity arrows shrinking outward. Keep caprock and bedrock conductive flux vertical and aquifer advection radial. The return plume must preserve unrecovered heat and show the beta_l-m nonuniqueness ridge as a distinct uncertainty object."
+  }
+}

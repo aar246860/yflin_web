@@ -1,0 +1,429 @@
+{
+  "schemaVersion": 1,
+  "id": "2024-09-16",
+  "doi": "10.29974/JTAE.202409_70(3).0003",
+  "title": "Re-Derivation of The High-Permeability Wellbore Skin Effect Conditions",
+  "sourceArtifact": "research-videos/source-pdfs/2024-09-16.pdf",
+  "research": {
+    "question": "What skin-factor condition remains physically correct when the near-well skin is high-permeability rather than the low-permeability case assumed by classical models?",
+    "system": "A pumping well surrounded by a thin annular skin zone whose hydraulic conductivity, porosity, and storage can differ from the surrounding aquifer.",
+    "inputData": "Analytical dimensionless drawdown responses, derivative responses, and sensitivity calculations generated from a two-zone wellbore-skin-aquifer model while varying wellbore storage, anisotropy, screen-position ratios, and skin properties.",
+    "method": "Re-derive the skin-factor conditions from a two-zone analytical model, convert the transformed drawdown solution to the time-space domain, and inspect how positive-skin and negative-skin assumptions change drawdown behavior.",
+    "benchmark": "The revised negative-skin formulation is compared against the classical positive-skin-factor formulation through analytical limits, drawdown curves, and sensitivity analysis.",
+    "uncertainty": "The paper treats uncertainty through analytical sensitivity analysis and differential importance measure rather than probabilistic field calibration.",
+    "conclusion": "High-permeability skin requires continuous head but discontinuous flux at the wellbore-aquifer interface, and its drawdown impact can become large when the skin porosity increases abruptly."
+  },
+  "narrative": {
+    "throughline": "Start from the same well and skin annulus, show why the classical positive-skin jump fails for a high-permeability annulus, then make the corrected continuous-head condition visible in the resulting drawdown behavior.",
+    "audienceStartingPoint": "The audience understands pumping-induced drawdown around a well and can read the idea of a modified annulus around the borehole.",
+    "stakes": "Using a low-permeability skin condition for a high-permeability completion can assign the wrong interface condition and misread the drawdown signature of the well test.",
+    "resolution": "The two-zone derivation recovers the old condition only for positive skin, introduces a new negative-skin condition with continuous head, and shows where the corrected condition changes drawdown most strongly."
+  },
+  "background": [
+    {
+      "id": "B01",
+      "premise": "Drilling can leave a skin zone around the wellbore whose hydraulic properties differ from the surrounding aquifer.",
+      "visibleEvidence": "A concentric annulus appears around the pumping well and is shaded differently from the outer aquifer.",
+      "whyNow": "The viewer needs the physical object before any interface condition or drawdown consequence can be interpreted.",
+      "boundary": "This premise only establishes the existence of a distinct near-well zone; it does not yet choose whether the skin is positive or negative.",
+      "locator": "PDF page 2, Abstract opening sentences",
+      "sourceExcerpt": "During the drilling process, a skin zone with hydraulic properties different from those of the surrounding aquifer often forms around the wellbore.",
+      "anchorTerms": [
+        "skin zone",
+        "around the wellbore"
+      ],
+      "visualObject": "A pumping well with a thin annular skin ring embedded in the aquifer.",
+      "motionPurpose": "Introduce the concrete object that later carries the corrected boundary condition.",
+      "stepDetail": "Show the well first, wrap it with a distinct annulus, then dim the far aquifer so the skin ring is the only new object the viewer must track.",
+      "transitionBridge": "The annulus remains fixed while B02 tests the classical head-jump assumption for high-permeability skin.",
+      "minimalText": "Skin annulus"
+    },
+    {
+      "id": "B02",
+      "premise": "The classical positive-skin assumption of a head jump fails for high-permeability negative skin because two high-permeability zones should share continuous head.",
+      "visibleEvidence": "A broken head profile at the well-aquifer boundary is contrasted with a continuous profile across two high-permeability regions.",
+      "whyNow": "The derivation matters only after the viewer sees exactly which old assumption breaks in the high-permeability case.",
+      "boundary": "This premise is specific to high-permeability negative skin and does not reject the classical positive-skin condition in its original regime.",
+      "locator": "PDF page 2, Abstract middle sentences",
+      "sourceExcerpt": "In cases of high-permeability (negative skin) due to excessive well completion, this assumption may no longer hold, as the head between two high-permeability zones should be continuous.",
+      "anchorTerms": [
+        "negative skin",
+        "continuous"
+      ],
+      "visualObject": "Two head traces at the same interface: one with a jump and one continuous across the annulus.",
+      "motionPurpose": "Turn the abstract modeling error into a visible contradiction at the interface.",
+      "stepDetail": "Draw the classical head jump, overlay the high-permeability annulus, then replace the jump with a continuous head trace across the same boundary.",
+      "transitionBridge": "The continuous-head requirement carries into M01, where the thin skin receives its derivation thickness.",
+      "minimalText": "Continuous head"
+    }
+  ],
+  "methods": [
+    {
+      "id": "M01",
+      "input": "A pumping well surrounded by an unresolved high-permeability skin annulus.",
+      "operation": "Assign the skin thickness",
+      "output": "A thin annulus of thickness r_s around the wellbore.",
+      "validity": "The first derivation item defines the skin-zone geometry before introducing its state variables.",
+      "locator": "PDF page 4, Section 2.2, derivation item 1, opening assumption",
+      "sourceExcerpt": "1. 假設和條件:考慮一個膚層區圍繞井筒,厚度為",
+      "anchorTerms": [
+        "假設和條件",
+        "膚層區圍繞井筒"
+      ],
+      "visualObject": "A radial brace marks r_s across the thin annulus surrounding the wellbore.",
+      "motionPurpose": "Resolve the geometric quantity used by every subsequent thin-skin operation.",
+      "stepDetail": "Hold the well radius fixed and place one thickness brace across the annular skin.",
+      "transitionBridge": "The r_s annulus remains fixed while M02 assigns drawdown variables to the well and skin regions.",
+      "minimalText": "Skin thickness r_s"
+    },
+    {
+      "id": "M02",
+      "input": "The thin annulus of thickness r_s surrounding the wellbore.",
+      "operation": "Assign regional drawdowns",
+      "output": "Wellbore drawdown s_w and skin-zone drawdown s_skin on the same radial geometry.",
+      "validity": "The first derivation item explicitly names separate drawdown variables for the wellbore and skin zone.",
+      "locator": "PDF page 4, Section 2.2, derivation item 1, drawdown definitions",
+      "sourceExcerpt": "rs。井筒和膚層區的洩降分別表示為 sw 與 sskin。",
+      "anchorTerms": [
+        "rs",
+        "sw 與 sskin"
+      ],
+      "visualObject": "The wellbore and skin sides of the annulus receive s_w and s_skin labels.",
+      "motionPurpose": "Create the state variables needed for the skin-zone mass balance.",
+      "stepDetail": "Attach s_w to the wellbore and s_skin to the annulus without changing the geometry.",
+      "transitionBridge": "The labeled skin state becomes the control region for the continuity equation in M03.",
+      "minimalText": "s_w and s_skin"
+    },
+    {
+      "id": "M03",
+      "input": "Skin-zone drawdown with radial and vertical Darcy fluxes across the thin annulus.",
+      "operation": "Apply the skin-zone continuity equation",
+      "output": "The skin mass balance relating radial flux divergence, vertical flux divergence, and skin storage in Equation (4).",
+      "validity": "Equation (4) is the continuity equation for flow and storage within the skin zone.",
+      "locator": "PDF page 4, Section 2.2, derivation item 2, Equation (4)",
+      "sourceExcerpt": "2. 達西定律和連續方程:膚層區內的達西通量可以 表示為 (Chiu et al., 2007):",
+      "anchorTerms": [
+        "連續方程",
+        "Chiu et al."
+      ],
+      "visualObject": "A skin control strip receives radial flux, vertical flux, and storage terms.",
+      "motionPurpose": "Expose mass conservation before any thin-zone approximation is made.",
+      "stepDetail": "Place the two flux-divergence terms and the storage term around one skin control strip.",
+      "transitionBridge": "Equation (4) retains a finite radial difference that M04 approximates across the small thickness r_s.",
+      "minimalText": "Skin continuity"
+    },
+    {
+      "id": "M04",
+      "input": "The radial skin flux evaluated at the inner and outer edges of a small r_s annulus.",
+      "operation": "Apply first-order Taylor expansion",
+      "output": "The first-order radial flux approximation in Equation (5).",
+      "validity": "The source invokes the small skin thickness to approximate the outer skin flux by a Taylor expansion.",
+      "locator": "PDF page 4, Section 2.2, derivation item 3, Equation (5)",
+      "sourceExcerpt": "層系統較小,可以使用泰勒級數展開近似膚層區 ∂r 內的通量:",
+      "anchorTerms": [
+        "泰勒級數展開",
+        "膚層區"
+      ],
+      "visualObject": "Two radial flux samples collapse into one value plus an r_s-weighted derivative.",
+      "motionPurpose": "Reduce the finite annulus to a first-order interface quantity.",
+      "stepDetail": "Expand the outer-edge radial flux about the well edge and retain the first-order r_s term.",
+      "transitionBridge": "The expanded flux still uses flux variables, which M05 expresses through Darcy relations.",
+      "minimalText": "First-order flux"
+    },
+    {
+      "id": "M05",
+      "input": "Wellbore, aquifer, and vertical skin flux variables in the expanded continuity relation.",
+      "operation": "Apply Darcy flux relations",
+      "output": "The three head-gradient flux expressions in Equations (6a)-(6c).",
+      "validity": "The fourth derivation item writes each required flux from Darcy's law before substitution into continuity.",
+      "locator": "PDF page 4, Section 2.2, derivation item 4, Equations (6a)-(6c)",
+      "sourceExcerpt": "4. 推導膚層因子條件:基於達西定律,膚層區內的",
+      "anchorTerms": [
+        "推導膚層因子條件",
+        "達西定律"
+      ],
+      "visualObject": "Radial and vertical flux arrows change into conductivity-weighted drawdown gradients.",
+      "motionPurpose": "Convert conservation variables into the drawdown derivatives used by the interface condition.",
+      "stepDetail": "Replace each of the three flux arrows with its corresponding Darcy gradient expression.",
+      "transitionBridge": "The Darcy expressions become the terms combined with the continuity balance in M06.",
+      "minimalText": "Darcy fluxes"
+    },
+    {
+      "id": "M06",
+      "input": "The skin continuity balance with first-order flux expansion and Darcy gradient expressions.",
+      "operation": "Combine flux relations with continuity",
+      "output": "The head-gradient interface balance in Equation (7), including skin storage and vertical redistribution.",
+      "validity": "Equation (7) follows when the Darcy flux expressions are inserted into the continuity equation.",
+      "locator": "PDF page 4, Section 2.2, Equation (7)",
+      "sourceExcerpt": "Kw ∂sw = Kr ∂s",
+      "anchorTerms": [
+        "Kw",
+        "Kr"
+      ],
+      "visualObject": "The three Darcy-gradient terms settle into one Equation (7) balance.",
+      "motionPurpose": "Expose the complete thin-skin relation before its negligible term is removed.",
+      "stepDetail": "Place the well and aquifer radial gradients on the left and retain redistribution and storage on the right.",
+      "transitionBridge": "Equation (7) exposes the small storage contribution removed in M07.",
+      "minimalText": "Equation 7 balance"
+    },
+    {
+      "id": "M07",
+      "input": "Equation (7) with an r_s S_s,skin storage term.",
+      "operation": "Remove negligible skin storage",
+      "output": "The reduced high-permeability interface relation in Equation (8).",
+      "validity": "The source states that both skin thickness and skin specific storage are small in the typical aquifer-well setting.",
+      "locator": "PDF page 4, Section 2.2, paragraph preceding Equation (8)",
+      "sourceExcerpt": "小,可以忽略最後一項( rs Ss, skin ~ 0 )。最終得到全新",
+      "anchorTerms": [
+        "忽略最後一項",
+        "rs Ss, skin"
+      ],
+      "visualObject": "The storage term fades from Equation (7), leaving radial inflow balanced by vertical skin redistribution.",
+      "motionPurpose": "Make the thin-skin approximation and its surviving physics explicit.",
+      "stepDetail": "Hold every gradient fixed and remove only the r_s S_s,skin storage term.",
+      "transitionBridge": "The reduced Equation (8) receives the high-permeability head-continuity condition in M08.",
+      "minimalText": "Negligible skin storage"
+    },
+    {
+      "id": "M08",
+      "input": "The reduced Equation (8) with separate aquifer and skin drawdown fields at the well interface.",
+      "operation": "Apply continuous drawdown condition",
+      "output": "A continuous-head interface relation with a radial flux jump balanced by vertical skin redistribution.",
+      "validity": "The high-permeability condition sets skin and aquifer drawdown equal at r = r_w.",
+      "locator": "PDF page 4, Section 2.2, assumption immediately preceding Equation (9)",
+      "sourceExcerpt": "假設井筒和含水層之間的洩降是連續的 (即 sskin = s",
+      "anchorTerms": [
+        "洩降是連續的",
+        "sskin = s"
+      ],
+      "visualObject": "The skin and aquifer drawdown traces join while their radial flux arrows remain unequal.",
+      "motionPurpose": "Apply the physical continuity choice specific to high-permeability skin.",
+      "stepDetail": "Join s_skin to s at the well radius and retain the vertical redistribution term.",
+      "transitionBridge": "The surviving r_s K_z,skin coefficient receives its negative-skin-factor name in M09.",
+      "minimalText": "Continuous drawdown"
+    },
+    {
+      "id": "M09",
+      "input": "The continuous-head interface relation containing the coefficient r_s K_z,skin.",
+      "operation": "Assign the negative skin factor",
+      "output": "The NSF boundary condition in Equation (9) with S_f = r_s K_z,skin.",
+      "validity": "The source explicitly defines the retained vertical-redistribution coefficient as the negative skin factor.",
+      "locator": "PDF page 4, Section 2.2, Equation (9) and following definition",
+      "sourceExcerpt": "其中 S f = rs Kz, skin,此為負膚層因子。這個方程確立",
+      "anchorTerms": [
+        "S f = rs Kz, skin",
+        "負膚層因子"
+      ],
+      "visualObject": "The r_s K_z,skin coefficient contracts into the label S_f beside the flux jump.",
+      "motionPurpose": "Name the coefficient that carries high-permeability skin redistribution into the analytical model.",
+      "stepDetail": "Replace the coefficient r_s K_z,skin with S_f while leaving the Equation (9) gradients unchanged.",
+      "transitionBridge": "The NSF condition remains visible beside the classical PSF boundary introduced in M10.",
+      "minimalText": "NSF Equation 9"
+    },
+    {
+      "id": "M10",
+      "input": "The newly derived NSF Equation (9) and the established low-permeability skin regime.",
+      "operation": "Compare the positive-skin boundary",
+      "output": "The classical PSF head-jump condition in Equation (10) beside the continuous-head NSF condition.",
+      "validity": "Equation (10) is stated as the related boundary condition for the traditional positive-skin model.",
+      "locator": "PDF page 4, Section 2.2, Equation (10)",
+      "sourceExcerpt": "sw= s − rwα ∂s ...............................................(10)",
+      "anchorTerms": [
+        "sw",
+        "rwα"
+      ],
+      "visualObject": "Equation (9) shows continuous drawdown and a flux jump while Equation (10) shows a drawdown jump.",
+      "motionPurpose": "Keep the positive- and negative-skin continuity choices visibly distinct.",
+      "stepDetail": "Align Equations (9) and (10) by interface and highlight the quantity that is discontinuous in each model.",
+      "transitionBridge": "The completed boundary-condition pair enters the Laplace transformation in M11.",
+      "minimalText": "NSF vs PSF"
+    },
+    {
+      "id": "M11",
+      "input": "The dimensionless confined-aquifer problem with its NSF or PSF well boundary condition.",
+      "operation": "Apply Laplace transformation",
+      "output": "Laplace-domain dimensionless drawdown equations retaining radial and vertical coordinates",
+      "validity": "The source explicitly states that the analytical solution uses the Laplace transformation before presenting the joint-domain expression.",
+      "locator": "PDF page 4, Section 2.2, analytical-solution sentence preceding Equation (11)",
+      "sourceExcerpt": "and Lin, 2024)。解析解使用拉氏轉換與傅立葉轉換",
+      "anchorTerms": [
+        "解析解",
+        "拉氏轉換"
+      ],
+      "visualObject": "The time-dependent drawdown field mapped onto a Laplace-parameter axis",
+      "motionPurpose": "Remove physical time before treating the bounded depth coordinate.",
+      "stepDetail": "Hold the radial and vertical coordinates fixed and map the time dependence into the Laplace domain.",
+      "transitionBridge": "The Laplace-domain depth dependence enters the Fourier transformation in M12.",
+      "minimalText": "Laplace transformation"
+    },
+    {
+      "id": "M12",
+      "input": "Laplace-domain dimensionless drawdown equations over the bounded vertical coordinate",
+      "operation": "Apply Fourier transformation",
+      "output": "The joint Laplace-Fourier drawdown expression in Equation (11)",
+      "validity": "The source states that the analytical solution uses Fourier transformation and then writes the dimensionless drawdown in the two transform domains.",
+      "locator": "PDF pages 4-5, Section 2.2, sentence preceding Equation (11) and Equation (11)",
+      "sourceExcerpt": "求解，因此其無因次的洩降分布解在拉氏與傅立葉 域可以寫作 = 2",
+      "anchorTerms": [
+        "拉氏與傅立葉",
+        "域可以寫作"
+      ],
+      "visualObject": "Laplace-domain drawdown decomposed into the Fourier expression labeled Equation (11)",
+      "motionPurpose": "Represent bounded depth through the source-stated second transform.",
+      "stepDetail": "Transform the vertical coordinate and reveal the resulting joint-domain Equation (11).",
+      "transitionBridge": "Equation (11) retains transformed time for the Stehfest inversion in M13.",
+      "minimalText": "Fourier transformation"
+    },
+    {
+      "id": "M13",
+      "input": "Equation (11) in the joint Laplace-Fourier domain.",
+      "operation": "Apply Stehfest inversion",
+      "output": "Physical-time drawdown coefficients that retain their finite Fourier representation.",
+      "validity": "The paragraph below Equation (11) names the Stehfest method as the numerical Laplace inversion used with the finite inverse Fourier transform.",
+      "locator": "PDF page 5, Section 2.2, paragraph immediately below Equation (11), Stehfest clause",
+      "sourceExcerpt": "Stehfest (1970) 方 法 與",
+      "anchorTerms": [
+        "Stehfest",
+        "1970"
+      ],
+      "visualObject": "Equation (11) keeps its Fourier modes while the Laplace variable becomes physical time.",
+      "motionPurpose": "Invert transformed time without claiming that the spatial modes are already assembled.",
+      "stepDetail": "Apply Stehfest weights along the Laplace coordinate and retain the finite Fourier coefficients.",
+      "transitionBridge": "The time-resolved Fourier coefficients pass directly to the spatial inversion in M14.",
+      "minimalText": "Stehfest inversion"
+    },
+    {
+      "id": "M14",
+      "input": "Physical-time coefficients that remain represented by finite Fourier modes.",
+      "operation": "Apply finite inverse Fourier transformation",
+      "output": "The Equation (11) drawdown response in the physical time-space domain.",
+      "validity": "The same source sentence names the finite inverse Fourier transformation and states that Equation (11) is converted to the time-space domain.",
+      "locator": "PDF page 5, Section 2.2, paragraph immediately below Equation (11), finite inverse Fourier clause",
+      "sourceExcerpt": "有限 傅 立 葉 逆 轉 換 將 公 式 (11) 轉換為時空間域",
+      "anchorTerms": [
+        "逆 轉 換",
+        "時空間域"
+      ],
+      "visualObject": "The time-resolved Fourier modes resolve into a drawdown field over radius, depth, and time.",
+      "motionPurpose": "Complete the source-stated return from transformed coordinates to the physical response.",
+      "stepDetail": "Invert the finite Fourier representation and reveal one time-space drawdown field without adding a separate assembly operation.",
+      "transitionBridge": "The physical response becomes the sampled output for the sensitivity calculation in M15.",
+      "minimalText": "Time-space response"
+    },
+    {
+      "id": "M15",
+      "input": "Physical-domain drawdown responses evaluated while varying C_D, κ, l_D, and α or β.",
+      "operation": "Calculate differential importance measures",
+      "output": "Owned PSF and NSF DIM sensitivity panels with parameter-specific curves.",
+      "validity": "Equation (12) defines the differential importance measure used to compare the four model parameters.",
+      "locator": "PDF page 5, Section 2.3 Sensitivity analysis, Equation (12)",
+      "sourceExcerpt": "differential importance measure (DIM),定義如下",
+      "anchorTerms": [
+        "differential importance measure",
+        "DIM"
+      ],
+      "visualObject": "A PSF sensitivity panel and an NSF sensitivity panel share the same dimensionless-time cursor.",
+      "motionPurpose": "Give the sensitivity comparison an explicit analytical owner and metric.",
+      "stepDetail": "Evaluate Equation (12) for each varied parameter and plot its DIM curve in the appropriate PSF or NSF panel.",
+      "transitionBridge": "The source-owned PSF and NSF sensitivity panels fold into the corrected-interface return.",
+      "minimalText": "DIM sensitivity"
+    }
+  ],
+  "symbols": [
+    {
+      "latex": "r_s",
+      "firstUseOwner": "M01",
+      "visualObject": "A brace spanning the annular skin thickness around the wellbore",
+      "meaning": "Skin-zone thickness around the well",
+      "unit": "L",
+      "transition": "The annulus receives a radial brace that stays attached while the interface rules change."
+    },
+    {
+      "latex": "s_w",
+      "firstUseOwner": "M02",
+      "visualObject": "The drawdown value attached to the wellbore side of the interface",
+      "meaning": "Wellbore drawdown",
+      "unit": "L",
+      "transition": "A point on the wellbore head trace becomes the label for the well-side drawdown."
+    },
+    {
+      "latex": "s_{\\mathrm{skin}}",
+      "firstUseOwner": "M02",
+      "visualObject": "The drawdown value attached to the skin-zone side of the interface",
+      "meaning": "Skin-zone drawdown",
+      "unit": "L",
+      "transition": "The continuous head trace across the annulus picks up a label on the skin side."
+    },
+    {
+      "latex": "S_f",
+      "firstUseOwner": "M09",
+      "visualObject": "A bracketed factor attached to the negative-skin flux jump",
+      "meaning": "Negative skin factor defined by the revised condition",
+      "unit": "L T^-1",
+      "transition": "The flux-jump arrows collapse into a single factor label beside the interface."
+    },
+    {
+      "latex": "C_D",
+      "firstUseOwner": "M12",
+      "visualObject": "A labeled axis or sensitivity bar in the parameter-comparison panel",
+      "meaning": "Dimensionless wellbore-storage parameter",
+      "unit": "dimensionless",
+      "transition": "Equation (11) introduces the storage parameter before its DIM curve appears in M15."
+    },
+    {
+      "latex": "\\kappa",
+      "firstUseOwner": "M12",
+      "visualObject": "The conductivity-ratio term in Equation (11) and its sensitivity lane",
+      "meaning": "Dimensionless radial-to-vertical hydraulic-conductivity ratio",
+      "unit": "dimensionless",
+      "transition": "The transformed-solution parameter becomes a labeled DIM curve in M15."
+    },
+    {
+      "latex": "l_D",
+      "firstUseOwner": "M12",
+      "visualObject": "The dimensionless screen-depth term in Equation (11) and its sensitivity lane",
+      "meaning": "Dimensionless lower screen depth and penetration control",
+      "unit": "dimensionless",
+      "transition": "The screen-depth term becomes a labeled DIM curve in M15."
+    },
+    {
+      "latex": "\\alpha",
+      "firstUseOwner": "M10",
+      "visualObject": "The positive-skin coefficient attached to Equation (10)",
+      "meaning": "Dimensionless positive skin factor",
+      "unit": "dimensionless",
+      "transition": "The PSF coefficient becomes a labeled sensitivity lane in M15."
+    },
+    {
+      "latex": "\\beta",
+      "firstUseOwner": "M12",
+      "visualObject": "The dimensionless negative-skin coefficient in Equation (11)",
+      "meaning": "Dimensionless negative skin factor",
+      "unit": "dimensionless",
+      "transition": "The NSF coefficient becomes a labeled sensitivity lane in M15."
+    },
+    {
+      "latex": "DIM_k",
+      "firstUseOwner": "M15",
+      "visualObject": "A parameter-specific curve in the owned PSF or NSF sensitivity panel",
+      "meaning": "Differential importance measure for parameter k",
+      "unit": "dimensionless",
+      "transition": "Each calculated measure remains attached to its source-defined parameter lane through the return."
+    }
+  ],
+  "return": {
+    "visualObject": "The drawdown and sensitivity panels fold back onto the original pumping well and annular skin ring, now labeled with continuous head across the interface and unequal flux arrows across the same boundary.",
+    "claim": "For high-permeability skin, the corrected negative-skin condition keeps head continuous and permits flux discontinuity, so the classical positive-skin assumption should not be reused unchanged in that regime.",
+    "claimBoundary": "This return is bounded by the paper's two-zone analytical model and its reported sensitivity scenarios; it does not claim to cover every possible near-well heterogeneity or completion geometry.",
+    "locator": "PDF page 2, Abstract closing sentence; PDF page 7, concluding summary paragraph",
+    "sourceExcerpt": "We have corrected the previous skin-factor model and provided an accurate derivation method to improve well hydraulics model analysis.",
+    "minimalText": "Corrected NSF"
+  },
+  "visual": {
+    "systemType": "geophysical_field",
+    "primaryObject": "A pumping well with a concentric high-permeability skin annulus embedded in an aquifer",
+    "accentObject": "Drawdown-response curves and sensitivity cues comparing positive-skin and negative-skin interpretations",
+    "measuredQuantity": "Drawdown and drawdown-response sensitivity around the wellbore",
+    "geometryNotes": "Keep the well and annular skin geometry fixed while the interface condition changes from a head jump to a continuous-head flux-jump picture, then move into drawdown curves and sensitivity cues before returning to the same annulus."
+  }
+}

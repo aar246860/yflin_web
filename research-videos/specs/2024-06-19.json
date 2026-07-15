@@ -1,0 +1,749 @@
+{
+  "schemaVersion": 1,
+  "id": "2024-06-19",
+  "doi": "10.1029/2023WR036747",
+  "title": "Analysis of Groundwater Time Series with Limited Pumping Information in Unconfined Aquifer: Response Function Based on Lagging Theory",
+  "sourceArtifact": "research-videos/source-pdfs/2024-06-19.pdf",
+  "research": {
+    "question": "Can transmissivity, specific yield, and lagging parameters be inferred from unconfined-aquifer head time series when individual pumping rates and well locations are unavailable?",
+    "system": "An unconfined aquifer monitored at observation wells amid dense, unsupervised pumping distributed around each station.",
+    "inputData": "Groundwater-level drawdown intervals from 21 first-aquifer stations in the Choshui River alluvial fan during 2019-2020, with field analysis restricted to rain-free intervals of at least 6 hours; 18 stations retained pumping events.",
+    "method": "Embed a lagging-Boussinesq impulse response in continuous-time transfer-function noise modeling, spatially average unknown wells as uniform pumping, estimate four parameters with penalized bounded least squares, and bootstrap residuals.",
+    "benchmark": "Classical Boussinesq response, synthetic random-pulse tests with known parameters, prior single-well transmissivity estimates, observed Choshui drawdown, and published hydrogeologic ranges.",
+    "uncertainty": "Morris sensitivity separates time-dependent parameter influence; synthetic heads include Gaussian measurement error; residual bootstrap distributions provide medians and 95% intervals; the paper cautions that low parameter correlation does not guarantee uniqueness.",
+    "conclusion": "The response function can estimate physically plausible aquifer parameters from head records without detailed pumping histories, but the results are spatially lumped and conditioned on homogeneous aquifer, uniform dense pumping, constant-rate events, and omitted well effects."
+  },
+  "narrative": {
+    "throughline": "When pumping wells disappear from the record, their combined imprint can still be read from head time series if the unconfined response shape and its timing are represented explicitly.",
+    "audienceStartingPoint": "The audience recognizes drawdown as a response to pumping but expects rate and location data to be required.",
+    "stakes": "Using a confined-aquifer response or a single-well interpretation can bias regional parameters where pumping is dense and unsupervised.",
+    "resolution": "A spatially averaged lagging response reproduces synthetic and Choshui head signals while returning uncertainty bands and model limits to the observation wells."
+  },
+  "background": [
+    {
+      "id": "B01",
+      "premise": "Reliable pumping rates and well distributions are often absent in regions with unsupervised groundwater extraction.",
+      "visibleEvidence": "An observation-well hydrograph surrounded by pumping wells whose locations and rates fade from view.",
+      "whyNow": "This missing forcing information defines the inverse problem.",
+      "boundary": "The method replaces detailed pumping with a uniform spatial approximation, not direct recovery of every well.",
+      "locator": "PDF page 1, Abstract",
+      "sourceExcerpt": "reliable data on pumping rates and distribution are often lacking due to unsupervised groundwater",
+      "anchorTerms": [
+        "pumping rates",
+        "distribution"
+      ],
+      "visualObject": "Groundwater hydrograph with unresolved pumping sources",
+      "motionPurpose": "Hide individual source labels while retaining their combined drawdown imprint.",
+      "stepDetail": "Show wells and rates; remove their metadata; retain the observed head decline; ask what properties remain identifiable.",
+      "transitionBridge": "The unresolved sources become a uniform pumping disk after the single-well response is derived.",
+      "minimalText": "Unknown pumping"
+    },
+    {
+      "id": "B02",
+      "premise": "A Theis-based confined-flow response cannot represent the staged storage and gravity-drainage behavior of an unconfined aquifer.",
+      "visibleEvidence": "Confined monotonic response contrasted with an unconfined S-shaped time-drawdown curve.",
+      "whyNow": "The time-series kernel must match unconfined physics before inversion.",
+      "boundary": "The staged response is discussed for pumping-induced unconfined flow.",
+      "locator": "PDF page 2, Introduction, second paragraph",
+      "sourceExcerpt": "However, the Theis (1935) model was developed for confined flow conditions and may not apply to unconfined flow problems",
+      "anchorTerms": [
+        "confined flow",
+        "unconfined"
+      ],
+      "visualObject": "Theis response and S-shaped unconfined drawdown on common axes",
+      "motionPurpose": "Separate the curves at intermediate time where gravity drainage matters.",
+      "stepDetail": "Draw the confined response; reveal the unconfined S-shape; mark storage, drainage, and combined regimes.",
+      "transitionBridge": "The S-shape becomes the target of the lagging response in M02.",
+      "minimalText": "Unconfined response"
+    },
+    {
+      "id": "B03",
+      "premise": "Capillary suction and inertial force shift the timing of drawdown propagation in opposite lagging roles.",
+      "visibleEvidence": "A capillary-held water parcel and an inertia-driven drainage pulse offset on a time axis.",
+      "whyNow": "Two lagging parameters are needed to shape the response function.",
+      "boundary": "The lagging terms summarize these effects within the linearized Boussinesq model.",
+      "locator": "PDF pages 3-4, Section 2.1.2, Equation (4)",
+      "sourceExcerpt": "The parameters τh and τq reflect the time lags due to capillary suction and inertial force, respectively.",
+      "anchorTerms": [
+        "capillary suction and inertial force",
+        "parameters"
+      ],
+      "visualObject": "Two time offsets attached to capillary and inertial flow paths",
+      "motionPurpose": "Shift the two physical response paths before assigning their lag labels.",
+      "stepDetail": "Hold the pumping pulse fixed; delay capillary release; advance inertial drainage; attach each offset to the response curve.",
+      "transitionBridge": "The offsets enter the lagging Boussinesq equation in M02.",
+      "minimalText": "Two lags"
+    }
+  ],
+  "methods": [
+    {
+      "id": "M01",
+      "input": "Observed groundwater head time series",
+      "operation": "Separate head signal components",
+      "output": "Trend residual disturbance and pumping-related high-frequency components",
+      "validity": "The Box-Jenkins representation separates a mean level, unexplained low-frequency variation, and physically forced fluctuations.",
+      "locator": "PDF page 3, Section 2.1.1, Equations (1)-(2)",
+      "sourceExcerpt": "The groundwater head variation, h (L), at time t (T ), can be expressed as a combination of three distinct com- ponents",
+      "anchorTerms": [
+        "groundwater head",
+        "variation"
+      ],
+      "visualObject": "Hydrograph separating into trend residual and pumping-response traces",
+      "motionPurpose": "Pull the observed signal into components so the pumping imprint is isolated.",
+      "stepDetail": "Show raw head; remove the stable level; separate low-frequency residual; retain pumping-related variation.",
+      "transitionBridge": "The retained pumping component receives a physical response equation.",
+      "minimalText": "Isolate pumping response"
+    },
+    {
+      "id": "M02",
+      "input": "Pumping-induced flow in an unconfined aquifer",
+      "operation": "Apply Dupuit assumption",
+      "output": "One-dimensional radial Boussinesq equation in polar coordinates",
+      "validity": "The source neglects the vertical flow component when forming Equation (3).",
+      "locator": "PDF page 3, Section 2.1.2, Equation (3)",
+      "sourceExcerpt": "assuming the Dupuit assumption where the vertical flow component is considered negligible",
+      "anchorTerms": [
+        "Dupuit assumption",
+        "vertical flow component"
+      ],
+      "visualObject": "Unconfined radial flow field flattened to the Dupuit profile",
+      "motionPurpose": "Own the vertical-flow approximation before introducing lagging physics.",
+      "stepDetail": "Remove the vertical flow component and retain the radial Boussinesq balance.",
+      "transitionBridge": "The radial flow law receives the lagging Darcy relation in M03.",
+      "minimalText": "Dupuit radial flow"
+    },
+    {
+      "id": "M03",
+      "input": "Radial Boussinesq flow with capillary and inertial response delays",
+      "operation": "Apply lagging Darcy relation",
+      "output": "Time-shifted flux and hydraulic-gradient relation",
+      "validity": "The source assigns separate time offsets to flux and hydraulic head under lagging theory.",
+      "locator": "PDF page 3, Section 2.1.2, lagging-theory relation preceding Equation (4)",
+      "sourceExcerpt": "According to the lagging theory (Y.‐C. Lin & Yeh, 2017), Darcy's law can be modified as",
+      "anchorTerms": [
+        "lagging theory",
+        "Darcy's law"
+      ],
+      "visualObject": "Flux and head-gradient traces shifted by separate time offsets",
+      "motionPurpose": "Introduce the two source-stated timing offsets as one constitutive operation.",
+      "stepDetail": "Shift the flux and hydraulic-gradient traces by their respective lag times.",
+      "transitionBridge": "The lagged relation is linearized about saturated thickness in M04.",
+      "minimalText": "Lagging Darcy relation"
+    },
+    {
+      "id": "M04",
+      "input": "Lagged radial Boussinesq relation with variable water elevation",
+      "operation": "Apply saturated-thickness linearization",
+      "output": "Lagging Boussinesq equation containing capillary and inertial lag parameters",
+      "validity": "The source linearizes the nonlinear head-gradient product about a representative water elevation within the saturated thickness.",
+      "locator": "PDF page 4, Section 2.1.2, Equation (4)",
+      "sourceExcerpt": "linearization technique (hp∂hp/∂r ≈ h¯p∂hp/∂r, where h¯p ∈ [0,b] [L] represents the variable water elevation)",
+      "anchorTerms": [
+        "linearization technique",
+        "variable water elevation"
+      ],
+      "visualObject": "Variable saturated profile resolving into the linearized lagging equation",
+      "motionPurpose": "Convert the lagged nonlinear flow relation into the source's linear response equation.",
+      "stepDetail": "Replace the nonlinear head-gradient product with its saturated-thickness linearization.",
+      "transitionBridge": "The linear lagging initial-boundary problem enters the Laplace domain in M05.",
+      "minimalText": "Linearized lagging equation"
+    },
+    {
+      "id": "M05",
+      "input": "Lagging Boussinesq initial-boundary problem",
+      "operation": "Apply Laplace transformation",
+      "output": "Laplace-domain hydraulic-head solution",
+      "validity": "The source derives the transformed solution from the pumping initial-boundary problem.",
+      "locator": "PDF page 4, Section 2.1.2, Equations (5)-(6)",
+      "sourceExcerpt": "By applying the Laplace transformation technique, the solution in the Laplace domain can be obtained as",
+      "anchorTerms": [
+        "Laplace transformation",
+        "Laplace domain"
+      ],
+      "visualObject": "Lagging differential equation folding into a Laplace-domain head relation",
+      "motionPurpose": "Remove the time derivative while preserving the lag parameters in the transformed response.",
+      "stepDetail": "Hold the radial boundary conditions; transform the time coordinate; collect the lag terms; retain the Laplace-domain head solution.",
+      "transitionBridge": "The transformed solution becomes a time-domain step response.",
+      "minimalText": "Laplace domain"
+    },
+    {
+      "id": "M06",
+      "input": "Laplace-domain hydraulic-head solution",
+      "operation": "Transform Laplace solution",
+      "output": "Time-domain single-well step response",
+      "validity": "The source evaluates the time-domain response with the Stehfest numerical Laplace inversion scheme.",
+      "locator": "PDF page 4, Section 2.1.2, Equations (6)-(7)",
+      "sourceExcerpt": "value can be evaluated using the numerical Laplace inversion algorithm using the Stehfest (1970) scheme.",
+      "anchorTerms": [
+        "Laplace inversion",
+        "Stehfest"
+      ],
+      "visualObject": "Laplace-domain curve resolving into a time-domain pumping step response",
+      "motionPurpose": "Return the transformed solution to the observable time axis.",
+      "stepDetail": "Apply the numerical inversion; reconstruct the time coordinate; reveal the single-well step response.",
+      "transitionBridge": "The step response is differentiated into an impulse kernel.",
+      "minimalText": "Invert step response"
+    },
+    {
+      "id": "M07",
+      "input": "Time-domain single-well step response",
+      "operation": "Differentiate step response",
+      "output": "Single-well impulse response function",
+      "validity": "Numerical differentiation of the step response yields the impulse response used by the transfer function.",
+      "locator": "PDF pages 4-5, Section 2.1.2, Equation (8b)",
+      "sourceExcerpt": "impulse response function, which be readily ob- tained using numerical differentiation techniques.",
+      "anchorTerms": [
+        "impulse response function",
+        "numerical differentiation"
+      ],
+      "visualObject": "Pumping step response differentiating into a compact impulse kernel",
+      "motionPurpose": "Expose the kernel that responds to an individual pumping increment.",
+      "stepDetail": "Trace the step-response slope; calculate its derivative; retain the impulse-response curve.",
+      "transitionBridge": "The impulse kernel is applied to a variable pumping history.",
+      "minimalText": "Impulse kernel"
+    },
+    {
+      "id": "M08",
+      "input": "Single-well impulse response and a time-varying pumping-rate series",
+      "operation": "Combine pumping contributions",
+      "output": "Single-well drawdown for arbitrary pumping histories",
+      "validity": "The transfer-function representation evaluates a time-varying pumping rate by convolution with the impulse response.",
+      "locator": "PDF pages 4-5, Section 2.1.2, Equation (8a)",
+      "sourceExcerpt": "pumping rate, it can be evaluated using convolution:",
+      "anchorTerms": [
+        "pumping rate",
+        "convolution"
+      ],
+      "visualObject": "Impulse kernel sliding across pumping pulses to build a drawdown hydrograph",
+      "motionPurpose": "Apply the reusable kernel to changing pumping rates.",
+      "stepDetail": "Align the kernel with each pumping pulse; scale each contribution; sum the resulting drawdown response.",
+      "transitionBridge": "The single-well response is spatially averaged over unresolved sources.",
+      "minimalText": "Convolve pumping"
+    },
+    {
+      "id": "M09",
+      "input": "Single-well step responses distributed around an observation point",
+      "operation": "Integrate circular responses",
+      "output": "Uniform pumping step-response function",
+      "validity": "Spatially homogeneous pumping permits area-weighted integration of the single-well response within a finite influence radius.",
+      "locator": "PDF page 5, Section 2.1.3, Equations (9)-(10)",
+      "sourceExcerpt": "This assumption permits the derivation of the response function for a spatially distributed pumping event by inte- grating the response function of a single well pumping scenario",
+      "anchorTerms": [
+        "response function",
+        "integrating"
+      ],
+      "visualObject": "Single-well response rings merging into a uniform pumping disk",
+      "motionPurpose": "Average unresolved source locations while retaining the finite influence radius.",
+      "stepDetail": "Partition the influence circle into rings; weight each single-well response by area; integrate the rings; retain the uniform step response.",
+      "transitionBridge": "The uniform step response is differentiated into its impulse form.",
+      "minimalText": "Uniform step response"
+    },
+    {
+      "id": "M10",
+      "input": "Uniform pumping step-response function",
+      "operation": "Differentiate uniform response",
+      "output": "Uniform pumping impulse-response function",
+      "validity": "Equation 11 defines the uniform impulse response as the derivative of the uniform step response.",
+      "locator": "PDF page 5, Section 2.1.3, Equation (11)",
+      "sourceExcerpt": "while the corresponding IR function with the similar treatment can be θˆp(t) = dΘˆ p(t) (11) dt",
+      "anchorTerms": [
+        "corresponding IR function",
+        "uniform IR"
+      ],
+      "visualObject": "Uniform pumping step curve differentiating into a regional impulse kernel",
+      "motionPurpose": "Create the uniform kernel required for regional pumping convolution.",
+      "stepDetail": "Trace the uniform step-response slope; differentiate it; retain the uniform impulse-response curve.",
+      "transitionBridge": "The uniform impulse response is applied to a regional pumping history.",
+      "minimalText": "Uniform impulse"
+    },
+    {
+      "id": "M11",
+      "input": "Uniform impulse response and a regional pumping-rate history",
+      "operation": "Combine uniform responses",
+      "output": "Modeled observation-well drawdown under uniform pumping",
+      "validity": "Equation 12 expresses groundwater head as convolution of pumping rate with the uniform impulse response.",
+      "locator": "PDF page 5, Section 2.1.3, Equation (12)",
+      "sourceExcerpt": "The groundwater head using this approach (denoted as hˆp) can be expressed as:",
+      "anchorTerms": [
+        "groundwater head",
+        "expressed"
+      ],
+      "visualObject": "Uniform regional kernel accumulating into an observation-well drawdown trace",
+      "motionPurpose": "Connect the spatially averaged response to the measured hydrograph.",
+      "stepDetail": "Slide the uniform kernel across the regional pumping history; sum contributions; retain the modeled drawdown.",
+      "transitionBridge": "The modeled drawdown enters constrained parameter estimation.",
+      "minimalText": "Uniform drawdown"
+    },
+    {
+      "id": "M12",
+      "input": "Rain-free observed drawdown intervals and the uniform response model",
+      "operation": "Estimate penalized parameters",
+      "output": "Fitted transmissivity specific yield and two lag parameters",
+      "validity": "Bounded Trust Region Reflective least squares minimizes the drawdown residual objective plus the prior-transmissivity penalty.",
+      "locator": "PDF page 7, Section 2.2.2, Equation (17)",
+      "sourceExcerpt": "Using an optimization technique, we can then estimate the parameters Sy, T, τh, and τq.",
+      "anchorTerms": [
+        "estimate the parameters",
+        "optimization technique"
+      ],
+      "visualObject": "Observed drawdown residuals shrinking as four parameter controls settle",
+      "motionPurpose": "Fit the four hydrogeologic parameters while retaining the transmissivity penalty.",
+      "stepDetail": "Hold the observed interval fixed; vary the four bounded parameters; include the prior-transmissivity penalty; settle at the objective minimum.",
+      "transitionBridge": "The fitted parameters determine the interval pumping rate.",
+      "minimalText": "Penalized fit"
+    },
+    {
+      "id": "M13",
+      "input": "Fitted hydrogeologic parameters observed head change and pumping duration",
+      "operation": "Compute pumping rate",
+      "output": "Estimated pumping rate for each drawdown interval",
+      "validity": "Equation 13 converts observed head change over a measured pumping interval through the fitted uniform step response.",
+      "locator": "PDF pages 5 and 7, Equation (13) and Section 2.2.2",
+      "sourceExcerpt": "Once these parameters are determined, the pumping rate Q can be computed using Equation 13.",
+      "anchorTerms": [
+        "pumping rate",
+        "Equation 13"
+      ],
+      "visualObject": "Observed interval head change transforming into an estimated pumping-rate bar",
+      "motionPurpose": "Make the source's drawdown-to-rate conversion visible after parameter fitting.",
+      "stepDetail": "Measure the interval head change and duration; evaluate the fitted uniform step response; compute the pumping rate.",
+      "transitionBridge": "The estimated rate returns to the forward drawdown model.",
+      "minimalText": "Estimate pumping rate"
+    },
+    {
+      "id": "M14",
+      "input": "Estimated pumping rate and fitted uniform-response parameters",
+      "operation": "Calculate modeled drawdown",
+      "output": "Forward-modeled drawdown for the observed interval",
+      "validity": "The source substitutes the calculated pumping rate into Equation 12 to determine modeled drawdown.",
+      "locator": "PDF page 7, Section 2.2.2, Equations (12)-(13)",
+      "sourceExcerpt": "This calculated value of Q can then be substituted in to Equation 12 to determine the modeled drawdown.",
+      "anchorTerms": [
+        "modeled drawdown",
+        "Equation 12"
+      ],
+      "visualObject": "Estimated pumping bar passing through the uniform kernel to reproduce the drawdown trace",
+      "motionPurpose": "Close the forward-model loop before uncertainty analysis.",
+      "stepDetail": "Insert the estimated rate into Equation 12; evaluate the uniform convolution; overlay modeled and observed drawdown.",
+      "transitionBridge": "The fitted residuals become the bootstrap sampling pool.",
+      "minimalText": "Reconstruct drawdown"
+    },
+    {
+      "id": "M15",
+      "input": "Fitted-model residuals",
+      "operation": "Sample residuals with replacement",
+      "output": "A resampled residual sequence",
+      "validity": "The residual bootstrap treats fitted residuals as the empirical sampling pool.",
+      "locator": "PDF page 7, Section 2.2.3, first bootstrap sentence",
+      "sourceExcerpt": "synthetic data sets by resampling the model residuals with replacement",
+      "anchorTerms": [
+        "resampling",
+        "model residuals"
+      ],
+      "visualObject": "Residual points entering a replacement-sampling wheel",
+      "motionPurpose": "Show the empirical residual pool becoming one bootstrap sequence.",
+      "stepDetail": "Draw residual points; sample with replacement; retain the resampled sequence.",
+      "transitionBridge": "The sampled residuals perturb the fitted prediction in M16.",
+      "minimalText": "Resample residuals"
+    },
+    {
+      "id": "M16",
+      "input": "A resampled residual sequence and the fitted head prediction",
+      "operation": "Add residuals to model predictions",
+      "output": "One synthetic head data set",
+      "validity": "Each bootstrap replicate is formed by adding sampled residuals to the original fitted prediction.",
+      "locator": "PDF page 7, Section 2.2.3, second bootstrap sentence",
+      "sourceExcerpt": "each of these data sets was added back to the original model predictions",
+      "anchorTerms": [
+        "data sets",
+        "model predictions"
+      ],
+      "visualObject": "Residual sequence added pointwise to a fitted hydrograph",
+      "motionPurpose": "Turn one fitted curve into one source-defined bootstrap data set.",
+      "stepDetail": "Hold the fitted curve; add the sampled residual at every time; reveal the synthetic head series.",
+      "transitionBridge": "The synthetic data set is refitted in M17.",
+      "minimalText": "Build bootstrap data"
+    },
+    {
+      "id": "M17",
+      "input": "One synthetic bootstrap head data set",
+      "operation": "Fit the response model",
+      "output": "One bootstrap parameter estimate",
+      "validity": "The same estimation procedure is applied to every bootstrap data set.",
+      "locator": "PDF page 7, Section 2.2.3, second bootstrap sentence",
+      "sourceExcerpt": "refit the model, and obtain new parameter estimates",
+      "anchorTerms": [
+        "refit",
+        "parameter estimates"
+      ],
+      "visualObject": "Synthetic hydrograph entering the four-parameter fitting controls",
+      "motionPurpose": "Show one complete bootstrap replicate returning one parameter vector.",
+      "stepDetail": "Fit the response model to the synthetic data; retain the resulting parameter estimate.",
+      "transitionBridge": "Repeated estimates are aggregated in M18.",
+      "minimalText": "Refit each replicate"
+    },
+    {
+      "id": "M18",
+      "input": "Bootstrap parameter estimates",
+      "operation": "Form bootstrap distributions",
+      "output": "Parameter distributions with reported intervals",
+      "validity": "The bootstrap distributions represent variability propagated from fitted residuals, not structural model uncertainty.",
+      "locator": "PDF page 7, Section 2.2.3, final bootstrap sentence",
+      "sourceExcerpt": "distribution of parameter estimates, which captures the variability in the data",
+      "anchorTerms": [
+        "distribution",
+        "parameter estimates"
+      ],
+      "visualObject": "Parameter estimates accumulating into four empirical distributions",
+      "motionPurpose": "Convert repeated point estimates into visible residual-based uncertainty.",
+      "stepDetail": "Stack repeated estimates; form empirical distributions; mark the reported interval bounds.",
+      "transitionBridge": "Sensitivity analysis next asks when each parameter affects drawdown.",
+      "minimalText": "Bootstrap distributions"
+    },
+    {
+      "id": "M19",
+      "input": "A sampled parameter vector and one selected parameter",
+      "operation": "Apply one parameter perturbation",
+      "output": "A one-at-a-time perturbed parameter vector",
+      "validity": "Morris screening changes one factor at a time within the prescribed discrete sampling grid.",
+      "locator": "PDF page 6, Section 2.2.1, paragraph before Equation (14)",
+      "sourceExcerpt": "uses sampling at a time to disturb parameter values",
+      "anchorTerms": [
+        "sampling",
+        "parameter values"
+      ],
+      "visualObject": "Parameter vector with one control displaced",
+      "motionPurpose": "Isolate the one-at-a-time Morris perturbation.",
+      "stepDetail": "Hold all controls fixed; move one selected parameter by the prescribed increment.",
+      "transitionBridge": "The perturbed vector is evaluated against the baseline in M20.",
+      "minimalText": "Perturb one factor"
+    },
+    {
+      "id": "M20",
+      "input": "Baseline and perturbed model responses",
+      "operation": "Calculate an elementary effect",
+      "output": "One time-dependent elementary-effect trace",
+      "validity": "Equation (14) defines the response change produced by the selected parameter perturbation.",
+      "locator": "PDF page 6, Section 2.2.1, Equation (14)",
+      "sourceExcerpt": "elementary effect for kth aquifer parameter",
+      "anchorTerms": [
+        "elementary effect",
+        "parameter"
+      ],
+      "visualObject": "Two drawdown traces separated into an elementary-effect curve",
+      "motionPurpose": "Make the local response difference visible over time.",
+      "stepDetail": "Evaluate both responses; subtract the baseline from the perturbed response; retain the elementary effect.",
+      "transitionBridge": "Effects across trajectories enter the absolute-mean calculation in M21.",
+      "minimalText": "Elementary effect"
+    },
+    {
+      "id": "M21",
+      "input": "Elementary effects across sampled trajectories",
+      "operation": "Calculate absolute mean effect",
+      "output": "Mu-star overall-effect value for each parameter",
+      "validity": "Equation (15a) defines mu-star from the absolute elementary effects across the sampled trajectories.",
+      "locator": "PDF page 6, Section 2.2.1, Equation (15a)",
+      "sourceExcerpt": "μ* quantifies the average impact of changing a parameter across its range on the model's output",
+      "anchorTerms": [
+        "average impact",
+        "model's output"
+      ],
+      "visualObject": "Absolute elementary effects condensing into a mu-star coordinate",
+      "motionPurpose": "Own the overall-effect indicator independently of effect variability.",
+      "stepDetail": "Take the absolute mean of the sampled elementary effects for each parameter.",
+      "transitionBridge": "The same elementary effects supply the standard deviation in M22.",
+      "minimalText": "Absolute mean effect"
+    },
+    {
+      "id": "M22",
+      "input": "Elementary effects and their parameter-specific means",
+      "operation": "Calculate standard deviation",
+      "output": "Sigma variability value for each parameter",
+      "validity": "Equation (15b) defines sigma from variability among the sampled elementary effects.",
+      "locator": "PDF page 6, Section 2.2.1, Equation (15b)",
+      "sourceExcerpt": "σ measures the variability of these effects across different levels of the parameter",
+      "anchorTerms": [
+        "variability",
+        "parameter"
+      ],
+      "visualObject": "Elementary-effect spread condensing into a sigma coordinate",
+      "motionPurpose": "Own the variability indicator separately from overall influence.",
+      "stepDetail": "Calculate the standard deviation of the sampled elementary effects for each parameter.",
+      "transitionBridge": "The two owned indicators are evaluated through time in M23.",
+      "minimalText": "Effect standard deviation"
+    },
+    {
+      "id": "M23",
+      "input": "Morris summary statistics evaluated at successive times",
+      "operation": "Evaluate sensitivity through time",
+      "output": "Time-dependent parameter-influence curves",
+      "validity": "The paper evaluates parameter importance over a specified response period rather than at a single time.",
+      "locator": "PDF pages 6 and 8-9, Sections 2.2.1 and 3.1, Figure 3",
+      "sourceExcerpt": "investigate the effect of each parameter on drawdown response over a specific time",
+      "anchorTerms": [
+        "parameter",
+        "drawdown response"
+      ],
+      "visualObject": "Four sensitivity curves evolving beneath a moving time cursor",
+      "motionPurpose": "Show when transmissivity, specific yield, and each lag parameter controls the response.",
+      "stepDetail": "Move through response time; retain each parameter's summary statistic; draw the resulting influence curves.",
+      "transitionBridge": "The identified time windows frame the synthetic test.",
+      "minimalText": "Sensitivity through time"
+    },
+    {
+      "id": "M24",
+      "input": "Known aquifer and lag parameters with random pumping pulses",
+      "operation": "Simulate synthetic drawdown",
+      "output": "Noise-free synthetic head response",
+      "validity": "Equation (12) supplies a controlled response with known parameter truth.",
+      "locator": "PDF pages 9-10, Section 3.2.1, first synthetic-test paragraph",
+      "sourceExcerpt": "Multiple pumping events were simulated by randomly",
+      "anchorTerms": [
+        "pumping events",
+        "simulated"
+      ],
+      "visualObject": "Random pumping bars driving a synthetic drawdown curve",
+      "motionPurpose": "Create the controlled response used to test recovery.",
+      "stepDetail": "Set known parameters; apply the random pumping sequence; calculate the synthetic drawdown.",
+      "transitionBridge": "Measurement disturbance is added in M25.",
+      "minimalText": "Generate known response"
+    },
+    {
+      "id": "M25",
+      "input": "Noise-free synthetic head response",
+      "operation": "Add measurement error",
+      "output": "Disturbed synthetic observations",
+      "validity": "The synthetic experiment uses the stated normally distributed head error before estimation.",
+      "locator": "PDF pages 9-10, Section 3.2.1, synthetic-test setup",
+      "sourceExcerpt": "Synthetic head data encompasses measurement errors through the formula",
+      "anchorTerms": [
+        "measurement errors",
+        "Synthetic head"
+      ],
+      "visualObject": "Small measurement perturbations applied to the synthetic curve",
+      "motionPurpose": "Distinguish known physical response from simulated observation error.",
+      "stepDetail": "Hold the synthetic truth; add the stated measurement errors; retain the disturbed observations.",
+      "transitionBridge": "The disturbed data are fitted in M26.",
+      "minimalText": "Add measurement error"
+    },
+    {
+      "id": "M26",
+      "input": "Disturbed synthetic observations",
+      "operation": "Estimate synthetic parameters",
+      "output": "Recovered transmissivity, specific yield, and lag parameters",
+      "validity": "The bounded estimation procedure is applied without access to the known values used to generate the data.",
+      "locator": "PDF pages 9-10, Section 3.2.1, Figure 4",
+      "sourceExcerpt": "The parameter estimation using proposed solution for Cases 1 to 3 were obtained",
+      "anchorTerms": [
+        "parameter estimation",
+        "Cases"
+      ],
+      "visualObject": "Disturbed observations entering the parameter-fitting controls",
+      "motionPurpose": "Recover one parameter vector from the controlled test.",
+      "stepDetail": "Fit the model to the disturbed observations; retain the recovered parameter values.",
+      "transitionBridge": "Recovery accuracy is evaluated in M27.",
+      "minimalText": "Recover parameters"
+    },
+    {
+      "id": "M27",
+      "input": "Recovered parameters and known synthetic targets",
+      "operation": "Compare recovered values",
+      "output": "Synthetic recovery differences",
+      "validity": "Known generating values permit a direct recovery test that field data cannot provide.",
+      "locator": "PDF pages 9-10, Section 3.2.1, Figure 4",
+      "sourceExcerpt": "values closely matched the target values",
+      "anchorTerms": [
+        "matched",
+        "target values"
+      ],
+      "visualObject": "Recovered markers aligned with known target markers",
+      "motionPurpose": "Make the controlled recovery difference explicit.",
+      "stepDetail": "Place each estimate beside its known target; calculate and display the recovery difference.",
+      "transitionBridge": "The controlled test gives way to rain screening of the field records in M28.",
+      "minimalText": "Compare with truth"
+    },
+    {
+      "id": "M28",
+      "input": "First-aquifer groundwater-level records from the Choshui stations",
+      "operation": "Select rain-free periods",
+      "output": "Drawdown periods without rainfall",
+      "validity": "The field workflow requires candidate drawdown to occur during a rain-free period.",
+      "locator": "PDF page 8, Section 2.3 Field Application, pumping-cessation criteria",
+      "sourceExcerpt": "the drawdown period must occur during a rain‐free period",
+      "anchorTerms": [
+        "drawdown period",
+        "rain‐free period"
+      ],
+      "visualObject": "Station hydrographs with rainfall periods masked out",
+      "motionPurpose": "Own the rainfall screen before applying the duration criterion.",
+      "stepDetail": "Mask rainfall periods and retain only rain-free drawdown windows.",
+      "transitionBridge": "The rain-free windows are screened by duration in M29.",
+      "minimalText": "Rain-free periods"
+    },
+    {
+      "id": "M29",
+      "input": "Rain-free candidate drawdown periods",
+      "operation": "Filter short drawdown intervals",
+      "output": "Rain-free drawdown intervals lasting at least six hours",
+      "validity": "The source requires a minimum six-hour duration because shorter declines may not be caused solely by pumping.",
+      "locator": "PDF page 8, Section 2.3 Field Application, pumping-cessation criteria",
+      "sourceExcerpt": "the drawdown duration should be a minimum of 6 hr",
+      "anchorTerms": [
+        "drawdown duration",
+        "minimum of 6 hr"
+      ],
+      "visualObject": "Rain-free intervals measured against a six-hour duration ruler",
+      "motionPurpose": "Separate duration screening from rainfall screening.",
+      "stepDetail": "Remove candidate intervals shorter than six hours.",
+      "transitionBridge": "The qualifying intervals enter station-level pumping-event screening in M30.",
+      "minimalText": "At least 6 hours"
+    },
+    {
+      "id": "M30",
+      "input": "Qualifying drawdown intervals from 21 groundwater stations",
+      "operation": "Filter stations without pumping events",
+      "output": "Eighteen stations retaining identified pumping events",
+      "validity": "The field application excludes three stations identified as having no pumping events.",
+      "locator": "PDF page 10, Section 3.2.2 Field Test, opening sentence",
+      "sourceExcerpt": "three stations were excluded because they were identified as having no pumping events.",
+      "anchorTerms": [
+        "three stations",
+        "no pumping events"
+      ],
+      "visualObject": "Twenty-one station markers with three no-event stations removed",
+      "motionPurpose": "Map the source's station-level pumping-event screen explicitly.",
+      "stepDetail": "Remove the three stations identified as having no pumping events.",
+      "transitionBridge": "The retained station hydrographs are fitted in M31.",
+      "minimalText": "18 pumping-event stations"
+    },
+    {
+      "id": "M31",
+      "input": "Retained Choshui drawdown intervals",
+      "operation": "Fit each station hydrograph",
+      "output": "Predicted drawdown curve for each station",
+      "validity": "The retained field intervals use the same parameter search bounds as the synthetic test.",
+      "locator": "PDF pages 10-11, Section 3.2.2, Figure 5",
+      "sourceExcerpt": "predicted curves, together with their estimates and the observed data",
+      "anchorTerms": [
+        "predicted curves",
+        "observed data"
+      ],
+      "visualObject": "Observed station hydrographs receiving fitted response curves",
+      "motionPurpose": "Show the model-data comparison before pooling estimates.",
+      "stepDetail": "Hold each observed hydrograph; fit the response model; overlay the predicted curve.",
+      "transitionBridge": "Station estimates are collected in M32.",
+      "minimalText": "Fit field hydrographs"
+    },
+    {
+      "id": "M32",
+      "input": "Fitted field hydrographs",
+      "operation": "Aggregate station parameters",
+      "output": "Parameter estimates across retained stations",
+      "validity": "Each estimate is a spatially lumped result for the pumping influence area around its observation well.",
+      "locator": "PDF pages 10-12, Section 3.2.2, Figures 5-6",
+      "sourceExcerpt": "Estimated parameter distributions for parameters",
+      "anchorTerms": [
+        "Estimated",
+        "parameter distributions"
+      ],
+      "visualObject": "Station markers moving into four parameter columns",
+      "motionPurpose": "Keep station-level estimates distinct before summarizing their spread.",
+      "stepDetail": "Read each fitted parameter vector; place it in the corresponding parameter column.",
+      "transitionBridge": "The collected values supply the field medians in M33.",
+      "minimalText": "Collect station estimates"
+    },
+    {
+      "id": "M33",
+      "input": "Parameter estimates across retained field stations",
+      "operation": "Calculate field medians",
+      "output": "Median values for specific yield, transmissivity, and both lag parameters",
+      "validity": "The source reports one median for each parameter across the fitted stations.",
+      "locator": "PDF page 10, Section 3.2.2 Field Test, parameter-summary paragraph",
+      "sourceExcerpt": "The estimation of parameters from all stations reveals that the median values of Sy, T, τh, and τq are 0.175",
+      "anchorTerms": [
+        "median values",
+        "all stations"
+      ],
+      "visualObject": "Four station-estimate columns each receiving a median marker",
+      "motionPurpose": "Own the central field summaries before interval bounds are displayed.",
+      "stepDetail": "Calculate one median from each parameter's station estimates.",
+      "transitionBridge": "The bootstrap distributions supply interval bounds in M34.",
+      "minimalText": "Field medians"
+    },
+    {
+      "id": "M34",
+      "input": "Bootstrap field-parameter distributions and their medians",
+      "operation": "Extract confidence interval bounds",
+      "output": "Lower and upper 95 percent bounds for each field-parameter distribution",
+      "validity": "Figure 6 reports the lower and upper 95 percent confidence limits with each parameter median.",
+      "locator": "PDF page 12, Figure 6 caption",
+      "sourceExcerpt": "The median, and lower and upper 95% CI (brackets) are shown in the corresponding subplot titles.",
+      "anchorTerms": [
+        "upper 95% CI",
+        "subplot titles"
+      ],
+      "visualObject": "Median markers gaining lower and upper confidence brackets",
+      "motionPurpose": "Own the reported field uncertainty separately from median calculation.",
+      "stepDetail": "Read the lower and upper 95 percent bounds from each bootstrap distribution.",
+      "transitionBridge": "The station estimates and uncertainty brackets return to the Choshui map with model assumptions visible.",
+      "minimalText": "Field 95% intervals"
+    }
+  ],
+  "symbols": [
+    {
+      "latex": "T",
+      "firstUseOwner": "M04",
+      "visualObject": "Aquifer transmissive band",
+      "meaning": "Unconfined-aquifer transmissivity",
+      "unit": "L^2 T^{-1}",
+      "transition": "Label the saturated-thickness flow band"
+    },
+    {
+      "latex": "S_y",
+      "firstUseOwner": "M02",
+      "visualObject": "Pore-water release per water-table decline",
+      "meaning": "Specific yield",
+      "unit": "dimensionless",
+      "transition": "Transform released pore volume into S_y"
+    },
+    {
+      "latex": "\\tau_h",
+      "firstUseOwner": "B03",
+      "visualObject": "Capillary-response time offset",
+      "meaning": "Hydraulic-head lag associated with capillary suction",
+      "unit": "T",
+      "transition": "Brace the capillary offset"
+    },
+    {
+      "latex": "\\tau_q",
+      "firstUseOwner": "B03",
+      "visualObject": "Flux-response time offset",
+      "meaning": "Flux lag associated with inertial force",
+      "unit": "T",
+      "transition": "Brace the inertial offset"
+    },
+    {
+      "latex": "\\psi_p(t)",
+      "firstUseOwner": "M07",
+      "visualObject": "Pumping impulse-response curve",
+      "meaning": "Impulse response of groundwater head to pumping",
+      "unit": "L^{-2}",
+      "transition": "Differentiate the step-response curve into the kernel"
+    }
+  ],
+  "return": {
+    "visualObject": "Choshui observation wells over the uniform pumping disks with fitted hydrographs and bootstrap intervals",
+    "claim": "The lagging uniform-pumping response extracts plausible unconfined-aquifer parameters from groundwater levels without detailed pumping-rate or well-location histories.",
+    "claimBoundary": "The estimates are geometric-mean lumped properties within the pumping radius; homogeneous aquifer, uniform constant pumping, fixed transmissivity, and omitted wellbore storage, skin, and partial penetration limit interpretation, while low correlation does not prove uniqueness.",
+    "locator": "PDF pages 11-13, Sections 3.2.2-4, Figures 5-6 and Table 2",
+    "sourceExcerpt": "the model assumes the aquifer is homogeneous, meaning the estimated parameters represent the geometric mean within the radius affected by pumping.",
+    "minimalText": "Parameters without pump logs, within assumptions"
+  },
+  "visual": {
+    "systemType": "groundwater_signal",
+    "primaryObject": "Observation-well groundwater-head time series in a densely pumped unconfined aquifer",
+    "accentObject": "Uniform pumping disk and lag-shaped impulse response",
+    "measuredQuantity": "Pumping-induced groundwater drawdown",
+    "geometryNotes": "Preserve the hydrograph as the main object. Transform unknown wells into concentric integration rings, show lag as two time offsets, and render uncertainty as parameter densities and 95% intervals rather than prose."
+  }
+}

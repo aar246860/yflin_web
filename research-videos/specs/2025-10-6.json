@@ -1,0 +1,325 @@
+{
+  "schemaVersion": 1,
+  "id": "2025-10-6",
+  "doi": "10.1016/j.jhydrol.2025.133151",
+  "title": "Rethinking Aquifer Characterization: Insights from Lagging Models",
+  "sourceArtifact": "research-videos/source-pdfs/2025-10-6.pdf",
+  "research": {
+    "question": "Are the two lagging parameters needed to explain pumping-test drawdown, and can their fitted values reveal whether inertia or microstructural interactions control different parts of an aquifer?",
+    "system": "Confined and unconfined aquifers represented by pumping wells and observation wells in fractured, weathered, and heterogeneous settings in India, the United States, and Taiwan.",
+    "inputData": "Time-drawdown observations from the Maheshwaram Watershed, Spearfish, Dongju Island, eastern Massachusetts, and Rapid City, including multiwell spatial data for the last two sites.",
+    "method": "Fit a lagging groundwater-flow model with storage coefficient, transmissivity, flux lag, and gradient lag; compare it with the non-lagging model; interpolate fitted parameters spatially; and derive lagging-ratio and characteristic-time diagnostics.",
+    "benchmark": "Traditional Darcy-based pumping models, with model adequacy judged by time-drawdown fit, RMSE, AIC, and BIC and characteristic time compared with the Darcy value.",
+    "uncertainty": "Copula conditional distributions provide 5th-to-95th percentile widths for 90% confidence intervals on spatially interpolated parameters; fitted parameters remain radius-of-influence averages rather than point properties.",
+    "conclusion": "Across the examined cases, the lagging model better represented drawdown despite two additional parameters; the lagging ratio separated inertia-dominated from microstructure-dominated regions, while characteristic-time comparisons showed that Darcy models can misstate equilibration time."
+  },
+  "narrative": {
+    "throughline": "A delay between hydraulic gradient and groundwater flux becomes a spatial diagnostic rather than an extra pair of opaque fitting parameters.",
+    "audienceStartingPoint": "The audience knows that pumping-test drawdown is commonly interpreted with Darcy-based transmissivity and storage.",
+    "stakes": "If delayed responses are forced into an instantaneous Darcy model, fitted aquifer properties and the time to near-steady conditions can be misinterpreted.",
+    "resolution": "Fit and test the lagging model, convert its two delays into a lagging-ratio map and characteristic time, and return those diagnostics to the monitored well fields with explicit uncertainty and field-investigation limits."
+  },
+  "background": [
+    {
+      "id": "B01",
+      "premise": "Lagging theory conceptually permits groundwater flux and hydraulic gradient to occur at different times in complex media.",
+      "visibleEvidence": "A conceptual timing diagram places the hydraulic-gradient and groundwater-flux peaks at different times.",
+      "whyNow": "This temporal mismatch is the physical puzzle that an instantaneous Darcy relation cannot display.",
+      "boundary": "The paper notes that the classical approximation is usually adequate and focuses on settings where delayed behavior is consequential.",
+      "locator": "PDF page 2, Section 2.1, Equations (1)-(2) and Figure 1",
+      "sourceExcerpt": "between groundwater flow and hydraulic gradient does not occur",
+      "anchorTerms": ["complex media", "hydraulic gradient"],
+      "visualObject": "Conceptual paired flux and hydraulic-gradient pulses above a pumping-well cross-section.",
+      "motionPurpose": "Offset the conceptual pulse peaks to make the constitutive delay visible before introducing lag parameters.",
+      "stepDetail": "Start with coincident Darcy pulses; hold the gradient pulse fixed; shift the flux pulse to illustrate the lagging-theory relation.",
+      "transitionBridge": "The separated pulse peaks become the two lag times used by the model.",
+      "minimalText": "Flux and gradient can lag"
+    },
+    {
+      "id": "B02",
+      "premise": "Adding two lagging parameters creates both an over-parameterization question and an interpretation question.",
+      "visibleEvidence": "A four-parameter lagging fit and a two-parameter Darcy fit are placed beside a map with initially unlabeled delay fields.",
+      "whyNow": "The model is useful only if the extra parameters improve fit enough to justify complexity and can be translated into hydrological meaning.",
+      "boundary": "Better fit alone does not prove that fitted delays are unique local material properties.",
+      "locator": "PDF page 2, Introduction, final paragraph",
+      "sourceExcerpt": "Despite the promising potential of the lagging model to enhance",
+      "anchorTerms": ["lagging model", "two critical questions"],
+      "visualObject": "Competing parameter sets connected to one observed drawdown curve and one spatial well map.",
+      "motionPurpose": "Split one concern into model-selection evidence and physical-interpretation evidence without conflating them.",
+      "stepDetail": "Reveal the two extra delay parameters; attach AIC/BIC to the fit branch; attach lagging ratio and characteristic time to the interpretation branch.",
+      "transitionBridge": "The two unanswered branches define the subsequent fitting and diagnostic operations.",
+      "minimalText": "Needed? Interpretable?"
+    }
+  ],
+  "methods": [
+    {
+      "id": "M01",
+      "input": "Darcy flux and hydraulic-gradient traces over pumping time",
+      "operation": "Form lagged flux law",
+      "output": "A constitutive relation with flux lag tau_q and gradient lag tau_s",
+      "validity": "The lagging formulation retains a linear flux-gradient relation while permitting a temporal offset, following the cited dual-phase-lag analogy.",
+      "locator": "PDF page 2, Section 2.1, Equation (2)",
+      "sourceExcerpt": "The lagging theory (Lin and Yeh, 2017) draws inspiration from",
+      "anchorTerms": ["lagging theory", "dual-phase lag"],
+      "visualObject": "Two pulse peaks bracketed by tau_q and tau_s, then compressed into the lagged constitutive relation.",
+      "motionPurpose": "Turn the visible timing offsets into named model parameters.",
+      "stepDetail": "Mark the flux peak; mark the gradient peak; attach tau_q and tau_s to their respective offsets; replace the pulse annotations with the lagged law.",
+      "transitionBridge": "The two conceptual time offsets become the lag parameters entering the pumping model.",
+      "minimalText": "q(t+tau_q), grad h(t+tau_s)"
+    },
+    {
+      "id": "M02",
+      "input": "The lag-time pair tau_q and tau_s",
+      "operation": "Compute lagging ratio",
+      "output": "Lagging ratio lambda with a threshold at one",
+      "validity": "The paper defines lambda as tau_q divided by tau_s and uses one as the boundary between the two lag regimes.",
+      "locator": "PDF page 2, Section 2.2, Equation (3)",
+      "sourceExcerpt": "parameters. The first is the lagging ratio",
+      "anchorTerms": ["lagging ratio", "parameters"],
+      "visualObject": "The two lag brackets collapse into a ratio gauge centered on lambda equals one.",
+      "motionPurpose": "Convert the relative delay into a single dimensionless regime indicator.",
+      "stepDetail": "Place tau_q above tau_s as a ratio; form lambda; mark lambda equals one; preserve the two sides of the gauge.",
+      "transitionBridge": "A separate time-scale diagnostic is formed from the lag pair and aquifer geometry in M03.",
+      "minimalText": "lambda = tau_q / tau_s"
+    },
+    {
+      "id": "M03",
+      "input": "Lag times tau_q and tau_s with storage transmissivity and radial well distance",
+      "operation": "Compute characteristic time",
+      "output": "Lag-adjusted characteristic time tau_c",
+      "validity": "The paper defines tau_c as the time scale for equilibrium or substantial water-level change and shows its Darcy limit when the lags are equal.",
+      "locator": "PDF page 2, Section 2.2, Equation (4)",
+      "sourceExcerpt": "The second parameter we introduce is the characteristic time",
+      "anchorTerms": ["characteristic time", "parameter"],
+      "visualObject": "A radial pumping-well influence zone closes into a clock labeled tau_c.",
+      "motionPurpose": "Turn aquifer diffusivity distance and lag terms into one equilibration-time object.",
+      "stepDetail": "Show the radial distance; attach storage and transmissivity; insert the lag terms; resolve the combined expression into the tau_c clock.",
+      "transitionBridge": "The lag parameters and aquifer properties are estimated from observed drawdown in M04.",
+      "minimalText": "Characteristic time tau_c"
+    },
+    {
+      "id": "M04",
+      "input": "Observed time-drawdown series at each pumping or observation well",
+      "operation": "Estimate lagging parameters",
+      "output": "Best-fit S, T, tau_q, and tau_s for each analyzed well",
+      "validity": "Least squares with the trust region reflective algorithm minimizes observed-minus-modeled drawdown residuals under the lagging model.",
+      "locator": "PDF pages 2-3, Section 2.3 and Equation (5)",
+      "sourceExcerpt": "In our approach, we utilize the least squares method in conjunction",
+      "anchorTerms": ["least squares method", "trust region reflective"],
+      "visualObject": "Observed drawdown points and a model curve whose four parameter handles move until residual stems shorten.",
+      "motionPurpose": "Show parameter estimation as residual reduction rather than a black-box fit.",
+      "stepDetail": "Display observed points; draw residual stems to an initial curve; adjust the four handles together through TRF iterations; settle on the minimum-residual curve.",
+      "transitionBridge": "The lagging-model fit is paired with a separately fitted classical Darcy baseline in M05.",
+      "minimalText": "min sum residual^2"
+    },
+    {
+      "id": "M05",
+      "input": "Observed time-drawdown series and the model without lagging parameters",
+      "operation": "Fit classical Darcy model",
+      "output": "Baseline storage transmissivity and no-lag drawdown responses",
+      "validity": "The paper applies both the lagging model and the model without lagging effects to the same time-drawdown data sets before comparing model adequacy.",
+      "locator": "PDF page 5, Section 3.4 Massachusetts field analysis, paragraph preceding the RMSE comparison",
+      "sourceExcerpt": "We applied both the lagging model and the model without lagging",
+      "anchorTerms": ["lagging model", "without lagging"],
+      "visualObject": "Observed drawdown points receiving a separate two-parameter classical Darcy response curve.",
+      "motionPurpose": "Fit the no-lag baseline on the same observations before any information criterion compares model complexity.",
+      "stepDetail": "Retain the observed points; initialize storage and transmissivity; reduce no-lag residuals; preserve the fitted baseline and its likelihood.",
+      "transitionBridge": "Both independently fitted models now supply residual evidence for explicit likelihood mapping in M06.",
+      "minimalText": "Fit Darcy baseline"
+    },
+    {
+      "id": "M06",
+      "input": "Independently fitted lagging and Darcy responses with their residual evidence and parameter counts",
+      "operation": "Map model likelihoods",
+      "output": "Lagging-model and Darcy-model likelihood terms paired with their parameter counts",
+      "validity": "The source defines likelihood and parameter count as separate inputs to both AIC and BIC so they must remain explicit before the criteria are evaluated.",
+      "locator": "PDF page 3, Section 3.1 Field implementation in India, AIC and BIC definitions",
+      "sourceExcerpt": "likelihood of the",
+      "anchorTerms": [
+        "likelihood",
+        "likelihood of the"
+      ],
+      "visualObject": "Two fitted response panels each releasing a likelihood token beside its parameter-count token",
+      "motionPurpose": "Keep goodness-of-fit evidence and model size explicit before either information criterion combines them.",
+      "stepDetail": "Retain both fitted responses; attach each model likelihood term; attach each parameter count; preserve the paired inputs for both criteria.",
+      "transitionBridge": "The likelihood and parameter-count pairs enter the AIC and BIC comparison in M07.",
+      "minimalText": "Likelihood plus parameter count"
+    },
+    {
+      "id": "M07",
+      "input": "Lagging-model and Darcy-model likelihoods with their parameter counts",
+      "operation": "Compare information criteria",
+      "output": "AIC and BIC evidence for or against the two added lag parameters",
+      "validity": "Both criteria penalize model complexity, with BIC imposing the stronger additional-parameter penalty.",
+      "locator": "PDF page 3, Section 3.1, AIC/BIC comparison",
+      "sourceExcerpt": "Lower AIC and BIC values indicate a better balance between",
+      "anchorTerms": ["AIC and BIC", "model complexity"],
+      "visualObject": "Two fit curves feed into paired AIC and BIC scales carrying explicit complexity weights.",
+      "motionPurpose": "Make the improvement-versus-complexity test visible for the lagging and Darcy alternatives.",
+      "stepDetail": "Send each model likelihood to both criteria; add its parameter-count penalty; compare the resulting paired values with lower values highlighted.",
+      "transitionBridge": "The selected lagging fits provide the wellwise parameters interpolated in M08.",
+      "minimalText": "Lower AIC/BIC wins"
+    },
+    {
+      "id": "M08",
+      "input": "Lagging-parameter estimates at irregularly spaced observation wells",
+      "operation": "Interpolate parameter fields",
+      "output": "Spatial fields of S, T, tau_q, and tau_s",
+      "validity": "Copula interpolation was selected to represent non-Gaussian dependence and spatial anomalies that conventional kriging can miss.",
+      "locator": "PDF page 3, Section 2.3; PDF pages 5-8, Figures 7-8 and 11-12",
+      "sourceExcerpt": "In this study, we adopted copula interpolation due to its ability to model non-Gaussian dependencies",
+      "anchorTerms": ["copula interpolation", "spatial anomalies"],
+      "visualObject": "Discrete well markers expand into four continuous parameter maps while retaining the well locations.",
+      "motionPurpose": "Reveal how point estimates become spatially coherent aquifer-property fields.",
+      "stepDetail": "Place fitted values at wells; form copula-conditioned distributions on a grid; color each grid cell by its conditional estimate; preserve wells as visible anchors.",
+      "transitionBridge": "The copula interpolation state is retained to construct a conditional CDF at every grid point in M09.",
+      "minimalText": "Copula spatial fields"
+    },
+    {
+      "id": "M09",
+      "input": "Copula interpolation state for each parameter at every spatial grid point",
+      "operation": "Construct conditional CDFs",
+      "output": "One conditional parameter cumulative distribution at each interpolation grid point",
+      "validity": "The source obtains conditional parameter distributions through copula interpolation before extracting percentile bounds for confidence intervals.",
+      "locator": "PDF page 5, Section 3.4 Massachusetts field analysis, paragraph preceding Figure 8",
+      "sourceExcerpt": "conditional distributions obtained through copula interpola- tion",
+      "anchorTerms": [
+        "conditional distributions",
+        "copula"
+      ],
+      "visualObject": "Each interpolation grid cell opening into a parameter-specific conditional cumulative distribution",
+      "motionPurpose": "Produce the probability object from which spatial confidence bounds are later read.",
+      "stepDetail": "Retain the copula state; condition on each grid location; accumulate parameter probability; preserve one CDF per parameter and cell.",
+      "transitionBridge": "The conditional CDFs expose their 5th and 95th percentiles for width calculation in M10.",
+      "minimalText": "Conditional CDF per cell"
+    },
+    {
+      "id": "M10",
+      "input": "Conditional parameter distributions at each interpolation grid point",
+      "operation": "Compute confidence widths",
+      "output": "Spatial maps of 90% confidence-interval width",
+      "validity": "The interval bounds are the 5th and 95th percentiles of each conditional cumulative distribution.",
+      "locator": "PDF page 5, Section 3.4 and Figure 8; PDF page 7, Figure 12",
+      "sourceExcerpt": "Specifically, for each grid point, we compute the 5th and 95th percentiles from the conditional cumulative distribution function of the parameter values, representing the lower and upper bounds of the 90% confidence interval.",
+      "anchorTerms": ["each grid point", "90% confidence interval"],
+      "visualObject": "Each map cell opens into a conditional CDF with 5th and 95th percentile brackets, then returns as an interval-width map.",
+      "motionPurpose": "Represent spatial uncertainty as visible width rather than a prose qualifier.",
+      "stepDetail": "Reveal one grid-cell CDF; mark its 5th percentile; mark its 95th percentile; measure the bracket width; propagate that width encoding across the map.",
+      "transitionBridge": "Uncertainty remains attached to the same spatial grid used for regime interpretation.",
+      "minimalText": "P95 - P05"
+    },
+    {
+      "id": "M11",
+      "input": "Spatial tau_q and tau_s fields with their confidence-width context",
+      "operation": "Classify lag regimes",
+      "output": "A lambda map partitioned into inertia-dominated and microstructure-dominated regions",
+      "validity": "The paper defines lambda=1 as the threshold, with lambda below one indicating inertia and lambda above one indicating microstructural interactions.",
+      "locator": "PDF pages 5-7, Sections 3.4-3.5 and Figures 9 and 13",
+      "sourceExcerpt": "This figure facilitates the identification of areas where inertia dominates",
+      "anchorTerms": ["identification of areas", "inertia dominates"],
+      "visualObject": "The two lag-time maps divide cell by cell into one thresholded lambda regime map.",
+      "motionPurpose": "Make the physical interpretation emerge from the fitted spatial fields.",
+      "stepDetail": "Pair tau_q and tau_s at each cell; form lambda; draw the lambda=1 contour; label only the two resulting physical regimes.",
+      "transitionBridge": "The regime map is retained while the classical Darcy characteristic time is calculated in M12.",
+      "minimalText": "lambda < 1 inertia; > 1 pores"
+    },
+    {
+      "id": "M12",
+      "input": "Sitewise storage transmissivity and pumping-well radial distance",
+      "operation": "Calculate Darcy characteristic time",
+      "output": "Classical Darcy diffusion time for every analyzed site",
+      "validity": "The source gives the Darcy characteristic time as radial distance squared times storage divided by transmissivity when the two lag times are equal.",
+      "locator": "PDF page 2, Section 2.2 Quantification and characterization of lagging parameter effects, Equation 4 and following paragraph",
+      "sourceExcerpt": "characteristic time of Darcy’s",
+      "anchorTerms": [
+        "characteristic time",
+        "Darcy"
+      ],
+      "visualObject": "Each site's radius storage and transmissivity resolving into one classical Darcy time marker",
+      "motionPurpose": "Produce the classical time scale independently before comparing it with the lag-adjusted characteristic time.",
+      "stepDetail": "Retain each site radius; square it; apply storage and transmissivity; preserve one Darcy time marker per site.",
+      "transitionBridge": "The calculated Darcy times align site by site with the lag-adjusted times in M13.",
+      "minimalText": "Darcy time = r^2 S / T"
+    },
+    {
+      "id": "M13",
+      "input": "Sitewise lag-adjusted and Darcy characteristic times",
+      "operation": "Compare characteristic times",
+      "output": "Scatter evidence showing how tau_c departs from the Darcy time scale",
+      "validity": "The paper plots both characteristic-time estimates for all analyzed sites and evaluates their relation to the one-to-one line.",
+      "locator": "PDF page 8, Section 3.6, Figure 14",
+      "sourceExcerpt": "plotted as scatter plots, as shown in Fig. 14",
+      "anchorTerms": ["scatter plots", "Fig. 14"],
+      "visualObject": "Sitewise tau_c points plotted against Darcy characteristic time with a one-to-one line.",
+      "motionPurpose": "Make the revised equilibration time visible as departures from the classical reference line.",
+      "stepDetail": "Place the one-to-one line; add the site estimates; reveal the fitted relation; retain the departure spread.",
+      "transitionBridge": "The time comparison and lag-regime maps return to the monitored aquifers and their interpretation.",
+      "minimalText": "tau_c versus Darcy time"
+    }
+  ],
+  "symbols": [
+    {
+      "latex": "\\tau_q",
+      "firstUseOwner": "M01",
+      "visualObject": "Time bracket attached to the groundwater-flux pulse",
+      "meaning": "Flux lag associated with delayed specific discharge",
+      "unit": "T",
+      "transition": "Grow the bracket from the flux peak to its reference time"
+    },
+    {
+      "latex": "\\tau_s",
+      "firstUseOwner": "M01",
+      "visualObject": "Time bracket attached to the hydraulic-gradient pulse",
+      "meaning": "Hydraulic-gradient or storage lag associated with pore-structure response",
+      "unit": "T",
+      "transition": "Grow the bracket from the gradient peak to its reference time"
+    },
+    {
+      "latex": "\\lambda=\\tau_q/\\tau_s",
+      "firstUseOwner": "M02",
+      "visualObject": "Threshold gauge built from the two lag brackets",
+      "meaning": "Lagging ratio used to distinguish inertia-dominated and microstructure-dominated flow regimes",
+      "unit": "dimensionless",
+      "transition": "Stack the two lag brackets into a ratio and mark one as the threshold"
+    },
+    {
+      "latex": "\\tau_c",
+      "firstUseOwner": "M03",
+      "visualObject": "Clock attached to the radial pumping-well influence zone",
+      "meaning": "Characteristic time for groundwater equilibration or substantial head change under the lagging model",
+      "unit": "T",
+      "transition": "Transform the radial diffusion path into a clock face"
+    },
+    {
+      "latex": "S",
+      "firstUseOwner": "M03",
+      "visualObject": "Storage fill level within the pumping-well influence zone",
+      "meaning": "Aquifer storage coefficient",
+      "unit": "dimensionless",
+      "transition": "Label the stored-water fill after the aquifer object is visible"
+    },
+    {
+      "latex": "T",
+      "firstUseOwner": "M03",
+      "visualObject": "Radial transmissive pathway from the pumping well",
+      "meaning": "Aquifer transmissivity",
+      "unit": "L^2 T^{-1}",
+      "transition": "Color-match the pathway to the T term in the characteristic-time expression"
+    }
+  ],
+  "return": {
+    "visualObject": "The Massachusetts and Rapid City well maps carrying lambda regimes, 90% interval-width texture, and a tau_c versus Darcy-time inset.",
+    "claim": "For the examined pumping tests, the extra lag parameters were supported by lower information criteria and yielded interpretable spatial regimes and revised characteristic times.",
+    "claimBoundary": "The fitted properties are spatial averages over each well's radius of influence, and the lagging model remains a simplified complementary tool rather than a replacement for detailed field characterization.",
+    "locator": "PDF page 9, Sections 3.6-3.7 and 4, concluding remarks",
+    "sourceExcerpt": "The lagging model, while beneficial, should therefore be seen as a complementary tool, not a replacement for detailed field investigations.",
+    "minimalText": "A diagnostic layer, not a field substitute"
+  },
+  "visual": {
+    "systemType": "groundwater_signal",
+    "primaryObject": "Pumping-well drawdown curves linked to mapped observation wells",
+    "accentObject": "Lagging-ratio threshold contour and characteristic-time clock",
+    "measuredQuantity": "Drawdown through time with fitted lag times and spatial confidence widths",
+    "geometryNotes": "Begin with paired temporal pulses, preserve the pumping-well radius as the characteristic-time geometry, transform discrete well estimates into copula grids, and end on the original site maps rather than on isolated equations."
+  }
+}

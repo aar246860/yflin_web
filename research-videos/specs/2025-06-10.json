@@ -1,0 +1,366 @@
+{
+  "schemaVersion": 1,
+  "id": "2025-06-10",
+  "doi": "10.1016/j.jhydrol.2025.132720",
+  "title": "Faulty Assumptions: Groundwater Modeling Through Anisotropic Fault Zones",
+  "sourceArtifact": "research-videos/source-pdfs/2025-06-10.pdf",
+  "research": {
+    "question": "Can one analytical interface condition represent the simultaneous drawdown and normal-flux discontinuities created by fault-core resistance and fault-strike shear flow during groundwater pumping?",
+    "system": "A constant-rate pumping well in a confined anisotropic aquifer-fault-aquifer system where a thin laminated fault separates pumped and unpumped aquifer regions.",
+    "inputData": "Synthetic drawdown and flux fields from a three-zone COMSOL model, parameter sweeps for the leaky fault factor, conductive fault factor, and aquifer anisotropy ratio, plus drawdown observations from the E7 pumping test in northern Portugal.",
+    "method": "Represent the thin anisotropic fault with imperfect-interface jump conditions, derive a semi-analytical drawdown solution through Laplace and Fourier cosine transforms, invert it numerically, verify the discontinuities with COMSOL, evaluate parameter influence, and fit the field observations with DIRECT optimization.",
+    "benchmark": "The interface response is checked against a resolved three-zone finite-element model, and field fit is compared with the Cooper-Jacob solution using SEE, MSE, and MAE.",
+    "uncertainty": "Morris elementary effects describe parameter sensitivity rather than predictive uncertainty; grid-dependency checks assess numerical convergence, while the field interpretation is limited by simplified assumptions and wells located very close to or within the fault zone.",
+    "conclusion": "The imperfect-interface model represents fault-core resistance and damage-zone shear flow in one condition, producing the reported drawdown and flux discontinuities and a closer fit to the analyzed E7 observations than the Cooper-Jacob comparison."
+  },
+  "narrative": {
+    "throughline": "A laminated fault is neither only a barrier nor only a conduit, so its reduced interface must let pumping reveal both a drawdown jump and a flux jump.",
+    "audienceStartingPoint": "The audience understands that pumping lowers groundwater head and that a fault can impede or redirect flow.",
+    "stakes": "A model that forces a fault into one isotropic boundary type can misattribute the pumping response and the inferred fault properties.",
+    "resolution": "The thin-fault jump condition connects fault-core resistance with along-fault shear flow, survives transformed-domain solution and numerical checks, and returns to the observed E7 drawdown with an explicit interpretation boundary."
+  },
+  "background": [
+    {
+      "id": "B01",
+      "premise": "Fault zones can alter local permeability and thereby affect fluid flow within aquifers.",
+      "visibleEvidence": "A fault plane carries a local permeability contrast beside altered groundwater-flow arrows.",
+      "whyNow": "The viewer first needs the concrete flow consequence that makes fault representation consequential.",
+      "boundary": "The paper concerns groundwater flow near fault zones rather than every geological control on aquifer response.",
+      "locator": "PDF page 1, Section 1 Introduction, opening paragraph",
+      "sourceExcerpt": "altering local permeability and creating",
+      "anchorTerms": [
+        "local permeability",
+        "altering"
+      ],
+      "visualObject": "Aquifer block divided by a fault plane carrying a local permeability change",
+      "motionPurpose": "Reveal the local permeability change so its effect on nearby groundwater flow is visible.",
+      "stepDetail": "Show the aquifer block; introduce the fault plane; change local permeability; redirect nearby flow arrows.",
+      "transitionBridge": "The fault plane expands to reveal its laminated internal architecture.",
+      "minimalText": "Pumping meets a fault"
+    },
+    {
+      "id": "B02",
+      "premise": "Fault-zone hydraulic conductivity is higher in the fault-strike direction than in the fault-dip direction.",
+      "visibleEvidence": "Alternating damage-zone and fault-core layers carry long strike-parallel arrows beside short cross-fault arrows.",
+      "whyNow": "The directional contrast explains why one fault can behave as a conduit and a barrier at the same time.",
+      "boundary": "The anisotropic representation follows the paper's laminated fault idealization and infinitesimally thin reduction.",
+      "locator": "PDF page 2, Section 2.2 New interface conditions for fault zone, opening paragraph",
+      "sourceExcerpt": "fault-strike direction compared to its fault-dip direction",
+      "anchorTerms": [
+        "fault-strike direction",
+        "fault-dip direction"
+      ],
+      "visualObject": "Magnified laminated fault with strike-parallel damage-zone pathways and a cross-fault core barrier",
+      "motionPurpose": "Lengthen the strike-parallel arrows while shortening the cross-fault arrows to make anisotropy physical.",
+      "stepDetail": "Magnify the fault; separate permeable damage-zone layers from the fault core; show contrasting directional flow paths.",
+      "transitionBridge": "The laminated strip collapses toward the interface used by analytical models.",
+      "minimalText": "Barrier across | conduit along"
+    },
+    {
+      "id": "B03",
+      "premise": "Classical analytical studies separate leaky and conductive faults instead of representing their combined effect.",
+      "visibleEvidence": "One boundary shows only a head step while a second boundary shows only unequal normal-flux arrows.",
+      "whyNow": "The two separate idealizations expose the missing combined interface behavior before the new condition is introduced.",
+      "boundary": "The limitation applies to the classical analytical formulations discussed by the paper and not to every numerical fault model.",
+      "locator": "PDF page 3, Section 2.2 New interface conditions for fault zone, paragraph following Equations 4a-4b",
+      "sourceExcerpt": "In classical analytical studies on leaky and conductive faults",
+      "anchorTerms": [
+        "classical analytical studies",
+        "leaky and conductive faults"
+      ],
+      "visualObject": "Paired leaky-only and conductive-only interface diagrams beside an empty combined case",
+      "motionPurpose": "Separate the two conventional continuity choices so their missing joint case becomes visible.",
+      "stepDetail": "Draw the leaky interface; retain its head jump; draw the conductive interface; retain its flux jump; open a third combined slot.",
+      "transitionBridge": "The two incomplete boundaries align on one infinitesimally thin fault interface.",
+      "minimalText": "Two partial fault models"
+    }
+  ],
+  "methods": [
+    {
+      "id": "M01",
+      "input": "A laminated fault zone whose thickness is negligible relative to the aquifer system",
+      "operation": "Apply imperfect interface conditions",
+      "output": "Coupled jump relations for drawdown difference and normal flux difference",
+      "validity": "The source assumes the fault zone is infinitesimally thin compared with the aquifer system and relates the reduction to the general imperfect-interface problem.",
+      "locator": "PDF page 2, Section 2.2 New interface conditions for fault zone, Equations 4a-4b",
+      "sourceExcerpt": "Assuming the fault zone is infinitesimally thin compared to the aquifer system",
+      "anchorTerms": [
+        "fault zone",
+        "infinitesimally thin"
+      ],
+      "visualObject": "Laminated fault strip collapsing into a line carrying separate drawdown-jump and flux-jump markers",
+      "motionPurpose": "Collapse finite fault thickness while preserving the two directional hydraulic effects on the interface.",
+      "stepDetail": "Retain the fault-core resistance marker; retain the strike-flow marker; shrink the layer thickness; attach both jump markers to the limiting interface.",
+      "transitionBridge": "The interface relations become boundary terms on the dimensionless aquifer equation.",
+      "minimalText": "One imperfect interface"
+    },
+    {
+      "id": "M02",
+      "input": "Dimensional drawdown space time and aquifer-fault hydraulic properties",
+      "operation": "Form dimensionless parameters",
+      "output": "Dimensionless flow equation with leaky conductive and aquifer-anisotropy factors",
+      "validity": "The source defines scaled drawdown, coordinates, time, and hydraulic ratios to simplify analysis and compare aquifer systems.",
+      "locator": "PDF page 3, Section 2.3 Drawdown solutions, paragraph preceding Equation 5",
+      "sourceExcerpt": "The following dimensionless parameters are defined to simplify",
+      "anchorTerms": [
+        "dimensionless parameters",
+        "simplify"
+      ],
+      "visualObject": "Dimensional drawdown coordinates time and hydraulic properties resolving into scaled variables and three control factors",
+      "motionPurpose": "Map every dimensional state to its scaled counterpart before any transform is applied.",
+      "stepDetail": "Retain the interface system; pair drawdown, coordinates, and time with their scales; form the leaky, conductive, and anisotropy factors; reveal Equation 5.",
+      "transitionBridge": "The dimensionless transient equation moves onto the Laplace axis.",
+      "minimalText": "Scale the fault system"
+    },
+    {
+      "id": "M03",
+      "input": "Dimensionless transient flow equation in Eq. 5a with the imperfect interface relations",
+      "operation": "Transform governing equation",
+      "output": "Laplace-domain groundwater flow equation",
+      "validity": "The Laplace transform technique removes the time derivative from Eq. 5a under the stated zero initial drawdown.",
+      "locator": "PDF page 3, Section 2.3 Drawdown solutions, Equation 6",
+      "sourceExcerpt": "Applying the Laplace transform technique",
+      "anchorTerms": [
+        "Laplace transform",
+        "technique"
+      ],
+      "visualObject": "Transient drawdown field folding from a time axis into stacked Laplace-domain decay modes",
+      "motionPurpose": "Replace time evolution with a transform parameter while keeping the fault interface attached to the field.",
+      "stepDetail": "Retain the dimensionless field; mark zero initial drawdown; fold the time axis; reveal the Laplace-domain state.",
+      "transitionBridge": "The remaining fault-parallel spatial variation moves onto a cosine-mode axis.",
+      "minimalText": "Time to Laplace domain"
+    },
+    {
+      "id": "M04",
+      "input": "Laplace-domain equation retaining the fault-parallel spatial variable",
+      "operation": "Transform spatial variable",
+      "output": "Laplace-Fourier groundwater flow equation",
+      "validity": "The Fourier cosine transformation eliminates the retained spatial variable while preserving the symmetric cosine representation used in the source derivation.",
+      "locator": "PDF page 3, Section 2.3 Drawdown solutions, Equation 8",
+      "sourceExcerpt": "Fourier cosine transformation is applied",
+      "anchorTerms": [
+        "Fourier cosine",
+        "transformation"
+      ],
+      "visualObject": "Fault-parallel drawdown profile decomposing into cosine modes beside the Laplace axis",
+      "motionPurpose": "Decompose the spatial profile into independent modes that can be solved around the interface.",
+      "stepDetail": "Retain the Laplace state; project the fault-parallel profile onto cosine modes; isolate each transformed mode.",
+      "transitionBridge": "The transformed modes enter the three-region boundary problem.",
+      "minimalText": "Space to cosine modes"
+    },
+    {
+      "id": "M05",
+      "input": "Laplace-Fourier equations with far-field and imperfect interface conditions",
+      "operation": "Solve boundary problem",
+      "output": "Piecewise dimensionless drawdown solutions for the aquifer in Eq. 12",
+      "validity": "The transformed equations use vanishing far-field drawdown and the interface conditions in Eqs. 10-11 to define the aquifer solution regions.",
+      "locator": "PDF page 3, Section 2.3 Drawdown solutions, Equations 9-12; PDF page 9, Appendix A",
+      "sourceExcerpt": "dimensionless drawdown solutions for the aquifer can be de-",
+      "anchorTerms": [
+        "drawdown solutions",
+        "aquifer"
+      ],
+      "visualObject": "Three transformed aquifer regions joined by the fault conditions into one piecewise response",
+      "motionPurpose": "Join region-wise modes at the interface so the transformed solution becomes one continuous analytical object.",
+      "stepDetail": "Place the pumped region; place the fault interval; place the unpumped region; impose far-field decay; connect the pieces through both jump relations.",
+      "transitionBridge": "The solved mode stack opens onto the real spatial coordinate.",
+      "minimalText": "Solve three regions"
+    },
+    {
+      "id": "M06",
+      "input": "Fourier-domain drawdown modes from the transformed solution",
+      "operation": "Apply Fourier cosine inversion",
+      "output": "Laplace-domain drawdown values in real space",
+      "validity": "The Fourier cosine inversion formula returns drawdown values to the real spatial domain before time inversion.",
+      "locator": "PDF page 3, Section 2.4 Solution evaluation, Equations 13-14",
+      "sourceExcerpt": "Fourier cosine inversion formula is applied",
+      "anchorTerms": [
+        "Fourier cosine inversion",
+        "formula"
+      ],
+      "visualObject": "Cosine-mode bars recombining into one spatial drawdown profile across the fault",
+      "motionPurpose": "Recombine separated cosine modes into the spatial response that crosses the fault plane.",
+      "stepDetail": "Align the mode bars; weight their spatial cosines; accumulate the inversion; reveal one real-space profile.",
+      "transitionBridge": "The spatial profile remains in the Laplace domain and moves to the time inversion.",
+      "minimalText": "Modes to real space"
+    },
+    {
+      "id": "M07",
+      "input": "Real-space drawdown response remaining in the Laplace domain",
+      "operation": "Transform Laplace response numerically",
+      "output": "Time-domain drawdown values of the proposed solution",
+      "validity": "The Stehfest (1970) algorithm provides the numerical Laplace inversion used for the proposed diffusion-type response.",
+      "locator": "PDF page 3, Section 2.4 Solution evaluation, paragraph following Equation 14",
+      "sourceExcerpt": "specifically the Stehfest (1970) algorithm",
+      "anchorTerms": [
+        "Stehfest (1970) algorithm",
+        "algorithm"
+      ],
+      "visualObject": "Laplace-domain samples resolving into a time-indexed sequence of drawdown profiles",
+      "motionPurpose": "Return the transformed response to observable pumping time without introducing an unsupported closed-form curve.",
+      "stepDetail": "Retain the spatial profile; expose Stehfest sampling points; combine the weighted samples; reveal discrete time-domain states.",
+      "transitionBridge": "The time-domain states become the analytical counterpart of a resolved numerical fault model.",
+      "minimalText": "Stehfest time inversion"
+    },
+    {
+      "id": "M08",
+      "input": "A resolved three-zone aquifer with a thin anisotropic fault and pumping well",
+      "operation": "Simulate three zone response",
+      "output": "Finite-element drawdown and flux fields around the fault interface",
+      "validity": "Numerical modeling uses COMSOL Multiphysics with triangular elements refined near fractures and pumping wells.",
+      "locator": "PDF page 4, Section 3.1 Observations and evidence from numerical simulation, Figure 2",
+      "sourceExcerpt": "Numerical modeling was conducted using COMSOL Multiphysics",
+      "anchorTerms": [
+        "Numerical modeling",
+        "COMSOL Multiphysics"
+      ],
+      "visualObject": "Triangular finite-element mesh carrying drawdown shading and normal-flux arrows across a thin fault",
+      "motionPurpose": "Resolve the thin fault explicitly so the two discontinuities can be inspected independently of the interface reduction.",
+      "stepDetail": "Draw the three zones; refine the mesh near the fault and well; apply pumping; reveal drawdown shading; reveal normal-flux arrows.",
+      "transitionBridge": "The resolved fields are repeated on a finer mesh for a dependency check.",
+      "minimalText": "Resolved COMSOL fault"
+    },
+    {
+      "id": "M09",
+      "input": "Drawdown and flux predictions from the selected finite-element mesh",
+      "operation": "Compare mesh responses",
+      "output": "Grid-dependency evidence for drawdown and flux",
+      "validity": "The grid dependency check repeats the simulation with an extremely fine element size setting and reports bounded relative differences for both quantities.",
+      "locator": "PDF page 4, Section 3.1 Observations and evidence from numerical simulation, grid-dependency paragraph",
+      "sourceExcerpt": "To evaluate grid dependency, we also conducted simulations using the extremely fine element size setting",
+      "anchorTerms": [
+        "grid dependency",
+        "extremely fine element size"
+      ],
+      "visualObject": "Coarse and extremely fine triangular meshes feeding paired drawdown and flux difference bands",
+      "motionPurpose": "Place both meshes against the same physical field so numerical resolution is separated from interface behavior.",
+      "stepDetail": "Retain the selected mesh response; introduce the extremely fine mesh response; align the two quantities; show bounded difference bands.",
+      "transitionBridge": "The numerically checked response becomes the output sampled across parameter space.",
+      "minimalText": "Grid dependency checked"
+    },
+    {
+      "id": "M10",
+      "input": "Model drawdown evaluated across sampled fault and aquifer parameter values",
+      "operation": "Compute Morris effects",
+      "output": "Relative parameter importance across space and time",
+      "validity": "The Morris method (Morris, 1991) perturbs parameter values one at a time and summarizes elementary effects for the anisotropy ratio and two fault factors.",
+      "locator": "PDF pages 3-4, Section 2.5 Sensitivity analysis, Equations 15-17; PDF page 6, Section 3.3, Figure 7",
+      "sourceExcerpt": "known as the Morris method (Morris, 1991)",
+      "anchorTerms": [
+        "Morris method",
+        "Morris, 1991"
+      ],
+      "visualObject": "Three parameter sliders generating spatial and temporal elementary-effect bands",
+      "motionPurpose": "Perturb one control at a time so its influence remains attached to the changing drawdown field.",
+      "stepDetail": "Hold two controls fixed; perturb one sampled control; measure the drawdown change; repeat across samples; collect the effect bands.",
+      "transitionBridge": "The parameter effects give way to a time-local diagnostic of the fault response.",
+      "minimalText": "Morris parameter effects"
+    },
+    {
+      "id": "M11",
+      "input": "Time-domain drawdown response at a fixed observation location",
+      "operation": "Differentiate drawdown response",
+      "output": "Drawdown log-derivative signal for fault-response timing",
+      "validity": "The paper states that the drawdown log-derivative is more sensitive to small drawdown variations than conventional semi-log and log-log plots.",
+      "locator": "PDF page 6, Section 3.2 Influence of fault zone hydrological properties, paragraph preceding Figure 6",
+      "sourceExcerpt": "the drawdown log-derivative signal, defined as",
+      "anchorTerms": [
+        "drawdown log-derivative",
+        "signal"
+      ],
+      "visualObject": "Time-indexed drawdown trace converting into a separate log-derivative response band",
+      "motionPurpose": "Expose subtle timing changes without fabricating a curve beyond the source-described diagnostic.",
+      "stepDetail": "Retain sampled drawdown states; form local log-time slopes; place the derivative signal beneath the original response.",
+      "transitionBridge": "The diagnostic response becomes the prediction compared with E7 observations.",
+      "minimalText": "Log-derivative diagnostic"
+    },
+    {
+      "id": "M12",
+      "input": "Observed E7 drawdown data and proposed-model predictions",
+      "operation": "Estimate model parameters",
+      "output": "Field-conditioned aquifer and fault parameter set",
+      "validity": "DIRECT is a derivative-free global optimization method that minimizes squared differences between observed drawdown and model predictions.",
+      "locator": "PDF page 4, Section 2.6 Parameter estimation, Equation 18; PDF pages 7-8, Section 3.4 Field implementation, Table 1",
+      "sourceExcerpt": "In this study, the dividing rectangles (DIRECT) global optimization method is employed to estimate the model parameters by minimizing the differences between observed data and model predictions (Jones et al., 1993).",
+      "anchorTerms": [
+        "DIRECT",
+        "model parameters"
+      ],
+      "visualObject": "E7 observation points pulling a bounded parameter vector toward the proposed-model response",
+      "motionPurpose": "Tie each parameter update to the observed drawdown mismatch while keeping the field data visible.",
+      "stepDetail": "Place E7 observations; initialize the bounded parameter vector; evaluate the model mismatch; retain the minimizing parameter state.",
+      "transitionBridge": "The fitted proposed-model response leaves the same E7 observations available for an independent Cooper-Jacob fit.",
+      "minimalText": "DIRECT field fit"
+    },
+    {
+      "id": "M13",
+      "input": "Observed E7 drawdown data and the Cooper-Jacob response model",
+      "operation": "Fit Cooper-Jacob response",
+      "output": "Independently fitted isotropic transmissivity storage and baseline drawdown response",
+      "validity": "The source applies the Cooper-Jacob solution to the same E7 observations and constrains its directional transmissivities to one isotropic value.",
+      "locator": "PDF page 8, Section 3.4 Field implementation, Table 1 and paragraph following the table",
+      "sourceExcerpt": "For the case of the Cooper-Jacob solution",
+      "anchorTerms": [
+        "Cooper-Jacob solution",
+        "the case"
+      ],
+      "visualObject": "E7 observation points pulling a separate isotropic Cooper-Jacob curve toward its fitted transmissivity and storage state",
+      "motionPurpose": "Fit the classical baseline independently so its later errors are not inherited from the proposed-model calibration.",
+      "stepDetail": "Retain the E7 observations; initialize isotropic transmissivity and storage; reduce the baseline residuals; preserve the fitted Cooper-Jacob response.",
+      "transitionBridge": "Both independently fitted responses now meet the same residual definitions.",
+      "minimalText": "Fit Cooper-Jacob baseline"
+    },
+    {
+      "id": "M14",
+      "input": "Observed E7 drawdown and residuals from the two independently fitted responses",
+      "operation": "Compute error metrics",
+      "output": "Separate SEE MSE and MAE values for the proposed and Cooper-Jacob fits",
+      "validity": "The source defines SEE from squared residuals with its degrees-of-freedom denominator and defines MSE and MAE from the same observed-minus-predicted residual set.",
+      "locator": "PDF page 4, Section 2.6 Parameter estimation, Equations 19-21; PDF page 8, Table 1",
+      "sourceExcerpt": "including metrics such as the standard error of estimate (SEE)",
+      "anchorTerms": [
+        "standard error of estimate",
+        "metrics"
+      ],
+      "visualObject": "Two fitted residual stacks resolving separately into SEE MSE and MAE value triplets",
+      "motionPurpose": "Produce each model's error measures before any ordering is asserted.",
+      "stepDetail": "Retain both residual stacks; form squared and absolute residual summaries; apply the SEE denominator; reveal one metric triplet per model.",
+      "transitionBridge": "The two computed metric triplets move onto shared comparison axes.",
+      "minimalText": "Compute SEE MSE MAE"
+    },
+    {
+      "id": "M15",
+      "input": "Proposed-solution and Cooper-Jacob solution error metrics for the E7 test",
+      "operation": "Compare error measures",
+      "output": "Reported field-fit ordering across SEE MSE and MAE",
+      "validity": "The comparison uses the same E7 observations and reports SEE adjusted for degrees of freedom alongside MSE and MAE.",
+      "locator": "PDF page 8, Section 3.4 Field implementation, Table 1 and paragraph following the table",
+      "sourceExcerpt": "The error metrics for both solutions indicate that the proposed solution achieves lower SEE, MSE, and MAE values compared to the Cooper-Jacob solution.",
+      "anchorTerms": [
+        "error metrics",
+        "Cooper-Jacob solution"
+      ],
+      "visualObject": "Shared SEE MSE and MAE axes with source-reported ordering markers for two field fits",
+      "motionPurpose": "Compare the fitted models without inventing response shapes or extending the reported field evidence.",
+      "stepDetail": "Place the three metric axes; add both reported metric markers; preserve their source ordering; retain the lower-error markers.",
+      "transitionBridge": "The lower-error ordering becomes the evidence handed to the final bounded return.",
+      "minimalText": "Lower reported fit errors"
+    }
+  ],
+  "symbols": [],
+  "return": {
+    "visualObject": "The original aquifer-fault-aquifer pumping system with a drawdown jump across the core and unequal normal-flux arrows balanced by strike-parallel fault flow",
+    "claim": "The imperfect-interface model combines fault-core resistance with shear flow in fractured damage zones.",
+    "claimBoundary": "Its field interpretation remains bounded by simplified assumptions and pumping wells located very close to or directly within the fault zone.",
+    "locator": "PDF page 1, Abstract, combined-effects statement; PDF page 9, Section 4 Concluding remarks, final limitation paragraph",
+    "sourceExcerpt": "fault core resistance and shear flow within fractured damage zones.",
+    "minimalText": "Combined fault physics | bounded field inference"
+  },
+  "visual": {
+    "systemType": "faulted_aquifer",
+    "primaryObject": "Confined aquifer-fault-aquifer cross-section with one pumping well",
+    "accentObject": "Infinitesimally thin anisotropic fault interface carrying drawdown and flux jumps",
+    "measuredQuantity": "Groundwater drawdown and normal flux",
+    "geometryNotes": "Keep the pumping well and fault plane spatially stable across scenes; magnify laminated fault architecture before collapsing it to the interface; show uncertainty or numerical error only as source-bounded bands, never as invented curves."
+  }
+}

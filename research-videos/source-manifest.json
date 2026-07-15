@@ -1,0 +1,667 @@
+{
+  "generatedAt": "2026-07-14T14:10:24.071Z",
+  "counts": {
+    "publications": 41,
+    "pending": 39,
+    "complete": 2,
+    "unmatchedLocalPdfs": 4
+  },
+  "records": [
+    {
+      "id": "2026-02-1",
+      "doi": "10.1007/s00477-026-03194-2",
+      "title": "A Spatially-Coherent Attribution Framework for Interpreting Black-Box Tropical Cyclone Intensity Forecasts",
+      "year": 2026,
+      "venue": "Stochastic Environmental Research and Risk Assessment",
+      "theme": "transformation-uncertainty",
+      "tags": [
+        "black-box attribution",
+        "forecast interpretation"
+      ],
+      "status": "pending",
+      "sourceFileName": "A_spatially-coherent_attribution_framework_for_int.pdf",
+      "sourceSha256": "56fd636984de2830c22b7ee76e3fd9775d2fd7ba972b3828f966b62c78ac5c35",
+      "pages": 11
+    },
+    {
+      "id": "2026-01-2",
+      "doi": "10.1016/j.csite.2026.107695",
+      "title": "Analytical Modeling of Grout Heat Storage Effects in Thermal Response Tests: Toward Faster and More Reliable Parameter Estimation",
+      "year": 2026,
+      "venue": "Case Studies in Thermal Engineering",
+      "theme": "subsurface-energy",
+      "tags": [
+        "thermal response test",
+        "grout heat storage"
+      ],
+      "status": "complete",
+      "sourceFileName": "1-s2.0-S2214157X26000572-main.pdf",
+      "sourceSha256": "8d83bc179927d90f267034b069d0c28520200d0bd838f3b8b5571a0a81380308",
+      "pages": 16
+    },
+    {
+      "id": "2026-01-3",
+      "doi": "10.1016/j.jhydrol.2026.134913",
+      "title": "Lagging Theory for Periodic Hydraulic Head Signals in Aquifers",
+      "year": 2026,
+      "venue": "Journal of Hydrology",
+      "theme": "lagging-theory",
+      "tags": [
+        "periodic head",
+        "analytical model"
+      ],
+      "status": "pending",
+      "sourceFileName": "1-s2.0-S0022169426000107-main.pdf",
+      "sourceSha256": "750902e86f00ac1cc62a8f6afad2186d35bcb7e2d45cf5b0ce049f0213f1abab",
+      "pages": 13
+    },
+    {
+      "id": "2026-01-4",
+      "doi": "10.1016/j.jhydrol.2025.134525",
+      "title": "Reply to the Comment by Anderson and Bakker on ``Faulty Assumptions: Groundwater Modeling Through Anisotropic Fault Zones'' by Lin and Lin (2025)",
+      "year": 2026,
+      "venue": "Journal of Hydrology",
+      "theme": "analytical-well-hydraulics",
+      "tags": [
+        "scientific discussion",
+        "Robin boundary"
+      ],
+      "status": "pending",
+      "sourceFileName": "1-s2.0-S0022169425018657-main.pdf",
+      "sourceSha256": "f14a9f11bb8e73d53a110777438d006e860459c168924f9ef3ac1d53d9aa8831",
+      "pages": 8
+    },
+    {
+      "id": "2025-12-5",
+      "doi": "10.1016/j.advwatres.2025.105155",
+      "title": "Simplified Theoretical Analyses of Lagging Darcy Flow and Land Subsidence in a Groundwater Pumping System of Three Horizontal Layers: An Elastic Thin Plate Approach",
+      "year": 2025,
+      "venue": "Advances in Water Resources",
+      "theme": "transformation-uncertainty",
+      "tags": [
+        "land subsidence",
+        "layered aquifer"
+      ],
+      "status": "pending",
+      "sourceFileName": "1-s2.0-S0309170825002696-main.pdf",
+      "sourceSha256": "343f9c12758b3497b57049ccd776e080b1ca0b38121287908f1be191b4aa37e2",
+      "pages": 12
+    },
+    {
+      "id": "2025-10-6",
+      "doi": "10.1016/j.jhydrol.2025.133151",
+      "title": "Rethinking Aquifer Characterization: Insights from Lagging Models",
+      "year": 2025,
+      "venue": "Journal of Hydrology",
+      "theme": "transformation-uncertainty",
+      "tags": [
+        "aquifer characterization",
+        "lagging model"
+      ],
+      "status": "pending",
+      "sourceFileName": "1-s2.0-S0022169425004895-main.pdf",
+      "sourceSha256": "55c1e65544d0335a8ee3a85a80b424ee452d3bd0926f15b5ab2ec75480096996",
+      "pages": 10
+    },
+    {
+      "id": "2025-08-7",
+      "doi": "10.1016/j.jhydrol.2025.134040",
+      "title": "Integrating Stream Storage and Lagging Effects in Analytical Models for Stream Depletion Prediction",
+      "year": 2025,
+      "venue": "Journal of Hydrology",
+      "theme": "lagging-theory",
+      "tags": [
+        "stream depletion",
+        "stream storage"
+      ],
+      "status": "pending",
+      "sourceFileName": "1-s2.0-S0022169425013782-main.pdf",
+      "sourceSha256": "4b8e836fb45290fba50cc2b146d606f028169ac4929f096994a29b6b9dc05208",
+      "pages": 12
+    },
+    {
+      "id": "2025-07-8",
+      "doi": "10.1016/j.advwatres.2025.104977",
+      "title": "Image-Well Solution for Island Aquifers with Pumping, Recharge, and Complex Coastlines",
+      "year": 2025,
+      "venue": "Advances in Water Resources",
+      "theme": "analytical-well-hydraulics",
+      "tags": [
+        "island aquifer",
+        "image well"
+      ],
+      "status": "pending",
+      "sourceFileName": "1-s2.0-S0309170825000910-main.pdf",
+      "sourceSha256": "b94c4f41730e20714cc002dd3e8b6986d715cc907df6d79adf8eb71a0ca8ea55",
+      "pages": 10
+    },
+    {
+      "id": "2025-07-9",
+      "doi": "10.1029/2024WR039810",
+      "title": "On Radial Heat Transport in Porous Aquifers with Nonlinear Velocity-dependent Thermal Dispersion",
+      "year": 2025,
+      "venue": "Water Resources Research",
+      "theme": "subsurface-energy",
+      "tags": [
+        "thermal dispersion",
+        "radial heat transport"
+      ],
+      "status": "pending",
+      "sourceFileName": "Water Resources Research - 2025 - Shi - On Radial Heat Transport in Porous Aquifers With Nonlinear Velocity‐Dependent.pdf",
+      "sourceSha256": "7b93767b0f4fed4087a1e1a52e872d6f88d3fd19f8ced38d9a67f49c25040831",
+      "pages": 23
+    },
+    {
+      "id": "2025-06-10",
+      "doi": "10.1016/j.jhydrol.2025.132720",
+      "title": "Faulty Assumptions: Groundwater Modeling Through Anisotropic Fault Zones",
+      "year": 2025,
+      "venue": "Journal of Hydrology",
+      "theme": "analytical-well-hydraulics",
+      "tags": [
+        "anisotropy",
+        "fault zone"
+      ],
+      "status": "pending",
+      "sourceFileName": "1-s2.0-S0022169425000587-main.pdf",
+      "sourceSha256": "77dbd95459c98a2a219a4a302678def2dd9a3dc98be60ca85501d0948711ec6e",
+      "pages": 11
+    },
+    {
+      "id": "2025-05-11",
+      "doi": "10.1016/j.jhydrol.2025.133454",
+      "title": "Analytical Framework for Fast Identification of Hydrogeological Boundaries and Aquifer Parameters in Confined Aquifers",
+      "year": 2025,
+      "venue": "Journal of Hydrology",
+      "theme": "analytical-well-hydraulics",
+      "tags": [
+        "hydrogeological boundary",
+        "parameter estimation"
+      ],
+      "status": "pending",
+      "sourceFileName": "1-s2.0-S0022169425007929-main.pdf",
+      "sourceSha256": "8b180d56e04981941e81df1ecc2cb78df4a6233c5595583aace11cc3dae69545",
+      "pages": 11
+    },
+    {
+      "id": "2025-05-12",
+      "doi": "10.1016/j.jhydrol.2024.132657",
+      "title": "Tidal Signal Propagation in Coastal Aquifers Considering Semi-Permeable Boundaries and Partial Penetration Effects",
+      "year": 2025,
+      "venue": "Journal of Hydrology",
+      "theme": "analytical-well-hydraulics",
+      "tags": [
+        "coastal aquifer",
+        "tidal signal"
+      ],
+      "status": "pending",
+      "sourceFileName": "1-s2.0-S0022169424020535-main.pdf",
+      "sourceSha256": "1d77bf1d37d206ba867c55adc52d3804dfa58bbfda29bd3b6ba950f24bef2f3c",
+      "pages": 14
+    },
+    {
+      "id": "2025-03-13",
+      "doi": "10.1029/2024WR038724",
+      "title": "Improving Water Table Kinematic Conditions with Unsaturated Flow Insights",
+      "year": 2025,
+      "venue": "Water Resources Research",
+      "theme": "analytical-well-hydraulics",
+      "tags": [
+        "unconfined aquifer",
+        "water table"
+      ],
+      "status": "pending",
+      "sourceFileName": "Water Resources Research - 2025 - Lin - Improving Water Table Kinematic Conditions With Unsaturated Flow Insights.pdf",
+      "sourceSha256": "7a43d21d413d80dce8e493860c21342a24afdfd5969666e98ac74c6fda44b3db",
+      "pages": 20
+    },
+    {
+      "id": "2025-02-14",
+      "doi": "10.1016/j.jhydrol.2025.132955",
+      "title": "Reply to the discussion by Lv and Qian of “A simple analytical solution for organic contaminant diffusion through a geomembrane to unsaturated soil liner: Considering the sorption effect and Robin-type boundary” by Lin and Yeh (2020)",
+      "year": 2025,
+      "venue": "Journal of Hydrology",
+      "theme": "analytical-well-hydraulics",
+      "tags": [
+        "scientific discussion",
+        "solute transport"
+      ],
+      "status": "pending",
+      "sourceFileName": "1-s2.0-S0022169425002938-main.pdf",
+      "sourceSha256": "a79de9b24dca2a0bf0c807a2b3f60e31fb1bb1a81c86a93030f078c36392b5fd",
+      "pages": 1
+    },
+    {
+      "id": "2025-02-15",
+      "doi": "10.3390/math13050725",
+      "title": "Solving Inverse Wave Problems Using Spacetime Radial Basis Functions in Neural Networks",
+      "year": 2025,
+      "venue": "Mathematics",
+      "theme": "data-ai",
+      "tags": [
+        "inverse problem",
+        "radial basis function"
+      ],
+      "status": "pending",
+      "sourceFileName": "mathematics-13-00725.pdf",
+      "sourceSha256": "63e721d57a913681eb9a3ec64d4d22ecefa57de97b52e98e75e82defb39554bc",
+      "pages": 21
+    },
+    {
+      "id": "2024-09-16",
+      "doi": "10.29974/JTAE.202409_70(3).0003",
+      "title": "Re-Derivation of The High-Permeability Wellbore Skin Effect Conditions",
+      "year": 2024,
+      "venue": "農業工程學報 / Journal of Taiwan Agricultural Engineering",
+      "theme": "analytical-well-hydraulics",
+      "tags": [
+        "wellbore skin",
+        "high-permeability skin"
+      ],
+      "status": "pending",
+      "sourceFileName": "JTAE-2024-70-3-0003.pdf",
+      "sourceSha256": "8da17f7af500fb1fce3e266f55cbdbcff16a7bbcfe8f9fe37cceaa5f5a9aa78b",
+      "pages": 8
+    },
+    {
+      "id": "2024-09-17",
+      "doi": "10.1016/j.jhydrol.2024.131824",
+      "title": "Theoretical Evaluation of High-Permeability Wellbore Skin Effect on Aquifer Response under Pumping",
+      "year": 2024,
+      "venue": "Journal of Hydrology",
+      "theme": "analytical-well-hydraulics",
+      "tags": [
+        "wellbore skin",
+        "pumping test"
+      ],
+      "status": "pending",
+      "sourceFileName": "1-s2.0-S0022169424012204-main.pdf",
+      "sourceSha256": "43a6a06cbb6d4e726d717f3ce88618ef85d8942e8b2933abc4308763bd60d0c7",
+      "pages": 10
+    },
+    {
+      "id": "2024-07-18",
+      "doi": "10.1002/htj.23140",
+      "title": "Application of the Image-Well Method for Transient Borehole Thermal Energy Storage Systems with Complex Boundaries",
+      "year": 2024,
+      "venue": "Heat Transfer",
+      "theme": "subsurface-energy",
+      "tags": [
+        "borehole thermal energy storage",
+        "image well"
+      ],
+      "status": "pending",
+      "sourceFileName": "Heat Trans - 2024 - Lin - Application of the image‐well method for transient borehole thermal energy storage systems with.pdf",
+      "sourceSha256": "eaebc01718a3a7b44dc6927c909cc64f4cf0e638f8116d8dc0a17e5a816985fe",
+      "pages": 20
+    },
+    {
+      "id": "2024-06-19",
+      "doi": "10.1029/2023WR036747",
+      "title": "Analysis of Groundwater Time Series with Limited Pumping Information in Unconfined Aquifer: Response Function Based on Lagging Theory",
+      "year": 2024,
+      "venue": "Water Resources Research",
+      "theme": "lagging-theory",
+      "tags": [
+        "groundwater time series",
+        "limited pumping information"
+      ],
+      "status": "pending",
+      "sourceFileName": "Water Resources Research - 2024 - Lin - Analysis of Groundwater Time Series With Limited Pumping Information in Unconfined.pdf",
+      "sourceSha256": "f77c854f16282e95cf7072a73e1576492d6fe709be1f1ce3a94f2fda186c124f",
+      "pages": 14
+    },
+    {
+      "id": "2024-06-20",
+      "doi": "10.1111/gwat.13425",
+      "title": "Semi-Analytical Modeling of Transient Stream Drawdown and Depletion in Response to Aquifer Pumping",
+      "year": 2024,
+      "venue": "Groundwater",
+      "theme": "analytical-well-hydraulics",
+      "tags": [
+        "stream depletion",
+        "semi-analytical model"
+      ],
+      "status": "pending",
+      "sourceFileName": "Groundwater - 2024 - Malama - Semi‐Analytical Modeling of Transient Stream Drawdown and Depletion in Response to Aquifer.pdf",
+      "sourceSha256": "5c8cf74286af3282d1880ceeb8b01b5ebb61df7b39673a442fc32de68dc89d89",
+      "pages": 16
+    },
+    {
+      "id": "2024-05-21",
+      "doi": "10.1016/j.advwatres.2024.104692",
+      "title": "Analytical Methodology for Determining the Extent of Pumped Freshwater Lenses in Recharge-Limited, Circular Islands",
+      "year": 2024,
+      "venue": "Advances in Water Resources",
+      "theme": "analytical-well-hydraulics",
+      "tags": [
+        "freshwater lens",
+        "island aquifer"
+      ],
+      "status": "pending",
+      "sourceFileName": "1-s2.0-S0309170824000794-main (1).pdf",
+      "sourceSha256": "347422e4a349db3c3c23768c86d0864d8b13ce5be4f441c646e5f251fe866ef5",
+      "pages": 7
+    },
+    {
+      "id": "2024-02-22",
+      "doi": "10.1029/2023WR035291",
+      "title": "Advanced Analytical Model for Interpreting Oscillatory Pumping Tests With Wellbore Skin and Rate-Dependent Skin Effects",
+      "year": 2024,
+      "venue": "Water Resources Research",
+      "theme": "analytical-well-hydraulics",
+      "tags": [
+        "oscillatory pumping",
+        "wellbore skin"
+      ],
+      "status": "pending",
+      "sourceFileName": "Water Resources Research - 2024 - Mahdavi - Advanced Analytical Model for Interpreting Oscillatory Pumping Tests With.pdf",
+      "sourceSha256": "0b8fe09b9a9df3f5d029de86c2929cc9174871f19a67a2c8ea2d67c09f871ce1",
+      "pages": 12
+    },
+    {
+      "id": "2024-02-23",
+      "doi": "10.1016/j.jhydrol.2024.130856",
+      "title": "Estimating Spatiotemporal Pumping Amounts Using Multiple Signal Decomposition Methods",
+      "year": 2024,
+      "venue": "Journal of Hydrology",
+      "theme": "data-ai",
+      "tags": [
+        "signal decomposition",
+        "pumping estimation"
+      ],
+      "status": "pending",
+      "sourceFileName": "1-s2.0-S0022169424002506-main.pdf",
+      "sourceSha256": "89bd978c411abf133c9fb07214a8415c4c3fc8c551860bdb6b326b463c70222d",
+      "pages": 13
+    },
+    {
+      "id": "2023-09-24",
+      "doi": "10.1002/hyp.14976",
+      "title": "Analytical Study of Dual-Porosity Coastal Aquifer with Generalized Nonlinear Water Transfer Term",
+      "year": 2023,
+      "venue": "Hydrological Processes",
+      "theme": "lagging-theory",
+      "tags": [
+        "dual porosity",
+        "coastal aquifer"
+      ],
+      "status": "pending",
+      "sourceFileName": "Hydrological Processes - 2023 - Ma - Analytical study of dual‐porosity coastal aquifer with generalized nonlinear water.pdf",
+      "sourceSha256": "6fedaabdaf3354a7da1a86c492fa0dd1f1e3d4a348f41b0840c5f4add8a4acff",
+      "pages": 7
+    },
+    {
+      "id": "2023-07-25",
+      "doi": "10.1016/j.jhydrol.2023.129873",
+      "title": "Estimating Hydrogeological Parameters at Groundwater Level Observation Wells Without Pumping Well Information",
+      "year": 2023,
+      "venue": "Journal of Hydrology",
+      "theme": "data-ai",
+      "tags": [
+        "observation well",
+        "parameter estimation"
+      ],
+      "status": "pending",
+      "sourceFileName": "1-s2.0-S0022169423008156-main.pdf",
+      "sourceSha256": "b81cd198c44d7d1f8fef8ddf547799cca109d3488385ff2a1ce207fe4ea5b9b7",
+      "pages": 9
+    },
+    {
+      "id": "2023-05-26",
+      "doi": "10.1016/j.jhydrol.2023.129709",
+      "title": "A Novel Framework for Spatiotemporal Groundwater Pumping Process Estimation Based on Data-Driven Approaches",
+      "year": 2023,
+      "venue": "Journal of Hydrology",
+      "theme": "data-ai",
+      "tags": [
+        "pumping process",
+        "spatiotemporal estimation"
+      ],
+      "status": "pending",
+      "sourceFileName": "1-s2.0-S0022169423006510-main.pdf",
+      "sourceSha256": "4eadc66dd448c59e3cfad375f1f0f2d8cb46454fc1156ba8a3076de7334141e3",
+      "pages": 11
+    },
+    {
+      "id": "2023-04-27",
+      "doi": "10.1016/j.jhydrol.2023.129432",
+      "title": "A Temporally Relaxed Theory of Physically or Chemically Non-Equilibrium Solute Transport in Heterogeneous Porous Media",
+      "year": 2023,
+      "venue": "Journal of Hydrology",
+      "theme": "lagging-theory",
+      "tags": [
+        "non-equilibrium transport",
+        "solute"
+      ],
+      "status": "pending",
+      "sourceFileName": "1-s2.0-S0022169423003748-main.pdf",
+      "sourceSha256": "472190c10c2378798f6f819bb941ab3290c18102003dbc57668f0fd05e716496",
+      "pages": 9
+    },
+    {
+      "id": "2023-01-28",
+      "doi": "10.1111/gwat.13295",
+      "title": "Effects of Soil Type and Thermal Boundary on Predicting Temperature Profiles and Groundwater Fluxes",
+      "year": 2023,
+      "venue": "Groundwater",
+      "theme": "subsurface-energy",
+      "tags": [
+        "thermal boundary",
+        "groundwater flux"
+      ],
+      "status": "pending",
+      "sourceFileName": "Groundwater - 2023 - Chang - Effects of Soil Type and Thermal Boundary on Predicting Temperature Profiles and Groundwater.pdf",
+      "sourceSha256": "cfd0805d5253e6b07e5e4b68f0fe8d8b8151ab9aa5a3b55978ebc5b8195f2ca2",
+      "pages": 12
+    },
+    {
+      "id": "2022-12-29",
+      "doi": "10.29974/JTAE.202212_68(4).0002",
+      "title": "Estimation of Rainfall Infiltration Rates by New Heat Transfer Models and Subsurface Temperature Profiles",
+      "year": 2022,
+      "venue": "農業工程學報 / Journal of Taiwan Agricultural Engineering",
+      "theme": "subsurface-energy",
+      "tags": [
+        "rainfall infiltration",
+        "temperature profile"
+      ],
+      "status": "pending",
+      "sourceFileName": "JTAE-2022-68-4-0002.pdf",
+      "sourceSha256": "5df147dd516be403920411e3be754cb764118678188b44bae88b6a2c66aa683b",
+      "pages": 9
+    },
+    {
+      "id": "2022-12-30",
+      "doi": "10.1016/j.jhydrol.2022.128672",
+      "title": "Well Hydraulics in Wedge-Shaped Aquifer: Unsteady Darcian Flow Model Revisited by Lagging Theory",
+      "year": 2022,
+      "venue": "Journal of Hydrology",
+      "theme": "lagging-theory",
+      "tags": [
+        "wedge aquifer",
+        "analytical model"
+      ],
+      "status": "pending",
+      "sourceFileName": "1-s2.0-S0022169422012422-main.pdf",
+      "sourceSha256": "3f12b5f364ba2bbe2bd3d27d77eb923428fb9eb3ac3c51bb5782dd21d4996c73",
+      "pages": 11
+    },
+    {
+      "id": "2022-07-31",
+      "doi": "10.1016/j.jhydrol.2022.127920",
+      "title": "Analytical Solution for Estimating Transient Vertical Groundwater Flux from Temperature-Depth Profiles",
+      "year": 2022,
+      "venue": "Journal of Hydrology",
+      "theme": "subsurface-energy",
+      "tags": [
+        "vertical groundwater flux",
+        "temperature profile"
+      ],
+      "status": "pending",
+      "sourceFileName": "1-s2.0-S0022169422004954-main.pdf",
+      "sourceSha256": "fa8f6338f7cf6d0bcb487a5ca4490a6c9e9d1167b163cf4eebd7a8c2b5816394",
+      "pages": 12
+    },
+    {
+      "id": "2022-03-32",
+      "doi": "10.1029/2021WR031368",
+      "title": "A Semi-Analytical Solution for Slug Test by Considering Near-Well Formation Damage and Nonlinear Flow",
+      "year": 2022,
+      "venue": "Water Resources Research",
+      "theme": "analytical-well-hydraulics",
+      "tags": [
+        "slug test",
+        "formation damage"
+      ],
+      "status": "pending",
+      "sourceFileName": "Water Resources Research - 2022 - Lin - A Semi‐Analytical Solution for Slug Test by Considering Near‐Well Formation Damage.pdf",
+      "sourceSha256": "505bc297fb62c171a15e60a06e53bad2e4b4feef56d1d6e5b2fcc268932b87e0",
+      "pages": 10
+    },
+    {
+      "id": "2021-07-33",
+      "doi": "10.1029/2020WR029186",
+      "title": "An Analytical Model With a Generalized Nonlinear Water Transfer Term for the Flow in Dual-Porosity Media Induced by Constant-Rate Pumping in a Leaky Fractured Aquifer",
+      "year": 2021,
+      "venue": "Water Resources Research",
+      "theme": "lagging-theory",
+      "tags": [
+        "dual porosity",
+        "fractured aquifer"
+      ],
+      "status": "pending",
+      "sourceFileName": "Water Resources Research - 2021 - Lin - An Analytical Model With a Generalized Nonlinear Water Transfer Term for the Flow.pdf",
+      "sourceSha256": "8f7f60f87ad8a2d22cefa9a8054b652bc93ece0c8ccb644d10c618a6f1aa04df",
+      "pages": 19
+    },
+    {
+      "id": "2020-07-34",
+      "doi": "10.1016/j.jhydrol.2020.124873",
+      "title": "A Simple Analytical Solution for Organic Contaminant Diffusion Through a Geomembrane to Unsaturated Soil Liner: Considering the Sorption Effect and Robin-Type Boundary",
+      "year": 2020,
+      "venue": "Journal of Hydrology",
+      "theme": "analytical-well-hydraulics",
+      "tags": [
+        "solute transport",
+        "Robin boundary"
+      ],
+      "status": "pending",
+      "sourceFileName": "1-s2.0-S0022169420303334-main.pdf",
+      "sourceSha256": "9baa542931832e4feecc6f4deab577e68c8e7f1a157773214921ceac59deeca2",
+      "pages": 10
+    },
+    {
+      "id": "2020-03-35",
+      "doi": "10.1029/2019WR026352",
+      "title": "New Analytical Models for Flow Induced by Pumping in a Stream-Aquifer System: A New Robin Boundary Condition Reflecting Joint Effect of Streambed Width and Storage",
+      "year": 2020,
+      "venue": "Water Resources Research",
+      "theme": "analytical-well-hydraulics",
+      "tags": [
+        "stream aquifer",
+        "Robin boundary"
+      ],
+      "status": "pending",
+      "sourceFileName": "Water Resources Research - 2020 - Huang - New Analytical Models for Flow Induced by Pumping in a Stream‐Aquifer System  A.pdf",
+      "sourceSha256": "592f769f6c5be34e12bc645a8db0857f1ca27ed6beb8adf382e47ece8edd5e4f",
+      "pages": 19
+    },
+    {
+      "id": "2020-02-36",
+      "doi": "10.1016/j.jhydrol.2019.124395",
+      "title": "New Analytical Model for Constant-Head Pumping: Considering Rate-Dependent Factor at Well Screen",
+      "year": 2020,
+      "venue": "Journal of Hydrology",
+      "theme": "analytical-well-hydraulics",
+      "tags": [
+        "constant-head pumping",
+        "well screen"
+      ],
+      "status": "pending",
+      "sourceFileName": "1-s2.0-S0022169419311308-main.pdf",
+      "sourceSha256": "d27147ba63e6e9d06f2bdcfea141d015e03bc9653f0089f2cdc0369a4fd14191",
+      "pages": 8
+    },
+    {
+      "id": "2019-08-37",
+      "doi": "10.1029/2019WR024966",
+      "title": "Analytical Model for Heat Transfer Accounting for Both Conduction and Dispersion in Aquifers with a Robin-Type Boundary Condition at the Injection Well",
+      "year": 2019,
+      "venue": "Water Resources Research",
+      "theme": "subsurface-energy",
+      "tags": [
+        "heat transfer",
+        "injection well"
+      ],
+      "status": "pending",
+      "sourceFileName": "Water Resources Research - 2019 - Lin - Analytical Model for Heat Transfer Accounting for Both Conduction and Dispersion in.pdf",
+      "sourceSha256": "66f0d7c6ceebb18df9860e2ee181e3c18c00e12b70384b4f92fd7dec0834004b",
+      "pages": 21
+    },
+    {
+      "id": "2019-04-38",
+      "doi": "10.1029/2018WR023893",
+      "title": "Analysis of Unconfined Flow Induced by Constant Rate Pumping Based on the Lagging Theory",
+      "year": 2019,
+      "venue": "Water Resources Research",
+      "theme": "lagging-theory",
+      "tags": [
+        "unconfined aquifer",
+        "pumping test"
+      ],
+      "status": "pending",
+      "sourceFileName": "Water Resources Research - 2019 - Lin - Analysis of Unconfined Flow Induced by Constant Rate Pumping Based on the Lagging.pdf",
+      "sourceSha256": "12a339ef747cf242a265d37f43ab77f1b6ec420046732255e1a7d25b39c1b846",
+      "pages": 16
+    },
+    {
+      "id": "2017-09-39",
+      "doi": "10.1002/2017WR021115",
+      "title": "A Lagging Model for Describing Drawdown Induced by a Constant-Rate Pumping in a Leaky Confined Aquifer",
+      "year": 2017,
+      "venue": "Water Resources Research",
+      "theme": "lagging-theory",
+      "tags": [
+        "leaky aquifer",
+        "pumping test"
+      ],
+      "status": "complete",
+      "sourceFileName": "Water Resources Research - 2017 - Lin - A Lagging Model for Describing Drawdown Induced by a Constant‐Rate Pumping in a.pdf",
+      "sourceSha256": "d74c311c27d49243a55dd8eba9dd3624b06e0265b7580ad6c7f53cfbae1d1e6d",
+      "pages": 12
+    },
+    {
+      "id": "2017-06-40",
+      "doi": "10.1016/j.advwatres.2017.05.018",
+      "title": "An Analytical Model for Flow Induced by a Constant-Head Pumping in a Leaky Unconfined Aquifer System with Considering Unsaturated Flow",
+      "year": 2017,
+      "venue": "Advances in Water Resources",
+      "theme": "analytical-well-hydraulics",
+      "tags": [
+        "unconfined aquifer",
+        "unsaturated flow"
+      ],
+      "status": "pending",
+      "sourceFileName": "1-s2.0-S0309170817305286-main.pdf",
+      "sourceSha256": "c8146b6fc7e207490200fa8c78aff60e1f3eb3f401235b77acde42e78505ee21",
+      "pages": 10
+    },
+    {
+      "id": "2016-07-41",
+      "doi": "10.1016/j.jhydrol.2016.07.028",
+      "title": "A General Analytical Model for Pumping Tests in Radial Finite Two-Zone Confined Aquifers with Robin-Type Outer Boundary",
+      "year": 2016,
+      "venue": "Journal of Hydrology",
+      "theme": "analytical-well-hydraulics",
+      "tags": [
+        "finite aquifer",
+        "Robin boundary"
+      ],
+      "status": "pending",
+      "sourceFileName": "1-s2.0-S0022169416304590-main.pdf",
+      "sourceSha256": "83a54c06a003d358319952fcb06d304ca71f3f3f3f426dd598c65666b69c0e8a",
+      "pages": 14
+    }
+  ]
+}

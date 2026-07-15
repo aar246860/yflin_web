@@ -1,0 +1,651 @@
+{
+  "schemaVersion": 1,
+  "id": "2026-01-3",
+  "doi": "10.1016/j.jhydrol.2026.134913",
+  "title": "Lagging Theory for Periodic Hydraulic Head Signals in Aquifers",
+  "sourceArtifact": "research-videos/source-pdfs/2026-01-3.pdf",
+  "research": {
+    "question": "Can separate flux-adjustment and inter-domain head-equilibration times reconcile hydraulic diffusivities inferred from periodic-head amplitude damping and phase lag?",
+    "system": "One-dimensional periodic head propagation from a river, coast, or surface boundary into a heterogeneous aquifer represented by a causal Darcy-law memory model.",
+    "inputData": "Multi-frequency river-stage and groundwater-head records at multiple distances from Tuolumne Meadows, USA, and the Meghna River, Bangladesh.",
+    "method": "Replace instantaneous Darcy response with a two-lag causal kernel, derive harmonic amplitude and phase, quantify the phase-amplitude mismatch, extract coherent transfer functions, fit lagging and classical models, and evaluate sensitivity, AIC, and bootstrap uncertainty.",
+    "benchmark": "The homogeneous diffusion solution, numerical frequency-domain verification, independent site lithology and hydraulic-property ranges, residual RMSE, and AIC.",
+    "uncertainty": "Delete-one-block jackknife errors weight the inversion. Five thousand Gaussian amplitude-phase realizations are refitted, interquartile-filtered, and summarized by posterior means and one-sigma intervals; a separate 1000-resample constituent bootstrap produces diffusivity densities. Joint estimation of diffusivity and both lags requires multiple well-separated frequencies and at least two distances, while a one-frequency fit fixes one lag a priori.",
+    "conclusion": "Two field-scale delays jointly fit amplitude and phase with more plausible diffusivities at both sites, while reducing to classical diffusion when both delays vanish."
+  },
+  "narrative": {
+    "throughline": "A periodic groundwater wave carries two independent signatures because discharge pathways adjust on one clock and communicating storage domains equilibrate on another.",
+    "audienceStartingPoint": "The audience knows that a periodic river or tide signal becomes smaller and later farther into an aquifer.",
+    "stakes": "Forcing both signatures into one classical diffusivity can produce mutually inconsistent or geologically implausible aquifer properties.",
+    "resolution": "The two clocks return to the field transects as jointly fitted amplitude envelopes and phase shifts, bounded as upscaled effective parameters rather than literal delays."
+  },
+  "background": [
+    {
+      "id": "B01",
+      "premise": "Periodic boundary signals act as passive tracers of aquifer hydraulic properties.",
+      "visibleEvidence": "A sinusoidal river stage enters an aquifer and becomes a damped delayed groundwater wave along a transect.",
+      "whyNow": "This introduces the measured scientific object before any constitutive law.",
+      "boundary": "The method assumes a robust dominant harmonic and a constrained boundary signal.",
+      "locator": "PDF pages 2-3, Section 1 Introduction",
+      "sourceExcerpt": "1990; LeRoux Such analytical solutions are widely applied as passive tracers for",
+      "anchorTerms": ["passive tracers", "hydraulic diffusivity"],
+      "visualObject": "Boundary sinusoid propagating through observation wells",
+      "motionPurpose": "Make amplitude loss and phase delay visible as separate geometric changes.",
+      "stepDetail": "Drive the boundary sinusoid, copy it inland, shrink its envelope, and shift its crest at each well.",
+      "transitionBridge": "The two observable changes produce two classical diffusivity estimates.",
+      "minimalText": "Smaller and later"
+    },
+    {
+      "id": "B02",
+      "premise": "Classical homogeneous diffusion often yields different diffusivities from amplitude and phase observations.",
+      "visibleEvidence": "Amplitude-derived and phase-derived diffusivity markers split apart despite coming from the same wave.",
+      "whyNow": "This is the paper's central measurement puzzle.",
+      "boundary": "The mismatch is attributed to conceptual-model simplification and data limitations rather than a failure of diffusion physics itself.",
+      "locator": "PDF page 3, Section 1 Introduction",
+      "sourceExcerpt": "estimates derived from the phase shift rarely match those inferred from amplitude",
+      "anchorTerms": ["phase shift", "amplitude decay"],
+      "visualObject": "One groundwater wave feeding two separated diffusivity gauges",
+      "motionPurpose": "Expose the internal contradiction of a single-parameter inversion.",
+      "stepDetail": "Measure damping and lag from the same wells, invert each with the classical formula, and separate the resulting D markers.",
+      "transitionBridge": "The split calls for two field-scale response clocks.",
+      "minimalText": "One wave two diffusivities"
+    },
+    {
+      "id": "B03",
+      "premise": "The proposed lags are causal field-scale memory parameters rather than literal time shifts.",
+      "visibleEvidence": "A memory kernel weights past gradients while two clocks alter attenuation and phase frequency-dependently.",
+      "whyNow": "This prevents a misleading animation of the model as simply sliding a signal in time.",
+      "boundary": "Specific heterogeneity mechanisms are not uniquely identified from the fitted lags.",
+      "locator": "PDF page 3, Section 2.1, Equations (2)-(4)",
+      "sourceExcerpt": "attenuation and phase in a frequency-dependent way rather than shifting the signal",
+      "anchorTerms": ["causal memory law", "frequency-dependent"],
+      "visualObject": "Decaying memory kernel with flux and head relaxation clocks",
+      "motionPurpose": "Replace a literal horizontal shift with weighted history and frequency-dependent deformation.",
+      "stepDetail": "Stack past gradients behind the present, fade them by kernel weight, and let each clock reshape envelope or phase response.",
+      "transitionBridge": "The memory object becomes the modified Darcy constitutive relation.",
+      "minimalText": "Memory not a time shift"
+    }
+  ],
+  "methods": [
+    {
+      "id": "M01",
+      "input": "The history of hydraulic gradients at a field-scale point",
+      "operation": "Integrate gradient memory",
+      "output": "A causal Darcy flux defined by a nonnegative kernel",
+      "validity": "The kernel uses only past gradients and integrates to effective hydraulic conductivity.",
+      "locator": "PDF page 3, Section 2.1, Equations (2)-(3)",
+      "sourceExcerpt": "and heat transfer, we therefore represent Darcy’s law at the field scale",
+      "anchorTerms": [
+        "causal kernel",
+        "past gradients"
+      ],
+      "visualObject": "Past-gradient traces fading into a present flux arrow",
+      "motionPurpose": "Show that present discharge is assembled from weighted gradient history.",
+      "stepDetail": "Order gradient snapshots by look-back time, weight them with the kernel, integrate their contributions, and form the present flux.",
+      "transitionBridge": "A two-parameter kernel compresses the memory history into two lags.",
+      "minimalText": "Flux remembers gradients"
+    },
+    {
+      "id": "M02",
+      "input": "The causal memory relation and mass conservation",
+      "operation": "Derive lagging diffusion equation",
+      "output": "A Jeffreys-type head equation containing tau_q and tau_h",
+      "validity": "Continuity is enforced at present time and delay enters only through the constitutive relation; zero lags recover classical diffusion.",
+      "locator": "PDF page 4, Sections 2.1-2.2, Equations (4)-(7)",
+      "sourceExcerpt": "gives the classic diffusion equation Eq. (7) reduces to classical diffusion when",
+      "anchorTerms": [
+        "classical diffusion",
+        "τq = τh = 0"
+      ],
+      "visualObject": "Flux and head clocks entering opposite sides of the diffusion balance",
+      "motionPurpose": "Reveal how each lag modifies a distinct derivative while conserving mass.",
+      "stepDetail": "Insert the two-lag discharge law into continuity, replace transmissivity over storativity by D, and group the two time operators.",
+      "transitionBridge": "Periodic boundary forcing turns the PDE into a complex wavenumber.",
+      "minimalText": "Two-lag diffusion"
+    },
+    {
+      "id": "M03",
+      "input": "The lagging PDE with sinusoidal boundary head and far-field mean head",
+      "operation": "Solve harmonic response",
+      "output": "Closed-form head amplitude A_h and phase phi from complex wavenumber kappa",
+      "validity": "The branch with negative real part is chosen so the wave attenuates inland.",
+      "locator": "PDF page 4, Section 2.3, Equations (10)-(15)",
+      "sourceExcerpt": "at Assuming harmonic solutions gives ℎD ∝ ������������������D ������������������D������D with the dispersion",
+      "anchorTerms": [
+        "harmonic solutions",
+        "dispersion relation"
+      ],
+      "visualObject": "Complex wavenumber splitting into damping alpha and phase gradient beta",
+      "motionPurpose": "Turn one propagating wave into separately inspectable envelope and crest motion.",
+      "stepDetail": "Apply the harmonic ansatz, choose the decaying root, separate real and imaginary parts, and label amplitude and phase.",
+      "transitionBridge": "Alpha and beta generate the two apparent classical diffusivities.",
+      "minimalText": "kappa = -alpha + i beta"
+    },
+    {
+      "id": "M04",
+      "input": "Lagging-model damping alpha and phase gradient beta",
+      "operation": "Compute mismatch ratio",
+      "output": "R = D_phase/D_amplitude = alpha^2/beta^2",
+      "validity": "Both apparent diffusivities use the standard classical inversions applied to the lagging response.",
+      "locator": "PDF page 5, Section 2.4, Equations (20)-(21)",
+      "sourceExcerpt": "spectral conventions (DFT, autospectrum/cross- inconsistent diffusivity estimates from phase and amplitude data.",
+      "anchorTerms": [
+        "R departs from unity",
+        "diffusivity estimates"
+      ],
+      "visualObject": "Mismatch map centered on an R = 1 contour",
+      "motionPurpose": "Convert the split diffusivity gauges into a signed regime map.",
+      "stepDetail": "Square alpha and beta, form their ratio, center the color scale at one, and locate amplitude- or phase-dominant sectors.",
+      "transitionBridge": "The mismatch map is next tested for sensitivity to lag ratio and dimensionless frequency.",
+      "minimalText": "R = 1 means agreement"
+    },
+    {
+      "id": "M05",
+      "input": "Lag ratio and dimensionless frequency values along a Morris trajectory",
+      "operation": "Calculate Morris elementary effects",
+      "output": "One elementary effect for each input factor trajectory and model output",
+      "validity": "The Morris finite difference uses the stated normalized grid step for amplitude or phase output.",
+      "locator": "PDF page 5, Section 2.5 Global sensitivity analysis, Equation 22",
+      "sourceExcerpt": "is quantified using the Morris elementary-effects (EE) method",
+      "anchorTerms": [
+        "Morris",
+        "elementary-effects"
+      ],
+      "visualObject": "Morris trajectory stepping once along each input axis",
+      "motionPurpose": "Expose the output change caused by one factor step at a time.",
+      "stepDetail": "Advance one normalized factor along a trajectory and display the resulting elementary effect.",
+      "transitionBridge": "Repeated trajectories provide a distribution of elementary effects.",
+      "minimalText": "Morris effects"
+    },
+    {
+      "id": "M06",
+      "input": "Elementary effects collected across all Morris trajectories",
+      "operation": "Aggregate absolute elementary effects",
+      "output": "Absolute mean elementary effect mu-star for each factor",
+      "validity": "The absolute mean summarizes effect magnitude across all optimized trajectories.",
+      "locator": "PDF page 5, Section 2.5 Global sensitivity analysis, Equation 23",
+      "sourceExcerpt": "trajectories is summarized by the absolute mean",
+      "anchorTerms": [
+        "trajectories",
+        "absolute mean"
+      ],
+      "visualObject": "Signed elementary-effect marks folding into one absolute-mean bar",
+      "motionPurpose": "Summarize factor influence without cancellation between positive and negative effects.",
+      "stepDetail": "Take each effect magnitude and average the magnitudes across trajectories.",
+      "transitionBridge": "Variation around the mean reveals interaction or nonlinearity.",
+      "minimalText": "Absolute mean"
+    },
+    {
+      "id": "M07",
+      "input": "Elementary effects and their trajectory mean for each factor",
+      "operation": "Calculate elementary effect deviation",
+      "output": "Standard deviation sigma for each factor's elementary effects",
+      "validity": "The reported deviation measures interactions or nonlinear response in the Morris design.",
+      "locator": "PDF page 5, Section 2.5 Global sensitivity analysis, Equation 24",
+      "sourceExcerpt": "the standard deviation is calculated to reflect interactions",
+      "anchorTerms": [
+        "standard deviation",
+        "interactions"
+      ],
+      "visualObject": "Elementary-effect marks spreading around their mean",
+      "motionPurpose": "Make cross-trajectory variability visible as a second sensitivity dimension.",
+      "stepDetail": "Measure the spread of each factor's effects around its displayed mean.",
+      "transitionBridge": "Magnitude and spread combine into one overall ranking index.",
+      "minimalText": "Effect deviation"
+    },
+    {
+      "id": "M08",
+      "input": "Absolute mean mu-star and standard deviation sigma for each factor",
+      "operation": "Combine Morris sensitivity metrics",
+      "output": "Overall Morris sensitivity index delta for each factor",
+      "validity": "Equation 25 combines the two metrics into the single factor-ranking index used in the study.",
+      "locator": "PDF page 5, Section 2.5 Global sensitivity analysis, Equation 25",
+      "sourceExcerpt": "the two metrics were combined",
+      "anchorTerms": [
+        "single index",
+        "rank factors"
+      ],
+      "visualObject": "Orthogonal magnitude and spread bars closing into one radial index",
+      "motionPurpose": "Reduce the two Morris summaries to the overall effect used for factor comparison.",
+      "stepDetail": "Join the absolute-mean and deviation components into one overall sensitivity length.",
+      "transitionBridge": "Field records are prepared before their measured harmonics enter inversion.",
+      "minimalText": "Overall sensitivity"
+    },
+    {
+      "id": "M09",
+      "input": "Raw boundary and well head records sampled at their field cadence",
+      "operation": "Align head record cadence",
+      "output": "Boundary and well records on a uniform 15 to 20 minute cadence",
+      "validity": "Each time series is resampled to the uniform cadence reported for the analysis.",
+      "locator": "PDF page 10, Appendix B, first paragraph",
+      "sourceExcerpt": "Time series were resampled to a uniform 15–20 min cadence",
+      "anchorTerms": [
+        "resampled",
+        "uniform"
+      ],
+      "visualObject": "Irregular time stamps snapping onto one shared time grid",
+      "motionPurpose": "Place boundary and well observations on directly comparable time coordinates.",
+      "stepDetail": "Move each sample to the common cadence while preserving the analysis window.",
+      "transitionBridge": "The aligned records still contain their temporal means.",
+      "minimalText": "Align cadence"
+    },
+    {
+      "id": "M10",
+      "input": "Uniformly sampled boundary and well head records",
+      "operation": "Remove head record means",
+      "output": "Demeaned boundary and well head records",
+      "validity": "Mean removal follows the stated preprocessing over the analysis window.",
+      "locator": "PDF page 10, Appendix B, first paragraph",
+      "sourceExcerpt": "meaned, and linearly",
+      "anchorTerms": [
+        "meaned",
+        "linearly"
+      ],
+      "visualObject": "Head traces recentering around a zero baseline",
+      "motionPurpose": "Remove static offsets before frequency-domain comparison.",
+      "stepDetail": "Shift each uniform record vertically until its temporal mean is zero.",
+      "transitionBridge": "Slow linear drift remains in the recentered records.",
+      "minimalText": "Remove means"
+    },
+    {
+      "id": "M11",
+      "input": "Demeaned boundary and well head records",
+      "operation": "Remove linear record trends",
+      "output": "Uniform demeaned and detrended boundary-well time series",
+      "validity": "Linear detrending is applied over the same analysis window used for mean removal.",
+      "locator": "PDF page 10, Appendix B, first paragraph",
+      "sourceExcerpt": "detrended over the analysis window",
+      "anchorTerms": [
+        "detrended",
+        "analysis window"
+      ],
+      "visualObject": "Sloping baselines flattening beneath recentered head traces",
+      "motionPurpose": "Prevent long-term drift from contaminating the harmonic spectra.",
+      "stepDetail": "Flatten the fitted linear drift while retaining the oscillatory residual.",
+      "transitionBridge": "The prepared oscillations are converted into auto-spectra and cross-spectra.",
+      "minimalText": "Remove trends"
+    },
+    {
+      "id": "M12",
+      "input": "Uniform demeaned and detrended boundary-well time series",
+      "operation": "Compute stage spectra",
+      "output": "Boundary autospectrum and river-well cross-spectrum",
+      "validity": "Discrete Fourier transforms form the autospectrum and complex-conjugate cross-spectrum defined in Appendix B.",
+      "locator": "PDF page 10, Appendix B, first paragraph",
+      "sourceExcerpt": "Fourier transforms (DFTs) produced the stage autospectrum",
+      "anchorTerms": [
+        "Fourier transforms",
+        "autospectrum"
+      ],
+      "visualObject": "Prepared time series resolving into paired spectral lines",
+      "motionPurpose": "Convert synchronized head oscillations into frequency-specific boundary and cross responses.",
+      "stepDetail": "Transform each prepared record and form the boundary auto-products and river-well cross-products.",
+      "transitionBridge": "The raw spectral lines require the reported frequency smoothing.",
+      "minimalText": "Compute spectra"
+    },
+    {
+      "id": "M13",
+      "input": "Boundary autospectrum and river-well cross-spectrum",
+      "operation": "Filter spectra through Daniell kernel",
+      "output": "Three-bin-smoothed auto-spectra and cross-spectra",
+      "validity": "The source applies a three-bin Daniell kernel under the cited spectral conventions.",
+      "locator": "PDF page 10, Appendix B, first paragraph",
+      "sourceExcerpt": "Spectra were smoothed with a three-bin Daniell kernel",
+      "anchorTerms": [
+        "smoothed",
+        "Daniell kernel"
+      ],
+      "visualObject": "Jagged neighboring spectral bins settling into smoothed lines",
+      "motionPurpose": "Stabilize the spectral estimates before their ratio is formed.",
+      "stepDetail": "Pass each spectrum through the three-bin smoothing window.",
+      "transitionBridge": "The smoothed cross-spectrum and autospectrum define the transfer function.",
+      "minimalText": "Smooth spectra"
+    },
+    {
+      "id": "M14",
+      "input": "Smoothed river-well cross-spectrum and boundary autospectrum",
+      "operation": "Divide cross spectrum by autospectrum",
+      "output": "Complex river-well transfer function at each frequency",
+      "validity": "Equation 26 defines the transfer function as the cross-spectrum divided by the stage autospectrum.",
+      "locator": "PDF page 5, Section 2.6 Field-data transfer functions, Equation 26",
+      "sourceExcerpt": "The complex transfer function is",
+      "anchorTerms": [
+        "complex",
+        "transfer function"
+      ],
+      "visualObject": "Cross-spectrum and autospectrum bars resolving into one complex spectral ratio",
+      "motionPurpose": "Express each well response relative to the boundary forcing.",
+      "stepDetail": "Divide the smoothed cross-spectrum by the matching boundary autospectrum at every frequency.",
+      "transitionBridge": "Only coherent frequency lines in the target period band are retained.",
+      "minimalText": "Form transfer function"
+    },
+    {
+      "id": "M15",
+      "input": "Complex river-well transfer function and magnitude-squared coherence by frequency",
+      "operation": "Select coherent harmonics",
+      "output": "Retained transfer-function values in the 2 to 48 hour band",
+      "validity": "Only peaks in the stated band with magnitude-squared coherence of at least 0.8 are retained.",
+      "locator": "PDF page 10, Appendix B, first paragraph",
+      "sourceExcerpt": "then formed, and peaks in the 2–48 h band",
+      "anchorTerms": [
+        "peaks",
+        "magnitude-squared coherence"
+      ],
+      "visualObject": "Spectral peaks passing a period window and coherence threshold",
+      "motionPurpose": "Exclude frequency lines that lack the paper's period and coherence support.",
+      "stepDetail": "Keep each peak only when it lies inside the band and clears the coherence cutoff.",
+      "transitionBridge": "Each retained complex value contains an amplitude ratio.",
+      "minimalText": "Select harmonics"
+    },
+    {
+      "id": "M16",
+      "input": "Retained complex river-well transfer-function values",
+      "operation": "Calculate observed amplitude ratios",
+      "output": "Observed boundary-to-well amplitude ratio for every retained harmonic",
+      "validity": "Equation 27 defines the observed amplitude ratio as the transfer-function magnitude.",
+      "locator": "PDF pages 5 and 10, Section 2.6 and Appendix B, Equation 27",
+      "sourceExcerpt": "from which the observed amplitude ratio",
+      "anchorTerms": [
+        "observed",
+        "amplitude ratio"
+      ],
+      "visualObject": "Complex transfer phasor resolving into its length",
+      "motionPurpose": "Extract attenuation from each retained transfer-function estimate.",
+      "stepDetail": "Measure the magnitude of every retained complex transfer value.",
+      "transitionBridge": "The same retained value also contains the phase lag.",
+      "minimalText": "Amplitude ratios"
+    },
+    {
+      "id": "M17",
+      "input": "Retained complex river-well transfer-function values",
+      "operation": "Calculate observed phase lags",
+      "output": "Observed boundary-to-well phase lag for every retained harmonic",
+      "validity": "Equation 27 defines the observed phase lag as the transfer-function argument.",
+      "locator": "PDF pages 5 and 10, Section 2.6 and Appendix B, Equation 27",
+      "sourceExcerpt": "phase lag were defined as",
+      "anchorTerms": [
+        "phase lag",
+        "defined"
+      ],
+      "visualObject": "Complex transfer phasor resolving into its angle",
+      "motionPurpose": "Extract propagation delay from each retained transfer-function estimate.",
+      "stepDetail": "Measure the argument of every retained complex transfer value.",
+      "transitionBridge": "Block deletion quantifies uncertainty in the retained observables.",
+      "minimalText": "Phase lags"
+    },
+    {
+      "id": "M18",
+      "input": "Retained harmonic transfer-function estimates partitioned into eight time blocks",
+      "operation": "Estimate jackknife errors",
+      "output": "Amplitude and phase standard errors for every retained harmonic",
+      "validity": "The delete-one-block jackknife uses eight non-overlapping blocks and propagates amplitude uncertainty to log amplitude.",
+      "locator": "PDF page 10, Appendix B, second paragraph",
+      "sourceExcerpt": "using a delete-one-block jackknife with eight non-overlapping blocks",
+      "anchorTerms": [
+        "jackknife",
+        "non-overlapping blocks"
+      ],
+      "visualObject": "Eight time blocks taking turns outside the transfer-function estimate",
+      "motionPurpose": "Expose sampling uncertainty around each retained amplitude-phase pair.",
+      "stepDetail": "Delete one block per replicate and display the resulting amplitude and phase spread.",
+      "transitionBridge": "The observed pairs and errors weight the parameter inversion.",
+      "minimalText": "Jackknife errors"
+    },
+    {
+      "id": "M19",
+      "input": "Observed amplitude-phase pairs with jackknife errors across frequencies and distances",
+      "operation": "Fit lagging parameters",
+      "output": "Estimated diffusivity flux lag and head lag for each aquifer",
+      "validity": "Bounded Levenberg-Marquardt minimizes whitened residuals with soft-L1 loss and ten random restarts.",
+      "locator": "PDF page 10, Appendix B, Equation B.1",
+      "sourceExcerpt": "Parameter estimation minimized a whitened least-squares cost over",
+      "anchorTerms": [
+        "Parameter estimation",
+        "whitened"
+      ],
+      "visualObject": "Lagging-model curves converging on weighted amplitude-phase observations",
+      "motionPurpose": "Constrain diffusivity and both lag times with all retained field observables.",
+      "stepDetail": "Move the bounded parameter state until the whitened robust cost reaches its best value.",
+      "transitionBridge": "The extra lag parameters require penalized model comparison.",
+      "minimalText": "Fit D tau_q tau_h"
+    },
+    {
+      "id": "M20",
+      "input": "Whitened residual sum of squares and parameter count for each fitted model",
+      "operation": "Compare model information",
+      "output": "AIC ranking of lagging and classical fits",
+      "validity": "AIC balances goodness of fit against parameter count and therefore penalizes the two additional lag parameters.",
+      "locator": "PDF page 10, Appendix B, second paragraph",
+      "sourceExcerpt": "The AIC was computed from the whitened residual sum of squares.",
+      "anchorTerms": [
+        "AIC",
+        "whitened residual"
+      ],
+      "visualObject": "Lagging and classical fit scores settling on one penalized axis",
+      "motionPurpose": "Test whether fit improvement justifies the lagging model's additional parameters.",
+      "stepDetail": "Place each model's AIC on the shared axis and retain the lower score.",
+      "transitionBridge": "The fitted observation errors define 5000 Gaussian uncertainty realizations in M21.",
+      "minimalText": "Compare AIC"
+    },
+    {
+      "id": "M21",
+      "input": "Retained amplitude-phase observations and their Gaussian log-amplitude and phase errors",
+      "operation": "Sample Gaussian uncertainty realizations",
+      "output": "Five thousand synthetic amplitude-phase realizations at the retained frequencies",
+      "validity": "Appendix B specifies 5000 synthetic amplitude-phase realizations drawn at the retained frequencies from the estimated Gaussian errors.",
+      "locator": "PDF page 10, Appendix B Data processing inversion settings and uncertainty",
+      "sourceExcerpt": "of 5000 synthetic",
+      "anchorTerms": [
+        "5000",
+        "synthetic"
+      ],
+      "visualObject": "Five thousand amplitude-phase points forming error clouds around the retained harmonics",
+      "motionPurpose": "Make the observation-error model visible as the realized input to uncertainty refitting.",
+      "stepDetail": "Draw 5000 amplitude-phase pairs from the fitted Gaussian errors at the retained frequencies.",
+      "transitionBridge": "Each synthetic amplitude-phase record enters the same bounded inversion in M22.",
+      "minimalText": "5000 error realizations"
+    },
+    {
+      "id": "M22",
+      "input": "Five thousand synthetic amplitude-phase records",
+      "operation": "Fit uncertainty realizations",
+      "output": "Five thousand candidate diffusivity and lag parameter refits",
+      "validity": "The source states that the Gaussian realizations are refit before posterior summaries are formed.",
+      "locator": "PDF page 10, Appendix B Data processing inversion settings and uncertainty",
+      "sourceExcerpt": "refit, and summarized as posterior means",
+      "anchorTerms": [
+        "refit",
+        "posterior means"
+      ],
+      "visualObject": "Repeated bounded parameter fits converging from the Gaussian amplitude-phase cloud",
+      "motionPurpose": "Propagate observation error through the full parameter inversion.",
+      "stepDetail": "Refit diffusivity and lag parameters for every synthetic amplitude-phase record and retain each candidate parameter vector.",
+      "transitionBridge": "Aberrant candidate vectors are removed by the reported interquartile rule in M23.",
+      "minimalText": "Refit every realization"
+    },
+    {
+      "id": "M23",
+      "input": "Candidate parameter vectors from the 5000 uncertainty refits",
+      "operation": "Filter aberrant refits",
+      "output": "Interquartile-filtered diffusivity and lag parameter samples",
+      "validity": "Appendix B applies interquartile filtering to aberrant refits before reporting posterior summaries.",
+      "locator": "PDF page 10, Appendix B Data processing inversion settings and uncertainty",
+      "sourceExcerpt": "interquartile filtering of aberrant refits",
+      "anchorTerms": [
+        "interquartile filtering",
+        "aberrant refits"
+      ],
+      "visualObject": "Candidate parameter points passing through an interquartile fence into a retained cloud",
+      "motionPurpose": "Separate the reported posterior sample from aberrant numerical refits.",
+      "stepDetail": "Place the candidate parameter vectors against the interquartile bounds and retain only the non-aberrant refits.",
+      "transitionBridge": "The retained parameter cloud supplies the posterior summaries in M24.",
+      "minimalText": "Filter aberrant refits"
+    },
+    {
+      "id": "M24",
+      "input": "Interquartile-filtered parameter samples",
+      "operation": "Summarize posterior intervals",
+      "output": "Posterior means and one-sigma intervals for diffusivity and lag parameters",
+      "validity": "The filtered refits are summarized by posterior means and one-sigma intervals as stated in Appendix B.",
+      "locator": "PDF page 10, Appendix B Data processing inversion settings and uncertainty",
+      "sourceExcerpt": "and one-sigma intervals after",
+      "anchorTerms": [
+        "one-sigma intervals",
+        "after"
+      ],
+      "visualObject": "Filtered parameter distributions with posterior-mean markers and one-sigma interval widths",
+      "motionPurpose": "Expose the location and spread of the retained parameter uncertainty.",
+      "stepDetail": "Mark the mean of each filtered parameter distribution and span one standard deviation around it.",
+      "transitionBridge": "The full three-parameter uncertainty result exposes the fallback needed for one-frequency data in M25.",
+      "minimalText": "Posterior mean plus one sigma"
+    },
+    {
+      "id": "M25",
+      "input": "A single retained frequency supplying only one amplitude ratio and one phase lag",
+      "operation": "Assign one lag parameter",
+      "output": "A reduced fit estimating diffusivity and the remaining lag parameter",
+      "validity": "Appendix B requires multiple well-separated frequencies and at least two distances for the full fit; when only one frequency is available, one lag is fixed a priori and the remaining two parameters are estimated.",
+      "locator": "PDF page 10, Appendix B Data processing inversion settings and uncertainty",
+      "sourceExcerpt": "only one frequency was available, one lag parameter was fixed a priori",
+      "anchorTerms": [
+        "one frequency",
+        "fixed a priori"
+      ],
+      "visualObject": "One amplitude-phase pair beside a locked lag clock and two adjustable parameter controls",
+      "motionPurpose": "Show the source-defined reduction used when a frequency record cannot identify all three parameters.",
+      "stepDetail": "Lock one lag clock at its prior value and fit only diffusivity and the remaining lag to the amplitude-phase pair.",
+      "transitionBridge": "The fitted field parameters are next checked against independent site information in M26.",
+      "minimalText": "One frequency fixes one lag"
+    },
+    {
+      "id": "M26",
+      "input": "Lagging-model diffusivity and storage values with independent lithology and hydraulic-property ranges",
+      "operation": "Compare inferred properties",
+      "output": "Site-bounded plausibility evidence for the lagging-model property estimates",
+      "validity": "Section 3.1 compares the Tuolumne conductivity with gravel ranges and the Meghna storage with unconsolidated deltaic-sand ranges rather than treating fit quality alone as physical validation.",
+      "locator": "PDF pages 5-6, Section 3.1 Field results",
+      "sourceExcerpt": "consistent with independent lithological",
+      "anchorTerms": [
+        "consistent",
+        "independent lithological"
+      ],
+      "visualObject": "Lagging-model property markers falling within site-specific lithology and storage range bars",
+      "motionPurpose": "Turn independent site information into an explicit plausibility screen for the inferred properties.",
+      "stepDetail": "Place each inferred property marker on its source-reported site range and retain the comparison without treating it as unique mechanism identification.",
+      "transitionBridge": "A separate constituent-level bootstrap compares diffusivity-distribution shapes for both model forms in M27.",
+      "minimalText": "Check against site ranges"
+    },
+    {
+      "id": "M27",
+      "input": "Retained multi-frequency harmonic records",
+      "operation": "Sample tidal constituents",
+      "output": "Constituent-level bootstrap multi-frequency records",
+      "validity": "Each bootstrap record samples retained tidal constituents with replacement.",
+      "locator": "PDF page 10, Appendix C Bootstrap uncertainty analysis",
+      "sourceExcerpt": "frequency record by sampling with replacement at the tidal-constituent",
+      "anchorTerms": [
+        "generated",
+        "sampling"
+      ],
+      "visualObject": "Retained constituent tiles reappearing with replacement in bootstrap rows",
+      "motionPurpose": "Generate synthetic frequency records while preserving the constituent sampling unit.",
+      "stepDetail": "Draw constituent tiles with replacement until each bootstrap row matches the original record size.",
+      "transitionBridge": "Each resampled record is passed through both model fits.",
+      "minimalText": "Bootstrap constituents"
+    },
+    {
+      "id": "M28",
+      "input": "Constituent-level bootstrap multi-frequency records",
+      "operation": "Fit bootstrap diffusion models",
+      "output": "Bootstrap hydraulic-diffusivity estimates from lagging and classical models",
+      "validity": "Both diffusion models use identical fitting settings for every resample.",
+      "locator": "PDF page 10, Appendix C Bootstrap uncertainty analysis",
+      "sourceExcerpt": "Both the lagging and classic diffusion models were refitted using",
+      "anchorTerms": [
+        "diffusion models",
+        "refitted"
+      ],
+      "visualObject": "Paired lagging and classical fit tracks repeated across bootstrap rows",
+      "motionPurpose": "Produce directly comparable diffusivity samples from the two model forms.",
+      "stepDetail": "Refit each bootstrap row once with each model and retain its inferred diffusivity.",
+      "transitionBridge": "The diffusivity samples are summarized as continuous density curves.",
+      "minimalText": "Refit both models"
+    },
+    {
+      "id": "M29",
+      "input": "Bootstrap hydraulic-diffusivity estimates from both model forms",
+      "operation": "Estimate diffusivity density curves",
+      "output": "Kernel-smoothed hydraulic-diffusivity distributions for both models",
+      "validity": "The source derives kernel-smoothed density estimates from the recorded bootstrap diffusivities.",
+      "locator": "PDF page 10, Appendix C Bootstrap uncertainty analysis, Figures C.1-C.2",
+      "sourceExcerpt": "kernel-smoothed density estimates were derived.",
+      "anchorTerms": [
+        "kernel-smoothed",
+        "density estimates"
+      ],
+      "visualObject": "Bootstrap diffusivity ticks resolving into paired smooth density curves",
+      "motionPurpose": "Expose the location width and shape of diffusivity uncertainty for each model.",
+      "stepDetail": "Smooth each model's recorded diffusivity samples into one density curve.",
+      "transitionBridge": "An independent numerical solution checks the analytical wave response.",
+      "minimalText": "Diffusivity densities"
+    },
+    {
+      "id": "M30",
+      "input": "Lagging harmonic boundary problem on a uniform spatial grid",
+      "operation": "Solve discretized harmonic response",
+      "output": "Numerical head amplitude and phase over the spatial domain",
+      "validity": "A second-order tridiagonal frequency-domain scheme uses the attenuating branch and a distant radiation boundary.",
+      "locator": "PDF pages 9-10, Appendix A Numerical validation, Figure A.1",
+      "sourceExcerpt": "on a uniform grid (second-order tri-diagonal scheme), and head",
+      "anchorTerms": [
+        "uniform grid",
+        "phase"
+      ],
+      "visualObject": "Uniform spatial nodes carrying a numerically propagated groundwater wave",
+      "motionPurpose": "Produce an independent numerical response under the analytical boundary conditions.",
+      "stepDetail": "Solve the tridiagonal grid system and display numerical head amplitude and phase at each node.",
+      "transitionBridge": "The numerical curves are placed against the closed analytical expressions.",
+      "minimalText": "Solve numerical response"
+    },
+    {
+      "id": "M31",
+      "input": "Numerical and analytical head amplitude and phase responses",
+      "operation": "Compare numerical analytical responses",
+      "output": "RMSE bounds for numerical agreement in head amplitude and phase",
+      "validity": "The reported domain-wide errors are at most 3e-5 for head and amplitude and 1.3e-4 for phase.",
+      "locator": "PDF pages 9-10, Appendix A Numerical validation, Figure A.1",
+      "sourceExcerpt": "Fig. A.1 compares the numerical solutions with the closed-form",
+      "anchorTerms": [
+        "numerical solutions",
+        "closed-form"
+      ],
+      "visualObject": "Numerical markers lying on analytical head amplitude and phase curves",
+      "motionPurpose": "Make the independent solver's agreement with the closed forms directly measurable.",
+      "stepDetail": "Overlay each numerical response on its analytical curve and reveal the three RMSE bounds.",
+      "transitionBridge": "Validated wave geometry supports the field interpretation.",
+      "minimalText": "Validate closed forms"
+    }
+  ],
+  "symbols": [
+    {"latex": "\\tau_q", "firstUseOwner": "B03", "visualObject": "Clock attached to discharge-path adjustment", "meaning": "Flux-relaxation time", "unit": "T", "transition": "Label the flux-memory clock tau_q."},
+    {"latex": "\\tau_h", "firstUseOwner": "B03", "visualObject": "Clock between communicating storage domains", "meaning": "Inter-domain head-equilibration time", "unit": "T", "transition": "Label the inter-domain clock tau_h."},
+    {"latex": "\\kappa=-\\alpha+i\\beta", "firstUseOwner": "M03", "visualObject": "Damped propagating groundwater wave", "meaning": "Complex spatial wavenumber with damping coefficient and phase gradient", "unit": "L^{-1}", "transition": "Split the wave into envelope alpha and crest-motion beta."},
+    {"latex": "A_h=e^{-\\alpha x_D}", "firstUseOwner": "M03", "visualObject": "Exponential amplitude envelope", "meaning": "Head amplitude ratio", "unit": "dimensionless", "transition": "Transform the shrinking wave envelope into Ah."},
+    {"latex": "R=D_{phase}/D_{amplitude}", "firstUseOwner": "M04", "visualObject": "Phase-amplitude mismatch color map", "meaning": "Ratio of apparent diffusivities", "unit": "dimensionless", "transition": "Combine the two diffusivity gauges into R."}
+  ],
+  "return": {
+    "visualObject": "Tuolumne and Meghna boundary-to-well transects with jointly fitted envelopes phase crests two clocks and bootstrap D densities",
+    "claim": "Separating flux adjustment from inter-domain equilibration reconciles the observed phase-amplitude mismatch and yields site-plausible diffusivities for the two analyzed aquifers.",
+    "claimBoundary": "The lags are effective upscaled memory parameters rather than unique mechanism measurements. Joint estimation of diffusivity and both lags requires multiple well-separated frequencies and at least two distances; with only one frequency, one lag parameter is fixed a priori and the remaining two are estimated. Process-based links to measurable site properties remain future work.",
+    "locator": "PDF page 9, Section 4 Concluding remarks",
+      "sourceExcerpt": "phase-amplitude inconsistencies, delivers hydraulic properties 1 + ������2������D2 that align with independent",
+    "minimalText": "Two clocks reconcile one groundwater wave"
+  },
+  "visual": {
+    "systemType": "groundwater_signal",
+    "primaryObject": "Periodic boundary head wave propagating along an aquifer transect",
+    "accentObject": "Flux-lag and head-lag clocks on a phase-amplitude mismatch map",
+    "measuredQuantity": "Head amplitude ratio and phase lag by frequency and distance",
+    "geometryNotes": "Preserve a continuous boundary-to-well sinusoid. Damping must shrink the envelope and phase must shift crests independently; never animate either lag as a literal rigid time translation. Use density curves and confidence bands for uncertainty."
+  }
+}

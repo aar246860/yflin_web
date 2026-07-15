@@ -1,0 +1,429 @@
+{
+  "schemaVersion": 1,
+  "id": "2024-06-20",
+  "doi": "10.1111/gwat.13425",
+  "title": "Semi-Analytical Modeling of Transient Stream Drawdown and Depletion in Response to Aquifer Pumping",
+  "sourceArtifact": "research-videos/source-pdfs/2024-06-20.pdf",
+  "research": {
+    "question": "How do stream drawdown and stream depletion evolve when a hydraulically connected stream has finite channel storage rather than a fixed stage?",
+    "system": "A homogeneous anisotropic confined aquifer pumped near either a non-penetrating stream or a fully penetrating stream, with streambed conductance and finite stream-channel storage.",
+    "inputData": "Analytical stream-aquifer geometry, six 2022 irrigation pumping events at Stenner Creek near Cal Poly San Luis Obispo, aquifer observation-well levels, and 15-minute stream-stage records from four stilling wells.",
+    "method": "The study couples confined-aquifer flow and streambed leakage to a stream-channel mass balance, solves NPS and FPS cases in Laplace-Fourier space, derives stream depletion by integrating leakage, and estimates hydraulic and channel-storage parameters from observed drawdown.",
+    "benchmark": "The semi-analytical solutions recover Theis or Ferris impermeable-boundary behavior as channel storage vanishes and Fox or Hantush fixed-stage behavior as channel storage becomes infinite; supporting information compares the solutions with a finite-element model.",
+    "uncertainty": "Parameter standard errors come from the residual-variance-scaled inverse sensitivity covariance matrix; the field fit fixes selected parameters to reduce overparameterization and excludes stream routing, velocity, streambed storage, and vertical aquifer flow.",
+    "conclusion": "Finite stream storage produces delayed but measurable stream drawdown, three-phase aquifer drawdown, and a depletion rate that peaks then declines; fixed-stage models can overestimate the stream contribution available during prolonged pumping."
+  },
+  "narrative": {
+    "throughline": "A stream is not an infinite reservoir: once pumping draws down its finite channel storage, both stream stage and depletion depart from fixed-stage theory.",
+    "audienceStartingPoint": "The audience understands that a pumping well lowers groundwater head and can capture water from a connected stream.",
+    "stakes": "Assuming fixed stream stage can overstate groundwater supply and miss delayed stream decline or drying during sustained abstraction.",
+    "resolution": "A mass balance turns channel storage into a measurable dynamic state, linking aquifer drawdown, delayed stream drawdown, and a finite stream-depletion pulse."
+  },
+  "background": [
+    {
+      "id": "B01",
+      "premise": "Groundwater pumping near a connected stream can reduce streamflow enough to impair water use and ecosystem function.",
+      "visibleEvidence": "A pumping cone intercepts the stream-aquifer connection while the stream hydrograph falls toward a dry channel.",
+      "whyNow": "The management consequence must be visible before introducing the boundary condition that controls predicted depletion.",
+      "boundary": "The paper studies pumping-induced exchange in a confined aquifer and does not model watershed-scale routing.",
+      "locator": "PDF page 1, Introduction",
+      "sourceExcerpt": "reduced stream ﬂows, with undesirable impacts on both human use",
+      "anchorTerms": [
+        "reduced stream flows",
+        "human use"
+      ],
+      "visualObject": "Stream cross-section above a pumping cone with declining discharge",
+      "motionPurpose": "Draw water from the well until the hydraulic gradient redirects stream water toward the aquifer.",
+      "stepDetail": "Show the initial stream and aquifer; start constant pumping; expand the cone; reduce the downstream discharge arrow.",
+      "transitionBridge": "The falling stream arrow becomes a boundary-condition question.",
+      "minimalText": "Pumping captures streamflow"
+    },
+    {
+      "id": "B02",
+      "premise": "Existing fixed-stage analytical models force aquifer drawdown toward steady behavior even though observed near-stream drawdown can remain transient.",
+      "visibleEvidence": "A fixed stream-stage line pins one model curve while field-like aquifer drawdown resumes rising at late time.",
+      "whyNow": "The viewer needs to see the mismatch that motivates finite channel storage rather than another fixed-head solution.",
+      "boundary": "The deficiency applies to the fixed-stage stream-depletion models reviewed in the paper.",
+      "locator": "PDF page 2, Introduction, paragraphs 1-3",
+      "sourceExcerpt": "the cases of monotonically increasing with time before attaining a",
+      "anchorTerms": [
+        "monotonically increasing",
+        "with time"
+      ],
+      "visualObject": "Fixed-stage boundary beside contrasting steady and late-rising drawdown curves",
+      "motionPurpose": "Hold stream stage fixed in one curve and release it in the observed curve to reveal the missing state variable.",
+      "stepDetail": "Plot early aquifer response; pin stream stage; show the fixed-stage plateau; overlay continued late-time drawdown.",
+      "transitionBridge": "The pinned stream line becomes a finite water-storage column.",
+      "minimalText": "Fixed stage fails"
+    },
+    {
+      "id": "B03",
+      "premise": "Observed stream drawdown begins later than aquifer drawdown.",
+      "visibleEvidence": "Aquifer drawdown begins first, followed more than an hour later by the stream-stage responses.",
+      "whyNow": "The measured lag supplies the concrete phenomenon the model must reproduce.",
+      "boundary": "The field evidence comes from six irrigation pumping events at one minimally penetrating stream-aquifer site.",
+      "locator": "PDF page 13, Discussion, Drawdown Data Analysis",
+      "sourceExcerpt": "drawdown responses are delayed relative to aquifer",
+      "anchorTerms": [
+        "drawdown responses",
+        "delayed"
+      ],
+      "visualObject": "Aligned aquifer and stream drawdown traces with a visible onset lag",
+      "motionPurpose": "Start the aquifer response first and delay the stream traces so the temporal ordering is unmistakable.",
+      "stepDetail": "Mark pumping onset; reveal aquifer decline; hold the stream traces until their later measured onset.",
+      "transitionBridge": "The lag interval becomes the storage-mediated stream response in the equations.",
+      "minimalText": "Stream response lags"
+    }
+  ],
+  "methods": [
+    {
+      "id": "M01",
+      "input": "Confined-aquifer geometry with a constant-rate line-sink well",
+      "operation": "Form aquifer flow equation",
+      "output": "Two-dimensional anisotropic drawdown equation with a stream source-sink term",
+      "validity": "The aquifer is assumed homogeneous, confined, horizontally anisotropic, uniformly thick, and laterally infinite away from the stream.",
+      "locator": "PDF page 3, Methods, Governing Equations of Flow, Equation 1",
+      "sourceExcerpt": "The governing equation of the two-dimensional",
+      "anchorTerms": [
+        "governing equation",
+        "two-dimensional"
+      ],
+      "visualObject": "Plan-view pumping sink embedded in an anisotropic aquifer field",
+      "motionPurpose": "Turn the expanding drawdown cone into directional curvature and storage terms.",
+      "stepDetail": "Place the well; orient x across the stream and y along it; stretch the cone by anisotropy; attach the source-sink strip.",
+      "transitionBridge": "The source-sink strip touches the streambed conductance layer.",
+      "minimalText": "Aquifer drawdown"
+    },
+    {
+      "id": "M02",
+      "input": "Aquifer drawdown and stream drawdown across a semipervious streambed",
+      "operation": "Apply streambed conductance relation",
+      "output": "Head-difference-driven stream-aquifer transfer flux",
+      "validity": "The Robin-type relation makes transfer proportional to the drawdown difference through a streambed of uniform conductance.",
+      "locator": "PDF page 3, Methods, Non-Penetrating Stream, Equation 3; PDF page 4, Equations 6-7",
+      "sourceExcerpt": "∂s ∂2s ∂2s The stream–aquifer mass-transfer function, , at the",
+      "anchorTerms": [
+        "mass-transfer function",
+        "stream–aquifer"
+      ],
+      "visualObject": "Vertical leakage arrows crossing a conductance layer between stream and aquifer heads",
+      "motionPurpose": "Scale the exchange arrows by the visible head difference across the streambed.",
+      "stepDetail": "Mark stream head; mark aquifer head; draw their difference; pass proportional arrows through the conductance layer.",
+      "transitionBridge": "The leakage arrows enter the finite stream water column.",
+      "minimalText": "Conductance x head difference"
+    },
+    {
+      "id": "M03",
+      "input": "Streambed transfer flux entering or leaving the channel",
+      "operation": "Apply stream channel mass balance",
+      "output": "Time-dependent stream drawdown governed by finite channel storage",
+      "validity": "The rate of channel-water mass change equals pumping-induced transfer across the streambed when stream velocity is neglected.",
+      "locator": "PDF page 4, Methods, Accounting for Stream Drawdown and Channel Storage, Equations 8-9",
+      "sourceExcerpt": "change of mass within the stream channel equals the rate",
+      "anchorTerms": [
+        "change of mass",
+        "stream channel"
+      ],
+      "visualObject": "Finite stream-storage column shrinking under streambed leakage",
+      "motionPurpose": "Convert exchange flux into a declining stream-stage state rather than an infinite fixed reservoir.",
+      "stepDetail": "Define the channel storage volume; admit the leakage flux; reduce stored volume; lower stream stage through time.",
+      "transitionBridge": "The coupled aquifer-stream geometry receives dimensionless scales.",
+      "minimalText": "Finite channel storage"
+    },
+    {
+      "id": "M04",
+      "input": "Dimensional coupled aquifer-stream equations",
+      "operation": "Normalize flow variables",
+      "output": "Dimensionless equations controlled by stream conductance and channel-storage ratios",
+      "validity": "The well-stream distance sets the characteristic length and hydraulic diffusivity sets the characteristic time.",
+      "locator": "PDF page 5, Methods, Analytical Solutions of the Flow Problem, Table 2",
+      "sourceExcerpt": "dimensionless variables and parameters that appear in the solution are deﬁned in Table 2.",
+      "anchorTerms": [
+        "dimensionless variables",
+        "Table 2"
+      ],
+      "visualObject": "Physical distances, time, head, and flux collapsing onto unit scales",
+      "motionPurpose": "Rescale the geometry so NPS and FPS responses can be compared with a small parameter set.",
+      "stepDetail": "Divide length by well-stream distance; divide time by diffusion time; scale head and flux; reveal the dimensionless groups.",
+      "transitionBridge": "The dimensionless field unfolds into transform coordinates.",
+      "minimalText": "Dimensionless groups"
+    },
+    {
+      "id": "M05",
+      "input": "Dimensionless NPS and FPS equations in space and time",
+      "operation": "Transform time coordinate",
+      "output": "Laplace-domain equations retaining cross-stream and along-stream coordinates",
+      "validity": "The homogeneous initial condition and linear dimensionless governing equations support the stated Laplace transform.",
+      "locator": "PDF page 5, Methods, Analytical Solutions of the Flow Problem, second paragraph, first transform statement",
+      "sourceExcerpt": "Laplace and Fourier-cosine transforms are applied to the",
+      "anchorTerms": [
+        "Laplace",
+        "transforms are applied"
+      ],
+      "visualObject": "Dimensionless drawdown surface collapsing along a Laplace time axis",
+      "motionPurpose": "Replace time evolution with one Laplace-domain parameter while preserving both spatial coordinates.",
+      "stepDetail": "Hold both spatial coordinates fixed; map the time history to the Laplace variable; retain the transformed field.",
+      "transitionBridge": "The Laplace-domain field exposes the remaining along-stream coordinate.",
+      "minimalText": "Laplace time transform"
+    },
+    {
+      "id": "M06",
+      "input": "Laplace-domain equations retaining cross-stream and along-stream coordinates",
+      "operation": "Transform along-stream coordinate",
+      "output": "Ordinary differential equations in cross-stream position indexed by Laplace and Fourier-cosine variables",
+      "validity": "The source identifies the NPS solution as a Fourier cosine transform in the along-stream coordinate.",
+      "locator": "PDF page 5, Methods, Case of a Non-Penetrating Stream, Equation 10 and transform-variable definitions",
+      "sourceExcerpt": "cosine (tilde) transform of sD for the NPS case",
+      "anchorTerms": [
+        "cosine (tilde) transform",
+        "NPS case"
+      ],
+      "visualObject": "Laplace-domain field unfolding into Fourier-cosine bands along the stream",
+      "motionPurpose": "Replace along-stream variation with a cosine spectral coordinate while retaining cross-stream position.",
+      "stepDetail": "Hold the Laplace variable fixed; map the along-stream profile to the cosine variable; expose the cross-stream ordinary differential equations.",
+      "transitionBridge": "The solved cross-stream spectra are ready for numerical inversion.",
+      "minimalText": "Cosine space transform"
+    },
+    {
+      "id": "M07",
+      "input": "Laplace-Fourier solutions for NPS or FPS aquifer and stream drawdown",
+      "operation": "Evaluate Fourier-cosine inversion",
+      "output": "Laplace-domain aquifer and stream drawdown resolved along the stream",
+      "validity": "Numerical quadrature evaluates the Fourier-cosine inversion used by the semi-analytical implementation.",
+      "locator": "PDF page 6, Methods, Case of a Non-Penetrating Stream, paragraph following Equation 11, numerical-inversion sentence",
+      "sourceExcerpt": "inversion of the Fourier cosine and Laplace transforms using numerical",
+      "anchorTerms": [
+        "inversion of the Fourier cosine",
+        "transforms"
+      ],
+      "visualObject": "Fourier-cosine spectra resolving into Laplace-domain profiles along the stream",
+      "motionPurpose": "Integrate spectral contributions into a visible along-stream profile without changing the Laplace variable.",
+      "stepDetail": "Hold the Laplace variable fixed; evaluate the cosine inversion by numerical quadrature; reveal the along-stream profile.",
+      "transitionBridge": "The reconstructed spatial profile still carries the Laplace time parameter.",
+      "minimalText": "Invert cosine spectrum"
+    },
+    {
+      "id": "M08",
+      "input": "Laplace-domain aquifer and stream drawdown resolved along the stream",
+      "operation": "Evaluate Laplace inversion",
+      "output": "Physical-time aquifer and stream drawdown at each spatial position",
+      "validity": "The Stehfest algorithm performs the numerical Laplace inversion implemented in Mathematica and MATLAB.",
+      "locator": "PDF page 6, Methods, Case of a Non-Penetrating Stream, paragraph following Equation 11, Stehfest implementation clause",
+      "sourceExcerpt": "quadrature and the Stehfest (1970) algo-",
+      "anchorTerms": [
+        "quadrature",
+        "Stehfest (1970)"
+      ],
+      "visualObject": "Laplace-domain profiles returning as aquifer and stream drawdown through time",
+      "motionPurpose": "Recover physical time at each spatial position with the stated numerical inversion algorithm.",
+      "stepDetail": "Hold each reconstructed spatial position fixed; apply the Stehfest weights; reveal its physical-time response.",
+      "transitionBridge": "The physical-time response family is checked against its limiting cases in M09.",
+      "minimalText": "Invert Laplace time"
+    },
+    {
+      "id": "M09",
+      "input": "Physical-time NPS and FPS drawdown solutions across finite channel-storage values",
+      "operation": "Compare limiting cases",
+      "output": "Finite-storage responses bracketed by impermeable-barrier and fixed-stage solutions",
+      "validity": "As dimensionless channel storage approaches zero the models recover Theis or Ferris behavior, while infinite storage recovers Fox or Hantush behavior.",
+      "locator": "PDF page 9, Results, Model Predicted Behavior, Figure 4",
+      "sourceExcerpt": "The limiting cases are included for",
+      "anchorTerms": [
+        "limiting cases",
+        "comparison"
+      ],
+      "visualObject": "Finite-storage drawdown curves between zero-storage and infinite-storage limits",
+      "motionPurpose": "Show that the finite-storage response connects the established barrier and fixed-stage limits.",
+      "stepDetail": "Overlay the finite-storage curves with the zero-storage and infinite-storage limiting solutions.",
+      "transitionBridge": "The finite-storage response supplies the streambed flux integrated in M10.",
+      "minimalText": "Storage limits"
+    },
+    {
+      "id": "M10",
+      "input": "Aquifer drawdown along the streambed",
+      "operation": "Integrate streambed flux",
+      "output": "Stream-depletion rate normalized by pumping rate",
+      "validity": "The source integrates the streambed exchange flux along the stream to obtain total depletion.",
+      "locator": "PDF page 6, Methods, Stream Depletion Solution, Equations (17)-(19)",
+      "sourceExcerpt": "obtained by integrating the streambed flux along",
+      "anchorTerms": [
+        "integrating",
+        "streambed flux"
+      ],
+      "visualObject": "Streambed exchange arrows accumulating into one depletion-rate gauge",
+      "motionPurpose": "Convert distributed streambed exchange into the reported total depletion response.",
+      "stepDetail": "Integrate exchange flux along the stream coordinate; normalize the total by pumping rate.",
+      "transitionBridge": "Observed aquifer and stream records are processed for field fitting.",
+      "minimalText": "Stream depletion"
+    },
+    {
+      "id": "M11",
+      "input": "Raw observed aquifer and stream-stage time series",
+      "operation": "Apply singular-spectrum analysis",
+      "output": "Denoised water-level time series",
+      "validity": "SSA is used to remove high-frequency and diurnal noise before pumping-response estimation.",
+      "locator": "PDF page 8, Application to Field Observations, Drawdown Analysis and Parameter Estimation",
+      "sourceExcerpt": "stream stage time series data using singular spectrum",
+      "anchorTerms": [
+        "stream stage",
+        "singular spectrum"
+      ],
+      "visualObject": "Raw water-level trace decomposed into retained and discarded components",
+      "motionPurpose": "Expose the denoising operation separately from detrending.",
+      "stepDetail": "Decompose the raw series; discard noise components; retain the denoised trace.",
+      "transitionBridge": "Low-frequency variation is removed in M12.",
+      "minimalText": "SSA denoising"
+    },
+    {
+      "id": "M12",
+      "input": "Denoised water-level time series",
+      "operation": "Apply ensemble empirical-mode decomposition",
+      "output": "Pumping-associated drawdown series",
+      "validity": "EEMD removes the remaining trend and non-pumping variation identified by the field workflow.",
+      "locator": "PDF page 8, Application to Field Observations, Drawdown Analysis and Parameter Estimation",
+      "sourceExcerpt": "ensemble empirical mode decomposition",
+      "anchorTerms": [
+        "ensemble empirical",
+        "decomposition"
+      ],
+      "visualObject": "Denoised trace decomposed into trend and pumping-response components",
+      "motionPurpose": "Separate detrending from the preceding denoising step.",
+      "stepDetail": "Decompose the denoised series; remove the trend component; retain pumping-associated drawdown.",
+      "transitionBridge": "The extracted drawdown enters parameter fitting in M13.",
+      "minimalText": "EEMD detrending"
+    },
+    {
+      "id": "M13",
+      "input": "Observed aquifer or stream drawdown and the NPS solution",
+      "operation": "Fit hydraulic parameters",
+      "output": "Estimated conductivity, specific storage, conductance, and channel-storage coefficient",
+      "validity": "Levenberg-Marquardt minimization uses log-transformed positive parameters and the sum of squared model-observation residuals.",
+      "locator": "PDF page 8, Drawdown Analysis and Parameter Estimation, Equation 20",
+      "sourceExcerpt": "to identify parameter values that minimize the sum of",
+      "anchorTerms": [
+        "parameter values",
+        "minimize the sum"
+      ],
+      "visualObject": "NPS curve bending toward aquifer and stream drawdown points as parameter dials settle",
+      "motionPurpose": "Move one model curve through the data while exposing which physical parameters control the fit.",
+      "stepDetail": "Initialize positive parameters; calculate model drawdown; form residuals; update parameters until the objective meets the criterion.",
+      "transitionBridge": "The fitted residual Jacobian enters covariance estimation.",
+      "minimalText": "Parameter fit"
+    },
+    {
+      "id": "M14",
+      "input": "Residual Jacobian and fitted residual variance",
+      "operation": "Form the parameter covariance matrix",
+      "output": "Estimated covariance matrix V",
+      "validity": "Equation (21) uses the residual sensitivity matrix and residual variance under the local linear approximation.",
+      "locator": "PDF page 8, Drawdown Analysis and Parameter Estimation, Equation (21)",
+      "sourceExcerpt": "parameter estimates, which is computed as",
+      "anchorTerms": [
+        "parameter estimates",
+        "computed"
+      ],
+      "visualObject": "Residual-sensitivity matrix becoming a parameter covariance matrix",
+      "motionPurpose": "Show covariance formation before extracting marginal errors.",
+      "stepDetail": "Combine the fitted residual sensitivity and variance terms according to Equation 21; retain V.",
+      "transitionBridge": "The diagonal variances are extracted in M15.",
+      "minimalText": "Parameter covariance"
+    },
+    {
+      "id": "M15",
+      "input": "Parameter covariance matrix V",
+      "operation": "Extract diagonal variances",
+      "output": "Marginal variance for each fitted parameter",
+      "validity": "Only the covariance diagonal is used for the reported standard errors.",
+      "locator": "PDF page 8, Drawdown Analysis and Parameter Estimation, paragraph introducing Equation (21)",
+      "sourceExcerpt": "diagonal elements of the covariance matrix",
+      "anchorTerms": [
+        "diagonal elements",
+        "covariance matrix"
+      ],
+      "visualObject": "Covariance matrix with its diagonal cells illuminated",
+      "motionPurpose": "Separate marginal variance extraction from covariance construction.",
+      "stepDetail": "Hold the covariance matrix; select each diagonal element; retain the marginal variances.",
+      "transitionBridge": "Square roots convert variances to standard errors in M16.",
+      "minimalText": "Covariance diagonal"
+    },
+    {
+      "id": "M16",
+      "input": "Marginal parameter variances",
+      "operation": "Compute standard errors",
+      "output": "Standard error for each fitted hydraulic parameter",
+      "validity": "The reported errors quantify local parameter-estimation uncertainty conditional on the fitted model.",
+      "locator": "PDF page 11, Table 3 discussion",
+      "sourceExcerpt": "respective standard errors for each parameter estimate are included",
+      "anchorTerms": [
+        "standard errors",
+        "parameter estimate"
+      ],
+      "visualObject": "Variance bars transformed into standard-error whiskers",
+      "motionPurpose": "Complete the uncertainty calculation without implying posterior intervals.",
+      "stepDetail": "Take the square root of each marginal variance; attach the resulting standard error to its fitted parameter.",
+      "transitionBridge": "Return to the field fit with its conditional error bars.",
+      "minimalText": "Conditional standard errors"
+    }
+  ],
+  "symbols": [
+    {
+      "latex": "Q",
+      "firstUseOwner": "M01",
+      "visualObject": "Constant pumping arrow at the well",
+      "meaning": "Aquifer-well pumping rate",
+      "unit": "L^3/T",
+      "transition": "The well discharge arrow receives the label Q."
+    },
+    {
+      "latex": "s",
+      "firstUseOwner": "M01",
+      "visualObject": "Aquifer drawdown surface",
+      "meaning": "Aquifer hydraulic-head drawdown",
+      "unit": "L",
+      "transition": "The falling aquifer head is bracketed and labeled s."
+    },
+    {
+      "latex": "s_r",
+      "firstUseOwner": "M03",
+      "visualObject": "Decline of the stream-stage line",
+      "meaning": "Transient stream drawdown",
+      "unit": "L",
+      "transition": "The vertical decline of channel stage receives the label s_r."
+    },
+    {
+      "latex": "C_r",
+      "firstUseOwner": "M03",
+      "visualObject": "Finite channel-storage column",
+      "meaning": "Stream channel storage coefficient",
+      "unit": "dimensionless",
+      "transition": "The channel water volume per unit stage change is labeled C_r."
+    },
+    {
+      "latex": "Q_r/Q",
+      "firstUseOwner": "M10",
+      "visualObject": "Normalized stream-depletion hydrograph",
+      "meaning": "Stream depletion rate as a fraction of pumping rate",
+      "unit": "dimensionless",
+      "transition": "The accumulated stream flux is divided by the well arrow Q and labeled Q_r/Q."
+    }
+  ],
+  "return": {
+    "visualObject": "Stenner Creek and the pumped confined aquifer with measured aquifer drawdown, delayed stream drawdown, and a depletion hydrograph that peaks then declines",
+    "claim": "Finite channel storage makes stream stage a transient state and limits the duration and magnitude of stream support to a pumping well.",
+    "claimBoundary": "The demonstrated model neglects stream routing and velocity, streambed storage, and vertical aquifer flow; field parameter estimates are site- and test-specific, and aquifer-only fits did not reproduce stream drawdown without separate or joint analysis.",
+    "locator": "PDF page 1, Abstract; PDF page 14, Conclusions and preceding Discussion",
+    "sourceExcerpt": "stream depletion with transient stream drawdown is developed based on stream channel mass conservation and ﬁnite stream channel storage.",
+    "anchorTerms": [
+      "transient stream drawdown",
+      "finite stream channel storage"
+    ],
+    "minimalText": "Finite stream supply"
+  },
+  "visual": {
+    "systemType": "stream_aquifer",
+    "primaryObject": "Pumped confined aquifer hydraulically connected to a finite-storage stream",
+    "accentObject": "Delayed stream-stage trace and peaked stream-depletion hydrograph",
+    "measuredQuantity": "Aquifer drawdown, stream drawdown, and stream depletion rate",
+    "geometryNotes": "Maintain the stream, streambed, and pumping well in one cross-section; distinguish NPS and FPS geometries without morphing them together; use a shrinking channel-storage column to drive delayed stage decline and accumulate streambed flux into the depletion hydrograph."
+  }
+}

@@ -1,0 +1,370 @@
+{
+  "schemaVersion": 1,
+  "id": "2025-07-8",
+  "doi": "10.1016/j.advwatres.2025.104977",
+  "title": "Image-Well Solution for Island Aquifers with Pumping, Recharge, and Complex Coastlines",
+  "sourceArtifact": "research-videos/source-pdfs/2025-07-8.pdf",
+  "research": {
+    "question": "Can an analytical image-well framework retain computational efficiency while representing transient pumping, recharge, multiple wells, and an irregular island coastline?",
+    "system": "A homogeneous isotropic unconfined island aquifer with a sharp freshwater-saltwater interface, Dupuit flow, steady recharge, prescribed ocean head, and one or more pumping wells.",
+    "inputData": "An analytical pumping-recharge solution, coastline boundary nodes derived from a GIS outline of Kinmen Island, hydraulic properties from literature, pumping and recharge perturbations, and nine illustrative pumping-well locations.",
+    "method": "The framework linearizes the head equation with constant mean saturated thickness, superposes recharge, pumping, and initial-head components, solves image-well strengths at coastline nodes, derives interface-depth vulnerability and first-order reliability indices, and embeds the solution in constrained pumping optimization.",
+    "benchmark": "Convergence is tested for a circular island against Kurylyk et al. (2024) while boundary-node density varies from 0.1 to 2 nodes per meter; the irregular Kinmen geometry is also compared with its best-fit circular approximation.",
+    "uncertainty": "Reliability indices propagate specified pumping and recharge parameter variances with first-order variance estimation; model-form uncertainty, data availability, heterogeneity, anisotropy, tides, and transition-zone width are excluded.",
+    "conclusion": "The image-well solution converges toward the circular-island benchmark, captures coastline-driven head and interface differences missed by a circular approximation, and rapidly supports vulnerability analysis and multiwell pumping optimization as a preliminary coastal-aquifer tool."
+  },
+  "narrative": {
+    "throughline": "An island's real coastline changes the freshwater lens, so the ocean boundary must enter the analytical solution without giving up the speed needed for management calculations.",
+    "audienceStartingPoint": "The audience understands that fresh groundwater forms a lens above denser seawater and that pumping can pull the interface upward toward a well.",
+    "stakes": "Replacing an irregular island with a circle can shift predicted interface depth enough to change pumping and saltwater-intrusion decisions.",
+    "resolution": "Discretized coastline nodes become image wells whose solved strengths enforce ocean head around the actual island, allowing rapid maps of head, vulnerability, reliability, and feasible pumping."
+  },
+  "background": [
+    {
+      "id": "B01",
+      "premise": "Small-island freshwater lenses are limited water stores that are vulnerable to pumping, drought, sea-level rise, erosion, and land-use change.",
+      "visibleEvidence": "A lenticular freshwater body floats above saline groundwater while a well and falling recharge visibly thin the lens.",
+      "whyNow": "The viewer must first see the physical resource whose geometry and safe yield the model is intended to protect.",
+      "boundary": "The paper treats sharp-interface freshwater lenses rather than density-dependent mixing zones.",
+      "locator": "PDF page 1, Section 1 Introduction, paragraphs 1-2",
+      "sourceExcerpt": "These lenses provide critical water resources for island",
+      "anchorTerms": [
+        "critical water resources",
+        "island"
+      ],
+      "visualObject": "Island cross-section with a lenticular freshwater lens, saline water, recharge, and a pumping well",
+      "motionPurpose": "Lower the water table near the well so the amplified interface rise becomes physically legible.",
+      "stepDetail": "Draw the island and sea; reveal the fresh lens; add recharge; start pumping; show local lens thinning.",
+      "transitionBridge": "The lens cross-section rotates into a plan-view coastline.",
+      "minimalText": "Finite freshwater lens"
+    },
+    {
+      "id": "B02",
+      "premise": "Existing analytical freshwater-lens solutions usually assume idealized island geometry and simplified boundaries that do not represent complex coastlines or multiple stressors.",
+      "visibleEvidence": "An idealized smooth boundary is replaced by a complex island coastline that requires explicit boundary representation.",
+      "whyNow": "The research gap is geometric: the analytical speed is useful, but the idealized boundary can change the management result.",
+      "boundary": "The paper does not claim numerical-model detail; it seeks a more flexible analytical approximation.",
+      "locator": "PDF page 1, Abstract and Section 1 Introduction",
+      "sourceExcerpt": "Past analytical solutions often rely on simplified boundary conditions and",
+      "anchorTerms": [
+        "analytical solutions",
+        "simplified boundary conditions"
+      ],
+      "visualObject": "Idealized smooth island boundary beside a complex irregular coastline",
+      "motionPurpose": "Replace the idealized boundary with a complex shoreline so the analytical geometry gap is visible.",
+      "stepDetail": "Show the idealized boundary; retain the island interior; reveal shoreline indentations and protrusions; mark the boundary-representation gap.",
+      "transitionBridge": "Points appear along the irregular shoreline where the ocean condition must be enforced.",
+      "minimalText": "Complex coastline"
+    },
+    {
+      "id": "B03",
+      "premise": "The sharp-interface Ghyben-Herzberg and Dupuit representation assumes stagnant uniform-salinity seawater and equilibrium between water-table elevation and interface depth.",
+      "visibleEvidence": "A vertical water-table displacement maps through a sharp interface to a much larger opposing depth displacement.",
+      "whyNow": "The analytical geometry-to-interface conversion must be visible before any head result is interpreted as saltwater-intrusion risk.",
+      "boundary": "Finite transition-zone width, vertical flow, and mobile saline groundwater are outside the model.",
+      "locator": "PDF page 2, Section 2.1 Fundamental solution, paragraph following Equation 2",
+      "sourceExcerpt": "island aquifer contains stagnant (immobile) groundwater of uniform salinity, typically",
+      "anchorTerms": [
+        "stagnant (immobile) groundwater",
+        "uniform salinity"
+      ],
+      "visualObject": "Sharp freshwater-saltwater interface linked vertically to the water table",
+      "motionPurpose": "Connect a small head change to the larger interface response implied by density balance.",
+      "stepDetail": "Mark sea level; mark water-table elevation; reveal the sharp interface; couple their vertical motions.",
+      "transitionBridge": "The linked head and interface become the state predicted by the analytical solution.",
+      "minimalText": "Sharp interface"
+    }
+  ],
+  "methods": [
+    {
+      "id": "M01",
+      "input": "Nonlinear unconfined flow with time-varying saturated thickness",
+      "operation": "Transform nonlinear head equation",
+      "output": "A constant-mean-thickness diffusion equation",
+      "validity": "The paper limits the approximation to cases where saturated thickness varies by no more than approximately 50%.",
+      "locator": "PDF page 2, Section 2.1, discussion of Equations 1a-1c",
+      "sourceExcerpt": "thickness does not vary by more than approximately 50% throughout",
+      "anchorTerms": [
+        "thickness",
+        "approximately 50%"
+      ],
+      "visualObject": "Variable lens thickness settling around one mean-thickness plane",
+      "motionPurpose": "Replace a changing coefficient with a fixed reference thickness so superposition becomes available.",
+      "stepDetail": "Show the varying saturated thickness; mark its mean; freeze the coefficient at that mean; expose the linear operator.",
+      "transitionBridge": "The linear operator separates into recharge, pumping, and initial-head responses.",
+      "minimalText": "<=50% variation"
+    },
+    {
+      "id": "M02",
+      "input": "Separate recharge, pumping, and initial-head responses",
+      "operation": "Combine response components",
+      "output": "A fundamental hydraulic-head solution without the ocean boundary",
+      "validity": "Superposition is valid for the linearized governing equation and preserves the contribution of each stress.",
+      "locator": "PDF page 2, Section 2.1, Equations 6-7; PDF page 9, Appendix A",
+      "sourceExcerpt": "The analytical solution of Eq. (1a) consists of three components:",
+      "anchorTerms": [
+        "analytical solution",
+        "three components"
+      ],
+      "visualObject": "Recharge mound, pumping cone, and initial-head plane stacking into one head surface",
+      "motionPurpose": "Add physically distinct head components while keeping their geometric contributions traceable.",
+      "stepDetail": "Reveal the initial plane; add the recharge mound; subtract the pumping cone; retain the composite head surface.",
+      "transitionBridge": "The composite surface meets the unsatisfied shoreline nodes.",
+      "minimalText": "Recharge + pumping + initial"
+    },
+    {
+      "id": "M03",
+      "input": "Latitude-longitude vertices from the Kinmen GIS shoreline",
+      "operation": "Project shoreline vertices",
+      "output": "Planar shoreline coordinates in a projected coordinate system",
+      "validity": "The source projects the shapefile vertices into a planar system such as UTM before perimeter distances are sampled.",
+      "locator": "PDF page 4, Section 2.6 Illustrative application",
+      "sourceExcerpt": "shoreline, which are projected into a planar coordinate system (e.g., UTM) to obtain",
+      "anchorTerms": [
+        "projected",
+        "planar coordinate system"
+      ],
+      "visualObject": "Latitude-longitude shoreline vertices flattening onto a planar Kinmen coordinate grid",
+      "motionPurpose": "Convert geographic shoreline vertices into planar coordinates before distance-based sampling.",
+      "stepDetail": "Retain the GIS vertices; expose the geographic grid; apply the planar projection; label the resulting x-y shoreline coordinates.",
+      "transitionBridge": "The projected polygon perimeter becomes the distance track for boundary-node sampling.",
+      "minimalText": "Project shoreline"
+    },
+    {
+      "id": "M04",
+      "input": "Projected planar coordinates along the irregular island shoreline",
+      "operation": "Sample coastline coordinates",
+      "output": "A boundary-node set at user-defined spacing",
+      "validity": "Sampling the polygon perimeter preserves coastline features at a controllable spatial resolution.",
+      "locator": "PDF page 4, Section 2.6 Illustrative application",
+      "sourceExcerpt": "user-defined intervals along the polygon boundary to generate the boundary-node",
+      "anchorTerms": [
+        "user-defined intervals",
+        "polygon boundary"
+      ],
+      "visualObject": "Kinmen shoreline acquiring evenly spaced boundary nodes",
+      "motionPurpose": "Convert a continuous irregular boundary into the finite locations needed by the image-well system.",
+      "stepDetail": "Retain the planar shoreline; trace cumulative boundary distance; place nodes at the selected interval.",
+      "transitionBridge": "Each boundary node emits an unknown image-well strength.",
+      "minimalText": "Boundary nodes"
+    },
+    {
+      "id": "M05",
+      "input": "Fundamental head values and unknown image-well strengths at coastline nodes",
+      "operation": "Solve boundary linear system",
+      "output": "Image-well weights that enforce prescribed ocean head",
+      "validity": "Substituting the composite solution at every node produces a square linear system under the linearized flow equation.",
+      "locator": "PDF page 9, Appendix B, Equations B.1-B.5",
+      "sourceExcerpt": "a system of linear equations derived from the boundary conditions.",
+      "anchorTerms": [
+        "system of linear equations",
+        "boundary conditions"
+      ],
+      "visualObject": "Boundary-node residual bars collapsing to zero as image-well weights settle",
+      "motionPurpose": "Adjust artificial source and sink strengths until every shoreline node matches ocean head.",
+      "stepDetail": "Evaluate head at each node; assemble the coefficient matrix; solve for weights; drive all boundary residuals to zero.",
+      "transitionBridge": "The solved image-well weights enter the composite solution at interior locations.",
+      "minimalText": "Ocean head enforced"
+    },
+    {
+      "id": "M06",
+      "input": "Fundamental response and solved image-well weights evaluated at island interior coordinates",
+      "operation": "Evaluate interior head",
+      "output": "Hydraulic-head values throughout the irregular island domain",
+      "validity": "Equation 8a evaluates the composite pumping recharge initial-head and image-well response at a specified interior location after the boundary weights are solved.",
+      "locator": "PDF page 3, Section 2.2 Image-well method, Equation 8a and following definitions",
+      "sourceExcerpt": "hydraulic head is being calculated",
+      "anchorTerms": [
+        "hydraulic head",
+        "calculated"
+      ],
+      "visualObject": "Solved coastline image wells emitting contributions that sum at successive interior grid points",
+      "motionPurpose": "Turn boundary enforcement into the interior head field used by every later interface calculation.",
+      "stepDetail": "Retain the solved weights; select an interior coordinate; sum the fundamental and image-well contributions; repeat across the island grid.",
+      "transitionBridge": "The evaluated interior head field becomes the input to the freshwater-interface relation.",
+      "minimalText": "Evaluate interior head"
+    },
+    {
+      "id": "M07",
+      "input": "Hydraulic-head field above reference sea level",
+      "operation": "Convert head to interface depth",
+      "output": "Freshwater-saltwater interface geometry",
+      "validity": "The conversion follows the sharp-interface Ghyben-Herzberg relation under the stated density and Dupuit assumptions.",
+      "locator": "PDF page 2, Section 2.1, Equation 2",
+      "sourceExcerpt": "Dupuit approximation, which creates equilibrium between the water table elevation",
+      "anchorTerms": [
+        "Dupuit approximation",
+        "water table elevation"
+      ],
+      "visualObject": "Plan-view head surface extruding downward into a lens cross-section",
+      "motionPurpose": "Turn the modeled head into the management object: interface depth beneath each point.",
+      "stepDetail": "Select a head contour; project it to a cross-section; apply the density relation; reveal the corresponding interface.",
+      "transitionBridge": "The interface depth becomes the quantity perturbed by pumping and recharge.",
+      "minimalText": "Head -> interface"
+    },
+    {
+      "id": "M08",
+      "input": "Interface depth under a baseline pumping or recharge parameter",
+      "operation": "Differentiate interface response",
+      "output": "Normalized vulnerability index for that parameter",
+      "validity": "A forward finite difference approximates the local interface-depth sensitivity with a prescribed small parameter perturbation.",
+      "locator": "PDF page 3, Section 2.3 Vulnerability indices, Equations 10-11",
+      "sourceExcerpt": "complex, Eq. (10) can be easily calculated using the finite-difference",
+      "anchorTerms": [
+        "calculated",
+        "finite-difference"
+      ],
+      "visualObject": "Baseline and perturbed interface surfaces separated by a local sensitivity band",
+      "motionPurpose": "Make pumping sensitivity local and recharge sensitivity distributed by comparing two nearby states.",
+      "stepDetail": "Hold the baseline interface; perturb one parameter; compute the depth difference; normalize the sensitivity field.",
+      "transitionBridge": "The sensitivity field receives parameter-uncertainty widths.",
+      "minimalText": "Vulnerability"
+    },
+    {
+      "id": "M09",
+      "input": "Interface sensitivities and parameter variances",
+      "operation": "Propagate parameter variance",
+      "output": "Reliability-index map for vulnerability predictions",
+      "validity": "First-order variance estimation attributes output variability to pumping- or recharge-parameter uncertainty.",
+      "locator": "PDF page 3, Section 2.4 Reliability indices, Equations 12-13",
+      "sourceExcerpt": "Reliability indices are based on uncertainty analysis using a first-",
+      "anchorTerms": [
+        "Reliability indices",
+        "uncertainty analysis"
+      ],
+      "visualObject": "Vulnerability map overlaid with uncertainty-width contours",
+      "motionPurpose": "Separate high sensitivity from high uncertainty so monitoring priorities become visible.",
+      "stepDetail": "Attach a variance to each driver; multiply by local sensitivity; assemble output variance; map each contribution.",
+      "transitionBridge": "The reliability field fades into the circular-island verification geometry used for controlled refinement.",
+      "minimalText": "Reliability"
+    },
+    {
+      "id": "M10",
+      "input": "Circular-island boundary systems spanning the prescribed node-density range",
+      "operation": "Solve refined boundary systems",
+      "output": "Circular-island head solutions at each node density",
+      "validity": "Each controlled node density determines one boundary-node count and one linear system that is solved before comparison.",
+      "locator": "PDF page 4, Section 2.5 Model verification and convergence analysis",
+      "sourceExcerpt": "linear system to be solved",
+      "anchorTerms": [
+        "linear system",
+        "solved"
+      ],
+      "visualObject": "Progressively denser circular boundary nodes feeding a sequence of solved head profiles",
+      "motionPurpose": "Solve each refinement level so later accuracy and runtime comparisons use the same controlled solution series.",
+      "stepDetail": "Set one node density; assemble its boundary system; solve its head profile; repeat through the prescribed density range.",
+      "transitionBridge": "The refined solution series aligns with the circular-island reference for an error comparison.",
+      "minimalText": "Controlled refinement"
+    },
+    {
+      "id": "M11",
+      "input": "Refined image-well head profiles and the circular-island analytical reference",
+      "operation": "Compare average relative errors",
+      "output": "A convergence trend from approximately 0.356 to 0.070 error",
+      "validity": "Kurylyk et al. (2024) supplies the steady-state reference for the same simplified circular geometry and stresses.",
+      "locator": "PDF pages 4-5, Sections 2.5 and 3.1, Figure 3",
+      "sourceExcerpt": "reduces the average relative error (from approximately 0.356 down",
+      "anchorTerms": [
+        "average relative error",
+        "reduces"
+      ],
+      "visualObject": "Refined radial head profiles converging toward one circular-island reference profile",
+      "motionPurpose": "Measure solution agreement against the same reference as node density increases.",
+      "stepDetail": "Retain the reference profile; overlay each refined profile; compute its average relative error; order the errors by node density.",
+      "transitionBridge": "The same refinement series enters a dedicated runtime measurement.",
+      "minimalText": "Reference error falls"
+    },
+    {
+      "id": "M12",
+      "input": "Solved image-well boundary systems at each controlled node density on the reported laptop",
+      "operation": "Compute solution runtimes",
+      "output": "One measured execution time for every refinement level",
+      "validity": "The source reports execution times for the same node-density sequence on an Intel Core i5-8265U laptop with 8 GB RAM.",
+      "locator": "PDF page 5, Section 3.1 Model verification",
+      "sourceExcerpt": "it keeps the error below 0.1 while maintaining a runtime near 7.4 s",
+      "anchorTerms": [
+        "maintaining",
+        "runtime"
+      ],
+      "visualObject": "Each solved boundary system receives a separate stopwatch reading on one fixed laptop configuration",
+      "motionPurpose": "Produce the runtime series before comparing computational cost across refinement levels.",
+      "stepDetail": "Retain each solved system; start the fixed execution clock; record its completion time; attach the reading to its node density.",
+      "transitionBridge": "The measured runtime series moves onto a common refinement axis.",
+      "minimalText": "Measure each runtime"
+    },
+    {
+      "id": "M13",
+      "input": "Measured image-well execution times across the controlled boundary-node densities",
+      "operation": "Compare computational times",
+      "output": "Runtime growth from about 0.19 seconds to 28.7 seconds",
+      "validity": "The reported timings use the stated standard-laptop configuration and the same refinement sequence.",
+      "locator": "PDF page 5, Section 3.1 Verification and convergence analysis",
+      "sourceExcerpt": "increases the computational time (from about 0.19 s",
+      "anchorTerms": [
+        "computational time",
+        "increases"
+      ],
+      "visualObject": "Boundary-system sizes aligned with a separate rising runtime scale",
+      "motionPurpose": "Expose computational cost without merging it into the reference-error operation.",
+      "stepDetail": "Retain each system size; place its measured solve time; connect timings in refinement order; mark the reported endpoints.",
+      "transitionBridge": "The verified accuracy-cost tradeoff returns to Kinmen where the circular comparator needs an equivalent radius.",
+      "minimalText": "Runtime rises"
+    },
+    {
+      "id": "M14",
+      "input": "Kinmen shoreline geometry and the circular-island analytical comparator",
+      "operation": "Fit equivalent circle",
+      "output": "Least-squares equivalent radius for the Kurylyk island solution",
+      "validity": "The source determines a circle that approximates Kinmen's geographic extent solely to parameterize the simplified analytical comparator while retaining the actual coastline in the image-well solution.",
+      "locator": "PDF page 4, Section 2.6 Illustrative application, paragraph describing the Kurylyk et al. comparison",
+      "sourceExcerpt": "herein determined using a least-squares method to approximate",
+      "anchorTerms": [
+        "least-squares method",
+        "approximate"
+      ],
+      "visualObject": "A trial circle resizing over the Kinmen shoreline until its geographic mismatch reaches the least-squares fit",
+      "motionPurpose": "Own the geometry reduction used by the classical comparator without replacing the irregular boundary in the proposed model.",
+      "stepDetail": "Retain the Kinmen outline; center a trial circle; adjust its radius against shoreline mismatch; preserve the fitted radius as comparator input.",
+      "transitionBridge": "The fitted circle remains a comparator while the actual irregular coastline carries the constrained pumping problem.",
+      "minimalText": "Fit equivalent radius"
+    },
+    {
+      "id": "M15",
+      "input": "Nine well locations with bounded pumping rates and a minimum interface-depth constraint",
+      "operation": "Solve constrained pumping allocation",
+      "output": "Maximum feasible multiwell extraction configuration",
+      "validity": "SLSQP handles the continuous pumping variables and inequality constraint, with each rate bounded from 0 to 1000 m3/d.",
+      "locator": "PDF page 4, Section 2.7 Pumping optimization exercise, Equation 14",
+      "sourceExcerpt": "Python, with the Sequential Least Squares Programming (SLSQP) algorithm accessed",
+      "anchorTerms": [
+        "Sequential Least Squares Programming",
+        "algorithm"
+      ],
+      "visualObject": "Nine well-rate columns adjusting while interface markers stay below the screen-depth limit",
+      "motionPurpose": "Raise total extraction until the first interface constraint becomes active, then redistribute rates among wells.",
+      "stepDetail": "Initialize nine rates; evaluate interface depth at each well; enforce bounds and depth constraints; update rates to maximize total pumping.",
+      "transitionBridge": "The optimized rates remain attached to their positions on the original island map.",
+      "minimalText": "Max safe pumping"
+    }
+  ],
+  "symbols": [],
+  "return": {
+    "visualObject": "Kinmen Island's actual coastline with head contours, the freshwater-lens cross-section, vulnerability and reliability overlays, and nine optimized pumping rates",
+    "claim": "Enforcing ocean head on an irregular coastline produces management-relevant head and interface geometry while retaining analytical speed for vulnerability analysis and constrained multiwell pumping.",
+    "claimBoundary": "This is a preliminary sharp-interface assessment for homogeneous isotropic Dupuit flow with constant mean thickness, steady recharge, no tides, and no explicit transition zone; the Kinmen pumping configuration is hypothetical and illustrative.",
+    "locator": "PDF page 8, Section 4 Conclusions; PDF page 9, concluding paragraphs",
+    "sourceExcerpt": "solution for a simplified case, confirming that the method effectively",
+    "anchorTerms": [
+      "simplified case",
+      "method effectively"
+    ],
+    "minimalText": "Real coastline, fast assessment"
+  },
+  "visual": {
+    "systemType": "coastal_aquifer",
+    "primaryObject": "Irregular island coastline enclosing a sharp-interface freshwater lens",
+    "accentObject": "Boundary-node image wells and interface-depth constraint markers",
+    "measuredQuantity": "Hydraulic head, freshwater-saltwater interface depth, vulnerability, reliability, and pumping rate",
+    "geometryNotes": "Preserve the island boundary while moving between plan view and cross-section with an explicit camera rotation; sample the shoreline into nodes, show image-well residuals collapsing, transform head contours into interface depth, and keep optimized well rates collocated with the original wells."
+  }
+}

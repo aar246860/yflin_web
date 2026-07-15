@@ -1,0 +1,447 @@
+{
+  "schemaVersion": 1,
+  "id": "2024-09-17",
+  "doi": "10.1016/j.jhydrol.2024.131824",
+  "title": "Theoretical Evaluation of High-Permeability Wellbore Skin Effect on Aquifer Response under Pumping",
+  "sourceArtifact": "research-videos/source-pdfs/2024-09-17.pdf",
+  "research": {
+    "question": "What interface condition can represent a thin high-permeability wellbore skin without the physically inconsistent head jump produced by the conventional positive-skin formulation?",
+    "system": "A constant-rate partially penetrating vertical well with wellbore storage in a vertically bounded anisotropic confined aquifer, surrounded by a very thin high-permeability skin zone.",
+    "inputData": "Synthetic parameter scenarios evaluated with the proposed negative-skin-factor model, its large-time approximation, the conventional positive-skin model, and an existing two-zone solution.",
+    "method": "Reduce a thin two-zone skin by Taylor expansion to an interface with continuous drawdown and discontinuous flux, solve the partially penetrating well problem by Laplace and finite cosine-Fourier transforms, invert numerically, and assess sensitivity.",
+    "benchmark": "The negative-skin solution is compared with its large-time asymptote and the Pasandi et al. two-zone model; positive- and negative-skin responses are contrasted over wellbore and aquifer parameters.",
+    "uncertainty": "Differential importance measures rank local parameter effects, but no field data are analyzed. The thin-skin reduction relies on negligible skin storage and spatially averaged wellbore drawdown assumptions stated in the derivation.",
+    "conclusion": "A high-permeability skin is represented by continuous head and a flux jump associated with redistribution along the well interface; it affects intermediate and late drawdown, especially when skin-zone porosity increases abruptly."
+  },
+  "narrative": {
+    "throughline": "Repair the interface physics for a highly permeable skin, carry the new flux jump through a partially penetrating well solution, and compare the resulting drawdown with a resolved skin zone.",
+    "audienceStartingPoint": "A conventional skin factor adds a wellbore head loss while keeping radial flux continuous.",
+    "stakes": "Extending that positive-skin rule to a high-permeability skin reverses the expected head ordering even though water still flows toward the well.",
+    "resolution": "The new interface keeps drawdown continuous and lets flux change because water redistributes vertically within the thin conductive skin."
+  },
+  "background": [
+    {
+      "id": "B01",
+      "premise": "The conventional positive-skin approach assumes discontinuous hydraulic heads and continuous flux across a low-permeability skin.",
+      "visibleEvidence": "A sharp drawdown step appears at the well wall while equal flux arrows cross the interface.",
+      "whyNow": "That construction is widely used because it compresses a skin zone into one lumped factor.",
+      "boundary": "Its head-loss interpretation is physically appropriate only for positive low-permeability skin.",
+      "locator": "PDF page 3, Introduction; PDF page 5, Equation 19",
+      "sourceExcerpt": "approach assumes discontinuous hydraulic heads between the wellbore",
+      "anchorTerms": [
+        "approach",
+        "discontinuous hydraulic heads"
+      ],
+      "visualObject": "positive-skin well interface with a head step",
+      "motionPurpose": "Establish the conventional continuity choices before reversing them.",
+      "stepDetail": "Draw a head discontinuity at the well wall and pass equal radial flux arrows through it.",
+      "transitionBridge": "Apply the same rule to a high-permeability skin and expose the contradiction.",
+      "minimalText": "PSF: head jump | flux continuity"
+    },
+    {
+      "id": "B02",
+      "premise": "Applying positive-skin head loss to negative skin can place wellbore head above aquifer head despite inward pumping flow.",
+      "visibleEvidence": "The hydraulic-head profile slopes the wrong way while the pumping arrow still points into the well.",
+      "whyNow": "A high-permeability skin needs a different reduced interface law rather than a negative value inserted into the positive-skin equation.",
+      "boundary": "The contradiction concerns a skin more permeable than the surrounding aquifer.",
+      "locator": "PDF page 3, Introduction",
+      "sourceExcerpt": "in a physically impossible situation where the wellbore head exceeds",
+      "anchorTerms": [
+        "wellbore",
+        "head"
+      ],
+      "visualObject": "inconsistent head profile beside an inward flow arrow",
+      "motionPurpose": "Make the sign inconsistency immediate and physical.",
+      "stepDetail": "Raise the wellbore head above the aquifer while retaining inward flow, then mark the contradiction.",
+      "transitionBridge": "Resolve a thin conductive skin to derive a consistent interface.",
+      "minimalText": "Negative PSF gives impossible head ordering"
+    },
+    {
+      "id": "B03",
+      "premise": "The pumping well operates at a constant rate.",
+      "visibleEvidence": "A fixed pumping arrow draws water into the well throughout the modeled test.",
+      "whyNow": "The forcing must be fixed before the screen geometry and aquifer response are introduced.",
+      "boundary": "The source model treats the pumping rate as constant over the analytical response.",
+      "locator": "PDF page 3, Section 2.1, model description",
+      "sourceExcerpt": "operates at a constant pumping rate ������ [L3T−1].",
+      "anchorTerms": [
+        "constant pumping rate",
+        "operates"
+      ],
+      "visualObject": "Constant pumping arrow at the well",
+      "motionPurpose": "Establish the source forcing as one independent premise.",
+      "stepDetail": "Hold the pumping arrow at one fixed magnitude.",
+      "transitionBridge": "The constant-rate well receives its finite screen interval in B04.",
+      "minimalText": "Constant-rate pumping"
+    },
+    {
+      "id": "B04",
+      "premise": "The pumping well is partially penetrating.",
+      "visibleEvidence": "The well screen occupies only a finite interval of the aquifer thickness.",
+      "whyNow": "The finite screen creates vertical redistribution along the well interface.",
+      "boundary": "Partial penetration is represented by the source's stated upper and lower screen elevations.",
+      "locator": "PDF page 3, Section 2.1, model description and Figure 1",
+      "sourceExcerpt": "The screen of the well",
+      "anchorTerms": [
+        "screen",
+        "well"
+      ],
+      "visualObject": "Finite well-screen interval within the confined aquifer",
+      "motionPurpose": "Own the partial-penetration geometry separately from material properties.",
+      "stepDetail": "Reveal only the finite upper and lower screen endpoints.",
+      "transitionBridge": "Radial and vertical conductivity directions are attached in B05.",
+      "minimalText": "Partial penetration"
+    },
+    {
+      "id": "B05",
+      "premise": "The aquifer has anisotropic hydraulic conductivity.",
+      "visibleEvidence": "Radial and vertical conductivity arrows carry different labels and magnitudes.",
+      "whyNow": "The transform solution must retain separate radial and vertical flow controls.",
+      "boundary": "The source defines anisotropy between radial and vertical hydraulic conductivities.",
+      "locator": "PDF page 3, Section 2.1, model description",
+      "sourceExcerpt": "The aquifer exhibits anisotropic hydraulic",
+      "anchorTerms": [
+        "anisotropic",
+        "hydraulic"
+      ],
+      "visualObject": "Distinct radial and vertical conductivity arrows",
+      "motionPurpose": "Introduce anisotropy as its own source premise.",
+      "stepDetail": "Attach separate conductivity labels to the radial and vertical arrows.",
+      "transitionBridge": "The anisotropic field is enclosed by vertical no-flow boundaries in B06.",
+      "minimalText": "Aquifer anisotropy"
+    },
+    {
+      "id": "B06",
+      "premise": "The aquifer is vertically bounded by impermeable layers.",
+      "visibleEvidence": "No-flow markers close the top and bottom of the aquifer cross-section.",
+      "whyNow": "These vertical boundaries determine the finite cosine basis used later.",
+      "boundary": "The no-flow condition applies to the aquifer top and bottom in the source model.",
+      "locator": "PDF page 4, Section 2.1, Equation (4)",
+      "sourceExcerpt": "The aquifer is bounded by two impermeable layers",
+      "anchorTerms": [
+        "impermeable layers",
+        "bounded"
+      ],
+      "visualObject": "Impermeable top and bottom aquifer boundaries",
+      "motionPurpose": "Close the vertical domain before the thin-skin reduction begins.",
+      "stepDetail": "Place no-flow markers along the top and bottom boundaries.",
+      "transitionBridge": "The bounded well geometry collapses into the thin-skin expansion in M01.",
+      "minimalText": "Vertical no-flow bounds"
+    }
+  ],
+  "methods": [
+    {
+      "id": "M01",
+      "input": "Aquifer-side flux sampled across a very thin high-permeability annulus",
+      "operation": "Apply first-order Taylor expansion",
+      "output": "First-order approximation of aquifer flux at the skin surface",
+      "validity": "The expansion discards higher-order terms in the small skin thickness.",
+      "locator": "PDF page 4, Section 2.2, Equation (6)",
+      "sourceExcerpt": "can be approximated using a first-order Taylor series expansion",
+      "anchorTerms": [
+        "approximated",
+        "Taylor series"
+      ],
+      "visualObject": "Thin annulus magnified into two adjacent radial flux samples",
+      "motionPurpose": "Show only the small-thickness expansion at this step.",
+      "stepDetail": "Magnify the annulus; expand the outer flux about the skin surface; discard the higher-order remainder.",
+      "transitionBridge": "The skin continuity equation relates the flux difference in M02.",
+      "minimalText": "First-order skin expansion"
+    },
+    {
+      "id": "M02",
+      "input": "First-order skin-surface flux approximation",
+      "operation": "Apply the skin-zone continuity equation",
+      "output": "Flux-difference relation containing skin storage and surface divergence",
+      "validity": "The continuity equation is evaluated within the thin skin zone.",
+      "locator": "PDF page 4, Section 2.2, Equations (5)-(9)",
+      "sourceExcerpt": "continuity equation, expressed in terms of Darcy fluxes within",
+      "anchorTerms": [
+        "continuity equation",
+        "Darcy fluxes"
+      ],
+      "visualObject": "Expanded radial flux connected to storage and along-skin flux divergence",
+      "motionPurpose": "Introduce mass conservation as a separate physical operation.",
+      "stepDetail": "Insert the expanded flux into the skin continuity equation; retain storage and along-skin divergence terms.",
+      "transitionBridge": "Darcy relations convert fluxes to head gradients in M03.",
+      "minimalText": "Skin mass balance"
+    },
+    {
+      "id": "M03",
+      "input": "Skin-zone flux-difference relation",
+      "operation": "Apply Darcy flux relations",
+      "output": "Head-based thin-skin interface relation",
+      "validity": "The substitution uses the radial and along-skin Darcy relations defined by the source.",
+      "locator": "PDF pages 4-5, Section 2.2, Equations (9)-(13)",
+      "sourceExcerpt": "Based on Darcy’s Law, the fluxes",
+      "anchorTerms": [
+        "Darcy",
+        "fluxes"
+      ],
+      "visualObject": "Flux arrows changing into radial and vertical head-gradient terms",
+      "motionPurpose": "Make the constitutive substitution distinct from mass conservation.",
+      "stepDetail": "Replace each flux with its Darcy head-gradient expression; retain the resulting interface relation.",
+      "transitionBridge": "The spatially averaged wellbore term is removed in M04.",
+      "minimalText": "Darcy substitution"
+    },
+    {
+      "id": "M04",
+      "input": "Head-based interface balance containing an along-interface derivative of wellbore drawdown",
+      "operation": "Remove wellbore spatial derivative",
+      "output": "Interface balance without the along-interface wellbore term",
+      "validity": "The source treats wellbore drawdown as spatially averaged and independent of distance at the interface.",
+      "locator": "PDF page 5, Section 2.2, discussion following Equation (13)",
+      "sourceExcerpt": "wellbore drawdown is spatially averaged and independent of distance",
+      "anchorTerms": [
+        "spatially averaged",
+        "independent of distance"
+      ],
+      "visualObject": "Along-interface wellbore derivative fading from Equation 13",
+      "motionPurpose": "Own the spatial-averaging reduction independently of skin storage.",
+      "stepDetail": "Hold Equation 13 fixed and remove only the wellbore spatial-derivative term.",
+      "transitionBridge": "The remaining skin-storage term is assessed separately in M05.",
+      "minimalText": "Remove wellbore derivative"
+    },
+    {
+      "id": "M05",
+      "input": "Reduced interface balance retaining the skin-storage contribution",
+      "operation": "Remove negligible skin storage",
+      "output": "Negative-skin interface relation driven by surface diffusion along the well wall",
+      "validity": "The source neglects skin storage because both skin thickness and skin specific storage are small.",
+      "locator": "PDF page 5, Section 2.2, discussion following Equation (13) and Equation (14)",
+      "sourceExcerpt": "storage in the skin layer is very small",
+      "anchorTerms": [
+        "storage",
+        "skin layer"
+      ],
+      "visualObject": "Skin-storage term fading from the reduced interface balance",
+      "motionPurpose": "Show the second source-stated reduction without removing surface redistribution.",
+      "stepDetail": "Hold the reduced balance fixed and remove only the small skin-storage contribution.",
+      "transitionBridge": "The reduced interface receives the continuous-drawdown condition in M06.",
+      "minimalText": "Neglect skin storage"
+    },
+    {
+      "id": "M06",
+      "input": "Aquifer drawdown and reduced negative-skin factor at the well wall.",
+      "operation": "Apply continuous drawdown condition",
+      "output": "A continuous head interface with discontinuous radial flux caused by along-skin redistribution.",
+      "validity": "The condition represents high-permeability skin; it is not the conventional positive-skin head-loss condition.",
+      "locator": "PDF page 5, Section 2.2, Equations 15-16",
+      "sourceExcerpt": "Assuming continuity of drawdown between the skin zone and aquifer formation",
+      "anchorTerms": [
+        "drawdown",
+        "skin"
+      ],
+      "visualObject": "continuous drawdown curve crossing the well wall with unequal flux arrows",
+      "motionPurpose": "Replace the physically inconsistent head jump with the paper's negative-skin interface.",
+      "stepDetail": "Join the head profile smoothly while splitting the radial flux arrows by the surface-diffusion contribution.",
+      "transitionBridge": "Embed the condition in the partially penetrating well problem.",
+      "minimalText": "NSF: head continuity | flux jump"
+    },
+    {
+      "id": "M07",
+      "input": "Dimensionless anisotropic confined-flow equations with partial-screen and negative-skin boundary conditions.",
+      "operation": "Apply Laplace transformation",
+      "output": "Laplace-domain governing equations with transformed initial and boundary conditions.",
+      "validity": "Initial drawdown is zero, radial drawdown vanishes at infinity, and top and bottom boundaries are impermeable.",
+      "locator": "PDF page 5, Section 2.4, Equations 20-22d",
+      "sourceExcerpt": "To obtain the solution to the proposed model, the Laplace transform",
+      "anchorTerms": [
+        "proposed model",
+        "Laplace transform"
+      ],
+      "visualObject": "time-dependent cylindrical drawdown field mapped onto a Laplace-parameter axis",
+      "motionPurpose": "Remove explicit time dependence while retaining the radial and vertical coordinates.",
+      "stepDetail": "Map the time-dependent equations and their initial and boundary conditions into the Laplace domain.",
+      "transitionBridge": "Pass the Laplace-domain equations to the finite-depth transformation in M08.",
+      "minimalText": "Laplace transformation"
+    },
+    {
+      "id": "M08",
+      "input": "Laplace-domain governing equations with transformed initial and boundary conditions.",
+      "operation": "Apply finite cosine-Fourier transformation",
+      "output": "Finite cosine-mode radial equations with transformed boundary conditions",
+      "validity": "The finite-depth transform is consistent with the impermeable top and bottom boundary conditions.",
+      "locator": "PDF pages 5-6, Section 2.4, Equations (23a)-(23c)",
+      "sourceExcerpt": "the finite cos-Fourier transform is applied (Povstenko, 2015); that gives",
+      "anchorTerms": [
+        "finite cos-Fourier transform",
+        "applied"
+      ],
+      "visualObject": "Laplace-domain drawdown field decomposed into unsolved vertical cosine modes",
+      "motionPurpose": "Represent bounded depth dependence before solving the transformed radial problem.",
+      "stepDetail": "Project the Laplace-domain depth dependence onto the finite cosine basis.",
+      "transitionBridge": "The transformed radial equations are solved in M09.",
+      "minimalText": "Finite cosine-Fourier transformation"
+    },
+    {
+      "id": "M09",
+      "input": "Finite cosine-mode radial equations with transformed interface and far-field conditions",
+      "operation": "Solve radial mode equations",
+      "output": "Laplace-Fourier drawdown solution in Equation (24)",
+      "validity": "The modified-Bessel solution satisfies the transformed radial equation and its well and infinite-distance conditions.",
+      "locator": "PDF page 6, Section 2.4, Equation (24)",
+      "sourceExcerpt": "The solution in Laplace–Fourier domain can then be derived as:",
+      "anchorTerms": [
+        "Laplace–Fourier domain",
+        "solution"
+      ],
+      "visualObject": "Unsolved radial modes resolving into the Equation 24 Bessel expression",
+      "motionPurpose": "Own the transformed solve separately from the finite Fourier projection.",
+      "stepDetail": "Apply the transformed well and far-field conditions and reveal the Equation 24 radial-mode solution.",
+      "transitionBridge": "The solved modes return to the depth coordinate in M10.",
+      "minimalText": "Solve transformed modes"
+    },
+    {
+      "id": "M10",
+      "input": "Laplace-Fourier-domain vertical cosine-mode solution",
+      "operation": "Apply finite cosine-Fourier inversion",
+      "output": "Laplace-domain drawdown reconstructed over depth",
+      "validity": "The finite inverse transform reconstructs the bounded vertical coordinate before time inversion.",
+      "locator": "PDF page 6, Section 2.4, Equations (25a)-(25b)",
+      "sourceExcerpt": "To invert from the Fourier domain to the space domain, the finite",
+      "anchorTerms": [
+        "Fourier domain",
+        "space domain"
+      ],
+      "visualObject": "Vertical cosine modes recombining into a depth-resolved drawdown field",
+      "motionPurpose": "Restore the physical depth coordinate explicitly before Laplace inversion.",
+      "stepDetail": "Weight the finite cosine modes; sum them over mode index; reveal the depth-resolved Laplace-domain field.",
+      "transitionBridge": "The depth-resolved response returns to physical time in M11.",
+      "minimalText": "Inverse cosine-Fourier"
+    },
+    {
+      "id": "M11",
+      "input": "Laplace-domain drawdown solution.",
+      "operation": "Transform Laplace response numerically",
+      "output": "Time-domain drawdown at specified radial and vertical positions.",
+      "validity": "Stehfest inversion is selected for the diffusion-type groundwater solution and evaluated against the large-time form.",
+      "locator": "PDF page 6, Section 2.4",
+      "sourceExcerpt": "the Stehfest method is employed here to invert Laplace",
+      "anchorTerms": [
+        "Stehfest",
+        "invert Laplace"
+      ],
+      "visualObject": "Laplace-domain curve resolving into a time-drawdown trace",
+      "motionPurpose": "Return the analytical result to the observable time axis.",
+      "stepDetail": "Evaluate Stehfest terms and reveal the reconstructed drawdown point by point.",
+      "transitionBridge": "Derive the late-time behavior as an independent check.",
+      "minimalText": "Stehfest inversion"
+    },
+    {
+      "id": "M12",
+      "input": "Small-Laplace-parameter form of the transformed solution.",
+      "operation": "Derive large time approximation",
+      "output": "An asymptotic logarithmic drawdown expression.",
+      "validity": "The expansion applies as dimensionless time tends to infinity and is not an early-time approximation.",
+      "locator": "PDF pages 6-7, Section 2.5, Equations 26 and 33-35, Figure 3",
+      "sourceExcerpt": "The asymptotic solution for ������������ at large times (������������ → ∞) can be",
+      "anchorTerms": [
+        "asymptotic",
+        "large"
+      ],
+      "visualObject": "full transient and asymptotic drawdown curves converging at late time",
+      "motionPurpose": "Show the temporal regime in which the simplified expression becomes valid.",
+      "stepDetail": "Extend both curves rightward until their separation collapses in the reported late-time regime.",
+      "transitionBridge": "Compare the reduced interface with a resolved two-zone skin.",
+      "minimalText": "Large time asymptote"
+    },
+    {
+      "id": "M13",
+      "input": "Negative-skin-factor and two-zone model predictions under matched skin scenarios.",
+      "operation": "Compare drawdown solutions",
+      "output": "Agreement patterns and parameter-dependent deviations between lumped and distributed skin representations.",
+      "validity": "The comparison is synthetic and follows the Pasandi et al. two-zone assumptions and the paper's parameter mapping.",
+      "locator": "PDF pages 7-9, Section 3, Figures 4 and 6",
+      "sourceExcerpt": "The two-zone model for considering the wellbore skin effect on",
+      "anchorTerms": [
+        "two-zone model",
+        "skin"
+      ],
+      "visualObject": "paired NSF and two-zone drawdown traces beside well cross-sections",
+      "motionPurpose": "Test whether the thin-interface model preserves the resolved-skin response.",
+      "stepDetail": "Align model parameters, draw both responses, and expose only the reported differences.",
+      "transitionBridge": "Evaluate which parameters control the negative-skin response.",
+      "minimalText": "NSF vs two zone"
+    },
+    {
+      "id": "M14",
+      "input": "Negative-skin drawdown response and four varied aquifer or well parameters.",
+      "operation": "Evaluate differential importance measures",
+      "output": "Time-varying local parameter sensitivity for positive- and negative-skin models.",
+      "validity": "DIM is a local sensitivity measure rather than a probabilistic dispersion estimate.",
+      "locator": "PDF page 1, Abstract; PDF pages 6 and 9, Section 2.6, Equation 32, Figure 7",
+      "sourceExcerpt": "model. Sensitivity analysis reveals that high-permeability skin significantly affects drawdown, particularly",
+      "anchorTerms": [
+        "sensitivity",
+        "drawdown"
+      ],
+      "visualObject": "four DIM curves evolving over dimensionless time",
+      "motionPurpose": "Separate early wellbore-storage control from later skin redistribution effects.",
+      "stepDetail": "Reveal each parameter curve on the same time axis and mark changes in rank.",
+      "transitionBridge": "Return to the physical interface while stating the validation gap.",
+      "minimalText": "Parameter influence through time"
+    }
+  ],
+  "symbols": [
+    {
+      "latex": "s(r,z,t)",
+      "firstUseOwner": "B04",
+      "visualObject": "cylindrical drawdown field",
+      "meaning": "aquifer drawdown at radial distance r depth z and time t",
+      "unit": "m",
+      "transition": "The field is evaluated at the well interface and transformed into modal components."
+    },
+    {
+      "latex": "Q",
+      "firstUseOwner": "B03",
+      "visualObject": "constant pumping arrow",
+      "meaning": "well pumping rate",
+      "unit": "m^3/s",
+      "transition": "The pumping arrow forces the partial-screen boundary."
+    },
+    {
+      "latex": "K_r/K_z",
+      "firstUseOwner": "B05",
+      "visualObject": "radial and vertical conductivity arrows",
+      "meaning": "hydraulic-conductivity anisotropy",
+      "unit": "dimensionless",
+      "transition": "Anisotropy shapes the vertical cosine modes."
+    },
+    {
+      "latex": "\\sigma_N",
+      "firstUseOwner": "M03",
+      "visualObject": "negative-skin interface control",
+      "meaning": "skin factor for the high-permeability interface",
+      "unit": "m^2/s",
+      "transition": "The factor controls the discontinuous interface flux."
+    },
+    {
+      "latex": "DIM_i",
+      "firstUseOwner": "M14",
+      "visualObject": "parameter-specific sensitivity curve",
+      "meaning": "differential importance measure for parameter i",
+      "unit": "dimensionless",
+      "transition": "The curves return attention to the parameters governing physical redistribution."
+    }
+  ],
+  "return": {
+    "visualObject": "the original partially penetrating well with a smooth head profile across the high-permeability skin and unequal radial flux arrows balanced by vertical interface redistribution",
+    "claim": "The negative-skin interface provides a physically consistent thin-skin representation and reproduces the principal behavior of the resolved two-zone model in the tested scenarios.",
+    "claimBoundary": "The result is theoretical and synthetic. The paper analyzes no field pumping test, and its thin-skin reduction neglects skin storage and along-interface variation of spatially averaged wellbore drawdown.",
+    "locator": "PDF pages 8-9, Conclusions and discussion following Figure 7",
+    "sourceExcerpt": "of this study is the lack of field data for analysis, which prevents",
+    "anchorTerms": [
+      "lack of field data",
+      "prevents"
+    ],
+    "minimalText": "Consistent interface | field validation pending"
+  },
+  "visual": {
+    "systemType": "radial_well",
+    "primaryObject": "partially penetrating pumping well in a vertically bounded anisotropic confined aquifer",
+    "accentObject": "thin high-permeability skin with continuous head and discontinuous flux",
+    "measuredQuantity": "drawdown s(r,z,t) and interface flux",
+    "geometryNotes": "Use cylindrical r-z geometry, impermeable top and bottom, a finite screen interval, well radius r_w, and a magnified annular skin. Contrast PSF and NSF continuity choices without depicting field observations."
+  }
+}

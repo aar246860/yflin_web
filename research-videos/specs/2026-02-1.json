@@ -1,0 +1,465 @@
+{
+  "schemaVersion": 1,
+  "id": "2026-02-1",
+  "doi": "10.1007/s00477-026-03194-2",
+  "title": "A Spatially-Coherent Attribution Framework for Interpreting Black-Box Tropical Cyclone Intensity Forecasts",
+  "sourceArtifact": "research-videos/source-pdfs/2026-02-1.pdf",
+  "research": {
+    "question": "Can a gradient-based attribution framework preserve geographic coherence while separating location effects from physical-feature interactions in black-box tropical-cyclone intensity forecasts?",
+    "system": "Six tree-ensemble models forecast 24-hour tropical-cyclone intensity change in the Western North Pacific from tabular SHIPS/STIPS atmospheric, oceanic, and geographic predictors.",
+    "inputData": "6,380 training instances and 1,595 test instances with 46 predictors, including LAT, LON, vertical-wind-shear, sea-surface-temperature, ocean-heat-content, and potential-intensity variables; Typhoon Goni (2015) supplies the representative track analysis.",
+    "method": "Geo-dSHAP estimates model gradients with Natural Evolution Strategies, derives covariance-based feature attribution, treats LAT and LON as one GEO player, maps location-feature interaction magnitudes with copula geostatistics, and stratifies attributions by storm lifecycle and intensity.",
+    "benchmark": "The study compares XGB, LGBM, RF, HGB, GB, and ET by test MAE and R2, then compares their spatial main-effect maps with pattern-correlation coefficients using XGB as the reference.",
+    "uncertainty": "Gradient estimates use a perturbation scale of 0.02, batches of 32 perturbations, and 100 Monte Carlo iterations for stability; the paper does not report predictive confidence intervals for the attribution maps.",
+    "conclusion": "Models with similar forecast accuracy can encode sharply different spatial logic; for the selected XGB model, Geo-dSHAP exposes spatially and phase-dependent thermodynamic and shear sensitivities that accuracy metrics alone cannot diagnose."
+  },
+  "narrative": {
+    "throughline": "A forecast can be accurate for the wrong spatial reasons, so geographic sensitivity must be separated from physical-feature sensitivity before the model can be trusted operationally.",
+    "audienceStartingPoint": "The audience understands that tropical-cyclone intensity depends on environmental predictors and that ensemble models can be accurate without revealing their reasoning.",
+    "stakes": "Operational forecasters may accept a high-scoring model whose learned geographic dependencies conflict with physical expectations or fail outside the conditions represented in training.",
+    "resolution": "Geo-dSHAP turns the forecast into a storm-track-centered field of location and feature sensitivities, revealing where and when the model relies on thermodynamic or shear information."
+  },
+  "background": [
+    {
+      "id": "B01",
+      "premise": "Machine-learning models are increasingly used for tropical-cyclone intensity forecasting, but their black-box nature limits operational adoption.",
+      "visibleEvidence": "A 24-hour tropical-cyclone intensity-change prediction emerges from an opaque machine-learning model.",
+      "whyNow": "The attribution problem begins with the paper's stated operational-adoption limit for black-box forecasts.",
+      "boundary": "The paper focuses on 24-hour intensity change in the Western North Pacific rather than all basins and forecast horizons.",
+      "locator": "PDF page 1, Abstract",
+      "sourceExcerpt": "Machine learning (ML) models are increasingly used for Tropical Cyclone (TC) intensity forecasting. However, their black-box nature limits operational adoption.",
+      "anchorTerms": [
+        "intensity forecasting",
+        "high-stakes operational problem"
+      ],
+      "visualObject": "Opaque ensemble model outputting a 24-hour Western North Pacific intensity-change forecast",
+      "motionPurpose": "Keep the model interior hidden while exposing only its forecast output.",
+      "stepDetail": "Feed the predictor table into an opaque model box and reveal its 24-hour intensity-change prediction.",
+      "transitionBridge": "The forecast marker becomes the output of an otherwise opaque ensemble model.",
+      "minimalText": "24-h intensity"
+    },
+    {
+      "id": "B02",
+      "premise": "Generic SHAP applied to high-dimensional geophysical data can fragment spatial coherence by treating grid locations independently.",
+      "visibleEvidence": "One coherent warm-ocean patch breaks into independently permuted pixels and a noisy attribution mosaic.",
+      "whyNow": "The viewer needs to see why an ordinary feature-attribution map can destroy the geographic object it is supposed to explain.",
+      "boundary": "The criticism concerns generic independent-feature treatment of spatially structured geophysical inputs, not every possible SHAP implementation.",
+      "locator": "PDF page 1, Abstract",
+      "sourceExcerpt": "yet standard approaches such as SHAP often disrupt the spatial coherence fundamental to geophysical data.",
+      "anchorTerms": [
+        "generic SHAP",
+        "high-dimensional geophysical data"
+      ],
+      "visualObject": "Coherent geophysical patch transforming into a fragmented pixel-attribution field",
+      "motionPurpose": "Separate neighboring cells to reveal the loss of relative location and spatial coherence.",
+      "stepDetail": "Show a coherent field; permute cells independently; compare the intact and fragmented explanations.",
+      "transitionBridge": "The fragmented cells regroup into a single geographic player.",
+      "minimalText": "Coherence lost"
+    },
+    {
+      "id": "B03",
+      "premise": "GeoShapley preserves a geographic player but high-resolution spatial attribution remains computationally demanding under combinatorial sampling.",
+      "visibleEvidence": "A growing coalition tree fans into many model evaluations while a high-resolution map waits to be filled.",
+      "whyNow": "Spatial coherence alone does not make the explanation operationally practical at forecast scale.",
+      "boundary": "Paired sampling improves convergence, but the paper's motivation is the remaining cost of sampling-based estimation.",
+      "locator": "PDF page 1, Abstract",
+      "sourceExcerpt": "but its sampling-based estimator is computationally expensive and, as shown here, fails to isolate the main spatial effect.",
+      "anchorTerms": [
+        "high-resolution spatial attribution maps",
+        "computationally demanding"
+      ],
+      "visualObject": "Combinatorial coalition tree beside an unfinished attribution map",
+      "motionPurpose": "Multiply coalition branches until their evaluation burden visibly overwhelms the map.",
+      "stepDetail": "Start with one GEO player; add feature coalitions; count model calls; freeze the map before completion.",
+      "transitionBridge": "The stalled sampling tree collapses into directional gradient probes.",
+      "minimalText": "Sampling bottleneck"
+    }
+  ],
+  "methods": [
+    {
+      "id": "M01",
+      "input": "SHIPS/STIPS point-in-time atmospheric, oceanic, LAT, and LON predictors",
+      "operation": "Fit ensemble regressors",
+      "output": "Six fitted ensemble regression models for 24-hour tropical-cyclone intensity change",
+      "validity": "Tree ensembles represent correlated nonlinear tabular predictors and are compared on the same training and test sets.",
+      "locator": "PDF page 1, Abstract",
+      "sourceExcerpt": "We apply Geo-dSHAP to six ensemble models. XGBoost, LightGBM, Random Forest, HistGradientBoosting, Gradient Boosting, and ExtraTrees, trained to predict 24-hour TC intensity change in the Western North Pacific.",
+      "anchorTerms": [
+        "model input",
+        "tabular, point-in-time features"
+      ],
+      "visualObject": "Six parallel ensemble forests receiving one common predictor vector",
+      "motionPurpose": "Duplicate the same predictor vector across models so later spatial differences cannot be attributed to different inputs.",
+      "stepDetail": "Assemble 46 predictors; split training and test instances; pass identical feature vectors through six ensemble regressors.",
+      "transitionBridge": "Each fitted model retains LAT and LON for joint treatment in M02.",
+      "minimalText": "6 ensembles"
+    },
+    {
+      "id": "M02",
+      "input": "Separate LAT and LON feature coordinates",
+      "operation": "Combine geographic coordinates",
+      "output": "One geographically coherent GEO player",
+      "validity": "Joint treatment preserves the paired coordinates that define location-specific climatology and spatial memory.",
+      "locator": "PDF page 3, Section 2.2 Gradient estimation, paragraph following Equation 3",
+      "sourceExcerpt": "i treat the geographic features (LAT, LON) as a single",
+      "anchorTerms": [
+        "geographic coherence",
+        "geographic features"
+      ],
+      "visualObject": "LAT and LON axes folding into one map pin labeled GEO",
+      "motionPurpose": "Join the two coordinate axes into one indivisible spatial object.",
+      "stepDetail": "Highlight LAT; highlight LON; bracket both coordinates; replace the bracket with one GEO player.",
+      "transitionBridge": "The fitted model and coherent GEO player receive standardized random perturbations in M03.",
+      "minimalText": "LAT + LON = GEO"
+    },
+    {
+      "id": "M03",
+      "input": "A fitted black-box model and an isotropic Gaussian perturbation distribution",
+      "operation": "Sample perturbation directions",
+      "output": "Batches of standardized random directions for NES finite differences",
+      "validity": "The NES estimator evaluates small standardized Gaussian random perturbations; the reported application uses scale 0.02 and batches of 32.",
+      "locator": "PDF pages 3-4, Section 2.2 Gradient estimation and Section 3.2 Cross-model comparison",
+      "sourceExcerpt": "standardized, random perturbations",
+      "anchorTerms": [
+        "standardized",
+        "random perturbations"
+      ],
+      "visualObject": "Thirty-two standardized direction arrows radiating from one predictor vector",
+      "motionPurpose": "Expose the model evaluations that replace unavailable exact tree gradients.",
+      "stepDetail": "Center a predictor vector, sample 32 Gaussian directions at scale 0.02, and pair their finite-difference probes.",
+      "transitionBridge": "The sampled probes are first evaluated on training-background instances in M04.",
+      "minimalText": "NES perturbation batch"
+    },
+    {
+      "id": "M04",
+      "input": "NES perturbation batches and training-background instances",
+      "operation": "Estimate background gradients",
+      "output": "Background gradient matrix Gbg with B rows and Nfeatures columns",
+      "validity": "The first Geo-dSHAP phase draws its background batch from training data and estimates one gradient row per background instance.",
+      "locator": "PDF page 3, Section 2.2 Gradient estimation",
+      "sourceExcerpt": "First, we estimate gradients on a background batch",
+      "anchorTerms": [
+        "estimate gradients",
+        "background batch"
+      ],
+      "visualObject": "Training-background rows accumulating directional probes into matrix Gbg",
+      "motionPurpose": "Own the training-background NES phase separately from local geographic evaluation.",
+      "stepDetail": "Evaluate each perturbation batch on the training-background instances and place the estimated gradients into Gbg.",
+      "transitionBridge": "The background matrix supplies the global covariance calculation in M05.",
+      "minimalText": "Background NES phase"
+    },
+    {
+      "id": "M05",
+      "input": "Background gradient matrix Gbg",
+      "operation": "Compute gradient covariance",
+      "output": "Global importance covariance matrix C",
+      "validity": "The source defines C as the expectation of gradient outer products over the background dataset.",
+      "locator": "PDF page 3, Section 2.2 Gradient estimation",
+      "sourceExcerpt": "global importance covariance matrix C",
+      "anchorTerms": [
+        "global importance",
+        "covariance matrix"
+      ],
+      "visualObject": "Stacked background gradients condensing into a square covariance heatmap",
+      "motionPurpose": "Fold repeated gradient vectors into one matrix that exposes diagonal importance and cross-feature structure.",
+      "stepDetail": "Arrange background gradients as rows; pair gradient components; average their products; reveal matrix C.",
+      "transitionBridge": "A separate NES phase now evaluates fixed test-set geographic locations in M06.",
+      "minimalText": "Compute global covariance"
+    },
+    {
+      "id": "M06",
+      "input": "NES perturbation batches and fixed test-set geographic locations Xgeo",
+      "operation": "Estimate test gradients",
+      "output": "Local gradient matrix Ggeo with S rows and Nfeatures columns",
+      "validity": "The second Geo-dSHAP phase applies the same NES estimator to a fixed set of test-set geographic locations.",
+      "locator": "PDF page 3, Section 2.2 Gradient estimation",
+      "sourceExcerpt": "Second, we apply the same NES estimator to a fixed set",
+      "anchorTerms": [
+        "same NES estimator",
+        "fixed set"
+      ],
+      "visualObject": "Fixed test locations receiving the same directional probes and filling matrix Ggeo",
+      "motionPurpose": "Own the local test-location NES phase separately from the training-background phase.",
+      "stepDetail": "Hold the test locations fixed, repeat the NES probes at each location, and store the local gradients in Ggeo.",
+      "transitionBridge": "Repeated background and test estimates are combined across Monte Carlo iterations in M07.",
+      "minimalText": "Test-location NES phase"
+    },
+    {
+      "id": "M07",
+      "input": "Repeated background and test gradient estimates",
+      "operation": "Aggregate gradient iterations",
+      "output": "Monte Carlo averaged gradient estimates with iteration-to-iteration spread",
+      "validity": "The application averages results over 100 Monte Carlo iterations to support stability while the method states that repeated iterations quantify estimate uncertainty.",
+      "locator": "PDF pages 3-4, Sections 2.2 and 3.2",
+      "sourceExcerpt": "averaged the results over 100 Monte Carlo iterations",
+      "anchorTerms": [
+        "averaged",
+        "Monte Carlo iterations"
+      ],
+      "visualObject": "One hundred gradient estimates forming distributions that collapse to mean markers with visible spread",
+      "motionPurpose": "Expose both the averaged estimate and its Monte Carlo stability shape.",
+      "stepDetail": "Stack 100 iteration results, mark their spread, and average each corresponding gradient component.",
+      "transitionBridge": "The stabilized covariance entries become global feature attributions in M08.",
+      "minimalText": "Average 100 iterations"
+    },
+    {
+      "id": "M08",
+      "input": "Global importance covariance matrix C",
+      "operation": "Derive feature DerSHAP attribution",
+      "output": "One global DerSHAP attribution value phi_i for each feature",
+      "validity": "The attribution sums the covariance diagonal term and half the absolute off-diagonal covariance contributions for the feature.",
+      "locator": "PDF page 3, Section 2.2 Gradient estimation, equation following the covariance definition",
+      "sourceExcerpt": "is derived from the gradient",
+      "anchorTerms": ["DerSHAP", "attribution"],
+      "visualObject": "Covariance matrix row resolving into one feature-attribution bar",
+      "motionPurpose": "Convert covariance structure into the global attribution assigned to each feature.",
+      "stepDetail": "Collect one diagonal cell with half of the absolute cross-feature cells into a single attribution bar.",
+      "transitionBridge": "The stabilized LAT and LON components are isolated for the geographic main effect in M09.",
+      "minimalText": "C to DerSHAP"
+    },
+    {
+      "id": "M09",
+      "input": "LAT and LON gradient components at a geographic sample",
+      "operation": "Compute geographic gradient norm",
+      "output": "Location main-effect magnitude",
+      "validity": "The squared L2 norm isolates sensitivity to the joint geographic coordinates independently of physical-feature gradients.",
+      "locator": "PDF page 3, Section 2.2 Gradient estimation, Equation 4",
+      "sourceExcerpt": "main effect of location, ϕgeo(x), is then quantified as the",
+      "anchorTerms": [
+        "main effect of location",
+        "squared L2-norm"
+      ],
+      "visualObject": "Orthogonal LAT and LON arrows closing into one radial magnitude ring",
+      "motionPurpose": "Combine coordinate-direction sensitivity into one rotation-invariant location magnitude.",
+      "stepDetail": "Show LAT gradient; show LON gradient; square both lengths; combine them as one geographic magnitude.",
+      "transitionBridge": "The geographic magnitude is paired with one physical-feature gradient in M10.",
+      "minimalText": "GEO main effect"
+    },
+    {
+      "id": "M10",
+      "input": "Geographic gradient magnitude and one physical-feature gradient magnitude",
+      "operation": "Multiply gradient magnitudes",
+      "output": "Location-feature interaction-strength proxy",
+      "validity": "The proxy is large only where the prediction is sensitive to both location and the selected physical feature.",
+      "locator": "PDF page 3, Section 2.2 Gradient estimation, Equation 5",
+      "sourceExcerpt": "proxy identifies regions where the model prediction is highly sensitive",
+      "anchorTerms": [
+        "model prediction",
+        "specific location"
+      ],
+      "visualObject": "GEO magnitude ring intersecting a POT or shear gradient bar",
+      "motionPurpose": "Make the interaction brighten only where both component sensitivities are present.",
+      "stepDetail": "Hold GEO magnitude fixed; introduce one feature gradient; multiply their lengths; encode the product as brightness.",
+      "transitionBridge": "The discrete interaction markers supply the empirical dependence needed to fit variogram parameters in M11.",
+      "minimalText": "GEO x feature"
+    },
+    {
+      "id": "M11",
+      "input": "Sampled interaction values and a theoretical variogram model",
+      "operation": "Fit variogram hyperparameters",
+      "output": "Optimized nugget sill and effective range for Copula interpolation",
+      "validity": "The source automatically optimizes nugget sill and effective range with Levenberg-Marquardt through scikit-gstat.",
+      "locator": "PDF page 3, Section 2.2 Gradient estimation, final paragraph",
+      "sourceExcerpt": "hyperparameters (i.e., nugget, sill, and effective range) were",
+      "anchorTerms": [
+        "effective range",
+        "automatically optimized"
+      ],
+      "visualObject": "Empirical dependence points receiving a fitted theoretical variogram curve with three parameter markers",
+      "motionPurpose": "Own the parameter estimation that controls the regular-grid interpolation.",
+      "stepDetail": "Move nugget sill and effective-range controls until the Levenberg-Marquardt variogram fit settles on the empirical dependence points.",
+      "transitionBridge": "The fitted variogram parameters join the discrete interaction values for interpolation in M12.",
+      "minimalText": "Fit variogram parameters"
+    },
+    {
+      "id": "M12",
+      "input": "Discrete interaction values with fitted nugget sill and effective range",
+      "operation": "Interpolate interaction field",
+      "output": "Regular-grid spatial attribution map",
+      "validity": "Copula geostatistics uses rank-based transformations to preserve spatial dependence while accommodating non-Gaussian interaction magnitudes.",
+      "locator": "PDF page 3, Section 2.2 Gradient estimation, paragraph following Equation 5",
+      "sourceExcerpt": "computed at the S sample points in Xgeo, are subsequently",
+      "anchorTerms": [
+        "discrete interaction values",
+        "regular grid"
+      ],
+      "visualObject": "Sparse colored samples expanding into a continuous basin-wide attribution surface",
+      "motionPurpose": "Grow a continuous spatial field from sampled interaction points without replacing the storm-track geometry.",
+      "stepDetail": "Plot sample points, rank-transform interaction values, and fill the regular grid with the fitted spatial dependence.",
+      "transitionBridge": "The completed spatial maps remain fixed while forecast models are scored against held-out observations in M13.",
+      "minimalText": "Copula map"
+    },
+    {
+      "id": "M13",
+      "input": "Held-out intensity-change predictions and observations for each ensemble model",
+      "operation": "Calculate test MAE",
+      "output": "One held-out mean absolute error for each of the six models",
+      "validity": "Section 3.1 defines MAE as average absolute prediction-observation deviation and reports train and test scores separately in Table 1.",
+      "locator": "PDF page 4, Section 3.1 Model performances, Table 1",
+      "sourceExcerpt": "MAE quantifies the",
+      "anchorTerms": [
+        "MAE",
+        "quantifies"
+      ],
+      "visualObject": "Prediction-observation distances collapsing into six test-error bars",
+      "motionPurpose": "Own the held-out error calculation before it is used for model selection.",
+      "stepDetail": "Measure every held-out absolute prediction error and average the distances separately for each model.",
+      "transitionBridge": "The six test MAE values determine the reference model in M14.",
+      "minimalText": "Calculate held-out MAE"
+    },
+    {
+      "id": "M14",
+      "input": "Test MAE values from the six ensemble models",
+      "operation": "Select reference model",
+      "output": "XGB reference model for detailed attribution",
+      "validity": "All models are evaluated on the same test dataset and XGB has the lowest reported test MAE.",
+      "locator": "PDF page 4, Section 3.1 Model performances, Table 1",
+      "sourceExcerpt": "MAE and was therefore adopted as the reference model for",
+      "anchorTerms": [
+        "lowest test MAE",
+        "reference model"
+      ],
+      "visualObject": "Six MAE markers with XGB settling at the minimum",
+      "motionPurpose": "Rank the models by one shared error axis and retain XGB for the physical-sensitivity analysis.",
+      "stepDetail": "Place six test-MAE values; order them; highlight the minimum; carry XGB's map forward.",
+      "transitionBridge": "The retained XGB map becomes the reference for cross-model spatial comparison in M15.",
+      "minimalText": "XGB selected"
+    },
+    {
+      "id": "M15",
+      "input": "Six model-specific GEO main-effect maps with XGB designated as the reference",
+      "operation": "Compute pattern correlations",
+      "output": "PCC evidence that similarly accurate ensembles encode divergent spatial logic",
+      "validity": "The paper compares each model's spatial attribution pattern with the XGB reference and reports the resulting Pattern Correlation Coefficients.",
+      "locator": "PDF page 5, Section 3.2, Figure 1",
+      "sourceExcerpt": "Pattern Correlation Coefficient (PCC) using the",
+      "anchorTerms": ["Pattern Correlation Coefficient", "PCC"],
+      "visualObject": "Six GEO maps aligned to XGB with one pattern-correlation marker beneath each alternative model",
+      "motionPurpose": "Show that predictive accuracy and learned spatial reasoning are separate evaluation axes.",
+      "stepDetail": "Hold XGB as the reference; align each alternative map; compute its pattern correlation; reveal the low and negative PCC markers.",
+      "transitionBridge": "The selected XGB attributions are aggregated across track records in M16.",
+      "minimalText": "Accuracy differs from spatial logic"
+    },
+    {
+      "id": "M16",
+      "input": "Instance-level XGB Geo-dSHAP attributions sampled along observed tropical-cyclone tracks",
+      "operation": "Aggregate track attributions",
+      "output": "Aggregated XGB attribution records prepared for physical stratification",
+      "validity": "Section 3.6 explicitly extends the single-track analysis with aggregated Geo-dSHAP attributions before applying lifecycle and intensity criteria.",
+      "locator": "PDF page 8, Section 3.6 Stratified analysis by TC lifecycle and intensity",
+      "sourceExcerpt": "To extend the single-track analysis",
+      "anchorTerms": [
+        "single-track analysis",
+        "aggregated"
+      ],
+      "visualObject": "Instance-level attribution markers from observed tracks collecting into one analysis table",
+      "motionPurpose": "Own the aggregation required by the subsequent lifecycle and intensity partitions.",
+      "stepDetail": "Collect the source-reported track attribution records into the aggregated analysis set without changing their physical labels.",
+      "transitionBridge": "The aggregated records receive the lifecycle partition in M17.",
+      "minimalText": "Aggregate track records"
+    },
+    {
+      "id": "M17",
+      "input": "Aggregated XGB Geo-dSHAP attributions",
+      "operation": "Classify lifecycle attribution phases",
+      "output": "Genesis mature and decay attribution groups along the storm track",
+      "validity": "The lifecycle partition follows the three phases used for the POT analysis in Figure 5.",
+      "locator": "PDF page 8, Section 3.6 Stratified analysis by TC lifecycle and intensity, Figure 5",
+      "sourceExcerpt": "storm track, partitioned into Genesis, Mature, and Decay",
+      "anchorTerms": ["Genesis", "Decay"],
+      "visualObject": "Storm track separating into Genesis mature and decay segments",
+      "motionPurpose": "Partition the continuous track so lifecycle-dependent sensitivity becomes visible.",
+      "stepDetail": "Assign each aggregated track attribution to its Genesis mature or decay segment.",
+      "transitionBridge": "The same aggregated records receive an independent intensity partition in M18.",
+      "minimalText": "Lifecycle phases"
+    },
+    {
+      "id": "M18",
+      "input": "Aggregated XGB Geo-dSHAP attributions with JTWC storm classifications",
+      "operation": "Classify intensity attribution categories",
+      "output": "JTWC intensity-category attribution groups for the dominant predictors",
+      "validity": "The intensity partition uses the JTWC categories compared in Figure 6.",
+      "locator": "PDF page 8, Section 3.6 Stratified analysis by TC lifecycle and intensity, Figure 6",
+      "sourceExcerpt": "dominant predictors across JTWC intensity categories",
+      "anchorTerms": ["JTWC", "intensity categories"],
+      "visualObject": "Attribution bars separating into JTWC storm-intensity bins",
+      "motionPurpose": "Expose nonmonotonic predictor sensitivity across storm strength.",
+      "stepDetail": "Assign each attribution to its JTWC category and compare the dominant predictor magnitudes.",
+      "transitionBridge": "The owned fitting attribution scoring aggregation and stratification chain recombines on the Typhoon Goni track.",
+      "minimalText": "JTWC categories"
+    }
+  ],
+  "symbols": [
+    {
+      "latex": "x",
+      "firstUseOwner": "M03",
+      "visualObject": "One 46-feature forecast vector",
+      "meaning": "Tabular atmospheric, oceanic, and geographic predictor vector",
+      "unit": "mixed predictor units",
+      "transition": "The visible predictor bars contract into the label x."
+    },
+    {
+      "latex": "f(x)",
+      "firstUseOwner": "M01",
+      "visualObject": "Model-output intensity-change marker",
+      "meaning": "Predicted tropical-cyclone intensity change over the forecast interval",
+      "unit": "knots per 24 h",
+      "transition": "The ensemble output marker receives the label f(x)."
+    },
+    {
+      "latex": "G",
+      "firstUseOwner": "M04",
+      "visualObject": "Matrix of directional response arrows",
+      "meaning": "Estimated model-gradient matrix",
+      "unit": "model-output units per standardized predictor unit",
+      "transition": "Directional probes stack into rows and acquire the label G."
+    },
+    {
+      "latex": "C",
+      "firstUseOwner": "M05",
+      "visualObject": "Global gradient-covariance heatmap",
+      "meaning": "Gradient covariance matrix used for global DerSHAP attribution",
+      "unit": "squared gradient units",
+      "transition": "The stacked gradient vectors fold into the matrix label C."
+    },
+    {
+      "latex": "\\phi_i",
+      "firstUseOwner": "M08",
+      "visualObject": "Feature-attribution bar formed from one covariance row",
+      "meaning": "Global DerSHAP attribution for feature i",
+      "unit": "squared gradient units",
+      "transition": "Collapse the selected covariance cells into the label phi_i."
+    },
+    {
+      "latex": "\\phi_{geo}(x)",
+      "firstUseOwner": "M09",
+      "visualObject": "Magnitude ring formed from LAT and LON gradient arrows",
+      "meaning": "Main geographic contribution at location x",
+      "unit": "squared gradient units",
+      "transition": "The two coordinate arrows close into a norm ring labeled phi_geo(x)."
+    },
+    {
+      "latex": "I_j(x)",
+      "firstUseOwner": "M10",
+      "visualObject": "Brightness of the overlap between GEO and feature-j sensitivities",
+      "meaning": "Magnitude proxy for the interaction between location and physical feature j",
+      "unit": "product of geographic and feature-gradient units",
+      "transition": "The overlapping magnitude objects multiply and receive the label I_j(x)."
+    }
+  ],
+  "return": {
+    "visualObject": "Typhoon Goni's track over the six model-specific GEO maps, resolving into the XGB POT, shear, and VMPI sensitivity fields along the storm lifecycle",
+    "claim": "Geo-dSHAP identifies where and when ensemble forecasts express physical sensitivity and supports model evaluation beyond accuracy metrics.",
+    "claimBoundary": "The claim is limited to the six tabular ensemble models trained for 24-hour Western North Pacific intensity change; it does not establish behavior for other basins, lead times, or deep-learning architectures.",
+    "locator": "PDF page 1, Abstract",
+    "sourceExcerpt": "Geo-dSHAP thus provides a diagnostic framework for model evaluation beyond accuracy metrics. By identifying where and when models express physical sensitivity, it delivers physically interpretable insights",
+    "minimalText": "Accuracy != spatial logic"
+  },
+  "visual": {
+    "systemType": "other",
+    "primaryObject": "Western North Pacific tropical-cyclone track embedded in spatial attribution fields",
+    "accentObject": "GEO main-effect ring and location-feature interaction hotspots",
+    "measuredQuantity": "24-hour intensity change and Geo-dSHAP attribution magnitude",
+    "geometryNotes": "Keep the basin map and storm track persistent; transform LAT/LON into one GEO object, directional probes into gradients, sparse samples into copula-interpolated fields, and the fields into along-track lifecycle groups."
+  }
+}

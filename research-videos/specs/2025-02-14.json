@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 1,
+  "id": "2025-02-14",
+  "doi": "10.1016/j.jhydrol.2025.132955",
+  "title": "Reply to the Discussion by Lv and Qian of \"A Simple Analytical Solution for Organic Contaminant Diffusion Through a Geomembrane to Unsaturated Soil Liner: Considering the Sorption Effect and Robin-Type Boundary\" by Lin and Yeh (2020)",
+  "sourceArtifact": "research-videos/source-pdfs/2025-02-14.pdf",
+  "research": {
+    "question": "Does the published analytical solution recover the correct organic-contaminant concentration as time approaches infinity?",
+    "system": "Organic-contaminant diffusion through a geomembrane into an unsaturated soil liner with sorption and a Robin-type boundary condition.",
+    "inputData": "The analytical solution published by Lin and Yeh (2020) and the limiting-behavior criticism raised by Lv and Qian; the reply uses no new data.",
+    "method": "The reply checks the infinite-time concentration behavior of the published expression, accepts the writing error, and separately flags a variable-notation correction in the listed equations and discussion line.",
+    "benchmark": "The required infinite-time concentration limit is the sole diagnostic benchmark discussed in the reply.",
+    "uncertainty": "No data, uncertainty analysis, corrected derivation, or replacement concentration curve is provided in this one-page reply.",
+    "conclusion": "The authors accept that the published solution does not obtain the correct concentration at infinite time, identify a writing error, and separately flag a variable correction at the listed source locations."
+  },
+  "narrative": {
+    "throughline": "A physically meaningful transport solution must return the correct long-time concentration, and the published expression fails that limit check.",
+    "audienceStartingPoint": "The audience understands that contaminant concentration evolves through a layered liner and that an analytical solution must respect its limiting conditions.",
+    "stakes": "Using an expression with the wrong infinite-time limit can misrepresent long-term contaminant migration through the landfill liner system.",
+    "resolution": "The reply accepts the limiting-behavior criticism, records a separate variable-notation correction at the listed locations, and does not present a revised analytical solution."
+  },
+  "background": [
+    {
+      "id": "B01",
+      "premise": "The reply addresses a published analytical solution for contaminant diffusion through a geomembrane-unsaturated-soil liner system with sorption and a Robin-type boundary.",
+      "visibleEvidence": "A layered geomembrane and unsaturated-soil profile carries one concentration front toward a Robin boundary.",
+      "whyNow": "The original transport object must be visible before testing whether its analytical concentration has the correct long-time behavior.",
+      "boundary": "The reply concerns the specific Lin and Yeh (2020) analytical expression rather than a new transport experiment or a general review of liner models.",
+      "locator": "PDF page 1, opening paragraph and article title",
+      "sourceExcerpt": "Reply to the discussion by Lv and Qian of “A simple analytical solution for organic contaminant diffusion through a geomembrane to unsaturated soil liner: Considering the sorption effect and Robin-type boundary” by Lin and Yeh (2020)",
+      "anchorTerms": [
+        "contaminant diffusion",
+        "Robin-type boundary"
+      ],
+      "visualObject": "Geomembrane over an unsaturated soil liner with a concentration profile crossing the interface",
+      "motionPurpose": "Advance the concentration profile through the same layered object until the long-time state can be inspected.",
+      "stepDetail": "Draw the geomembrane; add the soil liner; reveal sorption in the soil; mark the Robin boundary; retain one concentration profile.",
+      "transitionBridge": "The evolving profile extends toward an infinite-time limit marker.",
+      "minimalText": "Published liner solution"
+    },
+    {
+      "id": "B02",
+      "premise": "The reply separately identifies Equations 14 to 18, 24, 25, and 27 to 33 and Line 48 of the discussion as locations requiring a variable-notation correction.",
+      "visibleEvidence": "Equation labels 14 to 18, 24, 25, and 27 to 33 align beside Line 48 under one variable-notation correction marker.",
+      "whyNow": "The notation correction is an independent source-backed issue and must remain separate from the infinite-time concentration error.",
+      "boundary": "The clean source-text span identifies the correction and its affected locations; this scene does not infer a revised equation or concentration curve.",
+      "locator": "PDF page 1, second reply paragraph listing Equations 14 to 18, 24, 25, 27 to 33, and Line 48",
+      "sourceExcerpt": "We would like to note that the variable “x” in Equations 14 to 18, 24, through a geomembrane to unsaturated soil liner: Considering the sorption effect 25, and 27 to 33 and in Line 48 of Lv and Qian (this issue) should read and robin-type boundary. J. Hydrol. 586, 124873. https://doi.org/10.1016/j. “z”.",
+      "anchorTerms": [
+        "Equations 14 to 18",
+        "Line 48"
+      ],
+      "visualObject": "Equation ranges 14 to 18 and 27 to 33, equation labels 24 and 25, and Line 48 beside a variable-notation correction marker",
+      "motionPurpose": "Make every source-listed correction location visible without reconstructing any revised equation.",
+      "stepDetail": "List Equations 14 to 18, 24, 25, 27 to 33, and Line 48; attach one variable-correction marker to all locations.",
+      "transitionBridge": "The location list recedes while the published concentration expression moves to the infinite-time limit test.",
+      "minimalText": "Variable correction locations"
+    }
+  ],
+  "methods": [
+    {
+      "id": "M01",
+      "input": "The published analytical concentration expression",
+      "operation": "Evaluate reported concentration problem",
+      "output": "Reported failure of the published solution to obtain the correct concentration",
+      "validity": "The cited source identifies the problem as the solution's failure to obtain the correct concentration.",
+      "locator": "PDF page 1, main reply paragraph",
+      "sourceExcerpt": "They point out the problem that our solution cannot obtain the correct concentration when",
+      "anchorTerms": [
+        "solution",
+        "correct concentration"
+      ],
+      "visualObject": "Published analytical concentration expression carrying a reported-problem flag",
+      "motionPurpose": "Attach the source-reported concentration problem to the published expression.",
+      "stepDetail": "Place the published concentration expression and attach the reported failure-to-obtain-correct-concentration flag.",
+      "transitionBridge": "The reported problem folds back onto the original liner profile as a correction flag.",
+      "minimalText": "Reported concentration problem"
+    }
+  ],
+  "symbols": [],
+  "return": {
+    "visualObject": "The original geomembrane-unsaturated-soil concentration profile carrying a warning at its infinite-time endpoint beside the separate variable-notation correction locations",
+    "claim": "The reply accepts that the published solution gives the wrong concentration at infinite time and separately flags a variable correction at the listed equations and line.",
+    "claimBoundary": "Beyond identifying the notation-correction locations, the reply supplies no revised analytical expression or new concentration results.",
+    "locator": "PDF page 1, both reply paragraphs",
+    "sourceExcerpt": "Their comment is right. We made a minor mistake in",
+    "minimalText": "Limit error and notation locations"
+  },
+  "visual": {
+    "systemType": "solute_transport",
+    "primaryObject": "Concentration profile across a geomembrane and unsaturated soil liner",
+    "accentObject": "Infinite-time asymptote, mismatch marker, and separate variable-notation location tag",
+    "measuredQuantity": "Organic-contaminant concentration",
+    "geometryNotes": "Keep the layered liner fixed while the concentration profile evolves along time; show the listed notation-correction locations as a separate tag and do not invent a corrected concentration curve."
+  }
+}

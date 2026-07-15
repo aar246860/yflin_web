@@ -1,0 +1,349 @@
+{
+  "schemaVersion": 1,
+  "id": "2023-01-28",
+  "doi": "10.1111/gwat.13295",
+  "title": "Effects of Soil Type and Thermal Boundary on Predicting Temperature Profiles and Groundwater Fluxes",
+  "sourceArtifact": "research-videos/source-pdfs/2023-01-28.pdf",
+  "research": {
+    "question": "How do soil thermal properties and the lower subsurface thermal boundary affect analytical predictions of temperature-depth profiles and inverse estimates of vertical groundwater flux?",
+    "system": "One-dimensional vertical heat conduction and groundwater advection through a homogeneous subsurface porous medium with time-varying surface temperature and alternative lower thermal boundary conditions.",
+    "inputData": "Synthetic sand and clay thermal-property cases, six classical analytical solutions, prescribed surface-temperature histories, lower-boundary parameters, and measured Sendai Plain temperature-depth data digitized from a published observation-well profile.",
+    "method": "Classify the six analytical solutions by state, domain, initial condition, and boundary condition; simulate synthetic profiles; compare boundary and soil effects; fit field boundary parameters; estimate vertical flux; and assess field agreement by RMSE.",
+    "benchmark": "The finite-domain Chang and Tsai solution is compared with five steady-state or semi-infinite-domain solutions in synthetic cases and with three transient alternatives against the Sendai Plain field profile.",
+    "uncertainty": "The study reports RMSE rather than a probabilistic uncertainty analysis. Interpretation is bounded by one-dimensional vertical transport, homogeneous media, steady groundwater flow, selected sand and clay properties, prescribed boundary forms, and one field application.",
+    "conclusion": "Soil-type differences in transient temperature-depth profiles increase with time, semi-infinite solutions can miss deeper lower-boundary effects, and the finite-domain convective-boundary solution gives the smallest reported field RMSE with a fitted vertical flux of 0.33 m/year for the Sendai Plain case."
+  },
+  "narrative": {
+    "throughline": "Follow a surface-temperature signal down a soil column and show how soil properties and the unseen lower boundary reshape the profile used to infer groundwater flux.",
+    "audienceStartingPoint": "A borehole temperature-depth profile can reveal heat carried by vertical groundwater flow.",
+    "stakes": "A model that assigns the wrong soil properties or removes the lower boundary can fit the wrong thermal path and return an inaccurate groundwater-flux estimate.",
+    "resolution": "The six-solution comparison reconnects profile divergence and field-fit differences to the soil column and lower thermal boundary that generated them."
+  },
+  "background": [
+    {
+      "id": "B01",
+      "premise": "Heat is treated as a groundwater tracer.",
+      "visibleEvidence": "A temperature signal descends through a porous column beside a vertical groundwater-flow arrow.",
+      "whyNow": "The tracer relation turns a borehole temperature profile into the concrete object whose interpretation is at stake.",
+      "boundary": "The paper addresses vertical one-dimensional heat transport rather than a general multidimensional groundwater-flow reconstruction.",
+      "locator": "PDF page 1, Introduction, first paragraph",
+      "sourceExcerpt": "Therefore, the heat is treated as a groundwater tracer",
+      "anchorTerms": [
+        "heat",
+        "groundwater tracer"
+      ],
+      "visualObject": "Vertical porous column with a descending temperature signal and groundwater arrow",
+      "motionPurpose": "Connect an observable temperature signal to otherwise difficult vertical groundwater movement",
+      "stepDetail": "Pulse surface heat into the column and retain the groundwater arrow beside the evolving depth profile.",
+      "transitionBridge": "Hold the profile in place while the bottom edge of the column becomes visible.",
+      "minimalText": "Heat traces groundwater"
+    },
+    {
+      "id": "B02",
+      "premise": "A lower thermal boundary can alter transient TD profiles.",
+      "visibleEvidence": "Two identical shallow profiles separate near a finite lower boundary while their surface histories remain matched.",
+      "whyNow": "The lower edge explains why a semi-infinite transient model can diverge from a finite-domain profile at depth.",
+      "boundary": "The effect concerns media whose underlying layer supplies a relevant thermal boundary within the modeled depth and time.",
+      "locator": "PDF page 2, Research Methods, opening paragraph",
+      "sourceExcerpt": "the lower thermal boundary effect on TD",
+      "anchorTerms": [
+        "lower thermal boundary",
+        "TD"
+      ],
+      "visualObject": "Paired finite and semi-infinite soil columns with matched surface forcing",
+      "motionPurpose": "Reveal the hidden bottom boundary as a cause of deep profile separation",
+      "stepDetail": "Align the surface signals, extend one column without a visible bottom, and let only the finite column receive lower-boundary heat.",
+      "transitionBridge": "Keep both columns visible while their soil fills change from a common medium to sand and clay.",
+      "minimalText": "The bottom boundary matters"
+    },
+    {
+      "id": "B03",
+      "premise": "Soil type may be an important factor in thermal prediction.",
+      "visibleEvidence": "Sand and clay columns carry the same imposed surface signal through visibly distinct thermal-property labels.",
+      "whyNow": "Soil-specific conductivity and heat capacity determine whether one parameter set can represent both profile responses.",
+      "boundary": "The paper demonstrates the effect with common saturated sand and clay properties rather than an exhaustive soil catalog.",
+      "locator": "PDF page 2, Introduction, soil-property discussion",
+      "sourceExcerpt": "Soil type may be an important factor",
+      "anchorTerms": [
+        "Soil type",
+        "important factor"
+      ],
+      "visualObject": "Matched sand and clay columns with conductivity and heat-capacity markers",
+      "motionPurpose": "Turn soil type from a label into a visible change in thermal response",
+      "stepDetail": "Duplicate the bounded column, texture one as sand, texture one as clay, and attach the paper's property roles without adding unsupported values.",
+      "transitionBridge": "Merge the two columns into the common conduction-advection equation used by the selected solutions.",
+      "minimalText": "Sand is not clay"
+    }
+  ],
+  "methods": [
+    {
+      "id": "M01",
+      "input": "Subsurface temperature T over depth z and time t with thermal conductivity bulk heat capacity water heat capacity and vertical Darcy flux q",
+      "operation": "Form transient heat equation",
+      "output": "Transient heat conduction-advection governing equation for the vertical porous medium",
+      "validity": "The formulation follows the paper's one-dimensional homogeneous-medium and steady-groundwater-flow assumptions.",
+      "locator": "PDF page 3, Conceptual Model for Subsurface Heat Transfer, Figure 1 and Equation 1",
+      "sourceExcerpt": "the governing equation for the transient heat",
+      "anchorTerms": [
+        "governing equation",
+        "transient heat"
+      ],
+      "visualObject": "Bounded soil column whose conductive spread and advective groundwater arrow become Equation 1 terms",
+      "motionPurpose": "Convert the visible heat paths into the shared mathematical model",
+      "stepDetail": "Retain the soil column, isolate the conductive depth curvature, isolate the advective flux arrow, and place the storage response on the opposite side.",
+      "transitionBridge": "Keep the governing relation fixed while six boundary-condition frames assemble around it.",
+      "minimalText": "Conduction | advection | storage"
+    },
+    {
+      "id": "M02",
+      "input": "Six analytical heat-transfer solutions with their medium domains initial conditions top boundaries and lower boundaries",
+      "operation": "Classify analytical solutions",
+      "output": "Table 1 grouping into two steady-state finite-domain solutions and four transient solutions with distinct boundary structures",
+      "validity": "The categories reproduce the state domain initial-condition and boundary-condition distinctions listed in Table 1.",
+      "locator": "PDF pages 3-4, Research Methods, Table 1",
+      "sourceExcerpt": "solutions are introduced next and categorized in Table 1",
+      "anchorTerms": [
+        "solutions",
+        "Table 1"
+      ],
+      "visualObject": "Six model frames sorted by steady or transient state and finite or semi-infinite depth",
+      "motionPurpose": "Expose which model structures retain time variation and which retain a lower boundary",
+      "stepDetail": "Place each named solution beside its domain, group the steady pair, group the transient quartet, and leave every lower-boundary icon visible.",
+      "transitionBridge": "Feed each classified frame the same synthetic parameter case.",
+      "minimalText": "6 solutions | different boundaries"
+    },
+    {
+      "id": "M03",
+      "input": "Selected analytical solution with input thermal parameter values for synthetic sand or clay cases",
+      "operation": "Simulate synthetic temperature profiles",
+      "output": "Temperature-depth profiles for each specified solution soil case boundary setting and simulation time",
+      "validity": "The forward problem uses the selected solution with specified thermal parameters drawn from the paper's synthetic cases.",
+      "locator": "PDF page 6, Research Methods, forward-problem paragraph; PDF pages 7-8, Figures 2-5",
+      "sourceExcerpt": "with the input of the thermal parameter values",
+      "anchorTerms": [
+        "input",
+        "thermal parameter values"
+      ],
+      "visualObject": "One soil column generating source-defined temperature-depth traces under each selected solution",
+      "motionPurpose": "Show how a fixed model structure turns stated case inputs into a depth profile",
+      "stepDetail": "Attach the chosen parameter set to one classified model, sweep depth through the soil column, and reveal only the corresponding source-defined profile.",
+      "transitionBridge": "Align profiles that share initial and surface conditions for a lower-boundary comparison.",
+      "minimalText": "Forward TD profiles"
+    },
+    {
+      "id": "M04",
+      "input": "Transient solution profiles with matched initial settings and their stated surface-temperature histories",
+      "operation": "Compare thermal boundary profiles",
+      "output": "Depth-dependent deviation from CTS that becomes larger over the reported 25-year to 75-year comparison",
+      "validity": "Figure 4 compares TAS KMS KIS and finite-domain CTS under the paper's corresponding initial and top-boundary settings.",
+      "locator": "PDF pages 7-8, Effects of Subsurface Thermal Boundaries, Figures 3-4",
+      "sourceExcerpt": "the deviation of the curves from CTS becomes larger",
+      "anchorTerms": [
+        "deviation",
+        "CTS"
+      ],
+      "visualObject": "Source-defined transient profiles sharing a shallow origin and separating near the lower boundary",
+      "motionPurpose": "Make increasing boundary-induced profile deviation legible along depth and reported time",
+      "stepDetail": "Overlay the source profiles at the reported times, preserve their common initial reference, and highlight only their separation from CTS at depth.",
+      "transitionBridge": "Keep the time markers while replacing the common soil with paired sand and clay media.",
+      "minimalText": "Boundary deviation grows"
+    },
+    {
+      "id": "M05",
+      "input": "Six solution profiles computed with the paper's saturated sand and clay thermal properties",
+      "operation": "Compare soil type profiles",
+      "output": "Profile disparity between different soil types that increases with time in each transient solution",
+      "validity": "Figure 5 uses the stated sand and clay conductivity and bulk heat-capacity values across all six selected solutions.",
+      "locator": "PDF pages 8-9, Effects of Soil Types on Predicting TD Profiles, Figure 5",
+      "sourceExcerpt": "different soil types increases with time",
+      "anchorTerms": [
+        "soil types",
+        "increases with time"
+      ],
+      "visualObject": "Paired source-defined sand and clay profiles at the reported early and late times",
+      "motionPurpose": "Separate the soil-property effect from the lower-boundary comparison",
+      "stepDetail": "Hold each analytical solution fixed, overlay its sand and clay profiles at the reported times, and mark the source-described change in disparity.",
+      "transitionBridge": "Collapse the synthetic profiles into the measured Sendai borehole profile and its boundary observations.",
+      "minimalText": "Soil disparity grows with time"
+    },
+    {
+      "id": "M06",
+      "input": "Measured surface-temperature variation curves for the Sendai field case",
+      "operation": "Fit top boundary parameters",
+      "output": "Top-boundary parameters for each selected transient field solution",
+      "validity": "The paper obtains the top-boundary parameters by fitting the measured surface-temperature variation curves.",
+      "locator": "PDF page 6, Research Methods, inverse-problem paragraph",
+      "sourceExcerpt": "parameters in the top BCs are obtained by fitting the measured data of surface temperature variation curves.",
+      "anchorTerms": [
+        "top BCs",
+        "surface temperature variation curves"
+      ],
+      "visualObject": "Measured Sendai surface-temperature history attached to the top of the soil column",
+      "motionPurpose": "Assign the top-boundary fit to the surface observation that constrains it",
+      "stepDetail": "Place the measured surface history at the top edge and fit only the corresponding top-boundary parameter handles.",
+      "transitionBridge": "The fitted top boundary remains fixed while borehole temperatures constrain the lower boundary in M07.",
+      "minimalText": "Fit top BC"
+    },
+    {
+      "id": "M07",
+      "input": "Measured borehole temperatures defining the lower thermal boundary",
+      "operation": "Fit lower boundary parameters",
+      "output": "Lower-boundary parameters for the finite-domain field solution",
+      "validity": "The paper obtains lower-boundary parameters by fitting measured borehole temperatures independently of the top-boundary fit.",
+      "locator": "PDF page 6, Research Methods, inverse-problem paragraph",
+      "sourceExcerpt": "The parameters in the lower BCs are gained by fitting the measured temperature from boreholes.",
+      "anchorTerms": [
+        "lower BCs",
+        "temperature from boreholes"
+      ],
+      "visualObject": "Measured deepest-borehole temperature attached to the lower boundary of the finite soil column",
+      "motionPurpose": "Assign the lower-boundary fit to the borehole observation that constrains it",
+      "stepDetail": "Keep the fitted surface history visible, attach borehole temperature to the lower edge, and fit only the lower-boundary handles.",
+      "transitionBridge": "Both independently owned boundary fits remain locked while groundwater flux varies in M08.",
+      "minimalText": "Fit lower BC"
+    },
+    {
+      "id": "M08",
+      "input": "Each selected transient solution with known thermal parameters fitted boundary parameters and measured Sendai temperature-depth data",
+      "operation": "Estimate vertical groundwater flux",
+      "output": "Estimated vertical groundwater flux for each TAS KMS KIS and CTS field fit",
+      "validity": "The inverse procedure uses least-squares parameter estimation to fit measured temperature-depth profiles with known parameter values.",
+      "locator": "PDF page 6, Research Methods, inverse-problem paragraph; PDF page 10, field method and Table 2",
+      "sourceExcerpt": "values are estimated using the selected",
+      "anchorTerms": [
+        "estimated",
+        "selected"
+      ],
+      "visualObject": "Groundwater-flux arrow adjusted beside each model profile until it meets the measured Sendai points",
+      "motionPurpose": "Reveal groundwater flux as the inferred quantity rather than a directly observed input",
+      "stepDetail": "Keep boundary parameters fixed, vary one vertical flux arrow per solution, and stop each source-defined profile at its reported field fit.",
+      "transitionBridge": "Retain the four fitted profiles and measured points for the RMSE calculation in M09.",
+      "minimalText": "Infer q from TD data"
+    },
+    {
+      "id": "M09",
+      "input": "Observed Sendai temperature-depth data and four fitted transient solution profiles",
+      "operation": "Compute profile RMSE",
+      "output": "One root-mean-square error RMSE value for each fitted field solution",
+      "validity": "Table 2 reports RMSE between the observed data and the four fitted solutions.",
+      "locator": "PDF page 9, Estimation of Vertical Groundwater Fluxes from Field TD Data, Table 2",
+      "sourceExcerpt": "root-mean-square error (RMSE)",
+      "anchorTerms": [
+        "root-mean-square error",
+        "RMSE"
+      ],
+      "visualObject": "Residual segments from measured temperature points to each fitted profile collected into four RMSE markers",
+      "motionPurpose": "Turn visible point-to-profile mismatch into the paper's reported fit metric",
+      "stepDetail": "Draw residual segments at measured depths, gather the segments by solution, and reveal only the reported RMSE markers from Table 2.",
+      "transitionBridge": "Align the four owned RMSE markers beneath their corresponding profile overlays for comparison in M10.",
+      "minimalText": "RMSE of each fit"
+    },
+    {
+      "id": "M10",
+      "input": "Four fitted field profiles with observed Sendai data and their reported RMSE values",
+      "operation": "Compare field solution agreement",
+      "output": "CTS identified as the best reported agreement with RMSE 0.0131 degrees Celsius and fitted q of 0.33 m/year",
+      "validity": "Figure 6 and Table 2 support the comparison for the digitized Well No. 4 profile under the stated field settings.",
+      "locator": "PDF pages 9-10, Estimation of Vertical Groundwater Fluxes from Field TD Data, Table 2 and Figure 6",
+      "sourceExcerpt": "reveals that the CTS agrees better with the observed",
+      "anchorTerms": [
+        "CTS",
+        "observed"
+      ],
+      "visualObject": "Measured Sendai profile with the four source-defined fitted profiles and CTS agreement emphasized",
+      "motionPurpose": "Connect model boundary structure to the reported field-fit ranking and flux estimate",
+      "stepDetail": "Overlay the four source profiles on the measured points, align each reported RMSE marker, and emphasize the CTS entry without inventing intermediate curves.",
+      "transitionBridge": "Return the emphasized fit to the finite soil column with its lower thermal boundary restored.",
+      "minimalText": "CTS | RMSE 0.0131 C | q 0.33 m/year"
+    }
+  ],
+  "symbols": [
+    {
+      "latex": "T(z,t)",
+      "firstUseOwner": "M01",
+      "visualObject": "Temperature field through the vertical porous column",
+      "meaning": "Subsurface temperature at depth z and time t",
+      "unit": "degrees Celsius",
+      "transition": "Color the column by temperature before attaching the T label"
+    },
+    {
+      "latex": "z",
+      "firstUseOwner": "M01",
+      "visualObject": "Downward depth coordinate beside the soil column",
+      "meaning": "Depth below the ground surface",
+      "unit": "m",
+      "transition": "Extend the depth axis from the ground surface to the lower boundary"
+    },
+    {
+      "latex": "t",
+      "firstUseOwner": "M01",
+      "visualObject": "Time marker attached to the evolving temperature profile",
+      "meaning": "Elapsed simulation or observation time",
+      "unit": "time",
+      "transition": "Advance the time marker only after the initial profile is visible"
+    },
+    {
+      "latex": "q",
+      "firstUseOwner": "M01",
+      "visualObject": "Vertical groundwater-flow arrow",
+      "meaning": "Vertical Darcy flux",
+      "unit": "m/year",
+      "transition": "Attach q to the groundwater arrow before it enters the advection term"
+    },
+    {
+      "latex": "\\lambda",
+      "firstUseOwner": "M01",
+      "visualObject": "Conductive heat spread through the soil column",
+      "meaning": "Thermal conductivity of the porous medium",
+      "unit": "W m^{-1} degrees Celsius^{-1}",
+      "transition": "Color-match the conductivity label to the conductive spread"
+    },
+    {
+      "latex": "c_m",
+      "firstUseOwner": "M01",
+      "visualObject": "Thermal storage fill within the porous medium",
+      "meaning": "Bulk volumetric heat capacity of the medium",
+      "unit": "J m^{-3} degrees Celsius^{-1}",
+      "transition": "Fill the soil column before mapping storage to the time-response term"
+    },
+    {
+      "latex": "L",
+      "firstUseOwner": "M02",
+      "visualObject": "Bracket from the ground surface to the finite lower boundary",
+      "meaning": "Depth of the subsurface medium boundary",
+      "unit": "m",
+      "transition": "Grow the bracket when the finite-domain solutions are classified"
+    },
+    {
+      "latex": "h_f",
+      "firstUseOwner": "M07",
+      "visualObject": "Heat-transfer marker at the lower convective boundary",
+      "meaning": "Heat transfer coefficient at the lower boundary",
+      "unit": "W m^{-2} degrees Celsius^{-1}",
+      "transition": "Attach the marker to the bottom interface after the boundary observation appears"
+    },
+    {
+      "latex": "\\operatorname{RMSE}",
+      "firstUseOwner": "M09",
+      "visualObject": "Grouped residual segments between observed points and a fitted profile",
+      "meaning": "Root-mean-square temperature error for a field fit",
+      "unit": "degrees Celsius",
+      "transition": "Gather visible residual segments into one fit-error marker"
+    }
+  ],
+  "return": {
+    "visualObject": "Sendai borehole temperature-depth profile inside a finite alluvial-soil column with the surface history lower thermal boundary and fitted vertical flux arrow restored",
+    "claim": "For the selected analytical solutions and cases the soil-type profile difference grows with time and ignoring a relevant lower thermal boundary can degrade field groundwater-flux estimation.",
+    "claimBoundary": "The comparison is limited to one-dimensional homogeneous porous media with steady vertical groundwater flow the paper's sand and clay synthetic properties the selected boundary formulations and the digitized Sendai Plain field profile.",
+    "locator": "PDF page 1, Abstract; PDF page 11, Conclusions, items 3-5",
+    "sourceExcerpt": "but ignore possible thermal boundary effects in the subsurface",
+    "minimalText": "Match soil and lower boundary to the site"
+  },
+  "visual": {
+    "systemType": "thermal_borehole",
+    "primaryObject": "Vertical finite porous-medium column carrying a temperature-depth profile and groundwater-flux arrow",
+    "accentObject": "Lower thermal boundary switching between absent specific-temperature specific-heat-flux and convective representations",
+    "measuredQuantity": "Subsurface temperature versus depth with vertical groundwater flux inferred from field profile fitting",
+    "geometryNotes": "Begin with the Figure 1 vertical column. Preserve depth orientation while moving through the Table 1 model classes source-defined Figure 4 boundary comparisons Figure 5 sand-clay comparisons and Figure 6 Sendai field fits. Return to the finite column with the lower boundary and q arrow visible."
+  }
+}

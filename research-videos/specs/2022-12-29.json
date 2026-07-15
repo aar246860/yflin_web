@@ -1,0 +1,210 @@
+{
+  "schemaVersion": 1,
+  "id": "2022-12-29",
+  "doi": "10.29974/JTAE.202212_68(4).0002",
+  "title": "Estimation of Rainfall Infiltration Rates by New Heat Transfer Models and Subsurface Temperature Profiles",
+  "sourceArtifact": "research-videos/source-pdfs/2022-12-29.pdf",
+  "research": {
+    "question": "Can time-resolved rainfall infiltration be estimated from subsurface temperature profiles without direct soil-hydraulic measurements?",
+    "system": "A 4 m by 1.5 m by 2.3 m outdoor sand infiltration tank at National Taiwan University, instrumented with eight DTS profiles and flowmeters and forced by three rainfall patterns.",
+    "inputData": "DTS subsurface and surface temperatures, prescribed soil thermal properties, and flowmeter infiltration records for strong uniform, weak uniform, and nonuniform rainfall tests.",
+    "method": "Represent vertical heat conduction and infiltration-driven advection with a transient analytical heat-transfer model, fit its initial and surface-temperature conditions, and estimate seepage velocity by minimizing temperature-profile error with the Levenberg-Marquardt algorithm.",
+    "benchmark": "The analytical temperature solution is checked against a Crank-Nicolson numerical solution; inferred infiltration-rate curves are checked against flowmeter measurements in all three rainfall experiments.",
+    "uncertainty": "No statistical interval is reported. The experiments expose structural uncertainty from lateral flow in the sloping tank, temperature noise, soil heterogeneity, and the focus on the saturated portion of each event.",
+    "conclusion": "The estimated and measured infiltration curves have similar temporal behavior across the tested rainfall patterns, while the method requires soil thermal properties rather than soil hydrogeological parameters."
+  },
+  "narrative": {
+    "throughline": "Turn heat carried through a wetting soil profile into a time series of infiltration rate, then test that thermal inference against direct flow measurements.",
+    "audienceStartingPoint": "Infiltration is a groundwater-recharge flux that is difficult to monitor continuously with conventional field instruments.",
+    "stakes": "A practical continuous estimate would reduce dependence on costly intrusive sensors and incomplete infiltrometer snapshots.",
+    "resolution": "DTS profiles drive an analytical heat model whose optimized seepage velocity reproduces the measured infiltration trend under three controlled rainfall patterns."
+  },
+  "background": [
+    {
+      "id": "B01",
+      "premise": "Rainfall infiltration is an important groundwater-recharge source but is difficult to measure directly and continuously.",
+      "visibleEvidence": "A recharge arrow enters soil while an infiltrometer records only a short isolated segment of the evolving flux.",
+      "whyNow": "Incomplete infiltration histories limit groundwater-recharge accounting.",
+      "boundary": "The paper addresses event-scale infiltration estimation, not basin-scale recharge partitioning.",
+      "locator": "PDF page 2, Abstract",
+      "sourceExcerpt": "Rainfall infiltration is an important source of groundwater recharge",
+      "anchorTerms": ["source", "infiltration"],
+      "visualObject": "soil column with rainfall, recharge arrow, and partial gauge trace",
+      "motionPurpose": "Contrast a continuous subsurface process with incomplete direct observation.",
+      "stepDetail": "Let the wetting front descend while the direct-measurement trace stops early.",
+      "transitionBridge": "Replace the missing flux history with a continuously observed thermal field.",
+      "minimalText": "Infiltration is hard to track"
+    },
+    {
+      "id": "B02",
+      "premise": "Groundwater-soil heat exchange makes the subsurface temperature profile a tracer of water movement.",
+      "visibleEvidence": "A descending water parcel bends a colored temperature-versus-depth profile.",
+      "whyNow": "DTS can observe that profile repeatedly with dense depth sampling.",
+      "boundary": "Temperature is an indirect tracer whose interpretation depends on the heat-transfer model and thermal properties.",
+      "locator": "PDF page 2, Abstract",
+      "sourceExcerpt": "some studies have used the heat as a groundwater flow tracer to observe the interaction between surface water and groundwater",
+      "anchorTerms": ["heat", "groundwater"],
+      "visualObject": "temperature-depth profile coupled to a moving water parcel",
+      "motionPurpose": "Make advection visible as a deformation and translation of the thermal profile.",
+      "stepDetail": "Animate conduction as spreading and infiltration-driven advection as downward profile displacement.",
+      "transitionBridge": "Measure the moving profile before solving backward for the flux.",
+      "minimalText": "Heat traces water"
+    }
+  ],
+  "methods": [
+    {
+      "id": "M01",
+      "input": "Temperatures along eight vertically installed optical-fiber profiles.",
+      "operation": "Extract DTS temperature profiles",
+      "output": "Time-indexed temperature-versus-depth observations at the experimental tank.",
+      "validity": "The DTS configuration has 0.1 degC precision and 60 s sampling; profile spacings are 0.1 or 0.2 m depending on cable group.",
+      "locator": "PDF page 2, Abstract; PDF page 4, Section 2.1",
+      "sourceExcerpt": "this study utilizes a distributed temperature sensing system (DTS) to measure the subsurface temperature profiles",
+      "anchorTerms": ["DTS", "temperature profiles"],
+      "visualObject": "eight DTS traces embedded in the infiltration tank",
+      "motionPurpose": "Populate the soil column with synchronized temperature samples.",
+      "stepDetail": "Sweep downward along each fiber and leave a colored sample at every sensing depth.",
+      "transitionBridge": "Feed the measured profiles into the heat-transfer equation.",
+      "minimalText": "Measure T(z,t)"
+    },
+    {
+      "id": "M02",
+      "input": "Measured DTS temperature profiles and surface-temperature histories containing observational noise.",
+      "operation": "Filter thermal records",
+      "output": "Preprocessed temperature records for analytical fitting.",
+      "validity": "The paper requires noise removal before subsequent analysis and cites Rudin et al. (1992).",
+      "locator": "PDF page 6, Section 2.5, paragraph following Equation 20",
+      "sourceExcerpt": "先將雜訊去除再做後續分析 (Rudin et al., 1992)。",
+      "anchorTerms": ["雜訊去除", "Rudin"],
+      "visualObject": "Noisy DTS and surface-temperature traces settling into preprocessed records",
+      "motionPurpose": "Remove measurement noise before the thermal inversion begins.",
+      "stepDetail": "Hold the measured traces fixed, suppress their noise component, and pass only the preprocessed records forward.",
+      "transitionBridge": "The preprocessed temperature records become the observations predicted by the analytical model in M03.",
+      "minimalText": "Preprocess thermal noise"
+    },
+    {
+      "id": "M03",
+      "input": "A trial seepage velocity, soil thermal properties, a fitted initial thermal gradient, and periodic surface temperature.",
+      "operation": "Simulate subsurface temperature profiles",
+      "output": "A predicted temperature profile at each measurement time.",
+      "validity": "The heat-transfer model assumes one-dimensional vertical conduction-advection governed by Fourier heat transfer and energy conservation, with a far-depth zero-gradient boundary.",
+      "locator": "PDF page 2, Abstract; PDF pages 4-5, Sections 2.2-2.3, Equations 1-12",
+      "sourceExcerpt": "develops a new heat-transfer analytical model",
+      "anchorTerms": ["heat-transfer", "model"],
+      "visualObject": "analytical temperature curve evolving through the soil column",
+      "motionPurpose": "Show how a trial velocity transforms boundary heating into a predicted depth profile.",
+      "stepDetail": "Advance the profile through diffusion-like smoothing and downward advective translation.",
+      "transitionBridge": "The analytical profile is held beside an independently discretized profile for validation in M04.",
+      "minimalText": "Predict T(z,t|v)"
+    },
+    {
+      "id": "M04",
+      "input": "The analytical heat-transfer solution and the same initial, boundary, thermal, velocity, depth-step, and time-step values in a numerical model.",
+      "operation": "Validate analytical profiles",
+      "output": "Matched analytical and Crank-Nicolson temperature-depth profiles.",
+      "validity": "The numerical solution discretizes Equations 1-4 with the Crank-Nicolson method; the reported profiles are nearly coincident for the stated test parameters.",
+      "locator": "PDF page 5, Section 2.4, Equations 13-17 and Figure 3",
+      "sourceExcerpt": "此數值解應用克蘭克－尼科爾森法 (Crank-Nicolson method) (Crank and Nicolson, 1996) 來離散數學模式",
+      "anchorTerms": ["Crank-Nicolson method", "離散數學模式"],
+      "visualObject": "Analytical and Crank-Nicolson temperature profiles sharing one depth axis",
+      "motionPurpose": "Test the analytical derivation against an independently discretized heat equation.",
+      "stepDetail": "Lock the shared parameters, overlay the analytical and numerical profiles, and retain their reported near-coincidence.",
+      "transitionBridge": "The validated analytical profile becomes the prediction adjusted against DTS observations in M05.",
+      "minimalText": "Analytical vs Crank-Nicolson"
+    },
+    {
+      "id": "M05",
+      "input": "Measured and analytically predicted temperature profiles for a trial seepage velocity v.",
+      "operation": "Fit seepage velocity",
+      "output": "A time-resolved seepage-velocity estimate.",
+      "validity": "The estimation method has high efficiency in calculation; Equation 18 uses a velocity derivative approximated with a forward increment of 0.001v, and noisy temperature records require preprocessing.",
+      "locator": "PDF page 2, Abstract; PDF page 6, Section 2.5, Equations 18-20",
+      "sourceExcerpt": "combined with the optimization method to estimate in-situ infiltration rates.",
+      "anchorTerms": ["optimization method", "in-situ infiltration rates"],
+      "visualObject": "measured and predicted profiles with a shrinking residual band",
+      "motionPurpose": "Expose inversion as repeated reduction of temperature mismatch.",
+      "stepDetail": "Update v, redraw the predicted profile, and contract the residual until the objective stabilizes.",
+      "transitionBridge": "The fitted seepage-velocity trace enters the velocity-to-rate conversion in M06.",
+      "minimalText": "Fit v by least squares"
+    },
+    {
+      "id": "M06",
+      "input": "Time-resolved seepage velocity v and effective porosity n_e.",
+      "operation": "Convert velocity to rate",
+      "output": "Darcy infiltration flux q_I=n_e v expressed in the rate units used by the rainfall experiments.",
+      "validity": "Equation 1 carries the advective water-flux factor n_e v, while Section 3 reports the converted infiltration-rate curve for comparison with the flowmeter.",
+      "locator": "PDF page 4, Section 2.2, Equation 1; PDF page 6, Section 3.1 and Figure 5",
+      "sourceExcerpt": "得到時序入滲率之模擬結果如圖 5b 所示，觀測時間為",
+      "anchorTerms": ["時序入滲率", "圖 5b"],
+      "visualObject": "Seepage-velocity trace changing into the reported infiltration-rate curve",
+      "motionPurpose": "Keep the fitted velocity distinct from the rate quantity compared with the flowmeter.",
+      "stepDetail": "Multiply the fitted seepage velocity by effective porosity and express q_I in the source's plotted rate units.",
+      "transitionBridge": "The converted infiltration-rate curve is placed beside the independent flowmeter record in M07.",
+      "minimalText": "Velocity becomes rate"
+    },
+    {
+      "id": "M07",
+      "input": "Estimated infiltration-rate time series and flowmeter records from three rainfall patterns.",
+      "operation": "Compare infiltration rate curves",
+      "output": "Three event-specific agreement assessments and a visible lateral-flow discrepancy.",
+      "validity": "The comparison is strongest during saturated infiltration; downstream DTS groups can overestimate vertical infiltration because the tank bottom creates lateral flow.",
+      "locator": "PDF page 2, Abstract; PDF pages 6-7, Sections 3.1-3.3, Figures 5-7",
+      "sourceExcerpt": "We set up three rainfall events with different rainfall patterns and compare the infiltration rate measured by a flowmeter with that estimated by the present model and method.",
+      "anchorTerms": ["rainfall", "infiltration rate"],
+      "visualObject": "paired estimated and measured rate curves under three rainfall hyetographs",
+      "motionPurpose": "Reveal agreement in curve shape and the experiment-specific divergence caused by lateral flow.",
+      "stepDetail": "Draw each measured curve first, then overlay its inferred counterpart without adding unreported values.",
+      "transitionBridge": "The owned comparison curves return to the wetting soil column for the source-bounded conclusion.",
+      "minimalText": "Three rainfall tests"
+    }
+  ],
+  "symbols": [
+    {
+      "latex": "T(z,t)",
+      "firstUseOwner": "B02",
+      "visualObject": "temperature-depth curve",
+      "meaning": "soil temperature at depth z and time t",
+      "unit": "degC",
+      "transition": "The observed curve becomes the target of the analytical prediction."
+    },
+    {
+      "latex": "v",
+      "firstUseOwner": "M03",
+      "visualObject": "downward velocity arrow",
+      "meaning": "groundwater seepage velocity inferred from thermal profiles",
+      "unit": "m/s",
+      "transition": "The trial arrow changes length as profile error is minimized."
+    },
+    {
+      "latex": "E(v)=\\sum_{j=1}^{M}[T_{F,j}-T_{A,j}(v)]^2",
+      "firstUseOwner": "M05",
+      "visualObject": "residual band and scalar objective meter",
+      "meaning": "sum of squared differences between measured and analytical temperature profiles",
+      "unit": "degC^2",
+      "transition": "The residual band contracts into the optimized infiltration-rate trace."
+    },
+    {
+      "latex": "q_I",
+      "firstUseOwner": "M06",
+      "visualObject": "converted infiltration-rate curve",
+      "meaning": "Darcy infiltration flux q_I=n_e v converted from the fitted seepage velocity",
+      "unit": "rate units reported in Figures 5-7",
+      "transition": "The fitted velocity trace changes into the rate curve that is compared with the flowmeter."
+    }
+  ],
+  "return": {
+    "visualObject": "the original rainfall-fed soil column with DTS profiles, a downward inferred flux arrow, and measured versus estimated rate traces at its base",
+    "claim": "Across the three tested rainfall patterns, the inferred infiltration-rate curves followed the measured curves, and the analytical temperature profiles agreed with the numerical model.",
+    "claimBoundary": "This is a controlled sand-tank demonstration focused mainly on saturated infiltration. It provides no statistical uncertainty interval, and lateral flow, thermal noise, soil heterogeneity, and required soil thermal properties constrain interpretation.",
+    "locator": "PDF page 2, Abstract; PDF pages 5-7, Sections 2.4 and 3.1-3.3, Figures 3 and 5-7",
+    "sourceExcerpt": "The results show that under the different rain patterns, the curves of the estimated infiltration rate are similar to those of the measured infiltration rate.",
+    "minimalText": "Thermal inference tracks measured infiltration"
+  },
+  "visual": {
+    "systemType": "vertical_heat",
+    "primaryObject": "instrumented vertical soil profile beneath simulated rainfall",
+    "accentObject": "paired measured and inferred infiltration-rate curves",
+    "measuredQuantity": "subsurface temperature T(z,t), converted to seepage velocity and infiltration rate",
+    "geometryNotes": "Use the paper's vertical z axis, eight DTS locations, finite sand tank, sloping bottom, and three rainfall histories; distinguish desired vertical infiltration from experiment-induced lateral flow."
+  }
+}

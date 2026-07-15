@@ -1,0 +1,376 @@
+{
+  "schemaVersion": 1,
+  "id": "2022-03-32",
+  "doi": "10.1029/2021WR031368",
+  "title": "A Semi-Analytical Solution for Slug Test by Considering Near-Well Formation Damage and Nonlinear Flow",
+  "sourceArtifact": "research-videos/source-pdfs/2022-03-32.pdf",
+  "research": {
+    "question": "Can slug-test water-level recovery in a fractured confined aquifer be modeled analytically when near-well formation damage and non-Darcy flow both add head loss?",
+    "system": "A fully penetrating finite-radius test well in an infinite homogeneous confined aquifer, with a thin wellbore skin and nonlinear Forchheimer flow across the screen or gravel pack.",
+    "inputData": "Radial confined-flow equations, slug-test well mass balance, field normalized water-level data from five tests at wells LA-87B, LA-88B, and LA-88A in the Minnelusa fractured aquifer, and Greene et al. (1999) predictions.",
+    "method": "The model couples a Robin-type skin loss and quadratic Forchheimer loss to radial aquifer flow and well storage, derives Laplace-domain solutions with successive integration by parts, numerically inverts them with Stehfest, and fits transmissivity, storativity, skin factor, and Forchheimer coefficient.",
+    "benchmark": "The Laplace solution reduces to Cooper et al. (1967) when skin and non-Darcy effects vanish, is compared with a finite-element solution, and is evaluated against three nested field-fit cases plus Greene et al. (1999).",
+    "uncertainty": "Model cases are compared with mean error and standard error of estimate; the paper reports an unexpected pressure ordering in one fitted non-Darcy coefficient and attributes it to possible test or measurement quality rather than a probabilistic uncertainty model.",
+    "conclusion": "Case 3 gives the smallest reported errors at LA-87B and LA-88B, but at LA-87B formation damage improves fit only marginally and its fitted effect is minor, leaving stronger evidence for non-Darcy loss; both effects are small at LA-88A."
+  },
+  "narrative": {
+    "throughline": "A slug pulse does not recover through the aquifer alone: linear skin resistance and nonlinear screen loss reshape the well response and therefore the inferred aquifer parameters.",
+    "audienceStartingPoint": "The audience understands that a slug test displaces water in a well and infers aquifer properties from the recovery curve.",
+    "stakes": "Fitting a fractured-aquifer slug test with Darcy flow alone can mistake near-well head loss for aquifer transmissivity or storage.",
+    "resolution": "The recovery curve is decomposed into aquifer diffusion, thin-skin loss, and rate-dependent Forchheimer loss, then tested against field curves with and without those mechanisms."
+  },
+  "background": [
+    {
+      "id": "B01",
+      "premise": "A slug test estimates aquifer parameters by suddenly displacing well water and analyzing the measured recovery with a mathematical model.",
+      "visibleEvidence": "A water column is displaced inside a well and relaxes toward its initial level while a radial head pulse enters the aquifer.",
+      "whyNow": "The well water-level curve is the scientific object whose unexpected shape motivates the new model.",
+      "boundary": "The paper treats a fully penetrating well in a confined aquifer rather than every slug-test geometry.",
+      "locator": "PDF page 1, Section 1 Introduction, paragraph 1",
+      "sourceExcerpt": "suddenly displacing a small quantity of water inside the well,",
+      "anchorTerms": [
+        "suddenly displacing",
+        "water level inside the wellbore"
+      ],
+      "visualObject": "Confined-aquifer well with an initially displaced water column and radial recovery field",
+      "motionPurpose": "Release the displaced column so the recovery curve and outward aquifer response appear together.",
+      "stepDetail": "Mark equilibrium; impose the initial displacement; release the slug; trace the falling normalized well level.",
+      "transitionBridge": "The recovery curve approaches the well screen where extra losses occur.",
+      "minimalText": "Slug recovery"
+    },
+    {
+      "id": "B02",
+      "premise": "Drilling-induced formation damage creates a disturbed near-well skin whose permeability change causes linear head loss.",
+      "visibleEvidence": "A thin annulus around the screen darkens and adds a head drop proportional to screen flow.",
+      "whyNow": "The first missing mechanism is a linear resistance localized outside the well screen.",
+      "boundary": "The model represents the disturbed zone as an infinitesimally thin Robin-type skin rather than solving a finite-thickness damage zone.",
+      "locator": "PDF page 1, Section 1 Introduction, paragraph 4",
+      "sourceExcerpt": "Formation damage may cause a linear head loss because of",
+      "anchorTerms": [
+        "Formation damage",
+        "linear head loss"
+      ],
+      "visualObject": "Thin low-permeability skin annulus around the well screen",
+      "motionPurpose": "Add a proportional head discontinuity as flow crosses the damaged annulus.",
+      "stepDetail": "Draw the undisturbed aquifer; add the skin annulus; pass radial flow through it; reveal the linear head drop.",
+      "transitionBridge": "Inside the skin, flow accelerates through the screen and gravel pack.",
+      "minimalText": "Linear skin loss"
+    },
+    {
+      "id": "B03",
+      "premise": "Rapid flow across a screen or gravel pack can violate Darcy's law and add a nonlinear rate-dependent head loss.",
+      "visibleEvidence": "Flow arrows crowd at the screen and the head-loss bar curves upward with increasing flux.",
+      "whyNow": "The late-time recovery shape cannot be assigned only to the linear skin when the near-screen gradient is large.",
+      "boundary": "The nonlinear loss is represented with the quadratic Forchheimer relation near the wellbore.",
+      "locator": "PDF page 1, Section 1 Introduction",
+      "sourceExcerpt": "water flow across the well screen or gravel pack sometimes",
+      "anchorTerms": [
+        "nonlinear head loss",
+        "violates the Darcy law"
+      ],
+      "visualObject": "Screen-scale flux arrows beside a curved head-loss-versus-flux relation",
+      "motionPurpose": "Increase screen flux until the loss departs visibly from a straight Darcy relation.",
+      "stepDetail": "Plot linear loss; increase flux; bend the loss curve upward; attach the excess loss to the screen.",
+      "transitionBridge": "The skin and nonlinear screen losses join the radial aquifer model.",
+      "minimalText": "Non-Darcy loss"
+    }
+  ],
+  "methods": [
+    {
+      "id": "M01",
+      "input": "Radially symmetric confined aquifer with a fully penetrating slug-test well",
+      "operation": "Form radial flow equation",
+      "output": "Transient aquifer-head equation around the well",
+      "validity": "Darcy's law and continuity apply in the homogeneous aquifer outside the localized near-well loss region.",
+      "locator": "PDF page 3, Section 2.1 Model Setup, Equation 1",
+      "sourceExcerpt": "aquifer h(r, t) [L] for the radially symmetrical flow induced",
+      "anchorTerms": [
+        "Darcy's law",
+        "radially symmetrical flow"
+      ],
+      "visualObject": "Radial aquifer rings carrying a decaying head pulse",
+      "motionPurpose": "Convert the released slug into radial diffusion through the confined aquifer.",
+      "stepDetail": "Center the well; draw radial distance; spread the head pulse; attach transmissivity and storativity controls.",
+      "transitionBridge": "The innermost aquifer ring meets the skin boundary.",
+      "minimalText": "Radial aquifer flow"
+    },
+    {
+      "id": "M02",
+      "input": "Aquifer head immediately outside the well and water level inside the well",
+      "operation": "Apply skin boundary condition",
+      "output": "Linear screen-head discontinuity controlled by skin factor",
+      "validity": "A Robin-type boundary represents a thin damaged zone with head loss proportional to flow rate.",
+      "locator": "PDF page 3, Section 2.1 Model Setup, Equation 2",
+      "sourceExcerpt": "left-hand side of Equation 2 represents a linear head loss",
+      "anchorTerms": [
+        "linear head loss",
+        "thin skin"
+      ],
+      "visualObject": "Head profile stepping across a thin annular skin",
+      "motionPurpose": "Insert a proportional discontinuity between well level and aquifer head.",
+      "stepDetail": "Align well and aquifer heads; pass flux through the skin; offset the heads; label the proportional loss.",
+      "transitionBridge": "The same screen flux enters the well water-volume balance.",
+      "minimalText": "Skin factor"
+    },
+    {
+      "id": "M03",
+      "input": "Screen flux around the well circumference",
+      "operation": "Apply well mass balance",
+      "output": "Rate of water-level change inside the test well",
+      "validity": "Conservation of mass equates total screen inflow with the changing water volume in the well casing.",
+      "locator": "PDF page 3, Section 2.1 Model Setup, Equation 4",
+      "sourceExcerpt": "mass, the total flowrate across the well screen should equal",
+      "anchorTerms": [
+        "conservation of mass",
+        "water volume inside the test well"
+      ],
+      "visualObject": "Screen inflow arrows filling the changing well-water column",
+      "motionPurpose": "Tie radial screen flux directly to the observed well-level recovery.",
+      "stepDetail": "Sum flux around the screen; convert it to casing-volume change; move the well level by the balanced amount.",
+      "transitionBridge": "The screen flux now receives the nonlinear Forchheimer resistance.",
+      "minimalText": "Screen flux = storage change"
+    },
+    {
+      "id": "M04",
+      "input": "Hydraulic gradient and flux across the well screen",
+      "operation": "Apply Forchheimer relation",
+      "output": "Combined linear and quadratic near-screen flow resistance",
+      "validity": "The Forchheimer equation represents transitional non-Darcy flow and reduces to Darcy's law when its nonlinear coefficient is zero.",
+      "locator": "PDF page 3, Section 2.1 Model Setup, Equations 5-7",
+      "sourceExcerpt": "Considering the effect of non-Darcy flow, the Forchheimer equation is adopted to delineate the relation between",
+      "anchorTerms": [
+        "non-Darcy flow",
+        "water flux across the screen"
+      ],
+      "visualObject": "Linear and quadratic resistance bars acting on one screen-flux arrow",
+      "motionPurpose": "Curve the flux-gradient relation so rate-dependent loss becomes a visible second contribution.",
+      "stepDetail": "Show the linear term; add the quadratic term; combine their resistance; solve for the allowed screen flux.",
+      "transitionBridge": "The coupled aquifer-well equations receive dimensionless scales.",
+      "minimalText": "Linear + quadratic loss"
+    },
+    {
+      "id": "M05",
+      "input": "Dimensional coupled aquifer-head and well-level equations",
+      "operation": "Normalize model variables",
+      "output": "Dimensionless nonlinear slug-test system",
+      "validity": "Initial displacement, well radius, transmissivity, and storage provide the paper's characteristic head, length, and time scales.",
+      "locator": "PDF page 4, Section 2.2 Dimensionless Solutions",
+      "sourceExcerpt": "To simply the expression, dimensionless parameters/variables are introduced as follows:",
+      "anchorTerms": [
+        "dimensionless",
+        "parameters/variables"
+      ],
+      "visualObject": "Physical well radius, time, and head collapsing to dimensionless axes",
+      "motionPurpose": "Reduce the parameterized geometry to reusable dimensionless response curves.",
+      "stepDetail": "Divide head by initial displacement; divide radius by well radius; scale time by aquifer diffusion; expose dimensionless skin and nonlinear groups.",
+      "transitionBridge": "The normalized nonlinear system folds into Laplace space.",
+      "minimalText": "Dimensionless system"
+    },
+    {
+      "id": "M06",
+      "input": "Dimensionless nonlinear aquifer-well system",
+      "operation": "Transform nonlinear system",
+      "output": "Laplace-domain head and well-level equations",
+      "validity": "Laplace transformation converts temporal derivatives and the initial slug displacement into an algebraic-transform boundary problem.",
+      "locator": "PDF page 4, Section 2.2 Dimensionless Solutions",
+      "sourceExcerpt": "The Laplace transform method with the integration by parts formula",
+      "anchorTerms": [
+        "Laplace transform method",
+        "nonlinear system"
+      ],
+      "visualObject": "Time-domain recovery curve folding into a Laplace-domain response",
+      "motionPurpose": "Move the nonlinear time dependence into transform space where the radial boundary problem can be derived.",
+      "stepDetail": "Transform aquifer head; transform well level; carry initial conditions; expose the nonlinear transformed term.",
+      "transitionBridge": "The nonlinear transformed term is expanded by successive integration.",
+      "minimalText": "Laplace domain"
+    },
+    {
+      "id": "M07",
+      "input": "Nonlinear power term in the Laplace-domain screen relation",
+      "operation": "Integrate nonlinear Laplace terms",
+      "output": "Semi-analytical Laplace-domain solution",
+      "validity": "Brady's successive integration-by-parts expressions approximate the Laplace transform of a nonlinear power function.",
+      "locator": "PDF page 2, Section 1 Introduction, final paragraph; PDF page 4, Section 2.2",
+      "sourceExcerpt": "Brady (1969) work, in which they summarized several expressions of",
+      "anchorTerms": [
+        "nonlinear power function",
+        "successive integration by parts"
+      ],
+      "visualObject": "Nonlinear transform block unfolding into successive boundary and integral terms",
+      "motionPurpose": "Expose the intermediate terms that make the nonlinear transform analytically tractable.",
+      "stepDetail": "Isolate the power term; integrate by parts once; repeat successively; collect the retained transformed expression.",
+      "transitionBridge": "The resulting Laplace solution is ready for numerical inversion.",
+      "minimalText": "Successive parts"
+    },
+    {
+      "id": "M08",
+      "input": "Laplace-domain aquifer-head and well-level solutions",
+      "operation": "Transform Laplace solution",
+      "output": "Time-domain slug-test response",
+      "validity": "The Stehfest numerical inversion algorithm evaluates the paper's transformed solutions in physical time.",
+      "locator": "PDF page 4, Section 2.2 Dimensionless Solutions, paragraph following Equation 12",
+      "sourceExcerpt": "time-domain results of Equations 8 and 9",
+      "anchorTerms": [
+        "time-domain results",
+        "Equations 8 and 9"
+      ],
+      "visualObject": "Laplace-domain curve reassembling as normalized water level versus logarithmic time",
+      "motionPurpose": "Return the solution to the same recovery curve measured in the field.",
+      "stepDetail": "Choose inversion terms; evaluate transformed response; sum Stehfest weights; plot normalized well level through time.",
+      "transitionBridge": "The recovered time-domain response retains the zero-loss limit examined in M09.",
+      "minimalText": "Stehfest inversion"
+    },
+    {
+      "id": "M09",
+      "input": "Equation 9 with formation-damage and non-Darcy losses set to zero and equal casing and effective-well radii",
+      "operation": "Compare zero-loss limit",
+      "output": "The Cooper et al. 1967 Laplace-domain slug-test solution",
+      "validity": "The limiting comparison requires negligible skin and non-Darcy effects plus equality of the casing and effective-well radii.",
+      "locator": "PDF page 4, Section 2.2 Dimensionless Solutions, paragraph following Equation 12",
+      "sourceExcerpt": "reduces to Cooper et al.’s (1967) solutions in the Laplace domain when the effects of both formation damage and",
+      "anchorTerms": ["Cooper et al.’s (1967) solutions", "Laplace domain"],
+      "visualObject": "Present transformed response collapsing onto the Cooper zero-loss curve",
+      "motionPurpose": "Expose the classical solution recovered when both added loss mechanisms vanish.",
+      "stepDetail": "Set the skin and nonlinear-loss controls to zero, match the two radii, and overlay the limiting curves.",
+      "transitionBridge": "The verified limiting response is carried into an independent finite-element solve in M10.",
+      "minimalText": "Cooper zero-loss limit"
+    },
+    {
+      "id": "M10",
+      "input": "Dimensionless slug-test equations after the zero-loss check, with formation-damage and non-Darcy losses restored",
+      "operation": "Solve finite-element response",
+      "output": "Independent finite-element time-domain slug-test response",
+      "validity": "Supporting Information Text S2 supplies the finite-element solution used for the independent numerical check.",
+      "locator": "PDF page 4, Section 2.2 Dimensionless Solutions, final paragraph",
+      "sourceExcerpt": "given in Text S2 in the Supporting Information S1",
+      "anchorTerms": [
+        "Text S2",
+        "Supporting Information S1"
+      ],
+      "visualObject": "Finite-element mesh producing an independent normalized well-level response",
+      "motionPurpose": "Generate the numerical response before any overlay with the semi-analytical curve.",
+      "stepDetail": "Apply the nonlinear equations on the finite-element domain, solve the discrete system, and retain the time-domain response.",
+      "transitionBridge": "The generated finite-element response joins the semi-analytical response for comparison in M11.",
+      "minimalText": "Solve FEM response"
+    },
+    {
+      "id": "M11",
+      "input": "Time-domain semi-analytical response and independently generated finite-element response",
+      "operation": "Compare solution agreement",
+      "output": "Numerical verification of the semi-analytical solution",
+      "validity": "The paper compares the Stehfest-inverted response with the finite-element solution supplied in Supporting Information Text S2.",
+      "locator": "PDF page 4, Section 2.2 Dimensionless Solutions, final paragraph",
+      "sourceExcerpt": "compared with the finite-element solution",
+      "anchorTerms": [
+        "compared",
+        "finite-element solution"
+      ],
+      "visualObject": "Semi-analytical and finite-element recovery curves lying on common axes",
+      "motionPurpose": "Overlay independent solutions so disagreement would appear as a visible gap.",
+      "stepDetail": "Plot the semi-analytical response, add the finite-element response, and inspect their separation across time.",
+      "transitionBridge": "The verified response moves onto measured Minnelusa well data in M12.",
+      "minimalText": "FEM agreement"
+    },
+    {
+      "id": "M12",
+      "input": "Normalized Minnelusa well-level observations and Equation 9",
+      "operation": "Fit aquifer parameters",
+      "output": "Transmissivity, storativity, skin factor, and Forchheimer coefficient estimates",
+      "validity": "Levenberg-Marquardt nonlinear fitting evaluates nested physical cases against the same measured water-level data.",
+      "locator": "PDF page 5, Section 3.1 Field Data Analysis",
+      "sourceExcerpt": "built-in Mathematica routine NonLinearModelFit to analyze the data for determining",
+      "anchorTerms": [
+        "Equation 9",
+        "determining the aquifer parameters"
+      ],
+      "visualObject": "Model recovery curve approaching field points as four parameter controls settle",
+      "motionPurpose": "Make the inferred aquifer and near-well parameters visibly responsible for the fitted curve shape.",
+      "stepDetail": "Load normalized observations; initialize parameters; compute the model curve; update parameters to reduce residuals.",
+      "transitionBridge": "Three nested model curves remain for error comparison in M13.",
+      "minimalText": "Field fit"
+    },
+    {
+      "id": "M13",
+      "input": "Fits that omit both losses, include skin only, or include both losses",
+      "operation": "Compare site cases",
+      "output": "Site-specific ME and SEE rankings for LA-87B, LA-88B, and LA-88A",
+      "validity": "Case 3 has the smallest reported errors at LA-87B and LA-88B, but the three LA-88A predictions are close; at LA-87B, adding formation damage alone improves fit only marginally and its fitted effect is minor.",
+      "locator": "PDF page 5, Section 3.1 Field Data Analysis, Table 1",
+      "sourceExcerpt": "the parameter estimation are considered. Case 1 neglects both Sf",
+      "anchorTerms": [
+        "Three cases",
+        "parameter estimation"
+      ],
+      "visualObject": "Three site-labeled recovery-curve groups with scalar ME and SEE readouts",
+      "motionPurpose": "Keep each case ranking attached to the well whose observations produced it.",
+      "stepDetail": "Show the three curves and error scalars for each well, retain the Case 3 ranking at LA-87B and LA-88B, and keep the close LA-88A results together.",
+      "transitionBridge": "The site-qualified rankings return to the physical well and its separately supported loss mechanisms.",
+      "minimalText": "Rankings vary by well"
+    }
+  ],
+  "symbols": [
+    {
+      "latex": "H(t)",
+      "firstUseOwner": "B01",
+      "visualObject": "Displaced water level inside the test well",
+      "meaning": "Well water-level displacement during slug recovery",
+      "unit": "L",
+      "transition": "The moving well-water line receives the label H(t)."
+    },
+    {
+      "latex": "h(r,t)",
+      "firstUseOwner": "M01",
+      "visualObject": "Radial aquifer-head field",
+      "meaning": "Hydraulic head in the confined aquifer",
+      "unit": "L",
+      "transition": "A radial head ring at distance r receives the label h(r,t)."
+    },
+    {
+      "latex": "S_f",
+      "firstUseOwner": "M02",
+      "visualObject": "Thin damaged annulus around the screen",
+      "meaning": "Dimensionless formation-damage skin factor",
+      "unit": "dimensionless",
+      "transition": "The annular head-drop marker becomes the label S_f."
+    },
+    {
+      "latex": "\\beta",
+      "firstUseOwner": "M04",
+      "visualObject": "Curvature of the nonlinear screen-loss relation",
+      "meaning": "Forchheimer coefficient describing non-Darcy strength",
+      "unit": "T/L",
+      "transition": "The quadratic loss curvature receives the label beta."
+    },
+    {
+      "latex": "T",
+      "firstUseOwner": "M11",
+      "visualObject": "Radial spreading rate of the aquifer head pulse",
+      "meaning": "Aquifer transmissivity",
+      "unit": "L^2/T",
+      "transition": "The radial diffusion control is labeled T."
+    },
+    {
+      "latex": "S",
+      "firstUseOwner": "M11",
+      "visualObject": "Aquifer storage released under the radial head pulse",
+      "meaning": "Aquifer storativity",
+      "unit": "dimensionless",
+      "transition": "The storage fill beneath the head pulse is labeled S."
+    }
+  ],
+  "return": {
+    "visualObject": "Minnelusa fractured-aquifer well with the measured normalized recovery curve and the Case 1, Case 2, and Case 3 predictions tied back to skin and nonlinear screen loss",
+    "claim": "For the tested wells, Case 3 gives the smallest reported errors at LA-87B and LA-88B, while the three cases remain close at LA-88A; at LA-87B, the evidence for non-Darcy loss is stronger because formation damage improves fit only marginally and its effect is minor.",
+    "claimBoundary": "These are site-specific fits under the fully penetrating homogeneous radial model. LA-88A shows small or negligible loss effects, and one LA-88B pressure trend was inconsistent with expectation.",
+    "locator": "PDF page 5, Section 3.1 Field Data Analysis; PDF page 8, Section 4 Conclusions",
+    "sourceExcerpt": "formation damage in the present solution only marginally improves the model fit",
+    "minimalText": "Site-specific near-well losses"
+  },
+  "visual": {
+    "systemType": "radial_well",
+    "primaryObject": "Fully penetrating slug-test well and radial confined-aquifer head field",
+    "accentObject": "Thin skin annulus and nonlinear screen-loss curve",
+    "measuredQuantity": "Normalized well water-level displacement",
+    "geometryNotes": "Keep the well, screen, and radial aquifer rings persistent; add the skin as a thin annulus, map screen flux to the well-volume balance, curve the Forchheimer loss with rate, and overlay nested model responses on the measured logarithmic-time recovery curve."
+  }
+}
