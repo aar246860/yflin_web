@@ -68,7 +68,9 @@ function methodCode(scene, number, paperId) {
   const hasFormula = Boolean(formulas[0]);
   const formulaAssignment = (name, phase) => hasFormula ? `\n        ${name}_formula = ${formulas[phase]}` : "";
   const formulaItem = (name) => hasFormula ? `, ${name}_formula` : "";
-  const labels = (name) => `[item for item in [title_label, caption_label, detail_label${formulaItem(name)}, ${name}_field] if item is not ${name}_field]`;
+  const initialLabels = `[item for item in [title_label, caption_label, detail_label, entry_field${hasFormula ? ", entry_formula" : ""}] if item is not entry_field]`;
+  const transitionLabels = `[item for item in [title_label, caption_label, detail_label, entry_field, mid_field${hasFormula ? ", entry_formula, mid_formula" : ""}] if item is not entry_field and item is not mid_field${hasFormula ? " and item is not entry_formula and item is not mid_formula" : ""}]`;
+  const settledLabels = `[item for item in [title_label, caption_label, detail_label, entry_field, settled_field${hasFormula ? ", mid_formula, settled_formula" : ""}] if item is not entry_field and item is not settled_field${hasFormula ? " and item is not mid_formula and item is not settled_formula" : ""}]`;
   return `
     def scene_${String(number).padStart(2, "0")}_${role}(self):
         self.clear()
@@ -84,22 +86,17 @@ function methodCode(scene, number, paperId) {
         if detail_label.height > ${hasFormula ? "2.5" : "3.8"}:
             detail_label.scale_to_fit_height(${hasFormula ? "2.5" : "3.8"})
         entry_field = ${semanticVisualExpression(semanticContext, 0)}${formulaAssignment("entry", 0)}
-        assert_scene_layout(scene=self, pending_items=[title_label, caption_label, detail_label, entry_field${formulaItem("entry")}], labels=${labels("entry")}, blockers=[entry_field], frame_items=[title_label, caption_label, detail_label, entry_field${formulaItem("entry")}], intentional_overlaps=[(entry_field, entry_field)])
-        self.add(title_label, caption_label, detail_label, entry_field${formulaItem("entry")})
-        self.wait(0.1)
-        self.wait(2.3)
-        self.remove(entry_field${formulaItem("entry")})
+        assert_scene_layout(scene=self, pending_items=[title_label, caption_label, detail_label, entry_field${formulaItem("entry")}], labels=${initialLabels}, blockers=[entry_field], frame_items=[title_label, caption_label, detail_label, entry_field${formulaItem("entry")}], intentional_overlaps=[(entry_field, entry_field)])
+        self.play(FadeIn(title_label), FadeIn(caption_label), FadeIn(detail_label), Create(entry_field),${hasFormula ? " FadeIn(entry_formula)," : ""} run_time=1.25)
+        self.wait(0.8)
         mid_field = ${semanticVisualExpression(semanticContext, 1)}${formulaAssignment("mid", 1)}
-        assert_scene_layout(scene=self, pending_items=[mid_field${formulaItem("mid")}], labels=${labels("mid")}, blockers=[mid_field], frame_items=[title_label, caption_label, detail_label, mid_field${formulaItem("mid")}], intentional_overlaps=[(mid_field, mid_field)])
-        self.add(mid_field${formulaItem("mid")})
-        self.wait(0.1)
-        self.wait(2.3)
-        self.remove(mid_field${formulaItem("mid")})
+        assert_scene_layout(scene=self, pending_items=[mid_field${formulaItem("mid")}], labels=${transitionLabels}, blockers=[entry_field, mid_field], frame_items=[title_label, caption_label, detail_label, entry_field, mid_field${hasFormula ? ", entry_formula, mid_formula" : ""}], intentional_overlaps=[(entry_field, entry_field), (mid_field, mid_field), (entry_field, mid_field)${hasFormula ? ", (entry_formula, mid_formula)" : ""}])
+        self.play(Transform(entry_field, mid_field),${hasFormula ? " FadeOut(entry_formula), FadeIn(mid_formula)," : ""} run_time=2.2)
+        self.wait(0.8)
         settled_field = ${semanticVisualExpression(semanticContext, 2)}${formulaAssignment("settled", 2)}
-        assert_scene_layout(scene=self, pending_items=[settled_field${formulaItem("settled")}], labels=${labels("settled")}, blockers=[settled_field], frame_items=[title_label, caption_label, detail_label, settled_field${formulaItem("settled")}], intentional_overlaps=[(settled_field, settled_field)])
-        self.add(settled_field${formulaItem("settled")})
-        self.wait(0.1)
-        self.wait(3.1)
+        assert_scene_layout(scene=self, pending_items=[settled_field${formulaItem("settled")}], labels=${settledLabels}, blockers=[entry_field, settled_field], frame_items=[title_label, caption_label, detail_label, entry_field, settled_field${hasFormula ? ", mid_formula, settled_formula" : ""}], intentional_overlaps=[(entry_field, entry_field), (settled_field, settled_field), (entry_field, settled_field)${hasFormula ? ", (mid_formula, settled_formula)" : ""}])
+        self.play(Transform(entry_field, settled_field),${hasFormula ? " FadeOut(mid_formula), FadeIn(settled_formula)," : ""} run_time=2.2)
+        self.wait(1.1)
 `;
 }
 
@@ -112,7 +109,7 @@ function sourceCode(spec) {
   const methods = scenes.map((scene, index) => methodCode(scene, index + 1, spec.id)).join("\n");
   const optionalImports = ["DashedLine", "Ellipse"].filter((name) => methods.includes(`${name}(`));
   const optionalImportText = optionalImports.length ? `${optionalImports.join(", ")}, ` : "";
-  return `from manim import Arc, Arrow, Axes, Circle, Dot, DOWN, ${optionalImportText}Line, MathTex, Polygon, Rectangle, Scene, Text, UP, VGroup
+  return `from manim import Arc, Arrow, Axes, Circle, Create, Dot, DOWN, FadeIn, FadeOut, ${optionalImportText}Line, MathTex, Polygon, Rectangle, Scene, Text, Transform, UP, VGroup
 
 from assets.research_manim_layout import assert_scene_layout
 

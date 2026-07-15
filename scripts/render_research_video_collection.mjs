@@ -173,6 +173,7 @@ function render(record) {
   run("uv", ["run", path.join(SKILL_ROOT, "scripts", "export_manim_video.py"), rawVideo, releaseDir, "--title", spec.title, "--description", spec.narrative.throughline, "--slug", record.id]);
   enableMutedBrowserPlayback(path.join(releaseDir, `${record.id}.html`));
   const video = path.join(releaseDir, `${record.id}.mp4`);
+  run("uv", ["run", path.join(ROOT, "scripts", "check_research_video_motion.py"), video]);
   const poster = path.join(releaseDir, `${record.id}_poster.png`);
   run("ffmpeg", ["-y", "-v", "error", "-ss", "2.0", "-i", video, "-frames:v", "1", poster]);
   for (const name of [`${record.id}_scene.py`, `${record.id}_storyboard.md`, `${record.id}_semantic_audit.json`, `${record.id}_transcript.md`, `${record.id}_en.vtt`]) {
