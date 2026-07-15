@@ -54,15 +54,15 @@ const availableFilmCount = allPublications.filter((publication) => getVisualStat
           <div class="publication-record__visual">
             {(() => {
               const visual = getVisualStatus(pub);
-              return visual.kind === "available" && visual.feature ? (
+              return visual.kind === "available" && visual.film ? (
                 <figure class="publication-film">
                   <div class="publication-film__label"><span>{visual.label}</span><span>source-backed</span></div>
-                  <video controls preload="none" poster={withBase(visual.feature.poster)} width="1280" height="720" aria-label={`Visual abstract for ${pub.title.en}`}>
-                    <source src={withBase(visual.feature.video)} type="video/mp4" />
-                    {visual.feature.captions && <track kind="captions" src={withBase(visual.feature.captions)} srclang="en" label="English captions" default />}
+                  <video controls preload="none" poster={withBase(visual.film.poster)} width="1280" height="720" aria-label={`Visual abstract for ${pub.title.en}`}>
+                    <source src={withBase(visual.film.video)} type="video/mp4" />
+                    {visual.film.captions && <track kind="captions" src={withBase(visual.film.captions)} srclang="en" label="English captions" default />}
                     Your browser does not support the video element.
                   </video>
-                  <figcaption>{visual.note} <a href={withBase(`/publications/${visual.feature.id}/`)}>Open film record</a></figcaption>
+                  <figcaption>{visual.note} {visual.evidencePage && <a href={withBase(visual.evidencePage)}>Open film record</a>}</figcaption>
                 </figure>
               ) : (
                 <div class="publication-film-placeholder" role="note">

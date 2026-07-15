@@ -1,4 +1,5 @@
 import { publicationFeatures, type PublicationFeature } from "./publicationFeatures";
+import publicationFilms from "./publicationFilms.generated.json";
 
 export type PublicationRecordLike = {
   readonly id: string;
@@ -16,6 +17,17 @@ export type PublicationRecordLike = {
 };
 
 const featureByDoi = new Map<string, PublicationFeature>(publicationFeatures.map((feature) => [feature.doi, feature]));
+type PublicationFilm = {
+  readonly id: string;
+  readonly doi: string;
+  readonly label: string;
+  readonly note: string;
+  readonly plainLanguage: string;
+  readonly video: string;
+  readonly poster: string;
+  readonly captions?: string;
+};
+const filmByDoi = new Map<string, PublicationFilm>((publicationFilms as PublicationFilm[]).map((film) => [film.doi, film]));
 
 const themeNotes: Record<string, string> = {
   "analytical-well-hydraulics":
@@ -43,7 +55,7 @@ export function getPublicationFeature(publication: PublicationRecordLike): Publi
 }
 
 export function getPlainLanguage(publication: PublicationRecordLike): string {
-  return featurePlainLanguage.get(publication.doi) ?? themeNotes[publication.primaryTheme] ??
+  return featurePlainLanguage.get(publication.doi) ?? filmByDoi.get(publication.doi)?.plainLanguage ?? themeNotes[publication.primaryTheme] ??
     "This paper develops a groundwater-related method and reports the assumptions and evidence needed to interpret its result.";
 }
 
@@ -54,13 +66,25 @@ export function getVisualStatus(publication: PublicationRecordLike) {
       kind: "available" as const,
       label: "Manim visual abstract",
       note: "Source-backed animation with a poster, captions, transcript, and evidence boundary.",
-      feature,
+      film: { id: feature.id, video: feature.video, poster: feature.poster, captions: feature.captions },
+      evidencePage: `/publications/${feature.id}/`,
+    };
+  }
+  const film = filmByDoi.get(publication.doi);
+  if (film) {
+    return {
+      kind: "available" as const,
+      label: film.label,
+      note: film.note,
+      film,
+      evidencePage: undefined,
     };
   }
   return {
     kind: "pending" as const,
     label: "Manim visual abstract in preparation",
     note: "The film will be added after the paper source, storyboard, semantic audit, and frame-level QA are complete. No synthetic result is shown here.",
-    feature: undefined,
+    film: undefined,
+    evidencePage: undefined,
   };
 }

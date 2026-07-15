@@ -1,0 +1,118 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:07.000
+A conventional Fickian ADE can fall short in explaining observed
+
+2
+00:00:08.000 --> 00:00:15.000
+The MIM model represents solute-mass transfer between mobile and
+
+3
+00:00:16.000 --> 00:00:23.000
+The RLS model represents mass transfer between liquid and solid
+
+4
+00:00:24.000 --> 00:00:31.000
+Flux relaxation represents inertia associated with particle
+
+5
+00:00:32.000 --> 00:00:39.000
+Storage relaxation represents structural interaction through sorption
+
+6
+00:00:40.000 --> 00:00:47.000
+A two-time flux-gradient relation with tau q and tau c
+
+7
+00:00:48.000 --> 00:00:55.000
+Taylor series for the delayed flux and delayed concentration response
+
+8
+00:00:56.000 --> 00:01:03.000
+First-order relaxed constitutive approximation
+
+9
+00:01:04.000 --> 00:01:11.000
+A one-dimensional advection-dispersion equation with flux and storage
+
+10
+00:01:12.000 --> 00:01:19.000
+Zero initial concentration and zero initial concentration-rate fields
+
+11
+00:01:20.000 --> 00:01:27.000
+Flux-balanced inlet relation for pulse and continuous injection
+
+12
+00:01:28.000 --> 00:01:35.000
+Zero concentration at infinite distance
+
+13
+00:01:36.000 --> 00:01:43.000
+Laplace-domain equation and transformed conditions
+
+14
+00:01:44.000 --> 00:01:51.000
+General two-branch exponential concentration solution
+
+15
+00:01:52.000 --> 00:01:59.000
+One inlet coefficient and a zero growing-branch coefficient
+
+16
+00:02:00.000 --> 00:02:07.000
+Laplace-domain concentration in Equation 18
+
+17
+00:02:08.000 --> 00:02:15.000
+Time-domain breakthrough curves
+
+18
+00:02:16.000 --> 00:02:23.000
+Single MIM ADE in the mobile concentration
+
+19
+00:02:24.000 --> 00:02:31.000
+Single RLS ADE in the liquid concentration
+
+20
+00:02:32.000 --> 00:02:39.000
+Table 1 correspondences between relaxation times and lumped exchange
+
+21
+00:02:40.000 --> 00:02:47.000
+Signed normalized sensitivity curves
+
+22
+00:02:48.000 --> 00:02:55.000
+Absolute sensitivity ranking with the two relaxation times least
+
+23
+00:02:56.000 --> 00:03:03.000
+Relaxed-model and Sauty parameter estimates at two observation
+
+24
+00:03:04.000 --> 00:03:11.000
+Table 2 SEE and ME comparison favoring the relaxed model
+
+25
+00:03:12.000 --> 00:03:19.000
+Pulse classifications with ratios 1.5 and 1.67 above one
+
+26
+00:03:20.000 --> 00:03:27.000
+Relaxed-model and Ogata-Banks parameter estimates for both tracers
+
+27
+00:03:28.000 --> 00:03:35.000
+Table 3 SEE and ME values for Cs and HTO
+
+28
+00:03:36.000 --> 00:03:43.000
+Continuous classifications with ratios 0.2 and 0.37 below one
+
+29
+00:03:44.000 --> 00:03:51.000
+The temporally relaxed ADE provides a compact two-parameter
+

@@ -1,0 +1,82 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:07.000
+A BTES field functions as a thermal battery that stores surplus heat
+
+2
+00:00:08.000 --> 00:00:15.000
+Standard analytical BTES solutions gain efficiency by imposing
+
+3
+00:00:16.000 --> 00:00:23.000
+Transient radial temperature response for one BHE
+
+4
+00:00:24.000 --> 00:00:31.000
+Dimensionless temperature, Fourier number, radius, and resistance
+
+5
+00:00:32.000 --> 00:00:39.000
+Weighted temperature-field expansion
+
+6
+00:00:40.000 --> 00:00:47.000
+Linear equations enforcing zero normal heat flux
+
+7
+00:00:48.000 --> 00:00:55.000
+Image-well weight vector w
+
+8
+00:00:56.000 --> 00:01:03.000
+Continuous spatiotemporal BTES temperature distribution
+
+9
+00:01:04.000 --> 00:01:11.000
+Temperature-difference maps against the finite-element benchmark
+
+10
+00:01:12.000 --> 00:01:19.000
+A reported 67 percent reduction for the image-well method
+
+11
+00:01:20.000 --> 00:01:27.000
+Sampled values for each Morris input factor
+
+12
+00:01:28.000 --> 00:01:35.000
+One-factor-at-a-time parameter combinations
+
+13
+00:01:36.000 --> 00:01:43.000
+Temperature predictions for each sampled parameter combination
+
+14
+00:01:44.000 --> 00:01:51.000
+Elementary effects for each parameter across Morris samples
+
+15
+00:01:52.000 --> 00:01:59.000
+Mu-star overall-effect coordinate for each parameter
+
+16
+00:02:00.000 --> 00:02:07.000
+Sigma interaction coordinate for each parameter
+
+17
+00:02:08.000 --> 00:02:15.000
+Seasonal charging and discharging temperature history
+
+18
+00:02:16.000 --> 00:02:23.000
+Shape-dependent charging and discharging temperature histories
+
+19
+00:02:24.000 --> 00:02:31.000
+An additional 3.24 to 16.2 MWh per year for the reported BHE lengths
+
+20
+00:02:32.000 --> 00:02:39.000
+For the reported conductive BTES cases, image-well boundary
+

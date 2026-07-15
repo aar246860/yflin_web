@@ -1,0 +1,142 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:07.000
+Periodic boundary signals act as passive tracers of aquifer hydraulic
+
+2
+00:00:08.000 --> 00:00:15.000
+Classical homogeneous diffusion often yields different diffusivities
+
+3
+00:00:16.000 --> 00:00:23.000
+The proposed lags are causal field-scale memory parameters rather than
+
+4
+00:00:24.000 --> 00:00:31.000
+A causal Darcy flux defined by a nonnegative kernel
+
+5
+00:00:32.000 --> 00:00:39.000
+A Jeffreys-type head equation containing tau q and tau h
+
+6
+00:00:40.000 --> 00:00:47.000
+Closed-form head amplitude A h and phase phi from complex wavenumber
+
+7
+00:00:48.000 --> 00:00:55.000
+R D phase/D amplitude alpha 2/beta 2
+
+8
+00:00:56.000 --> 00:01:03.000
+One elementary effect for each input factor trajectory and model
+
+9
+00:01:04.000 --> 00:01:11.000
+Absolute mean elementary effect mu-star for each factor
+
+10
+00:01:12.000 --> 00:01:19.000
+Standard deviation sigma for each factor's elementary effects
+
+11
+00:01:20.000 --> 00:01:27.000
+Overall Morris sensitivity index delta for each factor
+
+12
+00:01:28.000 --> 00:01:35.000
+Boundary and well records on a uniform 15 to 20 minute cadence
+
+13
+00:01:36.000 --> 00:01:43.000
+Demeaned boundary and well head records
+
+14
+00:01:44.000 --> 00:01:51.000
+Uniform demeaned and detrended boundary-well time series
+
+15
+00:01:52.000 --> 00:01:59.000
+Boundary autospectrum and river-well cross-spectrum
+
+16
+00:02:00.000 --> 00:02:07.000
+Three-bin-smoothed auto-spectra and cross-spectra
+
+17
+00:02:08.000 --> 00:02:15.000
+Complex river-well transfer function at each frequency
+
+18
+00:02:16.000 --> 00:02:23.000
+Retained transfer-function values in the 2 to 48 hour band
+
+19
+00:02:24.000 --> 00:02:31.000
+Observed boundary-to-well amplitude ratio for every retained harmonic
+
+20
+00:02:32.000 --> 00:02:39.000
+Observed boundary-to-well phase lag for every retained harmonic
+
+21
+00:02:40.000 --> 00:02:47.000
+Amplitude and phase standard errors for every retained harmonic
+
+22
+00:02:48.000 --> 00:02:55.000
+Estimated diffusivity flux lag and head lag for each aquifer
+
+23
+00:02:56.000 --> 00:03:03.000
+AIC ranking of lagging and classical fits
+
+24
+00:03:04.000 --> 00:03:11.000
+Five thousand synthetic amplitude-phase realizations at the retained
+
+25
+00:03:12.000 --> 00:03:19.000
+Five thousand candidate diffusivity and lag parameter refits
+
+26
+00:03:20.000 --> 00:03:27.000
+Interquartile-filtered diffusivity and lag parameter samples
+
+27
+00:03:28.000 --> 00:03:35.000
+Posterior means and one-sigma intervals for diffusivity and lag
+
+28
+00:03:36.000 --> 00:03:43.000
+A reduced fit estimating diffusivity and the remaining lag parameter
+
+29
+00:03:44.000 --> 00:03:51.000
+Site-bounded plausibility evidence for the lagging-model property
+
+30
+00:03:52.000 --> 00:03:59.000
+Constituent-level bootstrap multi-frequency records
+
+31
+00:04:00.000 --> 00:04:07.000
+Bootstrap hydraulic-diffusivity estimates from lagging and classical
+
+32
+00:04:08.000 --> 00:04:15.000
+Kernel-smoothed hydraulic-diffusivity distributions for both models
+
+33
+00:04:16.000 --> 00:04:23.000
+Numerical head amplitude and phase over the spatial domain
+
+34
+00:04:24.000 --> 00:04:31.000
+RMSE bounds for numerical agreement in head amplitude and phase
+
+35
+00:04:32.000 --> 00:04:39.000
+Separating flux adjustment from inter-domain equilibration reconciles
+

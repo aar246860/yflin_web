@@ -1,0 +1,392 @@
+[
+  {
+    "id": "2026-02-1",
+    "doi": "10.1007/s00477-026-03194-2",
+    "label": "Manim visual abstract",
+    "note": "Source-backed animation with captions and frame-level visual review.",
+    "plainLanguage": "Geo-dSHAP identifies where and when ensemble forecasts express physical sensitivity and supports model evaluation beyond accuracy metrics.",
+    "video": "/videos/publications/2026-02-1/2026-02-1.mp4",
+    "poster": "/videos/publications/2026-02-1/2026-02-1_poster.png",
+    "captions": "/videos/publications/2026-02-1/2026-02-1_en.vtt"
+  },
+  {
+    "id": "2026-01-3",
+    "doi": "10.1016/j.jhydrol.2026.134913",
+    "label": "Manim visual abstract",
+    "note": "Source-backed animation with captions and frame-level visual review.",
+    "plainLanguage": "Separating flux adjustment from inter-domain equilibration reconciles the observed phase-amplitude mismatch and yields site-plausible diffusivities for the two analyzed aquifers.",
+    "video": "/videos/publications/2026-01-3/2026-01-3.mp4",
+    "poster": "/videos/publications/2026-01-3/2026-01-3_poster.png",
+    "captions": "/videos/publications/2026-01-3/2026-01-3_en.vtt"
+  },
+  {
+    "id": "2026-01-4",
+    "doi": "10.1016/j.jhydrol.2025.134525",
+    "label": "Manim visual abstract",
+    "note": "Source-backed animation with captions and frame-level visual review.",
+    "plainLanguage": "For the tested parameter combinations, the first-order interface reproduces full two-dimensional drawdown within customary engineering tolerances over most of the domain when the fault-width ratio is at or below one.",
+    "video": "/videos/publications/2026-01-4/2026-01-4.mp4",
+    "poster": "/videos/publications/2026-01-4/2026-01-4_poster.png",
+    "captions": "/videos/publications/2026-01-4/2026-01-4_en.vtt"
+  },
+  {
+    "id": "2025-12-5",
+    "doi": "10.1016/j.advwatres.2025.105155",
+    "label": "Manim visual abstract",
+    "note": "Source-backed animation with captions and frame-level visual review.",
+    "plainLanguage": "Elastic plate bending under the parameter posteriors inferred from San-Tan and Ta-Hsin observation-well drawdown remains below routine geodetic detection.",
+    "video": "/videos/publications/2025-12-5/2025-12-5.mp4",
+    "poster": "/videos/publications/2025-12-5/2025-12-5_poster.png",
+    "captions": "/videos/publications/2025-12-5/2025-12-5_en.vtt"
+  },
+  {
+    "id": "2025-10-6",
+    "doi": "10.1016/j.jhydrol.2025.133151",
+    "label": "Manim visual abstract",
+    "note": "Source-backed animation with captions and frame-level visual review.",
+    "plainLanguage": "For the examined pumping tests, the extra lag parameters were supported by lower information criteria and yielded interpretable spatial regimes and revised characteristic times.",
+    "video": "/videos/publications/2025-10-6/2025-10-6.mp4",
+    "poster": "/videos/publications/2025-10-6/2025-10-6_poster.png",
+    "captions": "/videos/publications/2025-10-6/2025-10-6_en.vtt"
+  },
+  {
+    "id": "2025-08-7",
+    "doi": "10.1016/j.jhydrol.2025.134040",
+    "label": "Manim visual abstract",
+    "note": "Source-backed animation with captions and frame-level visual review.",
+    "plainLanguage": "Representing finite stream storage and lagging yields physically interpretable site parameters and modest but consistent fit improvements over Hunt (1999), while the added effects matter most in bounded time windows and smaller-stream settings.",
+    "video": "/videos/publications/2025-08-7/2025-08-7.mp4",
+    "poster": "/videos/publications/2025-08-7/2025-08-7_poster.png",
+    "captions": "/videos/publications/2025-08-7/2025-08-7_en.vtt"
+  },
+  {
+    "id": "2025-07-8",
+    "doi": "10.1016/j.advwatres.2025.104977",
+    "label": "Manim visual abstract",
+    "note": "Source-backed animation with captions and frame-level visual review.",
+    "plainLanguage": "Enforcing ocean head on an irregular coastline produces management-relevant head and interface geometry while retaining analytical speed for vulnerability analysis and constrained multiwell pumping.",
+    "video": "/videos/publications/2025-07-8/2025-07-8.mp4",
+    "poster": "/videos/publications/2025-07-8/2025-07-8_poster.png",
+    "captions": "/videos/publications/2025-07-8/2025-07-8_en.vtt"
+  },
+  {
+    "id": "2025-07-9",
+    "doi": "10.1029/2024WR039810",
+    "label": "Manim visual abstract",
+    "note": "Source-backed animation with captions and frame-level visual review.",
+    "plainLanguage": "Across the two field tests incorporating nonlinear velocity-dependent thermal dispersion improves interpretation of heat transport dynamics.",
+    "video": "/videos/publications/2025-07-9/2025-07-9.mp4",
+    "poster": "/videos/publications/2025-07-9/2025-07-9_poster.png",
+    "captions": "/videos/publications/2025-07-9/2025-07-9_en.vtt"
+  },
+  {
+    "id": "2025-06-10",
+    "doi": "10.1016/j.jhydrol.2025.132720",
+    "label": "Manim visual abstract",
+    "note": "Source-backed animation with captions and frame-level visual review.",
+    "plainLanguage": "The imperfect-interface model combines fault-core resistance with shear flow in fractured damage zones.",
+    "video": "/videos/publications/2025-06-10/2025-06-10.mp4",
+    "poster": "/videos/publications/2025-06-10/2025-06-10_poster.png",
+    "captions": "/videos/publications/2025-06-10/2025-06-10_en.vtt"
+  },
+  {
+    "id": "2025-05-11",
+    "doi": "10.1016/j.jhydrol.2025.133454",
+    "label": "Manim visual abstract",
+    "note": "Source-backed animation with captions and frame-level visual review.",
+    "plainLanguage": "The workflow identified the documented boundary type and jointly estimated image-well position, linear boundary geometry, T, and S at both field sites, with three-well results comparable to four-well results.",
+    "video": "/videos/publications/2025-05-11/2025-05-11.mp4",
+    "poster": "/videos/publications/2025-05-11/2025-05-11_poster.png",
+    "captions": "/videos/publications/2025-05-11/2025-05-11_en.vtt"
+  },
+  {
+    "id": "2025-05-12",
+    "doi": "10.1016/j.jhydrol.2024.132657",
+    "label": "Manim visual abstract",
+    "note": "Source-backed animation with captions and frame-level visual review.",
+    "plainLanguage": "Representing partial penetration and low-permeability interfaces produces a field interpretation with more plausible aquifer properties than the full-penetration idealization for the analyzed site.",
+    "video": "/videos/publications/2025-05-12/2025-05-12.mp4",
+    "poster": "/videos/publications/2025-05-12/2025-05-12_poster.png",
+    "captions": "/videos/publications/2025-05-12/2025-05-12_en.vtt"
+  },
+  {
+    "id": "2025-03-13",
+    "doi": "10.1029/2024WR038724",
+    "label": "Manim visual abstract",
+    "note": "Source-backed animation with captions and frame-level visual review.",
+    "plainLanguage": "The physically parameterized boundary improves specific-yield interpretation and tracks the coupled saturated-unsaturated response without additional empirical fitting parameters.",
+    "video": "/videos/publications/2025-03-13/2025-03-13.mp4",
+    "poster": "/videos/publications/2025-03-13/2025-03-13_poster.png",
+    "captions": "/videos/publications/2025-03-13/2025-03-13_en.vtt"
+  },
+  {
+    "id": "2025-02-14",
+    "doi": "10.1016/j.jhydrol.2025.132955",
+    "label": "Manim visual abstract",
+    "note": "Source-backed animation with captions and frame-level visual review.",
+    "plainLanguage": "The reply accepts that the published solution gives the wrong concentration at infinite time and separately flags a variable correction at the listed equations and line.",
+    "video": "/videos/publications/2025-02-14/2025-02-14.mp4",
+    "poster": "/videos/publications/2025-02-14/2025-02-14_poster.png",
+    "captions": "/videos/publications/2025-02-14/2025-02-14_en.vtt"
+  },
+  {
+    "id": "2025-02-15",
+    "doi": "10.3390/math13050725",
+    "label": "Manim visual abstract",
+    "note": "Source-backed animation with captions and frame-level visual review.",
+    "plainLanguage": "For the tested synthetic inverse cases, the optimized spacetime IMQ RBF-PINN reconstructs the wave field with reported high accuracy despite partial conditions and s = 0.1 noise.",
+    "video": "/videos/publications/2025-02-15/2025-02-15.mp4",
+    "poster": "/videos/publications/2025-02-15/2025-02-15_poster.png",
+    "captions": "/videos/publications/2025-02-15/2025-02-15_en.vtt"
+  },
+  {
+    "id": "2024-09-16",
+    "doi": "10.29974/JTAE.202409_70(3).0003",
+    "label": "Manim visual abstract",
+    "note": "Source-backed animation with captions and frame-level visual review.",
+    "plainLanguage": "For high-permeability skin, the corrected negative-skin condition keeps head continuous and permits flux discontinuity, so the classical positive-skin assumption should not be reused unchanged in that regime.",
+    "video": "/videos/publications/2024-09-16/2024-09-16.mp4",
+    "poster": "/videos/publications/2024-09-16/2024-09-16_poster.png",
+    "captions": "/videos/publications/2024-09-16/2024-09-16_en.vtt"
+  },
+  {
+    "id": "2024-09-17",
+    "doi": "10.1016/j.jhydrol.2024.131824",
+    "label": "Manim visual abstract",
+    "note": "Source-backed animation with captions and frame-level visual review.",
+    "plainLanguage": "The negative-skin interface provides a physically consistent thin-skin representation and reproduces the principal behavior of the resolved two-zone model in the tested scenarios.",
+    "video": "/videos/publications/2024-09-17/2024-09-17.mp4",
+    "poster": "/videos/publications/2024-09-17/2024-09-17_poster.png",
+    "captions": "/videos/publications/2024-09-17/2024-09-17_en.vtt"
+  },
+  {
+    "id": "2024-07-18",
+    "doi": "10.1002/htj.23140",
+    "label": "Manim visual abstract",
+    "note": "Source-backed animation with captions and frame-level visual review.",
+    "plainLanguage": "For the reported conductive BTES cases, image-well boundary collocation delivers finite-element-comparable temperatures with substantially lower computational cost and exposes boundary-related storage differences.",
+    "video": "/videos/publications/2024-07-18/2024-07-18.mp4",
+    "poster": "/videos/publications/2024-07-18/2024-07-18_poster.png",
+    "captions": "/videos/publications/2024-07-18/2024-07-18_en.vtt"
+  },
+  {
+    "id": "2024-06-19",
+    "doi": "10.1029/2023WR036747",
+    "label": "Manim visual abstract",
+    "note": "Source-backed animation with captions and frame-level visual review.",
+    "plainLanguage": "The lagging uniform-pumping response extracts plausible unconfined-aquifer parameters from groundwater levels without detailed pumping-rate or well-location histories.",
+    "video": "/videos/publications/2024-06-19/2024-06-19.mp4",
+    "poster": "/videos/publications/2024-06-19/2024-06-19_poster.png",
+    "captions": "/videos/publications/2024-06-19/2024-06-19_en.vtt"
+  },
+  {
+    "id": "2024-06-20",
+    "doi": "10.1111/gwat.13425",
+    "label": "Manim visual abstract",
+    "note": "Source-backed animation with captions and frame-level visual review.",
+    "plainLanguage": "Finite channel storage makes stream stage a transient state and limits the duration and magnitude of stream support to a pumping well.",
+    "video": "/videos/publications/2024-06-20/2024-06-20.mp4",
+    "poster": "/videos/publications/2024-06-20/2024-06-20_poster.png",
+    "captions": "/videos/publications/2024-06-20/2024-06-20_en.vtt"
+  },
+  {
+    "id": "2024-05-21",
+    "doi": "10.1016/j.advwatres.2024.104692",
+    "label": "Manim visual abstract",
+    "note": "Source-backed animation with captions and frame-level visual review.",
+    "plainLanguage": "Within the stated idealization, image-well Green's functions provide a flexible analytical route to multiple-well and variable-recharge freshwater-lens geometry and vulnerability.",
+    "video": "/videos/publications/2024-05-21/2024-05-21.mp4",
+    "poster": "/videos/publications/2024-05-21/2024-05-21_poster.png",
+    "captions": "/videos/publications/2024-05-21/2024-05-21_en.vtt"
+  },
+  {
+    "id": "2024-02-22",
+    "doi": "10.1029/2023WR035291",
+    "label": "Manim visual abstract",
+    "note": "Source-backed animation with captions and frame-level visual review.",
+    "plainLanguage": "The solution containing both wellbore skin and rate-dependent skin captures the sharp sawtooth-like field peaks that the reduced solutions underestimate.",
+    "video": "/videos/publications/2024-02-22/2024-02-22.mp4",
+    "poster": "/videos/publications/2024-02-22/2024-02-22_poster.png",
+    "captions": "/videos/publications/2024-02-22/2024-02-22_en.vtt"
+  },
+  {
+    "id": "2024-02-23",
+    "doi": "10.1016/j.jhydrol.2024.130856",
+    "label": "Manim visual abstract",
+    "note": "Source-backed animation with captions and frame-level visual review.",
+    "plainLanguage": "Dense hourly groundwater levels support a regional pumping reconstruction of 1.71-2.05 billion m^3/year with the paper's reported temporal agricultural-demand similarity and spatial land-subsidence consistency.",
+    "video": "/videos/publications/2024-02-23/2024-02-23.mp4",
+    "poster": "/videos/publications/2024-02-23/2024-02-23_poster.png",
+    "captions": "/videos/publications/2024-02-23/2024-02-23_en.vtt"
+  },
+  {
+    "id": "2023-09-24",
+    "doi": "10.1002/hyp.14976",
+    "label": "Manim visual abstract",
+    "note": "Source-backed animation with captions and frame-level visual review.",
+    "plainLanguage": "Within the generalized dual-porosity model, a larger transfer weight increases fracture-flow amplitude while lowering matrix-flow amplitude within the reported near-coastal distance range.",
+    "video": "/videos/publications/2023-09-24/2023-09-24.mp4",
+    "poster": "/videos/publications/2023-09-24/2023-09-24_poster.png",
+    "captions": "/videos/publications/2023-09-24/2023-09-24_en.vtt"
+  },
+  {
+    "id": "2023-07-25",
+    "doi": "10.1016/j.jhydrol.2023.129873",
+    "label": "Manim visual abstract",
+    "note": "Source-backed animation with captions and frame-level visual review.",
+    "plainLanguage": "The equivalent Theis response can estimate representative storativity from observation-well drawdown without individual pumping-well information.",
+    "video": "/videos/publications/2023-07-25/2023-07-25.mp4",
+    "poster": "/videos/publications/2023-07-25/2023-07-25_poster.png",
+    "captions": "/videos/publications/2023-07-25/2023-07-25_en.vtt"
+  },
+  {
+    "id": "2023-05-26",
+    "doi": "10.1016/j.jhydrol.2023.129709",
+    "label": "Manim visual abstract",
+    "note": "Source-backed animation with captions and frame-level visual review.",
+    "plainLanguage": "The EOF-HHT framework can recover localized pumping patterns and useful pumping-rate histories from dense groundwater-head observations in the tested synthetic aquifer.",
+    "video": "/videos/publications/2023-05-26/2023-05-26.mp4",
+    "poster": "/videos/publications/2023-05-26/2023-05-26_poster.png",
+    "captions": "/videos/publications/2023-05-26/2023-05-26_en.vtt"
+  },
+  {
+    "id": "2023-04-27",
+    "doi": "10.1016/j.jhydrol.2023.129432",
+    "label": "Manim visual abstract",
+    "note": "Source-backed animation with captions and frame-level visual review.",
+    "plainLanguage": "The temporally relaxed ADE provides a compact two-parameter representation of two-stage non-Fickian transport and improved fits for the two tested column datasets.",
+    "video": "/videos/publications/2023-04-27/2023-04-27.mp4",
+    "poster": "/videos/publications/2023-04-27/2023-04-27_poster.png",
+    "captions": "/videos/publications/2023-04-27/2023-04-27_en.vtt"
+  },
+  {
+    "id": "2023-01-28",
+    "doi": "10.1111/gwat.13295",
+    "label": "Manim visual abstract",
+    "note": "Source-backed animation with captions and frame-level visual review.",
+    "plainLanguage": "For the selected analytical solutions and cases the soil-type profile difference grows with time and ignoring a relevant lower thermal boundary can degrade field groundwater-flux estimation.",
+    "video": "/videos/publications/2023-01-28/2023-01-28.mp4",
+    "poster": "/videos/publications/2023-01-28/2023-01-28_poster.png",
+    "captions": "/videos/publications/2023-01-28/2023-01-28_en.vtt"
+  },
+  {
+    "id": "2022-12-29",
+    "doi": "10.29974/JTAE.202212_68(4).0002",
+    "label": "Manim visual abstract",
+    "note": "Source-backed animation with captions and frame-level visual review.",
+    "plainLanguage": "Across the three tested rainfall patterns, the inferred infiltration-rate curves followed the measured curves, and the analytical temperature profiles agreed with the numerical model.",
+    "video": "/videos/publications/2022-12-29/2022-12-29.mp4",
+    "poster": "/videos/publications/2022-12-29/2022-12-29_poster.png",
+    "captions": "/videos/publications/2022-12-29/2022-12-29_en.vtt"
+  },
+  {
+    "id": "2022-12-30",
+    "doi": "10.1016/j.jhydrol.2022.128672",
+    "label": "Manim visual abstract",
+    "note": "Source-backed animation with captions and frame-level visual review.",
+    "plainLanguage": "In the modeled wedge, dominant flux lag creates wave-like drawdown and can raise SDR above unity through inertial recharge, while dominant storage lag produces an unconfined- or dual-porosity-like delay.",
+    "video": "/videos/publications/2022-12-30/2022-12-30.mp4",
+    "poster": "/videos/publications/2022-12-30/2022-12-30_poster.png",
+    "captions": "/videos/publications/2022-12-30/2022-12-30_en.vtt"
+  },
+  {
+    "id": "2022-07-31",
+    "doi": "10.1016/j.jhydrol.2022.127920",
+    "label": "Manim visual abstract",
+    "note": "Source-backed animation with captions and frame-level visual review.",
+    "plainLanguage": "The analytical-profile inversion followed by d(qt)/dt provides a practical estimate of transient depth-averaged VGF and improves on constant-q inversion.",
+    "video": "/videos/publications/2022-07-31/2022-07-31.mp4",
+    "poster": "/videos/publications/2022-07-31/2022-07-31_poster.png",
+    "captions": "/videos/publications/2022-07-31/2022-07-31_en.vtt"
+  },
+  {
+    "id": "2022-03-32",
+    "doi": "10.1029/2021WR031368",
+    "label": "Manim visual abstract",
+    "note": "Source-backed animation with captions and frame-level visual review.",
+    "plainLanguage": "For the tested wells, Case 3 gives the smallest reported errors at LA-87B and LA-88B, while the three cases remain close at LA-88A; at LA-87B, the evidence for non-Darcy loss is stronger because formation damage improves fit only marginally and its effect is minor.",
+    "video": "/videos/publications/2022-03-32/2022-03-32.mp4",
+    "poster": "/videos/publications/2022-03-32/2022-03-32_poster.png",
+    "captions": "/videos/publications/2022-03-32/2022-03-32_en.vtt"
+  },
+  {
+    "id": "2021-07-33",
+    "doi": "10.1029/2020WR029186",
+    "label": "Manim visual abstract",
+    "note": "Source-backed animation with captions and frame-level visual review.",
+    "plainLanguage": "For the two tested pumping records, the generalized model fits empirical interior weights of 0.31 and 0.77 and has lower reported fit and information-criterion values than the fixed endpoints.",
+    "video": "/videos/publications/2021-07-33/2021-07-33.mp4",
+    "poster": "/videos/publications/2021-07-33/2021-07-33_poster.png",
+    "captions": "/videos/publications/2021-07-33/2021-07-33_en.vtt"
+  },
+  {
+    "id": "2020-07-34",
+    "doi": "10.1016/j.jhydrol.2020.124873",
+    "label": "Manim visual abstract",
+    "note": "Source-backed animation with captions and frame-level visual review.",
+    "plainLanguage": "For the selected bench-scale datasets the present analytical solution gives good fits to measured concentrations and can estimate transport parameters without the additional batch tests used in the comparison study.",
+    "video": "/videos/publications/2020-07-34/2020-07-34.mp4",
+    "poster": "/videos/publications/2020-07-34/2020-07-34_poster.png",
+    "captions": "/videos/publications/2020-07-34/2020-07-34_en.vtt"
+  },
+  {
+    "id": "2020-03-35",
+    "doi": "10.1029/2019WR026352",
+    "label": "Manim visual abstract",
+    "note": "Source-backed animation with captions and frame-level visual review.",
+    "plainLanguage": "Under the paper's model and tested parameter scenarios, the lagging Robin boundary is a more efficient surrogate whose SDR remains close to, but not identical with, the explicit streambed-zone response; the reported differences depend on w_D beta, pumping time, and well distance.",
+    "video": "/videos/publications/2020-03-35/2020-03-35.mp4",
+    "poster": "/videos/publications/2020-03-35/2020-03-35_poster.png",
+    "captions": "/videos/publications/2020-03-35/2020-03-35_en.vtt"
+  },
+  {
+    "id": "2020-02-36",
+    "doi": "10.1016/j.jhydrol.2019.124395",
+    "label": "Manim visual abstract",
+    "note": "Source-backed animation with captions and frame-level visual review.",
+    "plainLanguage": "Applying the source well-loss criterion to the fitted coefficients classifies both test wells as not properly designed or developed.",
+    "video": "/videos/publications/2020-02-36/2020-02-36.mp4",
+    "poster": "/videos/publications/2020-02-36/2020-02-36_poster.png",
+    "captions": "/videos/publications/2020-02-36/2020-02-36_en.vtt"
+  },
+  {
+    "id": "2019-08-37",
+    "doi": "10.1029/2019WR024966",
+    "label": "Manim visual abstract",
+    "note": "Source-backed animation with captions and frame-level visual review.",
+    "plainLanguage": "Within the modeled injection period, the coupled conduction-dispersion solution gives reasonably good agreement with the measured Mobile ATES temperature distribution.",
+    "video": "/videos/publications/2019-08-37/2019-08-37.mp4",
+    "poster": "/videos/publications/2019-08-37/2019-08-37_poster.png",
+    "captions": "/videos/publications/2019-08-37/2019-08-37_en.vtt"
+  },
+  {
+    "id": "2019-04-38",
+    "doi": "10.1029/2018WR023893",
+    "label": "Manim visual abstract",
+    "note": "Source-backed animation with captions and frame-level visual review.",
+    "plainLanguage": "Across the three owned site-fit operations, the present two-lag solution gives very good fits to observed drawdown and estimates specific yield within the cited laboratory-supported ranges.",
+    "video": "/videos/publications/2019-04-38/2019-04-38.mp4",
+    "poster": "/videos/publications/2019-04-38/2019-04-38_poster.png",
+    "captions": "/videos/publications/2019-04-38/2019-04-38_en.vtt"
+  },
+  {
+    "id": "2017-06-40",
+    "doi": "10.1016/j.advwatres.2017.05.018",
+    "label": "Manim visual abstract",
+    "note": "Source-backed animation with captions and frame-level visual review.",
+    "plainLanguage": "Explicitly coupling unsaturated drainage and lower-layer leakage yields an analytical constant-head response that agrees with numerical and field evidence for the tested conditions.",
+    "video": "/videos/publications/2017-06-40/2017-06-40.mp4",
+    "poster": "/videos/publications/2017-06-40/2017-06-40_poster.png",
+    "captions": "/videos/publications/2017-06-40/2017-06-40_en.vtt"
+  },
+  {
+    "id": "2016-07-41",
+    "doi": "10.1016/j.jhydrol.2016.07.028",
+    "label": "Manim visual abstract",
+    "note": "Source-backed animation with captions and frame-level visual review.",
+    "plainLanguage": "In the original finite radial two-zone aquifer, the outer-boundary type is practically invisible at early time but becomes decisive later, because Robin supply can sustain CHT wellbore flow after the no-flow case begins to fall away.",
+    "video": "/videos/publications/2016-07-41/2016-07-41.mp4",
+    "poster": "/videos/publications/2016-07-41/2016-07-41_poster.png",
+    "captions": "/videos/publications/2016-07-41/2016-07-41_en.vtt"
+  }
+]

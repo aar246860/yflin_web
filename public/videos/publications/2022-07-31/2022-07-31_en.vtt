@@ -1,0 +1,78 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:07.000
+Vertical groundwater flux varies through time under natural hydrologic
+
+2
+00:00:08.000 --> 00:00:15.000
+Subsurface temperature-depth profiles are practical heat-tracer
+
+3
+00:00:16.000 --> 00:00:23.000
+The VGF in the hydrological cycle is an instantaneous process, whereas
+
+4
+00:00:24.000 --> 00:00:31.000
+Cubic-polynomial initial condition
+
+5
+00:00:32.000 --> 00:00:39.000
+Time-dependent top boundary condition
+
+6
+00:00:40.000 --> 00:00:47.000
+Analytical temperature-depth solution for a prescribed average Darcy
+
+7
+00:00:48.000 --> 00:00:55.000
+One fitted q value for each observation time
+
+8
+00:00:56.000 --> 00:01:03.000
+Differentiable q time trajectory
+
+9
+00:01:04.000 --> 00:01:11.000
+Instantaneous actual vertical groundwater flux qa(t)
+
+10
+00:01:12.000 --> 00:01:19.000
+Normalized temperature sensitivity Xm for each parameter
+
+11
+00:01:20.000 --> 00:01:27.000
+Differential importance measure DIMm for each parameter
+
+12
+00:01:28.000 --> 00:01:35.000
+Finite-element temperature-depth profiles at the reported comparison
+
+13
+00:01:36.000 --> 00:01:43.000
+Verification of the analytical forward model
+
+14
+00:01:44.000 --> 00:01:51.000
+SEE comparison between present and constant-q approaches
+
+15
+00:01:52.000 --> 00:01:59.000
+Field inversion profiles from the second through fifth day
+
+16
+00:02:00.000 --> 00:02:07.000
+A same-data cross-correlation lag of about 1.08 days
+
+17
+00:02:08.000 --> 00:02:15.000
+Measured flux curve displaced by 1.08 days
+
+18
+00:02:16.000 --> 00:02:23.000
+Consistent curve shapes with average fluxes of 4.67 and 4.60 mm per
+
+19
+00:02:24.000 --> 00:02:31.000
+The analytical-profile inversion followed by d(qt)/dt provides a
+

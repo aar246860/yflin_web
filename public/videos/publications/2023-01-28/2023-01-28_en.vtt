@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:07.000
+Heat is treated as a groundwater tracer.
+
+2
+00:00:08.000 --> 00:00:15.000
+A lower thermal boundary can alter transient TD profiles.
+
+3
+00:00:16.000 --> 00:00:23.000
+Soil type may be an important factor in thermal prediction.
+
+4
+00:00:24.000 --> 00:00:31.000
+Transient heat conduction-advection governing equation for the
+
+5
+00:00:32.000 --> 00:00:39.000
+Table 1 grouping into two steady-state finite-domain solutions and
+
+6
+00:00:40.000 --> 00:00:47.000
+Temperature-depth profiles for each specified solution soil case
+
+7
+00:00:48.000 --> 00:00:55.000
+Depth-dependent deviation from CTS that becomes larger over the
+
+8
+00:00:56.000 --> 00:01:03.000
+Profile disparity between different soil types that increases with
+
+9
+00:01:04.000 --> 00:01:11.000
+Top-boundary parameters for each selected transient field solution
+
+10
+00:01:12.000 --> 00:01:19.000
+Lower-boundary parameters for the finite-domain field solution
+
+11
+00:01:20.000 --> 00:01:27.000
+Estimated vertical groundwater flux for each TAS KMS KIS and CTS field
+
+12
+00:01:28.000 --> 00:01:35.000
+One root-mean-square error RMSE value for each fitted field solution
+
+13
+00:01:36.000 --> 00:01:43.000
+CTS identified as the best reported agreement with RMSE 0.0131 degrees
+
+14
+00:01:44.000 --> 00:01:51.000
+For the selected analytical solutions and cases the soil-type profile
+
