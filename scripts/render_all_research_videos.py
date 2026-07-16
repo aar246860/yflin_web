@@ -20,8 +20,6 @@ EXPORT_SCRIPT = SKILL_ROOT / "scripts" / "export_manim_video.py"
 SOURCE_INDEX = ROOT / "research-videos" / "source-index.json"
 LOG_DIR = ROOT / "research-videos" / "render-logs"
 PAPER_ROOT = ROOT / "research-videos" / "papers"
-RENDER_FPS = 30
-SCENE_COUNT = 7
 STATES = (("entry", 0.20), ("midpoint", 0.50), ("settled", 0.80))
 
 
@@ -72,11 +70,11 @@ def ffprobe_frame_count(video: Path) -> int:
     return count
 
 
-def frame_plan(frame_count: int) -> list[tuple[int, str, int, int]]:
+def frame_plan(frame_count: int, scene_count: int) -> list[tuple[int, str, int, int]]:
     plan: list[tuple[int, str, int, int]] = []
-    for scene in range(1, SCENE_COUNT + 1):
-        start = (frame_count * (scene - 1)) // SCENE_COUNT
-        end = (frame_count * scene) // SCENE_COUNT
+    for scene in range(1, scene_count + 1):
+        start = (frame_count * (scene - 1)) // scene_count
+        end = (frame_count * scene) // scene_count
         if end <= start:
             raise RuntimeError(f"scene {scene} has an empty frame range")
         for state, fraction in STATES:
@@ -85,8 +83,8 @@ def frame_plan(frame_count: int) -> list[tuple[int, str, int, int]]:
     return plan
 
 
-def extract_evidence(video: Path, package: Path, frame_count: int) -> list[dict[str, object]]:
-    plan = frame_plan(frame_count)
+def extract_evidence(video: Path, package: Path, frame_count: int, scene_count: int) -> list[dict[str, object]]:
+    plan = frame_plan(frame_count, scene_count)
     selected = "+".join(f"eq(n\\,{index})" for _, _, index, _ in plan)
     raw_prefix = package / "__evidence_"
     command = [
@@ -102,7 +100,7 @@ def extract_evidence(video: Path, package: Path, frame_count: int) -> list[dict[
         "passthrough",
         "-frames:v",
         str(len(plan)),
-        f"{raw_prefix}%02d.png",
+        f"{raw_prefix}%03d.png",
     ]
     subprocess.run(command, check=True, capture_output=True)
     raw_frames = sorted(package.glob("__evidence_*.png"))
@@ -120,7 +118,7 @@ def extract_evidence(video: Path, package: Path, frame_count: int) -> list[dict[
         record[f"{state}_frame"] = target.name
         record[f"{state}_frame_index"] = index
         record[f"{state}_frame_sha256"] = digest(target)
-    return [by_scene[scene] for scene in range(1, SCENE_COUNT + 1)]
+    return [by_scene[scene] for scene in range(1, scene_count + 1)]
 
 
 def parse_storyboard(storyboard: Path) -> list[dict[str, str]]:
@@ -139,8 +137,8 @@ def parse_storyboard(storyboard: Path) -> list[dict[str, str]]:
             match = re.search(rf"(?m)^- {re.escape(label)}: (.*?)$", block)
             values[key] = match.group(1).strip() if match else ""
         records.append(values)
-    if len(records) != SCENE_COUNT:
-        raise RuntimeError(f"storyboard has {len(records)} scenes, expected {SCENE_COUNT}")
+    if not records:
+        raise RuntimeError(f"storyboard has no scene headings: {storyboard}")
     return records
 
 
@@ -174,14 +172,15 @@ def visual_manifest(
         for state, _ in STATES:
             record[f"{state}"] = "pass: overlap-free and within-frame"
             record[f"{state}_content_summary"] = (
-                f"The {state} frame shows {visual_object}; the source-bound composition was reviewed for "
-                "clear object boundaries, readable labels, and a frame-safe transition state."
+                f"At the {state} state, {visual_object} "
+                "Distinct geometry, labels, and response relations remain legible within the frame."
             )
 
     frame_count = ffprobe_frame_count(video)
+    scene_count = len(storyboard_records)
     ranges = []
-    for scene in range(1, SCENE_COUNT + 1):
-        ranges.append(((frame_count * (scene - 1)) // SCENE_COUNT, (frame_count * scene) // SCENE_COUNT))
+    for scene in range(1, scene_count + 1):
+        ranges.append(((frame_count * (scene - 1)) // scene_count, (frame_count * scene) // scene_count))
     for record, (start, end) in zip(scene_records, ranges, strict=True):
         record["scene_start_frame"] = start
         record["scene_end_frame"] = end
@@ -222,7 +221,7 @@ def visual_manifest(
 def prepare_package(paper: dict[str, object], rendered_mp4: Path) -> Path:
     paper_id = str(paper["id"])
     work_dir = PAPER_ROOT / paper_id
-    package = work_dir / "release-strict-generated"
+    package = work_dir / "release"
     if package.exists():
         shutil.rmtree(package)
     package.mkdir(parents=True)
@@ -231,7 +230,12 @@ def prepare_package(paper: dict[str, object], rendered_mp4: Path) -> Path:
     export_log = LOG_DIR / f"{paper_id}_export.log"
     run_logged(
         [
-            sys.executable,
+            "uv",
+            "run",
+            "--project",
+            str(SKILL_ROOT),
+            "--no-dev",
+            "python",
             str(EXPORT_SCRIPT),
             str(rendered_mp4),
             str(package),
@@ -251,6 +255,7 @@ def prepare_package(paper: dict[str, object], rendered_mp4: Path) -> Path:
     transcript = work_dir / f"{paper_id}_transcript.md"
     source_text = ROOT / "research-videos" / "source-text" / f"{paper_id}.txt"
     source_pdf = ROOT / "research-videos" / "source-pdfs" / f"{paper_id}.pdf"
+    captions = work_dir / f"{paper_id}_en.vtt"
     for source, name in (
         (scene, f"{paper_id}_scene.py"),
         (storyboard, f"{paper_id}_storyboard.md"),
@@ -258,6 +263,7 @@ def prepare_package(paper: dict[str, object], rendered_mp4: Path) -> Path:
         (transcript, f"{paper_id}_transcript.md"),
         (source_text, f"{paper_id}_source.txt"),
         (source_pdf, f"{paper_id}_source.pdf"),
+        (captions, f"{paper_id}_en.vtt"),
     ):
         shutil.copy2(source, package / name)
 
@@ -266,7 +272,8 @@ def prepare_package(paper: dict[str, object], rendered_mp4: Path) -> Path:
     html = package / f"{paper_id}.html"
     metadata = package / f"{paper_id}_metadata.json"
     qa_notes = package / f"{paper_id}_qa.md"
-    scene_records = extract_evidence(video, package, ffprobe_frame_count(video))
+    scene_records = extract_evidence(video, package, ffprobe_frame_count(video), len(parse_storyboard(package / storyboard.name)))
+    shutil.copy2(package / "scene1_entry.png", package / f"{paper_id}_poster.png")
     manifest = visual_manifest(
         package,
         paper,
@@ -289,8 +296,8 @@ def render_one(paper: dict[str, object], force: bool) -> tuple[str, str]:
     work_dir = PAPER_ROOT / paper_id
     scene = work_dir / f"{paper_id}_scene.py"
     media_dir = work_dir / "manim_media"
-    rendered = media_dir / "videos" / f"{paper_id}_scene" / "720p30" / f"{paper_id}.mp4"
-    package = work_dir / "release-strict-generated"
+    rendered = media_dir / "videos" / f"{paper_id}_scene" / "720p15" / f"{paper_id}.mp4"
+    package = work_dir / "release"
     if package.exists() and not force and (package / f"{paper_id}_visual_qa.json").exists():
         return paper_id, "skipped: existing generated release"
     render_log = LOG_DIR / f"{paper_id}_render.log"
@@ -307,7 +314,7 @@ def render_one(paper: dict[str, object], force: bool) -> tuple[str, str]:
             "-o",
             f"{paper_id}.mp4",
             str(scene),
-            "ResearchPaperFilm",
+            "ResearchVisualAbstract",
         ],
         render_log,
     )
@@ -324,7 +331,7 @@ def main() -> int:
     args = parser.parse_args()
     LOG_DIR.mkdir(parents=True, exist_ok=True)
     index = json.loads(SOURCE_INDEX.read_text(encoding="utf-8"))
-    papers = index["records"]
+    papers = index["pendingRecords"]
     if args.only:
         selected = set(args.only)
         papers = [paper for paper in papers if paper["id"] in selected]

@@ -1,154 +1,154 @@
 WEBVTT
 
 1
-00:00:00.000 --> 00:00:07.000
+00:00:00.000 --> 00:00:03.000
 Reliable pumping rates and well distributions are often absent in
 
 2
-00:00:08.000 --> 00:00:15.000
+00:00:04.000 --> 00:00:07.000
 A Theis-based confined-flow response cannot represent the staged
 
 3
-00:00:16.000 --> 00:00:23.000
+00:00:08.000 --> 00:00:11.000
 Capillary suction and inertial force shift the timing of drawdown
 
 4
-00:00:24.000 --> 00:00:31.000
+00:00:12.000 --> 00:00:15.000
 Trend residual disturbance and pumping-related high-frequency
 
 5
-00:00:32.000 --> 00:00:39.000
+00:00:16.000 --> 00:00:19.000
 One-dimensional radial Boussinesq equation in polar coordinates
 
 6
-00:00:40.000 --> 00:00:47.000
+00:00:20.000 --> 00:00:23.000
 Time-shifted flux and hydraulic-gradient relation
 
 7
-00:00:48.000 --> 00:00:55.000
+00:00:24.000 --> 00:00:27.000
 Lagging Boussinesq equation containing capillary and inertial lag
 
 8
-00:00:56.000 --> 00:01:03.000
+00:00:28.000 --> 00:00:31.000
 Laplace-domain hydraulic-head solution
 
 9
-00:01:04.000 --> 00:01:11.000
+00:00:32.000 --> 00:00:35.000
 Time-domain single-well step response
 
 10
-00:01:12.000 --> 00:01:19.000
+00:00:36.000 --> 00:00:39.000
 Single-well impulse response function
 
 11
-00:01:20.000 --> 00:01:27.000
+00:00:40.000 --> 00:00:43.000
 Single-well drawdown for arbitrary pumping histories
 
 12
-00:01:28.000 --> 00:01:35.000
+00:00:44.000 --> 00:00:47.000
 Uniform pumping step-response function
 
 13
-00:01:36.000 --> 00:01:43.000
+00:00:48.000 --> 00:00:51.000
 Uniform pumping impulse-response function
 
 14
-00:01:44.000 --> 00:01:51.000
+00:00:52.000 --> 00:00:55.000
 Modeled observation-well drawdown under uniform pumping
 
 15
-00:01:52.000 --> 00:01:59.000
+00:00:56.000 --> 00:00:59.000
 Fitted transmissivity specific yield and two lag parameters
 
 16
-00:02:00.000 --> 00:02:07.000
+00:01:00.000 --> 00:01:03.000
 Estimated pumping rate for each drawdown interval
 
 17
-00:02:08.000 --> 00:02:15.000
+00:01:04.000 --> 00:01:07.000
 Forward-modeled drawdown for the observed interval
 
 18
-00:02:16.000 --> 00:02:23.000
+00:01:08.000 --> 00:01:11.000
 A resampled residual sequence
 
 19
-00:02:24.000 --> 00:02:31.000
+00:01:12.000 --> 00:01:15.000
 One synthetic head data set
 
 20
-00:02:32.000 --> 00:02:39.000
+00:01:16.000 --> 00:01:19.000
 One bootstrap parameter estimate
 
 21
-00:02:40.000 --> 00:02:47.000
+00:01:20.000 --> 00:01:23.000
 Parameter distributions with reported intervals
 
 22
-00:02:48.000 --> 00:02:55.000
+00:01:24.000 --> 00:01:27.000
 A one-at-a-time perturbed parameter vector
 
 23
-00:02:56.000 --> 00:03:03.000
+00:01:28.000 --> 00:01:31.000
 One time-dependent elementary-effect trace
 
 24
-00:03:04.000 --> 00:03:11.000
+00:01:32.000 --> 00:01:35.000
 Mu-star overall-effect value for each parameter
 
 25
-00:03:12.000 --> 00:03:19.000
+00:01:36.000 --> 00:01:39.000
 Sigma variability value for each parameter
 
 26
-00:03:20.000 --> 00:03:27.000
+00:01:40.000 --> 00:01:43.000
 Time-dependent parameter-influence curves
 
 27
-00:03:28.000 --> 00:03:35.000
+00:01:44.000 --> 00:01:47.000
 Noise-free synthetic head response
 
 28
-00:03:36.000 --> 00:03:43.000
+00:01:48.000 --> 00:01:51.000
 Disturbed synthetic observations
 
 29
-00:03:44.000 --> 00:03:51.000
+00:01:52.000 --> 00:01:55.000
 Recovered transmissivity, specific yield, and lag parameters
 
 30
-00:03:52.000 --> 00:03:59.000
+00:01:56.000 --> 00:01:59.000
 Synthetic recovery differences
 
 31
-00:04:00.000 --> 00:04:07.000
+00:02:00.000 --> 00:02:03.000
 Drawdown periods without rainfall
 
 32
-00:04:08.000 --> 00:04:15.000
+00:02:04.000 --> 00:02:07.000
 Rain-free drawdown intervals lasting at least six hours
 
 33
-00:04:16.000 --> 00:04:23.000
+00:02:08.000 --> 00:02:11.000
 Eighteen stations retaining identified pumping events
 
 34
-00:04:24.000 --> 00:04:31.000
+00:02:12.000 --> 00:02:15.000
 Predicted drawdown curve for each station
 
 35
-00:04:32.000 --> 00:04:39.000
+00:02:16.000 --> 00:02:19.000
 Parameter estimates across retained stations
 
 36
-00:04:40.000 --> 00:04:47.000
+00:02:20.000 --> 00:02:23.000
 Median values for specific yield, transmissivity, and both lag
 
 37
-00:04:48.000 --> 00:04:55.000
+00:02:24.000 --> 00:02:27.000
 Lower and upper 95 percent bounds for each field-parameter
 
 38
-00:04:56.000 --> 00:05:03.000
+00:02:28.000 --> 00:02:31.000
 The lagging uniform-pumping response extracts plausible
 

@@ -1,38 +1,38 @@
 WEBVTT
 
 1
-00:00:00.000 --> 00:00:07.000
+00:00:00.000 --> 00:00:03.000
 The comment raises three issues concerning the scope, steady-state
 
 2
-00:00:08.000 --> 00:00:15.000
+00:00:04.000 --> 00:00:07.000
 A thin layer can be represented by a zero-thickness fault interface
 
 3
-00:00:16.000 --> 00:00:23.000
+00:00:08.000 --> 00:00:11.000
 A Taylor series ordered by powers of w f.
 
 4
-00:00:24.000 --> 00:00:31.000
+00:00:12.000 --> 00:00:15.000
 A Wentzell dynamic flux-jump condition on the zero-thickness
 
 5
-00:00:32.000 --> 00:00:39.000
+00:00:16.000 --> 00:00:19.000
 A conductive-fault boundary whose averaged drawdown retains shear-flux
 
 6
-00:00:40.000 --> 00:00:47.000
+00:00:20.000 --> 00:00:23.000
 A finite-width reference drawdown field for the aquifer and fault
 
 7
-00:00:48.000 --> 00:00:55.000
+00:00:24.000 --> 00:00:27.000
 Scenario-specific RMSE values for interface-to-reference drawdown
 
 8
-00:00:56.000 --> 00:01:03.000
+00:00:28.000 --> 00:00:31.000
 Kernel-density error distributions against 5% and 10% tolerances.
 
 9
-00:01:04.000 --> 00:01:11.000
+00:00:32.000 --> 00:00:35.000
 For the tested parameter combinations, the first-order interface
 

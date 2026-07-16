@@ -1,110 +1,110 @@
 WEBVTT
 
 1
-00:00:00.000 --> 00:00:07.000
+00:00:00.000 --> 00:00:03.000
 Traditional pumping-test interpretation requires pumping-well number
 
 2
-00:00:08.000 --> 00:00:15.000
+00:00:04.000 --> 00:00:07.000
 Theis impulse responses depend on relative pumping-observation
 
 3
-00:00:16.000 --> 00:00:23.000
+00:00:08.000 --> 00:00:11.000
 The paper identifies high pumping-well density as a setting where the
 
 4
-00:00:24.000 --> 00:00:31.000
+00:00:12.000 --> 00:00:15.000
 Time-varying confined-aquifer drawdown
 
 5
-00:00:32.000 --> 00:00:39.000
+00:00:16.000 --> 00:00:19.000
 Equivalent impulse response function for spatially homogeneous pumping
 
 6
-00:00:40.000 --> 00:00:47.000
+00:00:20.000 --> 00:00:23.000
 Equivalent unit response function for the finite pumping circle
 
 7
-00:00:48.000 --> 00:00:55.000
+00:00:24.000 --> 00:00:27.000
 Equivalent pumping-rate time series around the observation well
 
 8
-00:00:56.000 --> 00:01:03.000
+00:00:28.000 --> 00:00:31.000
 Least-squares residual objective over the parameter space
 
 9
-00:01:04.000 --> 00:01:11.000
+00:00:32.000 --> 00:00:35.000
 Logarithmic parameter coordinates for optimization
 
 10
-00:01:12.000 --> 00:01:19.000
+00:00:36.000 --> 00:00:39.000
 Constrained parameter space with reduced T-S nonuniqueness
 
 11
-00:01:20.000 --> 00:01:27.000
+00:00:40.000 --> 00:00:43.000
 Population of candidate parameter sets near low residual values
 
 12
-00:01:28.000 --> 00:01:35.000
+00:00:44.000 --> 00:00:47.000
 Selected parameter set at the least-squares minimum
 
 13
-00:01:36.000 --> 00:01:43.000
+00:00:48.000 --> 00:00:51.000
 Synthetic intermittent-pumping drawdown observations
 
 14
-00:01:44.000 --> 00:01:51.000
+00:00:52.000 --> 00:00:55.000
 Estimated storativity pumping rate and influence radius for each case
 
 15
-00:01:52.000 --> 00:01:59.000
+00:00:56.000 --> 00:00:59.000
 Standard error of estimate for the fitted drawdown
 
 16
-00:02:00.000 --> 00:02:07.000
+00:01:00.000 --> 00:01:03.000
 Mean error for the fitted drawdown
 
 17
-00:02:08.000 --> 00:02:15.000
+00:01:04.000 --> 00:01:07.000
 Distance-indexed parameter estimates and fit errors
 
 18
-00:02:16.000 --> 00:02:23.000
+00:01:08.000 --> 00:01:11.000
 Arrangement-indexed parameter estimates and drawdown fits
 
 19
-00:02:24.000 --> 00:02:31.000
+00:01:12.000 --> 00:01:15.000
 Anisotropy-indexed drawdown maps parameter estimates and fit errors
 
 20
-00:02:32.000 --> 00:02:39.000
+00:01:16.000 --> 00:01:19.000
 One-at-a-time elementary effects across sampled parameter values
 
 21
-00:02:40.000 --> 00:02:47.000
+00:01:20.000 --> 00:01:23.000
 Overall-effect and nonlinear-interaction measures for each parameter
 
 22
-00:02:48.000 --> 00:02:55.000
+00:01:24.000 --> 00:01:27.000
 Short drawdown interval screened for precipitation and large
 
 23
-00:02:56.000 --> 00:03:03.000
+00:01:28.000 --> 00:01:31.000
 Density check for the intended high-density application setting
 
 24
-00:03:04.000 --> 00:03:11.000
+00:01:32.000 --> 00:01:35.000
 Distance condition for representative storativity and pumping
 
 25
-00:03:12.000 --> 00:03:19.000
+00:01:36.000 --> 00:01:39.000
 Anisotropy condition on equivalent pumping-rate recovery
 
 26
-00:03:20.000 --> 00:03:27.000
+00:01:40.000 --> 00:01:43.000
 Interpretation limited to known or independently constrained
 
 27
-00:03:28.000 --> 00:03:35.000
+00:01:44.000 --> 00:01:47.000
 The equivalent Theis response can estimate representative storativity
 

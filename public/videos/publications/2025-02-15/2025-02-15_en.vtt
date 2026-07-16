@@ -1,102 +1,102 @@
 WEBVTT
 
 1
-00:00:00.000 --> 00:00:07.000
+00:00:00.000 --> 00:00:03.000
 Inverse wave problems are difficult because ill-posedness,
 
 2
-00:00:08.000 --> 00:00:15.000
+00:00:04.000 --> 00:00:07.000
 A PINN constrains a neural approximation by placing the wave-equation
 
 3
-00:00:16.000 --> 00:00:23.000
+00:00:08.000 --> 00:00:11.000
 Spacetime RBFs provide the meshless geometric representation used by
 
 4
-00:00:24.000 --> 00:00:31.000
+00:00:12.000 --> 00:00:15.000
 Wave speed material properties or source location designated as
 
 5
-00:00:32.000 --> 00:00:39.000
+00:00:16.000 --> 00:00:19.000
 Distance r i from every target point to every source point in the
 
 6
-00:00:40.000 --> 00:00:47.000
+00:00:20.000 --> 00:00:23.000
 Simplified MQ, IMQ, or Gaussian values phi(r i) for every source point
 
 7
-00:00:48.000 --> 00:00:55.000
+00:00:24.000 --> 00:00:27.000
 A source-point-width feature vector supplied to the multilayer
 
 8
-00:00:56.000 --> 00:01:03.000
+00:00:28.000 --> 00:00:31.000
 MLP output-layer solution approximation
 
 9
-00:01:04.000 --> 00:01:11.000
+00:00:32.000 --> 00:00:35.000
 Data-loss term L data
 
 10
-00:01:12.000 --> 00:01:19.000
+00:00:36.000 --> 00:00:39.000
 Mean-squared residual loss L physics
 
 11
-00:01:20.000 --> 00:01:27.000
+00:00:40.000 --> 00:00:43.000
 Objective Loss lambda R Ldata + lambda P Lphysics
 
 12
-00:01:28.000 --> 00:01:35.000
+00:00:44.000 --> 00:00:47.000
 Simplified IMQ basis retained for subsequent analyses
 
 13
-00:01:36.000 --> 00:01:43.000
+00:00:48.000 --> 00:00:51.000
 A retained boundary-point quantity of 1002
 
 14
-00:01:44.000 --> 00:01:51.000
+00:00:52.000 --> 00:00:55.000
 A retained RBF source-point quantity of 69
 
 15
-00:01:52.000 --> 00:01:59.000
+00:00:56.000 --> 00:00:59.000
 Selected hyperparameter configuration used in subsequent inverse
 
 16
-00:02:00.000 --> 00:02:07.000
+00:01:00.000 --> 00:01:03.000
 Network fitted to data and wave-equation constraints
 
 17
-00:02:08.000 --> 00:02:15.000
+00:01:04.000 --> 00:01:07.000
 Levenberg-Marquardt algorithm selected for the proposed network
 
 18
-00:02:16.000 --> 00:02:23.000
+00:01:08.000 --> 00:01:11.000
 Sigmoid activation selected for the forward and inverse wave networks
 
 19
-00:02:24.000 --> 00:02:31.000
+00:01:12.000 --> 00:01:15.000
 Optimal weight parameters at the stated loss convergence criterion
 
 20
-00:02:32.000 --> 00:02:39.000
+00:01:16.000 --> 00:01:19.000
 Reconstructed past wave fields for the four synthetic cases
 
 21
-00:02:40.000 --> 00:02:47.000
+00:01:20.000 --> 00:01:23.000
 Case A RMSE, MRE, and MAE comparison showing lower reported errors for
 
 22
-00:02:48.000 --> 00:02:55.000
+00:01:24.000 --> 00:01:27.000
 Four without-noise RMSE values for Cases A-D
 
 23
-00:02:56.000 --> 00:03:03.000
+00:01:28.000 --> 00:01:31.000
 Without-noise MRE values 2.10 × 10−3, 6.70 × 10−3, 1.67 × 10−1, and
 
 24
-00:03:04.000 --> 00:03:11.000
+00:01:32.000 --> 00:01:35.000
 Without-noise MAE values 1.41 × 10−5, 3.52 × 10−5, 1.40 × 10−3, and
 
 25
-00:03:12.000 --> 00:03:19.000
+00:01:36.000 --> 00:01:39.000
 For the tested synthetic inverse cases, the optimized spacetime IMQ
 

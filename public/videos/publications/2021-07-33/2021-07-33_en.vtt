@@ -1,90 +1,90 @@
 WEBVTT
 
 1
-00:00:00.000 --> 00:00:07.000
+00:00:00.000 --> 00:00:03.000
 Dual-porosity models treat fractures and matrix blocks as separate but
 
 2
-00:00:08.000 --> 00:00:15.000
+00:00:04.000 --> 00:00:07.000
 Fixed first- and second-order transfer laws reproduce different parts
 
 3
-00:00:16.000 --> 00:00:23.000
+00:00:08.000 --> 00:00:11.000
 Aquitard leakage supplies an additional water source to the fracture
 
 4
-00:00:24.000 --> 00:00:31.000
+00:00:12.000 --> 00:00:15.000
 Fracture and lumped-matrix drawdown equations linked by Gamma
 
 5
-00:00:32.000 --> 00:00:39.000
+00:00:16.000 --> 00:00:19.000
 A generalized transfer term Gamma controlled by weight omega
 
 6
-00:00:40.000 --> 00:00:47.000
+00:00:20.000 --> 00:00:23.000
 Scaled equations containing SD, CD, gamma D, sigma D, and KD
 
 7
-00:00:48.000 --> 00:00:55.000
+00:00:24.000 --> 00:00:27.000
 Laplace identities for nonlinear powers and derivative products
 
 8
-00:00:56.000 --> 00:01:03.000
+00:00:28.000 --> 00:00:31.000
 The algebraic relation between matrix and fracture drawdown smD equals
 
 9
-00:01:04.000 --> 00:01:11.000
+00:00:32.000 --> 00:00:35.000
 A radial fracture equation containing only transformed fracture
 
 10
-00:01:12.000 --> 00:01:19.000
+00:00:36.000 --> 00:00:39.000
 Laplace-domain fracture and matrix drawdown in Equations 17 and 18
 
 11
-00:01:20.000 --> 00:01:27.000
+00:00:40.000 --> 00:00:43.000
 Time-domain dual-porosity drawdown and transfer flux
 
 12
-00:01:28.000 --> 00:01:35.000
+00:00:44.000 --> 00:00:47.000
 A finite radial coordinate and Kelvin-transformed fracture equation
 
 13
-00:01:36.000 --> 00:01:43.000
+00:00:48.000 --> 00:00:51.000
 Finite-element fracture drawdown over the finite radial mesh
 
 14
-00:01:44.000 --> 00:01:51.000
+00:00:52.000 --> 00:00:55.000
 Paired temporal drawdown curves at 1, 5, and 10 m
 
 15
-00:01:52.000 --> 00:01:59.000
+00:00:56.000 --> 00:00:59.000
 Verification of the analytical derivation across the sampled distances
 
 16
-00:02:00.000 --> 00:02:07.000
+00:01:00.000 --> 00:01:03.000
 Weight-dependent matrix-to-fracture flux and fracture and matrix
 
 17
-00:02:08.000 --> 00:02:15.000
+00:01:04.000 --> 00:01:07.000
 Time-resolved sensitivity curves for Kf, Ssf, Ssm, sigma Km, gamma,
 
 18
-00:02:16.000 --> 00:02:23.000
+00:01:08.000 --> 00:01:11.000
 Three fitted parameter sets including generalized-model omega equal to
 
 19
-00:02:24.000 --> 00:02:31.000
+00:01:12.000 --> 00:01:15.000
 The generalized model's lower reported SEE, ME, AIC, and BIC values
 
 20
-00:02:32.000 --> 00:02:39.000
+00:01:16.000 --> 00:01:19.000
 Three fitted parameter sets including generalized-model omega equal to
 
 21
-00:02:40.000 --> 00:02:47.000
+00:01:20.000 --> 00:01:23.000
 The generalized model's smallest reported SEE, ME, AIC, and BIC values
 
 22
-00:02:48.000 --> 00:02:55.000
+00:01:24.000 --> 00:01:27.000
 For the two tested pumping records, the generalized model fits
 
