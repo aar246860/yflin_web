@@ -8,7 +8,7 @@ const VIDEO_ROOT = path.join(ROOT, "research-videos");
 const INDEX = JSON.parse(fs.readFileSync(path.join(VIDEO_ROOT, "source-index.json"), "utf8"));
 const SPEC_ROOT = path.join(VIDEO_ROOT, "specs");
 const PAPER_ROOT = path.join(VIDEO_ROOT, "papers");
-const SCENE_SECONDS = 8;
+const SCENE_SECONDS = 4;
 
 const normalizeDisplayUnits = (value) => String(value)
   .normalize("NFKC")
@@ -72,8 +72,41 @@ function methodCode(scene, number, paperId) {
   const transitionLabels = `[item for item in [title_label, caption_label, detail_label, entry_field, mid_field${hasFormula ? ", entry_formula, mid_formula" : ""}] if item is not entry_field and item is not mid_field${hasFormula ? " and item is not entry_formula and item is not mid_formula" : ""}]`;
   const settledLabels = `[item for item in [title_label, caption_label, detail_label, entry_field, settled_field${hasFormula ? ", mid_formula, settled_formula" : ""}] if item is not entry_field and item is not settled_field${hasFormula ? " and item is not mid_formula and item is not settled_formula" : ""}]`;
   return `
+    def transition_state(self, title_label, caption_label, detail_label, field, formula=None):
+        """Carry the same scientific object across scenes instead of rebuilding a slide."""
+        previous_title = getattr(self, "_research_title", None)
+        previous_caption = getattr(self, "_research_caption", None)
+        previous_detail = getattr(self, "_research_detail", None)
+        previous_field = getattr(self, "_research_field", None)
+        previous_formula = getattr(self, "_research_formula", None)
+        if previous_field is None:
+            Scene.play(self, FadeIn(title_label), FadeIn(caption_label), FadeIn(detail_label), Create(field), run_time=0.9)
+            if formula is not None:
+                Scene.play(self, FadeIn(formula), run_time=0.35)
+        else:
+            animations = []
+            if previous_title is not title_label:
+                animations.append(FadeTransform(previous_title, title_label))
+            if previous_caption is not caption_label:
+                animations.append(FadeTransform(previous_caption, caption_label))
+            if previous_detail is not detail_label:
+                animations.append(FadeTransform(previous_detail, detail_label))
+            if previous_field is not field:
+                animations.append(ReplacementTransform(previous_field, field))
+            if previous_formula is not None and formula is not None and previous_formula is not formula:
+                animations.append(ReplacementTransform(previous_formula, formula))
+            elif previous_formula is not None:
+                animations.append(FadeOut(previous_formula))
+            elif formula is not None:
+                animations.append(FadeIn(formula))
+            Scene.play(self, *animations, run_time=1.35)
+        self._research_title = title_label
+        self._research_caption = caption_label
+        self._research_detail = detail_label
+        self._research_field = field
+        self._research_formula = formula
+
     def scene_${String(number).padStart(2, "0")}_${role}(self):
-        self.clear()
         title_label = Text(${pyString(title)}, font_size=34, color=INK).to_edge(UP)
         if title_label.width > 12.4:
             title_label.scale_to_fit_width(12.4)
@@ -86,17 +119,23 @@ function methodCode(scene, number, paperId) {
         if detail_label.height > ${hasFormula ? "2.5" : "3.8"}:
             detail_label.scale_to_fit_height(${hasFormula ? "2.5" : "3.8"})
         entry_field = ${semanticVisualExpression(semanticContext, 0)}${formulaAssignment("entry", 0)}
+        self.remove(entry_field)
+        carried_items = list(self.mobjects)
+        if carried_items:
+            Scene.remove(self, *carried_items)
         assert_scene_layout(scene=self, pending_items=[title_label, caption_label, detail_label, entry_field${formulaItem("entry")}], labels=${initialLabels}, blockers=[entry_field], frame_items=[title_label, caption_label, detail_label, entry_field${formulaItem("entry")}], intentional_overlaps=[(entry_field, entry_field)])
-        self.play(FadeIn(title_label), FadeIn(caption_label), FadeIn(detail_label), Create(entry_field),${hasFormula ? " FadeIn(entry_formula)," : ""} run_time=1.25)
-        self.wait(0.8)
+        if carried_items:
+            Scene.add(self, *carried_items)
+        self.transition_state(title_label, caption_label, detail_label, entry_field${hasFormula ? ", entry_formula" : ""})
+        self.wait(0.25)
         mid_field = ${semanticVisualExpression(semanticContext, 1)}${formulaAssignment("mid", 1)}
         assert_scene_layout(scene=self, pending_items=[mid_field${formulaItem("mid")}], labels=${transitionLabels}, blockers=[entry_field, mid_field], frame_items=[title_label, caption_label, detail_label, entry_field, mid_field${hasFormula ? ", entry_formula, mid_formula" : ""}], intentional_overlaps=[(entry_field, entry_field), (mid_field, mid_field), (entry_field, mid_field)${hasFormula ? ", (entry_formula, mid_formula)" : ""}])
-        self.play(Transform(entry_field, mid_field),${hasFormula ? " FadeOut(entry_formula), FadeIn(mid_formula)," : ""} run_time=2.2)
-        self.wait(0.8)
+        self.transition_state(title_label, caption_label, detail_label, mid_field${hasFormula ? ", mid_formula" : ""})
+        self.wait(0.25)
         settled_field = ${semanticVisualExpression(semanticContext, 2)}${formulaAssignment("settled", 2)}
-        assert_scene_layout(scene=self, pending_items=[settled_field${formulaItem("settled")}], labels=${settledLabels}, blockers=[entry_field, settled_field], frame_items=[title_label, caption_label, detail_label, entry_field, settled_field${hasFormula ? ", mid_formula, settled_formula" : ""}], intentional_overlaps=[(entry_field, entry_field), (settled_field, settled_field), (entry_field, settled_field)${hasFormula ? ", (mid_formula, settled_formula)" : ""}])
-        self.play(Transform(entry_field, settled_field),${hasFormula ? " FadeOut(mid_formula), FadeIn(settled_formula)," : ""} run_time=2.2)
-        self.wait(1.1)
+        assert_scene_layout(scene=self, pending_items=[settled_field${formulaItem("settled")}], labels=${settledLabels}, blockers=[mid_field, settled_field], frame_items=[title_label, caption_label, detail_label, mid_field, settled_field${hasFormula ? ", mid_formula, settled_formula" : ""}], intentional_overlaps=[(mid_field, mid_field), (settled_field, settled_field), (mid_field, settled_field)${hasFormula ? ", (mid_formula, settled_formula)" : ""}])
+        self.transition_state(title_label, caption_label, detail_label, settled_field${hasFormula ? ", settled_formula" : ""})
+        self.wait(0.45)
 `;
 }
 
@@ -109,7 +148,7 @@ function sourceCode(spec) {
   const methods = scenes.map((scene, index) => methodCode(scene, index + 1, spec.id)).join("\n");
   const optionalImports = ["DashedLine", "Ellipse"].filter((name) => methods.includes(`${name}(`));
   const optionalImportText = optionalImports.length ? `${optionalImports.join(", ")}, ` : "";
-  return `from manim import Arc, Arrow, Axes, Circle, Create, Dot, DOWN, FadeIn, FadeOut, ${optionalImportText}Line, MathTex, Polygon, Rectangle, Scene, Text, Transform, UP, VGroup
+  return `from manim import Arc, Arrow, Axes, Circle, Create, Dot, DOWN, FadeIn, FadeOut, FadeTransform, ${optionalImportText}Line, MathTex, Polygon, Rectangle, ReplacementTransform, Scene, Text, Transform, UP, VGroup
 
 from assets.research_manim_layout import assert_scene_layout
 

@@ -1,86 +1,86 @@
 WEBVTT
 
 1
-00:00:00.000 --> 00:00:07.000
+00:00:00.000 --> 00:00:03.000
 A constant-head test fixes well drawdown and measures the time-varying
 
 2
-00:00:08.000 --> 00:00:15.000
+00:00:04.000 --> 00:00:07.000
 Unconfined pumping draws sequentially from elastic storage and delayed
 
 3
-00:00:16.000 --> 00:00:23.000
+00:00:08.000 --> 00:00:11.000
 No prior constant-head model combined unsaturated flow with leakage
 
 4
-00:00:24.000 --> 00:00:31.000
+00:00:12.000 --> 00:00:15.000
 A radial-vertical groundwater equation with skin-modified inner
 
 5
-00:00:32.000 --> 00:00:39.000
+00:00:16.000 --> 00:00:19.000
 Richards' equation with pressure-dependent conductivity and moisture
 
 6
-00:00:40.000 --> 00:00:47.000
+00:00:20.000 --> 00:00:23.000
 First-order equations on a fixed initial water table
 
 7
-00:00:48.000 --> 00:00:55.000
+00:00:24.000 --> 00:00:27.000
 Time-dependent layer equations represented in the Laplace domain
 
 8
-00:00:56.000 --> 00:01:03.000
+00:00:28.000 --> 00:00:31.000
 Laplace-Weber equations on a radial domain extending from the well
 
 9
-00:01:04.000 --> 00:01:11.000
+00:00:32.000 --> 00:00:35.000
 Transformed drawdown expressions for the unconfined aquifer
 
 10
-00:01:12.000 --> 00:01:19.000
+00:00:36.000 --> 00:00:39.000
 The radial drawdown gradient governing local screen flux
 
 11
-00:01:20.000 --> 00:01:27.000
+00:00:40.000 --> 00:00:43.000
 A screen-averaged well-face relation including the dimensionless skin
 
 12
-00:01:28.000 --> 00:01:35.000
+00:00:44.000 --> 00:00:47.000
 Time-domain response amplitudes retaining the Weber coordinate
 
 13
-00:01:36.000 --> 00:01:43.000
+00:00:48.000 --> 00:00:51.000
 Physical drawdown fields and dimensionless wellbore flowrate QD
 
 14
-00:01:44.000 --> 00:01:51.000
+00:00:52.000 --> 00:00:55.000
 Constant-head and constant-rate normalized-drawdown equivalence after
 
 15
-00:01:52.000 --> 00:01:59.000
+00:00:56.000 --> 00:00:59.000
 Time-dependent influence curves for aquifer unsaturated and
 
 16
-00:02:00.000 --> 00:02:07.000
+00:01:00.000 --> 00:01:03.000
 Linearized water-table simplification at alphaD equal to or greater
 
 17
-00:02:08.000 --> 00:02:15.000
+00:01:04.000 --> 00:01:07.000
 Infinite-thickness simplification at zeta u equal to or greater than
 
 18
-00:02:16.000 --> 00:02:23.000
+00:01:08.000 --> 00:01:11.000
 Negligible lower-layer leakage below kappa z of 0.01
 
 19
-00:02:24.000 --> 00:02:31.000
+00:01:12.000 --> 00:01:15.000
 Close saturated-zone agreement and a bounded unsaturated-zone
 
 20
-00:02:32.000 --> 00:02:39.000
+00:01:16.000 --> 00:01:19.000
 Five-parameter estimates whose predicted curves match the field data
 
 21
-00:02:40.000 --> 00:02:47.000
+00:01:20.000 --> 00:01:23.000
 Explicitly coupling unsaturated drainage and lower-layer leakage
 

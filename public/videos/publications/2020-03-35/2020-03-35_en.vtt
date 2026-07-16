@@ -1,94 +1,94 @@
 WEBVTT
 
 1
-00:00:00.000 --> 00:00:07.000
+00:00:00.000 --> 00:00:03.000
 Stream depletion rate links pumping to the fraction of well discharge
 
 2
-00:00:08.000 --> 00:00:15.000
+00:00:04.000 --> 00:00:07.000
 The conventional Robin boundary omits the transient effects of
 
 3
-00:00:16.000 --> 00:00:23.000
+00:00:08.000 --> 00:00:11.000
 The paper compares a lagging-boundary single-zone model with an
 
 4
-00:00:24.000 --> 00:00:31.000
+00:00:12.000 --> 00:00:15.000
 A boundary flux containing leakance and a drawdown-rate term.
 
 5
-00:00:32.000 --> 00:00:39.000
+00:00:16.000 --> 00:00:19.000
 Coupled streambed-aquifer equations with boundary and interface
 
 6
-00:00:40.000 --> 00:00:47.000
+00:00:20.000 --> 00:00:23.000
 Fourier-cosine-domain single-zone equations in xD and time
 
 7
-00:00:48.000 --> 00:00:55.000
+00:00:24.000 --> 00:00:27.000
 An ordinary differential boundary problem in xD and Laplace parameter
 
 8
-00:00:56.000 --> 00:01:03.000
+00:00:28.000 --> 00:00:31.000
 Laplace-Fourier drawdown expressions in Equations 21a and 21b
 
 9
-00:01:04.000 --> 00:01:11.000
+00:00:32.000 --> 00:00:35.000
 Time-domain Fourier cosine amplitudes for the single-zone aquifer
 
 10
-00:01:12.000 --> 00:01:19.000
+00:00:36.000 --> 00:00:39.000
 Physical-space single-zone drawdown in Equations 22a and 22b
 
 11
-00:01:20.000 --> 00:01:27.000
+00:00:40.000 --> 00:00:43.000
 Fourier-cosine-domain equations in xD time and spectral parameter
 
 12
-00:01:28.000 --> 00:01:35.000
+00:00:44.000 --> 00:00:47.000
 Laplace-Fourier ordinary differential equations in xD for the two-zone
 
 13
-00:01:36.000 --> 00:01:43.000
+00:00:48.000 --> 00:00:51.000
 Laplace-Fourier drawdown expressions for the streambed and both
 
 14
-00:01:44.000 --> 00:01:51.000
+00:00:52.000 --> 00:00:55.000
 Time-domain Fourier cosine drawdown amplitudes for the streambed and
 
 15
-00:01:52.000 --> 00:01:59.000
+00:00:56.000 --> 00:00:59.000
 Physical-space analytical drawdown in the streambed and both aquifer
 
 16
-00:02:00.000 --> 00:02:07.000
+00:01:00.000 --> 00:01:03.000
 Temporal stream depletion rate SDR for each model.
 
 17
-00:02:08.000 --> 00:02:15.000
+00:01:04.000 --> 00:01:07.000
 The relation tau w 2 S'/(2T'), equivalent to half the squared width
 
 18
-00:02:16.000 --> 00:02:23.000
+00:01:08.000 --> 00:01:11.000
 Normalized response sensitivity Si for each model parameter
 
 19
-00:02:24.000 --> 00:02:31.000
+00:01:12.000 --> 00:01:15.000
 Parameter-dependent SDR differences across the three tested w D beta
 
 20
-00:02:32.000 --> 00:02:39.000
+00:01:16.000 --> 00:01:19.000
 Estimated K'/w and tau or wS s' values and model-specific SEE.
 
 21
-00:02:40.000 --> 00:02:47.000
+00:01:20.000 --> 00:01:23.000
 Mesh-dependent steady-state SDR and computation time for both
 
 22
-00:02:48.000 --> 00:02:55.000
+00:01:24.000 --> 00:01:27.000
 The reported accuracy and computing-time contrast at comparable SDR
 
 23
-00:02:56.000 --> 00:03:03.000
+00:01:28.000 --> 00:01:31.000
 Under the paper's model and tested parameter scenarios, the lagging
 

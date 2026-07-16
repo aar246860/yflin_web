@@ -6,7 +6,7 @@
 - **Design practice**: reviewed `Owl-Listener/designer-skills` (accessed 2026-07-14). The implementation uses its research-to-IA, hierarchy, typography, colour, responsive, motion, and visual-critique prompts; it does not install the full external suite into the public website.
 - **Accessibility**: reviewed `AccessLint/skills` (accessed 2026-07-14). The implementation keeps native headings, links, captions, keyboard focus, reduced-motion rules, and a separate live-DOM audit step. AccessLint remains an audit dependency, not a visual template.
 - **Animation**: reviewed the local `research-manim-video-summarizer` contract. Public films are pre-rendered, source-bounded, user-initiated, captioned where available, and paired with an evidence boundary.
-- **Publication-film update (2026-07-14)**: the homepage no longer carries a four-film grid. Every public publication now appears once in a left-text/right-visual-abstract archive row; the two available source-audited Manim films are embedded beside their matching DOI records, while the other records are explicitly marked as awaiting source-backed production.
+- **Publication-film update (2026-07-16)**: the homepage no longer carries a four-film grid. Every public publication appears once in a left-text/right-film archive row, and all 41 public records now have a paper-specific visual explanation.
 - **Decision**: the homepage uses one editorial narrative rather than a dashboard: team presence → research evidence → people and practice → four research lines → outputs → collaboration. Visual abstracts belong to the publication archive, where their paper, film, transcript, and evidence boundary can be inspected together.
 
 **Audit note (2026-07-14):** Playwright checks passed for the six primary routes, including one `h1`, a `main` landmark, image alternative text, text links, language metadata, responsive overflow, and video playback. `@accesslint/cli@0.10.0` could not complete its live scan because its CDP bridge returned `Unexpected token 'v', "var Access"... is not valid JSON`; this is recorded as a tooling blocker, not an accessibility pass.
@@ -46,13 +46,13 @@ Training, Network, Open Tools, Glossary, Explain­ers, and About remain availabl
 - **Typography**: a readable system sans for body text and navigation; the existing serif display face is reserved for major research statements and publication titles.
 - **Measure**: body text stays near 65–75 characters per line; paragraph line-height remains at least 1.6.
 - **Geometry**: square or lightly rounded controls, full-width bands, editorial rows, and image-led figures. Avoid nested cards and repeated dashboard tiles.
-- **Evidence labels**: use plain labels such as `Manim visual abstract`, `In preparation`, `Source-backed`, and `Evidence boundary`. Do not imply field validation where none exists.
+- **Publication-film labels**: use reader-facing labels such as `Visual explanation`, `In preparation`, and `Based on the published study`. Keep QA and production terminology out of public copy. Do not imply field validation where none exists.
 
 ## Media rules
 
 - Team photographs are real project or conference images with specific alt text and captions.
 - The hero image is eager; the activity mosaic and publication-film posters are lazy-loaded.
-- Video never autoplays. It uses `controls`, an explicit poster, a transcript or captions when available, and a scope note.
+- Video never autoplays. Its poster uses a dedicated play control; after activation, the native controls provide seeking, captions, volume, and full-screen playback. The no-JavaScript fallback retains native controls.
 - Manim output may be used only when the source paper or bounded concept ledger supports the storyboard. Public pages expose the finished visual and its evidence boundary, not private manuscript drafts.
 - No publication page may describe a conceptual curve as a field observation.
 
@@ -68,6 +68,7 @@ Training, Network, Open Tools, Glossary, Explain­ers, and About remain availabl
 
 - Astro remains static-first. Do not add a client-side framework for the homepage unless the interaction cannot be expressed with native HTML/CSS.
 - Use real links, headings, lists, captions, and video controls before adding JavaScript.
+- The publication-film player is a reusable progressive-enhancement primitive: poster and native controls are the baseline, while JavaScript replaces the resting controls with one keyboard-operable play button and restores native controls after activation.
 - Keyboard focus must be visible. Text and controls must meet WCAG 2.2 AA contrast. Reduced-motion users receive no transform or autoplay effects.
 - Use the selected information-architecture, hierarchy, type, colour, motion, and critique guidance from `Owl-Listener/designer-skills` as design review prompts, not as a reason to copy a template.
 - Use `@accesslint/cli` or equivalent local audit tooling for accessibility checks. Do not install the entire AccessLint skill repository into the public website.

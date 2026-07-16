@@ -1,78 +1,78 @@
 WEBVTT
 
 1
-00:00:00.000 --> 00:00:07.000
+00:00:00.000 --> 00:00:03.000
 The proposed analytical model incorporates semi-permeable interfaces
 
 2
-00:00:08.000 --> 00:00:15.000
+00:00:04.000 --> 00:00:07.000
 Fine sediment can make coastal water-aquifer interfaces less permeable
 
 3
-00:00:16.000 --> 00:00:23.000
+00:00:08.000 --> 00:00:11.000
 Robin-type boundary representation for the estuary and ocean
 
 4
-00:00:24.000 --> 00:00:31.000
+00:00:12.000 --> 00:00:15.000
 Left estuary-underlain region, central region, and right
 
 5
-00:00:32.000 --> 00:00:39.000
+00:00:16.000 --> 00:00:19.000
 Groundwater-flow equation set for the coastal aquifer
 
 6
-00:00:40.000 --> 00:00:47.000
+00:00:20.000 --> 00:00:23.000
 Additional conditions aligned with Equations (3) and (6)
 
 7
-00:00:48.000 --> 00:00:55.000
+00:00:24.000 --> 00:00:27.000
 Complex harmonic head-amplitude equations
 
 8
-00:00:56.000 --> 00:01:03.000
+00:00:28.000 --> 00:00:31.000
 Fourier-domain head solutions for the aquifer regions
 
 9
-00:01:04.000 --> 00:01:11.000
+00:00:32.000 --> 00:00:35.000
 Physical-space complex hydraulic-head integral in Equation 30
 
 10
-00:01:12.000 --> 00:01:19.000
+00:00:36.000 --> 00:00:39.000
 Numerically evaluated complex hydraulic-head field
 
 11
-00:01:20.000 --> 00:01:27.000
+00:00:40.000 --> 00:00:43.000
 Groundwater tidal-head amplitude at each aquifer location
 
 12
-00:01:28.000 --> 00:01:35.000
+00:00:44.000 --> 00:00:47.000
 Groundwater tidal phase lag relative to the ocean tide
 
 13
-00:01:36.000 --> 00:01:43.000
+00:00:48.000 --> 00:00:51.000
 Convergence with the U-shaped solution for the fully penetrating,
 
 14
-00:01:44.000 --> 00:01:51.000
+00:00:52.000 --> 00:00:55.000
 Dimensionless parameter-influence fields
 
 15
-00:01:52.000 --> 00:01:59.000
+00:00:56.000 --> 00:00:59.000
 Best-fitting aquifer diffusivity and mean pit water level
 
 16
-00:02:00.000 --> 00:02:07.000
+00:01:00.000 --> 00:01:03.000
 Horizontal groundwater-velocity components
 
 17
-00:02:08.000 --> 00:02:15.000
+00:01:04.000 --> 00:01:07.000
 Flow paths for full- and partial-penetration cases
 
 18
-00:02:16.000 --> 00:02:23.000
+00:01:08.000 --> 00:01:11.000
 FPE porosity identified as too low for the site conditions
 
 19
-00:02:24.000 --> 00:02:31.000
+00:01:12.000 --> 00:01:15.000
 Representing partial penetration and low-permeability interfaces
 

@@ -42,7 +42,7 @@ for (const record of INDEX.pendingRecords) {
   const video = path.join(release, `${record.id}.mp4`);
   const poster = path.join(release, `${record.id}_poster.png`);
   const captions = path.join(release, `${record.id}_en.vtt`);
-  const source = path.join(ROOT, spec.auditSourceArtifact);
+  const source = path.join(release, `${record.id}_source.txt`);
   for (const file of [scene, storyboard, audit, qa, contact, video, poster, captions, source]) requireFile(file);
   requirePassingReport(
     run("uv", ["run", path.join(SKILL_ROOT, "scripts", "check_manim_layout.py"), scene, "--contact-sheet", contact, "--qa-manifest", qa, "--storyboard", storyboard, "--source-artifact", source, "--semantic-audit", audit]),
