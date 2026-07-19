@@ -1,28 +1,31 @@
 WEBVTT
 
-00:00.000 --> 00:01.700
-The paper begins with a leaky confined aquifer and a constant-rate pumping test.
+00:00.000 --> 00:06.300
+One pumping well disturbed the Madison aquifer for about seven days. Five observation wells recorded the response across more than three kilometres.
 
-00:01.700 --> 00:03.750
-Drawdown is recorded through time at observation wells.
+00:06.300 --> 00:12.500
+In the classical radial relation, flux and the drawdown gradient are evaluated at the same radius and time. The model therefore keeps one constitutive clock.
 
-00:03.750 --> 00:05.800
-The Rapid City comparison uses five wells at reported distances from RC-5.
+00:12.500 --> 00:18.700
+A connected fracture can carry flow quickly while a dead-end branch takes longer to exchange pressure. This is a proposed interpretation of another response time.
 
-00:05.800 --> 00:07.850
-The classical radial relation pairs radial flux with the drawdown gradient.
+00:18.700 --> 00:24.900
+The generalized relation assigns one response time to radial flux and another to the drawdown gradient.
 
-00:07.850 --> 00:09.900
-The lagging formulation assigns a phase lag to the radial flux.
+00:24.900 --> 00:31.200
+Substituting that relation into radial mass conservation changes the aquifer equation itself; it is not a delay added after calculation.
 
-00:09.900 --> 00:11.950
-A second phase lag is assigned to the drawdown gradient.
+00:31.200 --> 00:37.800
+The boundary-value problem is transformed in time. The well and far-field conditions select a modified-Bessel radial solution in the Laplace domain.
 
-00:11.950 --> 00:14.000
-Equal lags cancel; setting both lags to zero gives Classical Darcy.
+00:37.800 --> 00:44.300
+For each observation well, the study estimated three hydraulic parameters and two lag times using Levenberg-Marquardt nonlinear least squares.
 
-00:14.000 --> 00:16.167
-The field comparison reports early-time fit improvement and a bounded lag spread.
+00:44.300 --> 00:51.000
+Table 2 reports lower Case 2 standard error at four wells. CHLN-2 is equal at the reported precision.
 
-00:16.167 --> 00:18.733
-The fitted lag remains diagnostic of the test and model context, not universal.
+00:51.000 --> 00:57.500
+The fitted lags do not collapse to one site constant. Figure 5 reports distance trends after excluding BHPL because it lies opposite the pumping well.
+
+00:57.500 --> 01:04.200
+Lagging Theory is therefore a testable pumping-test diagnostic. Its fitted lags remain conditioned on the model, test design, distance, and site structure.
