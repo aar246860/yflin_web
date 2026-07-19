@@ -1,0 +1,186 @@
+{
+  "reviewer": "Codex independent semantic source auditor",
+  "reviewer_role": "independent source auditor",
+  "reviewed_at": "2026-07-19T14:58:36+08:00",
+  "review_method": "source passage comparison",
+  "audit_scope": "all background premises, method operations, and scene scientific claims",
+  "decision": "pass",
+  "source_artifact_sha256": "9bada0a7f17db78288d6c0debfd0fa6d88bd4cbb9410134658efd3de2d849aa6",
+  "storyboard_sha256": "e1a2951ba4f84317644c8d23a9071256b643bb4dd6d19c39d4aabce9723f8d9b",
+  "background_items": [
+    {
+      "id": "B01",
+      "source_locator": "Introduction, page 8500, paragraph beginning “The constant-rate pumping (CRP) test”",
+      "source_excerpt": "The constant-rate pumping (CRP) test is one of aquifer tests to characterize the hydraulic properties (e.g.,\r\nmodel for describing drawdown               transmissivity and storativity) of aquifers. For the CRP, the test well is pumped at a constant ﬂowrate and\r\ninduced by a constant-rate pumping in       temporal drawdown data are recorded at the observation wells. The hydraulic parameters can then be\r\na leaky conﬁned aquifer. Water              determined either by an analytical drawdown solution coupled with an optimization method or simply by a\r\nResources Research, 53, 8500–8511.          type-curve method when analyzing the observed data. ",
+      "claim_anchor_terms": [
+        "constant-rate pumping",
+        "observation wells"
+      ],
+      "independent_premise_count": 1,
+      "semantic_match": "pass"
+    },
+    {
+      "id": "B02",
+      "source_locator": "Section 2, page 8502, Equation (1) and the paragraph immediately following it",
+      "source_excerpt": "The classical theory for groundwater equation based on Darcy’s law implies that the water ﬂux q occurs\r\n             immediately once the drawdown gradient rs is produced. The Darcy’ s law in radial direction can be\r\n             expressed as:\r\n\r\n                                                        @sðr; tÞ\r\n                                       qrðr; tÞ52K @r                (1)\r\n\r\n             where r is the radial distance from the center of the pumping well, t is the operating time, and K is the\r\n             hydraulic conductivity. Similar to Fourier’s law, Baumeister and Hamill (1969, p. 543) stated that many inves-\r\n             tigators have pointed out that the propagation velocity of heat resulting from the Fourier heat-conduction\r\n             equation is inﬁnite. Vick and O€zisk (1983, p. 902) mentioned that temperature disturbances will propagate\r\n             at inﬁnite velocities according to classical heat conduction theory. Beck et al. (1992, p. 41) also mentioned\r\n             that heat introduced at one point in a solid body will be instantaneously transmitted to the entire body as\r\n             predicted by Fourier’s law of conduction; therefore, equation (1) indicates that the drawdown propagation\r\n             has an inﬁnite speed implying that the drawdown can be measured immediately at any observation wells\r\n             once the aquifer is under pumping. However, the propagation speed of drawdown in aquifers may be ﬁnite\r\n             and the assumption of Darcy’s law may be unrealistic in some real-world problems. ",
+      "claim_anchor_terms": [
+        "drawdown gradient",
+        "real-world problems"
+      ],
+      "independent_premise_count": 1,
+      "semantic_match": "pass"
+    },
+    {
+      "id": "B03",
+      "source_locator": "Section 2, page 8502, paragraph following Equation (2)",
+      "source_excerpt": "The ss is considered induced by the\r\n             effect of structural interactions due to noninterconnected pore in porous aquifers or nonintercon-\r\n             nected fractures in fractured media leading to an extra time for establishing the drawdown gradient\r\n             ﬁeld. ",
+      "claim_anchor_terms": [
+        "structural interaction",
+        "extra time"
+      ],
+      "independent_premise_count": 1,
+      "semantic_match": "pass"
+    }
+  ],
+  "method_items": [
+    {
+      "id": "M01",
+      "source_locator": "Section 2, page 8502, Equation (2)",
+      "source_excerpt": "Based on Tzou’s (1995)\r\n             dual-phase-lag concept, a generalized Darcy’s law assuming that the qr and rs occurring at different times\r\n             is denoted as\r\n\r\n                             qr        À    t1sq  Á     @sðr; t1ssÞ  (2)\r\n                                        r;         52K       @r\r\n\r\n             where sq and ss are respectively the phase lags of the water ﬂux and drawdown gradient. ",
+      "claim_anchor_terms": [
+        "phase lags",
+        "drawdown gradient"
+      ],
+      "irreducible_operation_count": 1,
+      "semantic_match": "pass"
+    },
+    {
+      "id": "M02",
+      "source_locator": "Section 2.1, pages 8502–8503, Equations (3)–(5)",
+      "source_excerpt": "Applying the Taylor series expansion to equation (2), the ﬁrst-order approximation for generalized Darcy’s\r\n             law then results in\r\n\r\nLIN AND YEH  LAGGING EFFECTS DURING PUMPING                          8502\r\n\f             Water Resources Research                                                                                                                10.1002/2017WR021115               19447973, 2017, 10, Downloaded from https://agupubs.onlinelibrary.wiley.com/doi/10.1002/2017WR021115 by Chung Yuan Christian University, Wiley Online Library on [13/07/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License\r\n\r\n                                                                                                      qr ðr;  tÞ1sq  @ qr ðr;     tÞ  ﬃ  2K      \u0018        tÞ  1ss  @  2sðr;    \u0019  (3)\r\n                                                                                                                        @t                         @sðr;                     tÞ\r\n                                                                                                                                                      @r\r\n                                                                                                                                                                      @t@r\r\n\r\n                                                                                        2.1. Mathematical Model\r\n                                                                                        Figure 1 shows the schematic representation for the mathemati-\r\n                                                                                        cal model describing the drawdown due to CRP at a fully pene-\r\n                                                                                        trating well with ﬁnite radius, rw, and casing radius, rc, in a leaky\r\n                                                                                        conﬁned aquifer of inﬁnite lateral extent with uniform thickness\r\n                                                                                        b and b0 for aquifer and aquitard, respectively. The effect of leak-\r\n                                                                                        age from aquitard treated in Hantush and Jacob (1955) is\r\n                                                                                        adopted in this model. The effects of wellbore storage and well-\r\n                                                                                        bore skin on the drawdown are also considered in the model.\r\n                                                                                        The origin of the coordinate is located at the center of the well\r\n                                                                                        and at the bottom of the main aquifer.\r\n\r\n                                                                                        Substituting equation (3) into mass conservation equation,\r\n\r\nFigure 1. Schematic representation for a constant-rate pumping conducted at a                                           2     1   @   ðrqr  Þ5S  @s  1    K0  s                   (4)\r\nfully penetrating well in a leaky conﬁned aquifer.                                                                            r   @r             @t       B0\r\n\r\n                                                                                        the groundwater equation can then be obtained as\r\n\r\n                               \u0018         @ \u0019\u0018@2s                                               \u0019\u0018                @ \u0019 K0s            \u0018              \u0019\r\n                                                                                           1 @s                                   S              @ @s\r\n                                  11ss @t @r2 1 r @r 2 11sq @t B0T 5 T 11sq @t @t                                                                                                 (5)\r\n\r\n             where K0 is the is the hydraulic conductivity of the aquitard, B0 is the thickness of the aquitard, T and S are\r\n             respectively the transmissivity (i.e., K3b) and storativity of the aquifer. Note that equation (5) is a wave\r\n             equation while the groundwater ﬂow equation is a diffusion equation. ",
+      "claim_anchor_terms": [
+        "mass conservation",
+        "groundwater equation"
+      ],
+      "irreducible_operation_count": 1,
+      "semantic_match": "pass"
+    },
+    {
+      "id": "M03",
+      "source_locator": "Section 2.2, pages 8503–8504, Equations (16)–(23)",
+      "source_excerpt": "2.2. The Present Solution\r\n\r\n             Applying the Laplace transform to equation (11) yields\r\n\r\n                               ð11ssDpÞ\u0018@@2r\u0016sD2D                        1   1   @@\u0016srDD\u00192À11sqDpÁj\u0016sD5À11sqD           Á           (16)\r\n                                                                             rD                                        p p\u0016sD\r\n\r\n             where the overbar represents the term in Laplace domain and p is the Laplace variable. The transformed\r\n             boundary conditions for equations (13)–(15) are respectively\r\n\r\n                                                                         @\u0016sDð1;  tD  Þ  52    2  1CD  pH\u0016 D   ðpÞ                  (17)\r\n                                                                             @rD               p\r\n\r\n                                                    pH\u0016 D                ðpÞ5\u0016sD         ð1;  pÞ2Sk  @\u0016sDð1;   pÞ                   (18)\r\n                                                                                                        @rD\r\n\r\n             and\r\n\r\n                                                                             limrD!1 \u0016sDðrD; pÞ50                                   (19)\r\n\r\n             The general solution of equation (16) can be obtained as\r\n\r\n                                                                         \u0016sD5AI0ðkrDÞ1BK0ðkrDÞ                                      (20)\r\n\r\n                   qﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃÀﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃÁﬃ pﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃ\r\n             where k5 ðp1jÞ 11psqD = 11pssD, A and B are undetermined coefﬁcients, and I0 and K0 are respec-\r\n\r\n             tively the modiﬁed Bessel function of ﬁrst kind and second kind of order zero. Imposing the boundary con-\r\n\r\n             ditions equations (17–19) on equation (20), A and B can then be respectively obtained as\r\n\r\n                                                                                           A50                                      (21)\r\n\r\n             and\r\n\r\n                                                                                               2\r\n                                               B5 CDp2K0ðkÞ1kpð11CDpSkÞK1ðkÞ                                                        (22)\r\n\r\n             Finally, the dimensionless drawdown solution in Laplace domain can be expressed as\r\n\r\n                                               \u0016sD  5                    CD  p2  K0       2K0ðkrDÞ      pSk    ÞK1ðkÞ               (23)\r\n                                                                                     ðkÞ1kpð11CD\r\n\r\n             where K1 is the modiﬁed Bessel function of second kind of order one.\r\n\r\n             ",
+      "claim_anchor_terms": [
+        "boundary conditions",
+        "drawdown solution"
+      ],
+      "irreducible_operation_count": 1,
+      "semantic_match": "pass"
+    },
+    {
+      "id": "M04",
+      "source_locator": "Section 3.3, page 8507, paragraph preceding Table 2",
+      "source_excerpt": "3.3. Parameter Estimation for Field Test Data\r\n                         The observed data obtained from an aquifer test conducted by the U.S. Geological Survey in Madison aqui-\r\n                         fer in the western Rapid City area, South Dakota (Greene, 1993) is analyzed herein based on the present\r\n                         solution. The Madison aquifer is consisted of limestone with the approximate thickness of 61 m and\r\n\r\n                                                                   bounded by the Minnelusa Formation (a leaky conﬁning layer) above and\r\n                                                                   an impermeable layer beneath. The fractures and solution features in the\r\n                                                                   aquifer are main factors increasing the permeability of this highly hetero-\r\n                                                                   geneous formation (Greene et al., 1999). A CRP test was conducted at the\r\n                                                                   well RC-5 about 7 days. The pumping rate was maintained 386.11 m3/h\r\n                                                                   and the well almost fully penetrates the Madison aquifer with 11-inch-\r\n                                                                   diameter (0.28 m) screen portion and 13.5-inch-diameter (0.34 m) casing\r\n                                                                   portion. The drawdown data were measured at ﬁve wells. They are wells\r\n                                                                   LC, SP-2, BHPL, CL-2, and CHLN-2 with distances 208 m, 518 m, 1,204 m,\r\n                                                                   2,713 m, and 3,566 m, respectively, from the well RC-5. Notice that all the\r\n                                                                   distances are greater than twofold aquifer thickness; therefore, the partial\r\n                                                                   penetration effect of observation wells are ignorable (Todd & Mays, 2005,\r\n                                                                   p. 195).\r\n\r\nFigure 3. Temporal distribution curves of normalized sensitivity for ﬁve  Table 2 lists the aquifer parameters estimated by Greene (1993) via the\r\nparameters observed at r 5 10 m.                                          type curve method developed by Hantush and Jacob’s (1955) and the pre-\r\n                                                                          sent solution with two cases for data obtained from four observation wells\r\n                                                                          in South Dakota. Note that in the parameter estimation, the effects of well-\r\n                                                                          bore storage and well skin are not considered and the present solution is\r\n                                                                          coupled with the Levenberg-Marquardt algorithm given in the Mathema-\r\n                                                                          tica routine FindFit (Wolfram, 1991). Case 1 only considers three parame-\r\n                                                                          ters T, S, and K0 while case 2 counts sq and ss in addition to those three\r\n                                                                          parameters. The table lists the values of standard error of estimate (SEE)\r\n                                                                          and mean error (ME) (Yeh, 1987). The SEE is deﬁned as the square root of\r\n                                                                          the sum of squared errors between the measured and predicted\r\n",
+      "claim_anchor_terms": [
+        "Levenberg-Marquardt",
+        "Case 2"
+      ],
+      "irreducible_operation_count": 1,
+      "semantic_match": "pass"
+    },
+    {
+      "id": "M05",
+      "source_locator": "Section 3.3, Table 2, page 8508",
+      "source_excerpt": "             Table 2\r\n             Parameters Estimated by Greene [1993] and Present Solution as Cases 1 and 2\r\n\r\n             Well           T (m2/h)                                    S 31025  K031024 (m/h)  sq (h)  ss (h)  SEE (m)  ME (m)\r\n\r\n             Greene [1993]     6.19                                      10      0.26                   0.199    0.577     0.217\r\n             LC              10.06                                       10      0.62                   0.383    0.653   20.368\r\n             SP-2            20.13                                       10      0.43                   4.325    1.742   21.620\r\n             BHPL           154.84                                       33      0.35                   0.050    0.035   20.027\r\n             CL-2           154.84                                       33      0.21                   7.148    0.014   20.0002\r\n             CHLN-2\r\n             Case 1            5.32                                     11.04    1.61                            0.299     0.067\r\n             LC                8.08                                     16.47    2.70                            0.114     0.012\r\n             SP-2            18.64                                      51.20    5.38                            0.041   20.001\r\n             BHPL           116.13                                      41.70    1.94                            0.011   20.0005\r\n             CL-2           163.86                                      30.11    0.82                            0.009     0.0002\r\n             CHLN-2\r\n             Case 2            4.88                                     12.59    2.14           0.085            0.153     0.001\r\n             LC                7.20                                     17.55                                    0.103   20.0005\r\n             SP-2            47.05                                      40.00    3.25           0.203            0.037\r\n             BHPL           149.48                                      41.71                                    0.008     0.0003\r\n             CL-2           186.27                                      28.82    1.50           13.954           0.009   20.0002\r\n             CHLN-2\r\n                                                                                 1.05           2.108                      0.0002\r\n\r\n                                                                                 5.40           8.362\r\n\r\n             drawdowns divided by the degree of freedom, which is equal to the number of measured data minus the\r\n\r\n             number of unknowns. The ME is deﬁned as the mean of the sum of errors. Both statistics are used to assess\r\n\r\n             the goodness of model ﬁt to the observed data. On the basis of the values of SEE and ME, case 2 shows the\r\n\r\n             present solution gives an excellent ﬁt to the measured data. The SEE and ME values for case 2 are smaller\r\n\r\n             than those for case 1 and Greene (1993), implying that the present solution can predict drawdown for\r\n             pumping in the Madison aquifer. ",
+      "claim_anchor_terms": [
+        "Case 1",
+        "Case 2"
+      ],
+      "irreducible_operation_count": 1,
+      "semantic_match": "pass"
+    },
+    {
+      "id": "M06",
+      "source_locator": "Section 3.3, Figure 5 and its discussion, page 8509",
+      "source_excerpt": "This ﬁgure reveals that both phase\r\n                                                                            lags sq and ss increase with the observed distance from the pumping well,\r\n                                                                            indicating that the a larger distance from the pumping well may yield a\r\n                                                                            longer lagging response for the ﬂow. The nonlinear relationship indicated\r\n                                                                            in the ﬁgure between the parameter value and observed distance may be\r\n                                                                            due to the problems of the highly heterogeneous formation and/or non-\r\n                                                                            straight arrangement of the observation wells.\r\n\r\n                                                                            4. Concluding Remarks\r\n\r\n                                                                            An analytical model for drawdown induced by CRP in a leaky conﬁned\r\n\r\n                                                                            aquifer with considering the phase lags in water ﬂow and drawdown gra-\r\n\r\n                                                                            dient is developed. The lagging behavior is introduced in ﬂow equation to\r\n\r\n                                                                            describe the drawdown induced by CRP. The model also incorporates the\r\n\r\nFigure 5. Linear regression lines for sq and ss against observed distances  effects of wellbore storage and well skin. The drawdown solution is devel-\r\nfor wells excluding BHPL.                                                   oped by the use of Laplace transform and Weber transform techniques.",
+      "claim_anchor_terms": [
+        "regression lines",
+        "BHPL"
+      ],
+      "irreducible_operation_count": 1,
+      "semantic_match": "pass"
+    }
+  ],
+  "scene_items": [
+    {
+      "scene": 1,
+      "background_premise_count": 1,
+      "method_operation_count": 0,
+      "undeclared_scientific_content": "none",
+      "source_claims_checked": "pass"
+    },
+    {
+      "scene": 2,
+      "background_premise_count": 1,
+      "method_operation_count": 0,
+      "undeclared_scientific_content": "none",
+      "source_claims_checked": "pass"
+    },
+    {
+      "scene": 3,
+      "background_premise_count": 1,
+      "method_operation_count": 0,
+      "undeclared_scientific_content": "none",
+      "source_claims_checked": "pass"
+    },
+    {
+      "scene": 4,
+      "background_premise_count": 0,
+      "method_operation_count": 1,
+      "undeclared_scientific_content": "none",
+      "source_claims_checked": "pass"
+    },
+    {
+      "scene": 5,
+      "background_premise_count": 0,
+      "method_operation_count": 1,
+      "undeclared_scientific_content": "none",
+      "source_claims_checked": "pass"
+    },
+    {
+      "scene": 6,
+      "background_premise_count": 0,
+      "method_operation_count": 1,
+      "undeclared_scientific_content": "none",
+      "source_claims_checked": "pass"
+    },
+    {
+      "scene": 7,
+      "background_premise_count": 0,
+      "method_operation_count": 1,
+      "undeclared_scientific_content": "none",
+      "source_claims_checked": "pass"
+    },
+    {
+      "scene": 8,
+      "background_premise_count": 0,
+      "method_operation_count": 1,
+      "undeclared_scientific_content": "none",
+      "source_claims_checked": "pass"
+    },
+    {
+      "scene": 9,
+      "background_premise_count": 0,
+      "method_operation_count": 1,
+      "undeclared_scientific_content": "none",
+      "source_claims_checked": "pass"
+    },
+    {
+      "scene": 10,
+      "background_premise_count": 0,
+      "method_operation_count": 0,
+      "undeclared_scientific_content": "none",
+      "source_claims_checked": "pass"
+    }
+  ],
+  "unmapped_source_items": []
+}

@@ -1,0 +1,68 @@
+schema_version = 1
+rendering_target = "1080p"
+audience = "groundwater researchers, practitioners, and technically curious collaborators"
+viewing_conditions = ["desktop", "projection", "phone"]
+visual_character = ["rigorous", "calm", "field-grounded"]
+design_read = "A field-grounded explanation for groundwater specialists and non-specialist collaborators, using one dominant scientific object per frame, restrained motion, and typography that remains legible on phones and projected displays."
+design_variance = 4
+motion_intensity = 5
+visual_density = 4
+forbidden_defaults = ["decorative_particles", "card_grid", "unmotivated_glow", "unmotivated_bounce"]
+
+[reference]
+kind = "generated"
+locator = "local Manim style-frame study derived from the Lin and Yeh (2017) scientific objects"
+external_access_authorized = false
+
+[typography]
+font_family = "Arial"
+math_font = "Latin Modern Math"
+title_px = 44
+body_px = 30
+math_px = 38
+annotation_px = 24
+minimum_downsampled_px = 18
+
+[color_roles]
+background = "#F6F8F5"
+foreground = "#112D32"
+focal = "#087F8C"
+secondary = "#566D70"
+warning = "#B64A35"
+uncertainty = "#B77A1F"
+
+[stroke_widths]
+grid = 1.0
+secondary = 2.0
+primary = 4.0
+focus = 6.0
+
+[spacing]
+frame_margin = 0.45
+caption_band = 1.0
+formula_lane = 1.25
+minimum_gap = 0.10
+
+[motion]
+runtime = "manim"
+gsap_role = "concept-only"
+allowed_classes = ["trace", "reveal", "same-object-transform", "camera-bridge", "fade-replace", "hold"]
+default_duration = 0.9
+revelation_pause = 1.5
+formula_pause = 1.6
+view_change_pause = 1.3
+
+[[style_frames]]
+role = "context"
+path = "style-frames/context.png"
+sha256 = "4c6bcb0e4cf3040709db9af5a27b2ba03639bab16299f7bd38ce359a3520e747"
+
+[[style_frames]]
+role = "method"
+path = "style-frames/method.png"
+sha256 = "fd2b4a61d6ff35e7a3b8868eb1e28f5047457d82c69e65bc3f89e9d49f4dfcc1"
+
+[[style_frames]]
+role = "result"
+path = "style-frames/result.png"
+sha256 = "faf1387c8bd9b163e0da3d08c851b9e991a08c18224ae2afcfd5addac763f571"

@@ -1,0 +1,820 @@
+             PUBLICATIONS
+
+Water Resources Research
+
+RESEARCH ARTICLE                            A Lagging Model for Describing Drawdown Induced by a
+                                            Constant-Rate Pumping in a Leaky Confined Aquifer
+10.1002/2017WR021115
+                                            Ye-Chen Lin1 and Hund-Der Yeh1
+Key Points:
+ The phase lag effect on groundwater       1Institute of Environmental Engineering, National Chiao Tung University, Hsinchu, Taiwan
+
+  ﬂow is considered in the analytical       Abstract This study proposes a generalized Darcy’s law with considering phase lags in both the water
+  model
+ Sensitivity analysis is performed         ﬂux and drawdown gradient to develop a lagging ﬂow model for describing drawdown induced by
+  based on the solution of lagging ﬂow      constant-rate pumping (CRP) in a leaky conﬁned aquifer. The present model has a mathematical formula-
+  model                                     tion similar to the dual-porosity model. The Laplace-domain solution of the model with the effect of well-
+ The aquifer parameters are analyzed       bore storage is derived by the Laplace transform method. The time-domain solution for the case of
+  for ﬁeld observed data based on the       neglecting the wellbore storage and well radius is developed by the use of Laplace transform and Weber
+  model                                     transform. The results of sensitivity analysis based on the solution indicate that the drawdown is very sensi-
+                                            tive to the change in each of the transmissivity and storativity. Also, a study for the lagging effect on the
+Supporting Information:                     drawdown indicates that its inﬂuence is signiﬁcant associated with the lag times. The present solution is
+ Supporting Information S1                 also employed to analyze a data set taken from a CRP test conducted in a fractured aquifer in South Dakota,
+ Data Set S1                               USA. The results show the prediction of this new solution with considering the phase lags has very good ﬁt
+                                            to the ﬁeld data, especially at early pumping time. In addition, the phase lags seem to have a scale effect as
+Correspondence to:                          indicated in the results. In other words, the lagging behavior is positively correlated with the observed dis-
+H.-D. Yeh,                                  tance in the Madison aquifer.
+hdyeh@mail.nctu.edu.tw
+                                            1. Introduction
+Citation:
+Lin, Y.-C., & Yeh, H.-D. (2017). A lagging  The constant-rate pumping (CRP) test is one of aquifer tests to characterize the hydraulic properties (e.g.,
+model for describing drawdown               transmissivity and storativity) of aquifers. For the CRP, the test well is pumped at a constant ﬂowrate and
+induced by a constant-rate pumping in       temporal drawdown data are recorded at the observation wells. The hydraulic parameters can then be
+a leaky conﬁned aquifer. Water              determined either by an analytical drawdown solution coupled with an optimization method or simply by a
+Resources Research, 53, 8500–8511.          type-curve method when analyzing the observed data. A variety of studies describing the transient draw-
+https://doi.org/10.1002/                    down behavior induced by the CRP in conﬁned aquifers had been presented (e.g., Hantush, 1964; Lin et al.,
+2017WR021115                                2016; Papadopulos & Cooper, 1967; Theis, 1935; Yeh & Chang, 2013). Theis (1935) was the ﬁrst to propose a
+                                            mathematical model for drawdown induced by a CRP in a conﬁned aquifer of inﬁnite extent based upon
+Received 13 MAY 2017                        analogy with transient heat conduction problem. He treated the pumping well as a line source implying
+Accepted 21 SEP 2017                        that the pumping well has zero radius. Hantush (1964, p. 340) improved Theis (1935) model with consider-
+Accepted article online 28 SEP 2017         ing a ﬁnite well radius. As regard to large-diameter well, the effect of wellbore storage on the drawdown
+Published online 27 OCT 2017                cannot be ignored. Papadopoulos and Cooper (1967) therefore proposed an analytical model for a CRP by
+                                            adding a term representing the wellbore storage effect in the inner boundary condition. Conducting a CRP
+VC 2017. American Geophysical Union.        test, a well skin may be developed near the well as a result of well drilling and/or development. A skin factor
+All Rights Reserved.                        is commonly introduced to represent the effect of skin zone on the pumping drawdown. For the develop-
+                                            ment of the solution with considering the skin effect, there are many approaches available in the literature
+                                            (e.g., Agarwal et al., 1970; Cassiani et al., 1999; Hawkins, 1956; Hurst, 1953; Moench, 1997; Moench & Hsien,
+                                            1985; Sandal et al., 1978; van Everdingen, 1953). If an aquifer is bounded by a semipermeable layer (also
+                                            called as aquitard), the groundwater would recharge to the pumped aquifer from the adjacent aquifer
+                                            through the aquitard. The recharge is referred to as leakage. Numerous models have been developed for
+                                            describing the ﬂow in a leaky aquifer system (e.g., Hantush, 1960; Hantush & Jacob, 1955; Lin et al., 2017;
+                                            Malama et al., 2007; Neuman & Witherspoon, 1969; Zlotnik & Zhan, 2005). Hantush and Jacob (1955) devel-
+                                            oped two different forms of analytical solution for describing the spatiotemporal drawdown distribution
+                                            induced by a constant-rate pumping in an inﬁnite leaky aquifer with an initially uniform head. The ﬂow, or
+                                            leakage, into the aquifer is considered vertical and proportional to the hydraulic gradient between the aqui-
+                                            fer and adjacent aquifer. The leakage is treated as a source/sink term embedded in the governing equation
+
+LIN AND YEH                                 LAGGING EFFECTS DURING PUMPING  8500
+             Water Resources Research        10.1002/2017WR021115                                                             19447973, 2017, 10, Downloaded from https://agupubs.onlinelibrary.wiley.com/doi/10.1002/2017WR021115 by Chung Yuan Christian University, Wiley Online Library on [13/07/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+             they solved. Because of its simplicity, their solution is widely adopted to predict the pumping drawdown or
+             estimate the aquifer parameters in a leaky conﬁned aquifer system.
+
+             The abovementioned models are mostly based on the classical groundwater ﬂow equation (i.e., diffusion-
+             type equation) derived from Darcy’s law and mass conservation. In reality, Darcy’s law describes that the
+             water ﬂow occurs instantaneously once the drawdown gradient exits, implying that the drawdown change
+             can be measured immediately at the observation wells anywhere in the aquifer as water is pumped at the
+             test well. Strictly speaking, this assumption may not really true because the propagation speed of draw-
+             down in the media might not be inﬁnite. Darcy’s law is derived based on the momentum equation without
+             considering the inertial and viscous forces (Viessman & Lewis, 1996, p. 441). Some studies have been
+             reported to address the issue of inertial effect on the groundwater ﬂow (e.g., Lo€fqvist & Rehbinder, 1993;
+             Pascal, 1986). Lo€fqvist and Rehbinder (1993) proposed a groundwater ﬂow equation with considering the
+             effect of inertial forces on the ﬂuid. The equation they obtained is indeed a wave equation implying that
+             the pressure propagation has a ﬁnite speed. They found that the inertial effect is important when the oper-
+             ating time is smaller than the relaxation time deﬁned as the product of ﬂuid density and permeability
+             divided by the product of viscosity and aquifer porosity. They further indicated that the change of the well
+             water level would cause the oscillation due to the ﬁnite propagation velocity of the water in the aquifer and
+             the inertia of water in the well.
+
+             The void space in porous media may be classiﬁed into two kinds: interconnected pores and nonintercon-
+             nected pores. The groundwater ﬂuid can move from one pore to nearby connected pore, which is closely
+             related to the deﬁnition of effective porosity. The noninterconnected pores, on the other hand, include the
+             dead-end pores and very small pores in which the water ﬂuid is practically immobile (Bear & Cheng, 2010,
+             p. 74). Fatt (1959) conducted laboratory experiments and indicated that the transient pressure distribution
+             in porous media might be inﬂuenced by the presence of dead-end pores. He mentioned that there may be
+             a pressure difference between the dead-end pore and adjacent ﬂow channels. The dead-end pore will act
+             as a source due to the pressure difference and the ﬂow equation then should include a source function.
+             Instead of doing that, we propose a lagging model to simulate the ﬂow in groundwater systems subject to
+             the effect of noninterconnected pores. It has been known from ﬁeld observations that the temporal draw-
+             down distribution induced by pumping in a fractured aquifer may exhibit a ﬂattening portion in the middle
+             pumping period (e.g., Cho et al., 2004; Greene et al., 1999; Moench, 1984; Najurieta, 1980; Tiedeman & Hsieh,
+             2001). The phenomenon of having this near ﬂat portion may be referred to as the delayed response. Such a
+             response is explained based on the concept of dual-porosity model due to the exchange of water between
+             the fracture and matrix (Belcher et al., 2001). In the dual-porosity model, the fracture network of the aquifer
+             is considered to be well interconnected; however, natural fractures are not always well connected in reality
+             and some of them may be isolated with ﬁnite lengths (Krasny & Sharp, 2007, p. 474). Similar to the noninter-
+             connected pores in the porous media, the noninterconnected fractures in fractured aquifers would lead to
+             extra time for establishing the ﬂow ﬁeld. The groundwater ﬂow in a fractured aquifer may therefore exhibit
+             a lagging behavior.
+
+             Fourier’s law in the heat conduction area, analogous to Darcy’s law in groundwater ﬂow area, is an empirical
+             formula describing the linear relationship between the heat ﬂux and the temperature gradient in solids. The
+             law implies that the speed of heat propagation in the solid is inﬁnite. Tzou (2014) mentioned that the heat
+             propagation was found with ﬁnite speeds based on experimental observations of ultrafast laser heating on
+             gold ﬁlms. The concerns on the heat transfer equation on the basis of classical Fourier’s law have been
+             raised when the equation is used to describe the ultrafast process of heat transport. In the past, Cattaneo
+             (1958) and Vernotte (1958, 1961) assumed that the heat ﬂux and thermal gradient does not occur at the
+             same time and allowed that the temperature gradient can precede the heat ﬂux vector in the law. In other
+             words, there will be a delayed response in the heat ﬂux in contrast to the thermal gradient. Their
+             approaches are referred to as CV model and their assumption leads the heat propagation from diffusion-
+             like process to wave-like process. The former process for the heat equation implies that the speed of heat
+             propagation is inﬁnite but the latter for the wave equation indicates that the speed of heat propagation is
+             ﬁnite (see e.g., Baumeister & Hamill, 1969; Vick & O€zisk, 1983). Tzou (1995) extended CV model and allowed
+             the heat ﬂux to precede the temperature gradient based on a concept that the thermal lagging response in
+             time can be comparable to the characteristic time to the phase lag characterizing the microstructural inter-
+             actions in conducting materials. Tzou’s (1995) approach is known as dual-phase lag model, which can be
+
+LIN AND YEH  LAGGING EFFECTS DURING PUMPING  8501
+             Water Resources Research                                10.1002/2017WR021115                                    19447973, 2017, 10, Downloaded from https://agupubs.onlinelibrary.wiley.com/doi/10.1002/2017WR021115 by Chung Yuan Christian University, Wiley Online Library on [13/07/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+             considered as a generalized Fourier’s law for heat conduction problems. The model allows temperature gra-
+             dient to precede the heat ﬂux or the reverse. In other words, the lag time may occur in heat ﬂux, thermal
+             gradient, or both.
+
+             In analogy to the concept of Tzou (1995), this study presents an analytical lagging model for predict
+             drawdown induced by a CRP in a leaky conﬁned aquifer based on a generalized Darcy’s law accounting
+             for the inertial effect and the effect of noninterconnected pores or fractures. The model also takes
+             account of the effects of wellbore storage, wellbore skin, and leakage from the aquitard. The term repre-
+             senting the leakage effect is adopted from Hantush and Jacob’s (1955) work. The semianalytical solution
+             for the model is developed by the Laplace transform technique. The transient analytical solution with-
+             out wellbore storage effect is also provided. On the basis of present solution, the lagging effect in the
+             water ﬂux and drawdown gradient are discussed. Additionally, a sensitivity analysis based on the pre-
+             sent solution is performed to investigate the drawdown behavior in response to the change in each of
+             parameters of the aquifer system. The present solution is applied to estimate the aquifer parameters
+             when analyzing a set of ﬁeld measured drawdown data obtained from a CRP test conducted in South
+             Dakota, USA.
+
+             2. Methodology
+
+             The classical theory for groundwater equation based on Darcy’s law implies that the water ﬂux q occurs
+             immediately once the drawdown gradient rs is produced. The Darcy’ s law in radial direction can be
+             expressed as:
+
+                                                        @sðr; tÞ
+                                       qrðr; tÞ52K @r                (1)
+
+             where r is the radial distance from the center of the pumping well, t is the operating time, and K is the
+             hydraulic conductivity. Similar to Fourier’s law, Baumeister and Hamill (1969, p. 543) stated that many inves-
+             tigators have pointed out that the propagation velocity of heat resulting from the Fourier heat-conduction
+             equation is inﬁnite. Vick and O€zisk (1983, p. 902) mentioned that temperature disturbances will propagate
+             at inﬁnite velocities according to classical heat conduction theory. Beck et al. (1992, p. 41) also mentioned
+             that heat introduced at one point in a solid body will be instantaneously transmitted to the entire body as
+             predicted by Fourier’s law of conduction; therefore, equation (1) indicates that the drawdown propagation
+             has an inﬁnite speed implying that the drawdown can be measured immediately at any observation wells
+             once the aquifer is under pumping. However, the propagation speed of drawdown in aquifers may be ﬁnite
+             and the assumption of Darcy’s law may be unrealistic in some real-world problems. Based on Tzou’s (1995)
+             dual-phase-lag concept, a generalized Darcy’s law assuming that the qr and rs occurring at different times
+             is denoted as
+
+                             qr        À    t1sq  Á     @sðr; t1ssÞ  (2)
+                                        r;         52K       @r
+
+             where sq and ss are respectively the phase lags of the water ﬂux and drawdown gradient. In analogy
+             to Tzou’s (1995) approach, the sq is introduced to reﬂect the fast transient effect of water ﬂow inertia
+             because of the moderately high velocity of water ﬂow in a high permeability medium or large open-
+             ing in aquifers. The inertial effect causes the energy passing the water and moving like waves; conse-
+             quently, the drawdown propagation arrives later than expected. The ss is considered induced by the
+             effect of structural interactions due to noninterconnected pore in porous aquifers or nonintercon-
+             nected fractures in fractured media leading to an extra time for establishing the drawdown gradient
+             ﬁeld. In reality, both sq and ss may range from few seconds to several hours. Note that equation (2) is
+             used to describe local behavior in the conﬁned aquifer. If the ﬂow system has a Neumann-type
+             boundary with a given ﬂux value, the drawdown gradient may precede the water ﬂux. In regional ﬂow
+             systems, the boundary condition does not ensure the priority of the water ﬂux and drawdown
+             gradient.
+
+             Applying the Taylor series expansion to equation (2), the ﬁrst-order approximation for generalized Darcy’s
+             law then results in
+
+LIN AND YEH  LAGGING EFFECTS DURING PUMPING                          8502
+             Water Resources Research                                                                                                                10.1002/2017WR021115               19447973, 2017, 10, Downloaded from https://agupubs.onlinelibrary.wiley.com/doi/10.1002/2017WR021115 by Chung Yuan Christian University, Wiley Online Library on [13/07/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+                                                                                                      qr ðr;  tÞ1sq  @ qr ðr;     tÞ  ﬃ  2K              tÞ  1ss  @  2sðr;      (3)
+                                                                                                                        @t                         @sðr;                     tÞ
+                                                                                                                                                      @r
+                                                                                                                                                                      @t@r
+
+                                                                                        2.1. Mathematical Model
+                                                                                        Figure 1 shows the schematic representation for the mathemati-
+                                                                                        cal model describing the drawdown due to CRP at a fully pene-
+                                                                                        trating well with ﬁnite radius, rw, and casing radius, rc, in a leaky
+                                                                                        conﬁned aquifer of inﬁnite lateral extent with uniform thickness
+                                                                                        b and b0 for aquifer and aquitard, respectively. The effect of leak-
+                                                                                        age from aquitard treated in Hantush and Jacob (1955) is
+                                                                                        adopted in this model. The effects of wellbore storage and well-
+                                                                                        bore skin on the drawdown are also considered in the model.
+                                                                                        The origin of the coordinate is located at the center of the well
+                                                                                        and at the bottom of the main aquifer.
+
+                                                                                        Substituting equation (3) into mass conservation equation,
+
+Figure 1. Schematic representation for a constant-rate pumping conducted at a                                           2     1   @   ðrqr  Þ5S  @s  1    K0  s                   (4)
+fully penetrating well in a leaky conﬁned aquifer.                                                                            r   @r             @t       B0
+
+                                                                                        the groundwater equation can then be obtained as
+
+                                        @ @2s                                                               @  K0s                          
+                                                                                           1 @s                                   S              @ @s
+                                  11ss @t @r2 1 r @r 2 11sq @t B0T 5 T 11sq @t @t                                                                                                 (5)
+
+             where K0 is the is the hydraulic conductivity of the aquitard, B0 is the thickness of the aquitard, T and S are
+             respectively the transmissivity (i.e., K3b) and storativity of the aquifer. Note that equation (5) is a wave
+             equation while the groundwater ﬂow equation is a diffusion equation. Before the pumping, the drawdown
+             in the aquifer is considered to be at stationary state; hence, the initial conditions are denoted as
+
+                                                                                            sðr; 0Þ5 @sðr; 0Þ 50                                                                  (6)
+                                                                                                          @t
+
+             The ﬂowrate across the well screen is maintained at a constant value Q and the effect of the wellbore stor-
+             age is included (Papadopoulos & Cooper, 1967); thus, the inner boundary condition for the model can be
+             written as:
+
+                                                                               2prw T       @sðrw  ;  tÞ  52Q1prc2         @HðtÞ                                                  (7)
+                                                                                               @r                            @t
+
+             where HðtÞ is the drawdown (or water level) in the pumping well. Considering the well skin effect on the
+             ﬂow, the condition for the drawdown at the wellbore can be expressed as
+
+                                                                                    HðtÞ5sðrw      ;  tÞ2Sk   rw  @  sðrw  ;  tÞ                                                  (8)
+                                                                                                                      @r
+
+             where Sk is a skin factor. At the remote boundary (i.e., r ! 1), the drawdown is assumed to be zero; there-
+             fore, it can be expressed as
+
+                                                                                            limr!1 sðr; tÞ50                                                                      (9)
+
+             Deﬁne the following dimensionless variables and parameters:
+
+                 sD5  4pT  s;  HD5  4pT  H;                                    rD5  r   ;        T    t;  CD  5   rc2   ;          T        sq;  ssD5   T     ss;  j5  K0         (10)
+                       Q             Q                                              rw     tD5 Srw2              2Srw2     sqD5 Srw2                   Srw2            B0T
+
+             On the basis of equation (10), the dimensionless equations for equations (5)–(9) can be respectively written
+
+             as
+
+                                    @ @2sD                                           1   @sD                  @                            @      @sD
+                             11ssD  @tD @rD2                                            rD  @rD    2 11sqD        @tD     jsD5 11sqD             @tD      @tD
+                                                                                    1                                                                                             (11)
+
+LIN AND YEH           LAGGING EFFECTS DURING PUMPING                                                                                                                              8503
+             Water Resources Research                                                                                  10.1002/2017WR021115  19447973, 2017, 10, Downloaded from https://agupubs.onlinelibrary.wiley.com/doi/10.1002/2017WR021115 by Chung Yuan Christian University, Wiley Online Library on [13/07/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+                                                                         sDðrD    ;  0Þ5   @sDðrD;   0Þ  50                         (12)
+                                                                                              @tD
+
+                                                                         @sDð1;   tD  Þ  5221CD      @  HDðtDÞ                      (13)
+                                                                            @rD                          @tD
+
+                                                    HDðtDÞ5sDð1;                           tD  Þ2Sk  @sDð1;    tDÞ                  (14)
+                                                                                                        @rD
+
+             and
+
+                                                                             limrD!1 sDðrD; tDÞ50                                   (15)
+
+             2.2. The Present Solution
+
+             Applying the Laplace transform to equation (11) yields
+
+                               ð11ssDpÞ@@2rsD2D                        1   1   @@srDD2À11sqDpÁjsD5À11sqD           Á           (16)
+                                                                             rD                                        p psD
+
+             where the overbar represents the term in Laplace domain and p is the Laplace variable. The transformed
+             boundary conditions for equations (13)–(15) are respectively
+
+                                                                         @sDð1;  tD  Þ  52    2  1CD  pH D   ðpÞ                  (17)
+                                                                             @rD               p
+
+                                                    pH D                ðpÞ5sD         ð1;  pÞ2Sk  @sDð1;   pÞ                   (18)
+                                                                                                        @rD
+
+             and
+
+                                                                             limrD!1 sDðrD; pÞ50                                   (19)
+
+             The general solution of equation (16) can be obtained as
+
+                                                                         sD5AI0ðkrDÞ1BK0ðkrDÞ                                      (20)
+
+                   qﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃÀﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃÁﬃ pﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃ
+             where k5 ðp1jÞ 11psqD = 11pssD, A and B are undetermined coefﬁcients, and I0 and K0 are respec-
+
+             tively the modiﬁed Bessel function of ﬁrst kind and second kind of order zero. Imposing the boundary con-
+
+             ditions equations (17–19) on equation (20), A and B can then be respectively obtained as
+
+                                                                                           A50                                      (21)
+
+             and
+
+                                                                                               2
+                                               B5 CDp2K0ðkÞ1kpð11CDpSkÞK1ðkÞ                                                        (22)
+
+             Finally, the dimensionless drawdown solution in Laplace domain can be expressed as
+
+                                               sD  5                    CD  p2  K0       2K0ðkrDÞ      pSk    ÞK1ðkÞ               (23)
+                                                                                     ðkÞ1kpð11CD
+
+             where K1 is the modiﬁed Bessel function of second kind of order one.
+
+             Neglecting the wellbore storage effect on the drawdown, the dimensionless analytical solution obtained by
+
+             applying Laplace transform and Weber transform is given as follows and its derivation is shown in Appendix A.
+
+                            (                                            ð Þ  11b2 1jsqD1a2ssD tD             Â                )
+                                                                                                                                Ã
+                                        b2 tD                                                           b2 tD
+                                                                                                  1 e sqD 21 11jsqD2ða212jÞssD
+                   2 ð1 b21b2e sqD 22b2e                                             2sqD
+
+                   sD5 p 0                                                                    ða21jÞb2                              (24)
+
+                   3e ð Þ 2
+                   11b2 1jsqD 1a2 ssD   tD  J0ðarDÞY1ðaÞ2Y0ðarDÞJ1ðaÞ
+                               2sqD                 J12ðaÞ1Y12ðaÞ
+                                                                                                        da
+
+             with
+
+LIN AND YEH        LAGGING EFFECTS DURING PUMPING                                                                                   8504
+             Water Resources Research                                                                                           10.1002/2017WR021115  19447973, 2017, 10, Downloaded from https://agupubs.onlinelibrary.wiley.com/doi/10.1002/2017WR021115 by Chung Yuan Christian University, Wiley Online Library on [13/07/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+                                                     qﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃ
+
+                               b15 124ða21jÞsqD12a2ssD1a4ssD2                                                                        (25)
+
+             and
+
+                               b25qÀﬃﬃﬃ1ﬃﬃ1ﬃﬃﬃﬃjﬃﬃﬃsﬃﬃqﬃﬃDﬃﬃ1ﬃﬃﬃﬃaﬃﬃﬃ2ﬃﬃsﬃﬃsﬃDﬃﬃÁﬃﬃ2ﬃﬃ2ﬃﬃﬃﬃ4ﬃﬃﬃðﬃﬃaﬃﬃ2ﬃﬃ1ﬃﬃﬃﬃjﬃﬃﬃÞﬃ                  (26)
+
+             where J0 and Y0 are respectively the Bessel function of ﬁrst kind and second kind of order zero; J1 and Y1
+             are respectively the Bessel function of ﬁrst kind and second kind of order one.
+
+             It is noteworthy that if sqD5ssD50, equation (24) can be written as
+
+                  sD5   2   ð1                       222e2ðj1a2 ÞtD         J0ðarDÞY1ðaÞ2Y0ðarDÞJ1ðaÞ                      da        (27)
+                        p                               ða21jÞ                      J12ðaÞ1Y12ðaÞ
+                              0
+
+             If considering the pumping well of inﬁnitesimal radius and by letting rw ! 0, one can obtain following
+             relationship
+
+                  limc!0       J0                    ðarDÞY1ðacÞ2Y0ðarDÞJ1ðacÞ              52  ap                   J0  ðarDÞ       (28)
+                                                         cðJ12ðacÞ1Y12ðacÞÞ                     2
+
+             Then, equation (27) can reduce to Hantush and Jacob’s (1955, p. 96) solution denoted as
+
+                                                            ð1 12e2ðj1a2ÞtD
+                                                     sD52                 a21j aJ0ðarDÞda                                            (29)
+
+                                                                 0
+
+             2.3. Comparison of Present Model With Dual-Porosity Model
+
+             For the dual-porosity model proposed by Barenblatt et al. (1960), the drawdown distributions in fracture
+
+             and matrix induced by pumping can be respectively written as
+
+                               T                     @2sf  1       1  @sf        @sf  1bðsf  2smÞ                                  (30)
+                                                       @r2          r  @r     5Sf  @t
+
+             and
+
+                                                            Sm         @sm  5bðsf  2sm   Þ                                           (31)
+                                                                       @t
+
+             where the subscripts f and m represent in the fracture and the matrix, respectively, and b is the rate of water
+
+             exchange between the fracture and the matrix. Substituting equation (30) into equation (31), the drawdown
+
+             in the fracture can then be written as
+
+                       Sm  @ @2sf                    1   1       @sf       Sf  1Sm           Sf Sm                        @sf  (32)
+                    11  b   @t @r2                          r       @r      5      T       11  bðSf 1SmÞ                   @    @t
+                                                                                                                           @t
+
+             Equation (5) without the leakage effect can be expressed as
+
+                                                    @            2  s                        
+                                                            @               1 @s    S           @ @s
+                               11ss @t                              @r2 1 r @r     5     11sq @t                                     (33)
+                                                                                      T                                @t
+
+             Comparing equations (32) and (33), one may have:
+
+                                                                          ss5Sm=b                                                    (34)
+
+                                                                          S5Sf 1Sm                                                   (35)
+
+             and
+
+                                                            sq5SmSf =ðbSf 1bSmÞ                                                      (36)
+
+             The present model is based on the concept of lagging response in Darcy’s law while the dual-porosity
+             model focuses on the water ﬂow exchange between the fracture and the matrix. Interestingly, the govern-
+             ing equations of both models (i.e., equations (32) and (33)) are similar in mathematical forms, implying that
+             the present model has some physical similarity to the dual-porosity model. The present lagging model
+
+LIN AND YEH       LAGGING EFFECTS DURING PUMPING                                                                                     8505
+             Water Resources Research        10.1002/2017WR021115                                                                                                19447973, 2017, 10, Downloaded from https://agupubs.onlinelibrary.wiley.com/doi/10.1002/2017WR021115 by Chung Yuan Christian University, Wiley Online Library on [13/07/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+             allows the case of structural interaction (i.e., sq < ss) or inertial force (i.e., sq > ss) inﬂuencing the ﬂow ﬁeld .
+             On the contrary, the dual-porosity model have to be subject to the constraint of SmSf =ðbSf 1bSmÞ < Sm=b
+             (i.e., Sf =ðSf 1SmÞ < 1) due to the reality that the parameters b; Sm; and Sf are all positive values. Conse-
+             quently, the dual-porosity model cannot be use to depict the drawdown in a fractured aquifer system when
+             the effect of inertia force dominates the ﬂow. This is the limitation of the dual-porosity model as compared
+             with the present model in the analysis of fractured ﬂow.
+
+             3. Results and Discussion
+
+             3.1. The Effects of sqD and ssD
+             A pumping test is considered to conduct at a conﬁned aquifer with the parameters T, S, K0, B0, and Sk being
+             equal to 10 m2/h, 0.0001 m21, 0 m/h, 0 m, and 0, respectively. The pumping well radius and casing radius
+             are both 0.2 m with a constant rate Q 5 100 m3/h and the observation distance is located 10 m (or rD550)
+             from the pumping well. Figure 2 shows the temporal distribution curves of the dimensionless drawdown sD
+             for (a) ssD5105 ð2:4 minÞ; 106 ð24 minÞ, and 107ð4 hÞ with sqD5103; 104, and 105 and (b) sqD5105; 106,
+             and 107 with ssD5103; 104, and 105. Figure 2a shows the cases that the structural interaction effect is domi-
+             nant in the ﬂow (i.e., sqD < ssD). For a given value of ssD, the pumping drawdown increases with dimension-
+             less time, tends to be stabilized at the time near sqD, and increases again after the time close to ssD. The
+             ﬁgure shows that a smaller sqD will have a larger drawdown before the dimensionless time approaching sqD
+             : On the other hand, for a ﬁxed value of sqD, a larger ssD would lead to a larger drawdown before the dimen-
+             sionless time near ssD: It can be observed that the drawdown curves are stabilized in the period for the
+             dimensionless time approximately from sqD to ssD and all the drawdown curves match together after the
+             time close to ssD. Figure 2b demonstrates the cases that the inertial effect is dominant (i.e., ssD < sqD). For a
+             ﬁxed ssD, a larger sqD produces a smaller drawdown before the dimensionless time approaching sqD. Oppo-
+             sitely, a larger ssD results in a larger drawdown before the time near ssD for a ﬁxed sqD and then all the draw-
+             down curves merge after the time ssD. Note that the oscillatory phenomenon occurring during the
+             dimensionless time from 104 to 105 can be attributed to the large phase lag inﬂuencing the water ﬂow (i.e.,
+             sqD5106 and 107) because the drawdown propagation behaves more like wave for large sqD. Moreover, the
+             lagging effect is vanished when ssD5sqD no matter what values they are.
+
+Figure 2. Temporal dimensionless drawdown distributions sD for (a) ssD from 105 to 107 with sqD from 103 to 105 and (b) sqD from 105 to 107 with ssD from
+103 to 105.
+
+LIN AND YEH  LAGGING EFFECTS DURING PUMPING                                                                                                                8506
+                         Water Resources Research                                                        10.1002/2017WR021115                               19447973, 2017, 10, Downloaded from https://agupubs.onlinelibrary.wiley.com/doi/10.1002/2017WR021115 by Chung Yuan Christian University, Wiley Online Library on [13/07/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Table 1                                                  3.2. Sensitivity Analysis
+Default Parameter Values in Sensitivity Analysis         Sensitivity analysis is a useful tool in investigating the effect of uncertainty in each of aqui-
+                                                         fer and aquitard parameters on the aquifer drawdown. The normalized sensitivity is
+Parameter       Value    Parameter                Value  deﬁned as (Kabala, 2001):
+
+Q             400 m3/h        rw                  0.2 m                                  Xi;k  5Pk  @Oi  (37)
+T              10 m2/h        rc                  0.2 m                                             @Pk
+S            0.0001 m21       sq                  0.2 h
+K’           0.0001 m/h       ss                   2h    where Xi;k is the normalized sensitivity of the ith output value Oi with respect to the kth
+B’                            Sk                         input parameter Pk. The term on the right-hand side of equation (37) can be approximated
+                 50 m                               0    as:
+
+                                                                          @Oi 5 OiðPk1DPkÞ2OiðPkÞ        (38)
+                                                                          @Pk                  @Pk
+
+                         where DPk may be approximated by DPk 5 1023 Pk (Huang & Yeh, 2007). In the following case study, the
+                         default parameter values are provided in Table 1.
+
+                         Figure 3 demonstrates the temporal distribution curves of normalized sensitivity for drawdown in response
+                         to the change in each of parameters T, S, K0, sq and ss. The sensitivity curves shown in the ﬁgure observed
+                         at the r510 m indicate that the drawdown is sensitive to the changes in sq, ss, and S at early times before t
+                         50:03 h (1.8 min) and the most sensitive to the change in T after that time. The parameter S is the second
+                         in the period 0.1 h < t < 35 h while K0 becomes the second after t535 h. It can be observed that each of sq
+                         and ss signiﬁcantly affects the drawdown in the period related to the value of the lag time. In addition, the
+                         effect of sq on the drawdown vanishes at t 5 0.4 h while the effect of ss disappears at t 5 4 h. The ﬁgure
+                         also displays that small positive perturbations in the values of T, S, sq, and K0 result in negative inﬂuences
+                         on the drawdown. In contrast, a positive change in ss positively inﬂuences the drawdown, indicating that a
+                         larger value of ss would have a larger drawdown.
+
+                         3.3. Parameter Estimation for Field Test Data
+                         The observed data obtained from an aquifer test conducted by the U.S. Geological Survey in Madison aqui-
+                         fer in the western Rapid City area, South Dakota (Greene, 1993) is analyzed herein based on the present
+                         solution. The Madison aquifer is consisted of limestone with the approximate thickness of 61 m and
+
+                                                                   bounded by the Minnelusa Formation (a leaky conﬁning layer) above and
+                                                                   an impermeable layer beneath. The fractures and solution features in the
+                                                                   aquifer are main factors increasing the permeability of this highly hetero-
+                                                                   geneous formation (Greene et al., 1999). A CRP test was conducted at the
+                                                                   well RC-5 about 7 days. The pumping rate was maintained 386.11 m3/h
+                                                                   and the well almost fully penetrates the Madison aquifer with 11-inch-
+                                                                   diameter (0.28 m) screen portion and 13.5-inch-diameter (0.34 m) casing
+                                                                   portion. The drawdown data were measured at ﬁve wells. They are wells
+                                                                   LC, SP-2, BHPL, CL-2, and CHLN-2 with distances 208 m, 518 m, 1,204 m,
+                                                                   2,713 m, and 3,566 m, respectively, from the well RC-5. Notice that all the
+                                                                   distances are greater than twofold aquifer thickness; therefore, the partial
+                                                                   penetration effect of observation wells are ignorable (Todd & Mays, 2005,
+                                                                   p. 195).
+
+Figure 3. Temporal distribution curves of normalized sensitivity for ﬁve  Table 2 lists the aquifer parameters estimated by Greene (1993) via the
+parameters observed at r 5 10 m.                                          type curve method developed by Hantush and Jacob’s (1955) and the pre-
+                                                                          sent solution with two cases for data obtained from four observation wells
+                                                                          in South Dakota. Note that in the parameter estimation, the effects of well-
+                                                                          bore storage and well skin are not considered and the present solution is
+                                                                          coupled with the Levenberg-Marquardt algorithm given in the Mathema-
+                                                                          tica routine FindFit (Wolfram, 1991). Case 1 only considers three parame-
+                                                                          ters T, S, and K0 while case 2 counts sq and ss in addition to those three
+                                                                          parameters. The table lists the values of standard error of estimate (SEE)
+                                                                          and mean error (ME) (Yeh, 1987). The SEE is deﬁned as the square root of
+                                                                          the sum of squared errors between the measured and predicted
+
+LIN AND YEH                                              LAGGING EFFECTS DURING PUMPING                  8507
+             Water Resources Research                                                                           10.1002/2017WR021115                         19447973, 2017, 10, Downloaded from https://agupubs.onlinelibrary.wiley.com/doi/10.1002/2017WR021115 by Chung Yuan Christian University, Wiley Online Library on [13/07/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+             Table 2
+             Parameters Estimated by Greene [1993] and Present Solution as Cases 1 and 2
+
+             Well           T (m2/h)                                    S 31025  K031024 (m/h)  sq (h)  ss (h)  SEE (m)  ME (m)
+
+             Greene [1993]     6.19                                      10      0.26                   0.199    0.577     0.217
+             LC              10.06                                       10      0.62                   0.383    0.653   20.368
+             SP-2            20.13                                       10      0.43                   4.325    1.742   21.620
+             BHPL           154.84                                       33      0.35                   0.050    0.035   20.027
+             CL-2           154.84                                       33      0.21                   7.148    0.014   20.0002
+             CHLN-2
+             Case 1            5.32                                     11.04    1.61                            0.299     0.067
+             LC                8.08                                     16.47    2.70                            0.114     0.012
+             SP-2            18.64                                      51.20    5.38                            0.041   20.001
+             BHPL           116.13                                      41.70    1.94                            0.011   20.0005
+             CL-2           163.86                                      30.11    0.82                            0.009     0.0002
+             CHLN-2
+             Case 2            4.88                                     12.59    2.14           0.085            0.153     0.001
+             LC                7.20                                     17.55                                    0.103   20.0005
+             SP-2            47.05                                      40.00    3.25           0.203            0.037
+             BHPL           149.48                                      41.71                                    0.008     0.0003
+             CL-2           186.27                                      28.82    1.50           13.954           0.009   20.0002
+             CHLN-2
+                                                                                 1.05           2.108                      0.0002
+
+                                                                                 5.40           8.362
+
+             drawdowns divided by the degree of freedom, which is equal to the number of measured data minus the
+
+             number of unknowns. The ME is deﬁned as the mean of the sum of errors. Both statistics are used to assess
+
+             the goodness of model ﬁt to the observed data. On the basis of the values of SEE and ME, case 2 shows the
+
+             present solution gives an excellent ﬁt to the measured data. The SEE and ME values for case 2 are smaller
+
+             than those for case 1 and Greene (1993), implying that the present solution can predict drawdown for
+             pumping in the Madison aquifer. Both cases 1 and 2 give close estimates of the parameters T, S, and K0 for
+
+             data from LC and SP-2 which are located closer to the pumping well as shown in the bottom left corner of
+                                                       Figure 4. On the other hand, the estimated T is 116.13 m2/h for CL-2 and
+                                                       163.86 m2/h for CHLN-2 in case 1 which are respectively much less than
+                                                       149.48 m2/h for CL-2 and 186.27 m2/h for CHLN-2 in case 2. Note that
+
+                                                                        both CL-2 and CHLN-2 are installed with distances 2,713 m and 3,566 m,
+
+                                                                        respectively, from the pumping well. The estimated T for BHPL is
+                                                                        18.64 m2/h in case 1 and 47.05 m2/h in case 2 which are obviously differ-
+
+                                                                        ent from those for LC and SP-2. This discrepancy may be attributed to the
+
+                                                                        fact that the BHPL is located on the other side of the pumping well and its
+
+                                                                        geology may be different from those of other observed wells in this highly
+
+                                                                        heterogeneous formation. Additionally, it can be observed that sq is
+                                                                        smaller than ss for LC and SP-2 indicating that the structural interaction is
+
+                                                                        dominant. On the contrary, the estimation shows that sq is larger than ss
+
+                                                                        for BHPL, CL-2, and CHLN-2 implying that the inertial force is signiﬁcant.
+
+                                                                        Figure 4 shows the measured data from those ﬁve wells and the temporal
+
+                                                                        drawdown distributions predicted by Greene (1993) and the present solu-
+
+                                                                        tion with cases 1 and 2. Note that the drawdown curve for CL-2 is plotted
+
+                                                                        in the bottom right plot to avoid overlapping with the curve of CHLN-2.
+
+                                                                        The ﬁgure shows excellent ﬁt for the present solution in case 2 to all the
+
+                                                                        measured data from those ﬁve wells especially in the early time period. It
+
+                                                                        is notable that Greene’s (1993) predict drawdown curve at BHPL signiﬁ-
+
+                                                                        cantly deviates from the mepasﬃuﬃﬃrﬃﬃeﬃﬃdﬃﬃﬃﬃﬃdata as shown in the ﬁgure. The esti-
+                                                                        mated leakage factor B (5 Tb0=K0) and r/B are respectively 1468.29 m
+
+Figure 4. Measured data at ﬁve observation wells and temporal draw-     and 0.82 by the present solution while the value of r/B is 0.4 in Greene
+down distributions predicted by Greene (1993) and present solution for  (1993, p. 41). It can also be observed that the early-time drawdown data
+cases 1 and 2.                                                          from BHPL obviously deviate from the type curve of r/B 5 0.4 in Greene
+
+LIN AND YEH                 LAGGING EFFECTS DURING PUMPING                                                               8508
+             Water Resources Research                                                              10.1002/2017WR021115                                 19447973, 2017, 10, Downloaded from https://agupubs.onlinelibrary.wiley.com/doi/10.1002/2017WR021115 by Chung Yuan Christian University, Wiley Online Library on [13/07/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+                                                                            (1993), indicating that the graphical method would make large errors indi-
+                                                                            cated in Figure 4 due to visual curve-ﬁtting.
+
+                                                                            Figure 5 show the linear regression lines for sq and ss shown in Table 2
+                                                                            against observed distance for LC, SP-2, CL-2, and CHLN-2. Note that the
+                                                                            data of sq and ss from BHPL are not included in the ﬁgure because it is on
+                                                                            the opposite side of the other wells. This ﬁgure reveals that both phase
+                                                                            lags sq and ss increase with the observed distance from the pumping well,
+                                                                            indicating that the a larger distance from the pumping well may yield a
+                                                                            longer lagging response for the ﬂow. The nonlinear relationship indicated
+                                                                            in the ﬁgure between the parameter value and observed distance may be
+                                                                            due to the problems of the highly heterogeneous formation and/or non-
+                                                                            straight arrangement of the observation wells.
+
+                                                                            4. Concluding Remarks
+
+                                                                            An analytical model for drawdown induced by CRP in a leaky conﬁned
+
+                                                                            aquifer with considering the phase lags in water ﬂow and drawdown gra-
+
+                                                                            dient is developed. The lagging behavior is introduced in ﬂow equation to
+
+                                                                            describe the drawdown induced by CRP. The model also incorporates the
+
+Figure 5. Linear regression lines for sq and ss against observed distances  effects of wellbore storage and well skin. The drawdown solution is devel-
+for wells excluding BHPL.                                                   oped by the use of Laplace transform and Weber transform techniques.
+
+                                                                            The sensitivity analysis is carried out to explore the inﬂuence of the
+
+                                                                            change in each of the aquifer parameters on the drawdown. Additionally,
+
+             the effects of dimensionless phase lags such as sqD for the water ﬂow and ssD for the drawdown gradient
+             on the drawdown are assessed. Furthermore, the present solution is applied to estimate the aquifer param-
+
+             eters via nonlinear least squares method for CRP test in a leaky conﬁned fractured aquifer in South Dakota,
+
+             USA. The results indicate that the present solution can not only be a useful tool to quantify the effects of
+
+             inertia and structural interaction through the determination of the phase lag parameters sq and ss but also
+
+             give a very good ﬁt to the ﬁeld observed data. The main ﬁndings are summarized as follows:
+
+             1. The mathematical expressions of the present lagging model and dual-porosity model are equivalent;
+                however, the concepts in the model development are different. The former is constructed based on the
+                lagging response due to the inertial and structural interaction effects. The latter, on the other hand, is
+                developed with considering the ﬂow exchange between the fracture and matrix in a fractured aquifer.
+                However, the dual-porosity model should be subject to the constrain SmSf =ðbSf 1bSmÞ < Sm=b (corre-
+                sponding to sq < ss) because of the physical reality. Such a constrain implies that the dual-porosity
+                model cannot deal with the problems for groundwater ﬂow under the effect of the inertial force.
+
+             2. The parameters sqD and ssD in the present model are respectively introduced to reﬂect the lagging
+                response induced by the inertial and structural interaction effects. When ssD5sqD, there is no lagging
+                effect on the groundwater ﬂow. As sqD < ssD, the structural interaction effect dominates the ﬂow. A
+                larger value of ssD would produce a larger drawdown before the dimensionless time close to ssD for a
+                speciﬁc value of sqD. In contrast, a larger value of sqD would lead to a smaller drawdown before the time
+                approaching sqD for given ssD. It is found that the drawdown curves are almost stabilized in the period
+                for the dimensionless time from sqD to ssD . For the case that sqD > ssD, the inertial effect is dominant in
+                the ﬂow ﬁeld. A larger value of ssD would cause larger drawdown before the time near ssD for a speciﬁc
+                value of sqD. On the other hand, a larger value of sqD would result in smaller drawdown before the time
+                approaching sqD with given ssD.
+
+             3. The results of sensitivity analysis show that the drawdown is very sensitive to the change in parameter T
+                and relatively insensitive to the change in each of parameters of S, sq and ss. The effect of the phase lag
+                on the drawdown is signiﬁcant in the period associated with its lag time value and then gradually
+                declines with time.
+
+             4. The present solution with estimated parameters gives very good ﬁt to ﬁeld observed drawdown data
+                especially at the early operating time as compared with the model without considering the lagging
+
+LIN AND YEH  LAGGING EFFECTS DURING PUMPING                                                              8509
+             Water Resources Research                                                                                          10.1002/2017WR021115                                        19447973, 2017, 10, Downloaded from https://agupubs.onlinelibrary.wiley.com/doi/10.1002/2017WR021115 by Chung Yuan Christian University, Wiley Online Library on [13/07/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+                                        response. The results of parameter estimation for data from ﬁve different observation wells exhibit that
+                                        there is an increasing trend in predicted phase lags with the observed distance from the pumping well.
+
+                                        Appendix A: The Derivation of Equation (24)
+
+                                        With neglecting the effect of wellbore storage (i.e.; rc or CD 5 0), the inner boundary condition, equation
+                                        (17), in Laplace domain can be written as
+
+                                                                                    @sDð1; tDÞ 52 2                                  (A1)
+                                                                                              @rD           p
+
+                                        Applying the Weber transform to equation (16) results in
+
+                                                                                                 j~s D     À       Á
+                                                                                4             ð11ssDpÞ       11sqDp
+                                                                    2a2~s D2  pap  2                    5  ð11ssDpÞ   p~s D         (A2)
+
+                                        where ~s D is the drawdown in Laplace-Weber domain and a is Weber variable. The inverse transform of
+
+                                        Weber transform and associated formula can be found in Povstenko (2015, p. 22). The solution for draw-
+
+                                        down can then be solved as
+
+                                                                                              À             Á
+                                                                                              4 11sqDp
+                                                                    ~s D  5   À                                     Á                (A3)
+                                                                              pap a21p1j1p2sqD1a2              ssD  p
+
+                                        Employing the Laplace inverse transform to equation (A3), the drawdown solution in Weber domain can be
+
+                                        obtained as
+
+                                                            &              ð11b2 1a2 ssD ÞtD                                      '
+
+                                                                                                                               b1 tD
+                                                               211b122b1e 2sqD 1a2ssD12jssD1½11b12ða212jÞssDe sqD
+
+                                                     ~sD52                                    apða21jÞb2
+
+                                                                                    3e211b221saq2DssD tD                              (A4)
+
+                                        Finally, the dimensionless transient drawdown solution without considering the wellbore storage can be
+                                        obtained by applying Weber inverse transform (Povstenko, 2015, p. 22) as equation (24).
+
+Acknowledgments                         References
+Research leading to this paper has
+been partially supported by the grant   Agarwal, R. G., Al-Hussainy, R., & Ramey, H. J., Jr. (1970). An investigation of wellbore storage and skin effect in unsteady liquid ﬂow: I. Ana-
+from the Taiwan Ministry of Science        lytical treatment. Society of Petroleum. Engineers Journal, 10(03), 279–290.
+and Technology under the contract
+numbers MOST 105–2221-E-009 2043-       Barenblatt, G. I., Zheltov, I. P., & Kochina, I. N. (1960). Basic concepts in the theory of seepage of homogeneous liquids in ﬁssured rocks
+MY2 and MOST 106–2221-E-009 2066.          [strata]. Journal of Applied Mathematics and Mechanics, 24(5), 1286–1303.
+The authors would like to thank the
+associate editor and two anonymous      Baumeister, K. J., & Hamill, T. D. (1969). Hyperbolic heat-conduction equation—A solution for the semi-inﬁnite body problem. Journal of
+reviewers for their constructive           Heat Transfer, 91(4), 543–548.
+comments. The data used to plot
+Figure 4 can be found in the Excel ﬁle  Bear, J., & Cheng, A. H. D. (2010). Modeling groundwater ﬂow and contaminant transport. Berlin, Germany: Springer Science & Business Media.
+named as Data Set S1 in the             Beck, J. V., Cole, K. D., Haji-Sheikh, A., & Litkouhi, B. (1992). Heat conduction using Green’s functions. London, UK: Hemisphere Publishing
+supporting information.
+                                           Corporation.
+                                        Belcher, W. R., Elliott, P. E., & Geldon, A. L. (2001). Hydraulic-property estimates for use with a transient ground-water ﬂow model of the Death
+
+                                           Valley regional ground-water ﬂow system, Nevada and California (No. USGS WRIR 01–4210). Las Vegas, NV: United States Geological Sur-
+                                           vey-Nevada.
+                                        Cassiani, G., Kabala, Z. J., & Medina, M. A. Jr. (1999). Flowing partially penetrating well: solution to a mixed-type boundary value problem.
+                                           Advances in Water Resources, 23, 59–68.
+                                        Cattaneo, C. (1958). General relativity: Relative standard mass, momentum, energy and gravitational ﬁeld in a general system of reference.
+                                           Il Nuovo Cimento, 10(2), 318–337.
+                                        Cho, H. J., Daly, M. H., & Fiacco, R. J., Jr. (2004). Pumping test analysis in fractured crystalline bedrock. In Proceedings of 2004
+                                           U.S. EPA/National Ground Water Association Fractured Rock Conference: State of the Science and Measuring Successin Remediation
+                                           (pp. 161–172).
+                                        Fatt, I. (1959). A demonstration of the effect of dead-end volume on pressure transients in porous media. Journal of Petroleum Technology,
+                                           12(12), 66–70.
+                                        Greene, E. A. (1993). Hydraulic properties of the Madison aquifer system in the western Rapid City area, South Dakota. Reston, VA: US Depart-
+                                           ment of the Interior, United States Geological Survey.
+                                        Greene, E. A., Shapiro, A. M., & Carter, J. M. (1999). Hydrogeologic characterization of the Minnelusa and Madison aquifers near Spearﬁsh,
+                                           South Dakota. Reston, VA: United States Geological Survey.
+                                        Hantush, M. S. (1960). Modiﬁcation of the theory of leaky aquifers. Journal of Geophysical Research, 65(11), 3713–3725.
+                                        Hantush, M. S. (1964). Hydraulics of wells. In Chow, W. T. (Ed.), Advances in hydroscience (Vol. 1, pp. 281–432). New York: Academic
+                                           Press.
+
+LIN AND YEH                                          LAGGING EFFECTS DURING PUMPING                                                   8510
+             Water Resources Research        10.1002/2017WR021115                                                                                                 19447973, 2017, 10, Downloaded from https://agupubs.onlinelibrary.wiley.com/doi/10.1002/2017WR021115 by Chung Yuan Christian University, Wiley Online Library on [13/07/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+             Hantush, M. S., & Jacob, C. E. (1955). Non-steady radial ﬂow in an inﬁnite leaky aquifer, Eos Transactions American Geophysical Union, 36(1),
+                95–100.
+
+             Hawkins, M. F. (1956). A note on the skin effect. Journal of Petroleum Technology, 8(12), 65–66.
+             Huang, Y. C., & Yeh, H. D. (2007). The use of sensitivity analysis in on-line aquifer parameter estimation. Journal of Hydrology, 335(3), 406–
+
+                418.
+             Hurst, W. (1953). Establishment of the skin effect and its impediment to ﬂuid ﬂow into a well bore. Petroleum Engineering, 25(11), B6–B16.
+             Kabala, Z. J. (2001). Sensitivity analysis of 1 a pumping test on a well with wellbore storage and skin. Advances in Water Resources, 24(5),
+
+                483–504.
+             Krasny, J., & Sharp, J. M. (2007). Groundwater in fractured rocks, IAH Selected Paper Series (Vol. 9). Boca Raton, FL: CRC Press.
+             Lin, Y. C., Li, M. H., & Yeh, H. D. (2017). An analytical model for ﬂow induced by a constant-head pumping in a leaky unconﬁned aquifer sys-
+
+                tem with considering unsaturated ﬂow. Advances in Water Resources, 107, 525–534.
+             Lin, Y. C., Yang, S. Y., Fen, C. S., & Yeh, H. D. (2016). A general analytical model for pumping tests in radial ﬁnite two-zone conﬁned aquifers
+
+                with Robin-type outer boundary. Journal of Hydrology, 540, 1162–1175.
+             Lo€fqvist, T., & Rehbinder, G. (1993). Transient ﬂow towards a well in an aquifer including the effect of ﬂuid inertia. Applied Scientiﬁc
+
+                Research, 51(3), 611–623.
+             Malama, B., Kuhlman, K. L., & Barrash, W. (2007). Semi-analytical solution for ﬂow in leaky unconﬁned aquifer–aquitard systems. Journal of
+
+                Hydrology, 346(1), 59–68.
+             Moench, A. F. (1984). Double-porosity models for a ﬁssured groundwater reservoir with fracture skin. Water Resources Research, 20(7), 831–
+
+                846.
+             Moench, A. F. (1997). Flow to a well of ﬁnite diameter in a homogeneous, anisotropic water table aquifer. Water Resources Research, 33(6),
+
+                1397–1407.
+             Moench, A. F., & Hsieh, P. A. (1985). Analysis of slug test data in a well with ﬁnite thickness skin. In Proceedings of the 17th international con-
+
+                gress (pp. 17–29), Tucson, AZ: International Association of Hydrogeology.
+             Najurieta, H. L. (1980). A theory for pressure transient analysis in naturally fractured reservoirs. JPT Journal of Petroleum Technolgy, 32(07),
+
+                1–241.
+             Neuman, S. P., & Witherspoon, P. A. (1969). Theory of ﬂow in a conﬁned two aquifer system. Water Resources Research, 5(3), 803–816.
+             Papadopulos, I. S., & Cooper, H. H. (1967). Drawdown in a well of large diameter. Water Resources Research, 3(1), 241–244.
+             Pascal, H. (1986). Pressure wave propagation in a ﬂuid ﬂowing through a porous medium and problems related to interpretation of Stone-
+
+                ley’s wave attenuation in acoustical well logging. International Journal of Engineering Science, 24(9), 1553–1570.
+             Povstenko, Y. (2015). Linear fractional diffusion-wave equation for scientists and engineers. New York: Birkh€aser.
+             Sandal, H. M., Horne, R. N., Ramey, H. J., Jr., & Williamson, J. W. (1978). Interference testing with wellbore storage and skin effect at the pro-
+
+                duced well. Paper presented at SPE Annual Fall Technical Conference and Exhibition, Society of Petroleum Engineers, Houston, TX.
+             Theis, C. V. (1935). The relation between the lowering of the piezometric surface and the rate and duration of discharge of a well using
+
+                ground-water storage. Eos Transactions. American Geophysical Union, 16, 519–524.
+             Tiedeman, C. R., & Hsieh, P. A. (2001). Assessing an open-well aquifer test in fractured crystalline rock. Ground Water, 39(1), 68–78.
+             Todd, D. K., & Mays, L. W. (2005). Groundwater hydrology (3rd ed.). New York: John Wiley & Sons.
+             Tzou, D. Y. (1995). The generalized lagging response in small-scale and high-rate heating. International Journal of Heat Mass Transfer,
+
+                38(17), 3231–3240.
+             Tzou, D. Y. (2014). Macro-to microscale heat transfer: The lagging behavior. Washington, DC: John Wiley & Sons.
+             van Everdingen, A. F. (1953). The skin effect and its inﬂuence on the productive capacity of a well. Journal of Petroleum Technology, 5(06),
+
+                171–176.
+             Vernotte, P. (1958). Les paradoxes de la theorie continue de l’equation de la chaleur. Compte Rendus, 246(22), 3154–3155.
+             Vernotte, P. (1961). Some possible complications in the phenomena of thermal conduction. Compte Rendus, 252, 2190–2191.
+             Vick, B., & O€zisk, M. N. (1983). Growth and decay of a thermal pulse predicted by the hyperbolic heat conduction equation. Journal of Heat
+
+                Transfer, 105(4), 902–907.
+             Viessman, J. W., & Lewis, G. L. (1996). Introduction to hydrology (4th ed.). New York: Harper Collins College Publishers.
+             Wolfram, S. (1991). Mathematica, version 2.0. Champaign, IL: Wolfram Research, Inc.
+             Yeh, H. D. (1987). Theis’ solution by nonlinear least-squares and ﬁnite-difference Newton’s method. Groundwater, 25, 710–715.
+             Yeh, H. D., & Chang, Y. C. (2013). Recent advances in modeling of well hydraulics. Advances in Water Resources, 51, 27–51.
+             Zlotnik, V. A., & Zhan, H. (2005). Aquitard effect on drawdown in water table aquifers. Water Resources Research, 41, W06022. https://doi.
+
+                org/10.1029/2004WR003716
+
+LIN AND YEH  LAGGING EFFECTS DURING PUMPING  8511
+
