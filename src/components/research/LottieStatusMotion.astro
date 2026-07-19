@@ -38,7 +38,7 @@ const lottieSrc = `${base}animations/decision-chain.lottie`;
       aria-label="Animated chain from measured response to model interpretation to use in engineering decisions"
     ></canvas>
     <figcaption data-dotlottie-status>
-      Conceptual motion graphic; not a calibrated aquifer simulation.
+      This animation illustrates the decision chain from measured response to engineering use; it is not a calibrated aquifer simulation.
     </figcaption>
   </figure>
   <div class="micro-motion__rail" aria-label="Animated model review states">
@@ -95,14 +95,14 @@ const lottieSrc = `${base}animations/decision-chain.lottie`;
         });
         activeLottiePlayers.add(player);
         player.addEventListener("load", () => {
-          if (status) status.textContent = "Conceptual motion graphic; not a calibrated aquifer simulation.";
+          if (status) status.textContent = "This animation illustrates the decision chain from measured response to engineering use; it is not a calibrated aquifer simulation.";
         });
         player.addEventListener("loadError", () => {
-          if (status) status.textContent = "Conceptual motion graphic; not a calibrated aquifer simulation.";
+          if (status) status.textContent = "This animation illustrates the decision chain from measured response to engineering use; it is not a calibrated aquifer simulation.";
         });
       } catch (error) {
         console.warn("dotLottie motion could not initialize", error);
-        if (status) status.textContent = "Conceptual motion graphic; not a calibrated aquifer simulation.";
+        if (status) status.textContent = "This animation illustrates the decision chain from measured response to engineering use; it is not a calibrated aquifer simulation.";
       }
     });
   }

@@ -51,6 +51,9 @@ Training, Network, Open Tools, Glossary, Explain­ers, and About remain availabl
 ## Media rules
 
 - Team photographs are real project or conference images with specific alt text and captions.
+- The homepage hero is one full-bleed team photograph with the research statement set directly over the image. It is not a split text/media layout and the copy is not enclosed in a card.
+- The hero's pumping-test trace is explicitly labelled as conceptual. It may explain the sequence from pumping to measured drawdown and interpretation, but it must not imply that a schematic curve is field data.
+- Hero motion uses GSAP only to reveal existing content and draw the conceptual trace. The static HTML/SVG is complete without JavaScript, and `prefers-reduced-motion` leaves every element visible in its final state.
 - The hero image is eager; the activity mosaic and publication-film posters are lazy-loaded.
 - Video never autoplays. Its poster uses a dedicated play control; after activation, the native controls provide seeking, captions, volume, and full-screen playback. The no-JavaScript fallback retains native controls.
 - Manim output may be used only when the source paper or bounded concept ledger supports the storyboard. Public pages expose the finished visual and its evidence boundary, not private manuscript drafts.
@@ -68,6 +71,7 @@ Training, Network, Open Tools, Glossary, Explain­ers, and About remain availabl
 
 - Astro remains static-first. Do not add a client-side framework for the homepage unless the interaction cannot be expressed with native HTML/CSS.
 - Use real links, headings, lists, captions, and video controls before adding JavaScript.
+- Keep entrance motion between 0.5 and 1.4 seconds, animate transforms and opacity rather than layout properties, and avoid continuous decorative loops.
 - The publication-film player is a reusable progressive-enhancement primitive: poster and native controls are the baseline, while JavaScript replaces the resting controls with one keyboard-operable play button and restores native controls after activation.
 - Keyboard focus must be visible. Text and controls must meet WCAG 2.2 AA contrast. Reduced-motion users receive no transform or autoplay effects.
 - Use the selected information-architecture, hierarchy, type, colour, motion, and critique guidance from `Owl-Listener/designer-skills` as design review prompts, not as a reason to copy a template.
