@@ -1,9 +1,11 @@
 ---
 import { getCollection } from "astro:content";
+import HomeResearchHero from "../components/home/HomeResearchHero.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { absoluteUrl, siteRoot } from "../lib/seo";
 import members from "../data/members.generated.json";
 import publications from "../data/publications.generated.json";
+import { getPlainLanguage, getVisualStatus } from "../data/publicationPresentation";
 import { activityPhotos, studentPublicationIds } from "../data/groupSite";
 import { researchPrograms } from "../data/researchPrograms";
 
@@ -19,12 +21,14 @@ const imageVariant = (path: string, width: number, extension: "avif" | "webp") =
 const imageSrcset = (path: string, extension: "avif" | "webp") => [640, 960, 1440].map((width) => `${withBase(imageVariant(path, width, extension))} ${width}w`).join(", ");
 const rootUrl = siteRoot(Astro.site);
 const homeUrl = absoluteUrl("/", Astro.site);
-const selectedPublicationIds = ["2026-01-2", "2026-01-3", "2025-07-8", "2025-03-13", "2024-02-22", "2022-07-31"];
+const selectedPublicationIds = ["2026-01-2", "2026-01-3", "2025-07-8"];
 const selectedPublications = selectedPublicationIds
   .map((id) => publications.find((publication) => publication.id === id))
   .filter(Boolean);
 const publicRecords = publications.filter((publication) => ["published", "accepted"].includes(publication.status));
 const studentPublications = publications.filter((publication) => studentPublicationIds.includes(publication.id));
+const publicationMediaVersion = "20260716";
+const withMediaVersion = (path: string) => `${withBase(path)}?v=${publicationMediaVersion}`;
 const roleLabel: Record<string, string> = {
   team_role_pi: "Faculty",
   team_role_master: "Graduate student",
@@ -59,38 +63,68 @@ const homeSchema = [
   translatedPath="/zh/"
   pageClass="research-home"
 >
-  <section class="home-hero" aria-labelledby="home-title">
-    <div class="home-shell home-hero__grid">
-      <div class="home-hero__copy">
-        <p class="home-kicker">Lin Groundwater Hydraulics Group</p>
-        <h1 id="home-title">Groundwater responses leave traces in time.</h1>
-        <p class="home-hero__lede">
-          We develop analytical, numerical, and data-supported methods for interpreting aquifer tests,
-          transient groundwater signals, and groundwater-influenced thermal systems.
-        </p>
-        <div class="home-actions">
-          <a class="home-button home-button--dark" href={withBase("/projects/")}>Explore the research</a>
-          <a class="home-button home-button--line" href={withBase("/collaborate/")}>Discuss a collaboration</a>
+  <HomeResearchHero />
+
+  <section class="home-section home-team" aria-labelledby="team-title">
+    <div class="home-shell">
+      <div class="home-section-heading home-section-heading--split">
+        <div>
+          <p class="home-kicker">People and practice</p>
+          <h2 id="team-title">Research grows through shared technical work.</h2>
         </div>
-        <p class="home-hero__note">
-          Directed by Ying-Fan Lin · analytical well hydraulics · groundwater memory · decision-focused uncertainty
-        </p>
+        <a class="home-text-link" href={withBase("/team/")}>Meet the people <span aria-hidden="true">→</span></a>
       </div>
-      <figure class="home-hero__media">
-        <picture>
-          <source type="image/avif" srcset={imageSrcset("/media/team-life/jpgu-2026/jpgu-2026-team-selfie.jpg", "avif")} sizes="(max-width: 900px) 100vw, 52vw" />
-          <source type="image/webp" srcset={imageSrcset("/media/team-life/jpgu-2026/jpgu-2026-team-selfie.jpg", "webp")} sizes="(max-width: 900px) 100vw, 52vw" />
-          <img
-            src={withBase("/media/team-life/jpgu-2026/jpgu-2026-team-selfie.jpg")}
-            alt="Groundwater research team outside the JpGU 2026 venue."
-            width="1477"
-            height="1108"
-            fetchpriority="high"
-            decoding="async"
-          />
-        </picture>
-        <figcaption>Team presence at JpGU 2026. Research is built in public exchange and careful technical work.</figcaption>
-      </figure>
+      <div class="home-team__grid">
+        <div class="home-team__people">
+          <p>
+            Conference exchange, student-led presentations, derivation, model comparison, and figure checking are part
+            of how the group develops research questions.
+          </p>
+          <ul>
+            {members.currentMembers.map((member) => (
+              <li>
+                <strong>{member.name.en}</strong>
+                <span>{roleLabel[member.roleKey] ?? "Research member"}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div class="home-team__photos">
+          {activityPhotos.map((photo, index) => (
+            <figure class={`team-photo team-photo--${index + 1}`}>
+              <picture>
+                <source type="image/avif" srcset={imageSrcset(photo.src, "avif")} sizes="(max-width: 640px) 100vw, 34vw" />
+                <source type="image/webp" srcset={imageSrcset(photo.src, "webp")} sizes="(max-width: 640px) 100vw, 34vw" />
+                <img src={withBase(photo.src)} alt={photo.alt} loading="lazy" decoding="async" />
+              </picture>
+              <figcaption>{photo.label}</figcaption>
+            </figure>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="home-section home-programs" aria-labelledby="programs-title">
+    <div class="home-shell">
+      <div class="home-section-heading">
+        <p class="home-kicker">One physical question · four research lines</p>
+        <h2 id="programs-title">When does the subsurface fail to respond instantaneously?</h2>
+        <p>The programme moves from analytical structure to field interpretation, then carries model disagreement into engineering decisions.</p>
+      </div>
+      <div class="home-program-list">
+        {researchPrograms.map((program) => (
+          <article class={`home-program home-program--${program.tone}`} id={program.id}>
+            <span class="home-program__number">{program.number}</span>
+            <div class="home-program__body">
+              <h3>{program.title}</h3>
+              <p>{program.description}</p>
+              <p class="home-program__evidence"><strong>Public record:</strong> {program.evidence}</p>
+            </div>
+            <a class="home-text-link" href={withBase(program.link)}>Open research line <span aria-hidden="true">→</span></a>
+          </article>
+        ))}
+      </div>
     </div>
   </section>
 
@@ -132,89 +166,52 @@ const homeSchema = [
     </div>
   </section>
 
-  <section class="home-section home-team" aria-labelledby="team-title">
-    <div class="home-shell">
-      <div class="home-section-heading home-section-heading--split">
-        <div>
-          <p class="home-kicker">People and practice</p>
-          <h2 id="team-title">The work is carried by a group, not a profile page.</h2>
-        </div>
-        <a class="home-text-link" href={withBase("/team/")}>Meet the people <span aria-hidden="true">→</span></a>
-      </div>
-      <div class="home-team__grid">
-        <div class="home-team__people">
-          <p>
-            Students and collaborators learn through derivation, model comparison, figure checking, and direct discussion
-            of what the data can support.
-          </p>
-          <ul>
-            {members.currentMembers.map((member) => (
-              <li>
-                <strong>{member.name.en}</strong>
-                <span>{roleLabel[member.roleKey] ?? "Research member"}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div class="home-team__photos">
-          {activityPhotos.map((photo, index) => (
-            <figure class={`team-photo team-photo--${index + 1}`}>
-              <picture>
-                <source type="image/avif" srcset={imageSrcset(photo.src, "avif")} sizes="(max-width: 640px) 100vw, 34vw" />
-                <source type="image/webp" srcset={imageSrcset(photo.src, "webp")} sizes="(max-width: 640px) 100vw, 34vw" />
-                <img src={withBase(photo.src)} alt={photo.alt} loading="lazy" decoding="async" />
-              </picture>
-              <figcaption>{photo.label}</figcaption>
-            </figure>
-          ))}
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="home-section home-programs" aria-labelledby="programs-title">
-    <div class="home-shell">
-      <div class="home-section-heading">
-        <p class="home-kicker">Research lines</p>
-        <h2 id="programs-title">Four questions organize the laboratory.</h2>
-        <p>Each line keeps its own evidence base while sharing one concern: how subsurface processes become defensible decisions.</p>
-      </div>
-      <div class="home-program-list">
-        {researchPrograms.map((program) => (
-          <article class={`home-program home-program--${program.tone}`} id={program.id}>
-            <span class="home-program__number">{program.number}</span>
-            <div class="home-program__body">
-              <h3>{program.title}</h3>
-              <p>{program.description}</p>
-              <p class="home-program__evidence"><strong>Public record:</strong> {program.evidence}</p>
-            </div>
-            <a class="home-text-link" href={withBase(program.link)}>Open research line <span aria-hidden="true">→</span></a>
-          </article>
-        ))}
-      </div>
-    </div>
-  </section>
-
   <section class="home-section home-publications" aria-labelledby="outputs-title">
     <div class="home-shell">
       <div class="home-section-heading home-section-heading--split">
         <div>
-          <p class="home-kicker">Selected outputs</p>
-          <h2 id="outputs-title">A publication record that remains searchable and inspectable.</h2>
-          <p>Visual abstracts now sit beside the corresponding paper record, with source notes and captions kept together on the publication page.</p>
+          <p class="home-kicker">Papers with visual explanations</p>
+          <h2 id="outputs-title">Read the result. Watch the mechanism.</h2>
+          <p>Each selected paper pairs a plain-language account with its source-bounded visual explanation.</p>
         </div>
         <a class="home-text-link" href={withBase("/publications/")}>Browse all publications <span aria-hidden="true">→</span></a>
       </div>
       <div class="home-publication-list">
         {selectedPublications.map((publication) => (
           <article>
-            <time datetime={String(publication?.year)}>{publication?.year}</time>
-            <div>
+            <div class="home-publication-list__copy">
+              <p class="home-publication-list__meta">
+                <time datetime={String(publication?.year)}>{publication?.year}</time>
+                <span>{publication?.venue}</span>
+              </p>
               <h3>{publication?.title.en}</h3>
-              <p>{publication?.authors}</p>
-              <span>{publication?.venue} · {publication?.status === "accepted" ? "Accepted" : "Published"}</span>
-              {publication?.publicRecord && <a href={publication.publicRecord} target="_blank" rel="noreferrer">View DOI record</a>}
+              <p class="home-publication-list__citation">{publication?.authors}</p>
+              <p class="home-publication-list__plain">{publication ? getPlainLanguage(publication) : ""}</p>
+              <p class="home-publication-list__links">
+                {publication?.publicRecord && <a href={publication.publicRecord} target="_blank" rel="noreferrer">DOI: {publication.doi}</a>}
+                <a href={withBase("/publications/")}>Publication archive</a>
+              </p>
             </div>
+            {publication && (() => {
+              const visual = getVisualStatus(publication);
+              return visual.kind === "available" && visual.film ? (
+                <figure class="home-publication-list__visual">
+                  <video
+                    controls
+                    preload="none"
+                    poster={withMediaVersion(visual.film.poster)}
+                    width="1280"
+                    height="720"
+                    aria-label={`Visual explanation for ${publication.title.en}`}
+                  >
+                    <source src={withMediaVersion(visual.film.video)} type="video/mp4" />
+                    {visual.film.captions && <track kind="captions" src={withMediaVersion(visual.film.captions)} srclang="en" label="English captions" default />}
+                    Your browser does not support the video element.
+                  </video>
+                  <figcaption>Visual explanation based on the published study · use full screen for figure labels · captions included</figcaption>
+                </figure>
+              ) : null;
+            })()}
           </article>
         ))}
       </div>
@@ -230,14 +227,14 @@ const homeSchema = [
     <div class="home-shell home-collaborate__grid">
       <div>
         <p class="home-kicker">Collaboration</p>
-        <h2 id="collaborate-title">Bring the response that does not fit the usual interpretation.</h2>
+        <h2 id="collaborate-title">Bring the forcing history, the observed response, and the decision at risk.</h2>
       </div>
       <div>
         <p>
-          Useful starting material includes an aquifer-test record, a recovery sequence, a TRT, a thermal or hydraulic
-          boundary question, and the decision variable that must be defended.
+          We work with groundwater, geotechnical, and subsurface-energy teams when interpretation changes what should
+          be built, operated, or monitored.
         </p>
-        <a class="home-button home-button--dark" href={withBase("/collaborate/")}>Send a technical brief</a>
+        <a class="home-button home-button--dark" href={withBase("/collaborate/")}>Send a technical brief <span aria-hidden="true">→</span></a>
       </div>
     </div>
   </section>
@@ -267,31 +264,59 @@ const homeSchema = [
   </section>
 </BaseLayout>
 
+<script>
+  import { gsap } from "gsap";
+
+  let homeRevealContext: gsap.Context | undefined;
+  let homeRevealObserver: IntersectionObserver | undefined;
+
+  const clearHomeReveals = () => {
+    homeRevealObserver?.disconnect();
+    homeRevealContext?.revert();
+    homeRevealObserver = undefined;
+    homeRevealContext = undefined;
+  };
+
+  const mountHomeReveals = () => {
+    const page = document.querySelector<HTMLElement>(".research-home");
+    if (!page || page.dataset.revealsReady === "true") return;
+    page.dataset.revealsReady = "true";
+
+    clearHomeReveals();
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const targets = Array.from(page.querySelectorAll<HTMLElement>(
+      ".home-section-heading, .home-team__photos, .home-program, .home-proof__numbers, .home-proof__grid, .home-publication-list article, .home-collaborate__grid",
+    ));
+
+    homeRevealContext = gsap.context(() => {
+      homeRevealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          gsap.from(entry.target, { autoAlpha: 0, y: 18, duration: 0.6, ease: "power2.out", clearProps: "transform,opacity,visibility" });
+          observer.unobserve(entry.target);
+        });
+      }, { rootMargin: "0px 0px -8%", threshold: 0.08 });
+      targets.forEach((target) => homeRevealObserver?.observe(target));
+    }, page);
+  };
+
+  mountHomeReveals();
+  document.addEventListener("astro:page-load", mountHomeReveals);
+  document.addEventListener("astro:before-swap", clearHomeReveals);
+</script>
+
 <style is:global>
-  .research-home { --home-ink: #14232b; --home-muted: #52636a; --home-paper: #f7f8f5; --home-blue: #0e6670; --home-red: #a14a36; --home-ochre: #a66f25; --home-rule: #d5dfdc; }
+  .research-home { --home-ink: #10252a; --home-muted: #52676c; --home-paper: #f6f8f5; --home-blue: #1f6f6d; --home-red: #a14a36; --home-ochre: #d1aa58; --home-rule: #c9d5d0; }
   .home-shell { width: min(1180px, calc(100% - 3rem)); margin: 0 auto; }
-  .home-hero { background: var(--home-paper); border-bottom: 1px solid var(--home-rule); }
-  .home-hero__grid { align-items: stretch; display: grid; grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); min-height: min(720px, calc(100vh - 72px)); }
-  .home-hero__copy { align-content: center; display: grid; gap: 1.3rem; padding: 5rem 3rem 5rem 0; }
   .home-kicker { color: var(--home-blue); font-size: 0.76rem; font-weight: 750; letter-spacing: 0.08em; line-height: 1.4; margin: 0; text-transform: uppercase; }
-  .home-hero h1 { color: var(--home-ink); font-size: clamp(3.3rem, 5vw, 6.8rem); letter-spacing: 0; line-height: 0.96; max-width: 100%; }
-  .home-hero__lede { color: var(--home-muted); font-size: clamp(1.05rem, 1.45vw, 1.28rem); line-height: 1.7; max-width: 100%; }
-  .home-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
   .home-button { align-items: center; border: 1px solid var(--home-ink); display: inline-flex; font-size: 0.9rem; font-weight: 700; justify-content: center; min-height: 3rem; padding: 0.8rem 1.05rem; transition: transform 160ms ease, background 160ms ease, color 160ms ease; }
   .home-button:hover, .home-button:focus-visible { transform: translateY(-2px); }
   .home-button--dark { background: var(--home-ink); color: #fff; }
-  .home-button--line { color: var(--home-ink); }
-  .home-button--line:hover, .home-button--line:focus-visible { background: #fff; }
-  .home-hero__note { border-left: 3px solid var(--home-ochre); color: var(--home-muted); font-size: 0.83rem; line-height: 1.55; margin: 0; max-width: 100%; padding-left: 0.9rem; }
-  .home-hero__media { align-self: stretch; margin: 0; min-height: 520px; position: relative; }
-  .home-hero__media::after { background: linear-gradient(90deg, rgb(20 35 43 / 0.22), transparent 28%), linear-gradient(0deg, rgb(20 35 43 / 0.3), transparent 36%); content: ""; inset: 0; pointer-events: none; position: absolute; }
-  .home-hero__media picture { display: block; height: 100%; }
-  .home-hero__media img { display: block; height: 100%; object-fit: cover; object-position: center; width: 100%; }
-  .home-hero__media figcaption { bottom: 1.2rem; color: #fff; font-size: 0.8rem; line-height: 1.45; max-width: 360px; padding: 0 1.4rem; position: absolute; right: 0; z-index: 1; }
-  .home-section { padding: 7.5rem 0; }
+  .home-section { padding: 7rem 0; }
   .home-section:nth-of-type(even) { background: #fff; }
   .home-section-heading { display: grid; gap: 0.8rem; max-width: 830px; }
-  .home-section-heading h2 { color: var(--home-ink); font-size: clamp(2.3rem, 4.3vw, 4.6rem); letter-spacing: 0; line-height: 1; }
+  .home-section-heading h2 { color: var(--home-ink); font-size: 3.8rem; letter-spacing: 0; line-height: 1.02; }
   .home-section-heading p:not(.home-kicker) { color: var(--home-muted); font-size: 1.06rem; line-height: 1.75; max-width: 720px; }
   .home-section-heading--split { align-items: end; display: flex; gap: 2rem; justify-content: space-between; max-width: none; }
   .home-section-heading--split > div { max-width: 830px; }
@@ -300,35 +325,43 @@ const homeSchema = [
   .home-proof__numbers { border-bottom: 1px solid var(--home-rule); border-top: 1px solid var(--home-rule); display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 3.5rem; }
   .home-proof__numbers div { display: grid; gap: 0.45rem; padding: 1.5rem 1.1rem 1.5rem 0; }
   .home-proof__numbers div + div { border-left: 1px solid var(--home-rule); padding-left: 1.1rem; }
-  .home-proof__numbers strong { color: var(--home-ink); font-size: clamp(2.6rem, 5vw, 5rem); font-weight: 650; letter-spacing: 0; line-height: 0.9; }
+  .home-proof { background: var(--home-ink) !important; color: #fff; }
+  .home-proof .home-kicker { color: #9ed7d1; }
+  .home-proof .home-section-heading h2, .home-proof .home-boundary-note h3, .home-proof .home-trajectory span { color: #fff; }
+  .home-proof .home-section-heading p:not(.home-kicker), .home-proof .home-proof__numbers span, .home-proof .home-trajectory small, .home-proof .home-boundary-note p:not(.home-kicker) { color: #c7d5d2; }
+  .home-proof .home-text-link, .home-proof .home-boundary-note a { color: #fff; }
+  .home-proof .home-proof__numbers, .home-proof .home-proof__numbers div + div, .home-proof .home-trajectory, .home-proof .home-trajectory li { border-color: rgb(255 255 255 / 0.24); }
+  .home-proof__numbers strong { color: var(--home-ochre); font-size: 4.5rem; font-weight: 650; letter-spacing: 0; line-height: 0.9; }
   .home-proof__numbers span { color: var(--home-muted); font-size: 0.88rem; line-height: 1.45; max-width: 170px; }
   .home-proof__grid { display: grid; gap: 5rem; grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.75fr); margin-top: 4.5rem; }
   .home-trajectory { border-top: 1px solid var(--home-rule); list-style: none; margin: 1.25rem 0 0; padding: 0; }
   .home-trajectory li { border-bottom: 1px solid var(--home-rule); display: grid; gap: 0.25rem; grid-template-columns: minmax(180px, 0.45fr) 1fr; padding: 1rem 0; }
   .home-trajectory span { color: var(--home-ink); font-weight: 700; }
   .home-trajectory small { color: var(--home-muted); font-size: 0.9rem; line-height: 1.55; }
-  .home-boundary-note { border-left: 3px solid var(--home-red); padding: 0.2rem 0 0.2rem 1.35rem; }
+  .home-boundary-note { border-left: 3px solid var(--home-ochre); padding: 0.2rem 0 0.2rem 1.35rem; }
   .home-boundary-note h3 { color: var(--home-ink); font-size: 1.35rem; line-height: 1.35; margin: 0.7rem 0; }
   .home-boundary-note p:not(.home-kicker) { color: var(--home-muted); line-height: 1.7; margin-bottom: 1.1rem; }
-  .home-team { background: #eef2ef; }
-  .home-team__grid { display: grid; gap: 4rem; grid-template-columns: minmax(220px, 0.55fr) minmax(0, 1.45fr); margin-top: 3.5rem; }
+  .home-team { background: var(--home-paper); }
+  .home-team__grid { display: grid; gap: 2.5rem; grid-template-columns: 1fr; margin-top: 3.5rem; }
+  .home-team__people { display: grid; gap: 4rem; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); }
   .home-team__people > p { color: var(--home-muted); line-height: 1.7; }
-  .home-team__people ul { border-top: 1px solid var(--home-rule); list-style: none; margin: 2rem 0 0; padding: 0; }
+  .home-team__people ul { border-top: 1px solid var(--home-rule); list-style: none; margin: 0; padding: 0; }
   .home-team__people li { border-bottom: 1px solid var(--home-rule); display: grid; gap: 0.22rem; padding: 0.8rem 0; }
   .home-team__people strong { color: var(--home-ink); font-size: 0.98rem; }
   .home-team__people span { color: var(--home-muted); font-size: 0.82rem; }
-  .home-team__photos { display: grid; gap: 0.8rem; grid-template-columns: 1.15fr 0.85fr; grid-template-rows: 1fr 1fr; min-height: 520px; }
+  .home-team__photos { display: grid; gap: 0.8rem; grid-template-columns: 1.5fr repeat(3, 1fr); grid-template-rows: 310px; min-height: 0; }
   .team-photo { margin: 0; min-height: 0; overflow: hidden; position: relative; }
-  .team-photo--1 { grid-row: span 2; }
+  .team-photo--1 { grid-row: auto; }
   .team-photo picture { display: block; height: 100%; }
   .team-photo img { display: block; height: 100%; object-fit: cover; transition: transform 360ms ease; width: 100%; }
   .team-photo:hover img { transform: scale(1.035); }
   .team-photo figcaption { background: linear-gradient(transparent, rgb(20 35 43 / 0.75)); bottom: 0; color: #fff; font-size: 0.76rem; left: 0; padding: 2rem 0.8rem 0.7rem; position: absolute; right: 0; }
+  .home-programs { background: #e8f0ed !important; }
   .home-program-list { border-top: 1px solid var(--home-rule); margin-top: 3.8rem; }
   .home-program { align-items: start; border-bottom: 1px solid var(--home-rule); display: grid; gap: 2rem; grid-template-columns: 4rem minmax(0, 1fr) auto; padding: 2rem 0; }
   .home-program__number { color: var(--home-muted); font-variant-numeric: tabular-nums; font-weight: 700; }
   .home-program__body { max-width: 680px; }
-  .home-program__body h3 { color: var(--home-ink); font-size: clamp(1.45rem, 2vw, 2rem); line-height: 1.15; margin: 0 0 0.6rem; }
+  .home-program__body h3 { color: var(--home-ink); font-size: 2rem; line-height: 1.15; margin: 0 0 0.6rem; }
   .home-program__body p { color: var(--home-muted); line-height: 1.68; margin: 0; }
   .home-program__evidence { border-left: 2px solid var(--home-blue); font-size: 0.83rem; margin-top: 0.9rem !important; padding-left: 0.8rem; }
   .home-program--lag .home-program__evidence { border-color: var(--home-red); }
@@ -345,15 +378,25 @@ const homeSchema = [
   .home-film p { color: #c9d5d3; font-size: 0.92rem; line-height: 1.62; }
   .home-film__scope { border-left: 2px solid #d0a95c; font-size: 0.8rem !important; padding-left: 0.7rem; }
   .home-publication-list { border-top: 1px solid var(--home-rule); margin-top: 3.6rem; }
-  .home-publication-list article { border-bottom: 1px solid var(--home-rule); display: grid; gap: 1rem; grid-template-columns: 4rem minmax(0, 1fr); padding: 1.25rem 0; }
-  .home-publication-list time { color: var(--home-blue); font-size: 0.9rem; font-weight: 750; }
-  .home-publication-list h3 { color: var(--home-ink); font-size: 1rem; line-height: 1.4; margin: 0 0 0.3rem; }
-  .home-publication-list p, .home-publication-list span { color: var(--home-muted); font-size: 0.82rem; line-height: 1.4; margin: 0; }
+  .home-publication-list article { align-items: center; border-bottom: 1px solid var(--home-rule); display: grid; gap: 4rem; grid-template-columns: minmax(0, 1.55fr) minmax(320px, 0.85fr); padding: 2.3rem 0; }
+  .home-publication-list__copy { display: grid; gap: 0.8rem; }
+  .home-publication-list__meta { align-items: center; display: flex; flex-wrap: wrap; gap: 0.8rem; }
+  .home-publication-list__meta span { border-left: 1px solid var(--home-rule); padding-left: 0.8rem; }
+  .home-publication-list time { color: var(--home-blue); font-size: 0.78rem; font-weight: 750; letter-spacing: 0.05em; }
+  .home-publication-list h3 { color: var(--home-ink); font-size: 1.8rem; line-height: 1.2; margin: 0; }
+  .home-publication-list p, .home-publication-list span { color: var(--home-muted); font-size: 0.88rem; line-height: 1.55; margin: 0; }
+  .home-publication-list__plain { font-size: 1rem !important; line-height: 1.7 !important; max-width: 680px; }
+  .home-publication-list__citation { font-size: 0.78rem !important; line-height: 1.55 !important; }
+  .home-publication-list__links { display: flex; flex-wrap: wrap; gap: 1rem; }
+  .home-publication-list__links a { color: var(--home-blue); font-size: 0.82rem; font-weight: 750; }
+  .home-publication-list__visual { margin: 0; min-width: 0; }
+  .home-publication-list__visual video { aspect-ratio: 16 / 9; background: #081116; display: block; height: auto; object-fit: cover; width: 100%; }
+  .home-publication-list__visual figcaption { color: var(--home-muted); font-size: 0.72rem; margin-top: 0.55rem; }
   .home-student-note { color: var(--home-muted); font-size: 0.84rem; margin-top: 1.25rem; }
-  .home-collaborate { background: #e5eee9; }
+  .home-collaborate { background: var(--home-ochre); }
   .home-collaborate__grid { align-items: end; display: grid; gap: 3rem; grid-template-columns: minmax(0, 1fr) minmax(280px, 0.7fr); }
-  .home-collaborate h2 { color: var(--home-ink); font-size: clamp(2.4rem, 4.5vw, 4.8rem); letter-spacing: 0; line-height: 0.98; }
-  .home-collaborate p { color: var(--home-muted); line-height: 1.7; margin-bottom: 1.5rem; }
+  .home-collaborate h2 { color: var(--home-ink); font-size: 4rem; letter-spacing: 0; line-height: 1; }
+  .home-collaborate p { color: var(--home-ink); line-height: 1.7; margin-bottom: 1.5rem; }
   .home-note-list { border-top: 1px solid var(--home-rule); margin-top: 3.5rem; }
   .home-note-list a { align-items: start; border-bottom: 1px solid var(--home-rule); display: grid; gap: 1.2rem; grid-template-columns: 7rem minmax(0, 1fr) auto; padding: 1.2rem 0; }
   .home-note-list a:hover strong, .home-note-list a:focus-visible strong { color: var(--home-blue); }
@@ -365,31 +408,35 @@ const homeSchema = [
   .home-concepts a:hover, .home-concepts a:focus-visible { border-color: var(--home-blue); color: var(--home-blue); }
   @media (max-width: 900px) {
     .home-shell { width: min(720px, calc(100% - 2rem)); }
-    .home-hero__grid, .home-proof__grid, .home-team__grid, .home-collaborate__grid { grid-template-columns: 1fr; }
-    .home-hero__copy { padding: 4rem 0 2.5rem; }
-    .home-hero__media { min-height: 420px; }
+    .home-proof__grid, .home-team__grid, .home-collaborate__grid, .home-publication-list article { grid-template-columns: 1fr; }
     .home-proof__grid, .home-team__grid { gap: 3rem; }
+    .home-team__people { gap: 2.5rem; grid-template-columns: 1fr; }
+    .home-team__photos { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(2, 250px); }
     .home-program { grid-template-columns: 3rem minmax(0, 1fr); }
     .home-program > .home-text-link { grid-column: 2; }
   }
   @media (max-width: 640px) {
     .home-section { padding: 5rem 0; }
     .home-section-heading--split { align-items: start; flex-direction: column; }
-    .home-hero h1 { font-size: clamp(2.8rem, 13vw, 4.5rem); }
-    .home-hero__media { min-height: 330px; }
     .home-proof__numbers { grid-template-columns: 1fr; }
     .home-proof__numbers div, .home-proof__numbers div + div { border-left: 0; padding: 1rem 0; }
     .home-proof__numbers div + div { border-top: 1px solid var(--home-rule); }
     .home-trajectory li { grid-template-columns: 1fr; }
-    .home-team__photos, .home-film-grid { grid-template-columns: 1fr; grid-template-rows: none; min-height: 0; }
+    .home-section-heading h2, .home-collaborate h2 { font-size: 2.45rem; }
+    .home-proof__numbers strong { font-size: 3.4rem; }
+    .home-team__photos { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(2, 170px); min-height: 0; }
+    .home-film-grid { grid-template-columns: 1fr; grid-template-rows: none; min-height: 0; }
     .team-photo--1 { grid-row: auto; }
-    .team-photo { aspect-ratio: 4 / 3; }
+    .team-photo { aspect-ratio: auto; }
     .home-program { gap: 1rem; grid-template-columns: 2rem minmax(0, 1fr); }
     .home-program > .home-text-link { grid-column: 2; }
-    .home-publication-list article, .home-note-list a { grid-template-columns: 1fr; gap: 0.45rem; }
+    .home-publication-list article, .home-note-list a { grid-template-columns: 1fr; gap: 1.2rem; }
+    .home-publication-list h3 { font-size: 1.45rem; }
     .home-note-list a > span:last-child { display: none; }
   }
   @media (prefers-reduced-motion: reduce) {
     .home-button, .team-photo img { transition: none; }
+    .home-button:hover, .home-button:focus-visible { transform: none; }
+    .team-photo:hover img { transform: none; }
   }
 </style>

@@ -2311,6 +2311,18 @@ img {
   padding: 0.85rem;
 }
 
+.ldl-demo__equation summary {
+  color: var(--text);
+  cursor: pointer;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.ldl-demo__equation[open] summary {
+  margin-bottom: 0.2rem;
+}
+
 .tu-demo {
   border-top: 1px solid var(--line);
   display: grid;
@@ -5263,21 +5275,18 @@ body.stanford-group-site main {
   }
 
   .nav-links {
+    display: grid;
     flex: 1 0 100%;
-    flex-wrap: wrap;
-    gap: 0.35rem;
-    justify-content: start;
+    gap: 0.2rem 0;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     max-width: 100%;
     order: 2;
     overflow: visible;
+    width: 100%;
   }
 
   .brand {
     min-width: 0;
-  }
-
-  .nav-links > * {
-    flex: 0 0 auto;
   }
 
   .nav-links > [data-slot="button"] {
@@ -5286,7 +5295,9 @@ body.stanford-group-site main {
 
   .nav-links a {
     font-size: 0.78rem;
-    padding: 0.34rem 0.45rem;
+    justify-content: center;
+    padding: 0.34rem 0;
+    text-align: center;
   }
 
   .brand span {

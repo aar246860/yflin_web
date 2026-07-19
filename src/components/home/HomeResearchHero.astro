@@ -1,0 +1,143 @@
+---
+import "./HomeResearchHero.css";
+const base = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
+const imageVariant = (path: string, width: number, extension: "avif" | "webp") =>
+  path.replace(/\.jpg$/i, `-${width}.${extension}`);
+const imageSrcset = (path: string, extension: "avif" | "webp") =>
+  [640, 960, 1440]
+    .map((width) => `${withBase(imageVariant(path, width, extension))} ${width}w`)
+    .join(", ");
+const heroImage = "/media/team-life/jpgu-2026/jpgu-2026-team-selfie.jpg";
+---
+
+<div class="home-hero-system" data-home-hero>
+<section class="research-hero" aria-labelledby="home-title">
+  <figure class="research-hero__media">
+    <picture>
+      <source type="image/avif" srcset={imageSrcset(heroImage, "avif")} sizes="100vw" />
+      <source type="image/webp" srcset={imageSrcset(heroImage, "webp")} sizes="100vw" />
+      <img
+        class="research-hero__image"
+        src={withBase(heroImage)}
+        alt="Groundwater research team outside the JpGU 2026 venue."
+        width="1477"
+        height="1108"
+        fetchpriority="high"
+        decoding="async"
+      />
+    </picture>
+    <figcaption>JpGU 2026 · Chiba, Japan</figcaption>
+  </figure>
+
+  <div class="home-shell research-hero__content">
+    <div class="research-hero__copy">
+      <p class="research-hero__kicker" data-hero-reveal>Groundwater hydraulics · memory · decision</p>
+      <h1 id="home-title" data-hero-reveal>Groundwater responses leave traces in time.</h1>
+      <p class="research-hero__lede" data-hero-reveal>
+        We interpret aquifer tests, groundwater memory, and subsurface thermal systems for decisions that must
+        withstand uncertainty.
+      </p>
+      <div class="research-hero__actions" data-hero-reveal>
+        <a class="research-hero__button research-hero__button--solid" href={withBase("/projects/")}>
+          Explore the research <span aria-hidden="true">→</span>
+        </a>
+        <a class="research-hero__button research-hero__button--line" href={withBase("/collaborate/")}>
+          Discuss a collaboration
+        </a>
+      </div>
+      <p class="research-hero__note" data-hero-reveal>
+        Led by Ying-Fan Lin · analytical well hydraulics · transformation uncertainty
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<section class="hydraulic-trace-band" aria-label="From pumping history to groundwater decision">
+  <div class="home-shell hydraulic-trace-band__inner">
+    <aside class="hydraulic-trace" aria-labelledby="hydraulic-trace-title" data-hero-reveal>
+      <div class="hydraulic-trace__heading">
+        <div>
+          <p>Conceptual pumping-test trace</p>
+          <h2 id="hydraulic-trace-title">A response is measured. A parameter is interpreted.</h2>
+        </div>
+        <span>Not field data</span>
+      </div>
+      <svg viewBox="0 0 640 156" role="img" aria-labelledby="trace-svg-title trace-svg-description">
+        <title id="trace-svg-title">Conceptual pumping and drawdown time series</title>
+        <desc id="trace-svg-description">
+          A step change in pumping is followed by a smooth drawdown response. The illustration is conceptual and does
+          not represent field observations.
+        </desc>
+        <g class="hydraulic-trace__grid" aria-hidden="true">
+          <line x1="92" y1="26" x2="620" y2="26"></line>
+          <line x1="92" y1="76" x2="620" y2="76"></line>
+          <line x1="92" y1="126" x2="620" y2="126"></line>
+        </g>
+        <text x="0" y="32">Q(t)</text>
+        <text x="0" y="132">s(t)</text>
+        <path class="hydraulic-trace__forcing" data-trace-path d="M92 26 H218 V60 H620"></path>
+        <path
+          class="hydraulic-trace__response"
+          data-trace-path
+          d="M92 126 C148 126 184 125 218 120 C278 111 309 96 357 86 C426 72 501 68 620 66"
+        ></path>
+        <circle class="hydraulic-trace__point hydraulic-trace__point--forcing" cx="218" cy="60" r="4"></circle>
+        <circle class="hydraulic-trace__point hydraulic-trace__point--response" cx="357" cy="86" r="4"></circle>
+      </svg>
+      <ol class="hydraulic-trace__steps">
+        <li><span>01</span><strong>Pumping history</strong></li>
+        <li><span>02</span><strong>Measured drawdown</strong></li>
+        <li><span>03</span><strong>Model interpretation</strong></li>
+        <li><span>04</span><strong>Decision</strong></li>
+      </ol>
+    </aside>
+  </div>
+</section>
+</div>
+
+<script>
+  import { gsap } from "gsap";
+
+  let heroContext: gsap.Context | undefined;
+  let heroMedia: gsap.MatchMedia | undefined;
+
+  const clearHeroMotion = () => {
+    heroMedia?.revert();
+    heroContext?.revert();
+    heroMedia = undefined;
+    heroContext = undefined;
+  };
+
+  const mountHeroMotion = () => {
+    const hero = document.querySelector<HTMLElement>("[data-home-hero]");
+    if (!hero || hero.dataset.motionReady === "true") return;
+
+    clearHeroMotion();
+    hero.dataset.motionReady = "true";
+    heroContext = gsap.context(() => {
+      heroMedia = gsap.matchMedia();
+      heroMedia.add("(prefers-reduced-motion: no-preference)", () => {
+        const paths = Array.from(hero.querySelectorAll<SVGPathElement>("[data-trace-path]"));
+        paths.forEach((path) => {
+          const length = path.getTotalLength();
+          gsap.set(path, { strokeDasharray: length, strokeDashoffset: length });
+        });
+
+        const timeline = gsap.timeline({ defaults: { ease: "power2.out" } });
+        timeline
+          .from(".research-hero__image", { scale: 1.035, duration: 1.4, ease: "power1.out" })
+          .from("[data-hero-reveal]", { autoAlpha: 0, y: 16, duration: 0.62, stagger: 0.08 }, 0.08)
+          .to(paths, { strokeDashoffset: 0, duration: 0.75, stagger: 0.1, ease: "power1.inOut" }, 0.4)
+          .from(".hydraulic-trace__point", { autoAlpha: 0, scale: 0.5, duration: 0.32, stagger: 0.12 }, 0.95);
+
+        return () => timeline.kill();
+      });
+    }, hero);
+  };
+
+  mountHeroMotion();
+  document.addEventListener("astro:page-load", mountHeroMotion);
+  document.addEventListener("astro:before-swap", clearHeroMotion);
+</script>

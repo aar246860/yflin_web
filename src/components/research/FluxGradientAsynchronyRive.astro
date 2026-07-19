@@ -38,7 +38,7 @@ const riveSrc = hasRiveAsset ? `${base}animations/flux-gradient-asynchrony.riv` 
         data-rive-canvas
         width="860"
         height="420"
-        aria-label="Rive flux-gradient asynchrony state machine"
+        aria-label="Flux-gradient asynchrony conceptual schematic"
         hidden
       ></canvas>
       <svg data-rive-fallback viewBox="0 0 860 420" role="img" aria-labelledby="rive-asynchrony-svg-title rive-asynchrony-svg-desc">
@@ -96,7 +96,7 @@ const riveSrc = hasRiveAsset ? `${base}animations/flux-gradient-asynchrony.riv` 
         </div>
         <div>
           <dt>Scope</dt>
-          <dd data-rive-runtime-status>Conceptual state-machine schematic; not a calibrated aquifer mechanism diagnosis.</dd>
+          <dd data-rive-runtime-status>This schematic illustrates three conceptual response states; it is not a calibrated aquifer-mechanism diagnosis.</dd>
         </div>
       </dl>
     </div>
@@ -200,7 +200,7 @@ const riveSrc = hasRiveAsset ? `${base}animations/flux-gradient-asynchrony.riv` 
     try {
       const probe = await fetch(src, { method: "HEAD", cache: "no-cache" });
       if (!probe.ok) {
-        if (status) status.textContent = "Conceptual state-machine schematic; not a calibrated aquifer mechanism diagnosis.";
+        if (status) status.textContent = "This schematic illustrates three conceptual response states; it is not a calibrated aquifer-mechanism diagnosis.";
         return;
       }
 
@@ -221,12 +221,12 @@ const riveSrc = hasRiveAsset ? `${base}animations/flux-gradient-asynchrony.riv` 
             riveInputsByRoot.set(root, asynchronyInput);
             syncRiveInput(root, Number(input.value));
           }
-          if (status) status.textContent = "Conceptual state-machine schematic; not a calibrated aquifer mechanism diagnosis.";
+          if (status) status.textContent = "This schematic illustrates three conceptual response states; it is not a calibrated aquifer-mechanism diagnosis.";
         },
         onLoadError: () => {
           canvas.hidden = true;
           fallback?.removeAttribute("hidden");
-          if (status) status.textContent = "Conceptual state-machine schematic; not a calibrated aquifer mechanism diagnosis.";
+          if (status) status.textContent = "This schematic illustrates three conceptual response states; it is not a calibrated aquifer-mechanism diagnosis.";
         },
       });
       activeRiveInstances.add(rive);
@@ -234,7 +234,7 @@ const riveSrc = hasRiveAsset ? `${base}animations/flux-gradient-asynchrony.riv` 
       console.warn("Asynchrony visual used the SVG schematic", error);
       canvas.hidden = true;
       fallback?.removeAttribute("hidden");
-      if (status) status.textContent = "Conceptual state-machine schematic; not a calibrated aquifer mechanism diagnosis.";
+      if (status) status.textContent = "This schematic illustrates three conceptual response states; it is not a calibrated aquifer-mechanism diagnosis.";
     }
   }
 
