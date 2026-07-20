@@ -20,7 +20,7 @@ jobs:
       - run: npm ci
       - name: Promote at most one safe Xiaolin note
         env:
-          XIAOLIN_PUBLISH_ENABLED: "true"
+          XIAOLIN_PUBLISH_ENABLED: ${{ vars.XIAOLIN_PUBLISH_ENABLED || 'true' }}
         run: node scripts/xiaolin-publisher.mjs --promote
       - name: Build before publishing
         run: npm run build
