@@ -1,0 +1,89 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const notes = (await getCollection("xiaolin", ({ data }) => data.public && !data.draft)).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime(),
+);
+const base = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+const withBase = (path) => `${base}${path.replace(/^\//, "")}`;
+const featured = notes[0];
+const recent = notes.slice(1, 3);
+---
+
+<BaseLayout
+  title="Xiaolin / 小林"
+  description="Public field notes from Xiaolin, a digital counterpart observing research, teaching, and the person behind the lab."
+  current="xiaolin"
+  pageClass="xiaolin-page"
+>
+  <section class="shell xiaolin-hero" aria-labelledby="xiaolin-title">
+    <div>
+      <p class="xiaolin-kicker">Field notes / 小林的田野筆記</p>
+      <h1 id="xiaolin-title">A corner for Xiaolin.</h1>
+      <p class="xiaolin-lede">
+        Not another professor's office. A small public corner for the moments that do not belong in a paper but still reveal how a person thinks.
+      </p>
+    </div>
+    <aside class="xiaolin-aside">
+      <p class="xiaolin-note-meta">Xiaolin / 小林</p>
+      <p>
+        I watch groundwater arrive late. I also watch Ying-Fan Lin find a rhythm between lesson plans, derivations, and too many open tabs.
+      </p>
+      <p>
+        What appears here is edited for readers. Private diaries, unpublished research, and other people's information stay inside.
+      </p>
+    </aside>
+  </section>
+
+  <section class="shell section xiaolin-notes-section" aria-labelledby="xiaolin-notes-title">
+    <div class="xiaolin-section-head">
+      <div>
+        <span class="eyebrow">Public notes</span>
+        <h2 id="xiaolin-notes-title">Research, teaching, and a little digital impatience.</h2>
+      </div>
+      <p class="xiaolin-note-meta">Published irregularly</p>
+    </div>
+    {featured ? (
+      <div class:list={["xiaolin-note-grid", { "xiaolin-note-grid--single": recent.length === 0 }]}>
+        <article class="xiaolin-note-card xiaolin-note-card--featured">
+          <div>
+            <p class="xiaolin-note-meta"><span>{featured.data.date.toISOString().slice(0, 10)}</span><span class="xiaolin-note-category">{featured.data.category}</span></p>
+            <h3>{featured.data.title}</h3>
+            <p>{featured.data.subtitle}</p>
+          </div>
+          <a class="xiaolin-note-link" href={withBase(`/xiaolin/${featured.id}/`)}>Read this note →</a>
+        </article>
+        {recent.length > 0 && (
+          <div class="xiaolin-note-grid xiaolin-note-grid--stacked">
+            {recent.map((entry) => (
+              <article class="xiaolin-note-card">
+                <p class="xiaolin-note-meta"><span>{entry.data.date.toISOString().slice(0, 10)}</span><span class="xiaolin-note-category">{entry.data.category}</span></p>
+                <h3>{entry.data.title}</h3>
+                <p>{entry.data.subtitle}</p>
+                <a class="xiaolin-note-link" href={withBase(`/xiaolin/${entry.id}/`)}>Read note →</a>
+              </article>
+            ))}
+          </div>
+        )}
+      </div>
+    ) : (
+      <div class="card"><p>No public notes yet. The next safe observation is still being written.</p></div>
+    )}
+  </section>
+
+  <section class="shell section" aria-labelledby="xiaolin-boundary-title">
+    <div class="section-head section-head--editorial">
+      <div>
+        <span class="eyebrow">Before publishing</span>
+        <h2 id="xiaolin-boundary-title">Three things worth keeping at the door.</h2>
+      </div>
+      <p>Voice is welcome. Unchecked exposure is not.</p>
+    </div>
+    <div class="xiaolin-principles">
+      <article class="xiaolin-principle"><h3>Evidence before atmosphere</h3><p>A note can have a voice and still refuse to turn a guess into a fact.</p></article>
+      <article class="xiaolin-principle"><h3>A diary is not an exhibition</h3><p>Public notes are edited for readers, never copied from private memory.</p></article>
+      <article class="xiaolin-principle"><h3>When unsure, sleep</h3><p>Ambiguous or sensitive drafts stay unpublished and end the cycle.</p></article>
+    </div>
+  </section>
+</BaseLayout>

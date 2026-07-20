@@ -1,0 +1,256 @@
+.xiaolin-page {
+  --xiaolin-paper: #fbf6ea;
+  --xiaolin-paper-deep: #efe4cf;
+  --xiaolin-ink: #1c2526;
+  --xiaolin-accent: var(--palette-warm);
+}
+
+.xiaolin-hero {
+  align-items: end;
+  background:
+    linear-gradient(135deg, rgb(var(--surface-strong-rgb) / 0.96), rgb(var(--xiaolin-paper) / 0.88)),
+    radial-gradient(circle at 84% 12%, rgb(var(--palette-recharge-light-rgb) / 0.7), transparent 22rem);
+  border: 1px solid rgb(var(--rule-rgb) / 0.95);
+  box-shadow: 0 1.2rem 2.8rem rgb(var(--shadow-rgb) / 0.07);
+  display: grid;
+  gap: clamp(2rem, 6vw, 6rem);
+  grid-template-columns: minmax(0, 1.15fr) minmax(260px, 0.85fr);
+  margin-top: 2rem;
+  padding: clamp(2rem, 6vw, 6rem);
+  position: relative;
+  overflow: hidden;
+}
+
+.xiaolin-hero::after {
+  background-image: linear-gradient(rgb(var(--palette-water-mid-rgb) / 0.1) 1px, transparent 1px);
+  background-size: 100% 2.4rem;
+  content: "";
+  inset: 0;
+  mask-image: linear-gradient(to bottom, black, transparent 75%);
+  pointer-events: none;
+  position: absolute;
+}
+
+.xiaolin-hero > * {
+  position: relative;
+  z-index: 1;
+}
+
+.xiaolin-kicker,
+.xiaolin-note-meta {
+  color: var(--xiaolin-accent);
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.xiaolin-kicker {
+  margin: 0 0 1.3rem;
+}
+
+.xiaolin-hero h1 {
+  color: var(--xiaolin-ink);
+  font-size: clamp(3.1rem, 8vw, 7.5rem);
+  letter-spacing: -0.055em;
+  line-height: 0.92;
+  max-width: 8ch;
+}
+
+.xiaolin-lede {
+  color: var(--text-soft);
+  font-size: clamp(1.05rem, 2vw, 1.32rem);
+  margin-top: 1.5rem;
+  max-width: 58ch;
+}
+
+.xiaolin-aside {
+  border-left: 2px solid var(--xiaolin-accent);
+  display: grid;
+  gap: 1.2rem;
+  padding: 0.3rem 0 0.3rem 1.5rem;
+}
+
+.xiaolin-aside p {
+  margin: 0;
+}
+
+.xiaolin-aside .xiaolin-note-meta {
+  color: var(--signal-measured-strong);
+}
+
+.xiaolin-notes-section {
+  padding-top: 4.8rem;
+}
+
+.xiaolin-section-head {
+  align-items: end;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  margin-bottom: 1.4rem;
+}
+
+.xiaolin-section-head h2 {
+  max-width: 16ch;
+}
+
+.xiaolin-note-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: minmax(0, 1.25fr) minmax(250px, 0.75fr);
+}
+
+.xiaolin-note-grid--stacked {
+  grid-template-columns: 1fr;
+}
+
+.xiaolin-note-grid--single {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.xiaolin-note-card {
+  background: rgb(var(--surface-strong-rgb) / 0.82);
+  border: 1px solid rgb(var(--rule-rgb) / 0.9);
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  min-height: 17rem;
+  padding: clamp(1.15rem, 3vw, 2rem);
+  transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+
+.xiaolin-note-card--featured {
+  background: linear-gradient(145deg, rgb(var(--surface-strong-rgb) / 0.94), rgb(var(--xiaolin-paper-deep) / 0.7));
+  min-height: 23rem;
+  justify-content: space-between;
+}
+
+.xiaolin-note-card:hover,
+.xiaolin-note-card:focus-within {
+  border-color: rgb(var(--signal-measured-rgb) / 0.62);
+  box-shadow: 0 0.85rem 1.8rem rgb(var(--shadow-rgb) / 0.08);
+  transform: translateY(-3px);
+}
+
+.xiaolin-note-meta {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem 1rem;
+}
+
+.xiaolin-note-category {
+  color: var(--signal-measured-strong);
+}
+
+.xiaolin-note-card h3 {
+  color: var(--text);
+  font-family: Merriweather, Georgia, serif;
+  font-size: clamp(1.45rem, 3vw, 2.5rem);
+  line-height: 1.08;
+  max-width: 18ch;
+}
+
+.xiaolin-note-card:not(.xiaolin-note-card--featured) h3 {
+  font-size: clamp(1.25rem, 2vw, 1.7rem);
+}
+
+.xiaolin-note-card p {
+  max-width: 62ch;
+}
+
+.xiaolin-note-link {
+  align-self: start;
+  color: var(--signal-measured-strong);
+  font-weight: 800;
+  margin-top: auto;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.25rem;
+}
+
+.xiaolin-note-link:hover,
+.xiaolin-note-link:focus-visible {
+  color: var(--xiaolin-accent);
+}
+
+.xiaolin-principles {
+  display: grid;
+  gap: 1px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.xiaolin-principle {
+  background: rgb(var(--surface-strong-rgb) / 0.74);
+  border: 1px solid rgb(var(--rule-rgb) / 0.85);
+  display: grid;
+  gap: 0.6rem;
+  min-height: 10rem;
+  padding: 1.25rem;
+}
+
+.xiaolin-principle h3 {
+  color: var(--signal-measured-strong);
+  font-size: 1rem;
+}
+
+.xiaolin-principle p {
+  font-size: 0.92rem;
+}
+
+.xiaolin-article {
+  margin-top: 2rem;
+}
+
+.xiaolin-article > header {
+  max-width: 900px;
+}
+
+.xiaolin-article > header h1 {
+  text-wrap: balance;
+}
+
+.xiaolin-article .article-body {
+  max-width: 760px;
+}
+
+@media (max-width: 760px) {
+  .xiaolin-hero,
+  .xiaolin-note-grid,
+  .xiaolin-principles {
+    grid-template-columns: 1fr;
+  }
+
+  .xiaolin-hero {
+    gap: 2.2rem;
+    margin-top: 1rem;
+    padding: 1.35rem;
+  }
+
+  .xiaolin-hero h1 {
+    font-size: clamp(3rem, 18vw, 5.4rem);
+  }
+
+  .xiaolin-aside {
+    padding-left: 1rem;
+  }
+
+  .xiaolin-section-head {
+    align-items: start;
+    display: grid;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .xiaolin-note-card {
+    transition: none;
+  }
+
+  .xiaolin-note-card:hover,
+  .xiaolin-note-card:focus-within {
+    transform: none;
+  }
+}
