@@ -27,7 +27,7 @@ const selectedPublications = selectedPublicationIds
   .filter(Boolean);
 const publicRecords = publications.filter((publication) => ["published", "accepted"].includes(publication.status));
 const studentPublications = publications.filter((publication) => studentPublicationIds.includes(publication.id));
-const publicationMediaVersion = "20260716";
+const publicationMediaVersion = "20260721";
 const withMediaVersion = (path: string) => `${withBase(path)}?v=${publicationMediaVersion}`;
 const roleLabel: Record<string, string> = {
   team_role_pi: "Faculty",

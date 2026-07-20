@@ -1,0 +1,126 @@
+PUBLIC SOURCE-EVIDENCE DIGEST
+
+Work:
+Lin, Y.-F., and Kurylyk, B. L. (2026).
+Lagging Theory for Periodic Hydraulic Head Signals in Aquifers.
+Journal of Hydrology 667, 134913.
+
+Purpose:
+This file is a copyright-safe evidence digest for the public research-film
+repository. It was independently checked against the locally retained
+publisher PDF. The publisher-formatted article and its full extracted text are
+not redistributed here.
+
+Local source verification:
+- Publisher PDF SHA-256: 25c85f681d09c95fc83503a60b2bd93178039f877f59582e7841df74cb5d1dd7
+- Verification basis: equations, figures, tables, appendices, and source
+  passages at the locators listed below.
+- Evidence boundary: every statement below is a concise paraphrase prepared
+  for traceability; it is not a substitute for the published article.
+
+BACKGROUND EVIDENCE
+
+B01
+Locator: PDF pages 2-4; Sections 1 and 2.3; Equations 8-15.
+Verified claim: Periodic heads encode attenuation and phase shift as separate observables.
+
+B02
+Locator: PDF pages 2 and 5; Sections 1 and 2.4; Equations 20-21.
+Verified claim: Classical inversion can return inconsistent diffusivities from amplitude and phase.
+
+B03
+Locator: PDF page 3; Section 2.1; Equations 2-4.
+Verified claim: The lag parameters describe a causal constitutive memory, not literal signal shifts.
+
+METHOD EVIDENCE
+
+M01
+Locator: PDF page 3; Section 2.1; Equations 2-3.
+Verified operation: Present flux is evaluated from the weighted history of hydraulic gradient.
+
+M02
+Locator: PDF pages 3-4; Section 2.1; Equation 4.
+Verified operation: The selected local constitutive representation contains separate flux and head lag parameters; the paper does not specify an exponential kernel.
+
+M03
+Locator: PDF page 4; Section 2.2; Equations 5-7.
+Verified operation: Mass conservation closes the constitutive relation into the groundwater-flow equation.
+
+M04
+Locator: PDF page 4; Section 2.3; Equations 8-15.
+Verified operation: A harmonic ansatz yields the decaying branch lambda = -alpha - i beta, where beta = |Im lambda| is the positive phase-lag gradient.
+
+M05
+Locator: PDF page 5; Section 2.4; Equations 20-21.
+Verified operation: Flux lag and head lag affect attenuation and phase differently.
+
+M06
+Locator: PDF page 5; Section 2.6; Equations 26-27.
+Verified operation: Cross-spectral analysis estimates complex river-to-well transfer functions.
+
+M07
+Locator: PDF page 10; Appendix B; Equation B.1.
+Verified operation: Field inversion jointly fits amplitude ratios and phase lags; Figures 2-3 and Table 1 provide the displayed field-fit evidence.
+
+M08
+Locator: PDF page 10; Appendix B; PDF page 6; Table 1.
+Verified operation: AIC balances residual improvement against additional fitted parameters.
+
+M09
+Locator: PDF page 10; Appendix B.
+Verified operation: Five thousand synthetic realizations propagate observational errors through refitting.
+
+M10
+Locator: PDF page 10; Appendix B.
+Verified operation: Parameter estimation minimizes bounded whitened residuals across retained observations.
+
+M11
+Locator: PDF page 10; Appendix B.
+Verified operation: Interquartile filtering removes aberrant refits before uncertainty summaries.
+
+M12
+Locator: PDF page 10; Appendix B.
+Verified operation: Filtered error-propagation refits produce ensemble means and one-sigma parameter intervals. Appendix C is a separate constituent-level bootstrap for D.
+
+M13
+Locator: PDF pages 9-10; Appendix A; Figure A.1.
+Verified operation: Numerical solutions reproduce analytical amplitude, phase, and head predictions.
+
+M14
+Locator: PDF pages 5 and 8; Section 2.5; Equations 22-25; Figure 6.
+Verified operation: Morris elementary effects rank sensitivity of attenuation and phase to the lag parameters.
+
+NUMERICAL EVIDENCE USED IN THE ANIMATION
+
+- Table 1 reports the Tuolumne lagging fit as D = 2.2 x 10^4 m2/d,
+  tau_q = 2.28 d, tau_h = 0.12 d, amplitude RMSE = 0.057,
+  phase RMSE = 0.5407, and AIC = -5.47. The corresponding classical
+  fit has D = 9.3 x 10^3 m2/d and AIC = 2.28.
+- Table 1 reports the Meghna lagging fit as D = 8.7 x 10^3 m2/d,
+  tau_q = 2.07 d, tau_h = 38.60 d, amplitude RMSE = 0.0398,
+  phase RMSE = 0.0259, and AIC = -34.74. The corresponding classical
+  fit has D = 7.0 x 10^5 m2/d and AIC = -29.90.
+- The field-fit lines and observation markers shown in Scene 10 were
+  manually digitized from Figures 2 and 3 for visual explanation. They are
+  approximate graphical coordinates, not a replacement for the underlying
+  field dataset and not outputs regenerated from the single-frequency formula.
+- Figure 6 and Equations 22-25 support the qualitative sensitivity ordering
+  shown in Scene 17. The plotted curves are approximate manual graphical
+  traces of Figure 6, not newly computed Morris indices or source data.
+
+RESULT AND INTERPRETATION BOUNDARIES
+
+- The two field examples are the Tuolumne River transect and the Meghna River
+  transect described in the article.
+- The lag parameters are field-scale effective descriptors of the analyzed
+  records, not unique microscopic material constants.
+- The classical and lagging models are compared with the same retained
+  observations, while AIC explicitly penalizes added model parameters.
+- Multiple separated frequencies and at least two distances are needed for the
+  full parameter set. When only one frequency is available, one lag parameter
+  is fixed before estimating the remaining parameters.
+- Analytical and numerical agreement checks the implementation of the selected
+  attenuating branch; it does not by itself prove that every field mechanism is
+  uniquely identified.
+
+END OF PUBLIC DIGEST

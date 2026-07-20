@@ -52,7 +52,7 @@ const featurePlainLanguage = new Map<string, string>([
 
 const filmPlainLanguageById = new Map<string, string>([
   ["2026-02-1", "The method maps which places and forecast times most influence a tropical-cyclone intensity prediction, helping researchers judge whether the model relies on physically sensible signals."],
-  ["2026-01-3", "Two groundwater processes can respond at different rates. Accounting for both explains the observed timing and amplitude of the pumping-test responses at the two field sites."],
+  ["2026-01-3", "Two groundwater processes can respond at different rates. Accounting for both reconciles the observed amplitude attenuation and phase shift of periodic head signals at the two field sites."],
   ["2026-01-4", "A simplified fault interface reproduces the full two-dimensional drawdown closely for most tested conditions when the fault is not too wide, making it useful for rapid analysis."],
   ["2025-12-5", "Pumping-induced pressure changes at the two sites are predicted to bend the overlying formation by less than routine geodetic instruments can detect."],
   ["2025-10-6", "At the tested sites, allowing groundwater flux and hydraulic gradient to adjust at different rates improved the pumping-test interpretation and changed the inferred response times."],

@@ -10,7 +10,7 @@ const allPublications = publications.filter((pub) => ["published", "accepted"].i
 );
 const base = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
 const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
-const publicationMediaVersion = "20260716";
+const publicationMediaVersion = "20260721";
 const withMediaVersion = (path: string) => `${withBase(path)}?v=${publicationMediaVersion}`;
 const availableFilmCount = allPublications.filter((publication) => getVisualStatus(publication).kind === "available").length;
 ---

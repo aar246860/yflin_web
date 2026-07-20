@@ -1,0 +1,73 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:06.200
+A periodic boundary wave becomes smaller and later as it travels through an aquifer.
+
+2
+00:00:06.200 --> 00:00:10.700
+Classical amplitude and phase inversions can yield two different diffusivities from that same wave.
+
+3
+00:00:10.700 --> 00:00:15.600
+Lagging Theory represents causal field-scale memory, not a rigid time shift.
+
+4
+00:00:15.600 --> 00:00:20.200
+Present Darcy flux is assembled from a weighted history of hydraulic gradients.
+
+5
+00:00:20.200 --> 00:00:26.000
+Two response times distinguish flux adjustment from head equilibration.
+
+6
+00:00:26.000 --> 00:00:32.000
+Mass conservation combines with the memory law to yield a lagging groundwater-flow equation.
+
+7
+00:00:32.000 --> 00:00:41.467
+Under harmonic forcing, the decaying branch separates attenuation from a positive phase-lag gradient.
+
+8
+00:00:41.467 --> 00:00:46.167
+Their ratio maps when amplitude- and phase-derived diffusivities disagree.
+
+9
+00:00:46.167 --> 00:00:52.467
+Field transfer functions provide observed amplitude ratios and phase shifts at each frequency.
+
+10
+00:00:52.467 --> 00:00:57.667
+One parameter set fits both signatures at Tuolumne Meadows and the Meghna River.
+
+11
+00:00:57.667 --> 00:01:02.767
+AIC tests whether the improved fit justifies the two added lag parameters.
+
+12
+00:01:02.767 --> 00:01:08.067
+Measurement error generates five thousand plausible amplitude-phase data sets.
+
+13
+00:01:08.067 --> 00:01:13.267
+Each realization is refitted within bounded parameter space.
+
+14
+00:01:13.267 --> 00:01:18.067
+Interquartile filtering removes aberrant refits before uncertainty is summarized.
+
+15
+00:01:18.067 --> 00:01:22.967
+Ensemble means and one-standard-deviation widths describe the retained parameter refits.
+
+16
+00:01:22.967 --> 00:01:28.367
+A finite-difference solution independently checks the analytical amplitude and phase response.
+
+17
+00:01:28.367 --> 00:01:33.567
+Morris sensitivity shows how information changes with frequency, lag ratio, and observation distance.
+
+18
+00:01:33.567 --> 00:01:39.067
+The same causal law resolves two different field-scale lag regimes without claiming a unique microscopic mechanism.
