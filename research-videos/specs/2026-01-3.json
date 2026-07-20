@@ -629,7 +629,7 @@
   "symbols": [
     {"latex": "\\tau_q", "firstUseOwner": "B03", "visualObject": "Clock attached to discharge-path adjustment", "meaning": "Flux-relaxation time", "unit": "T", "transition": "Label the flux-memory clock tau_q."},
     {"latex": "\\tau_h", "firstUseOwner": "B03", "visualObject": "Clock between communicating storage domains", "meaning": "Inter-domain head-equilibration time", "unit": "T", "transition": "Label the inter-domain clock tau_h."},
-    {"latex": "\\kappa=-\\alpha+i\\beta", "firstUseOwner": "M03", "visualObject": "Damped propagating groundwater wave", "meaning": "Complex spatial wavenumber with damping coefficient and phase gradient", "unit": "L^{-1}", "transition": "Split the wave into envelope alpha and crest-motion beta."},
+    {"latex": "\\lambda=-\\alpha-i\\beta,\\quad\\beta=|\\operatorname{Im}\\lambda|", "firstUseOwner": "M03", "visualObject": "Damped propagating groundwater wave", "meaning": "Decaying complex spatial wavenumber with attenuation and positive phase-lag gradient", "unit": "L^{-1}", "transition": "Split the wave into envelope alpha and crest-motion beta."},
     {"latex": "A_h=e^{-\\alpha x_D}", "firstUseOwner": "M03", "visualObject": "Exponential amplitude envelope", "meaning": "Head amplitude ratio", "unit": "dimensionless", "transition": "Transform the shrinking wave envelope into Ah."},
     {"latex": "R=D_{phase}/D_{amplitude}", "firstUseOwner": "M04", "visualObject": "Phase-amplitude mismatch color map", "meaning": "Ratio of apparent diffusivities", "unit": "dimensionless", "transition": "Combine the two diffusivity gauges into R."}
   ],
