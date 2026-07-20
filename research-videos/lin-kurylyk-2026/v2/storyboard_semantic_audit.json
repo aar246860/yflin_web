@@ -5,7 +5,7 @@
   "review_method": "source passage comparison",
   "audit_scope": "all background premises, method operations, and scene scientific claims",
   "decision": "pass",
-  "source_artifact_sha256": "0c89d3780e25cbcf5241e8a6d9db352d7716f6fe45cac3af2699f1710429c1ea",
+  "source_artifact_sha256": "876cee930f82136ba72afe5fbaf48e20d2455c49ab58b935440b9999197e3405",
   "storyboard_sha256": "351f9581b460d0e0ba92b6bfb0d1d430d14f3a986f1314ea53a503deacb84914",
   "background_items": [
     {

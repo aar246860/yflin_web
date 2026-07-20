@@ -1,0 +1,4 @@
+research-videos/**/source-artifact.txt text eol=lf
+research-videos/**/storyboard.md text eol=lf
+research-videos/**/storyboard_semantic_audit.json text eol=lf
+research-videos/**/visual_direction.toml text eol=lf
