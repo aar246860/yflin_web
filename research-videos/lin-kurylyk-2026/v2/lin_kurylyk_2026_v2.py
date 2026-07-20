@@ -4,7 +4,7 @@
 # ///
 # --- How to run ---
 # uv run --with manim==0.20.1 manim -qh --fps 30 --media_dir media lin_kurylyk_2026_v2.py LinKurylyk2026V2
-# noqa: SIZE_OK
+# allow: SIZE_OK - one-file ownership keeps the complete 18-scene paper animation self-contained.
 from __future__ import annotations
 
 import cmath
@@ -38,9 +38,7 @@ from manim import (
     Transform,
     VGroup,
     VMobject,
-    ValueTracker,
     Write,
-    always_redraw,
     color_gradient,
     config,
 )
@@ -97,28 +95,18 @@ def wave_curve(
     return curve.set_points_smoothly(points)
 
 
-def response_curves(
-    axes: Axes,
+def published_field_curves(
+    amplitude_axes: Axes,
+    phase_axes: Axes,
     *,
-    diffusivity: float,
-    tau_q: float,
-    tau_h: float,
-    period_days: float,
-    x_max: float,
+    amplitude_points: tuple[tuple[float, float], ...],
+    phase_points: tuple[tuple[float, float], ...],
 ) -> tuple[VMobject, VMobject]:
-    omega = 2 * math.pi / period_days
-    alpha, beta = wavenumber(omega=omega, diffusivity=diffusivity, tau_q=tau_q, tau_h=tau_h)
-    amplitude = axes.plot(
-        lambda x: math.exp(-alpha * x),
-        x_range=[0, x_max],
-        color=TEAL,
-        stroke_width=5,
+    amplitude = VMobject(color=TEAL, stroke_width=5).set_points_smoothly(
+        [amplitude_axes.c2p(x_value, y_value) for x_value, y_value in amplitude_points]
     )
-    phase = axes.plot(
-        lambda x: min(beta * x, 2.4),
-        x_range=[0, x_max],
-        color=RED,
-        stroke_width=5,
+    phase = VMobject(color=RED, stroke_width=5).set_points_smoothly(
+        [phase_axes.c2p(x_value, y_value) for x_value, y_value in phase_points]
     )
     return amplitude, phase
 
@@ -411,9 +399,9 @@ class LinKurylyk2026V2(Scene):
         n = 18
         values = []
         for row in range(n):
-            theta = 10 ** (-2 + 4 * row / (n - 1))
+            omega_d = 10 ** (-2 + 4 * row / (n - 1))
             for col in range(n):
-                omega_d = 10 ** (-2 + 4 * col / (n - 1))
+                theta = 10 ** (-2 + 4 * col / (n - 1))
                 alpha, beta = normalized_ab(omega_d=omega_d, theta=theta)
                 values.append(math.log10(max(alpha * alpha / (beta * beta), 1e-5)))
         low, high = min(values), max(values)
@@ -423,29 +411,37 @@ class LinKurylyk2026V2(Scene):
                 normalized = (values[index] - low) / max(high - low, 1e-9)
                 color = colors[min(24, int(normalized * 24))]
                 square = Square(side_length=0.27, stroke_width=0, fill_color=color, fill_opacity=0.95)
-                square.move_to([-2.25 + col * 0.27, -2.1 + row * 0.27, 0])
+                square.move_to([-2.75 + col * 0.27, -2.1 + row * 0.27, 0])
                 grid.add(square)
                 index += 1
-        unity = DashedLine([-2.2, -1.25, 0], [2.25, 1.0, 0], color=INK, stroke_width=4)
+        theta_unity_x = -2.75 + 0.5 * (n - 1) * 0.27
+        unity = DashedLine(
+            [theta_unity_x, -2.22, 0],
+            [theta_unity_x, 2.62, 0],
+            color=INK,
+            stroke_width=4,
+        )
+        theta_label = MathTex(r"\theta=\tau_h/\tau_q", color=INK).scale(0.7).next_to(grid, DOWN, buff=0.2)
+        omega_label = MathTex(r"\omega_D", color=INK).scale(0.72).next_to(grid, LEFT, buff=0.2).rotate(math.pi / 2)
         labels = VGroup(
-            MathTex(r"\eta<1", color=TEAL).move_to(LEFT * 4.7 + DOWN * 1.0),
-            MathTex(r"\eta=1", color=INK).move_to(RIGHT * 4.2),
-            MathTex(r"\eta>1", color=RED).move_to(RIGHT * 4.7 + UP * 1.0),
+            MathTex(r"\eta<1", color=TEAL).move_to([3.65, 1.25, 0]),
+            MathTex(r"\eta=1", color=INK).move_to([3.65, 0.35, 0]),
+            MathTex(r"\eta>1", color=RED).move_to([3.65, -0.55, 0]),
         )
         ratio = VGroup(
             MathTex(r"\eta=\frac{D_\phi}{D_A}", color=INK),
-            MathTex(r"=\frac{\alpha^2}{\beta^2}", color=INK),
-        ).arrange(RIGHT, buff=0.12).scale(0.82).to_edge(DOWN, buff=0.68)
-        content = VGroup(grid, unity, labels, ratio)
+            MathTex(r"\frac{D_\phi}{D_A}=\frac{\alpha^2}{\beta^2}", color=INK),
+        ).arrange(DOWN, buff=0.34).scale(0.66).move_to([3.65, -1.95, 0])
+        content = VGroup(grid, unity, theta_label, omega_label, labels, ratio)
         heading = Text("The mismatch becomes a regime map", font="Arial", font_size=36, color=INK).to_edge(UP, buff=0.38)
         caption = Text("Unity marks classical amplitude-phase agreement", font="Arial", font_size=20, color=MUTED).to_edge(DOWN, buff=0.28)
         frame_items = [heading, caption, content]
-        assert_scene_layout(scene=self, pending_items=frame_items, labels=[heading, caption, labels, ratio], blockers=[grid, unity], frame_items=frame_items, intentional_overlaps=[(content, content)])
+        assert_scene_layout(scene=self, pending_items=frame_items, labels=[heading, caption, theta_label, omega_label, labels, ratio], blockers=[grid, unity], frame_items=frame_items, intentional_overlaps=[(content, content)])
         self.play(FadeIn(heading), FadeIn(caption), FadeIn(content), run_time=0.7)
-        assert_scene_layout(scene=self, pending_items=[], labels=[heading, caption, labels, ratio], blockers=[grid, unity], frame_items=frame_items, intentional_overlaps=[(content, content)])
+        assert_scene_layout(scene=self, pending_items=[], labels=[heading, caption, theta_label, omega_label, labels, ratio], blockers=[grid, unity], frame_items=frame_items, intentional_overlaps=[(content, content)])
         self.play(Create(unity), FadeIn(labels), run_time=2.3)
         self._hold(1.2)
-        assert_scene_layout(scene=self, pending_items=[], labels=[heading, caption, labels, ratio], blockers=[grid, unity], frame_items=frame_items, intentional_overlaps=[(content, content)])
+        assert_scene_layout(scene=self, pending_items=[], labels=[heading, caption, theta_label, omega_label, labels, ratio], blockers=[grid, unity], frame_items=frame_items, intentional_overlaps=[(content, content)])
         self.play(FadeOut(heading), FadeOut(caption), FadeOut(content), run_time=0.5)
 
     def scene_09_m06_transfer_function(self) -> None:
@@ -485,47 +481,137 @@ class LinKurylyk2026V2(Scene):
     def scene_10_m07_field_fit(self) -> None:
         panels = VGroup()
         sites = (
-            ("Tuolumne", 2.2e4, 2.28, 0.12, 1.0, 100.0),
-            ("Meghna", 8.7e3, 2.07, 38.60, 12.42 / 24, 100.0),
+            (
+                "Tuolumne",
+                2.2e4,
+                2.28,
+                0.12,
+                1.0,
+                110.0,
+                (0.0, 1.08, 0.25),
+                (0.0, 8.0, 2.0),
+                ((17.0, 0.92, 0.07), (52.0, 0.56, 0.12), (100.0, 0.43, 0.12)),
+                ((17.0, 1.45, 0.30), (52.0, 1.75, 0.50), (100.0, 3.20, 1.45)),
+                ((0.0, 1.00), (17.0, 0.84), (52.0, 0.60), (100.0, 0.36), (110.0, 0.32)),
+                ((0.0, 0.00), (17.0, 0.90), (52.0, 2.45), (100.0, 4.90), (110.0, 5.40)),
+            ),
+            (
+                "Meghna",
+                8.7e3,
+                2.07,
+                38.60,
+                12.42 / 24,
+                92.0,
+                (0.4, 1.08, 0.2),
+                (0.0, 0.10, 0.025),
+                ((20.0, 0.90, 0.025), (75.0, 0.89, 0.05), (80.0, 0.90, 0.03)),
+                ((20.0, 0.047, 0.008), (75.0, 0.052, 0.020), (80.0, 0.034, 0.020)),
+                ((0.0, 0.98), (20.0, 0.94), (75.0, 0.85), (80.0, 0.84), (90.0, 0.81)),
+                ((0.0, 0.005), (20.0, 0.012), (75.0, 0.033), (80.0, 0.035), (90.0, 0.040)),
+            ),
         )
-        for name, diffusivity, tau_q, tau_h, period, x_max in sites:
+        for (
+            name,
+            diffusivity,
+            tau_q,
+            tau_h,
+            _period,
+            x_max,
+            amp_range,
+            phase_range,
+            amp_data,
+            phase_data,
+            amp_fit,
+            phase_fit,
+        ) in sites:
             diffusivity_tex = r"2.2\times10^4" if name == "Tuolumne" else r"8.7\times10^3"
-            axes = Axes(
+            amplitude_axes = Axes(
                 x_range=[0, x_max, 25],
-                y_range=[0, 2.4, 0.5],
-                x_length=4.6,
-                y_length=3.2,
+                y_range=list(amp_range),
+                x_length=4.45,
+                y_length=1.55,
                 axis_config={"color": MUTED, "include_ticks": False, "stroke_width": 2},
+            ).shift(UP * 0.95)
+            phase_axes = Axes(
+                x_range=[0, x_max, 25],
+                y_range=list(phase_range),
+                x_length=4.45,
+                y_length=1.55,
+                axis_config={"color": MUTED, "include_ticks": False, "stroke_width": 2},
+            ).shift(DOWN * 1.05)
+            amp, phi = published_field_curves(
+                amplitude_axes,
+                phase_axes,
+                amplitude_points=amp_fit,
+                phase_points=phase_fit,
             )
-            amp, phi = response_curves(
-                axes,
-                diffusivity=diffusivity,
-                tau_q=tau_q,
-                tau_h=tau_h,
-                period_days=period,
-                x_max=x_max,
-            )
-            site_label = text(name, 24).next_to(axes, DOWN, buff=0.14)
+            observations = VGroup()
+            for x_value, y_value, error in amp_data:
+                point = amplitude_axes.c2p(x_value, y_value)
+                observations.add(
+                    Line(
+                        amplitude_axes.c2p(x_value, y_value - error),
+                        amplitude_axes.c2p(x_value, y_value + error),
+                        color=INK,
+                        stroke_width=2,
+                    ),
+                    Dot(point, radius=0.06, color=INK),
+                )
+            for x_value, y_value, error in phase_data:
+                point = phase_axes.c2p(x_value, y_value)
+                observations.add(
+                    Line(
+                        phase_axes.c2p(x_value, max(phase_range[0], y_value - error)),
+                        phase_axes.c2p(x_value, min(phase_range[1], y_value + error)),
+                        color=INK,
+                        stroke_width=2,
+                    ),
+                    Dot(point, radius=0.06, color=INK),
+                )
+            site_label = text(name, 23).move_to([0, 2.25, 0])
             parameter_label = MathTex(
                 rf"D={diffusivity_tex}\ \mathrm{{m^2/d}},\ \tau_q={tau_q:.2f}\,d,\ \tau_h={tau_h:.2f}\,d",
                 color=INK,
-            ).scale(0.46).next_to(axes, UP, buff=0.14)
-            panels.add(VGroup(axes, amp, phi, site_label, parameter_label))
-        panels.arrange(RIGHT, buff=1.0).shift(DOWN * 0.1)
-        amplitude_key = Line([-2.2, -2.78, 0], [-1.5, -2.78, 0], color=TEAL, stroke_width=5)
-        amplitude_key_label = Text("amplitude", font="Arial", font_size=20, color=TEAL).next_to(amplitude_key, RIGHT, buff=0.12)
-        phase_key = Line([0.75, -2.78, 0], [1.45, -2.78, 0], color=RED, stroke_width=5)
-        phase_key_label = Text("phase", font="Arial", font_size=20, color=RED).next_to(phase_key, RIGHT, buff=0.12)
-        content = VGroup(panels, amplitude_key, amplitude_key_label, phase_key, phase_key_label)
+            ).scale(0.50).next_to(site_label, DOWN, buff=0.08)
+            axis_labels = VGroup(
+                MathTex(r"A_h", color=TEAL).scale(0.55).next_to(amplitude_axes, LEFT, buff=0.10),
+                MathTex(r"\phi", color=RED).scale(0.55).next_to(phase_axes, LEFT, buff=0.10),
+            )
+            panels.add(
+                VGroup(
+                    amplitude_axes,
+                    phase_axes,
+                    amp,
+                    phi,
+                    observations,
+                    site_label,
+                    parameter_label,
+                    axis_labels,
+                )
+            )
+        panels.arrange(RIGHT, buff=1.0).shift(DOWN * 0.05)
+        fit_key = Line([-3.5, -2.82, 0], [-2.9, -2.82, 0], color=TEAL, stroke_width=5)
+        fit_key_label = Text("analytical fit", font="Arial", font_size=18, color=TEAL).next_to(fit_key, RIGHT, buff=0.10)
+        data_key = Dot([0.25, -2.82, 0], radius=0.07, color=INK)
+        data_key_label = Text("observations", font="Arial", font_size=18, color=INK).next_to(data_key, RIGHT, buff=0.10)
+        content = VGroup(panels, fit_key, fit_key_label, data_key, data_key_label)
         heading = Text("One parameter set fits both signatures at each site", font="Arial", font_size=36, color=INK).to_edge(UP, buff=0.38)
-        caption = Text("Analytical curves use the reported fitted parameters", font="Arial", font_size=20, color=MUTED).to_edge(DOWN, buff=0.28)
+        caption = Text("Observed points and fitted medians digitized from Figures 2-3", font="Arial", font_size=20, color=MUTED).to_edge(DOWN, buff=0.28)
         frame_items = [heading, caption, content]
-        assert_scene_layout(scene=self, pending_items=frame_items, labels=[heading, caption, amplitude_key_label, phase_key_label], blockers=[panels, amplitude_key, phase_key], frame_items=frame_items, intentional_overlaps=[(content, content)])
+        assert_scene_layout(scene=self, pending_items=frame_items, labels=[heading, caption, fit_key_label, data_key_label], blockers=[panels, fit_key, data_key], frame_items=frame_items, intentional_overlaps=[(content, content)])
         self.play(FadeIn(heading), FadeIn(caption), FadeIn(content), run_time=0.7)
-        assert_scene_layout(scene=self, pending_items=[], labels=[heading, caption, amplitude_key_label, phase_key_label], blockers=[panels, amplitude_key, phase_key], frame_items=frame_items, intentional_overlaps=[(content, content)])
-        self.play(Create(panels[0][1]), Create(panels[0][2]), Create(panels[1][1]), Create(panels[1][2]), run_time=3.0)
+        assert_scene_layout(scene=self, pending_items=[], labels=[heading, caption, fit_key_label, data_key_label], blockers=[panels, fit_key, data_key], frame_items=frame_items, intentional_overlaps=[(content, content)])
+        self.play(
+            Create(panels[0][2]),
+            Create(panels[0][3]),
+            Create(panels[0][4]),
+            Create(panels[1][2]),
+            Create(panels[1][3]),
+            Create(panels[1][4]),
+            run_time=3.0,
+        )
         self._hold(1.0)
-        assert_scene_layout(scene=self, pending_items=[], labels=[heading, caption, amplitude_key_label, phase_key_label], blockers=[panels, amplitude_key, phase_key], frame_items=frame_items, intentional_overlaps=[(content, content)])
+        assert_scene_layout(scene=self, pending_items=[], labels=[heading, caption, fit_key_label, data_key_label], blockers=[panels, fit_key, data_key], frame_items=frame_items, intentional_overlaps=[(content, content)])
         self.play(FadeOut(heading), FadeOut(caption), FadeOut(content), run_time=0.5)
 
     def scene_11_m08_aic(self) -> None:
@@ -711,37 +797,121 @@ class LinKurylyk2026V2(Scene):
         numerical = np.linalg.solve(matrix, rhs)
         xs = np.linspace(0, length, nodes)
         analytical = np.exp(lam * xs)
-        axes = Axes(
+        analytical_amplitude = np.abs(analytical)
+        numerical_amplitude = np.abs(numerical)
+        analytical_phase = np.unwrap(np.angle(analytical))
+        numerical_phase = np.unwrap(np.angle(numerical))
+        amplitude_axes = Axes(
             x_range=[0, length, 2],
             y_range=[0, 1.05, 0.25],
-            x_length=8.2,
-            y_length=3.5,
+            x_length=5.0,
+            y_length=3.3,
             axis_config={"color": MUTED, "include_ticks": False},
-        )
-        analytic_curve = VGroup()
-        numeric_curve = VGroup()
+        ).shift(LEFT * 3.0)
+        phase_axes = Axes(
+            x_range=[0, length, 2],
+            y_range=[0, 1.4, 0.35],
+            x_length=5.0,
+            y_length=3.3,
+            axis_config={"color": MUTED, "include_ticks": False},
+        ).shift(RIGHT * 3.0)
+        analytic_amplitude_curve = VGroup()
+        numeric_amplitude_curve = VGroup()
+        analytic_phase_curve = VGroup()
+        numeric_phase_curve = VGroup()
         for index in range(nodes - 1):
-            analytic_curve.add(Line(axes.c2p(float(xs[index]), float(abs(analytical[index]))), axes.c2p(float(xs[index + 1]), float(abs(analytical[index + 1]))), color=TEAL, stroke_width=6))
+            analytic_amplitude_curve.add(
+                Line(
+                    amplitude_axes.c2p(float(xs[index]), float(analytical_amplitude[index])),
+                    amplitude_axes.c2p(float(xs[index + 1]), float(analytical_amplitude[index + 1])),
+                    color=TEAL,
+                    stroke_width=5,
+                )
+            )
+            analytic_phase_curve.add(
+                Line(
+                    phase_axes.c2p(float(xs[index]), float(analytical_phase[index])),
+                    phase_axes.c2p(float(xs[index + 1]), float(analytical_phase[index + 1])),
+                    color=TEAL,
+                    stroke_width=5,
+                )
+            )
         sampled_indices = list(range(0, nodes, 8))
         for index in range(len(sampled_indices) - 1):
             left_index = sampled_indices[index]
             right_index = sampled_indices[index + 1]
-            numeric_curve.add(Line(axes.c2p(float(xs[left_index]), float(abs(numerical[left_index]))), axes.c2p(float(xs[right_index]), float(abs(numerical[right_index]))), color=RED, stroke_width=2))
-            numeric_curve.add(Dot(axes.c2p(float(xs[left_index]), float(abs(numerical[left_index]))), radius=0.055, color=RED))
+            numeric_amplitude_curve.add(
+                DashedLine(
+                    amplitude_axes.c2p(float(xs[left_index]), float(numerical_amplitude[left_index])),
+                    amplitude_axes.c2p(float(xs[right_index]), float(numerical_amplitude[right_index])),
+                    color=RED,
+                    stroke_width=2,
+                ),
+                Dot(
+                    amplitude_axes.c2p(float(xs[left_index]), float(numerical_amplitude[left_index])),
+                    radius=0.05,
+                    color=RED,
+                ),
+            )
+            numeric_phase_curve.add(
+                DashedLine(
+                    phase_axes.c2p(float(xs[left_index]), float(numerical_phase[left_index])),
+                    phase_axes.c2p(float(xs[right_index]), float(numerical_phase[right_index])),
+                    color=RED,
+                    stroke_width=2,
+                ),
+                Dot(
+                    phase_axes.c2p(float(xs[left_index]), float(numerical_phase[left_index])),
+                    radius=0.05,
+                    color=RED,
+                ),
+            )
+        panel_titles = VGroup(
+            Text("Amplitude", font="Arial", font_size=22, color=INK).next_to(amplitude_axes, UP, buff=0.12),
+            Text("Phase", font="Arial", font_size=22, color=INK).next_to(phase_axes, UP, buff=0.12),
+        )
         closed_form_key = Line([-2.7, -2.78, 0], [-2.1, -2.78, 0], color=TEAL, stroke_width=6)
         closed_form_label = Text("closed form", font="Arial", font_size=19, color=TEAL).next_to(closed_form_key, RIGHT, buff=0.12)
         finite_difference_key = DashedLine([0.5, -2.78, 0], [1.1, -2.78, 0], color=RED, stroke_width=3)
         finite_difference_label = Text("finite difference", font="Arial", font_size=19, color=RED).next_to(finite_difference_key, RIGHT, buff=0.12)
-        content = VGroup(axes, analytic_curve, numeric_curve, closed_form_key, closed_form_label, finite_difference_key, finite_difference_label)
-        heading = Text("The analytical response is checked numerically", font="Arial", font_size=36, color=INK).to_edge(UP, buff=0.38)
+        content = VGroup(
+            amplitude_axes,
+            phase_axes,
+            panel_titles,
+            analytic_amplitude_curve,
+            numeric_amplitude_curve,
+            analytic_phase_curve,
+            numeric_phase_curve,
+            closed_form_key,
+            closed_form_label,
+            finite_difference_key,
+            finite_difference_label,
+        )
+        heading = Text("Both analytical signatures are checked numerically", font="Arial", font_size=36, color=INK).to_edge(UP, buff=0.38)
         caption = Text("Second-order frequency-domain solution; Appendix A", font="Arial", font_size=20, color=MUTED).to_edge(DOWN, buff=0.28)
         frame_items = [heading, caption, content]
-        assert_scene_layout(scene=self, pending_items=frame_items, labels=[heading, caption, closed_form_label, finite_difference_label], blockers=[axes, analytic_curve, numeric_curve, closed_form_key, finite_difference_key], frame_items=frame_items, intentional_overlaps=[(content, content)])
+        blockers = [
+            amplitude_axes,
+            phase_axes,
+            analytic_amplitude_curve,
+            numeric_amplitude_curve,
+            analytic_phase_curve,
+            numeric_phase_curve,
+            closed_form_key,
+            finite_difference_key,
+        ]
+        assert_scene_layout(scene=self, pending_items=frame_items, labels=[heading, caption, panel_titles, closed_form_label, finite_difference_label], blockers=blockers, frame_items=frame_items, intentional_overlaps=[(content, content)])
         self.play(FadeIn(heading), FadeIn(caption), FadeIn(content), run_time=0.7)
-        assert_scene_layout(scene=self, pending_items=[], labels=[heading, caption, closed_form_label, finite_difference_label], blockers=[axes, analytic_curve, numeric_curve, closed_form_key, finite_difference_key], frame_items=frame_items, intentional_overlaps=[(content, content)])
-        self.play(Create(analytic_curve), Create(numeric_curve), run_time=3.2)
+        assert_scene_layout(scene=self, pending_items=[], labels=[heading, caption, panel_titles, closed_form_label, finite_difference_label], blockers=blockers, frame_items=frame_items, intentional_overlaps=[(content, content)])
+        self.play(
+            Create(analytic_amplitude_curve),
+            Create(numeric_amplitude_curve),
+            Create(analytic_phase_curve),
+            Create(numeric_phase_curve),
+            run_time=3.2,
+        )
         self._hold(1.0)
-        assert_scene_layout(scene=self, pending_items=[], labels=[heading, caption, closed_form_label, finite_difference_label], blockers=[axes, analytic_curve, numeric_curve, closed_form_key, finite_difference_key], frame_items=frame_items, intentional_overlaps=[(content, content)])
+        assert_scene_layout(scene=self, pending_items=[], labels=[heading, caption, panel_titles, closed_form_label, finite_difference_label], blockers=blockers, frame_items=frame_items, intentional_overlaps=[(content, content)])
         self.play(FadeOut(heading), FadeOut(caption), FadeOut(content), run_time=0.5)
 
     def scene_17_m14_sensitivity(self) -> None:
@@ -838,41 +1008,109 @@ class LinKurylyk2026V2(Scene):
         self.play(FadeOut(heading), FadeOut(caption), FadeOut(content), run_time=0.5)
 
     def scene_18_return(self) -> None:
-        left_anchor = LEFT * 3.0
-        right_anchor = RIGHT * 3.0
-        divider = Line([0, -1.75, 0], [0, 1.75, 0], color=MUTED, stroke_width=2)
+        tuolumne_aquifer = Rectangle(width=4.75, height=1.45, color=MUTED, stroke_width=2).set_fill(PALE, opacity=0.42)
+        tuolumne_bank = Line([-2.15, -0.72, 0], [-2.15, 0.72, 0], color=TEAL, stroke_width=6)
+        tuolumne_wells = VGroup(
+            VGroup(Line([-1.25, -0.55, 0], [-1.25, 0.50, 0], color=INK, stroke_width=3), Dot([-1.25, 0.50, 0], radius=0.06, color=INK)),
+            VGroup(Line([0.0, -0.55, 0], [0.0, 0.50, 0], color=INK, stroke_width=3), Dot([0.0, 0.50, 0], radius=0.06, color=INK)),
+            VGroup(Line([1.45, -0.55, 0], [1.45, 0.50, 0], color=INK, stroke_width=3), Dot([1.45, 0.50, 0], radius=0.06, color=INK)),
+        )
+        tuolumne_wave = VMobject(color=TEAL, stroke_width=5)
+        tuolumne_wave.set_points_smoothly(
+            [
+                [
+                    -2.05 + 4.1 * index / 120,
+                    0.10 + 0.44 * math.sin(2 * math.pi * 1.15 * index / 120 + 0.55),
+                    0,
+                ]
+                for index in range(121)
+            ]
+        )
+        tuolumne_envelope = DashedLine([-2.0, 0.58, 0], [2.0, 0.24, 0], color=GOLD, stroke_width=2)
+        tuolumne_label = Text("Tuolumne Meadows", font="Arial", font_size=23, color=TEAL).next_to(tuolumne_aquifer, UP, buff=0.14)
+        tuolumne_parameters = VGroup(
+            MathTex(r"D=2.2\times10^4\ \mathrm{m^2/d}", color=INK),
+            MathTex(r"\tau_q=2.28\,d", color=INK),
+            MathTex(r"\tau_h=0.12\,d", color=INK),
+        ).arrange(DOWN, buff=0.20).scale(0.62).next_to(tuolumne_aquifer, DOWN, buff=0.12)
+        tuolumne_aic = MathTex(r"AIC_{lag}=-5.47<2.28", color=GOLD).scale(0.60).next_to(tuolumne_parameters, DOWN, buff=0.12)
         tuolumne = VGroup(
-            Text("Tuolumne Meadows", font="Arial", font_size=24, color=TEAL),
-            MathTex(r"D=2.2\times10^4\ \mathrm{m^2/d}", color=INK).scale(0.72),
-            VGroup(
-                MathTex(r"\tau_q=2.28\ d", color=TEAL),
-                MathTex(r">\tau_h=0.12\ d", color=TEAL),
-            ).arrange(RIGHT, buff=0.24).scale(0.68),
-            MathTex(r"AIC:-5.47<2.28", color=GOLD).scale(0.72),
-        ).arrange(DOWN, buff=0.25).move_to(left_anchor)
+            tuolumne_aquifer,
+            tuolumne_bank,
+            tuolumne_wells,
+            tuolumne_wave,
+            tuolumne_envelope,
+            tuolumne_label,
+            tuolumne_parameters,
+            tuolumne_aic,
+        ).move_to(LEFT * 3.15)
+
+        meghna_aquifer = Rectangle(width=4.75, height=1.45, color=MUTED, stroke_width=2).set_fill(PALE, opacity=0.42)
+        meghna_bank = Line([-2.15, -0.72, 0], [-2.15, 0.72, 0], color=RED, stroke_width=6)
+        meghna_wells = VGroup(
+            VGroup(Line([-1.25, -0.55, 0], [-1.25, 0.50, 0], color=INK, stroke_width=3), Dot([-1.25, 0.50, 0], radius=0.06, color=INK)),
+            VGroup(Line([0.0, -0.55, 0], [0.0, 0.50, 0], color=INK, stroke_width=3), Dot([0.0, 0.50, 0], radius=0.06, color=INK)),
+            VGroup(Line([1.45, -0.55, 0], [1.45, 0.50, 0], color=INK, stroke_width=3), Dot([1.45, 0.50, 0], radius=0.06, color=INK)),
+        )
+        meghna_wave = VMobject(color=RED, stroke_width=5)
+        meghna_wave.set_points_smoothly(
+            [
+                [
+                    -2.05 + 4.1 * index / 120,
+                    0.10 + 0.44 * math.sin(2 * math.pi * 1.15 * index / 120 + 1.25),
+                    0,
+                ]
+                for index in range(121)
+            ]
+        )
+        meghna_envelope = DashedLine([-2.0, 0.58, 0], [2.0, 0.24, 0], color=GOLD, stroke_width=2)
+        meghna_label = Text("Meghna River", font="Arial", font_size=23, color=RED).next_to(meghna_aquifer, UP, buff=0.14)
+        meghna_parameters = VGroup(
+            MathTex(r"D=8.7\times10^3\ \mathrm{m^2/d}", color=INK),
+            MathTex(r"\tau_h=38.60\,d", color=INK),
+            MathTex(r"\tau_q=2.07\,d", color=INK),
+        ).arrange(DOWN, buff=0.20).scale(0.62).next_to(meghna_aquifer, DOWN, buff=0.12)
+        meghna_aic = MathTex(r"AIC_{lag}=-34.74<-29.90", color=GOLD).scale(0.60).next_to(meghna_parameters, DOWN, buff=0.12)
         meghna = VGroup(
-            Text("Meghna River", font="Arial", font_size=24, color=RED),
-            MathTex(r"D=8.7\times10^3\ \mathrm{m^2/d}", color=INK).scale(0.72),
-            VGroup(
-                MathTex(r"\tau_h=38.60\ d", color=RED),
-                MathTex(r">\tau_q=2.07\ d", color=RED),
-            ).arrange(RIGHT, buff=0.24).scale(0.68),
-            MathTex(r"AIC:-34.74<-29.90", color=GOLD).scale(0.72),
-        ).arrange(DOWN, buff=0.25).move_to(right_anchor)
-        boundary_note_1 = Text("Field-scale effective parameters", font="Arial", font_size=21, color=MUTED)
-        boundary_note_2 = Text("No unique microscopic mechanism is claimed", font="Arial", font_size=21, color=MUTED)
-        boundary = VGroup(boundary_note_1, boundary_note_2).arrange(DOWN, buff=0.08).to_edge(DOWN, buff=0.78)
-        content = VGroup(divider, tuolumne, meghna, boundary)
+            meghna_aquifer,
+            meghna_bank,
+            meghna_wells,
+            meghna_wave,
+            meghna_envelope,
+            meghna_label,
+            meghna_parameters,
+            meghna_aic,
+        ).move_to(RIGHT * 3.15)
+        tuolumne_geometry = VGroup(*tuolumne[:5])
+        meghna_geometry = VGroup(*meghna[:5])
+        divider = Line([0, -2.05, 0], [0, 2.05, 0], color=MUTED, stroke_width=2)
+        boundary = VGroup(
+            Text("Effective field-scale parameters", font="Arial", font_size=19, color=MUTED),
+            Text("No unique microscopic mechanism is claimed", font="Arial", font_size=19, color=MUTED),
+        ).arrange(DOWN, buff=0.16).to_edge(DOWN, buff=0.68)
         heading = Text("The same law resolves two different lag regimes", font="Arial", font_size=36, color=INK).to_edge(UP, buff=0.38)
         caption = Text("Use lagging when both signatures and model selection support it", font="Arial", font_size=20, color=MUTED).to_edge(DOWN, buff=0.28)
-        opening_frame = [heading, caption, divider, boundary]
-        assert_scene_layout(scene=self, pending_items=opening_frame, labels=[heading, caption, boundary], blockers=[divider], frame_items=opening_frame, intentional_overlaps=[])
-        self.play(FadeIn(heading), FadeIn(caption), Create(divider), FadeIn(boundary), run_time=0.7)
-        tuolumne.move_to(left_anchor)
-        meghna.move_to(right_anchor)
         frame_items = [heading, caption, divider, boundary, tuolumne, meghna]
-        assert_scene_layout(scene=self, pending_items=[tuolumne, meghna], labels=[heading, caption, boundary, tuolumne, meghna], blockers=[divider], frame_items=frame_items, intentional_overlaps=[])
-        self.play(FadeIn(tuolumne), FadeIn(meghna), run_time=2.5)
+        assert_scene_layout(scene=self, pending_items=frame_items, labels=[heading, caption, boundary, tuolumne[5], tuolumne[6], tuolumne[7], meghna[5], meghna[6], meghna[7]], blockers=[divider, tuolumne_geometry, meghna_geometry], frame_items=frame_items, intentional_overlaps=[(tuolumne, tuolumne), (meghna, meghna)])
+        self.play(
+            FadeIn(heading),
+            FadeIn(caption),
+            Create(divider),
+            FadeIn(boundary),
+            FadeIn(tuolumne[0]),
+            Create(tuolumne[1]),
+            Create(tuolumne[2]),
+            Create(tuolumne[3]),
+            Create(tuolumne[4]),
+            FadeIn(tuolumne[5:]),
+            FadeIn(meghna[0]),
+            Create(meghna[1]),
+            Create(meghna[2]),
+            Create(meghna[3]),
+            Create(meghna[4]),
+            FadeIn(meghna[5:]),
+            run_time=2.8,
+        )
         self._hold(2.2)
-        assert_scene_layout(scene=self, pending_items=[], labels=[heading, caption, boundary, tuolumne, meghna], blockers=[divider], frame_items=frame_items, intentional_overlaps=[])
+        assert_scene_layout(scene=self, pending_items=[], labels=[heading, caption, boundary, tuolumne[5], tuolumne[6], tuolumne[7], meghna[5], meghna[6], meghna[7]], blockers=[divider, tuolumne_geometry, meghna_geometry], frame_items=frame_items, intentional_overlaps=[(tuolumne, tuolumne), (meghna, meghna)])
         self.play(FadeOut(heading), FadeOut(caption), FadeOut(divider), FadeOut(boundary), FadeOut(tuolumne), FadeOut(meghna), run_time=0.5)

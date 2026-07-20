@@ -38,7 +38,7 @@
       "id": "M01",
       "source_locator": "PDF page 3, Section 2.1, Equations 2-3",
       "source_excerpt": "Present flux is evaluated from the weighted history of hydraulic gradient.",
-      "claim_anchor_terms": ["causal", "kernel", "present"],
+      "claim_anchor_terms": ["flux", "history", "present"],
       "irreducible_operation_count": 1,
       "semantic_match": "pass"
     },
@@ -46,7 +46,7 @@
       "id": "M02",
       "source_locator": "PDF pages 3-4, Section 2.1, Equation 4",
       "source_excerpt": "The constitutive law contains separate relaxation times for flux and head.",
-      "claim_anchor_terms": ["two-channel", "kernel"],
+      "claim_anchor_terms": ["constitutive", "law"],
       "irreducible_operation_count": 1,
       "semantic_match": "pass"
     },
@@ -54,7 +54,7 @@
       "id": "M03",
       "source_locator": "PDF page 4, Section 2.2, Equations 5-7",
       "source_excerpt": "Mass conservation closes the constitutive relation into the groundwater-flow equation.",
-      "claim_anchor_terms": ["lagging", "constitutive", "mass"],
+      "claim_anchor_terms": ["mass", "constitutive", "groundwater-flow"],
       "irreducible_operation_count": 1,
       "semantic_match": "pass"
     },
@@ -62,7 +62,7 @@
       "id": "M04",
       "source_locator": "PDF page 4, Section 2.3, Equations 8-15",
       "source_excerpt": "A harmonic ansatz yields a complex dispersion relation and an attenuating branch.",
-      "claim_anchor_terms": ["harmonic", "sol"],
+      "claim_anchor_terms": ["harmonic", "complex", "branch"],
       "irreducible_operation_count": 1,
       "semantic_match": "pass"
     },
@@ -70,7 +70,7 @@
       "id": "M05",
       "source_locator": "PDF page 5, Section 2.4, Equations 20-21",
       "source_excerpt": "Flux lag and head lag affect attenuation and phase differently.",
-      "claim_anchor_terms": ["lag", "diffusivities"],
+      "claim_anchor_terms": ["lag", "attenuation", "phase"],
       "irreducible_operation_count": 1,
       "semantic_match": "pass"
     },
@@ -86,7 +86,7 @@
       "id": "M07",
       "source_locator": "PDF page 10, Appendix B, Equation B.1",
       "source_excerpt": "Field inversion jointly fits amplitude ratios and phase lags across distance and frequency.",
-      "claim_anchor_terms": ["amplitude", "phase", "parameters"],
+      "claim_anchor_terms": ["amplitude", "phase"],
       "irreducible_operation_count": 1,
       "semantic_match": "pass"
     },
@@ -94,7 +94,7 @@
       "id": "M08",
       "source_locator": "PDF page 10, Appendix B; PDF page 6, Table 1",
       "source_excerpt": "AIC balances residual improvement against additional fitted parameters.",
-      "claim_anchor_terms": ["AIC", "model"],
+      "claim_anchor_terms": ["AIC", "residual", "parameters"],
       "irreducible_operation_count": 1,
       "semantic_match": "pass"
     },
@@ -102,7 +102,7 @@
       "id": "M09",
       "source_locator": "PDF page 10, Appendix B",
       "source_excerpt": "Five thousand synthetic realizations propagate observational errors through refitting.",
-      "claim_anchor_terms": ["5000", "synthetic", "realizations"],
+      "claim_anchor_terms": ["synthetic", "realizations", "errors"],
       "irreducible_operation_count": 1,
       "semantic_match": "pass"
     },
@@ -126,7 +126,7 @@
       "id": "M12",
       "source_locator": "PDF page 10, Appendix B; Appendix C",
       "source_excerpt": "Bootstrap refits produce posterior means and one-sigma parameter intervals.",
-      "claim_anchor_terms": ["posterior means", "summar"],
+      "claim_anchor_terms": ["posterior means", "parameter", "intervals"],
       "irreducible_operation_count": 1,
       "semantic_match": "pass"
     },
