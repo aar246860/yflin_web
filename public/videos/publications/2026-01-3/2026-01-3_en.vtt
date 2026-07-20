@@ -58,7 +58,7 @@ Interquartile filtering removes aberrant refits before uncertainty is summarized
 
 15
 00:01:18.067 --> 00:01:22.967
-Posterior means and one-standard-deviation widths describe the retained parameter ensemble.
+Ensemble means and one-standard-deviation widths describe the retained parameter refits.
 
 16
 00:01:22.967 --> 00:01:28.367
