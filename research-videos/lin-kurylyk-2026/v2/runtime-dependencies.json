@@ -1,0 +1,18 @@
+{
+  "scene_source": {
+    "path": "lin_kurylyk_2026_v2.py",
+    "sha256": "d340e4c94ed2297502e4d043070fd7938dbad38e63ca2a96fe9f76a640eb0f63"
+  },
+  "layout_helper": {
+    "path": "assets/research_manim_layout.py",
+    "sha256": "6da7b971112cba9c76ce48de4a108d2f1a9fc3c839dceee1a692c221c2eab72b"
+  },
+  "geometry_helper": {
+    "path": "assets/research_manim_geometry.py",
+    "sha256": "a0038c49831b064799cb39f88b220f92486f8a0d2092cfe0a3dd03db0f9fb68e"
+  },
+  "render_equivalence": {
+    "reference_raw_mp4_sha256": "c49a1f57e8af7230ec77865487ccdc79d2a58252cfd1e8d0fae7aa7ceadbb3eb",
+    "self_contained_smoke_mp4_sha256": "c49a1f57e8af7230ec77865487ccdc79d2a58252cfd1e8d0fae7aa7ceadbb3eb"
+  }
+}
