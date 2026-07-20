@@ -17,7 +17,7 @@
 - Input data: Multi-frequency boundary-stage and groundwater-head observations along transects at Tuolumne Meadows in California and the Meghna River in Bangladesh.
 - Main method: Derive a harmonic solution of the two-lag groundwater-flow equation, estimate field transfer functions, fit amplitude and phase jointly, and propagate measurement uncertainty through repeated inversion.
 - Reference or benchmark: Classical groundwater diffusion, numerical frequency-domain solutions, Akaike Information Criterion, independent hydraulic-property ranges, and Morris global sensitivity.
-- Uncertainty or error treatment: Delete-one-block jackknife errors weight the inversion; 5000 Gaussian amplitude-phase realizations are refitted, filtered, and summarized by posterior means and one-standard-deviation intervals.
+- Uncertainty or error treatment: Delete-one-block jackknife errors weight the inversion; 5000 Gaussian amplitude-phase realizations are refitted, filtered, and summarized by ensemble means and one-standard-deviation intervals.
 - Main conclusion: The two-lag model reconciles amplitude and phase at both field sites with plausible diffusivities, but the lag parameters remain field-scale effective descriptors rather than unique microscopic mechanisms.
 
 ## Narrative Spine
@@ -42,9 +42,9 @@
 | ID | Visible input state | One operation | Visible output state | Validity basis | Source locator |
 | --- | --- | --- | --- | --- | --- |
 | M01 | A time-ordered history of hydraulic gradients | Integrate gradient history | Present Darcy flux assembled by a causal memory kernel | The kernel uses only past gradients and integrates to the effective hydraulic conductivity. | PDF page 3, Section 2.1, Equations 2-3 |
-| M02 | A two-channel exponential memory kernel | Transform memory kernel | A local constitutive law containing tau_q and tau_h | The selected kernel is the lowest-order two-timescale representation used by the paper. | PDF pages 3-4, Section 2.1, Equation 4 |
+| M02 | A causal field-scale memory relation | Form the paper's two-channel two-lag local representation | A local constitutive law containing tau_q and tau_h | Equation 4 is the selected local two-lag constitutive form; no exponential kernel is specified. | PDF pages 3-4, Section 2.1, Equation 4 |
 | M03 | The local two-lag constitutive law plus continuity | Combine constitutive continuity | A lagging groundwater-flow equation for hydraulic head | Mass conservation remains at present time while the constitutive relation carries memory. | PDF page 4, Section 2.2, Equations 5-7 |
-| M04 | The lagging head equation under sinusoidal boundary forcing | Solve harmonic response | A decaying complex wave with real attenuation alpha and phase gradient beta | The branch with negative real part is selected so the response decays inland. | PDF page 4, Section 2.3, Equations 8-15 |
+| M04 | The lagging head equation under sinusoidal boundary forcing | Solve harmonic response | A decaying complex wave with real attenuation alpha and positive phase-lag gradient beta | The decaying branch is lambda equal to minus alpha minus i beta, with beta equal to the magnitude of its imaginary part. | PDF page 4, Section 2.3, Equations 8-15 |
 | M05 | The attenuation alpha and phase gradient beta | Calculate mismatch ratio | Apparent diffusivities D_A and D_phi plus eta equal to alpha squared over beta squared | Classical amplitude and phase inversions are applied to the same lagging response. | PDF page 5, Section 2.4, Equations 20-21 |
 | M06 | Boundary and observation-well head spectra | Calculate transfer function | Frequency-specific observed amplitude ratios and phase shifts | The river-well cross-spectrum divided by the boundary autospectrum defines the complex transfer function. | PDF page 5, Section 2.6, Equations 26-27 |
 | M07 | Coherent multi-frequency amplitude-phase observations | Fit lagging parameters | Joint estimates of diffusivity tau_q and tau_h | The weighted least-squares objective uses the reported amplitude and phase errors. | PDF page 10, Appendix B, Equation B.1 |
@@ -52,7 +52,7 @@
 | M09 | Observed amplitude-phase values plus estimated errors | Sample Gaussian realizations | 5000 synthetic amplitude-phase data sets | The paper draws Gaussian realizations at retained frequencies using the estimated observation errors. | PDF page 10, Appendix B |
 | M10 | Each synthetic amplitude-phase data set | Fit uncertainty realization | One bounded parameter estimate per realization | Every realization is refitted with the bounded Levenberg-Marquardt procedure. | PDF page 10, Appendix B |
 | M11 | The collection of refitted parameter estimates | Filter aberrant refits | An interquartile-filtered ensemble of accepted estimates | The paper removes aberrant refits by its stated interquartile filtering step. | PDF page 10, Appendix B |
-| M12 | The filtered parameter ensemble | Summarize posterior intervals | Posterior means and one-standard-deviation parameter intervals | The reported uncertainty summary is computed after filtering the refits. | PDF page 10, Appendix B; Appendix C |
+| M12 | The filtered parameter ensemble | Summarize ensemble intervals | Ensemble means and one-standard-deviation parameter intervals | The reported uncertainty summary is computed after filtering the refits. | PDF page 10, Appendix B |
 | M13 | The analytical harmonic solution and a discretized aquifer domain | Compare numerical response | Coincident analytical and finite-difference amplitude-phase responses | Appendix A uses a second-order tridiagonal frequency-domain solution as the independent numerical check. | PDF pages 9-10, Appendix A, Figure A.1 |
 | M14 | Lag ratio frequency and scaled distance across the parameter domain | Evaluate Morris sensitivity | Distance-dependent sensitivity rankings for amplitude and phase | Equations 22-25 define the Morris elementary effects and overall sensitivity index used in Figure 6. | PDF pages 5 and 8, Section 2.5, Equations 22-25, Figure 6 |
 
@@ -68,7 +68,7 @@
 | D | Scene 6 | aquifer diffusion scale | hydraulic diffusivity | length squared per time | scales the harmonic propagation |
 | omega | Scene 7 | rotating boundary phasor | forcing angular frequency | inverse time | drives the complex wave |
 | alpha | Scene 7 | shrinking envelope slope | amplitude attenuation coefficient | inverse length | produces D_A |
-| beta | Scene 7 | moving crest slope | phase gradient | inverse length | produces D_phi |
+| beta | Scene 7 | moving crest slope | positive phase-lag gradient equal to the magnitude of Im lambda | inverse length | produces D_phi |
 | D_A | Scene 8 | teal diffusivity gauge | apparent amplitude diffusivity | length squared per time | compared with D_phi |
 | D_phi | Scene 8 | red diffusivity gauge | apparent phase diffusivity | length squared per time | compared with D_A |
 | eta | Scene 8 | centered regime scale | D_phi divided by D_A | dimensionless | maps the mismatch regimes |
@@ -193,7 +193,7 @@
 - Downsample legibility: q K kappa and the integration direction remain readable.
 - Step detail: Pair each past gradient with its kernel weight; accumulate the products; reveal the present flux.
 - Why this step is valid: This is valid because The kernel is causal and its integral equals effective hydraulic conductivity.
-- Uncertainty shape: The width of the fading kernel shows the unresolved field-scale memory support.
+- Uncertainty shape: None. The displayed nonnegative fading kernel is schematic; the paper specifies causal decay and total area K, not a kernel width or uncertainty distribution.
 - Transition bridge: From this scene to the next The continuous kernel is compressed into two response clocks.
 - Evidence locator: PDF page 3, Section 2.1, Equations 2-3
 - Input state: A time-ordered history of hydraulic gradients
@@ -235,10 +235,10 @@
 - Uncertainty shape: The distance between the two clock markers shows that the effective time scales need not coincide.
 - Transition bridge: From this scene to the next The local constitutive equation moves into a water-balance control volume.
 - Evidence locator: PDF pages 3-4, Section 2.1, Equation 4
-- Input state: A two-channel exponential memory kernel
-- Operation: Transform memory kernel
+- Input state: A causal field-scale memory relation
+- Operation: Form the paper's two-channel two-lag local representation
 - Output state: A local constitutive law containing tau_q and tau_h
-- Validity basis: The selected kernel is the lowest-order two-timescale representation used by the paper.
+- Validity basis: Equation 4 is the selected local two-lag constitutive form; no exponential kernel is specified.
 - What the viewer learns: Tau_q governs flux adjustment while tau_h governs gradient-side head equilibration.
 - Minimal on-screen text: Two response clocks
 - Narration draft: A two-channel kernel yields a local relation with one flux-adjustment time and one head-equilibration time.
@@ -308,21 +308,21 @@
 - Theme tokens: title 38 px body 30 px math 38 px focal teal warning red reference gold.
 - Downsample legibility: Alpha beta envelope and crest markers remain separate.
 - Step detail: Rotate the boundary phasor; trace the inland wave; fit its envelope; mark crest offsets; split the complex wavenumber.
-- Why this step is valid: This is valid because Equations 10-15 give the decaying harmonic branch with lambda equal to minus alpha plus i beta.
+- Why this step is valid: This is valid because Equations 10-15 give the decaying harmonic branch with lambda equal to minus alpha minus i beta, where beta is the positive magnitude of its imaginary part.
 - Uncertainty shape: The distance between the envelope and crest markers remains the visible mismatch diagnostic.
 - Transition bridge: From this scene to the next Alpha and beta move onto the two classical diffusivity gauges.
 - Evidence locator: PDF page 4, Section 2.3, Equations 8-15
 - Input state: The lagging head equation under sinusoidal boundary forcing
 - Operation: Solve harmonic response
-- Output state: A decaying complex wave with real attenuation alpha and phase gradient beta
-- Validity basis: The branch with negative real part is selected so the response decays inland.
+- Output state: A decaying complex wave with real attenuation alpha and positive phase-lag gradient beta
+- Validity basis: The decaying branch is lambda equal to minus alpha minus i beta, with beta equal to the magnitude of its imaginary part.
 - What the viewer learns: The two lags change envelope decay and phase accumulation through one complex wavenumber.
-- Minimal on-screen text: lambda = -alpha + i beta
-- Narration draft: The harmonic solution separates one complex wavenumber into attenuation alpha and phase gradient beta.
+- Minimal on-screen text: lambda = -alpha - i beta; beta = |Im lambda|
+- Narration draft: The harmonic solution uses the decaying branch. Alpha is attenuation, while beta is the positive magnitude of the negative imaginary part and therefore the phase-lag gradient.
 - Formula: h_D equals exp minus alpha x_D times cos omega_D t_D minus beta x_D
 - Symbol handoff: The drawn envelope becomes exp minus alpha x_D; the moving crest becomes beta x_D; the rotating boundary becomes omega_D t_D.
 - Formula split plan: Write the envelope factor first; write the cosine phase second; combine them after the wave has propagated.
-- Formula derivation steps: Draw the phasor; propagate the sinusoid; isolate the envelope; isolate the crest angle; assemble the harmonic head.
+- Formula derivation steps: Draw the phasor; propagate the sinusoid; select lambda equal to minus alpha minus i beta; define beta as the positive magnitude of Im lambda; isolate the envelope and crest angle; assemble the harmonic head.
 - Frame zones: upper title band center wave field lower formula lane.
 - Keep-clear pairs: alpha label versus envelope; beta label versus crest marker; formula versus aquifer.
 - Transition-frame audit: inspect the entry frame midpoint frame and settled frame for continuity and separation.
@@ -376,17 +376,17 @@
 - Method step: M06
 - Storyboard trigger: The theory must now receive amplitude and phase from observed head records.
 - Viewer question: How are the field signatures extracted at each frequency?
-- Visual object: Boundary and well hydrographs rotate into spectra whose complex ratio yields magnitude and angle.
+- Visual object: Paired boundary and well head records beside the complex transfer-function vector defined by their cross-spectral ratio.
 - Visual antecedent: earlier in this scene before formula
 - Antecedent timing: earlier in this scene before formula
 - Transformation from previous scene: Points on the regime map unfold into paired time series at the boundary and wells.
 - Motion purpose: This motion shows how we Show that amplitude and phase are measured from one complex transfer function.
 - Motion class: same-object-transform
 - Focal object: The complex river-well transfer-function vector.
-- Salience plan: Raw hydrographs dim after their retained harmonics become spectral vectors.
+- Salience plan: The paired records remain visible while the transfer-function vector separates magnitude from phase.
 - Theme tokens: title 38 px body 30 px math 38 px focal teal warning red frame margin 0.45.
-- Downsample legibility: Boundary spectrum well spectrum magnitude and angle remain identifiable.
-- Step detail: Align boundary and well signals; expose coherent harmonics; form the cross-spectrum; divide by the boundary autospectrum; split magnitude and argument.
+- Downsample legibility: Boundary and well time-series traces, transfer-function magnitude, and phase angle remain identifiable.
+- Step detail: Align the boundary and well records; state the cross-spectral ratio; split the resulting complex transfer function into magnitude and argument.
 - Why this step is valid: This is valid because Equations 26-27 define the complex transfer function and its observed amplitude and phase.
 - Transition bridge: From this scene to the next Measured magnitude-angle pairs move onto the analytical amplitude-phase curves.
 - Evidence locator: PDF page 5, Section 2.6, Equations 26-27; PDF page 10, Appendix B
@@ -398,15 +398,15 @@
 - Minimal on-screen text: Magnitude and angle
 - Narration draft: Cross-spectral analysis produces one complex transfer function at each well and frequency. Its magnitude is attenuation; its argument is phase shift.
 - Formula: H_j of omega equals S_j0 of omega over S_00 of omega
-- Symbol handoff: Boundary spectrum becomes S_00; river-well cross-spectrum becomes S_j0; the ratio arrow becomes H_j.
-- Formula split plan: Reveal numerator and denominator on their source spectra; form the ratio only after both are labeled.
-- Formula derivation steps: Transform the two records; form spectral products; divide the products; read magnitude and argument.
+- Symbol handoff: The paired records motivate the source-defined transfer-function formula; the displayed complex vector becomes magnitude A_h and phase phi.
+- Formula split plan: Reveal the source-defined cross-spectral ratio as a whole after the paired records and complex vector are established.
+- Formula derivation steps: Show the paired records as a schematic introduction; display the source-defined cross-spectrum/autospectrum ratio; read magnitude and argument from the complex vector.
 - Uncertainty shape: Intervals around amplitude and phase at each retained harmonic.
-- Frame zones: upper title band left hydrographs center spectra right complex vector lower formula lane.
-- Keep-clear pairs: formula versus spectra; angle arc versus vector label.
+- Frame zones: upper title band left paired records right complex vector lower formula lane.
+- Keep-clear pairs: formula versus records; phase label versus vector magnitude label.
 - Transition-frame audit: inspect the entry frame midpoint frame and settled frame for continuity and separation.
-- Layout guard: assert_scene_layout(scene=self, pending_items=[heading, formula, spectra], labels=[heading, formula, spectral_labels], blockers=[spectra], frame_items=[heading, formula, spectra])
-- QA risks: too many spectral bins and confusion between autospectrum and cross-spectrum.
+- Layout guard: assert_scene_layout(scene=self, pending_items=[heading, caption, records, vector, formula], labels=[heading, caption, phase_label, magnitude_label, formula], blockers=[records, vector], frame_items=[heading, caption, records, vector, formula])
+- QA risks: implying that the displayed sinusoidal records themselves are a numerical spectral reconstruction rather than a schematic introduction to the source-defined ratio.
 
 ### Scene 10: Fit both signatures together
 - Source-derived rules: H04, H07, H08, H12, H13, H17, H20
@@ -415,7 +415,7 @@
 - Method step: M07
 - Storyboard trigger: The measured amplitude-phase pairs require one joint parameter set.
 - Viewer question: Can one lagging parameter set fit all retained frequencies and distances?
-- Visual object: Tuolumne and Meghna amplitude-phase points attract one analytical curve per site.
+- Visual object: Tuolumne and Meghna observations beside approximate manual graphical traces of the published fits in Figures 2 and 3.
 - Visual antecedent: prior Scene 9
 - Transformation from previous scene: Complex transfer vectors split into measured magnitudes and angles on two field panels.
 - Motion purpose: This motion shows how we Make the simultaneous inversion visible as geometric alignment across both signatures.
@@ -424,7 +424,7 @@
 - Salience plan: Nonactive site dims while the current site curve moves; residual connectors remain thin.
 - Theme tokens: title 38 px body 30 px annotation 24 px focal teal warning red reference gold.
 - Downsample legibility: Site names and amplitude-versus-phase roles remain readable.
-- Step detail: Place observed points; draw residual connectors; vary D tau_q tau_h; shorten weighted residuals across both signatures.
+- Step detail: Place the source observations and approximate manually traced published fits; show their joint alignment without presenting the traces as recomputed curves or source data.
 - Why this step is valid: This is valid because Appendix B defines the weighted least-squares objective and bounded parameter estimation.
 - Transition bridge: From this scene to the next The fitted curves and residuals move onto an information balance.
 - Evidence locator: PDF page 10, Appendix B, Equation B.1; PDF page 6, Table 1, Figures 2-3
@@ -520,15 +520,15 @@
 - Method step: M10
 - Storyboard trigger: Alternative data sets matter only after passing through the same inverse model.
 - Viewer question: How does each plausible data set alter the fitted parameters?
-- Visual object: Representative sampled data sets pull one parameter marker through bounded D tau_q tau_h space.
+- Visual object: Representative sampled data sets cross the inversion bridge and populate a bounded projection of D against tau_h divided by tau_q.
 - Visual antecedent: prior Scene 12
 - Transformation from previous scene: Sample clouds stream through the joint-inversion curve and emerge as parameter points.
 - Motion purpose: This motion shows how we Make uncertainty propagation an explicit data-to-parameter transformation.
 - Motion class: same-object-transform
-- Focal object: The moving parameter marker in bounded three-parameter space.
+- Focal object: The bounded two-dimensional parameter projection and its accumulating estimates.
 - Salience plan: The inversion operator remains a thin bridge while accepted parameter points accumulate.
 - Theme tokens: title 38 px body 30 px annotation 24 px focal teal warning red reference gold.
-- Downsample legibility: D tau_q tau_h axes and parameter-cloud extent remain visible.
+- Downsample legibility: The D and tau_h divided by tau_q axes, parameter bounds, and cloud extent remain visible.
 - Step detail: Select a representative realization; move the curve to its fit; emit its parameter marker; repeat with a short sequence.
 - Why this step is valid: This is valid because Appendix B states that all retained realizations are refitted with bounded Levenberg-Marquardt.
 - Transition bridge: From this scene to the next The accumulated parameter cloud exposes isolated aberrant refits.
@@ -539,13 +539,13 @@
 - Validity basis: Every realization is refitted with the bounded Levenberg-Marquardt procedure.
 - What the viewer learns: Parameter uncertainty is generated by rerunning the same inverse problem.
 - Minimal on-screen text: Data to parameters
-- Narration draft: Each plausible data set is inverted again, producing one bounded estimate of D tau_q and tau_h.
+- Narration draft: Each plausible data set is inverted again. The resulting estimates are shown as a bounded projection of diffusivity against the lag-time ratio.
 - Formula: none
-- Uncertainty shape: A three-parameter point cloud generated by repeated inversion.
+- Uncertainty shape: A two-dimensional projection of the repeated three-parameter refits; the animation does not claim that the projection is the full joint distribution.
 - Frame zones: upper title band left data cloud center inversion bridge right parameter space.
 - Keep-clear pairs: axis labels versus parameter points; inversion bridge versus caption.
 - Transition-frame audit: inspect the entry frame midpoint frame and settled frame for continuity and separation.
-- Layout guard: assert_scene_layout(scene=self, pending_items=[heading, caption, parameter_cloud], labels=[heading, caption, axis_labels], blockers=[parameter_cloud], frame_items=[heading, caption, parameter_cloud])
+- Layout guard: assert_scene_layout(scene=self, pending_items=[heading, caption, sampled_curves, parameter_projection], labels=[heading, caption, axis_labels], blockers=[sampled_curves, parameter_bounds, parameter_points], frame_items=[heading, caption, sampled_curves, parameter_projection])
 - QA risks: implying full Bayesian posterior sampling rather than repeated-error propagation.
 
 ### Scene 14: Remove aberrant refits
@@ -555,18 +555,18 @@
 - Method step: M11
 - Storyboard trigger: A small number of unstable refits can distort the reported spread.
 - Viewer question: Which refits enter the final uncertainty summary?
-- Visual object: An interquartile fence closes around the parameter cloud and fades out outlying refits.
+- Visual object: A schematic point cloud separates retained estimates from aberrant refits during the paper-reported interquartile filtering.
 - Visual antecedent: prior Scene 13
-- Transformation from previous scene: The parameter axes flatten into marginal distributions while quartile fences appear.
+- Transformation from previous scene: The parameter cloud remains a schematic ensemble while only designated aberrant refits fade; no marginal projection or acceptance fence is introduced.
 - Motion purpose: This motion shows how we Show the reported filtering rule and its effect on the ensemble.
 - Motion class: same-object-transform
-- Focal object: The interquartile acceptance fence.
+- Focal object: The contrast between retained estimates and schematically excluded aberrant refits.
 - Salience plan: Accepted points retain focal color while excluded points fade to pale warning red.
 - Theme tokens: title 38 px body 30 px annotation 24 px focal teal warning red reference gold.
-- Downsample legibility: Quartile markers accepted points and excluded points remain distinguishable by shape as well as color.
-- Step detail: Project the cloud onto each parameter; place quartile markers; extend the stated fence; fade points outside the accepted range.
+- Downsample legibility: Retained and schematically excluded points remain distinguishable by opacity and color.
+- Step detail: Remove schematically identified aberrant refits without displaying a fence multiplier or claiming per-parameter filtering.
 - Why this step is valid: This is valid because Appendix B reports interquartile filtering of aberrant refits.
-- Transition bridge: From this scene to the next Accepted points condense into posterior means and widths.
+- Transition bridge: From this scene to the next Accepted points condense into reported ensemble means and widths.
 - Evidence locator: PDF page 10, Appendix B
 - Input state: The collection of refitted parameter estimates
 - Operation: Filter aberrant refits
@@ -576,8 +576,8 @@
 - Minimal on-screen text: Filter aberrant refits
 - Narration draft: The paper filters aberrant refits before summarizing parameter uncertainty.
 - Formula: none
-- Uncertainty shape: Marginal parameter distributions with explicit quartile fences.
-- Frame zones: upper title band center marginal distributions lower rule band.
+- Uncertainty shape: A point cloud in which only schematically excluded refits fade; no numerical acceptance boundary is drawn.
+- Frame zones: upper title band center point cloud lower source-boundary caption.
 - Keep-clear pairs: quartile labels versus density marks; excluded markers versus caption.
 - Transition-frame audit: inspect the entry frame midpoint frame and settled frame for continuity and separation.
 - Layout guard: assert_scene_layout(scene=self, pending_items=[heading, caption, distributions], labels=[heading, caption, quartile_labels], blockers=[distributions], frame_items=[heading, caption, distributions])
@@ -590,9 +590,9 @@
 - Method step: M12
 - Storyboard trigger: The accepted ensemble must be summarized in the form reported by the paper.
 - Viewer question: What uncertainty accompanies each fitted parameter?
-- Visual object: Accepted parameter clouds collapse into mean markers with one-standard-deviation bands.
+- Visual object: Accepted parameter estimates collapse into mean markers with one-standard-deviation bands.
 - Visual antecedent: prior Scene 14
-- Transformation from previous scene: Quartile fences recede while accepted points contract onto their means and retain their spread as bands.
+- Transformation from previous scene: The retained ensemble contracts onto its reported means and preserves its spread as bands.
 - Motion purpose: This motion shows how we Preserve uncertainty as visible width rather than hide it behind best-fit values.
 - Motion class: same-object-transform
 - Focal object: The three mean markers and one-standard-deviation bands.
@@ -600,12 +600,12 @@
 - Theme tokens: title 38 px body 30 px annotation 24 px focal teal warning red reference gold.
 - Downsample legibility: Mean markers and band endpoints remain visible without dense numeric labels.
 - Step detail: Calculate the accepted ensemble mean; transfer point spread into a one-standard-deviation band; align D tau_q tau_h summaries.
-- Why this step is valid: This is valid because Appendix B reports posterior means and one-sigma intervals after filtering.
+- Why this step is valid: This is valid because Appendix B reports ensemble means and one-sigma intervals after filtering.
 - Transition bridge: From this scene to the next Summary bands overlay the two site-specific fitted values.
-- Evidence locator: PDF page 10, Appendix B; Appendix C
+- Evidence locator: PDF page 10, Appendix B
 - Input state: The filtered parameter ensemble
-- Operation: Summarize posterior intervals
-- Output state: Posterior means and one-standard-deviation parameter intervals
+- Operation: Summarize ensemble intervals
+- Output state: Ensemble means and one-standard-deviation parameter intervals
 - Validity basis: The reported uncertainty summary is computed after filtering the refits.
 - What the viewer learns: The fitted parameters are reported with uncertainty widths generated from the measurement-error analysis.
 - Minimal on-screen text: Mean plus or minus one sigma
@@ -660,7 +660,7 @@
 - Method step: M14
 - Storyboard trigger: A valid model can still be weakly identifiable under poor forcing or observation geometry.
 - Viewer question: Which combinations of lag ratio frequency and distance control amplitude or phase?
-- Visual object: Morris sensitivity curves for amplitude and phase change rank with scaled distance.
+- Visual object: Approximate graphical traces digitized from Figure 6 show how the reported sensitivity rankings change across the scaled-distance coordinate.
 - Visual antecedent: prior Scene 16
 - Transformation from previous scene: The verified response curves separate into amplitude and phase sensitivity traces while distance remains the horizontal coordinate.
 - Motion purpose: This motion shows how we Convert model behavior into guidance for frequency and observation-distance selection.
@@ -669,7 +669,7 @@
 - Salience plan: Only the active parameter trace is saturated while other factors remain thin and patterned.
 - Theme tokens: title 38 px body 30 px annotation 24 px focal teal warning red reference gold.
 - Downsample legibility: Amplitude phase and scaled-distance roles remain readable by line style and marker shape.
-- Step detail: Perturb one factor along Morris trajectories; aggregate effects; combine magnitude and spread; trace the overall index across distance.
+- Step detail: Preserve the qualitative ordering and crossings visible in Figure 6; display the manually traced curves without presenting them as newly computed Morris indices.
 - Why this step is valid: This is valid because Equations 22-25 define the Morris indices and Figure 6 reports their distance dependence.
 - Transition bridge: From this scene to the next The sensitivity traces become practical gates before the field interpretation returns.
 - Evidence locator: PDF pages 5 and 8, Section 2.5, Equations 22-25, Figure 6
@@ -677,17 +677,17 @@
 - Operation: Evaluate Morris sensitivity
 - Output state: Distance-dependent sensitivity rankings for amplitude and phase
 - Validity basis: Equations 22-25 define the Morris elementary effects and overall sensitivity index used in Figure 6.
-- Aha object: The source-backed crossing sensitivity rankings become the central visible relation.
+- Aha object: The Figure 6 ordering and crossings become the central visible relation.
 - What the viewer learns: Phase and amplitude do not carry equal information across all frequencies and distances.
 - Minimal on-screen text: Information depends on scale
 - Narration draft: Sensitivity changes with frequency and distance. The experiment must resolve the part of the signal that carries information about each lag.
 - Formula: none
-- Uncertainty shape: Distance-dependent sensitivity curves with distinct line styles and markers.
+- Uncertainty shape: No uncertainty interval is encoded; the visible shape is the spread and crossing of approximate Figure 6 traces across the scaled-distance axis.
 - Frame zones: upper title band center sensitivity plot lower guidance band.
 - Keep-clear pairs: trace labels versus curves; guidance text versus x axis.
 - Transition-frame audit: inspect the entry frame midpoint frame and settled frame for continuity and separation.
 - Layout guard: assert_scene_layout(scene=self, pending_items=[heading, caption, sensitivity], labels=[heading, caption, trace_labels], blockers=[sensitivity], frame_items=[heading, caption, sensitivity])
-- QA risks: compressing the Morris method into an unexplained ranking or making universal design claims.
+- QA risks: presenting manually digitized graphical traces as exact Morris calculations or making universal design claims.
 
 ### Scene 18: Return to the two field transects
 - Source-derived rules: H01, H06, H08, H12, H13, H17, H21
