@@ -1,0 +1,1122 @@
+RESEARCH ARTICLE                           Analysis of Unconﬁned Flow Induced by Constant Rate
+10.1029/2018WR023893
+                                           Pumping Based on the Lagging Theory
+Key Points:
+• This study develops a new model for
+                                           Ye‐Chen Lin1, Ching‐Sheng Huang2             , and Hund‐Der Yeh1
+  describing unconﬁned ﬂow due to          1
+  pumping by introducing two lag
+                                           Institute of Environmental Engineering, National Chiao Tung University, Hsinchu, Taiwan, 2State Key Laboratory of
+  time parameters in Darcy's law           Hydrology‐Water Resources and Hydraulic Engineering, Center for Global Change and Water Cycle, Hohai University,
+• The parameters in a linearized free      Nanjing, China
+  surface equation are considered to
+  reﬂect the effects of capillary fringe
+  and force on drawdown                    Abstract This study proposes a new mathematical model for describing the drawdown distribution due
+• Field data are analyzed based on the
+  solution of the model and least          to a constant rate pumping (CRP) in an unconﬁned aquifer considering the lagging theory. We introduce
+  squares approach to determine            two lag times in Darcy's law and in turn in a free surface equation to reﬂect the effects of the capillary fringe
+  aquifer parameters                       and the capillary suction on the water table motion. The present free surface equation can reduce to those
+                                           used in previous studies. The Laplace and Weber transform methods are used to derive the semianalytical
+                                           solution to the model including the effect of wellbore storage. The algorithm of numerical Laplace inversion
+Correspondence to:                         is applied to obtain the transient solution of the model. We ﬁnd that the delay index, commonly used in the
+H.‐D. Yeh,
+                                           literature, is equivalent to the lag time associated with the effect of the capillary suction. The sensitivity
+hdyeh@mail.nctu.edu.tw
+                                           analysis is performed to assess the drawdown behavior in response to the change in each aquifer parameter.
+                                           The drawdown distributions predicted by the present solution agree fairly well to the ﬁeld data taken from
+Citation:
+                                           CRP tests at Cape Cod, Massachusetts; the Canadian Forces Base Borden, Ontario; and Saint Pardon de
+Lin, Y.‐C., Huang, C.‐S., & Yeh, H.‐D.
+(2019). Analysis of unconﬁned ﬂow          Conques, Gironde (France). The lag times determined by both CRP tests seem to decrease linearly with
+induced by constant rate pumping           increasing distance on the logarithmic scale from the pumping well. The consideration of two lag times
+based on the lagging theory. Water
+                                           considerably improves the accuracy in estimated speciﬁc yields.
+Resources Research, 55, 3925–3940.
+https://doi.org/10.1029/2018WR023893
+
+Received 14 AUG 2018
+Accepted 15 APR 2019
+                                           1. Introduction
+Accepted article online 24 APR 2019        The constant rate pumping (CRP) test is one of the commonly used aquifer tests to determine aquifer
+Published online 7 MAY 2019
+                                           hydraulic parameters (Charbeneau, 2000). In the test, the aquifer is pumped with a constant discharge rate,
+                                           and the temporal drawdown data are collected at observation wells. The hydraulic parameters are then
+                                           determined by analyzing the measured data with analytical approaches coupled with an optimization
+                                           method or a graphical type curve method. The behavior of unconﬁned ﬂow differs signiﬁcantly from that
+                                           of conﬁned ﬂow if pumping continues long enough. The temporal distribution of measured drawdown data
+                                           often demonstrates an S‐shaped curve, which may be divided into three segments as early time (ﬁrst seg-
+                                           ment), intermediate time (second segment), and late time periods (third segment; Neuman, 1972). The
+                                           pumped water is mainly from the aquifer storage in the ﬁrst segment. Later, the effect of the gravity drainage
+                                           due to the water table decline becomes profound and the temporal drawdown curve exhibits a ﬂattened seg-
+                                           ment in the second segment. In the third segment, the pumped water is from both the aquifer storage and the
+                                           pore space on the water table.
+                                           To examine the effect of gravity drainage from the pore space, Boulton (1954a) proposed an analytical model
+                                           for CRP tests in an unconﬁned aquifer by embedding a convolution integral term in the ﬂow equation repre-
+                                           senting the delayed gravity drainage as an exponential decay function of time. He developed the model based
+                                           on the Dupuit‐Forchheimer assumption along with an empirical parameter named delay index in the con-
+                                           volution integral term. Later, a variety of approaches incorporated the effect of gravity drainage on uncon-
+                                           ﬁned ﬂow by either considering the unsaturated zone (e.g., Kroszynski & Dagan, 1975; Mathias & Butler,
+                                           2006; Mishra & Neuman, 2010; Tartakovsky & Neuman, 2007) or embedding the effect in a free surface
+                                           equation (e.g., Boulton, 1954b; Dagan, 1967; Malama, 2011; Moench, 1995; Neuman, 1972). Boulton
+                                           (1954b) derived a linearized free surface equation in his CRP model considering radial and vertical ﬂows
+                                           but neglecting aquifer storage. Dagan (1967) extended Boulton's (1954b) model to account for the effect of
+                                           well partial penetration. Neuman (1972) further included aquifer storage in the model for a fully penetrating
+©2019. American Geophysical Union.
+                                           well, and later his model considered the effect of well partial penetration (Neuman, 1974). Nwankwor et al.
+All Rights Reserved.                       (1992) revealed the Neuman (1972) model cannot adequately depict the unconﬁned ﬂow behavior because
+
+
+LIN ET AL.                                                                                                                                             3925
+                                                                                                                              19447973, 2019, 5, Downloaded from https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2018WR023893 by Chung Yuan Christian University, Wiley Online Library on [13/07/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+              Water Resources Research                                                      10.1029/2018WR023893
+
+
+
+             the gravity drainage is instantaneously released from the water table decline deﬁned by his free surface equa-
+             tion. The speciﬁc yield estimated by Neuman's model is lower than the laboratory results. To address this
+             problem, Moench (1995) adopted a convolution integral term to modify the free surface equation proposed
+             by Neuman (1972) for improving the accuracy of an estimated speciﬁc yield. His free surface equation can be
+             considered as a noninstantaneous gravity drainage version of Neuman's (1972) one. Herrera et al. (1978)
+             demonstrated that the Boulton (1954b) model can be obtained by vertically averaging the hydraulic head
+             of the Neuman (1972) model with a linearized free surface equation. The delay index in their model
+             (Herrera et al., 1978, equation (14)) is a function of distance from a pumping well. Moench (1997) extended
+             the Moench (1995) work to explore the effects of wellbore storage, wellbore skin, and well partial penetra-
+             tion. Later, Moench et al. (2001) analyzed a 72‐hr CRP test at Cape Cod, Massachusetts using Moench's
+             (1997) model and presented the use of multiple convolution integral terms in the linearized free surface
+             equation. He applied at least three Boulton's (1954a) convolution integral terms to ﬁt the drawdown data
+             in the second segment of the temporal drawdown curves. Mathias and Butler (2006) however mentioned
+             that the use of multiple convolution terms may be overparameterized. Recently, Malama (2011) proposed
+             an alternative linearized free surface equation for examining the effect of the quadratic gradient terms in
+             the nonlinear free surface equation. His model was applied to estimate the speciﬁc yield of the unconﬁned
+             aquifer for a CRP test at the Boise Hydrogeophysical Research Site. Endres et al. (2007) analyzed the draw-
+             down data conducted by Bevan et al. (2005) at the Borden site and determined the aquifer parameters using
+             the models of Neuman (1974), Moench (1995), and Moench et al. (2001) with the WTAQ software package
+             (Barlow & Moench, 1999). The results suggest that the speciﬁc yield is underestimated by Neuman's model
+             as compared with laboratory outcomes.
+             The capillary fringe above the water table is a tension‐saturated zone because the pores there are saturated
+             with negative pressure (Freeze & Cherry, 1979). It may raise the water from 2.5 cm in ﬁne gravel to 200 cm in
+             silt (Todd & Mays, 2005) and could have a signiﬁcant inﬂuence on the hydrologic process in shallow water
+             table regimes (Gillham, 1984). When the water table declines due to pumping, the gravity may cause the
+             pore water drainage from the capillary fringe to the aquifer. Under this circumstance, the gravity increas-
+             ingly affects the drainage process in the late ﬁrst segment and the early second segment of the S‐shaped
+             drawdown curve. Nwankwor et al. (1992) conﬁrmed that the capillary fringe plays a role in the drainage pro-
+             cess within the ﬁrst segment of the unconﬁned temporal drawdown curve by conducting a pumping test at
+             Canadian Forces Base Borden, Ontario, Canada.
+             After the pore water drained above the water table, the curvature of the air‐water interface within the soil
+             particles becomes sharper with increasing capillary suction. Large pores in the unsaturated zone may empty
+             under lower suction, while small pores with the interfaces (menisci) of sharper curvature would empty at
+             higher suction (Bear, 1979, p. 198). A certain amount of water in the pore is retained by the capillary force
+             against the gravitational force. It takes time to complete the drainage, and the time lag should be taken into
+             account (Bear, 1979, p. 206). Nwankwor et al. (1992) stated that when the rate of the water table declining is
+             greater than the water content proﬁle moving rate, more water volume would be stored above the water
+             table than that under the hydrostatic condition. It is called excess storage deﬁned in their work. Similarly,
+             Bevan et al. (2005) conducted a 7‐day CRP test in an unconﬁned aquifer at Canadian Forces Base Borden,
+             Ontario, Canada. They also found the same phenomenon (deﬁned as excess capillary fringe storage in their
+             study) indicating that the pore water in the capillary fringe would not instantaneously ﬂow to the aquifer
+             once the water table declines. The pore water from excess storage then gradually recharges to the aquifer
+             below. Therefore, the capillary force leads to delayed gravity drainage over the entire second segment and
+             the early third segment of the drawdown curve.
+             Most existing analytical models scarcely considered the effect of the capillary fringe on the unconﬁned
+             ﬂow due to its complexity in analysis. As mentioned above, some researchers proposed physically based
+             models considering the unsaturated ﬂow (e.g., Kroszynski & Dagan, 1975; Liang et al., 2017; Mishra &
+             Neuman, 2010; Tartakovsky & Neuman, 2007). They incorporated a saturated capillary fringe extending
+             from the water table (i.e., zero pressure) to the elevation where the negative pressure head is equal to
+             the air entry pressure. Although these models are comprehensive to depict the unconﬁned ﬂow for a
+             CRP, more information on the unsaturated zone may be difﬁcult to obtain quantitatively. On the other
+             hand, Neuman's (1972, 1974) models were commonly used in head predictions and parameter estimations
+             for ﬁeld CRP problems. The value of the speciﬁc yield estimated by Neuman's model is usually
+
+
+LIN ET AL.                                                                                                            3926
+                                                                                                                                                           19447973, 2019, 5, Downloaded from https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2018WR023893 by Chung Yuan Christian University, Wiley Online Library on [13/07/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+                                       Water Resources Research                                                        10.1029/2018WR023893
+
+
+
+                                                                         reasonable, but anomalous small values of that can be founded in some
+                                                                         practices as compared with laboratory results. The problem of small
+                                                                         values may be attributed to the use of instantaneous gravity drainage
+                                                                         in his free surface equation (Bevan et al., 2005; Endres et al., 2007;
+                                                                         Malama, 2011; Nwankwor et al., 1992). Moench (1995, 1997) rectiﬁed
+                                                                         this problem by considering a convolution term in the free surface equa-
+                                                                         tion. His model can be viewed as a phenomenological model (Endres
+                                                                         et al., 2007) because the delay index in his model simpliﬁes the drainage
+                                                                         process in the unsaturated zone and leads to a reasonable estimate of
+                                                                         speciﬁc yield (Moench, 1995).
+                                                                         Interestingly, Su et al. (2015) conducted a slug test in a conﬁned aquifer
+                                                                         and analyzed the drawdown data using a time‐fractional dual‐porosity
+                                                                         model with two parameters for two different levels of pores in the model.
+Figure 1. Schematic diagram for the conceptual model of an unconﬁned
+aquifer under constant rate pumping.                                     On the basis of the analyzed results, they found that the water mainly
+                                                                         releases from large pores at early times while releasing from both large
+                                      and small pores at late times. The drainage behavior is affected by different levels of the pore sizes in the
+                                      unsaturated zone. Recently, Lin and Yeh (2017) added two time lag parameters in Darcy's law to reﬂect
+                                      the lagging effects on ﬂow due to CRP tests in leaky aquifers. Their model is analogous to the dual‐phase‐
+                                      lag model developed by Tzou (1995) for heat conduction problems. In this article, we propose a new phe-
+                                      nomenological model for unconﬁned ﬂow with two lag time parameters in Darcy's law for describing the
+                                      water table decline due to a CRP test. We expect that the inclusion of lagging effects in the model may yield
+                                      a more complete description of the drainage process above the water table when pumping unconﬁned aqui-
+                                      fers. The model has a new free surface equation accounting for the time lags in Darcy's law related to the
+                                      effects of the capillary fringe and capillary force on the unconﬁned ﬂow. The wellbore storage effect is
+                                      included in the model. We solve the model by using the Laplace and Weber transform methods to obtain
+                                      the drawdown solution. On the basis of the present solution, the lagging effect on the aquifer drawdown
+                                      is investigated. We perform the sensitivity analysis to explore the drawdown behavior in response to the
+                                      change in each of the hydraulic parameters. Additionally, the present solution is applied to determine the
+                                      aquifer parameters via the analyses of measured drawdown data recorded at CRP tests reported by
+                                      Moench et al. (2001) at Cape Cod, Massachusetts, USA; by Bevan et al. (2005) at Canadian Forces Base
+                                      Borden, Ontario, Canada; and by Bureau de Recherches Géologiques et Mini`eres at Saint Pardon de
+                                      Conques, Gironde, France.
+
+                                     2. Methodology
+                                     Figure 1 shows the schematic diagram for the conceptual model describing spatiotemporal head distribution
+                                     due to a CRP test with a constant rate Q [L3/T] in an unconﬁned aquifer. The drawdown s [L] is used in the
+                                     following sections to represent a reduction in the hydraulic head measured at an observation point. The ori-
+                                     gin of the coordinate (r, z) [L] is set at the center of the well and the bottom of the aquifer. The averaged aqui-
+                                     fer thickness is b [L]. The pumping well has a ﬁnite radius rw [L] with a casing radius rc [L] and partially
+                                     penetrates the aquifer with a screen installed from elevation z = d to z = l [L]. The aquifer is anisotropic with
+                                     vertical hydraulic conductivity Kz and radial hydraulic conductivity Kr [L/T]. The water extracted by the well
+                                     is produced from the aquifer storage and the gravity drainage on the water table. The aquifer speciﬁc storage
+                                     and speciﬁc yield are respectively denoted as Ss [1/L] and Sy [‐].
+                                     2.1. Model Description
+                                     The governing equation describing the drawdown distribution in the unconﬁned aquifer induced by pump-
+                                     ing can be expressed as
+                                                                                   2          
+                                                                                   ∂ s 1 ∂s           ∂2 s    ∂s
+                                                                             Kr         þ        þ K z 2 ¼ Ss                                        (1)
+                                                                                   ∂r 2   r ∂r        ∂z      ∂t
+
+
+                                     where t is the operating time [T]. The hydraulic head is static and uniform before pumping; therefore, the
+                                     initial condition in the aquifer is written as
+
+
+LIN ET AL.                                                                                                                                        3927
+                                                                                                                               19447973, 2019, 5, Downloaded from https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2018WR023893 by Chung Yuan Christian University, Wiley Online Library on [13/07/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+              Water Resources Research                                                      10.1029/2018WR023893
+
+
+
+                                                              sðt ¼ 0Þ ¼ 0                                               (2)
+
+             The inner and outer boundary conditions are respectively
+                                                                   8
+                                                                  <           ∂H
+                                                          ∂s       −Q þ πr c2 ; ∀z∈½d; l
+                                           2πr w K r ðl−dÞ      ¼             ∂t                                        (3)
+                                                          ∂r r¼rw :
+                                                                        0; elsewhere
+
+             and
+
+                                                              limr→∞ s ¼ 0                                               (4)
+
+             where H(t) is the water level [L] in the pumping well with the initial condition denoted as H(0) = 0. The left‐
+             hand‐side term of equation (3) represents the water ﬂux across the wellbore, and the second term on the
+             right‐hand side accounts for the wellbore storage. The bottom boundary condition is
+                                                                   
+                                                               ∂s 
+                                                                      ¼0                                                 (5)
+                                                               ∂zz¼0
+
+             By neglecting the capillary fringe effect and considering the water table as the upper bounding surface of the
+             aquifer ﬂow (Batu, 1998, p. 106), the upper boundary condition of a linearized free surface equation is writ-
+             ten as
+                                                                      
+                                                                    ∂s
+                                                             qz ¼ Sy                                                   (6)
+                                                                    ∂t z¼b
+
+             where qz [L/T] is deﬁned as a drainage rate per unit area at the water table. Equation (6) is a kinematic
+             boundary condition describing the drainage rate on the water table (Moench, 1995).
+             On the basis of Darcy's law, the left‐hand side of equation (6) can be written as
+
+                                                                       ∂sðt Þ
+                                                      qz ðt Þ ¼ −K z          at z ¼ b                                 (7a)
+                                                                        ∂z
+
+             Equations (6) and (7a) may not fully describe the drainage behavior occurring at and above the water table in
+             reality. Nwankwor et al. (1992) performed a 24‐hr pumping test at Canadian Forces Base Borden, Ontario,
+             Canada. They observed that the gravity drainage may occur at the early period of the drawdown (i.e., the ﬁrst
+             segment of the unconﬁned temporal drawdown curve) induced by pumping when an increasing vertical
+             hydraulic gradient across the aquifer saturated thickness is observed. This indicates that the drainage occur-
+             ring from the pores above the water table would be shifted to an earlier time. The excess storage of water,
+             which has a larger volume of water than that under static ﬂow condition, would then decline gradually.
+             That causes a delayed‐response region (i.e., the second segment of the unconﬁned temporal drawdown
+             curve) of the time‐drawdown curve, indicating that the pore water in the capillary fringe takes time to com-
+             plete the drainage. Traditional unconﬁned ﬂow models (e.g., Neuman, 1972, 1974) of assuming instanta-
+             neous and complete drainage at the water table may sometimes fail to give an accurate estimate of
+             speciﬁc yield (Endres et al., 2007; Malama, 2011; Nwankwor et al., 1992).
+             In light of this, we apply the lagging theory to equation (7a); then, it becomes
+
+                                                                 ∂sðt þ τ s Þ
+                                                 qz t þ τ q ¼ −K z              at z ¼ b                               (7b)
+                                                                       ∂z
+
+             where τq and τs denote the lag times [T] of the ﬂux and aquifer drawdown, respectively. The parameter τq is
+             considered to reﬂect the pore water quickly released from the capillary fringe induced by the increase of the
+             vertical hydraulic gradient due to pumping. On the other hand, the τs is introduced to reﬂect the lag time for
+             drainage from excess storage of water held by the capillary suction. Employing the Taylor series expansion,
+             the ﬁrst‐order representation of equation 7 can be obtained as
+
+
+LIN ET AL.                                                                                                             3928
+                                                                                                                                         19447973, 2019, 5, Downloaded from https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2018WR023893 by Chung Yuan Christian University, Wiley Online Library on [13/07/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+               Water Resources Research                                                                     10.1029/2018WR023893
+
+
+                                                                                                  
+                                                             ∂qz ðt Þ          ∂sðt Þ      ∂2 sðt Þ
+                                             qz ðt Þ þ τ q            ≅− K z          þ τs           at z ¼ b                      (8)
+                                                               ∂t               ∂z          ∂t∂z
+
+             Substituting equation (8) into 6 gives
+                                                                                                
+                                                        ∂s       ∂2 s                ∂s       ∂2 s
+                                               Kz          þ τs             ¼ −Sy        þ τ q 2 at z ¼ b                          (9)
+                                                        ∂z      ∂t∂z                  ∂t      ∂t
+
+             The second derivative term ∂2s/∂t2 requires an extra initial condition of ∂s/∂t = 0 at z = b representing that
+             the downward velocity of the water table is 0 prior to the pumping. Equation (9) reduces to Neuman's line-
+             arized free surface equation (i.e., Kz∂s/∂z = − Sy∂s/∂t) if neglecting the lagging effect (i.e., τs = τq = 0).
+             2.2. Dimensionless Solution in Laplace Domain
+             The dimensionless variables and parameters are deﬁned as follows:
+
+                        4πK r bs        4πK r bH        r        rw     z        Krt             K r τq          K r τs
+                 sD ¼            ; HD ¼          ; r D ¼ ; r wD ¼ ; zD ¼ ; t D ¼      2 ; τ qD ¼      2 ; τ sD ¼        ; dD
+                          Q               Q             b         b     b        Ss b            Ss b            Ss b2
+                     d      l      Kz      Sy          r2
+                    ¼ ; lD ¼ ; κ ¼    ;η ¼      ; CD ¼ c 3                                                                      (10)
+                     b      b      Kr      Ss b       2Ss b
+
+             The dimensionless formulas for equations (1)–(5) and 9 based on 10 can be respectively written as
+
+                                                             ∂ 2 sD   1 ∂sD   ∂2 sD ∂sD
+                                                                    þ       þκ 2 ¼                                              (11)
+                                                             ∂r D r D ∂r D
+                                                                  2           ∂zD   ∂t D
+
+                                                                         sD ðt D ¼ 0Þ ¼ 0                                       (12)
+                                                                       8
+                                                                      < −2 þ C ∂H D ; ∀z ∈½d ; l 
+                                                         ∂sD                 D         D   D D
+                                           r wD ðlD −dD Þ           ¼           ∂t D                                           (13)
+                                                         ∂r D rD ¼rwD :
+                                                                              0; elsewhere
+
+                                                                         limrD →∞ sD ¼ 0                                        (14)
+                                                                      
+                                                                 ∂sD 
+                                                                            ¼0                                                  (15)
+                                                                 ∂zD zD ¼0
+                                                                                        
+                                                        ∂ ∂sD                         ∂ ∂sD 
+                                            κ 1 þ τ sD                  ¼ −η  1 þ τ                                             (16)
+                                                       ∂t D ∂zD zD ¼1                 ∂t D ∂t D zD ¼1
+                                                                                    qD
+
+
+
+             with the dimensionless initial conditions HD = 0 and ∂sD/∂tD = 0 at zD = 1.
+
+             The Laplace and Weber transforms are applied; the solutions of seD and H D in the Laplace domain can be
+             respectively obtained as
+                                                                    8
+                                                                 A1 coshðλzD Þ þ A2 sinhðλzD Þ; ∀zD ∈½lD ; 1
+                                                                    >
+                                                                    >
+                                                                    <
+                                        2CD pH D ðpÞ−4
+                             se¯D ¼                            1 þ A3 coshðλzD Þ þ A4 sinhðλzD Þ; ∀zD ∈½dD ; lD               (17a)
+                                    ar wD ðlD −dD Þða2 þ pÞπ >
+                                                             >
+                                                             :           A5 coshðλzD Þ;           ∀zD ∈½0; dD 
+
+             and
+
+                                                                ∞
+                                                                                    
+                                                                        λðdD − lD ÞþA4 Ψc þA3 Ψs
+                                                           ϕb ∫0                          aΩða; r wD Þda
+                                                                              −ðdD −lD Þ2 λ
+                                           H D ðpÞ ¼        ∞
+                                                                                                                           (17b)
+                                                                λðdD − lD ÞþA4 Ψc þA3 Ψs
+                                                     1− ϕa ∫0        − ðd − l Þ2 λ
+                                                                                           aΩða; r wD Þda
+                                                                                    D   D
+
+                                                                                                             pﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃ
+             where a and p are respectively the Weber and Laplace parameters;                           λ ¼ ða2 þ pÞ=κ ;
+             Ψs = sinh (λdD) − sinh (λlD); Ψc = cosh (λdD) − cosh (λlD); and Ωða; r D Þ ¼ ðJ 0 ðar D ÞY 1 ðaÞ−Y 0 ðar D ÞJ 1 ðaÞÞ
+
+
+LIN ET AL.                                                                                                                     3929
+                                                                                                                                      19447973, 2019, 5, Downloaded from https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2018WR023893 by Chung Yuan Christian University, Wiley Online Library on [13/07/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+               Water Resources Research                                                                     10.1029/2018WR023893
+
+
+                                 
+             = J 21 ðaÞ þ Y 21 ðaÞ . The detailed derivation of the solution and the coefﬁcients A1 to A5 are listed in Appendix
+             A. Using the inverse Weber transform, the drawdown solution in Laplace domain can be expressed as
+                                                                       ∞
+                                                               sD ¼ ∫0 seD aΩða; r D Þda                                       (18)
+
+             The drawdown in the time domain is obtained by numerically inverting equation (18) with the Crump
+             (1976) algorithm. The numerical integration in equation (18) can be achieved by the Mathematica function
+             NIntegrate (Wolfram Research, Inc, 2018).
+
+             2.3. Comparison of Present Model and Moench (1995) Model
+             Moench (1995) inserted Boulton's (1954a) convolution integral term into Neuman's (1972) free surface equa-
+             tion for considering delayed gravity drainage effect. His free surface equation is formulated as
+                                                                              
+                                                          ∂s             ∂s 
+                                                                         t
+                                                                                   − αðt−t′Þ
+                                                     Kz          ¼ − αS  ∫      e           dt′                               (19)
+                                                          ∂zz¼b
+                                                                       y
+                                                                         0 ∂t′ z¼b
+
+
+             where α [1/T] is an empirical constant and t′ [T] is a dummy variable. Note that 1/α is notably referred to as
+             the delay index. On the basis of equation (10), the dimensionless form of equation (19) is
+                                                                             
+                                                   ∂sD                 ∂sD 
+                                                                      tD
+                                                                                    e−αD ðtD − tD Þ dt ′D
+                                                                                                ′
+                                               κ            ¼ −α D η ∫     ′                                                 (20)
+                                                   ∂zD zD ¼1           0 ∂t D zD ¼1
+
+
+             where αD = Ssb2α/Kr and t ′D ¼ K r t ′ =Ss b2 . Applying the Laplace transform, equation (20) becomes
+
+                                                              ∂sD   −ηαD p
+                                                          κ       ¼        sD at zD ¼ 1                                        (21)
+                                                              ∂zD ðαD þ pÞ
+
+             Rearranging equation (21) yields
+
+                                                                     ∂sD
+                                                     κð1 þ p=αD Þ        ¼ −ηpsD at zD ¼ 1                                     (22)
+                                                                     ∂zD
+
+             Note that equation (22) is exactly the same as equation (16) transformed by the Laplace transform when the
+             following conditions are met:
+
+                                                                        τ qD ¼ 0                                               (23)
+
+             and
+
+                                                                      τ sD ¼ 1=αD                                              (24)
+
+             It indicates Moench's (1995) free surface equation is a special case of equation (16) in the present model.
+
+             3. Results and Discussion
+             Consider a 30‐m thickness unconﬁned aquifer with Kr = 1 × 10−4 m/s, Kz = 5 × 10−5 m/s, Ss = 1 × 10−4 m−1,
+             and Sy = 0.2. The pumping well is screened between z = 0 and z = 15 m (i.e., d = 0 and l = 15 m) with well
+             radius rw and casing radius rc, both being 0.05 m. The pumping rate Q is 10−3 m3/s. The predicted drawdown
+             is vertically averaged for a fully penetrating observation well located at 5 m from the pumping well. All the
+             default values are used in the following analyses.
+
+             3.1. Effects of Lag Times on Drawdown Behavior
+             Figure 2 shows the temporal dimensionless drawdown sD for panel (a) 0 ≤ τqD ≤ 1 (900 s) and τsD = 10
+             (9,000 s) while for panel (b) 1 ≤ τsD ≤ 10 and τqD = 0.01 (9 s). Panel (a) shows that sD decreases with increas-
+             ing τqD in the late ﬁrst segment and the second segment of the temporal drawdown curve. The curves with
+             various values of τqD ﬁnally merge into a drawdown curve after tD = 5. One can observe that increasing τqD
+
+
+LIN ET AL.                                                                                                                    3930
+                                                                                                                                                       19447973, 2019, 5, Downloaded from https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2018WR023893 by Chung Yuan Christian University, Wiley Online Library on [13/07/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+                                     Water Resources Research                                                          10.1029/2018WR023893
+
+
+
+                                                                      shifts the drawdown curve from the curve of conﬁned aquifers toward the
+                                                                      right before tD = 5, indicating that the increase in τqD decreases the dimen-
+                                                                      sionless drawdown. Such results may be attributed to the fact that the pore
+                                                                      water in the capillary fringe releases toward the aquifer because of the
+                                                                      water table decline, which causes the increases in the vertical gradient
+                                                                      when the groundwater is abstracted by a well. Panel (b) exhibits that sD
+                                                                      signiﬁcantly increases with τsD in the second segment and the early third
+                                                                      segment. The drawdown increases with τsD before tD = 30. This may be
+                                                                      because a greater τsD exerts a larger capillary force against the gravita-
+                                                                      tional force to hold more pore water in the unsaturated zone. As shown
+                                                                      in both panels, the drawdown curves all match with the curve predicted
+                                                                      by Neuman's (1974) solution after tD ≅ 30, indicating the lagging effect
+                                                                      vanishes in the third segment. In short, a greater τsD would result in a lar-
+                                                                      ger sD while a greater τqD would yield a smaller one. These ﬁndings are
+                                                                      similar to the work of Lin and Yeh (2017), but their article deals with
+                                                                      the ﬂow in leaky aquifers.
+                                                                      3.2. Sensitivity Analysis
+                                                                      Sensitivity analysis is a useful tool in investigating the effect of parameter
+                                                                      uncertainty on the aquifer drawdown. One may deﬁne the normalized
+                                                                      sensitivity as (Liou & Yeh, 1997):
+                                                                                                                  ∂s
+                                                                                                      X k ¼ Pk                                 (25)
+                                                                                                                 ∂Pk
+                                                                      where Xk is the normalized sensitivity of drawdown s to the kth input
+                                                                      parameter Pk. A forward ﬁnite difference formula is used to approximate
+                                                                      the ﬁrst derivative term in equation (25) written as
+                                                                                                         sðPk þ ΔPk Þ−sðPk Þ
+                                                                                              X k ¼ Pk                                         (26)
+                                                                                                                ΔPk
+                                                                      where ΔPk is set to 10−3 Pk (Yeh & Han, 1989).
+
+Figure 2. Temporal dimensionless drawdown sD for (a) 0 ≤ τqD ≤ 1,       Figure 3 demonstrates temporal normalized sensitivity curves for the
+τsD = 10 and (b) 1 ≤ τsD ≤ 10, τqD = 0.01.                              drawdown in response to the change in each of parameters (a) Kr, Kz, Ss,
+                                                                        Sy, τq, τs and (b) Ss, τq, τs when τq = 500 s (8.33 min) and τs = 5,000 s
+                                   (1.39 hr). Note that panel (b) is plotted to amplify the cases of Ss, τq, and τs that are difﬁcult to identify in
+                                   panel (a). The ﬁgure indicates Kr is the most sensitive parameter, followed by Kz, Sy, Ss, τs, τq, and Ss. The
+                                   ﬁgure also exhibits that the trough of the curve for τq is at t = 1,000 s (within the early second segment)
+                                   and the peak for the τs curve is at t = 3,000 s (at the middle of the second segment). It seems that the changes
+                                   in τq and τs affect the drawdown in a period including their own lag time values. On the basis of the sensi-
+                                   tivity analysis, we can therefore conclude the change in τq causes a much smaller effect on the drawdown
+                                   than that in τs. This may conﬁrm that the effect of τq was ignored in the past studies of the
+                                   groundwater literature.
+                                   3.3. Pumping Test Data Analysis: Cape Cod Site
+                                   In this section, we use the Neuman (1974), Moench (1997), Tartakovsky and Neuman (2007), Malama
+                                   (2011), and present solutions to analyze the measured drawdown data. Notably, these solutions mentioned
+                                   above adopted the kinematic boundary condition for describing the water table motion except the
+                                   Tartakovsky and Neuman (2007) solution, which couples the saturated ﬂow with an unsaturated ﬂow above.
+                                   The kinematic boundary conditions used in the present model and the Moench (1997) model can be respec-
+                                   tively described by equations (9) and (19). Malama's (2011) kinematic boundary condition is expressed as
+                                   Kz(∂s/∂z+β∂2s/∂z2) = − Sy∂s/∂t where β is a linearization coefﬁcient. It can reduce to the Neuman's
+                                   (1974) kinematic boundary condition when β → 0. In the Tartakovsky and Neuman (2007) model, the
+                                   groundwater ﬂow equation (equation (1)) for the saturated ﬂow is coupled with the unsaturated ﬂow
+                                   described by Richards (1931) equation. They used the Gardner (1958) exponential model to describe the
+
+
+LIN ET AL.                                                                                                                                     3931
+                                                                                                                                                               19447973, 2019, 5, Downloaded from https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2018WR023893 by Chung Yuan Christian University, Wiley Online Library on [13/07/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+                                           Water Resources Research                                                         10.1029/2018WR023893
+
+
+
+                                                                                distributions of both moisture retention and hydraulic conductivity and
+                                                                                linearized the Richards (1931) equation. The exponent κt of the Gardner
+                                                                                (1959) model is a constitutive constant for characterizing the property of
+                                                                                the unsaturated soils. Philip (1969, p. 256) stated that the value of κt can
+                                                                                reﬂect the relative importance of gravity and capillarity force for pore
+                                                                                water movement in soils. Its value for most applications ranges from 0.2
+                                                                                to 5 m−1. The Tartakovsky and Neuman (2007) solution can yield the
+                                                                                same drawdown curves as the Neuman (1974) solution does if κt is very
+                                                                                large (see Tartakovsky & Neuman, 2007; Figures 2–4).
+                                                                                Four sets of drawdown data obtained from a CRP test conducted by the U.
+                                                                                S. Geological Survey in glacial outwash deposit at Cape Cod,
+                                                                                Massachusetts (Moench et al., 2001) are analyzed. The aquifer consists
+                                                                                of sand and gravel with a saturated thickness of 51.82 m and overlies a
+                                                                                ﬁne‐grained formation considered as an impermeable layer. The CRP test
+                                                                                was conducted at the well F507‐080 for a 72‐hr pumping with a constant
+                                                                                rate of 0.0202 m3/s. The well is screened from 4.02 to 18.35 m below the
+                                                                                steady water table with 11‐inch diameter (0.28 m) in the screen part and
+                                                                                13.5‐inch diameter (0.34 m) in the casing part. To determine the aquifer
+                                                                                hydraulic parameters, the data obtained from four observation wells are
+                                                                                considered. The distance from the pumping well is 7.28 m to observation
+                                                                                well F505‐032, 14.2 m to well F504‐032, 25.9 m to well F377‐037, and
+                                                                                68.8 m to well F347‐031. Table 1 lists the aquifer parameters estimated
+                                                                                by the ﬁve solutions coupled with the Levenberg Marquardt algorithm
+                                                                                given in the Mathematica routine NonlinearModelFit (Wolfram
+                                                                                Research, Inc, 2018). The standard error of estimate (SEE) and mean error
+                                                                                (ME) deﬁned by Yeh (1987) are used to assess prediction errors. Judging
+                                                                                from the values of SEE and ME, the present solution gives a very good
+                                                                                ﬁt to the measured drawdown data as compared with the others. The mag-
+Figure 3. Temporal distributions of aquifer drawdown and the normalized         nitude of Sy estimated by the Neuman (1974) solution is 0.07 for well
+sensitivity for (a) six parameters and (b) the parameters τs, τq, and Ss when
+τq = 500 s and τs = 5,000 s.                                                    F505‐032 and 0.09 for well F504‐032. The Sy estimated by the Moench
+                                                                                (1997) solution is 0.08 for both wells. The Sy estimated based on the
+                                                                                Tartakovsky and Neuman (2007) solution is 0.27 for the former and 0.16
+                                                                                for the latter. The Malama (2011) solution predicts Sy = 0.16 for well
+                                                                                F505‐032 and 0.1 for well F504‐032. The Sy estimated by the present solu-
+                                                                                tion is 0.20 for the former and 0.16 for the latter. Obviously, both Neuman
+                                                                                (1974) and Moench (1997) solutions give smaller Sy than the present solu-
+                                                                                tion. Also, the Tartakovsky and Neuman (2007) solution give the largest Sy
+                                                                                for well F505‐032 followed by the present solution and the Malama (2011)
+                                                                                solution. All the estimated results except that by the present solution and
+                                                                                the Tartakovsky and Neuman (2007) solution are out of the range
+                                                                                0.17 ≤Sy≤ 0.35 suggested by Mishra and Neuman (2010) where the range
+                                                                                was obtained from the laboratory outcomes on six shallow glacial out-
+                                                                                wash cores at Cape Cod conducted by Mace et al. (1998). The present solu-
+                                                                                tion and Tartakovsky and Neuman (2007) solution apparently yield
+                                                                                reasonably good estimates of Sy for both wells.
+                                                                                Figure 4 shows the observed drawdown data represented by the symbol of
+                                                                                the solid circle and the temporal drawdown distributions predicted by the
+                                                                                present and those four solutions. The ﬁgure shows excellent ﬁts for the
+                                                                                present solution to all the measured data, especially in the early time per-
+                                                                                iod. The Neuman (1974) solution gives comparatively poor ﬁts to the sec-
+Figure 4. Temporal distributions of drawdown data measured at four obser-
+                                                                                ond segment of the drawdown data for wells F505‐032 and F504‐032,
+vation wells in Cape Cod aquifer and drawdown predicted by the present          which may be attributed to the assumption of instantaneous
+and four existing solutions.                                                    gravity drainage.
+
+
+LIN ET AL.                                                                                                                                             3932
+                                                                                                                                                          19447973, 2019, 5, Downloaded from https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2018WR023893 by Chung Yuan Christian University, Wiley Online Library on [13/07/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+                                           Water Resources Research                                                      10.1029/2018WR023893
+
+
+
+Table 1
+Results of Parameter Estimation for CRP Test at Cape Cod, Massachusetts, USA
+ Parameters      Neuman (1974) solution     Moench (1997) solution   Tartakovsky and Neuman (2007) solution   Malama (2011) solution   Present solution
+
+ F505‐032
+                               −3                          −4                              −4                                −4                   −3
+ Kr (m/s)             1.39 × 10                   8.77 × 10                       8.49 × 10                         2.25 × 10            1.18 × 10
+                                −4                          −3                             −4                                 −4                  −4
+ Kz (m/s)             1.71 × 10                   8.57 × 10                       7.49 × 10                         9.42 × 10            3.80 × 10
+        −1                      −4                          −4                             −4                                 −5                  −4
+ Ss (m )              1.29 × 10                   1.57 × 10                       1.23 × 10                         6.64 × 10            1.30 × 10
+ Sy (‐)                   0.07                        0.08                            0.27                              0.16                 0.20
+ τq (s)                    —                           —                               —                                 —                 1,388.40
+ τs or 1/α (s)             —                         580.20                            —                                 —                 5,376.60
+        −1
+ κt (m )                                                                              0.13                               —                    —
+ β (m)                     —                           —                               —                               157.19                 —
+                                −3                         −3                              −3                                 −3                  −4
+ SEE                  2.28 × 10                   2.29 × 10                       4.06 × 10                         3.78 × 10            6.98 × 10
+                                −4                         −4                               −5                                 −5                   −5
+ ME                   2.50 × 10                   1.31 × 10                       −5.37 × 10                       −6.56 × 10           −1.80 × 10
+ F504‐032
+                               −3                          −4                              −4                                −4                   −3
+ Kr (m/s)             1.45 × 10                   9.05 × 10                       9.92 × 10                        5.72 × 10             1.25 × 10
+                                −4                          −3                             −4                               −4                     −4
+ Kz (m/s)             1.90 × 10                   5.13 × 10                       5.02 × 10                        4.38 × 10             3.70 × 10
+        −1                      −4                          −4                             −4                               −5                     −4
+ Ss (m )              1.58 × 10                   1.18 × 10                       1.04 × 10                        8.18 × 10             1.15 × 10
+ Sy (‐)                   0.09                        0.08                            0.16                             0.10                  0.16
+ τq (s)                    —                           —                               —                                —                   966.60
+ τs or 1/α (s)             —                         660.60                            —                                —                  3,132.00
+        −1
+ κt (m )                                                                              0.21                                                    —
+ β (m)                     —                          —                                —                              36.47                   —
+                                −3                        −3                               −3                               −3                     −3
+ SEE                  4.77 × 10                  3.46 × 10                        2.37 × 10                        2.21 × 10             1.73 × 10
+                                −5                         −5                               −5                              −5                      −5
+ ME                   5.98 × 10                  −3.11 × 10                       −7.16 × 10                       7.13 × 10            −8.67 × 10
+ F377‐037
+                               −3                          −3                              −3                                −4                   −3
+ Kr (m/s)             1.41 × 10                   1.03 × 10                        1.02 × 10                       7.23 × 10             1.19 × 10
+                                −4                         −4                               −4                              −4                     −4
+ Kz (m/s)             3.13 × 10                   2.15 × 10                        7.14 × 10                       4.00 × 10             5.90 × 10
+        −1                      −4                         −4                               −5                              −5                     −5
+ Ss (m )              1.90 × 10                   1.15 × 10                        5.32 × 10                       8.07 × 10             7.53 × 10
+ Sy (‐)                   0.16                        0.12                             0.16                            0.15                  0.18
+ τq (s)                    —                           —                                —                               —                   604.20
+ τs or 1/α (s)             —                        1,102.20                            —                               —                  2,342.40
+        −1
+ κt (m )                   —                           —                               0.18                             —                     —
+ β (m)                     —                           —                                —                             26.38                   —
+                                −3                         −3                               −3                              −3                     −4
+ SEE                  2.28 × 10                   2.29 × 10                        1.94 × 10                       2.21 × 10             6.98 × 10
+                                −4                         −4                               −4                              −5                      −5
+ ME                   2.50 × 10                   1.31 × 10                        2.56 × 10                       7.13 × 10            −1.80 × 10
+ F347‐031
+                               −3                          −3                              −3                                −3                   −3
+ Kr (m/s)             1.47 × 10                  1.17 × 10                        1.17 × 10                         1.07 × 10            1.17 × 10
+                                −4                        −4                               −4                                −4                    −4
+ Kz (m/s)             1.53 × 10                  5.57 × 10                        2.90 × 10                         1.57 × 10            5.75 × 10
+        −1                      −4                        −4                               −4                                −4                    −4
+ Ss (m )              5.56 × 10                  2.88 × 10                        1.70 × 10                         3.81 × 10            1.66 × 10
+ Sy (‐)                   0.18                       0.17                             0.19                              0.19                 0.18
+ τq (s)                    —                          —                                —                                 —                  218.40
+ τs or 1/α (s)             —                       2,551.20                            —                                 —                 2,346.60
+        −1
+ κt (m )                   —                          —                               0.30                               —                    —
+ β (m)                     —                          —                                —                               10.43                  —
+                                −3                        −3                               −3                                −3                    −3
+ SEE                  1.08 × 10                  1.05 × 10                        1.03 × 10                         1.02 × 10            1.10 × 10
+                                 −6                         −6                              −6                                −6                    −7
+ ME                  −1.03 × 10                  −3.94 × 10                       −3.65 × 10                       −2.32 × 10           −3.57 × 10
+ Note. CRP = constant rate pumping; ME = mean error; SEE = standard error of estimate.
+
+
+
+                                          3.4. Pumping Test Data Analysis: Borden Site
+                                          Bevan et al. (2005) conducted a 7‐day CRP test in an unconﬁned aquifer at the Canadian Forces Base Borden
+                                          in Ontario. The aquifer is composed of primarily horizontal, discontinuous lenses of medium‐grained, ﬁne‐
+                                          grained, and silty ﬁne‐grained sands (Sudicky, 1986) with a saturated thickness of 6.25 m. A clayey silt for-
+                                          mation with low permeability underlies the aquifer. The pumping well with a diameter of 0.13 m was
+                                          pumped at a rate of 6.67 × 10−4 m3/s and screened 3.65 m at the aquifer bottom. The drawdown data were
+                                          read from Bevan et al. (2005, Figure 3) using the WebPlotDigitizer (Rohatgi, 2018) for piezometers WD1A,
+                                          WD1B, WD2A, and WD4A which were installed at the distances 1.51, 3.152, 5.069, and 15.05 m, respectively,
+                                          from the pumping well. The recorded drawdown data are analyzed based on the same solutions as those
+                                          used for the Cape Cod site. The estimated parameters are listed in Table 2. On the basis of SEE value, the
+
+
+LIN ET AL.                                                                                                                                         3933
+                                                                                                                                                           19447973, 2019, 5, Downloaded from https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2018WR023893 by Chung Yuan Christian University, Wiley Online Library on [13/07/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+                                           Water Resources Research                                                      10.1029/2018WR023893
+
+
+
+Table 2
+Results of Parameter Estimation for CRP Test at Canadian Forces Base Borden, Ontario, Canada
+ Parameters      Neuman (1974) solution     Moench (1997) solution   Tartakovsky and Neuman (2007) solution    Malama (2011) solution   Present solution
+
+ WD1A
+                               −5                         −5                               −5                                −5                    −5
+ Kr (m/s)             9.40 × 10                   8.88 × 10                       6.45 × 10                         4.22 × 10             8.32 × 10
+                                −6                         −5                               −5                               −6                    −5
+ Kz (m/s)             8.95 × 10                   5.65 × 10                        2.3 × 10                         2.28 × 10             4.93 × 10
+        −1                      −5                         −4                               −4                               −5                    −4
+ Ss (m )              5.78 × 10                   6.10 × 10                       4.37 × 10                         5.02 × 10             8.50 × 10
+ Sy (‐)                  0.013                        0.09                             0.24                            0.013                  0.12
+ τq (s)                    —                           —                                —                                —                   40.80
+ τs or 1/α (s)             —                        6,240.60                            —                                —                  8,958.60
+        −1
+ κt (m )                                                                               0.12                              —                     —
+ β (m)                     —                          —                                 —                               6.34                   —
+                                −2                        −2                                −2                               −2                    −2
+ SEE                  4.31 × 10                  1.37 × 10                        1.74 × 10                         1.80 × 10             1.17 × 10
+                                −2                         −3                                −4                               −3                     −3
+ ME                   1.47 × 10                  −2.42 × 10                       −8.47 × 10                       −1.68 × 10            −1.33 × 10
+ WD1B
+                               −5                         −5                               −5                                −5                    −5
+ Kr (m/s)             8.48 × 10                   7.87 × 10                        7.02 × 10                        5.67 × 10             7.88 × 10
+                                −6                         −4                               −5                               −6                    −4
+ Kz (m/s)             4.18 × 10                   1.32 × 10                        3.00 × 10                        2.78 × 10             1.18 × 10
+        −1                      −5                         −3                               −4                               −5                    −4
+ Ss (m )              5.08 × 10                   1.11 × 10                        4.82 × 10                        4.88 × 10             9.11 × 10
+ Sy (‐)                  0.015                        0.21                             0.17                            0.016                  0.20
+ τq (s)                    —                           —                                —                                —                   46.80
+ τs or 1/α (s)             —                        6,959.40                            —                                —                  6,831.60
+        −1
+ κt (m )                                                                               0.27                                                    —
+ β (m)                     —                          —                                 —                               2.52                   —
+                                −2                        −3                                −2                               −2                    −3
+ SEE                  2.33 × 10                  5.41 × 10                         1.51 × 10                        1.13 × 10             5.37 × 10
+                                −3                         −4                               −3                               −4                      −4
+ ME                   9.88 × 10                  −1.94 × 10                        1.10 × 10                        1.30 × 10            −2.18 × 10
+ WD2A
+                               −5                         −5                               −5                                −5                    −5
+ Kr (m/s)             8.68 × 10                  7.98 × 10                         8.06 × 10                        9.20 × 10             8.00 × 10
+                                −6                        −5                                −5                               −6                    −5
+ Kz (m/s)             2.47 × 10                  3.33 × 10                         1.35 × 10                        5.07 × 10             3.33 × 10
+        −1                      −5                        −4                                −4                               −5                    −4
+ Ss (m )              6.05 × 10                  5.03 × 10                         3.74 × 10                        5.07 × 10             4.45 × 10
+ Sy (‐)                  0.013                       0.11                              0.07                            0.024                  0.11
+ τq (s)                    —                          —                                 —                                —                   40.20
+ τs or 1/α (s)             —                       3,909.00                             —                                —                  3,886.20
+        −1
+ κt (m )                   —                          —                                1.63                              —                     —
+ β (m)                     —                          —                                 —                               −0.3                   —
+                                −2                        −3                                −2                               −2                    −3
+ SEE                  1.11 × 10                  8.86 × 10                         1.25 × 10                        1.38 × 10             8.88 × 10
+                                 −4                         −4                              −3                                −4                     −4
+ ME                  −4.00 × 10                  −1.87 × 10                        1.71 × 10                       −7.42 × 10            −2.90 × 10
+ WD4A
+                               −5                         −5                               −5                                −5                    −5
+ Kr (m/s)             8.85 × 10                   8.83 × 10                        8.91 × 10                        9.21 × 10             8.81 × 10
+                                −5                         −5                               −5                               −5                    −5
+ Kz (m/s)             2.32 × 10                   2.83 × 10                        2.36 × 10                        2.35 × 10             3.21 × 10
+        −1                      −4                         −4                               −4                               −4                    −4
+ Ss (m )              2.10 × 10                   2.29 × 10                        1.92 × 10                        2.13 × 10             1.93 × 10
+ Sy (‐)                   0.17                        0.17                             0.17                             0.17                  0.17
+ τq (s)                    —                           —                                —                                —                   126.6
+ τs or 1/α (s)             —                        1,082.40                            —                                —                  1,822.20
+        −1
+ κt (m )                   —                           —                               0.28                              —                     —
+ β (m)                     —                           —                                —                              −0.21                   —
+                                −3                         −3                               −3                               −3                    −3
+ SEE                  9.43 × 10                   1.33 × 10                        1.37 × 10                        1.28 × 10             1.34 × 10
+                                −5                         −5                               −4                               −5                    −5
+ ME                   7.81 × 10                   2.43 × 10                        1.48 × 10                        5.25 × 10             1.71 × 10
+ Note. CRP = constant rate pumping; ME = mean error; SEE = standard error of estimate.
+
+
+                                          present solution gives very good ﬁts to the data as compared with the others. The value of Sy estimated by the
+                                          Neuman (1974) solution for data from piezometers WD1A and WD2A is 0.013 and from piezometer WD1B is
+                                          0.015. The estimate of Sy obtained from the Moench (1997) solution is 0.09 for WD1A, 0.21 for WS1B, 0.11 for
+                                          WD2A, and 0.17 for WD4A. The Sy estimated by the Tartakovsky and Neuman (2007) solution is 0.24 for
+                                          WD1A, 0.17 for WD1B, 0.07 for WD2A, and 0.17 for WD4A. Also, the Sy estimated by the Malama (2011)
+                                          solution is 0.013 for data from piezometer WD1A, 0.016 for WD1B, and 0.024 for WD2A. The empirical
+                                          parameter β in the Malama model is estimated as 6.34 for piezometer WD1A, 2.52 for WD1B, and −0.3 m
+                                          for WD2A. On the other hand, the value of Sy estimated by the present solution is 0.12 for data from
+                                          piezometer WD1A, 0.20 for WD1B, and 0.11 for WD2A. Obviously, the Neuman (1974) and Malama
+                                          (2011) solutions give quite small estimates of Sy for WD1A, WD1B, and WD2A compared with the
+                                          laboratory result of 0.3 given by Nwankwor et al. (1992) at the same site.
+
+
+LIN ET AL.                                                                                                                                          3934
+                                                                                                                                                          19447973, 2019, 5, Downloaded from https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2018WR023893 by Chung Yuan Christian University, Wiley Online Library on [13/07/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+                                         Water Resources Research                                                       10.1029/2018WR023893
+
+
+
+                                                                             Figure 5 displays the measured drawdown data and predicted drawdown
+                                                                             curves by the present and those four existing solutions with the estimated
+                                                                             parameters shown in Table 2. The ﬁgure shows excellent ﬁts for the pre-
+                                                                             sent solution to all the measured data except that of WD1A in the early
+                                                                             pumping time. The predicted drawdown curves by the Neuman (1974),
+                                                                             Tartakovsky and Neuman (2007), and Malama (2011) solutions signiﬁ-
+                                                                             cantly deviate from the data of WD1A, WD1B, and WD2A before
+                                                                             100 min. Notably, these ﬁve solutions predict very close results for
+                                                                             WD4A, indicating the lagging effects may be negligible for a further dis-
+                                                                             tance from the pumping well. The drawdown curves predicted by the pre-
+                                                                             sent solution agree well to all the data sets except that of WD1A in the
+                                                                             early pumping time.
+
+                                                                             3.5. Pumping Test Data Analysis: Saint Pardon de Conques Site
+                                                                           A 49‐hr pumping test was performed by Bureau de Recherches
+                                                                           Géologiques et Mini`eres at Saint Pardon de Conques, Gironde,
+Figure 5. Temporal distributions of drawdown data measured at four piezo-
+                                                                           France. The aquifer consists of medium‐grained sand, gravel, and clayey
+meters in Borden aquifer and drawdown predicted by the present and four
+existing solutions.                                                        matrix with a saturated thickness of 8.24 m (Neuman, 1975). The depth
+                                                                           of the water table is 5.51 m from the ground surface. The pumping well
+                                                                           has a diameter of 0.32 m with a pumping rate of 0.0147 m3/s. The well
+                                        is screened from the depth of 4.02 to 18.35 m below the ground; therefore, it is a fully penetrating well.
+                                        The drawdown data were read from Neuman (1975, Figure 7) using the WebPlotDigitizer (Rohatgi, 2018)
+                                        for two observation wells installed at the distances 10 and 30 m from the pumping well. Both wells were
+                                        assumed to fully penetrate the aquifer as Neuman (1975) did. The estimated parameters are listed in
+                                        Table 3. The Sy's value estimated by the Neuman (1974) solution is 0.05, by the Moench (1997) solution
+                                        is 0.05, by the Tartakovsky and Neuman (2007) solution is 0.06, by the Malama (2011) solution is 0.05,
+                                        and by the present solutions is 0.25 for data measured at r = 10 m. Apparently, the present solution yields
+                                        the largest Sy's value form this well. On the other hand, the estimated results of Sy for data observed at
+                                        r = 30 m by the Tartakovsky and Neuman (2007) solution gives the Sy of 0.49, which is unrealistically
+
+
+ Table 3
+ Results of Parameter Estimation for CRP Test at Saint Pardon de Conques, Gironde, France
+ Parameters    Neuman (1974) solution     Moench (1997) solution     Tartakovsky and Neuman (2007) solution   Malama (2011) solution   Present solution
+
+ Observation well at r = 10 m
+                                −3                       −3                                 −3                              −3                    −3
+ Kr (m/s)              2.2 × 10                 2.19 × 10                          2.15 × 10                        2.26 × 10            1.57 × 10
+                                −5                        −5                                −5                               −5                   −5
+ Kz (m/s)             4.86 × 10                 4.62 × 10                          6.02 × 10                        4.53 × 10            9.14 × 10
+        −1                      −5                        −5                                −5                               −5                   −4
+ Ss (m )              9.78 × 10                 9.73 × 10                          8.56 × 10                        9.16 × 10            1.42 × 10
+ Sy (‐)                    0.05                     0.05                               0.06                             0.05                 0.25
+ τq (s)                     —                        —                                  —                                —                11,662.02
+ τs or 1/α (s)              —                      255.98                               —                                —                28,164.24
+        −1
+ κt (m )                                                                               0.73                              —                    —
+ β (m)                      —                        —                                  —                              −0.22                  —
+                                −3                       −3                                 −3                               −3                   −3
+ SEE                  7.93 × 10                 7.63 × 10                          7.89 × 10                        7.99 × 10            6.98 × 10
+                                −5                        −4                                 −6                              −5                   −5
+ ME                   3.45 × 10                 −2.49 × 10                         −2.35 × 10                       3.13 × 10            7.26 × 10
+ Observation well at r = 30 m
+                                −3                       −3                                 −3                              −4                    −3
+ Kr (m/s)             1.62 × 10                 1.64 × 10                           1.05 × 10                       9.64 × 10            1.29 × 10
+                                −5                       −5                                  −5                              −5                    −5
+ Kz (m/s)             3.62 × 10                 3.36 × 10                           7.43 × 10                       4.63 × 10            6.22 × 10
+        −1                      −3                       −3                                  −4                              −3                    −5
+ Ss (m )              1.36 × 10                 1.31 × 10                           2.71 × 10                       1.08 × 10            5.37 × 10
+ Sy (‐)                    0.18                     0.17                                0.49                            0.25                 0.29
+ τq (s)                     —                        —                                   —                               —                  8,524.2
+ τs or 1/α (s)              —                     1,610.86                               —                               —                26,457.42
+        −1
+ κt (m )                    —                        —                                  0.10                             —                    —
+ β (m)                      —                        —                                   —                              5.00                  —
+                                −3                       −3                                  −3                              −3                    −3
+ SEE                  8.73 × 10                 8.86 × 10                           7.99 × 10                       8.82 × 10            7.89 × 10
+                                −6                         −5                                −5                               −6                   −7
+ ME                   6.17 × 10                 −4.96 × 10                          2.56 × 10                      −1.47 × 10            2.04 × 10
+ Note. CRP = constant rate pumping; ME = mean error; SEE = standard error of estimate.
+
+
+
+LIN ET AL.                                                                                                                                         3935
+                                                                                                                                                                    19447973, 2019, 5, Downloaded from https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2018WR023893 by Chung Yuan Christian University, Wiley Online Library on [13/07/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+                                         Water Resources Research                                                             10.1029/2018WR023893
+
+
+
+                                                                             high. Such a result may be attributed to the problem of using the
+                                                                             Gardner model which fails to describe the unsaturated properties at this
+                                                                             site. The present solution yields a second larger estimated Sy as 0.29.
+                                                                             Moench (1994) applied the Neuman (1974) solution to ﬁt the same mea-
+                                                                             sured data for both observation wells via the type‐curve method. He sta-
+                                                                             ted that matching late time data can obtain more accurate estimated
+                                                                             results of the conductivity and the speciﬁc yield. The Sy value estimated
+                                                                             by Moench (1994) is 0.19. Clearly, all solutions except the present solu-
+                                                                             tion underestimate the Sy for the well observed at r = 10 m. On the
+                                                                             other hand, all the solutions except the Tartakovsky and Neuman
+                                                                             (2007) solution yield a reasonably good estimate of the Sy. Figure 6
+                                                                             shows the measured drawdown data and predicted drawdown curves
+                                                                             by the present and those four existing solutions with the estimated para-
+                                                                             meters shown in Table 3. The predicted drawdowns by all solutions
+                                                                             seem to ﬁt the data from the observation well at r = 10 m. The draw-
+Figure 6. Temporal distributions of drawdown data measured at two obser-     down curves predicted by the Neuman (1974), Moench (1997), and
+vation wells in Saint Pardon de Conques aquifer and drawdown predicted by    Malama (2011) solutions slightly deviate from the data measured at
+the present and four existing solutions.                                     r = 30 m before 100 min.
+                                       3.6. Discussion on Estimated Lag Times From Field Tests
+                                       Figure 7 demonstrates the lag times τq and τs estimated based on the CRP test data at Cape Cod, Borden,
+                                       and Saint Pardon de Conques sites decrease linearly with increasing distance on the logarithmic axis from
+                                       the pumping well. Note that the values of τq estimated from the Borden site data are quite small and slightly
+                                       increased with the distance. In this case, the present solution may serve as an alternative to the Moench
+
+
+
+
+                                       Figure 7. Regression lines for τq and τs against observed distance on a logarithmic axis for observation wells/piezometers
+                                       in (a) Cape Cod aquifer, (b) Borden aquifer, and (c) Saint Pardon de Conques aquifer.
+
+
+LIN ET AL.                                                                                                                                                 3936
+                                                                                                                               19447973, 2019, 5, Downloaded from https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2018WR023893 by Chung Yuan Christian University, Wiley Online Library on [13/07/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+              Water Resources Research                                                        10.1029/2018WR023893
+
+
+
+             (1997) solution to analyze the Borden site data. The ﬁgure exhibits the regression lines of the lag times ver-
+             sus the observed distance on the logarithmic scale, showing linearly decreasing trends in lag times except
+             for the case of τq for the Borden site. The decreasing trend of τq indicates that the gravity drainage may
+             occur earlier than the prediction of existing models especially near the pumping well. It is because that a
+             larger vertical hydraulic gradient may exert the effect of increasing drainage rate in the late ﬁrst segment
+             of the S‐shaped drawdown curve. Similarly, the trend of τq shows that the pore water in the capillary fringe
+             recharging toward the aquifer in the vicinity of the well is possibly retarded. This is because the water table
+             declines more rapidly near the pumping well and leads to more water trapped in the capillary fringe
+             momentary (i.e., the excess storage of water above the water table as deﬁned in Nwankwor et al., 1992).
+             Note that the results shown in Figure 7 seem to be consistent with the ﬁnding of Bevan et al. (2005,
+             Figure 12) which stated the capillary fringe extension increases with decreasing the radial distance to the
+             pumping well.
+
+             4. Concluding Remarks
+             This study proposes a new analytical model for describing the spatiotemporal drawdown distribution
+             induced by a CRP test in an unconﬁned aquifer considering the lagging effect proposed by Lin and Yeh
+             (2017) on the water table decline. Two lag times (i.e., τq and τs) are introduced to Darcy's law for developing
+             a new linearized free surface equation describing the water table decline. The model incorporates the well-
+             bore storage effect in the inner boundary condition describing the ﬂux across the wellbore. The drawdown
+             solution is developed by the use of the Laplace transform and Weber transform. With the present solution,
+             the sensitivity analysis is carried out to explore the inﬂuence of the changes in aquifer parameters on the
+             temporal drawdown distributions. In addition, the present solution is applied to estimate the aquifer para-
+             meters via nonlinear least squares method for the CRP tests performed in unconﬁned aquifers at the sites
+             of Cape Cod, Massachusetts; Canadian Forces Base Borden, Ontario; and Saint Pardon de Conques,
+             Gironde (France). Our new ﬁndings are given below:
+             1. The present linearized free surface equation can reduce to that of Neuman (1972) when τs = 0 and τq = 0.
+                It can also reduce to that of Moench (1995) when τqD = 0 and τsD = 1/α1D.
+             2. A larger value of τsD produces a larger drawdown; it might be attributed to the fact that the effect of the
+                capillary force slows down the drainage process. On the other hand, a larger τqD causes a smaller draw-
+                down. The reason may be that more water is released from the pore spaces in the capillary fringe to the
+                aquifer due to the increase of the vertical hydraulic drawdown.
+             3. The sensitivity analysis indicates the drawdown is most sensitive to the change in Kr, followed by Kz, Sy,
+                τs, τq, and Ss. The change in τs causes a more signiﬁcant effect on the drawdown than that in τq.
+             4. The present solution provides very good ﬁts to ﬁeld observed drawdown data as compared with the exist-
+                ing solutions. The values of Sy estimated by the present solution with the drawdown data obtained by
+                CRP tests in the Cape Cod, Borden, and Saint Pardon de Conques sites fall in the reasonable range
+                obtained from laboratory outcomes.
+             5. The analysis of the drawdown data indicates each of the estimated lag times decreases linearly with
+                increasing observed distance on the logarithmic scale for CRP tests at the Cape Cod, Borden, and Saint
+                Pardon de Conques sites except for the case of τq for the Borden site. It is consistent with the ﬁndings
+                of ﬁeld observations reported in Bevan et al.'s (2005) study which stated the capillary rise increases with
+                decreasing distance to the pumping well.
+
+             Appendix A: The Derivation of Equations (17a) and (17b)
+             To obtain the drawdown solution, we can apply the methods of Laplace and Weber transforms to solve the
+             proposed model. The Laplace transform, its inverse transform, and property of the ﬁrst derivative are respec-
+             tively given as
+                                                                           ∞
+                                                    f ðpÞ ¼ Lff ðt Þg ¼ ∫0 f ðt Þe−pt dt                               (A1)
+
+                                                                        1 Γþi∞
+                                               f ðt Þ ¼ L−1 f ðpÞ ¼       ∫     f ðpÞept dp                            (A2)
+                                                                       2πi Γ−i∞
+
+             and
+
+
+LIN ET AL.                                                                                                             3937
+                                                                                                                            19447973, 2019, 5, Downloaded from https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2018WR023893 by Chung Yuan Christian University, Wiley Online Library on [13/07/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+              Water Resources Research                                                            10.1029/2018WR023893
+
+
+
+                                                                  df
+                                                           L            ¼ pf ðpÞ−f ð0Þ                               (A3)
+                                                                  dt
+
+             in which Γ represents a real number. Also, the Weber transform, its inverse transform, and property for the
+             Neumann‐type boundary condition are respectively written as
+                                                                     ∞
+                                                e
+                                                f ðaÞ ¼ Wff ðr Þg ¼ ∫rwD f ðr ÞrΩða; r Þdr                           (A4)
+                                                          n      o     ∞
+                                                           f ðaÞ ¼ ∫0 e
+                                              f ðr Þ ¼ W−1 e              f ðaÞaΩða; r Þda                           (A5)
+
+             and
+                                                                                          
+                                                   d2 f 1 df                        2 df 
+                                               L       þ               ¼ −a2e
+                                                                            f ðaÞ−                                   (A6)
+                                                   dr 2 r dr                       πa dr r¼rwD
+
+             The Weber transform can be viewed as a Hankel transform with a more general kernel function. It can deal
+             with the problems in cylindrical domain with a lower bound speciﬁed at the Dirichlet, Neumann, or Robin
+             type condition, while Hankel transform is applicable to the lower bound only under the Neumann type con-
+             dition. The resulting transformed equations after imposing equations (A1), (A3), (A4), and (A6) on equa-
+             tions (11)–(16) are
+                                                      8
+                                                      >
+                                                      >                         0;
+                                                      >
+                                                      >                               ! ∀zD ∈½lD ; 1
+                                 e                  <                         e
+                                 s                   2        −2          C   p H
+                             κd2 2 ¼ a2 þ p seD þ
+                                  D                                         D     D
+                                                                       þ               ; ∀zD ∈½dD ; lD              (A7)
+                                dzD               >
+                                                  > πa r wD ðlD −dD Þp r wD ðlD −dD Þ
+                                                  >
+                                                  >
+                                                  :                                      ∀zD ∈½0; dD 
+                                                                     0;
+
+                                                                       seD
+                                                                  d        j    ¼0                                   (A8)
+                                                                      dzD zD ¼0
+
+             and
+
+                                                           seD                    
+                                         κð1 þ τ sD pÞd        j    ¼ −η 1 þ τ qD p pseD ðzD ¼ 1Þ                    (A9)
+                                                          dzD zD ¼1
+
+             The general solution to the model can then be written as
+                                                              8
+                                                              A1 coshðλzD Þ þ A2 sinhðλzD Þ; ∀zD ∈½lD ; 1
+                                                              >
+                                                              >
+                                                              <
+                                     2C    pH   ðpÞ−4
+                           seD ¼
+                                         D    D
+                                                            1 þ A3 coshðλzD Þ þ A4 sinhðλzD Þ; ∀zD ∈½dD ; lD       (A10)
+                                 ar wD ðlD −dD Þða2 þ pÞπ >
+                                                          >
+                                                          : A5 coshðλzD Þ þ A6 sinhðλzD Þ;
+                                                                                               ∀zD ∈½0; dD 
+
+             with the coefﬁcients A1 to A6 determined by the boundary conditions of equations (A8) and (A9) and the
+             continuity equations given as
+                                                                         
+                                                   seD zD ¼ dþ    e       −
+                                                             D ¼ sD zD ¼ dD                                   (A11)
+
+                                                            seD            seD
+                                                       d        j      ¼d      j                                    (A12)
+                                                           dzD zD ¼dþD    dzD zD ¼d−D
+                                                                              
+                                                      seD zD ¼ lþ   e          −
+                                                                D ¼ s D z D ¼ lD                                    (A13)
+
+             and
+
+                                                               seD            seD
+                                                          d        j      ¼d      j                                 (A14)
+                                                              dzD zD ¼lþD    dzD zD ¼l−D
+
+             Therefore, the coefﬁcients can be respectively obtained as
+
+
+LIN ET AL.                                                                                                          3938
+                                                                                                                                                                                         19447973, 2019, 5, Downloaded from https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2018WR023893 by Chung Yuan Christian University, Wiley Online Library on [13/07/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+                                            Water Resources Research                                                                          10.1029/2018WR023893
+
+
+                                                                                                                     
+                                                                                      A1 ¼ − δs κλ coshλ þ pδq η sinhλ Ψs Þ=Δ                                                 (A15)
+
+                                                                                                        A2 ¼ Ψs =Δ                                                            (A16)
+                                                                                                                               
+                                                          A3 ¼ − sinhλ δs κλ coshðλlD Þ þ pδq ηΨs þ coshλ pδq η coshðλlD Þ þ δs κλΨs ÞÞ=Δ                                     (A17)
+
+                                                                                                    A4 ¼ sinhðλlD Þ=Δ                                                         (A18)
+                                                                                                                                   
+                                                 A5 ¼ 2 sinhððdD −lD Þλ=2Þ −δs κλ coshððdD þ lD −2Þλ=2Þ þ pδq η sinhððdD þ lD −2Þλ=2Þ =Δ                                      (A19)
+
+                                                                                                           A6 ¼ 0                                                             (A20)
+
+                                          with δs = 1+pτsD, δq = 1+pτqD, and Δ = pδqη cosh λ+δsκλ sinh λ.
+
+Acknowledgments                           References
+Research leading to this paper has been
+partially supported by the grant from     Barlow, P. M., & Moench, A. F. (1999). WTAQ—A computer program for calculating drawdowns and estimating hydraulic properties for
+the Taiwan Ministry of Science and           conﬁned and water‐table aquifers, US Geological Survey Water‐Resources Investigations Report, 99‐4225.
+Technology under the contract             Batu, V. (1998). Aquifer hydraulics: a comprehensive guide to hydrogeologic data analysis. John Wiley & Sons.
+MOST 107‐2221‐E‐009‐019‐MY3, the          Bear, J. (1979). Groundwater hydraulics. New York: McGraw.
+Fundamental Research Funds for the        Bevan, M. J., Endres, A. L., Rudolph, D. L., & Parkin, G. (2005). A ﬁeld scale study of pumping‐induced drainage and recovery in an
+Central Universities (2018B00114), and       unconﬁned aquifer. Journal of Hydrology, 315(1‐4), 52–70.
+the National Natural Science              Boulton, N. S. (1954a). Unsteady radial ﬂow to a pumped well allowing for delayed yield from storage. International Association of Scientiﬁc
+Foundation of China (51809080). The          Hydrology. Publication, 2, 472–477.
+measured drawdown data shown in           Boulton, N. S. (1954b). The drawdown of the water‐table under non‐steady conditions near a pumped well in an unconﬁned formation.
+Figures 4, 5, and 6 are obtained from        Proceedings of the Institution of Civil Engineers, 3(3), 564–579.
+the works of Bevan et al. (2005),         Charbeneau, R. J. (2000). Groundwater hydraulics and pollutant transport. Upper Saddle River, NJ: Prentice‐Hall Inc.
+Moench et al. (2001), and Neuman          Crump, K. S. (1976). Numerical inversion of Laplace transforms using a Fourier series approximation. Journal of the ACM (JACM), 23(1),
+(1975). The authors would like to thank      89–96.
+the Editor, Xavier Sanchez‐Vila, the      Dagan, G. (1967). A method of determining the permeability and effective porosity of unconﬁned anisotropie aquifers. Water Resources
+Associate Editor, and three anonymous        Research, 3(4), 1059–1071.
+reviewers for their constructive com-     Endres, A. L., Jones, J. P., & Bertrand, E. A. (2007). Pumping‐induced vadose zone drainage and storage in an unconﬁned aquifer: A
+ments and suggested modiﬁcations.            comparison of analytical model predictions and ﬁeld measurements. Journal of Hydrology, 335(1‐2), 207–218.
+                                          Freeze, R. A., & Cherry, J. A. (1979). Groundwater. Englewood Cliffs, NJ: Prentice‐Hall, Inc.
+                                          Gardner, W. R. (1958). Some steady‐state solutions of the unsaturated moisture ﬂow equation with application to evaporation from a water
+                                             table. Soil Science, 85(4), 228–232.
+                                          Gillham, R. W. (1984). The capillary fringe and its effect on water‐table response. Journal of Hydrology, 67(1‐4), 307–324.
+                                          Herrera, I., Minzoni, A., & Flores, E. Z. (1978). Theory of ﬂow in unconﬁned aquifers by integrodifferential equations. Water Resources
+                                             Research, 14(2), 291–298.
+                                          Kroszynski, U. I., & Dagan, G. (1975). Well pumping in unconﬁned aquifers: The inﬂuence of the unsaturated zone. Water Resources
+                                             Research, 11(3), 479–490.
+                                          Liang, X., Zhan, H., You‐Kuan, Z., & Liu, J. (2017). On the coupled unsaturated‐saturated ﬂow process induced by vertical, horizontal, and
+                                             slant wells in unconﬁned aquifers. Hydrology and Earth System Sciences, 21(2), 1251.
+                                          Lin, Y. C., & Yeh, H. D. (2017). A lagging model for describing drawdown induced by a constant‐rate pumping in a leaky conﬁned aquifer.
+                                             Water Resources Research, 53, 8500–8511. https://doi.org/10.1002/2017WR021115
+                                          Liou, T. S., & Yeh, H. D. (1997). Conditional expectation for evaluation of risk groundwater ﬂow and solute transport: one‐dimensional
+                                             analysis. Journal of Hydrology, 199(3‐4), 378–402.
+                                          Mace, A., Rudolph, D. L., & Kachanoski, R. G. (1998). Suitability of parametric models to describe the hydraulic properties of an unsatu-
+                                             rated coarse sand and gravel. Ground Water, 36, 465–475.
+                                          Malama, B. (2011). Alternative linearization of water table kinematic condition for unconﬁned aquifer pumping test modeling and its
+                                             implications for speciﬁc yield estimates. Journal of Hydrology, 399(3–4), 141–147.
+                                          Mathias, S. A., & Butler, A. P. (2006). Linearized Richards' equation approach to pumping tests analysis in compressible aquifers. Water
+                                             Resources Research, 42, W06408. https://doi.org/10.1029/2005WR004680
+                                          Mishra, P. K., & Neuman, S. P. (2010). Improved forward and inverse analyses of saturated‐unsaturated ﬂow toward a well in a com-
+                                             pressible unconﬁned aquifer. Water Resources Research, 46, W07508. https://doi.org/10.1029/2009WR008899
+                                          Moench, A. F. (1994). Speciﬁc yield as determined by type‐curve analysis of aquifer‐test data. Groundwater, 32(6), 949–957.
+                                          Moench, A. F. (1995). Combining the Neuman and Boulton models for ﬂow to a well in an unconﬁned aquifer. Groundwater, 33(3),
+                                             378–384.
+                                          Moench, A. F. (1997). Flow to a well of ﬁnite diameter in a homogeneous, anisotropic water table aquifer. Water Resources Research, 33(6),
+                                             1397–1407.
+                                          Moench, A. F., Garabedian S. P., & LeBlanc, D. (2001). Estimation of hydraulic parameters from an unconﬁned aquifer test conducted in a
+                                             glacial outwash deposit, Cape Cod, Massachusetts. Professional Paper 1629, US Geological Survey.
+                                          Neuman, S. P. (1972). Theory of ﬂow in unconﬁned aquifers considering delayed response of the water table. Water Resources Research,
+                                             8(4), 1031–1045.
+                                          Neuman, S. P. (1974). Effect of partial penetration on ﬂow in unconﬁned aquifers considering delayed gravity response. Water Resources
+                                             Research, 10(2), 303–312.
+                                          Neuman, S. P. (1975). Analysis of pumping test data from anisotropic unconﬁned aquifers considering delayed gravity response. Water
+                                             Resources Research, 11(2), 329–342.
+
+
+
+LIN ET AL.                                                                                                                                                                     3939
+                                                                                                                                                             19447973, 2019, 5, Downloaded from https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2018WR023893 by Chung Yuan Christian University, Wiley Online Library on [13/07/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+               Water Resources Research                                                                           10.1029/2018WR023893
+
+
+
+             Nwankwor, G., Gillham, R., Kamp, G., & Akindunni, F. (1992). Unsaturated and saturated ﬂow in response to pumping of an unconﬁned
+               aquifer: Field evidence of delayed drainage. Groundwater, 30(5), 690–700.
+             Rohatgi, A. (2018). WebPlotDigitizer. Retrieved from https://apps.automeris.io/wpd/
+             Philip, J. R. (1969). Theory of inﬁltration. In Advances in hydroscience (pp. 215–296).
+             Richards, L. A. (1931). Capillary conduction of liquids through porous mediums. Physics, 1(5), 318–333.
+             Su, N., Nelson, P. N., & Connor, S. (2015). The distributed‐order fractional diffusion‐wave equation of groundwater ﬂow: Theory and
+               application to pumping and slug tests. Journal of Hydrology, 529, 1262–1273.
+             Sudicky, E. A. (1986). A natural gradient experiment on solute transport in a sand aquifer: Spatial variability of hydraulic conductivity and
+               its role in the dispersion process. Water Resources Research, 22(13), 2069–2082.
+             Tartakovsky, G. D., & Neuman, S. P. (2007). Three‐dimensional saturated‐unsaturated ﬂow with axial symmetry to a partially penetrating
+               well in a compressible unconﬁned aquifer. Water Resources Research, 43, W01410. https://doi.org/10.1029/2006WR005153
+             Todd, D. K., & Mays, L. W. (2005). Groundwater hydrology. New York: Wiley & Sons Inc.
+             Tzou, D. Y. (1995). The generalized lagging response in small‐scale and high‐rate heating. International Journal of Heat and Mass Transfer,
+               38(17), 3231–3240.
+             Wolfram Research, Inc. (2018). Mathematica, Version 11.2, Champaign, IL.
+             Yeh, H. D. (1987). Theis' solution by nonlinear least‐squares and ﬁnite‐difference Newton's method. Groundwater, 25, 710–715.
+             Yeh, H. D., & Han, H. Y. (1989). Numerical identiﬁcation of parameters in leaky aquifers. Groundwater, 27(5), 655–663.
+
+
+
+
+LIN ET AL.                                                                                                                                         3940
+

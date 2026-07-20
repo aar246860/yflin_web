@@ -1,0 +1,332 @@
+{
+    "reviewer":  "Codex independent semantic source auditor",
+    "reviewer_role":  "independent source auditor",
+    "reviewed_at":  "2026-07-19T16:57:18+08:00",
+    "review_method":  "source passage comparison",
+    "audit_scope":  "all background premises, method operations, and scene scientific claims",
+    "decision":  "pass",
+    "source_artifact_sha256":  "5f92c6bc4302ad52468f2a742105d7bfd32858e98c5496c328de76d9b19d765f",
+    "storyboard_sha256":  "127451414d4e0efdc87bea767ca78e7e74339754db02276f92b8eab4668d868d",
+    "background_items":  [
+                             {
+                                 "id":  "B01",
+                                 "source_locator":  "PDF page 1, Section 1 Introduction",
+                                 "source_excerpt":  "                                           method or a graphical type curve method. The behavior of unconﬁned ﬂow differs signiﬁcantly from that\r\n                                           of conﬁned ﬂow if pumping continues long enough. The temporal distribution of measured drawdown data\r\n                                           often demonstrates an S‐shaped curve, which may be divided into three segments as early time (ﬁrst seg-\r\n                                           ment), intermediate time (second segment), and late time periods (third segment; Neuman, 1972). The\r\n                                           pumped water is mainly from the aquifer storage in the ﬁrst segment. Later, the effect of the gravity drainage\r\n                                           due to the water table decline becomes profound and the temporal drawdown curve exhibits a ﬂattened seg-\r\n                                           ment in the second segment. In the third segment, the pumped water is from both the aquifer storage and the\r\n                                           pore space on the water table.",
+                                 "claim_anchor_terms":  [
+                                                            "measured drawdown",
+                                                            "continues"
+                                                        ],
+                                 "independent_premise_count":  1,
+                                 "semantic_match":  "pass"
+                             },
+                             {
+                                 "id":  "B02",
+                                 "source_locator":  "PDF page 2, Section 1 Introduction",
+                                 "source_excerpt":  "             After the pore water drained above the water table, the curvature of the air‐water interface within the soil\r\n             particles becomes sharper with increasing capillary suction. Large pores in the unsaturated zone may empty\r\n             under lower suction, while small pores with the interfaces (menisci) of sharper curvature would empty at\r\n             higher suction (Bear, 1979, p. 198). A certain amount of water in the pore is retained by the capillary force\r\n             against the gravitational force. It takes time to complete the drainage, and the time lag should be taken into\r\n             account (Bear, 1979, p. 206). Nwankwor et al. (1992) stated that when the rate of the water table declining is",
+                                 "claim_anchor_terms":  [
+                                                            "takes time",
+                                                            "time lag"
+                                                        ],
+                                 "independent_premise_count":  1,
+                                 "semantic_match":  "pass"
+                             },
+                             {
+                                 "id":  "B03",
+                                 "source_locator":  "PDF page 4, Section 2.1 Model Description",
+                                 "source_excerpt":  "             That causes a delayed‐response region (i.e., the second segment of the unconﬁned temporal drawdown\r\n             curve) of the time‐drawdown curve, indicating that the pore water in the capillary fringe takes time to com-\r\n             plete the drainage. Traditional unconﬁned ﬂow models (e.g., Neuman, 1972, 1974) of assuming instanta-\r\n             neous and complete drainage at the water table may sometimes fail to give an accurate estimate of\r\n             speciﬁc yield (Endres et al., 2007; Malama, 2011; Nwankwor et al., 1992).",
+                                 "claim_anchor_terms":  [
+                                                            "water",
+                                                            "table"
+                                                        ],
+                                 "independent_premise_count":  1,
+                                 "semantic_match":  "pass"
+                             }
+                         ],
+    "method_items":  [
+                         {
+                             "id":  "M01",
+                             "source_locator":  "PDF page 3, Section 2.1 Model Description, Equation 1",
+                             "source_excerpt":  "                                     2. Methodology\r\n                                     Figure 1 shows the schematic diagram for the conceptual model describing spatiotemporal head distribution\r\n                                     due to a CRP test with a constant rate Q [L3/T] in an unconﬁned aquifer. The drawdown s [L] is used in the\r\n                                     following sections to represent a reduction in the hydraulic head measured at an observation point. The ori-\r\n                                     gin of the coordinate (r, z) [L] is set at the center of the well and the bottom of the aquifer. The averaged aqui-\r\n                                     fer thickness is b [L]. The pumping well has a ﬁnite radius rw [L] with a casing radius rc [L] and partially\r\n                                     penetrates the aquifer with a screen installed from elevation z = d to z = l [L]. The aquifer is anisotropic with\r\n                                     vertical hydraulic conductivity Kz and radial hydraulic conductivity Kr [L/T]. The water extracted by the well\r\n                                     is produced from the aquifer storage and the gravity drainage on the water table. The aquifer speciﬁc storage\r\n                                     and speciﬁc yield are respectively denoted as Ss [1/L] and Sy [‐].\r\n                                     2.1. Model Description\r\n                                     The governing equation describing the drawdown distribution in the unconﬁned aquifer induced by pump-\r\n                                     ing can be expressed as\r\n                                                                                  \u0001 2          \u0003\r\n                                                                                   ∂ s 1 ∂s           ∂2 s    ∂s\r\n                                                                             Kr         þ        þ K z 2 ¼ Ss                                        (1)\r\n                                                                                   ∂r 2   r ∂r        ∂z      ∂t",
+                             "claim_anchor_terms":  [
+                                                        "drawdown distribution",
+                                                        "unconﬁned aquifer"
+                                                    ],
+                             "irreducible_operation_count":  1,
+                             "semantic_match":  "pass"
+                         },
+                         {
+                             "id":  "M02",
+                             "source_locator":  "PDF page 4, Section 2.1 Model Description, Equation 3",
+                             "source_excerpt":  "             The inner and outer boundary conditions are respectively\r\n                                                                   8\r\n                                                             \u0004     \u003c           ∂H\r\n                                                          ∂s\u0004\u0004       −Q þ πr c2 ; ∀z∈½d; l\u0002\r\n                                           2πr w K r ðl−dÞ \u0004     ¼             ∂t                                        (3)\r\n                                                          ∂r r¼rw :\r\n                                                                        0; elsewhere\r\n\r\n             and\r\n\r\n                                                              limr→∞ s ¼ 0                                               (4)\r\n\r\n             where H(t) is the water level [L] in the pumping well with the initial condition denoted as H(0) = 0. The left‐\r\n             hand‐side term of equation (3) represents the water ﬂux across the wellbore, and the second term on the\r\n             right‐hand side accounts for the wellbore storage. The bottom boundary condition is",
+                             "claim_anchor_terms":  [
+                                                        "equation",
+                                                        "represents"
+                                                    ],
+                             "irreducible_operation_count":  1,
+                             "semantic_match":  "pass"
+                         },
+                         {
+                             "id":  "M03",
+                             "source_locator":  "PDF page 4, Section 2.1 Model Description, Equation 7b",
+                             "source_excerpt":  "             where τq and τs denote the lag times [T] of the ﬂux and aquifer drawdown, respectively. The parameter τq is\r\n             considered to reﬂect the pore water quickly released from the capillary fringe induced by the increase of the\r\n             vertical hydraulic gradient due to pumping. On the other hand, the τs is introduced to reﬂect the lag time for\r\n             drainage from excess storage of water held by the capillary suction.",
+                             "claim_anchor_terms":  [
+                                                        "lag times",
+                                                        "ﬂux and aquifer drawdown"
+                                                    ],
+                             "irreducible_operation_count":  1,
+                             "semantic_match":  "pass"
+                         },
+                         {
+                             "id":  "M04",
+                             "source_locator":  "PDF page 4, Section 2.1 Model Description, Equation 8",
+                             "source_excerpt":  "Employing the Taylor series expansion,\r\n             the ﬁrst‐order representation of equation 7 can be obtained as",
+                             "claim_anchor_terms":  [
+                                                        "Taylor series expansion",
+                                                        "ﬁrst‐order representation"
+                                                    ],
+                             "irreducible_operation_count":  1,
+                             "semantic_match":  "pass"
+                         },
+                         {
+                             "id":  "M05",
+                             "source_locator":  "PDF page 5, Section 2.1 Model Description, Equation 9",
+                             "source_excerpt":  "             4. Concluding Remarks\r\n             This study proposes a new analytical model for describing the spatiotemporal drawdown distribution\r\n             induced by a CRP test in an unconﬁned aquifer considering the lagging effect proposed by Lin and Yeh\r\n             (2017) on the water table decline. Two lag times (i.e., τq and τs) are introduced to Darcy\u0027s law for developing\r\n             a new linearized free surface equation describing the water table decline. The model incorporates the well-\r\n             bore storage effect in the inner boundary condition describing the ﬂux across the wellbore. The drawdown\r\n             solution is developed by the use of the Laplace transform and Weber transform. With the present solution,\r\n             the sensitivity analysis is carried out to explore the inﬂuence of the changes in aquifer parameters on the\r\n             temporal drawdown distributions. In addition, the present solution is applied to estimate the aquifer para-\r\n             meters via nonlinear least squares method for the CRP tests performed in unconﬁned aquifers at the sites\r\n             of Cape Cod, Massachusetts; Canadian Forces Base Borden, Ontario; and Saint Pardon de Conques,\r\n             Gironde (France). Our new ﬁndings are given below:\r\n             1. The present linearized free surface equation can reduce to that of Neuman (1972) when τs = 0 and τq = 0.\r\n                It can also reduce to that of Moench (1995) when τqD = 0 and τsD = 1/α1D.",
+                             "claim_anchor_terms":  [
+                                                        "surface",
+                                                        "equation"
+                                                    ],
+                             "irreducible_operation_count":  1,
+                             "semantic_match":  "pass"
+                         },
+                         {
+                             "id":  "M06",
+                             "source_locator":  "PDF page 5, Section 2.2 Dimensionless Solution in Laplace Domain, Equation 10",
+                             "source_excerpt":  "             2.2. Dimensionless Solution in Laplace Domain\r\n             The dimensionless variables and parameters are deﬁned as follows:\r\n\r\n                        4πK r bs        4πK r bH        r        rw     z        Krt             K r τq          K r τs\r\n                 sD ¼            ; HD ¼          ; r D ¼ ; r wD ¼ ; zD ¼ ; t D ¼      2 ; τ qD ¼      2 ; τ sD ¼        ; dD\r\n                          Q               Q             b         b     b        Ss b            Ss b            Ss b2\r\n                     d      l      Kz      Sy          r2\r\n                    ¼ ; lD ¼ ; κ ¼    ;η ¼      ; CD ¼ c 3                                                                      (10)\r\n                     b      b      Kr      Ss b       2Ss b\r\n\r\n             The dimensionless formulas for equations (1)–(5) and 9 based on 10 can be respectively written as",
+                             "claim_anchor_terms":  [
+                                                        "dimensionless variables",
+                                                        "parameters"
+                                                    ],
+                             "irreducible_operation_count":  1,
+                             "semantic_match":  "pass"
+                         },
+                         {
+                             "id":  "M07",
+                             "source_locator":  "PDF page 13, Appendix A, Equations (A1)-(A3)",
+                             "source_excerpt":  "             Appendix A: The Derivation of Equations (17a) and (17b)\r\n             To obtain the drawdown solution, we can apply the methods of Laplace and Weber transforms to solve the\r\n             proposed model. The Laplace transform, its inverse transform, and property of the ﬁrst derivative are respec-\r\n             tively given as\r\n                                                                           ∞\r\n                                                    f ðpÞ ¼ Lff ðt Þg ¼ ∫0 f ðt Þe−pt dt                               (A1)\r\n\r\n                                                                        1 Γþi∞\r\n                                               f ðt Þ ¼ L−1 f ðpÞ ¼       ∫     f ðpÞept dp                            (A2)\r\n                                                                       2πi Γ−i∞\r\n\r\n             and\r\n\r\n\r\nLIN ET AL.                                                                                                             3937\r\n\f                                                                                                                            19447973, 2019, 5, Downloaded from https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2018WR023893 by Chung Yuan Christian University, Wiley Online Library on [13/07/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License\r\n              Water Resources Research                                                            10.1029/2018WR023893\r\n\r\n\r\n\r\n                                                                  df\r\n                                                           L            ¼ pf ðpÞ−f ð0Þ                               (A3)\r\n                                                                  dt",
+                             "claim_anchor_terms":  [
+                                                        "Laplace transform",
+                                                        "equations"
+                                                    ],
+                             "irreducible_operation_count":  1,
+                             "semantic_match":  "pass"
+                         },
+                         {
+                             "id":  "M08",
+                             "source_locator":  "PDF page 13, Appendix A, Equations (A4)-(A6); PDF page 5, Equations (17a)-(17b)",
+                             "source_excerpt":  "             in which Γ represents a real number. Also, the Weber transform, its inverse transform, and property for the\r\n             Neumann‐type boundary condition are respectively written as\r\n                                                                     ∞\r\n                                                e\r\n                                                f ðaÞ ¼ Wff ðr Þg ¼ ∫rwD f ðr ÞrΩða; r Þdr                           (A4)\r\n                                                          n      o     ∞\r\n                                                           f ðaÞ ¼ ∫0 e\r\n                                              f ðr Þ ¼ W−1 e              f ðaÞaΩða; r Þda                           (A5)\r\n\r\n             and\r\n                                                                                          \u0004\r\n                                                   d2 f 1 df                        2 df \u0004\u0004\r\n                                               L       þ               ¼ −a2e\r\n                                                                            f ðaÞ−                                   (A6)\r\n                                                   dr 2 r dr                       πa dr \u0004r¼rwD\r\n\r\n             The Weber transform can be viewed as a Hankel transform with a more general kernel function. It can deal\r\n             with the problems in cylindrical domain with a lower bound speciﬁed at the Dirichlet, Neumann, or Robin\r\n             type condition, while Hankel transform is applicable to the lower bound only under the Neumann type con-",
+                             "claim_anchor_terms":  [
+                                                        "Weber transform",
+                                                        "boundary condition"
+                                                    ],
+                             "irreducible_operation_count":  1,
+                             "semantic_match":  "pass"
+                         },
+                         {
+                             "id":  "M09",
+                             "source_locator":  "PDF page 6, Section 2.2 Dimensionless Solution in Laplace Domain, Equation 18",
+                             "source_excerpt":  "              \u0005                   \u0006\r\n             = J 21 ðaÞ þ Y 21 ðaÞ . The detailed derivation of the solution and the coefﬁcients A1 to A5 are listed in Appendix\r\n             A. Using the inverse Weber transform, the drawdown solution in Laplace domain can be expressed as\r\n                                                                       ∞\r\n                                                               sD ¼ ∫0 seD aΩða; r D Þda                                       (18)\r\n",
+                             "claim_anchor_terms":  [
+                                                        "inverse Weber transform",
+                                                        "drawdown solution"
+                                                    ],
+                             "irreducible_operation_count":  1,
+                             "semantic_match":  "pass"
+                         },
+                         {
+                             "id":  "M10",
+                             "source_locator":  "PDF page 6, Section 2.2 Dimensionless Solution in Laplace Domain, Equation 18",
+                             "source_excerpt":  "             The drawdown in the time domain is obtained by numerically inverting equation (18) with the Crump\r\n             (1976) algorithm. The numerical integration in equation (18) can be achieved by the Mathematica function\r\n             NIntegrate (Wolfram Research, Inc, 2018).",
+                             "claim_anchor_terms":  [
+                                                        "time domain",
+                                                        "domain"
+                                                    ],
+                             "irreducible_operation_count":  1,
+                             "semantic_match":  "pass"
+                         },
+                         {
+                             "id":  "M11",
+                             "source_locator":  "PDF page 7, Section 3.2 Sensitivity Analysis, Equations 25-26",
+                             "source_excerpt":  "                                                                      3.2. Sensitivity Analysis\r\n                                                                      Sensitivity analysis is a useful tool in investigating the effect of parameter\r\n                                                                      uncertainty on the aquifer drawdown. One may deﬁne the normalized\r\n                                                                      sensitivity as (Liou \u0026 Yeh, 1997):\r\n                                                                                                                  ∂s\r\n                                                                                                      X k ¼ Pk                                 (25)\r\n                                                                                                                 ∂Pk\r\n                                                                      where Xk is the normalized sensitivity of drawdown s to the kth input\r\n                                                                      parameter Pk. A forward ﬁnite difference formula is used to approximate\r\n                                                                      the ﬁrst derivative term in equation (25) written as\r\n                                                                                                         sðPk þ ΔPk Þ−sðPk Þ\r\n                                                                                              X k ¼ Pk                                         (26)\r\n                                                                                                                ΔPk\r\n                                                                      where ΔPk is set to 10−3 Pk (Yeh \u0026 Han, 1989).",
+                             "claim_anchor_terms":  [
+                                                        "forward ﬁnite difference",
+                                                        "forward"
+                                                    ],
+                             "irreducible_operation_count":  1,
+                             "semantic_match":  "pass"
+                         },
+                         {
+                             "id":  "M12",
+                             "source_locator":  "PDF pages 7-9, Section 3.3 Pumping Test Data Analysis: Cape Cod Site, Table 1 and Figure 4",
+                             "source_excerpt":  "                                                                                Four sets of drawdown data obtained from a CRP test conducted by the U.\r\n                                                                                S. Geological Survey in glacial outwash deposit at Cape Cod,\r\n                                                                                Massachusetts (Moench et al., 2001) are analyzed. The aquifer consists\r\n                                                                                of sand and gravel with a saturated thickness of 51.82 m and overlies a\r\n                                                                                ﬁne‐grained formation considered as an impermeable layer. The CRP test\r\n                                                                                was conducted at the well F507‐080 for a 72‐hr pumping with a constant\r\n                                                                                rate of 0.0202 m3/s. The well is screened from 4.02 to 18.35 m below the\r\n                                                                                steady water table with 11‐inch diameter (0.28 m) in the screen part and\r\n                                                                                13.5‐inch diameter (0.34 m) in the casing part. To determine the aquifer\r\n                                                                                hydraulic parameters, the data obtained from four observation wells are\r\n                                                                                considered. The distance from the pumping well is 7.28 m to observation\r\n                                                                                well F505‐032, 14.2 m to well F504‐032, 25.9 m to well F377‐037, and\r\n                                                                                68.8 m to well F347‐031. Table 1 lists the aquifer parameters estimated\r\n                                                                                by the ﬁve solutions coupled with the Levenberg Marquardt algorithm\r\n                                                                                given in the Mathematica routine NonlinearModelFit (Wolfram\r\n                                                                                Research, Inc, 2018). The standard error of estimate (SEE) and mean error\r\n                                                                                (ME) deﬁned by Yeh (1987) are used to assess prediction errors. Judging\r\n                                                                                from the values of SEE and ME, the present solution gives a very good\r\n                                                                                ﬁt to the measured drawdown data as compared with the others. The mag-",
+                             "claim_anchor_terms":  [
+                                                        "aquifer parameters",
+                                                        "Table 1"
+                                                    ],
+                             "irreducible_operation_count":  1,
+                             "semantic_match":  "pass"
+                         },
+                         {
+                             "id":  "M13",
+                             "source_locator":  "PDF pages 9-11, Section 3.4 Pumping Test Data Analysis: Borden Site, Table 2 and Figure 5",
+                             "source_excerpt":  "                                                                             Figure 5 displays the measured drawdown data and predicted drawdown\r\n                                                                             curves by the present and those four existing solutions with the estimated\r\n                                                                             parameters shown in Table 2. The ﬁgure shows excellent ﬁts for the pre-\r\n                                                                             sent solution to all the measured data except that of WD1A in the early\r\n                                                                             pumping time. The predicted drawdown curves by the Neuman (1974),\r\n                                                                             Tartakovsky and Neuman (2007), and Malama (2011) solutions signiﬁ-\r\n                                                                             cantly deviate from the data of WD1A, WD1B, and WD2A before\r\n                                                                             100 min. Notably, these ﬁve solutions predict very close results for\r\n                                                                             WD4A, indicating the lagging effects may be negligible for a further dis-\r\n                                                                             tance from the pumping well. The drawdown curves predicted by the pre-\r\n                                                                             sent solution agree well to all the data sets except that of WD1A in the\r\n                                                                             early pumping time.",
+                             "claim_anchor_terms":  [
+                                                        "Figure 5",
+                                                        "WD1A"
+                                                    ],
+                             "irreducible_operation_count":  1,
+                             "semantic_match":  "pass"
+                         },
+                         {
+                             "id":  "M14",
+                             "source_locator":  "PDF pages 11-12, Section 3.5 Pumping Test Data Analysis: Saint Pardon de Conques Site, Table 3 and Figure 6",
+                             "source_excerpt":  "                                                                             high. Such a result may be attributed to the problem of using the\r\n                                                                             Gardner model which fails to describe the unsaturated properties at this\r\n                                                                             site. The present solution yields a second larger estimated Sy as 0.29.\r\n                                                                             Moench (1994) applied the Neuman (1974) solution to ﬁt the same mea-\r\n                                                                             sured data for both observation wells via the type‐curve method. He sta-\r\n                                                                             ted that matching late time data can obtain more accurate estimated\r\n                                                                             results of the conductivity and the speciﬁc yield. The Sy value estimated\r\n                                                                             by Moench (1994) is 0.19. Clearly, all solutions except the present solu-\r\n                                                                             tion underestimate the Sy for the well observed at r = 10 m. On the\r\n                                                                             other hand, all the solutions except the Tartakovsky and Neuman\r\n                                                                             (2007) solution yield a reasonably good estimate of the Sy. Figure 6\r\n                                                                             shows the measured drawdown data and predicted drawdown curves\r\n                                                                             by the present and those four existing solutions with the estimated para-\r\n                                                                             meters shown in Table 3. The predicted drawdowns by all solutions\r\n                                                                             seem to ﬁt the data from the observation well at r = 10 m. The draw-\r\nFigure 6. Temporal distributions of drawdown data measured at two obser-     down curves predicted by the Neuman (1974), Moench (1997), and\r\nvation wells in Saint Pardon de Conques aquifer and drawdown predicted by    Malama (2011) solutions slightly deviate from the data measured at\r\nthe present and four existing solutions.                                     r = 30 m before 100 min.",
+                             "claim_anchor_terms":  [
+                                                        "Table 3",
+                                                        "Figure 6"
+                                                    ],
+                             "irreducible_operation_count":  1,
+                             "semantic_match":  "pass"
+                         }
+                     ],
+    "scene_items":  [
+                        {
+                            "scene":  1,
+                            "background_premise_count":  1,
+                            "method_operation_count":  0,
+                            "undeclared_scientific_content":  "none",
+                            "source_claims_checked":  "pass"
+                        },
+                        {
+                            "scene":  2,
+                            "background_premise_count":  1,
+                            "method_operation_count":  0,
+                            "undeclared_scientific_content":  "none",
+                            "source_claims_checked":  "pass"
+                        },
+                        {
+                            "scene":  3,
+                            "background_premise_count":  1,
+                            "method_operation_count":  0,
+                            "undeclared_scientific_content":  "none",
+                            "source_claims_checked":  "pass"
+                        },
+                        {
+                            "scene":  4,
+                            "background_premise_count":  0,
+                            "method_operation_count":  1,
+                            "undeclared_scientific_content":  "none",
+                            "source_claims_checked":  "pass"
+                        },
+                        {
+                            "scene":  5,
+                            "background_premise_count":  0,
+                            "method_operation_count":  1,
+                            "undeclared_scientific_content":  "none",
+                            "source_claims_checked":  "pass"
+                        },
+                        {
+                            "scene":  6,
+                            "background_premise_count":  0,
+                            "method_operation_count":  1,
+                            "undeclared_scientific_content":  "none",
+                            "source_claims_checked":  "pass"
+                        },
+                        {
+                            "scene":  7,
+                            "background_premise_count":  0,
+                            "method_operation_count":  1,
+                            "undeclared_scientific_content":  "none",
+                            "source_claims_checked":  "pass"
+                        },
+                        {
+                            "scene":  8,
+                            "background_premise_count":  0,
+                            "method_operation_count":  1,
+                            "undeclared_scientific_content":  "none",
+                            "source_claims_checked":  "pass"
+                        },
+                        {
+                            "scene":  9,
+                            "background_premise_count":  0,
+                            "method_operation_count":  1,
+                            "undeclared_scientific_content":  "none",
+                            "source_claims_checked":  "pass"
+                        },
+                        {
+                            "scene":  10,
+                            "background_premise_count":  0,
+                            "method_operation_count":  1,
+                            "undeclared_scientific_content":  "none",
+                            "source_claims_checked":  "pass"
+                        },
+                        {
+                            "scene":  11,
+                            "background_premise_count":  0,
+                            "method_operation_count":  1,
+                            "undeclared_scientific_content":  "none",
+                            "source_claims_checked":  "pass"
+                        },
+                        {
+                            "scene":  12,
+                            "background_premise_count":  0,
+                            "method_operation_count":  1,
+                            "undeclared_scientific_content":  "none",
+                            "source_claims_checked":  "pass"
+                        },
+                        {
+                            "scene":  13,
+                            "background_premise_count":  0,
+                            "method_operation_count":  1,
+                            "undeclared_scientific_content":  "none",
+                            "source_claims_checked":  "pass"
+                        },
+                        {
+                            "scene":  14,
+                            "background_premise_count":  0,
+                            "method_operation_count":  1,
+                            "undeclared_scientific_content":  "none",
+                            "source_claims_checked":  "pass"
+                        },
+                        {
+                            "scene":  15,
+                            "background_premise_count":  0,
+                            "method_operation_count":  1,
+                            "undeclared_scientific_content":  "none",
+                            "source_claims_checked":  "pass"
+                        },
+                        {
+                            "scene":  16,
+                            "background_premise_count":  0,
+                            "method_operation_count":  1,
+                            "undeclared_scientific_content":  "none",
+                            "source_claims_checked":  "pass"
+                        },
+                        {
+                            "scene":  17,
+                            "background_premise_count":  0,
+                            "method_operation_count":  1,
+                            "undeclared_scientific_content":  "none",
+                            "source_claims_checked":  "pass"
+                        },
+                        {
+                            "scene":  18,
+                            "background_premise_count":  0,
+                            "method_operation_count":  0,
+                            "undeclared_scientific_content":  "none",
+                            "source_claims_checked":  "pass"
+                        }
+                    ],
+    "unmapped_source_items":  [
+
+                              ]
+}
