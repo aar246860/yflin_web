@@ -1,12 +1,12 @@
 {
   "title": "Lagging Theory for Periodic Hydraulic Head Signals in Aquifers",
-  "description": "A paper-grounded visual abstract of periodic-head attenuation, phase lag, field inversions, and model discrimination.",
-  "generated_at": "2026-07-20T07:08:14.767950+00:00",
+  "description": "A paper-grounded visual summary of periodic-head attenuation, phase lag, field inversion, uncertainty propagation, and model discrimination.",
+  "generated_at": "2026-07-20T11:32:57.326030+00:00",
   "artifacts": {
     "mp4": "2026-01-3.mp4",
     "contact_sheet": "2026-01-3_contact_sheet.png",
     "html": "2026-01-3.html",
     "qa_notes": "2026-01-3_qa.md"
   },
-  "ffprobe": "codec_name=h264\nprofile=Constrained Baseline\nwidth=1920\nheight=1080\npix_fmt=yuv420p\nlevel=31\nduration=96.700000\nnb_frames=2901\nformat_name=mov,mp4,m4a,3gp,3g2,mj2\nduration=96.700000\nsize=7930504\n"
+  "ffprobe": "codec_name=h264\nprofile=Constrained Baseline\nwidth=1920\nheight=1080\npix_fmt=yuv420p\nlevel=31\nduration=99.066667\nnb_frames=2972\nformat_name=mov,mp4,m4a,3gp,3g2,mj2\nduration=99.066667\nsize=8095586\n"
 }

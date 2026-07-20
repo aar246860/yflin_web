@@ -29,6 +29,7 @@ from manim import (
     FadeOut,
     Line,
     MathTex,
+    Mobject,
     ParametricFunction,
     Rectangle,
     ReplacementTransform,
@@ -73,6 +74,17 @@ class FieldFitEvidence:
     source_locator: str
 
 
+@dataclass(frozen=True, slots=True)
+class SensitivityTraceEvidence:
+    log_distance: tuple[float, ...]
+    amplitude_theta: tuple[float, ...]
+    amplitude_omega: tuple[float, ...]
+    phase_theta: tuple[float, ...]
+    phase_omega: tuple[float, ...]
+    source_locator: str
+    reconstruction_method: str
+
+
 FIELD_FIT_EVIDENCE: Final = (
     FieldFitEvidence(
         name="Tuolumne",
@@ -104,6 +116,16 @@ FIELD_FIT_EVIDENCE: Final = (
     ),
 )
 
+SENSITIVITY_TRACE_EVIDENCE: Final = SensitivityTraceEvidence(
+    log_distance=(-2.0, -1.5, -1.0, -0.7, -0.3, 0.0, 0.3, 0.55, 0.8, 1.0, 1.4, 2.0),
+    amplitude_theta=(0.14, 0.38, 0.63, 0.70, 0.62, 0.45, 0.20, 0.06, 0.02, 0.02, 0.08, 0.00),
+    amplitude_omega=(0.14, 0.34, 0.50, 0.53, 0.56, 0.66, 0.77, 0.68, 0.44, 0.23, 0.05, 0.00),
+    phase_theta=(0.0, 1.0, 3.0, 5.0, 10.0, 18.0, 35.0, 65.0, 115.0, 210.0, 720.0, 5500.0),
+    phase_omega=(0.0, 1.0, 2.0, 4.0, 8.0, 14.0, 28.0, 50.0, 90.0, 165.0, 560.0, 3800.0),
+    source_locator="Figure 6",
+    reconstruction_method="approximate manual graphical trace; not recomputed Morris indices",
+)
+
 
 def text(value: str, size: int = 28, color: str = INK) -> Text:
     return Text(value, font="Arial", font_size=size, color=color)
@@ -112,6 +134,7 @@ def text(value: str, size: int = 28, color: str = INK) -> Text:
 def wavenumber(*, omega: float, diffusivity: float, tau_q: float, tau_h: float) -> tuple[float, float]:
     squared = 1j * omega * (1 + 1j * omega * tau_q) / (diffusivity * (1 + 1j * omega * tau_h))
     root = cmath.sqrt(squared)
+    # The decaying branch is lambda = -alpha - i*beta; return positive magnitudes.
     return abs(root.real), abs(root.imag)
 
 
@@ -160,6 +183,10 @@ def compact_formula(*parts: tuple[str, str], scale: float = 0.84) -> VGroup:
     formula = VGroup(*[MathTex(value, color=color) for value, color in parts])
     formula.arrange(RIGHT, buff=0.13).scale(scale)
     return formula
+
+
+def complete_distinct_pairs(items: VGroup) -> list[tuple[Mobject, Mobject]]:
+    return [(items[left], items[right]) for left in range(len(items)) for right in range(left + 1, len(items))]
 
 
 class LinKurylyk2026V2(Scene):
@@ -221,13 +248,28 @@ class LinKurylyk2026V2(Scene):
         heading = Text("One boundary wave carries two hydraulic signatures", font="Arial", font_size=36, color=INK).to_edge(UP, buff=0.38)
         caption = Text("Amplitude attenuates; phase accumulates", font="Arial", font_size=20, color=MUTED).to_edge(DOWN, buff=0.28)
         frame_items = [heading, caption, content]
+        boundary_wave_overlaps = [
+            (aquifer, boundary),
+            (aquifer, wells),
+            (aquifer, moving_curve),
+            (aquifer, envelope_top_curve),
+            (aquifer, envelope_bottom_curve),
+            (boundary, moving_curve),
+            (boundary, envelope_top_curve),
+            (boundary, envelope_bottom_curve),
+            (wells, moving_curve),
+            (wells, envelope_top_curve),
+            (wells, envelope_bottom_curve),
+            (moving_curve, envelope_top_curve),
+            (moving_curve, envelope_bottom_curve),
+        ]
         assert_scene_layout(
             scene=self,
             pending_items=frame_items,
             labels=[heading, caption],
             blockers=[content],
             frame_items=frame_items,
-            intentional_overlaps=[(content, content)],
+            intentional_overlaps=boundary_wave_overlaps,
         )
         self.play(FadeIn(heading), FadeIn(caption), FadeIn(content), run_time=0.7)
         target_frame = [heading, caption, content, moving_target_curve]
@@ -237,11 +279,19 @@ class LinKurylyk2026V2(Scene):
             labels=[heading, caption],
             blockers=[content, moving_target_curve],
             frame_items=target_frame,
-            intentional_overlaps=[(content, content), (content, moving_target_curve)],
+            intentional_overlaps=[
+                *boundary_wave_overlaps,
+                (aquifer, moving_target_curve),
+                (boundary, moving_target_curve),
+                (wells, moving_target_curve),
+                (moving_curve, moving_target_curve),
+                (envelope_top_curve, moving_target_curve),
+                (envelope_bottom_curve, moving_target_curve),
+            ],
         )
         self.play(Transform(moving_curve, moving_target_curve), run_time=4.2, rate_func=lambda x: x)
         self._hold(0.8)
-        assert_scene_layout(scene=self, pending_items=[], labels=[heading, caption], blockers=[content], frame_items=frame_items, intentional_overlaps=[(content, content)])
+        assert_scene_layout(scene=self, pending_items=[], labels=[heading, caption], blockers=[content], frame_items=frame_items, intentional_overlaps=boundary_wave_overlaps)
         self.play(FadeOut(heading), FadeOut(caption), FadeOut(content), run_time=0.5)
 
     def scene_02_b02_two_diffusivities(self) -> None:
@@ -260,15 +310,16 @@ class LinKurylyk2026V2(Scene):
         heading = Text("Classical diffusion asks both signatures for one D", font="Arial", font_size=36, color=INK).to_edge(UP, buff=0.38)
         caption = Text("The two inversions can disagree", font="Arial", font_size=20, color=MUTED).to_edge(DOWN, buff=0.28)
         frame_items = [heading, caption, content]
-        assert_scene_layout(scene=self, pending_items=frame_items, labels=[heading, caption, labels], blockers=[left, right, needle_a, needle_p, split], frame_items=frame_items, intentional_overlaps=[(content, content)])
+        dial_overlaps = [(left, needle_a), (right, needle_p)]
+        assert_scene_layout(scene=self, pending_items=frame_items, labels=[heading, caption, labels], blockers=[left, right, needle_a, needle_p, split], frame_items=frame_items, intentional_overlaps=dial_overlaps)
         self.play(FadeIn(heading), FadeIn(caption), FadeIn(content), run_time=0.7)
         needle_a_target = needle_a.copy().rotate(-0.35)
         needle_p_target = needle_p.copy().rotate(0.38)
         target_frame = [heading, caption, content, needle_a_target, needle_p_target]
-        assert_scene_layout(scene=self, pending_items=[needle_a_target, needle_p_target], labels=[heading, caption, labels], blockers=[left, right, needle_a, needle_p, split, needle_a_target, needle_p_target], frame_items=target_frame, intentional_overlaps=[(content, content), (content, needle_a_target), (content, needle_p_target)])
+        assert_scene_layout(scene=self, pending_items=[needle_a_target, needle_p_target], labels=[heading, caption, labels], blockers=[left, right, needle_a, needle_p, split, needle_a_target, needle_p_target], frame_items=target_frame, intentional_overlaps=[*dial_overlaps, (left, needle_a_target), (needle_a, needle_a_target), (right, needle_p_target), (needle_p, needle_p_target)])
         self.play(Transform(needle_a, needle_a_target), Transform(needle_p, needle_p_target), run_time=2.2)
         self._hold()
-        assert_scene_layout(scene=self, pending_items=[], labels=[heading, caption, labels], blockers=[left, right, needle_a, needle_p, split], frame_items=frame_items, intentional_overlaps=[(content, content)])
+        assert_scene_layout(scene=self, pending_items=[], labels=[heading, caption, labels], blockers=[left, right, needle_a, needle_p, split], frame_items=frame_items, intentional_overlaps=dial_overlaps)
         self.play(FadeOut(heading), FadeOut(caption), FadeOut(content), run_time=0.5)
 
     def scene_03_b03_causal_memory(self) -> None:
@@ -296,15 +347,13 @@ class LinKurylyk2026V2(Scene):
         heading = Text("Lagging is causal memory, not a shifted hydrograph", font="Arial", font_size=36, color=INK).to_edge(UP, buff=0.38)
         caption = Text("Past gradients contribute with decaying weight", font="Arial", font_size=20, color=MUTED).to_edge(DOWN, buff=0.28)
         opening_items = [heading, caption, history, clocks, clock_labels]
-        assert_scene_layout(scene=self, pending_items=opening_items, labels=[heading, caption, clock_labels], blockers=[history, clocks], frame_items=opening_items, intentional_overlaps=[(history, history), (clocks, clocks)])
+        assert_scene_layout(scene=self, pending_items=opening_items, labels=[heading, caption, clock_labels], blockers=[history, clocks], frame_items=opening_items)
         self.play(FadeIn(heading), FadeIn(caption), FadeIn(history), FadeIn(clocks), FadeIn(clock_labels), run_time=0.7)
         frame_items = [heading, caption, history, kernel, present, clocks, clock_labels]
         causal_overlaps = [
-            (history, history),
             (history, kernel),
             (history, present),
             (kernel, present),
-            (clocks, clocks),
         ]
         assert_scene_layout(scene=self, pending_items=[kernel, present], labels=[heading, caption, clock_labels], blockers=[history, kernel, present, clocks], frame_items=frame_items, intentional_overlaps=causal_overlaps)
         self.play(Create(kernel), Create(present), run_time=2.6)
@@ -317,22 +366,46 @@ class LinKurylyk2026V2(Scene):
         for index in range(8):
             x = -4.8 + 0.7 * index
             history_lines.add(Arrow([x, -0.4, 0], [x, 0.65, 0], color=TEAL, stroke_opacity=0.18 + index * 0.1, buff=0))
+        kernel_line_1 = Line([-4.85, -1.323, 0], [-4.231, -1.297, 0], color=GOLD, stroke_width=6)
+        kernel_line_2 = Line([-4.231, -1.297, 0], [-3.613, -1.259, 0], color=GOLD, stroke_width=6)
+        kernel_line_3 = Line([-3.613, -1.259, 0], [-2.994, -1.204, 0], color=GOLD, stroke_width=6)
+        kernel_line_4 = Line([-2.994, -1.204, 0], [-2.375, -1.123, 0], color=GOLD, stroke_width=6)
+        kernel_line_5 = Line([-2.375, -1.123, 0], [-1.756, -1.007, 0], color=GOLD, stroke_width=6)
+        kernel_line_6 = Line([-1.756, -1.007, 0], [-1.138, -0.837, 0], color=GOLD, stroke_width=6)
+        kernel_line_7 = Line([-1.138, -0.837, 0], [-0.519, -0.590, 0], color=GOLD, stroke_width=6)
+        kernel_line_8 = Line([-0.519, -0.590, 0], [0.10, -0.230, 0], color=GOLD, stroke_width=6)
+        memory_kernel_curve = VGroup(
+            kernel_line_1,
+            kernel_line_2,
+            kernel_line_3,
+            kernel_line_4,
+            kernel_line_5,
+            kernel_line_6,
+            kernel_line_7,
+            kernel_line_8,
+        )
         flux = Arrow([1.0, 0.1, 0], [4.5, 0.1, 0], color=RED, stroke_width=8, buff=0)
-        content = VGroup(history_lines, flux)
+        content = VGroup(history_lines, memory_kernel_curve, flux)
         heading = Text("The present flux is assembled from gradient history", font="Arial", font_size=36, color=INK).to_edge(UP, buff=0.38)
-        caption = Text("The kernel is causal and integrates to K", font="Arial", font_size=20, color=MUTED).to_edge(DOWN, buff=0.28)
+        caption = Text(
+            "Schematic kernel. Shape and width not inferred. Area equals K",
+            font="Arial",
+            font_size=18,
+            color=MUTED,
+        ).to_edge(DOWN, buff=0.28)
         frame_items = [heading, caption, content]
-        assert_scene_layout(scene=self, pending_items=frame_items, labels=[heading, caption], blockers=[content], frame_items=frame_items, intentional_overlaps=[(content, content)])
+        memory_overlaps = [(history_lines, memory_kernel_curve), (history_lines, flux), (memory_kernel_curve, flux)]
+        assert_scene_layout(scene=self, pending_items=frame_items, labels=[heading, caption], blockers=[history_lines, memory_kernel_curve, flux], frame_items=frame_items, intentional_overlaps=memory_overlaps)
         self.play(FadeIn(heading), FadeIn(caption), FadeIn(content), run_time=0.7)
         formula_lhs = MathTex(r"q(t)", color=RED)
         formula_equals = MathTex(r"=", color=INK)
         formula_rhs = MathTex(r"-\int_0^\infty \kappa(t')\nabla h(t-t')\,dt'", color=TEAL)
         formula = VGroup(formula_lhs, formula_equals, formula_rhs).arrange(RIGHT, buff=0.12).scale(0.88).to_edge(DOWN, buff=0.82)
         formula_frame = [heading, caption, content, formula]
-        assert_scene_layout(scene=self, pending_items=[formula], labels=[heading, caption, formula], blockers=[content], frame_items=formula_frame, intentional_overlaps=[(content, content)])
+        assert_scene_layout(scene=self, pending_items=[formula], labels=[heading, caption, formula], blockers=[history_lines, memory_kernel_curve, flux], frame_items=formula_frame, intentional_overlaps=memory_overlaps)
         self.play(Write(formula), run_time=2.3)
         self._hold()
-        assert_scene_layout(scene=self, pending_items=[], labels=[heading, caption, formula], blockers=[content], frame_items=formula_frame, intentional_overlaps=[(content, content)])
+        assert_scene_layout(scene=self, pending_items=[], labels=[heading, caption, formula], blockers=[history_lines, memory_kernel_curve, flux], frame_items=formula_frame, intentional_overlaps=memory_overlaps)
         self.play(FadeOut(heading), FadeOut(caption), FadeOut(content), FadeOut(formula), run_time=0.5)
 
     def scene_05_m02_two_clock_law(self) -> None:
@@ -352,22 +425,22 @@ class LinKurylyk2026V2(Scene):
         heading = Text("Two clocks compress the memory kernel", font="Arial", font_size=36, color=INK).to_edge(UP, buff=0.38)
         caption = Text("Flux adjustment and head equilibration remain distinct", font="Arial", font_size=20, color=MUTED).to_edge(DOWN, buff=0.28)
         frame_items = [heading, caption, content]
-        assert_scene_layout(scene=self, pending_items=frame_items, labels=[heading, caption, labels], blockers=[classical, clocks], frame_items=frame_items, intentional_overlaps=[(content, content)])
+        assert_scene_layout(scene=self, pending_items=frame_items, labels=[heading, caption, labels], blockers=[classical, clocks], frame_items=frame_items)
         self.play(FadeIn(heading), FadeIn(caption), FadeIn(content), run_time=0.7)
         clock_q_target = clocks[0].copy().rotate(math.pi)
         clock_h_target = clocks[1].copy().rotate(math.pi * 1.5)
         target_frame = [heading, caption, content, clock_q_target, clock_h_target]
-        assert_scene_layout(scene=self, pending_items=[clock_q_target, clock_h_target], labels=[heading, caption, labels], blockers=[classical, clocks, clock_q_target, clock_h_target], frame_items=target_frame, intentional_overlaps=[(content, content), (content, clock_q_target), (content, clock_h_target)])
+        assert_scene_layout(scene=self, pending_items=[clock_q_target, clock_h_target], labels=[heading, caption, labels], blockers=[classical, clocks, clock_q_target, clock_h_target], frame_items=target_frame, intentional_overlaps=[(clocks[0], clock_q_target), (clocks[1], clock_h_target)])
         self.play(Transform(clocks[0], clock_q_target), Transform(clocks[1], clock_h_target), run_time=1.8)
         formula = MathTex(
             r"q+\tau_q\partial_tq=-K\left(\nabla h+\tau_h\partial_t\nabla h\right)",
             color=INK,
         ).scale(0.9).to_edge(DOWN, buff=0.8)
         formula_frame = [heading, caption, content, formula]
-        assert_scene_layout(scene=self, pending_items=[formula], labels=[heading, caption, labels, formula], blockers=[classical, clocks], frame_items=formula_frame, intentional_overlaps=[(content, content)])
+        assert_scene_layout(scene=self, pending_items=[formula], labels=[heading, caption, labels, formula], blockers=[classical, clocks], frame_items=formula_frame)
         self.play(Write(formula), run_time=2.0)
         self._hold(0.8)
-        assert_scene_layout(scene=self, pending_items=[], labels=[heading, caption, labels, formula], blockers=[classical, clocks], frame_items=formula_frame, intentional_overlaps=[(content, content)])
+        assert_scene_layout(scene=self, pending_items=[], labels=[heading, caption, labels, formula], blockers=[classical, clocks], frame_items=formula_frame)
         self.play(FadeOut(heading), FadeOut(caption), FadeOut(content), FadeOut(formula), run_time=0.5)
 
     def scene_06_m03_conservation(self) -> None:
@@ -381,9 +454,15 @@ class LinKurylyk2026V2(Scene):
         heading = Text("Mass conservation closes the lagging head equation", font="Arial", font_size=36, color=INK).to_edge(UP, buff=0.38)
         caption = Text("Continuity stays at the present time", font="Arial", font_size=20, color=MUTED).to_edge(DOWN, buff=0.28)
         frame_items = [heading, caption, content]
-        assert_scene_layout(scene=self, pending_items=frame_items, labels=[heading, caption], blockers=[content], frame_items=frame_items, intentional_overlaps=[(content, content)])
+        conservation_overlaps = [
+            (control, inflow),
+            (control, outflow),
+            (control, storage_field),
+            *complete_distinct_pairs(storage_field),
+        ]
+        assert_scene_layout(scene=self, pending_items=frame_items, labels=[heading, caption], blockers=[content], frame_items=frame_items, intentional_overlaps=conservation_overlaps)
         self.play(FadeIn(heading), FadeIn(caption), FadeIn(content), run_time=0.7)
-        assert_scene_layout(scene=self, pending_items=[], labels=[heading, caption], blockers=[content], frame_items=frame_items, intentional_overlaps=[(content, content)])
+        assert_scene_layout(scene=self, pending_items=[], labels=[heading, caption], blockers=[content], frame_items=frame_items, intentional_overlaps=conservation_overlaps)
         self.play(Create(inflow), Create(outflow), Create(storage_field), run_time=2.0)
         formula = MathTex(
             r"\left(1+\tau_q\partial_t\right)\partial_t h"
@@ -391,10 +470,10 @@ class LinKurylyk2026V2(Scene):
             color=INK,
         ).scale(0.85).to_edge(DOWN, buff=0.75)
         formula_frame = [heading, caption, content, formula]
-        assert_scene_layout(scene=self, pending_items=[formula], labels=[heading, caption, formula], blockers=[content], frame_items=formula_frame, intentional_overlaps=[(content, content)])
+        assert_scene_layout(scene=self, pending_items=[formula], labels=[heading, caption, formula], blockers=[content], frame_items=formula_frame, intentional_overlaps=conservation_overlaps)
         self.play(Write(formula), run_time=2.0)
         self._hold(0.8)
-        assert_scene_layout(scene=self, pending_items=[], labels=[heading, caption, formula], blockers=[content], frame_items=formula_frame, intentional_overlaps=[(content, content)])
+        assert_scene_layout(scene=self, pending_items=[], labels=[heading, caption, formula], blockers=[content], frame_items=formula_frame, intentional_overlaps=conservation_overlaps)
         self.play(FadeOut(heading), FadeOut(caption), FadeOut(content), FadeOut(formula), run_time=0.5)
 
     def scene_07_m04_harmonic_wave(self) -> None:
@@ -423,19 +502,28 @@ class LinKurylyk2026V2(Scene):
         )
         content = VGroup(aquifer, wave_curve_lines, envelope_curve, labels)
         heading = Text("A complex wavenumber separates attenuation and phase", font="Arial", font_size=36, color=INK).to_edge(UP, buff=0.38)
-        caption = Text("Decay and phase advance are independently visible", font="Arial", font_size=20, color=MUTED).to_edge(DOWN, buff=0.28)
+        caption = Text("Decay and phase lag are independently visible", font="Arial", font_size=20, color=MUTED).to_edge(DOWN, buff=0.28)
         frame_items = [heading, caption, content]
-        assert_scene_layout(scene=self, pending_items=frame_items, labels=[heading, caption, labels], blockers=[aquifer, wave_curve_lines, envelope_curve], frame_items=frame_items, intentional_overlaps=[(content, content)])
+        harmonic_overlaps = [(aquifer, wave_curve_lines), (aquifer, envelope_curve), (wave_curve_lines, envelope_curve)]
+        assert_scene_layout(scene=self, pending_items=frame_items, labels=[heading, caption, labels], blockers=[aquifer, wave_curve_lines, envelope_curve], frame_items=frame_items, intentional_overlaps=harmonic_overlaps)
         self.play(FadeIn(heading), FadeIn(caption), FadeIn(content), run_time=0.7)
         target_frame = [heading, caption, content, wave_target_curve]
-        assert_scene_layout(scene=self, pending_items=[wave_target_curve], labels=[heading, caption, labels], blockers=[aquifer, wave_curve_lines, envelope_curve, wave_target_curve], frame_items=target_frame, intentional_overlaps=[(content, content), (content, wave_target_curve)])
+        assert_scene_layout(scene=self, pending_items=[wave_target_curve], labels=[heading, caption, labels], blockers=[aquifer, wave_curve_lines, envelope_curve, wave_target_curve], frame_items=target_frame, intentional_overlaps=[*harmonic_overlaps, (aquifer, wave_target_curve), (wave_curve_lines, wave_target_curve), (envelope_curve, wave_target_curve)])
         self.play(Transform(wave_curve_lines, wave_target_curve), run_time=3.6, rate_func=lambda x: x)
+        branch_lambda = MathTex(r"\lambda=-\alpha-i\beta", color=INK)
+        branch_beta = MathTex(r"\beta=|\operatorname{Im}\lambda|", color=RED)
+        branch_formula = VGroup(branch_lambda, branch_beta).arrange(RIGHT, buff=0.45).scale(0.76).to_edge(DOWN, buff=0.72)
+        branch_frame = [heading, caption, content, branch_formula]
+        assert_scene_layout(scene=self, pending_items=[branch_formula], labels=[heading, caption, labels, branch_formula], blockers=[aquifer, wave_curve_lines, envelope_curve], frame_items=branch_frame, intentional_overlaps=harmonic_overlaps)
+        self.play(Write(branch_formula), run_time=1.4)
+        self._hold(0.6)
+        self.play(FadeOut(branch_formula), run_time=0.35)
         formula = MathTex(r"h_D=e^{-\alpha x_D}\cos(\omega_Dt_D-\beta x_D)", color=INK).scale(0.9).to_edge(DOWN, buff=0.72)
         formula_frame = [heading, caption, content, formula]
-        assert_scene_layout(scene=self, pending_items=[formula], labels=[heading, caption, labels, formula], blockers=[aquifer, wave_curve_lines, envelope_curve], frame_items=formula_frame, intentional_overlaps=[(content, content)])
+        assert_scene_layout(scene=self, pending_items=[formula], labels=[heading, caption, labels, formula], blockers=[aquifer, wave_curve_lines, envelope_curve], frame_items=formula_frame, intentional_overlaps=harmonic_overlaps)
         self.play(Write(formula), run_time=1.6)
         self._hold(0.7)
-        assert_scene_layout(scene=self, pending_items=[], labels=[heading, caption, labels, formula], blockers=[aquifer, wave_curve_lines, envelope_curve], frame_items=formula_frame, intentional_overlaps=[(content, content)])
+        assert_scene_layout(scene=self, pending_items=[], labels=[heading, caption, labels, formula], blockers=[aquifer, wave_curve_lines, envelope_curve], frame_items=formula_frame, intentional_overlaps=harmonic_overlaps)
         self.play(FadeOut(heading), FadeOut(caption), FadeOut(content), FadeOut(formula), run_time=0.5)
 
     def scene_08_m05_mismatch_map(self) -> None:
@@ -481,12 +569,25 @@ class LinKurylyk2026V2(Scene):
         heading = Text("The mismatch becomes a regime map", font="Arial", font_size=36, color=INK).to_edge(UP, buff=0.38)
         caption = Text("Unity marks classical amplitude-phase agreement", font="Arial", font_size=20, color=MUTED).to_edge(DOWN, buff=0.28)
         frame_items = [heading, caption, content]
-        assert_scene_layout(scene=self, pending_items=frame_items, labels=[heading, caption, theta_label, omega_label, labels, ratio], blockers=[grid, unity], frame_items=frame_items, intentional_overlaps=[(content, content)])
+        grid_neighbor_overlaps = []
+        for row in range(n):
+            for col in range(n):
+                cell_index = row * n + col
+                if col + 1 < n:
+                    grid_neighbor_overlaps.append((grid[cell_index], grid[cell_index + 1]))
+                if row + 1 < n:
+                    grid_neighbor_overlaps.append((grid[cell_index], grid[cell_index + n]))
+                    if col + 1 < n:
+                        grid_neighbor_overlaps.append((grid[cell_index], grid[cell_index + n + 1]))
+                    if col > 0:
+                        grid_neighbor_overlaps.append((grid[cell_index], grid[cell_index + n - 1]))
+        mismatch_overlaps = [(grid, unity), *grid_neighbor_overlaps]
+        assert_scene_layout(scene=self, pending_items=frame_items, labels=[heading, caption, theta_label, omega_label, labels, ratio], blockers=[grid, unity], frame_items=frame_items, intentional_overlaps=mismatch_overlaps)
         self.play(FadeIn(heading), FadeIn(caption), FadeIn(content), run_time=0.7)
-        assert_scene_layout(scene=self, pending_items=[], labels=[heading, caption, theta_label, omega_label, labels, ratio], blockers=[grid, unity], frame_items=frame_items, intentional_overlaps=[(content, content)])
+        assert_scene_layout(scene=self, pending_items=[], labels=[heading, caption, theta_label, omega_label, labels, ratio], blockers=[grid, unity], frame_items=frame_items, intentional_overlaps=mismatch_overlaps)
         self.play(Create(unity), FadeIn(labels), run_time=2.3)
         self._hold(1.2)
-        assert_scene_layout(scene=self, pending_items=[], labels=[heading, caption, theta_label, omega_label, labels, ratio], blockers=[grid, unity], frame_items=frame_items, intentional_overlaps=[(content, content)])
+        assert_scene_layout(scene=self, pending_items=[], labels=[heading, caption, theta_label, omega_label, labels, ratio], blockers=[grid, unity], frame_items=frame_items, intentional_overlaps=mismatch_overlaps)
         self.play(FadeOut(heading), FadeOut(caption), FadeOut(content), run_time=0.5)
 
     def scene_09_m06_transfer_function(self) -> None:
@@ -511,16 +612,17 @@ class LinKurylyk2026V2(Scene):
         heading = Text("Field records provide one complex transfer function", font="Arial", font_size=36, color=INK).to_edge(UP, buff=0.38)
         caption = Text("Magnitude gives attenuation; argument gives phase", font="Arial", font_size=20, color=MUTED).to_edge(DOWN, buff=0.28)
         frame_items = [heading, caption, content]
-        assert_scene_layout(scene=self, pending_items=frame_items, labels=[heading, caption, angle, magnitude], blockers=[time_axes, boundary_curve, well_curve, vector], frame_items=frame_items, intentional_overlaps=[(content, content)])
+        transfer_overlaps = [(time_axes, boundary_curve), (time_axes, well_curve), (boundary_curve, well_curve)]
+        assert_scene_layout(scene=self, pending_items=frame_items, labels=[heading, caption, angle, magnitude], blockers=[time_axes, boundary_curve, well_curve, vector], frame_items=frame_items, intentional_overlaps=transfer_overlaps)
         self.play(FadeIn(heading), FadeIn(caption), FadeIn(content), run_time=0.7)
-        assert_scene_layout(scene=self, pending_items=[], labels=[heading, caption, angle, magnitude], blockers=[time_axes, boundary_curve, well_curve, vector], frame_items=frame_items, intentional_overlaps=[(content, content)])
+        assert_scene_layout(scene=self, pending_items=[], labels=[heading, caption, angle, magnitude], blockers=[time_axes, boundary_curve, well_curve, vector], frame_items=frame_items, intentional_overlaps=transfer_overlaps)
         self.play(Create(boundary_curve), Create(well_curve), Create(vector), run_time=2.8)
         formula = MathTex(r"H_j(\omega)=\frac{S_{j0}(\omega)}{S_{00}(\omega)}", color=INK).scale(0.95).to_edge(DOWN, buff=0.65)
         formula_frame = [heading, caption, content, formula]
-        assert_scene_layout(scene=self, pending_items=[formula], labels=[heading, caption, angle, magnitude, formula], blockers=[time_axes, boundary_curve, well_curve, vector], frame_items=formula_frame, intentional_overlaps=[(content, content)])
+        assert_scene_layout(scene=self, pending_items=[formula], labels=[heading, caption, angle, magnitude, formula], blockers=[time_axes, boundary_curve, well_curve, vector], frame_items=formula_frame, intentional_overlaps=transfer_overlaps)
         self.play(Write(formula), run_time=1.5)
         self._hold(0.8)
-        assert_scene_layout(scene=self, pending_items=[], labels=[heading, caption, angle, magnitude, formula], blockers=[time_axes, boundary_curve, well_curve, vector], frame_items=formula_frame, intentional_overlaps=[(content, content)])
+        assert_scene_layout(scene=self, pending_items=[], labels=[heading, caption, angle, magnitude, formula], blockers=[time_axes, boundary_curve, well_curve, vector], frame_items=formula_frame, intentional_overlaps=transfer_overlaps)
         self.play(FadeOut(heading), FadeOut(caption), FadeOut(content), FadeOut(formula), run_time=0.5)
 
     def scene_10_m07_field_fit(self) -> None:
@@ -592,16 +694,36 @@ class LinKurylyk2026V2(Scene):
             )
         panels.arrange(RIGHT, buff=1.0).shift(DOWN * 0.05)
         fit_key = Line([-3.5, -2.82, 0], [-2.9, -2.82, 0], color=TEAL, stroke_width=5)
-        fit_key_label = Text("analytical fit", font="Arial", font_size=18, color=TEAL).next_to(fit_key, RIGHT, buff=0.10)
+        fit_key_label = Text("published fit trace", font="Arial", font_size=18, color=TEAL).next_to(fit_key, RIGHT, buff=0.10)
         data_key = Dot([0.25, -2.82, 0], radius=0.07, color=INK)
         data_key_label = Text("observations", font="Arial", font_size=18, color=INK).next_to(data_key, RIGHT, buff=0.10)
         content = VGroup(panels, fit_key, fit_key_label, data_key, data_key_label)
         heading = Text("One parameter set fits both signatures at each site", font="Arial", font_size=36, color=INK).to_edge(UP, buff=0.38)
-        caption = Text("Observed points and fitted medians digitized from Figures 2-3", font="Arial", font_size=20, color=MUTED).to_edge(DOWN, buff=0.28)
+        caption = Text(
+            "Manual traces from Figures 2-3. Fits were not recomputed",
+            font="Arial",
+            font_size=19,
+            color=MUTED,
+        ).to_edge(DOWN, buff=0.28)
         frame_items = [heading, caption, content]
-        assert_scene_layout(scene=self, pending_items=frame_items, labels=[heading, caption, fit_key_label, data_key_label], blockers=[panels, fit_key, data_key], frame_items=frame_items, intentional_overlaps=[(content, content)])
+        field_fit_overlaps = []
+        for panel in panels:
+            field_fit_overlaps.extend(
+                [
+                    (panel[0], panel[2]),
+                    (panel[0], panel[4]),
+                    (panel[1], panel[3]),
+                    (panel[1], panel[4]),
+                    (panel[2], panel[4]),
+                    (panel[3], panel[4]),
+                ]
+            )
+            field_fit_overlaps.extend(
+                (panel[4][index], panel[4][index + 1]) for index in range(0, len(panel[4]), 2)
+            )
+        assert_scene_layout(scene=self, pending_items=frame_items, labels=[heading, caption, fit_key_label, data_key_label], blockers=[panels, fit_key, data_key], frame_items=frame_items, intentional_overlaps=field_fit_overlaps)
         self.play(FadeIn(heading), FadeIn(caption), FadeIn(content), run_time=0.7)
-        assert_scene_layout(scene=self, pending_items=[], labels=[heading, caption, fit_key_label, data_key_label], blockers=[panels, fit_key, data_key], frame_items=frame_items, intentional_overlaps=[(content, content)])
+        assert_scene_layout(scene=self, pending_items=[], labels=[heading, caption, fit_key_label, data_key_label], blockers=[panels, fit_key, data_key], frame_items=frame_items, intentional_overlaps=field_fit_overlaps)
         self.play(
             Create(panels[0][2]),
             Create(panels[0][3]),
@@ -612,7 +734,7 @@ class LinKurylyk2026V2(Scene):
             run_time=3.0,
         )
         self._hold(1.0)
-        assert_scene_layout(scene=self, pending_items=[], labels=[heading, caption, fit_key_label, data_key_label], blockers=[panels, fit_key, data_key], frame_items=frame_items, intentional_overlaps=[(content, content)])
+        assert_scene_layout(scene=self, pending_items=[], labels=[heading, caption, fit_key_label, data_key_label], blockers=[panels, fit_key, data_key], frame_items=frame_items, intentional_overlaps=field_fit_overlaps)
         self.play(FadeOut(heading), FadeOut(caption), FadeOut(content), run_time=0.5)
 
     def scene_11_m08_aic(self) -> None:
@@ -633,8 +755,8 @@ class LinKurylyk2026V2(Scene):
                 MathTex(r"\Delta AIC", color=GOLD).scale(0.7).move_to([(x_classic + x_lag) / 2, y + 0.35, 0]),
             )
             groups.add(row)
-        direction_arrow = Arrow(RIGHT * 3.9 + DOWN * 2.1, LEFT * 3.2 + DOWN * 2.1, color=TEAL)
-        direction_label = Text("lower is preferred", font="Arial", font_size=20, color=TEAL).shift(DOWN * 2.55)
+        direction_arrow = Arrow(RIGHT * 3.9 + DOWN * 2.3, LEFT * 3.2 + DOWN * 2.3, color=TEAL)
+        direction_label = Text("lower is preferred", font="Arial", font_size=20, color=TEAL).shift(DOWN * 2.82)
         classical_dot = Dot([-1.5, 2.15, 0], color=MUTED)
         classical_label = Text("classical", font="Arial", font_size=19, color=MUTED).next_to(classical_dot, RIGHT, buff=0.12)
         lagging_dot = Dot([1.1, 2.15, 0], color=TEAL)
@@ -643,12 +765,15 @@ class LinKurylyk2026V2(Scene):
         heading = Text("Two extra lags must earn their complexity", font="Arial", font_size=36, color=INK).to_edge(UP, buff=0.38)
         caption = Text("AIC balances residual reduction against parameter count", font="Arial", font_size=20, color=MUTED).to_edge(DOWN, buff=0.28)
         frame_items = [heading, caption, content]
-        assert_scene_layout(scene=self, pending_items=frame_items, labels=[heading, caption, direction_label, classical_label, lagging_label], blockers=[baseline, groups, direction_arrow, classical_dot, lagging_dot], frame_items=frame_items, intentional_overlaps=[(content, content)])
+        aic_overlaps = []
+        for row in groups:
+            aic_overlaps.extend([(row[1], row[3]), (row[2], row[3])])
+        assert_scene_layout(scene=self, pending_items=frame_items, labels=[heading, caption, direction_label, classical_label, lagging_label], blockers=[baseline, groups, direction_arrow, classical_dot, lagging_dot], frame_items=frame_items, intentional_overlaps=aic_overlaps)
         self.play(FadeIn(heading), FadeIn(caption), FadeIn(content), run_time=0.7)
-        assert_scene_layout(scene=self, pending_items=[], labels=[heading, caption, direction_label, classical_label, lagging_label], blockers=[baseline, groups, direction_arrow, classical_dot, lagging_dot], frame_items=frame_items, intentional_overlaps=[(content, content)])
+        assert_scene_layout(scene=self, pending_items=[], labels=[heading, caption, direction_label, classical_label, lagging_label], blockers=[baseline, groups, direction_arrow, classical_dot, lagging_dot], frame_items=frame_items, intentional_overlaps=aic_overlaps)
         self.play(Create(groups), Create(direction_arrow), run_time=2.8)
         self._hold(1.1)
-        assert_scene_layout(scene=self, pending_items=[], labels=[heading, caption, direction_label, classical_label, lagging_label], blockers=[baseline, groups, direction_arrow, classical_dot, lagging_dot], frame_items=frame_items, intentional_overlaps=[(content, content)])
+        assert_scene_layout(scene=self, pending_items=[], labels=[heading, caption, direction_label, classical_label, lagging_label], blockers=[baseline, groups, direction_arrow, classical_dot, lagging_dot], frame_items=frame_items, intentional_overlaps=aic_overlaps)
         self.play(FadeOut(heading), FadeOut(caption), FadeOut(content), run_time=0.5)
 
     def scene_12_m09_sample_data(self) -> None:
@@ -676,12 +801,13 @@ class LinKurylyk2026V2(Scene):
         heading = Text("Measurement errors generate plausible data sets", font="Arial", font_size=36, color=INK).to_edge(UP, buff=0.38)
         caption = Text("The animation shows a representative subset of 5,000 draws", font="Arial", font_size=20, color=MUTED).to_edge(DOWN, buff=0.28)
         frame_items = [heading, caption, content]
-        assert_scene_layout(scene=self, pending_items=frame_items, labels=[heading, caption, labels], blockers=[axes, samples], frame_items=frame_items, intentional_overlaps=[(content, content)])
+        sample_overlaps = [(axes, samples), *complete_distinct_pairs(samples)]
+        assert_scene_layout(scene=self, pending_items=frame_items, labels=[heading, caption, labels], blockers=[axes, samples], frame_items=frame_items, intentional_overlaps=sample_overlaps)
         self.play(FadeIn(heading), FadeIn(caption), FadeIn(content), run_time=0.7)
-        assert_scene_layout(scene=self, pending_items=[], labels=[heading, caption, labels], blockers=[axes, samples], frame_items=frame_items, intentional_overlaps=[(content, content)])
+        assert_scene_layout(scene=self, pending_items=[], labels=[heading, caption, labels], blockers=[axes, samples], frame_items=frame_items, intentional_overlaps=sample_overlaps)
         self.play(FadeIn(samples, lag_ratio=0.02), run_time=3.2)
         self._hold(0.9)
-        assert_scene_layout(scene=self, pending_items=[], labels=[heading, caption, labels], blockers=[axes, samples], frame_items=frame_items, intentional_overlaps=[(content, content)])
+        assert_scene_layout(scene=self, pending_items=[], labels=[heading, caption, labels], blockers=[axes, samples], frame_items=frame_items, intentional_overlaps=sample_overlaps)
         self.play(FadeOut(heading), FadeOut(caption), FadeOut(content), run_time=0.5)
 
     def scene_13_m10_refit(self) -> None:
@@ -694,8 +820,8 @@ class LinKurylyk2026V2(Scene):
             axis_config={"color": MUTED, "include_ticks": False},
         ).shift(LEFT * 3.5)
         right_axes = Axes(
-            x_range=[-1, 1, 0.5],
-            y_range=[-1, 1, 0.5],
+            x_range=[0, 1, 0.25],
+            y_range=[0, 1, 0.25],
             x_length=4.0,
             y_length=3.3,
             axis_config={"color": MUTED, "include_ticks": False},
@@ -704,25 +830,43 @@ class LinKurylyk2026V2(Scene):
         parameter_points = VGroup()
         for x, y in rng.normal([0.5, 0.5], [0.15, 0.13], size=(32, 2)):
             data_points.add(Dot(left_axes.c2p(float(x), float(y)), radius=0.05, color=GOLD))
-        for x, y in rng.normal([0.0, 0.0], [0.32, 0.22], size=(32, 2)):
-            parameter_points.add(Dot(right_axes.c2p(float(x), float(y)), radius=0.05, color=TEAL))
-        bridge = Arrow(LEFT * 1.0, RIGHT * 1.0, color=RED, stroke_width=6)
+        for x, y in rng.normal([0.55, 0.48], [0.12, 0.15], size=(32, 2)):
+            parameter_points.add(
+                Dot(
+                    right_axes.c2p(float(np.clip(x, 0.12, 0.88)), float(np.clip(y, 0.10, 0.90))),
+                    radius=0.05,
+                    color=TEAL,
+                )
+            )
+        bridge = Arrow([-0.7, 1.8, 0], [0.7, 1.8, 0], color=RED, stroke_width=6)
+        parameter_bounds = Rectangle(width=3.05, height=2.45, color=GOLD, stroke_width=3)
+        parameter_bounds.move_to(right_axes.c2p(0.5, 0.5))
         labels = VGroup(
             Text("amplitude-phase data", font="Arial", font_size=20, color=INK).next_to(left_axes, DOWN),
-            Text("hydraulic parameters", font="Arial", font_size=20, color=INK).next_to(right_axes, DOWN),
+            MathTex(r"D", color=INK).scale(0.72).next_to(right_axes, DOWN),
+            MathTex(r"\tau_h/\tau_q", color=INK).scale(0.68).next_to(right_axes, LEFT).rotate(math.pi / 2),
         )
         opening_content = VGroup(left_axes, right_axes, data_points, labels)
-        content = VGroup(left_axes, right_axes, data_points, parameter_points, bridge, labels)
+        content = VGroup(left_axes, right_axes, data_points, parameter_bounds, parameter_points, bridge, labels)
         heading = Text("Every realization passes through the same inversion", font="Arial", font_size=36, color=INK).to_edge(UP, buff=0.38)
-        caption = Text("Repeated fits propagate data error into parameter space", font="Arial", font_size=20, color=MUTED).to_edge(DOWN, buff=0.28)
+        caption = Text("Repeated fits populate a bounded parameter projection", font="Arial", font_size=20, color=MUTED).to_edge(DOWN, buff=0.28)
         opening_frame = [heading, caption, opening_content]
-        assert_scene_layout(scene=self, pending_items=opening_frame, labels=[heading, caption, labels], blockers=[left_axes, right_axes, data_points], frame_items=opening_frame, intentional_overlaps=[(opening_content, opening_content)])
+        opening_overlaps = [(left_axes, data_points), *complete_distinct_pairs(data_points)]
+        assert_scene_layout(scene=self, pending_items=opening_frame, labels=[heading, caption, labels], blockers=[left_axes, right_axes, data_points], frame_items=opening_frame, intentional_overlaps=opening_overlaps)
         self.play(FadeIn(heading), FadeIn(caption), FadeIn(opening_content), run_time=0.7)
-        frame_items = [heading, caption, opening_content, content]
-        assert_scene_layout(scene=self, pending_items=[bridge, parameter_points], labels=[heading, caption, labels], blockers=[left_axes, right_axes, data_points, bridge, parameter_points], frame_items=frame_items, intentional_overlaps=[(opening_content, opening_content), (content, content), (opening_content, content)])
-        self.play(Create(bridge), ReplacementTransform(data_points.copy(), parameter_points), run_time=3.0)
+        frame_items = [heading, caption, opening_content, bridge, parameter_bounds, parameter_points]
+        refit_overlaps = [
+            (left_axes, data_points),
+            (right_axes, parameter_bounds),
+            (right_axes, parameter_points),
+            (parameter_bounds, parameter_points),
+            *complete_distinct_pairs(data_points),
+            *complete_distinct_pairs(parameter_points),
+        ]
+        assert_scene_layout(scene=self, pending_items=[bridge, parameter_bounds, parameter_points], labels=[heading, caption, labels], blockers=[left_axes, right_axes, data_points, bridge, parameter_bounds, parameter_points], frame_items=frame_items, intentional_overlaps=refit_overlaps)
+        self.play(Create(bridge), Create(parameter_bounds), ReplacementTransform(data_points.copy(), parameter_points), run_time=3.0)
         self._hold(1.0)
-        assert_scene_layout(scene=self, pending_items=[], labels=[heading, caption, labels], blockers=[left_axes, right_axes, data_points, bridge, parameter_points], frame_items=frame_items, intentional_overlaps=[(opening_content, opening_content), (content, content), (opening_content, content)])
+        assert_scene_layout(scene=self, pending_items=[], labels=[heading, caption, labels], blockers=[left_axes, right_axes, data_points, bridge, parameter_bounds, parameter_points], frame_items=frame_items, intentional_overlaps=refit_overlaps)
         self.play(FadeOut(heading), FadeOut(caption), FadeOut(content), run_time=0.5)
 
     def scene_14_m11_filter(self) -> None:
@@ -730,24 +874,36 @@ class LinKurylyk2026V2(Scene):
         core = rng.normal(0, 0.55, 72)
         outliers = np.array([-2.9, -2.4, 2.5, 3.0])
         values = np.concatenate([core, outliers])
-        point_cloud = VGroup()
+        accepted_points = VGroup()
+        excluded_points = VGroup()
         for value in values:
-            point_cloud.add(Dot([float(value), float(rng.uniform(-0.75, 0.75)), 0], radius=0.055, color=TEAL if abs(value) < 1.6 else RED))
-        left_fence = DashedLine([-1.6, -1.35, 0], [-1.6, 1.35, 0], color=GOLD, stroke_width=4)
-        right_fence = DashedLine([1.6, -1.35, 0], [1.6, 1.35, 0], color=GOLD, stroke_width=4)
-        labels = VGroup(Text("interquartile filter", font="Arial", font_size=23, color=GOLD).shift(UP * 1.8), Text("aberrant refits", font="Arial", font_size=20, color=RED).shift(DOWN * 1.8))
-        content = VGroup(point_cloud, left_fence, right_fence, labels)
+            point = Dot(
+                [float(value), float(rng.uniform(-0.75, 0.75)), 0],
+                radius=0.055,
+                color=TEAL if abs(value) < 1.6 else RED,
+            )
+            (accepted_points if abs(value) < 1.6 else excluded_points).add(point)
+        point_cloud = VGroup(accepted_points, excluded_points)
+        labels = VGroup(
+            Text("reported interquartile filtering", font="Arial", font_size=23, color=GOLD).shift(UP * 1.8),
+            Text("schematic excluded refits", font="Arial", font_size=20, color=RED).shift(DOWN * 1.8),
+        )
+        content = VGroup(point_cloud, labels)
         heading = Text("Aberrant refits are filtered before summary", font="Arial", font_size=36, color=INK).to_edge(UP, buff=0.38)
-        caption = Text("Accepted and excluded estimates remain visually distinct", font="Arial", font_size=20, color=MUTED).to_edge(DOWN, buff=0.28)
+        caption = Text("Schematic only; the paper does not state a numerical fence rule", font="Arial", font_size=20, color=MUTED).to_edge(DOWN, buff=0.28)
         frame_items = [heading, caption, content]
-        assert_scene_layout(scene=self, pending_items=frame_items, labels=[heading, caption, labels], blockers=[point_cloud, left_fence, right_fence], frame_items=frame_items, intentional_overlaps=[(content, content)])
+        filter_overlaps = [
+            *complete_distinct_pairs(accepted_points),
+            *complete_distinct_pairs(excluded_points),
+        ]
+        assert_scene_layout(scene=self, pending_items=frame_items, labels=[heading, caption, labels], blockers=[point_cloud], frame_items=frame_items, intentional_overlaps=filter_overlaps)
         self.play(FadeIn(heading), FadeIn(caption), FadeIn(content), run_time=0.7)
-        faded_point_cloud = point_cloud.copy().set_opacity(0.78)
-        target_frame = [heading, caption, content, faded_point_cloud]
-        assert_scene_layout(scene=self, pending_items=[faded_point_cloud], labels=[heading, caption, labels], blockers=[point_cloud, left_fence, right_fence, faded_point_cloud], frame_items=target_frame, intentional_overlaps=[(content, content), (content, faded_point_cloud), (faded_point_cloud, faded_point_cloud)])
-        self.play(Create(left_fence), Create(right_fence), Transform(point_cloud, faded_point_cloud), run_time=2.5)
+        faded_excluded_points = excluded_points.copy().set_opacity(0.16)
+        target_frame = [heading, caption, content, faded_excluded_points]
+        assert_scene_layout(scene=self, pending_items=[faded_excluded_points], labels=[heading, caption, labels], blockers=[point_cloud, faded_excluded_points], frame_items=target_frame, intentional_overlaps=[*filter_overlaps, (excluded_points, faded_excluded_points), *complete_distinct_pairs(faded_excluded_points)])
+        self.play(Transform(excluded_points, faded_excluded_points), run_time=2.5)
         self._hold(1.1)
-        assert_scene_layout(scene=self, pending_items=[], labels=[heading, caption, labels], blockers=[point_cloud, left_fence, right_fence], frame_items=frame_items, intentional_overlaps=[(content, content)])
+        assert_scene_layout(scene=self, pending_items=[], labels=[heading, caption, labels], blockers=[point_cloud], frame_items=frame_items, intentional_overlaps=filter_overlaps)
         self.play(FadeOut(heading), FadeOut(caption), FadeOut(content), run_time=0.5)
 
     def scene_15_m12_intervals(self) -> None:
@@ -769,12 +925,13 @@ class LinKurylyk2026V2(Scene):
         heading = Text("Accepted estimates become means and widths", font="Arial", font_size=36, color=INK).to_edge(UP, buff=0.38)
         caption = Text("Reported intervals preserve measurement-driven uncertainty", font="Arial", font_size=20, color=MUTED).to_edge(DOWN, buff=0.28)
         frame_items = [heading, caption, content]
-        assert_scene_layout(scene=self, pending_items=frame_items, labels=[heading, caption, d_label, q_label, h_label, sigma], blockers=[d_line, d_mean, q_line, q_mean, h_line, h_mean], frame_items=frame_items, intentional_overlaps=[(rows, rows)])
+        interval_overlaps = [(d_line, d_mean), (q_line, q_mean), (h_line, h_mean)]
+        assert_scene_layout(scene=self, pending_items=frame_items, labels=[heading, caption, d_label, q_label, h_label, sigma], blockers=[d_line, d_mean, q_line, q_mean, h_line, h_mean], frame_items=frame_items, intentional_overlaps=interval_overlaps)
         self.play(FadeIn(heading), FadeIn(caption), FadeIn(content), run_time=0.7)
-        assert_scene_layout(scene=self, pending_items=[], labels=[heading, caption, d_label, q_label, h_label, sigma], blockers=[d_line, d_mean, q_line, q_mean, h_line, h_mean], frame_items=frame_items, intentional_overlaps=[(rows, rows)])
+        assert_scene_layout(scene=self, pending_items=[], labels=[heading, caption, d_label, q_label, h_label, sigma], blockers=[d_line, d_mean, q_line, q_mean, h_line, h_mean], frame_items=frame_items, intentional_overlaps=interval_overlaps)
         self.play(Create(rows), Write(sigma), run_time=2.5)
         self._hold(1.2)
-        assert_scene_layout(scene=self, pending_items=[], labels=[heading, caption, d_label, q_label, h_label, sigma], blockers=[d_line, d_mean, q_line, q_mean, h_line, h_mean], frame_items=frame_items, intentional_overlaps=[(rows, rows)])
+        assert_scene_layout(scene=self, pending_items=[], labels=[heading, caption, d_label, q_label, h_label, sigma], blockers=[d_line, d_mean, q_line, q_mean, h_line, h_mean], frame_items=frame_items, intentional_overlaps=interval_overlaps)
         self.play(FadeOut(heading), FadeOut(caption), FadeOut(content), run_time=0.5)
 
     def scene_16_m13_numerical_check(self) -> None:
@@ -784,7 +941,7 @@ class LinKurylyk2026V2(Scene):
         length = 8.0
         nodes = 180
         dx = length / (nodes - 1)
-        lam = complex(-alpha, beta)
+        lam = complex(-alpha, -beta)
         matrix = np.zeros((nodes, nodes), dtype=np.complex128)
         rhs = np.zeros(nodes, dtype=np.complex128)
         matrix[0, 0] = 1
@@ -800,8 +957,8 @@ class LinKurylyk2026V2(Scene):
         analytical = np.exp(lam * xs)
         analytical_amplitude = np.abs(analytical)
         numerical_amplitude = np.abs(numerical)
-        analytical_phase = np.unwrap(np.angle(analytical))
-        numerical_phase = np.unwrap(np.angle(numerical))
+        analytical_phase = -np.unwrap(np.angle(analytical))
+        numerical_phase = -np.unwrap(np.angle(numerical))
         amplitude_axes = Axes(
             x_range=[0, length, 2],
             y_range=[0, 1.05, 0.25],
@@ -820,6 +977,7 @@ class LinKurylyk2026V2(Scene):
         numeric_amplitude_curve = VGroup()
         analytic_phase_curve = VGroup()
         numeric_phase_curve = VGroup()
+        numerical_segment_overlaps = []
         for index in range(nodes - 1):
             analytic_amplitude_curve.add(
                 Line(
@@ -841,32 +999,31 @@ class LinKurylyk2026V2(Scene):
         for index in range(len(sampled_indices) - 1):
             left_index = sampled_indices[index]
             right_index = sampled_indices[index + 1]
-            numeric_amplitude_curve.add(
-                DashedLine(
-                    amplitude_axes.c2p(float(xs[left_index]), float(numerical_amplitude[left_index])),
-                    amplitude_axes.c2p(float(xs[right_index]), float(numerical_amplitude[right_index])),
-                    color=RED,
-                    stroke_width=2,
-                ),
-                Dot(
-                    amplitude_axes.c2p(float(xs[left_index]), float(numerical_amplitude[left_index])),
-                    radius=0.05,
-                    color=RED,
-                ),
+            amplitude_segment = DashedLine(
+                amplitude_axes.c2p(float(xs[left_index]), float(numerical_amplitude[left_index])),
+                amplitude_axes.c2p(float(xs[right_index]), float(numerical_amplitude[right_index])),
+                color=RED,
+                stroke_width=2,
             )
-            numeric_phase_curve.add(
-                DashedLine(
-                    phase_axes.c2p(float(xs[left_index]), float(numerical_phase[left_index])),
-                    phase_axes.c2p(float(xs[right_index]), float(numerical_phase[right_index])),
-                    color=RED,
-                    stroke_width=2,
-                ),
-                Dot(
-                    phase_axes.c2p(float(xs[left_index]), float(numerical_phase[left_index])),
-                    radius=0.05,
-                    color=RED,
-                ),
+            amplitude_point = Dot(
+                amplitude_axes.c2p(float(xs[left_index]), float(numerical_amplitude[left_index])),
+                radius=0.05,
+                color=RED,
             )
+            phase_segment = DashedLine(
+                phase_axes.c2p(float(xs[left_index]), float(numerical_phase[left_index])),
+                phase_axes.c2p(float(xs[right_index]), float(numerical_phase[right_index])),
+                color=RED,
+                stroke_width=2,
+            )
+            phase_point = Dot(
+                phase_axes.c2p(float(xs[left_index]), float(numerical_phase[left_index])),
+                radius=0.05,
+                color=RED,
+            )
+            numeric_amplitude_curve.add(amplitude_segment, amplitude_point)
+            numeric_phase_curve.add(phase_segment, phase_point)
+            numerical_segment_overlaps.extend([(amplitude_segment, amplitude_point), (phase_segment, phase_point)])
         panel_titles = VGroup(
             Text("Amplitude", font="Arial", font_size=22, color=INK).next_to(amplitude_axes, UP, buff=0.12),
             Text("Phase", font="Arial", font_size=22, color=INK).next_to(phase_axes, UP, buff=0.12),
@@ -901,9 +1058,20 @@ class LinKurylyk2026V2(Scene):
             closed_form_key,
             finite_difference_key,
         ]
-        assert_scene_layout(scene=self, pending_items=frame_items, labels=[heading, caption, panel_titles, closed_form_label, finite_difference_label], blockers=blockers, frame_items=frame_items, intentional_overlaps=[(content, content)])
+        numerical_overlaps = [
+            (amplitude_axes, analytic_amplitude_curve),
+            (amplitude_axes, numeric_amplitude_curve),
+            (analytic_amplitude_curve, numeric_amplitude_curve),
+            (phase_axes, analytic_phase_curve),
+            (phase_axes, numeric_phase_curve),
+            (analytic_phase_curve, numeric_phase_curve),
+            *complete_distinct_pairs(numeric_amplitude_curve),
+            *complete_distinct_pairs(numeric_phase_curve),
+            *numerical_segment_overlaps,
+        ]
+        assert_scene_layout(scene=self, pending_items=frame_items, labels=[heading, caption, panel_titles, closed_form_label, finite_difference_label], blockers=blockers, frame_items=frame_items, intentional_overlaps=numerical_overlaps)
         self.play(FadeIn(heading), FadeIn(caption), FadeIn(content), run_time=0.7)
-        assert_scene_layout(scene=self, pending_items=[], labels=[heading, caption, panel_titles, closed_form_label, finite_difference_label], blockers=blockers, frame_items=frame_items, intentional_overlaps=[(content, content)])
+        assert_scene_layout(scene=self, pending_items=[], labels=[heading, caption, panel_titles, closed_form_label, finite_difference_label], blockers=blockers, frame_items=frame_items, intentional_overlaps=numerical_overlaps)
         self.play(
             Create(analytic_amplitude_curve),
             Create(numeric_amplitude_curve),
@@ -912,7 +1080,7 @@ class LinKurylyk2026V2(Scene):
             run_time=3.2,
         )
         self._hold(1.0)
-        assert_scene_layout(scene=self, pending_items=[], labels=[heading, caption, panel_titles, closed_form_label, finite_difference_label], blockers=blockers, frame_items=frame_items, intentional_overlaps=[(content, content)])
+        assert_scene_layout(scene=self, pending_items=[], labels=[heading, caption, panel_titles, closed_form_label, finite_difference_label], blockers=blockers, frame_items=frame_items, intentional_overlaps=numerical_overlaps)
         self.play(FadeOut(heading), FadeOut(caption), FadeOut(content), run_time=0.5)
 
     def scene_17_m14_sensitivity(self) -> None:
@@ -930,11 +1098,11 @@ class LinKurylyk2026V2(Scene):
             y_length=3.45,
             axis_config={"color": MUTED, "include_ticks": False},
         ).shift(RIGHT * 3.0)
-        x_control = np.array([-2.0, -1.5, -1.0, -0.7, -0.3, 0.0, 0.3, 0.55, 0.8, 1.0, 1.4, 2.0])
-        amplitude_theta = np.array([0.14, 0.38, 0.63, 0.70, 0.62, 0.45, 0.20, 0.06, 0.02, 0.02, 0.08, 0.00])
-        amplitude_omega = np.array([0.14, 0.34, 0.50, 0.53, 0.56, 0.66, 0.77, 0.68, 0.44, 0.23, 0.05, 0.00])
-        phase_theta = np.array([0, 1, 3, 5, 10, 18, 35, 65, 115, 210, 720, 5500])
-        phase_omega = np.array([0, 1, 2, 4, 8, 14, 28, 50, 90, 165, 560, 3800])
+        x_control = np.array(SENSITIVITY_TRACE_EVIDENCE.log_distance)
+        amplitude_theta = np.array(SENSITIVITY_TRACE_EVIDENCE.amplitude_theta)
+        amplitude_omega = np.array(SENSITIVITY_TRACE_EVIDENCE.amplitude_omega)
+        phase_theta = np.array(SENSITIVITY_TRACE_EVIDENCE.phase_theta)
+        phase_omega = np.array(SENSITIVITY_TRACE_EVIDENCE.phase_omega)
 
         dense_x = np.linspace(float(x_control.min()), float(x_control.max()), 160)
         dense_amp_theta = np.interp(dense_x, x_control, amplitude_theta)
@@ -951,8 +1119,8 @@ class LinKurylyk2026V2(Scene):
             phase_theta_curve.add(Line(phase_axes.c2p(float(dense_x[index]), float(dense_phase_theta[index])), phase_axes.c2p(float(dense_x[index + 1]), float(dense_phase_theta[index + 1])), color=TEAL, stroke_width=5))
             phase_omega_curve.add(Line(phase_axes.c2p(float(dense_x[index]), float(dense_phase_omega[index])), phase_axes.c2p(float(dense_x[index + 1]), float(dense_phase_omega[index + 1])), color=RED, stroke_width=5))
         panel_titles = VGroup(
-            Text("Amplitude sensitivity", font="Arial", font_size=22, color=INK).next_to(amplitude_axes, UP, buff=0.12),
-            Text("Phase-shift sensitivity", font="Arial", font_size=22, color=INK).next_to(phase_axes, UP, buff=0.12),
+            Text("Amplitude sensitivity over scaled distance", font="Arial", font_size=21, color=INK).next_to(amplitude_axes, UP, buff=0.12),
+            Text("Phase sensitivity over scaled distance", font="Arial", font_size=21, color=INK).next_to(phase_axes, UP, buff=0.12),
         )
         distance_labels = VGroup(
             MathTex(r"10^{-2}", color=MUTED).scale(0.55).move_to([-5.55, -2.15, 0]),
@@ -962,41 +1130,47 @@ class LinKurylyk2026V2(Scene):
             MathTex(r"10^{0}", color=MUTED).scale(0.55).move_to([3.0, -2.15, 0]),
             MathTex(r"10^{2}", color=MUTED).scale(0.55).move_to([5.55, -2.15, 0]),
         )
-        theta_key = Line([-2.7, -2.78, 0], [-2.1, -2.78, 0], color=TEAL, stroke_width=5)
+        scaled_distance_left = MathTex(r"\mathrm{Scaled\ distance}\ x_D", color=MUTED).scale(0.54).move_to([-3.0, -2.56, 0])
+        scaled_distance_right = MathTex(r"\mathrm{Scaled\ distance}\ x_D", color=MUTED).scale(0.54).move_to([3.0, -2.56, 0])
+        theta_key = Line([-2.7, -3.06, 0], [-2.1, -3.06, 0], color=TEAL, stroke_width=5)
         theta_key_label = MathTex(r"\theta=\tau_h/\tau_q", color=TEAL).scale(0.7).next_to(theta_key, RIGHT, buff=0.14)
-        omega_key = Line([1.0, -2.78, 0], [1.6, -2.78, 0], color=RED, stroke_width=5)
+        omega_key = Line([1.0, -3.06, 0], [1.6, -3.06, 0], color=RED, stroke_width=5)
         omega_key_label = MathTex(r"\omega_D", color=RED).scale(0.7).next_to(omega_key, RIGHT, buff=0.14)
         opening_content = VGroup(
             amplitude_axes,
             phase_axes,
             panel_titles,
             distance_labels,
+            scaled_distance_left,
+            scaled_distance_right,
             theta_key,
             theta_key_label,
             omega_key,
             omega_key_label,
         )
-        content = VGroup(
-            amplitude_axes,
-            phase_axes,
-            panel_titles,
-            distance_labels,
-            amp_theta_curve,
-            amp_omega_curve,
-            phase_theta_curve,
-            phase_omega_curve,
-            theta_key,
-            theta_key_label,
-            omega_key,
-            omega_key_label,
-        )
-        heading = Text("Information changes with frequency and distance", font="Arial", font_size=36, color=INK).to_edge(UP, buff=0.38)
-        caption = Text("Morris sensitivity reconstructed from Figure 6", font="Arial", font_size=20, color=MUTED).to_edge(DOWN, buff=0.28)
+        heading = Text("Information changes across scaled distance", font="Arial", font_size=36, color=INK).to_edge(UP, buff=0.38)
+        caption = Text(
+            "Manual Figure 6 traces. Morris indices were not recomputed",
+            font="Arial",
+            font_size=18,
+            color=MUTED,
+        ).to_edge(DOWN, buff=0.28)
         opening_frame = [heading, caption, opening_content]
-        assert_scene_layout(scene=self, pending_items=opening_frame, labels=[heading, caption, panel_titles, distance_labels, theta_key_label, omega_key_label], blockers=[amplitude_axes, phase_axes, theta_key, omega_key], frame_items=opening_frame, intentional_overlaps=[(opening_content, opening_content)])
+        scene_labels = [heading, caption, panel_titles, distance_labels, scaled_distance_left, scaled_distance_right, theta_key_label, omega_key_label]
+        scene_blockers = [amplitude_axes, phase_axes, theta_key, omega_key]
+        assert_scene_layout(scene=self, pending_items=opening_frame, labels=scene_labels, blockers=scene_blockers, frame_items=opening_frame)
         self.play(FadeIn(heading), FadeIn(caption), FadeIn(opening_content), run_time=0.7)
-        frame_items = [heading, caption, opening_content, content]
-        assert_scene_layout(scene=self, pending_items=[amp_theta_curve, amp_omega_curve, phase_theta_curve, phase_omega_curve], labels=[heading, caption, panel_titles, distance_labels, theta_key_label, omega_key_label], blockers=[amplitude_axes, phase_axes, theta_key, omega_key, amp_theta_curve, amp_omega_curve, phase_theta_curve, phase_omega_curve], frame_items=frame_items, intentional_overlaps=[(opening_content, opening_content), (content, content), (opening_content, content)])
+        sensitivity_curves = [amp_theta_curve, amp_omega_curve, phase_theta_curve, phase_omega_curve]
+        frame_items = [heading, caption, opening_content, *sensitivity_curves]
+        sensitivity_overlaps = [
+            (amplitude_axes, amp_theta_curve),
+            (amplitude_axes, amp_omega_curve),
+            (amp_theta_curve, amp_omega_curve),
+            (phase_axes, phase_theta_curve),
+            (phase_axes, phase_omega_curve),
+            (phase_theta_curve, phase_omega_curve),
+        ]
+        assert_scene_layout(scene=self, pending_items=sensitivity_curves, labels=scene_labels, blockers=[*scene_blockers, *sensitivity_curves], frame_items=frame_items, intentional_overlaps=sensitivity_overlaps)
         self.play(
             Create(amp_theta_curve),
             Create(amp_omega_curve),
@@ -1005,8 +1179,8 @@ class LinKurylyk2026V2(Scene):
             run_time=3.0,
         )
         self._hold(1.0)
-        assert_scene_layout(scene=self, pending_items=[], labels=[heading, caption, panel_titles, distance_labels, theta_key_label, omega_key_label], blockers=[amplitude_axes, phase_axes, theta_key, omega_key, amp_theta_curve, amp_omega_curve, phase_theta_curve, phase_omega_curve], frame_items=frame_items, intentional_overlaps=[(opening_content, opening_content), (content, content), (opening_content, content)])
-        self.play(FadeOut(heading), FadeOut(caption), FadeOut(content), run_time=0.5)
+        assert_scene_layout(scene=self, pending_items=[], labels=scene_labels, blockers=[*scene_blockers, *sensitivity_curves], frame_items=frame_items, intentional_overlaps=sensitivity_overlaps)
+        self.play(FadeOut(heading), FadeOut(caption), FadeOut(opening_content), *[FadeOut(curve) for curve in sensitivity_curves], run_time=0.5)
 
     def scene_18_return(self) -> None:
         tuolumne_aquifer = Rectangle(width=4.75, height=1.45, color=MUTED, stroke_width=2).set_fill(PALE, opacity=0.42)
@@ -1092,7 +1266,13 @@ class LinKurylyk2026V2(Scene):
         heading = Text("The same law resolves two different lag regimes", font="Arial", font_size=36, color=INK).to_edge(UP, buff=0.38)
         caption = Text("Use lagging when both signatures and model selection support it", font="Arial", font_size=20, color=MUTED).to_edge(DOWN, buff=0.28)
         frame_items = [heading, caption, divider, boundary, tuolumne, meghna]
-        assert_scene_layout(scene=self, pending_items=frame_items, labels=[heading, caption, boundary, tuolumne[5], tuolumne[6], tuolumne[7], meghna[5], meghna[6], meghna[7]], blockers=[divider, tuolumne_geometry, meghna_geometry], frame_items=frame_items, intentional_overlaps=[(tuolumne, tuolumne), (meghna, meghna)])
+        site_geometry_overlaps = [
+            *complete_distinct_pairs(tuolumne_geometry),
+            *complete_distinct_pairs(meghna_geometry),
+            *[pair for well in tuolumne_wells for pair in complete_distinct_pairs(well)],
+            *[pair for well in meghna_wells for pair in complete_distinct_pairs(well)],
+        ]
+        assert_scene_layout(scene=self, pending_items=frame_items, labels=[heading, caption, boundary, tuolumne[5], tuolumne[6], tuolumne[7], meghna[5], meghna[6], meghna[7]], blockers=[divider, tuolumne_geometry, meghna_geometry], frame_items=frame_items, intentional_overlaps=site_geometry_overlaps)
         self.play(
             FadeIn(heading),
             FadeIn(caption),
@@ -1113,5 +1293,5 @@ class LinKurylyk2026V2(Scene):
             run_time=2.8,
         )
         self._hold(2.2)
-        assert_scene_layout(scene=self, pending_items=[], labels=[heading, caption, boundary, tuolumne[5], tuolumne[6], tuolumne[7], meghna[5], meghna[6], meghna[7]], blockers=[divider, tuolumne_geometry, meghna_geometry], frame_items=frame_items, intentional_overlaps=[(tuolumne, tuolumne), (meghna, meghna)])
+        assert_scene_layout(scene=self, pending_items=[], labels=[heading, caption, boundary, tuolumne[5], tuolumne[6], tuolumne[7], meghna[5], meghna[6], meghna[7]], blockers=[divider, tuolumne_geometry, meghna_geometry], frame_items=frame_items, intentional_overlaps=site_geometry_overlaps)
         self.play(FadeOut(heading), FadeOut(caption), FadeOut(divider), FadeOut(boundary), FadeOut(tuolumne), FadeOut(meghna), run_time=0.5)

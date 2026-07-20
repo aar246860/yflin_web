@@ -40,7 +40,7 @@ Verified operation: Present flux is evaluated from the weighted history of hydra
 
 M02
 Locator: PDF pages 3-4; Section 2.1; Equation 4.
-Verified operation: The constitutive law contains separate relaxation times for flux and head.
+Verified operation: The selected local constitutive representation contains separate flux and head lag parameters; the paper does not specify an exponential kernel.
 
 M03
 Locator: PDF page 4; Section 2.2; Equations 5-7.
@@ -48,7 +48,7 @@ Verified operation: Mass conservation closes the constitutive relation into the 
 
 M04
 Locator: PDF page 4; Section 2.3; Equations 8-15.
-Verified operation: A harmonic ansatz yields a complex dispersion relation and an attenuating branch.
+Verified operation: A harmonic ansatz yields the decaying branch lambda = -alpha - i beta, where beta = |Im lambda| is the positive phase-lag gradient.
 
 M05
 Locator: PDF page 5; Section 2.4; Equations 20-21.
@@ -79,8 +79,8 @@ Locator: PDF page 10; Appendix B.
 Verified operation: Interquartile filtering removes aberrant refits before uncertainty summaries.
 
 M12
-Locator: PDF page 10; Appendices B-C.
-Verified operation: Bootstrap refits produce posterior means and one-sigma parameter intervals.
+Locator: PDF page 10; Appendix B.
+Verified operation: Filtered error-propagation refits produce ensemble means and one-sigma parameter intervals. Appendix C is a separate constituent-level bootstrap for D.
 
 M13
 Locator: PDF pages 9-10; Appendix A; Figure A.1.
@@ -105,16 +105,15 @@ NUMERICAL EVIDENCE USED IN THE ANIMATION
   approximate graphical coordinates, not a replacement for the underlying
   field dataset and not outputs regenerated from the single-frequency formula.
 - Figure 6 and Equations 22-25 support the qualitative sensitivity ordering
-  shown in Scene 17. The animation uses normalized illustrative bar lengths;
-  it does not present those lengths as newly computed Morris indices.
+  shown in Scene 17. The plotted curves are approximate manual graphical
+  traces of Figure 6, not newly computed Morris indices or source data.
 
 RESULT AND INTERPRETATION BOUNDARIES
 
 - The two field examples are the Tuolumne River transect and the Meghna River
   transect described in the article.
-- The field parameters are effective, frequency-band- and scale-dependent
-  descriptions of periodic head behavior. They are not asserted to be unique
-  microscopic material constants.
+- The lag parameters are field-scale effective descriptors of the analyzed
+  records, not unique microscopic material constants.
 - The classical and lagging models are compared with the same retained
   observations, while AIC explicitly penalizes added model parameters.
 - Multiple separated frequencies and at least two distances are needed for the

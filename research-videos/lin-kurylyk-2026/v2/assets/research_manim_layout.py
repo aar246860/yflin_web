@@ -84,7 +84,9 @@ def assert_mutually_clear(items: Sequence[Mobject], min_gap: float) -> None:
         for second in leaves[index + 1 :]:
             if bbox_gap(first, second) < min_gap:
                 raise LayoutContractError(
-                    f"layout overlap risk: {first.__class__.__name__} is too close to {second.__class__.__name__}"
+                    "layout overlap risk: "
+                    f"{first.__class__.__name__} at {first.get_center().round(3).tolist()} "
+                    f"is too close to {second.__class__.__name__} at {second.get_center().round(3).tolist()}"
                 )
 
 
@@ -96,24 +98,23 @@ def assert_no_unintended_overlap(
     item_ids = {id(item) for item in items} | _family_object_ids(items)
     allowed: set[frozenset[int]] = set()
     for first, second in intentional_overlaps:
+        if first is second:
+            raise LayoutContractError(
+                "layout contract risk: intentional overlap pairs must name two distinct guarded objects"
+            )
         first_leaves = _overlap_leaves([first])
         second_leaves = _overlap_leaves([second])
-        if first is second:
-            if first.__class__.__name__ not in {"Group", "VGroup"} or id(first) not in item_ids or not first_leaves:
-                raise LayoutContractError("layout contract risk: intentional overlap pair is not a guarded group")
-            allowed.update(
-                frozenset((id(left), id(right)))
-                for index, left in enumerate(first_leaves)
-                for right in first_leaves[index + 1 :]
-            )
-            continue
         if id(first) not in item_ids or id(second) not in item_ids or not first_leaves or not second_leaves:
             raise LayoutContractError("layout contract risk: intentional overlap pair is not a guarded item pair")
         allowed.update(frozenset((id(left), id(right))) for left in first_leaves for right in second_leaves)
     for index, first in enumerate(leaves):
         for second in leaves[index + 1 :]:
             if bbox_gap(first, second) < 0 and frozenset((id(first), id(second))) not in allowed:
-                raise LayoutContractError("layout overlap risk: geometry overlaps without an intentional declaration")
+                raise LayoutContractError(
+                    "layout overlap risk: "
+                    f"{first.__class__.__name__} at {first.get_center().round(3).tolist()} overlaps "
+                    f"{second.__class__.__name__} at {second.get_center().round(3).tolist()} without a declaration"
+                )
 
 
 def assert_within_frame(
