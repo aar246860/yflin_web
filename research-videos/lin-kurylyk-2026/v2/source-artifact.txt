@@ -1,943 +1,109 @@
-                                                              Journal of Hydrology 667 (2026) 134913
-                                                            Contents lists available at ScienceDirect
-
-                                                      Journal of Hydrology
-
-                                              journal homepage: www.elsevier.com/locate/jhydrol
-
-Lagging theory for periodic hydraulic head signals in aquifers
-
-Ying-Fan Lin a, iD, Barret L. Kurylyk b iD
-
-a Department of Civil Engineering, Chung Yuan Christian University, Taoyuan, Taiwan
-b Department of Civil and Resource Engineering and Centre for Water Resources Studies, Dalhousie University, Halifax, Canada
-
-HIGHLIGHTS                                    GRAPHICAL ABSTRACT
-
-· Lagging and classic diffusion models are
-  used to estimate aquifer properties from
-  periodic head.
-
-· Lagging model separates flow and stor
-  age delays, resolving the apparent phase-
-  amplitude diffusivity mismatch.
-
-· Lagging model produces aquifer diffu
-  sivity estimates that are more physically
-  plausible.
-
-ARTICLE INFO                                  Visual demonstration of the phase-amplitude mismatch dilemma. While the classical diffusion model (left) strug
-                                              gles to fit field data due to homogeneity assumptions, the proposed lagging theory (right) empirically captures
-This manuscript was handled by Dongmei        the bulk effects of aquifer heterogeneity. This framework effectively separates flux and head delays, allowing for
-Han, Editor-in-Chief, with the assistance of  accurate reproduction of natural periodic head signals and parameter estimation.
-Ting Fong May Chui, Associate Editor
-                                              ABSTRACT
-Keywords:
-Lagging model                                 Periodic head fluctuations in aquifers are often analyzed with a diffusion model that links amplitude damping
-Phase-amplitude mismatch                      and phase lag to a single hydraulic diffusivity, yet diffusivities inferred separately from phase and from ampli
-Periodic groundwater signals                  tude often disagree. This mismatch arises in heterogeneous, dual-porosity, leaky, or partially unsaturated settings
-Coastal aquifers                              where fast and slow pathways decouple the amplitude response from the phase response. Herein, Darcy's law
-Tidal head analysis                           is empirically modified with two field-scale time constants within a causal memory model with a form that can
-                                              be reduced to a dual-domain model but can accommodate more complex heterogeneity. An included flux lag
-                                              denotes the time required for discharge pathways to readjust after a change in gradient, including redistribution
-                                              along high-conductivity paths, short-term storage or release, and near-boundary resistance. The head lag denotes
-                                              the time required for a head difference to develop across communicating domains under finite exchange, as in
-                                              mobile-immobile or fracture-matrix systems, leaky units, or shallow unsaturated zones. The solution predicts that
-                                              flux lag dominates long-period waves, head lag controls short-period waves, and their interaction governs signal
-                                              transfer for intermediate periods. Parameters are estimated from multi-frequency observations at two contrast
-                                              ing aquifers. In an unconfined coarse-gravel aquifer (Tuolumne Meadows, USA), the model yields a 2.28-day
-                                              flux lag and a 0.12-day head lag, reduces root-mean-square error by a factor of four, and yields a diffusivity
-                                              that aligns with prior diffusivity values. Along a semi-confined sandy alluvial transect beside the Meghna River
-
-   Corresponding author.
-     Email address: yflin1110@cycu.edu.tw (Y.-F. Lin).
-
-https://doi.org/10.1016/j.jhydrol.2026.134913
-Received 19 September 2025; Received in revised form 28 November 2025; Accepted 3 January 2026
-Available online 3 January 2026
-0022-1694/© 2026 Elsevier B.V. All rights are reserved, including those for text and data mining, AI training, and similar technologies.
-Y.-F. Lin and B.L. Kurylyk                                                                                                                                    Journal of Hydrology 667 (2026) 134913
-
-                                           (Bangladesh), the standard diffusion model reproduces phase only by inflating diffusivity by two orders of mag
-                                           nitude and still overdamps amplitude. In contrast, the lagging solution fits both with a realistic diffusivity and
-                                           returns a 2.07-day flux lag and a 38.60-day head lag. The latter likely reflects bulk equilibration in the near-bank
-                                           zone and can be longer than the signal period. Representing these two physically based delays reconciles phase-
-                                           and amplitude-based diffusivities while retaining analytical simplicity for analyses of tidal, diel, and seasonal
-                                           groundwater oscillations.
-
-Nomenclature                                                                  Inversions (w.r.t. physical )
-
-                                                                                   Diffusivity inferred from amplitude decay [L2T-1]
-
-Dimensional symbols                                                                Diffusivity inferred from phase delay [L2T-1]
-
-      Boundary forcing amplitude in (0, ) = 0 +  cos() [L]                    Heterogeneous model parameters
-
-      Saturated thickness [L]                                                  ,  Storativity of fracture (mobile) and matrix (immobile)
-                                                                                           domains [-]
-      Hydraulic diffusivity,  =   [L2T-1] (confined: ;
-
-      unconfined: )                                                                Transmissivity of the fracture domain [L2T-1]
-
-, 0   Hydraulic head and its mean value [L]                                        Dual-porosity mass exchange rate coefficient [T-1]
-
-      Hydraulic conductivity [LT-1]                                           ,    Transmissivity of the skin layer and aquifer [L2T-1]
-                                                                              ,    Storativity of the skin layer and aquifer [-]
-      Darcy flux [LT-1]                                                            Thickness of the skin layer [L]
-
-      Discharge per unit width,  =  [L2T-1]
-
-      Storativity [-]                                                         DP, TZ Effective wavenumbers for dual-porosity and two-zone
-                                                                                           models [L-1]
-      Specific storage [L-1]
-
-      Specific yield [-]                                                       ,   Complex amplitudes of head and flux
-
-      Transmissivity,  =  [L2T-1]
-
-      Time [T]                                                                Spectral / frequency-domain notation
-
-      Horizontal distance inland or vertical depth [L]                        0,  Complex DFT of boundary and well- head series
-
-      Angular frequency [T-1]                                                 00, 0 Auto-/cross-spectrum
-                                                                               Transfer function, 000 [-]
-()    Complex spatial wavenumber in physical coordinates [L-1]                2 Magnitude-squared coherence [-]
-      Classical diffusion wavenumber, (1 + )(2) [L-1]                         obs, , obs, Observed amplitude ratio and phase at well  [-], [rad]
-0     Real/imaginary parts of 0 [L-1]                                         mod, mod Model-predicted amplitude ratio and phase [-], [rad]
-0, 0
-
-Dimensionless variables and groups                                            Sensitivity analysis (Morris)
-
-D     Dimensionless head, ( - 0) [-]                                               Number of trajectories [-]
-
-D     Dimensionless distance,   [-]                                           EE,  Elementary effect of factor  on trajectory  [-]
-
-D     Dimensionless time,  [-]                                                     Grid step in normalized space [-]
-
-D     Dimensionless frequency,  [-]                                                Base point of trajectory  [-]
-
-      Amplitude ratio (envelope) relative to the boundary,  =                      Unit vector for factor  [-]
-
-      -D [-]                                                                       Absolute mean of elementary effects [-]
-
-      Dimensionless complex wavenumber,  = - +  [-]                                Standard deviation of elementary effects [-]
-
-,     Real/imaginary parts of  [-]                                                 Overall Morris sensitivity index [-]
-
-      Lag ratio,  [-]
-
-      Phase-amplitude diffusivity ratio,  = 22 [-]                            Statistics
-                                                                              RMSE, RMSE RMSE for amplitude and phase [-], [rad]
-,     Auxiliary variables used in Eq. (15) [-]                                AIC Akaike Information Criterion [-]
-                                                                               Number of bootstrap resamples [-]
-C, C, C Classical dimensionless variables [-]
-
-Parameters                                                                    Operators
-                                                                              {}, {} Real and imaginary parts
-      Flux-relaxation time (flux lag) [T]                                     arg() Complex phase (argument) [rad]
-                                                                              () Complex conjugate
-      Inter-domain equilibration time (head lag) [T]
-
-1. Introduction                                                               meters into shallow aquifers (Stallman, 1965; Taniguchi, 1993; Kurylyk
-                                                                              et al., 2013). These natural periodic signals are easy to measure and
-    Groundwater head, porewater pressure, temperature, and solute con         have forcing conditions that permit simple boundary representations
-centrations in the shallow subsurface often vary periodically across mul      and closed-form analytical solutions (e.g., Ferris, 1952; Stallman, 1965).
-tiple frequencies. Examples include semidiurnal and diurnal oscillations
-from ocean tides in coastal aquifers (Ferris, 1952; Nielsen, 1990; LeRoux         Such analytical solutions are widely applied as passive tracers for es
-et al., 2023), the 24-h temperature wave in shallow streambed, lakebed,       timating subsurface properties such as hydraulic diffusivity and thermal
-and seabed sediment and salt marshes (Hatch et al., 2006; Irvine et al.,      properties. Accurate characterization of hydraulic properties is critical
-2017; Constantz, 2008; Guimond et al., 2024), diel groundwater-level          for effective groundwater management. Hydraulic diffusivity controls
-fluctuations from snowmelt cycles in cold-region catchments (Loheide          the speed of hydraulic signal propagation, while hydraulic conductivity
-and Lundquist, 2009; Magnusson et al., 2012; Kurylyk and Hayashi,             and storage govern groundwater flow and advective transport veloci
-2017), seasonal groundwater-level variations (Michael et al., 2005;           ties and aquifer capacity. Biases or uncertainties in these estimates can
-Nygren et al., 2020), and the annual thermal wave that penetrates a few       propagate into significant errors when predicting contaminant plume
-
-                                                                           2
-Y.-F. Lin and B.L. Kurylyk                                                                           Journal of Hydrology 667 (2026) 134913
-
-migration (Shapiro and Falcone, 2022), assessing saltwater intrusion           Sobolevskaia et al. (2021)). These sites were specifically selected to
-risks in coastal zones (Werner et al., 2013), and designing effective          represent two distinct hydrogeological end-members: a high-diffusivity
-aquifer storage and recovery systems (Pyne, 2017).                             unconfined system driven by high-frequency fluctuations, and a
-                                                                               low-diffusivity semi-confined system dominated by lower-frequency
-    In typical analyses of periodic signals, subsurface properties are in      tidal forcing. Together, they demonstrate the framework's applicability
-ferred from either the phase signal shift (lag) or amplitude attenuation       across diverse natural settings.
-(damping). Over the past two decades, however, many studies have re
-ported a consistent challenge (Constantz, 2008; Rau et al., 2014; Irvine       2. Methods
-et al., 2017; Zhang et al., 2021): estimates derived from the phase shift
-rarely match those inferred from amplitude decay (e.g., Li et al., 2000;       2.1. Empirical motivation and phenomenological lagging model
-Loheide and Lundquist, 2009; Magnusson et al., 2014; Rau et al., 2019),
-at least when both are interpreted with the same one-dimensional ho                In classical groundwater theory, Darcy's law considers the flux-
-mogeneous diffusion solution. This discrepancy primarily reflects the use      gradient relationship to be instantaneous:
-of an oversimplified homogeneous conceptual model to represent a het
-erogeneous aquifer, rather than any fundamental flaw in the diffusion          () = -                         (1)
-theory. A large body of work shows that phase-amplitude inconsis
-tencies can arise from identifiable hydrogeologic mechanisms, even             where  [T] is time,  [L] and  [LT­1] are field-scale observables,  is
-when the governing process is modeled as diffusion, once these mecha           the spatial gradient, and  [LT­1] is the hydraulic conductivity. Field
-nisms and heterogeneities are incorporated into the conceptual model.          observations, however, reveal measurable delays between the buildup
-Spatial heterogeneity near coasts or banks produces composite or two-          of a gradient and the resulting discharge (e.g., Fatt, 1959; Greene et al.,
-zone responses in which interfaces add attenuation and impose nearly           1999; Cho et al., 2004; Tiedeman and Hsieh, 2001). At the representative
-constant phase offsets, so the inversion of a homogeneous diffusion            elementary volume scale in heterogeneous or dual-porosity media, heads
-model fit returns different diffusivities from amplitude versus phase          across communicating domains need not be equal instantaneously due to
-(e.g., Trefry, 1999; Guo et al., 2010; Li and Jiao, 2002). Leaky confin        non-local equilibrium (Barenblatt et al., 1960; Warren and Root, 1963;
-ing units and aquitard storage likewise generate frequency-dependent           Moench, 1984).
-damping and lag (Jiao and Tang, 1999; Tang and Jiao, 2001), while
-wellbore storage and skin alter borehole records in a way that dispro              Following the hereditary (memory) approach in continuum mechan
-portionately biases phase (Hsieh et al., 1987). In unconfined settings,        ics and heat transfer, we therefore represent Darcy's law at the field scale
-capillary and unsaturated-zone exchange can delay gradient establish           with a causal kernel so that the present flux depends on a weighted his
-ment and amplify damping (Liang et al., 2022; Zhang et al., 2023), and         tory of past gradients (Caputo, 2000; Caputo and Carcione, 2013; Joseph
-semi-permeable riverbeds or partial penetration further modulate the           and Preziosi, 1989; Tzou, 1995):
-transfer of tidal or diel signals across the boundary (Kelson and Bakker,
-2013; Huang et al., 2025). Despite these advances, representing hetero           
-geneity effects in analytical models through discrete zones of differing
-hydraulic conductivity is mathematically challenging except for simpli         () = - 0 () ( - ) d,           (2)
-fied configurations (e.g., layered or dual-domain systems). Part of the
-remaining mismatch also reflects data issues because instrument resolu         where ()  0 is the memory kernel. The kernel describes how the influ
-tion and low recording frequency can bias phase-based estimates even           ence of past gradients decays with look-back time   0 (Caputo, 2000;
-when amplitudes remain usable (e.g., Lautz, 2010).
-                                                                               Caputo and Carcione, 2013) and integrates to the effective hydraulic
-    To account for these above-mentioned complications, "lagging" is           conductivity  [LT­1]:
-used here as a field-scale effective description or upscaling represen
-tation. Instead of explicitly resolving the complex geometry of het            
-erogeneity, the unresolved microstructure and inter-domain exchange
-are captured by simple causal delays in the Darcy constitutive relation         = 0 ()d                       (3)
-(Tzou, 1995; Lin and Yeh, 2017; Caputo, 2000; Caputo and Carcione,
-2013). In this context, "causal" refers to the physical principle that the     At the representative elementary volume scale of heterogeneous or dual-
-flux response to a gradient change is not instantaneous but requires a         porosity media, heads across communicating domains (e.g., fracture and
-finite relaxation time, consistent with non-equilibrium thermodynam            matrix) may not be in local equilibrium at a given instant; the memory
-ics. Following the established lagging theory in heat transfer (Joseph         kernel compactly represents such delayed exchange and redistribution.
-and Preziosi, 1989; Tzou, 1995; Rukolaine, 2025), commonly termed
-the dual-phase-lag framework, which separates a flux-relaxation time               Based on the framework of Lin and Yeh (2017), a convenient field-
-from a gradient-development time as a causal memory law in continua,           scale choice for  is a two-channel kernel with two lag parameters
-we adopt an analogous, field-scale description for groundwater. This           (relaxation times), expressed as:
-provides a compact way to encode the mechanisms summarized above
-without prescribing subsurface zonation which is often challenging to          ()        [           ( () )]
-directly delineate and assign properties to. Inspired by the pumping-test
-formulation of Lin and Yeh (2017), this concept is herein generalized          () +   = - () +                (4)
-to naturally periodic head records by deriving closed-form, frequency-
-domain predictions for amplitude and phase and estimating parameters           where  [T] is the flux-relaxation time (hereafter "flux lag"), defined as
-with a multi-frequency, multi-distance inversion. The objectives are to        the macroscopic effective parameter representing the time scale over
-(1) present this formulation and demonstrate how the two time constants        which Darcy discharge readjusts after a change in gradient due to
-reconcile diffusivities inferred separately from phase and amplitude,          redistribution along high- pathways, near-boundary resistance, and
-and (2) evaluate it against the classic homogeneous diffusion model us         short-term storage/release. The parameter  [T] is the inter-domain
-ing previous observations from two contrasting aquifers: an unconfined         equilibration time (hereafter "head lag"), defined as the characteristic
-coarse-gravel aquifer with periodic recharge from snowmelt (Tuolumne           relaxation time required for pressure equilibration between high- and
-Meadows, USA, Loheide and Lundquist (2009)) and a semi-confined                low-permeability domains (e.g., matrix and fractures), physically analo
-sandy alluvial aquifer along a tidal river (Meghna River, Bangladesh,          gous to the inverse of the exchange rate in dual-porosity models. Larger
-                                                                               immobile capacity and/or smaller exchange rates increase . These are
-                                                                               parameters of a causal memory law (not literal time shifts), so they mod
-                                                                               ify attenuation and phase in a frequency-dependent way rather than
-                                                                               shifting the signal in time. In this context,  represents the effective
-                                                                               hydraulic conductivity governing the magnitude of transmission once
-                                                                               the transient delays have passed.
-
-                                                                            3
-Y.-F. Lin and B.L. Kurylyk                                                                                                                Journal of Hydrology 667 (2026) 134913
-
-                                                                                      so the attenuating branch is used, avoiding any "time-shift" paradox
-                                                                                      (Kovács, 2024).
-
-                                                                                          A periodic Dirichlet boundary condition is imposed at  = 0,
-
-                                                                                      (0, ) = 0 +  cos(),                                                (8)
-
-                                                                                      Together with a far-field condition
-
-                                                                                      (  , ) = 0,                                                        (9)
-
-Fig. 1. Schematic representation of one-dimensional periodic signal propaga           representing semidiurnal tides, diel stream stage, or the effects of other
-tion in two distinct hydrogeological settings. (a) A tidal or stream stage signal     periodic signals. Near-boundary effects, such as poroelastic loading
-propagates horizontally inland through an aquifer bounded by an overlying             and strong vertical exchange across semi-permeable beds (Wilson and
-semi-confining layer and an impermeable bedrock base. (b) A surface signal            Gardner, 2006; Xin et al., 2012; Reeves et al., 2000), are excluded here
-propagates vertically downward through the unsaturated zone into the aquifer.         given the spatial scales considered later.
-The coordinate  is defined along the direction of propagation, originating from
-the source boundary at  = 0.                                                          2.3. Dimensionless formulation and analytical solutions for head,
-                                                                                      amplitude, and phase
-
-                                                                                          The following dimensionless parameters can be defined: D = ( -
-                                                                                      0), D = , , D = ,  = , and D = . With these
-
-                                                                                      variables, Eqs. (7)­(9) become
-
-                                                                                      (            )  D          (          ) 2D ,
-                                                                                        1+                         1 + 
-    Two special cases are informative for the case of periodic forcing. If                  D D            =             D 2D                            (10a)
- = 0 (head-lag only), the model predicts strong damping with little
-delay. The reverse case, namely weak damping with large delay, can                    D(0, D) = cos(DD), D(D  , D) = 0.                                  (10b)
-not be obtained. If  = 0 (flux-relaxation only), the response shows
-larger phase lags with comparatively modest additional attenuation at                 Assuming harmonic solutions gives D  D DD with the dispersion
-high frequencies. Note that this is a frequency-dependent constitutive                relation
-relaxation. Allowing both times to be non-negative provides indepen
-dent control of damping and delay without added structural complexity                 2 = D(1 + D) ,                                                     (11)
-or over-fitting to account for the complicating factors discussed above.                        1 + D
-
-2.2. Governing equation with two lagging parameters                                   where the branch with {} < 0 is chosen. Writing  = - +  with
-                                                                                       > 0, the interior response is
-    Building on the lagging constitutive relation in Eq. (4), the mass bal
-ance at time  closes to yield a vertically integrated (Dupuit) governing              D(D, D) = -D cos (DD + D),                                         (12)
-equation. Setting  =  to denote the discharge per unit width [L2T­1]
-across the saturated thickness  [L] yields:                                           So the amplitude and phase are
-
-  (, ) (, )                 = 0,              (5)                                      = -D ,               = D,                                         (13)
-           +
-                
-
-                                                                                      where
-
-where  [L] is the horizontal or vertical distance from the boundary and                                        =   -  ,                                  (14)
- is storativity (confined:  = ; unconfined:   ) (Fig. 1).                              =  +  ,                           2
-                                                                                                2
-    Starting from the Dupuit continuity   +  = 0 with  =  and
- = , Eq. (4) can be multiplied by  to obtain the lagging discharge                    with
-law:
-
-                                                                                           
-
-                 (                2 ) .                                                         4D  +  D2         = ( - 1)D2 .                           (15)
-                                                                                                                       1 + 2D2
-  +        =  -             +                 (6)                                       =                  ,
-
-                                                                                             1 + 2D2
-
-Taking , substituting aquifer diffusivity  = , and using                              The detailed derivation and model verification of Eqs. (12) and (13) are
- = - gives:                                                                           provided in Appendix A.
-
-(          )         (                )  2 .                                          2.4. Classic diffusion inversion and modifications based on lagging theory
- 1                    1                  2
-    +           =           +                 (7)
-
-                                                                                           Setting  =  = 0 gives the classic diffusion equation
-
-    Eq. (7) reduces to classical diffusion when  =  = 0. Formally, with                =  2 .                                                            (16)
-a nonzero flux-lag term, Eq. (7) can be written in a hyperbolic (Jeffreys-                      2
-type) form. Others have shown that hyperbolic forms of the groundwater
-can be derived from dual porosity (Eq. 32 in Lin and Yeh, 2017) and                   Under harmonic forcing, the complex wavenumber and its real/imagi
-others have used alternative Cattaneo hyperbolic forms to represent the               nary parts are (Carslaw and Jaeger, 1947):
-groundwater flow equation (e.g., Mls and Herrmann, 2011; Özgen-Xian
-et al., 2021). By analogous state-elimination, simple two-zone couplings                                                            
-with finite exchange are expected to reduce to the same class. The higher                          )   2                            2
-level time derivative here arises from constitutive relaxation (diffusion             0  =  (1  +             ,  0       =  0  =       .                 (17)
-with memory), not from momentum. Mass conservation is enforced at
-the present time, and delay enters only through the constitutive relation,                For a consistent dimensionless form of the classical solution ( = ),
-                                                                                      normalization is achieved by the forcing frequency and the diffusive
-
-                                                                                   4
-Y.-F. Lin and B.L. Kurylyk                                                                      Journal of Hydrology 667 (2026) 134913
-
-length: C = ( - 0), C = 2, and C = . Under these                              2.6. Field datasets and analysis procedure
-variables, the diffusion solution is (Jacob, 1950; Ferris, 1952; Nielsen,
-                                                                                  Coupled stream stage-groundwater head oscillations were examined
-1990):                                                                        at two contrasting sites. Site 1 (Tuolumne Meadows, Yosemite National
-                                                                              Park, California) is a high-elevation gravel meadow aquifer drained
-C(C, C) = exp(-C) cos (C - C),         (18)                                   by the Tuolumne River (Loheide and Lundquist, 2009). Early-summer
-                                                                              snowmelt generates a distinct diurnal ( 24 h) stage wave in stream
-With amplitude and phase given by                                             stage and groundwater level. Two in-channel pressure transducers and
-                                                                              three piezometers at  = 17, 52, and 100 m from the bank recorded wa
- = exp(-C),  = C.                      (19)                                   ter levels every 15 min during 2­17 July 2007 (Loheide and Lundquist,
-                                                                              2009). Our analysis focuses on the quasi-stationary interval (Julian days
-    Studies of periodic groundwater level oscillations have inferred hy       192­199; channel-to-bank amplitude  0.11 m). Site 2 (Meghna River,
-draulic diffusivity, , from the spatial decay of amplitude and/or the         Bangladesh) is a semi-confined sandy alluvial aquifer (Sobolevskaia
-associated phase lag using the form of Eqs. (18) and (19) (e.g. Jacob,        et al., 2021). Ocean tides with dominant M2/S2 constituents ( 12.4 h)
-1950; Ferris, 1952; Nielsen, 1990). With either a measured damping            produce cyclic stage that penetrates the bank. A river gauge and wells
-coefficient  or phase gradient , the standard inversions follow from          along a 75­100 m transect recorded heads every 20 min between 2012
-Eq. (13) and the definition of D:                                             and 2015 (Shuai et al., 2017; Berube et al., 2018).
-
-  =    ,             =        .        (20)                                       We estimated the river-well transfer function via cross-spectral anal
-     22                     22                                                ysis and retained coherent harmonics in the 2­48 h band. The complex
-                                                                              transfer function is
-    If the governing process strictly followed Darcy's law,  and 
-would coincide by definition. The lagging formulation developed above          () =  0() ,                                (26)
-relaxes this constraint:  and  (Eq. 14) now respond differently to                   00()
-the flux lag and head lag, so the two diffusivities in Eq. (20) generally
-diverge. This divergence is quantified by                                     from which the observed amplitude ratio and phase lag were obtained
-                                                                              as
-                     2 .
-(, D) =          =    2                (21)
-
-                                                                              obs, () = | ()|,  obs, () = arg  ().        (27)
-
-The farther  departs from unity, the more the classic model yields            All preprocessing, spectral conventions (DFT, autospectrum/cross-
-inconsistent diffusivity estimates from phase and amplitude data.             spectrum, smoothing), coherence screening, and uncertainty estimation
-                                                                              are described in Appendix B.
-2.5. Global sensitivity analysis
-                                                                              3. Results and discussion
-    The relative importance of the two dimensionless inputs ( and D)
-is quantified using the Morris elementary-effects (EE) method (Morris,        3.1. Field results
-1991; Campolongo et al., 2007). For a given output  ( or ), the
-elementary effect of factor  on trajectory  is:                                   All field inversions apply the multi-frequency composite scheme de
-                                                                              scribed in Section 2.7; the emphasis here is on the fitted parameters,
-EE,  =   (    + ) -  (), ,             (22)                                   associated errors, and resulting physical interpretations. Table 1 summa
-                                                                              rizes the calibrated parameters and residual errors for the two datasets
-                                                                              considered in this study.
-where  is the random base point,  is the unit vector for factor , and 
-is the grid step in normalized coordinates. The distribution of EEs over          For the snowmelt-driven diel signal in Tuolumne Meadows, Loheide
-all  trajectories is summarized by the absolute mean                          and Lundquist (2009) calibrated the classic diffusion solution to the
-                                                                              same 17­100 m transect. Specifically, they estimated a transmissivity
-     1                                                                        of 3.5 × 103 m2/d by fitting the standard analytical solution for am
-                                                                              plitude damping to the observed spatial decay, effectively treating the
-  =                                    (23)                                   problem as a diffusion process governed primarily by signal attenuation.
-            |EE,| ,                                                           Combined with their proposed specific yield of 0.3, this yields a bulk dif
-            ||                                                                fusivity of  = 1.2 × 104 m2/d. The classic model reproduces this order
-                                                                              of magnitude of diffusivity ( = 9.3×103 m2/d), while the lagging model
-        =1                                                                    yields a higher diffusivity value (2.2 × 104 m2/d) (Table 1). The lagging
-                                                                              inversion suggests a flux lag of about 2.3 d and a head lag of 0.12 d
-Also, the standard deviation is calculated to reflect interactions or         (3 h), giving a lag ratio of   0.05. This ratio is consistent with a highly
-nonlinearity with EE and the mean of EEs                                      permeable gravel in an unconfined setting, characterized by low specific
-                                                                              storage () and high specific yield () (Lin and Chang, 2025).
-     
-                                                                                  This ratio also falls within the parameter regime identified by Lin and
-  =        1  1      (      -      )2  (24)                                   Chang (2025) for field-scale lag behavior in such systems, which is plau
-           -          EE,      EE .                                           sible given the coarse composition of the meadow deposits. Similar lag
-                                                                              timescales have been reported from pumping-test analyses with much
-                                                                              higher imposed flow rates (Lin and Yeh, 2017), providing an additional
-                 =1                                                           independent check on the magnitude of the inferred lags. However, the
-                                                                              present estimates are derived from low-amplitude natural diel forcing
-    Following Campolongo et al. (2007), the two metrics were combined         and reflect field-scale pathway readjustment and inter-domain equili
-into a single index to rank factors:                                          bration. When used in the lagging inversion, they yield diffusivity and
-                                                                              storage values that are consistent with independent lithological infor
-                                       (25)                                   mation while providing a better joint fit to both amplitude and phase
- =  2 + 2 ,                                                                   than the classic diffusion model.
-
-where  is the overall effect. Inputs were sampled over uniform log
-arithmic ranges,   [0.01, 100] and D  [0.01, 100]. A Morris design
-with a  = 4 level grid and  = 500 optimized trajectories required
-( + 1) = 1, 500 model evaluations per output, a compromise that kept
-computational cost negligible while capturing parameter interactions.
-All calculations used the SALib implementation in Python (Herman
-and Usher, 2017; Iwanaga et al., 2022) with a fixed random seed for
-reproducibility.
-
-                                                                           5
-Y.-F. Lin and B.L. Kurylyk                                                                                      Journal of Hydrology 667 (2026) 134913
-
-                            Table 1
-                            Fitted parameters and error statistics for the two field datasets using the proposed lagging model (Eq.
-                            13) and the classic homogeneous model (Eq. 20).
-
-                            Dataset                        Model     (m2/d)         (d)   (d)   RMSEA   RMSE    AIC
-
-                            Tuolumne Meadows               Lagging  2.2 × 104      2.28  0.12   0.057   0.5407  -5.47
-                            (Loheide and Lundquist, 2009)  Classic  9.3 × 103      ­     ­      0.138   1.4409  2.28
-                            Meghna River                   Lagging  8.7 × 103      2.07  38.60  0.0398  0.0259  -34.74
-                            (Sobolevskaia et al., 2021)    Classic  7.0 × 105      ­     ­      0.0961  0.0238  -29.90
-
-Fig. 2. (a) Amplitude attenuation and (b) phase shift for the Tuolumne Meadows     Fig. 3. (a) Amplitude attenuation and (b) phase shift for the Meghna River data
-data from Loheide and Lundquist (2009) and the predictions from the lagging        from Sobolevskaia et al. (2021) and the predictions from the lagging theory (Eq.
-theory (Eq. 13) and classic diffusion (Eq. 20) approaches. CI = confidence         13) and classic diffusion (Eq. 20) approaches. CI = confidence interval.
-interval.
-
-    The Tuolumne Meadows are approximately 2 km2, and both the                     from lagging theory closely aligns with the 9 × 103­3 × 104 m2/d range
-streambed and meadow aquifer are composed of coarse (1­10 mm) sand-                reported by Sobolevskaia et al. (2021) for river-well pairs, whereas the 
-and-gravel over granodiorite (Loheide and Lundquist, 2009). Test wells             inferred from classic diffusion theory is two orders of magnitude higher
-beside the meadow intercepted 2.4­2.7 m of unconsolidated material,                than the  from lagging theory and over an order of magnitude higher
-while drive-point piezometers set within the meadow reached 3 m with               than the upper range of previous estimates. Sobolevskaia et al. (2021)
-out coring into bedrock; near-bank logs suggest the alluvium thickens              referenced tidal-corrected pumping tests from Shuai et al. (2017) inter
-to roughly 10 m (Loheide and Lundquist, 2009). Taking these bounds                 preted using Theis (1935) and Hantush and Jacob (1955) type curves.
-into account and following the value assumed by Loheide and Lundquist              These tests yielded   9.0 × 105 m2/d, a value used by Sobolevskaia
-(2009), an effective saturated thickness of 5 m for the 17­100 m transect          et al. (2021) to support their higher diffusivity estimates inferred using
-was used. Using  = 0.3, the diffusivity inferred from lagging theory               the classic diffusion model. A re-examination of the pumping record,
-implies  = 2.2 × 104 m2/d and therefore that hydraulic conductivity                however, reveals that drawdown began to flatten after approximately
- =   = 0.05 m/s. Thus, the diffusivity inferred from lagging theory                1 h, indicating likely river recharge. Using Shuai et al. (2017) reported
-yields a  that falls at the upper end of the typical gravel range (e.g.,
-3×10-4­3×10-2 m/s) (Domenico and Schwartz, 1990, p. 824) consistent                                                                                
-with site lithology.                                                               parameters in the influence-radius expression 2.25 suggests that
-                                                                                   the cone of depression would intersect the river within approximately
-    Incorporating the two lags reduces the amplitude root-mean-square              15 min, violating the infinite-aquifer assumption inherent in the Theis
-error (RMSE) from 0.14 to 0.057 and the phase RMSE from 1.44 to 0.54               and Hantush-Jacob solutions. Moreover, the lagging model resolves both
-(Table 1). The lagging model has a lower Akaike information criterion              amplitude and phase directly from the river-well data (Fig. 3), reducing
-(AIC) (-5.47) than the classic diffusion model (2.28), indicating a statis         the RMSE for amplitude and phase and the AIC (Table 1).
-tically preferred fit despite the two additional parameters. Fig. 2 shows
-that the classic model underdamps the signal at  = 52 m and overpre                    An independent check on specific storage offers a useful test for the
-dicts the phase lag at  = 100 m, whereas one lagging parameter set                 inferred diffusivity values. Slug tests conducted at the Meghna transect
-reproduces both records. Bootstrap uncertainty analyses are provided               by Shuai et al. (2017) reported horizontal hydraulic conductivities rang
-in Appendix C (Fig. C.1); in brief, both models yield comparably broad             ing from 18 to 34 m/d, with a mean of approximately 27 m/d for the
-posteriors for , with the lagging model peaking slightly higher.                   25 m-thick sand aquifer. The relation  =  was used to compute the
-                                                                                   value of specific storage  [L­1] from hydraulic conductivity  [LT­1]
-    The second case study revisits the Meghna River transect analyzed              and . For the fit from the lagging model, the resulting  is approxi
-by Sobolevskaia et al. (2021). Using the same five dominant tidal con              mately 3.1 × 10-3 m­1, while the classic model results in  = 3.9 × 10-5
-stituents as the original authors (M2, S2, K1, O1, P1; 2­48 h band), a             m­1. Comparison with reported values in Batu (1998, p. 727) shows that
-composite inversion was applied to their river-to-bank records. Our lag            unconsolidated, loose to moderately dense sand typically exhibits spe
-ging inversion yields a flux lag of 2.07 d, a head lag of 38.60 d and a            cific storage in the range of 5 × 10-4 to 1 × 10-3 m­1, and values can
-diffusivity of 8.7 × 103 m2/d. In this case, the head lag is an order of mag       reach several ×10-3 m­1 in soft, compressible deltaic deposits such as
-nitude larger than the flux lag, which is consistent with a system where           those found in Holocene alluvium. The estimate from the lagging model
-most of the storage resides in low-permeability units that equilibrate             of 2.9 × 10-3 m­1 lies near this upper range, while the estimate yielded
-slowly with the more transmissive pathways that convey most of the flux            from the classic approach is well below the range and more indicative
-(Lin and Chang, 2025). In contrast, fitting the same data with the classic         of dense sand, gravel, or even fractured rock which are not present at
-model returns  = 7.0 × 105 m2/d (Table 1). The diffusivity inferred                the site. Bootstrap uncertainty analyses are provided in the Appendix C
-                                                                                   (Fig. C.2). In brief, the lagging posterior for  is comparatively compact
-
-                                                                                6
-Y.-F. Lin and B.L. Kurylyk                                                                                                                     Journal of Hydrology 667 (2026) 134913
-
-and centered at lower values, whereas the classic posterior is broader        Fig. 5. Contour plot of log() (Eq. 21) with varying  and D. The red solid line
-and right-skewed.                                                             corresponds to  = 1 (no phase-amplitude bias). Symbols indicate results from
-                                                                              the two case studies (see Section 3.1). (For interpretation of the references to
-    The inferred lag magnitudes align with standard near-bank controls:       colour in this figure legend, the reader is referred to the web version of this
-a boundary/pathway flux lag increases with larger effective storage and       article.)
-lower streambed (skin) conductance, while a head lag across a slow
-near-bank unit increases with greater thickness and lower hydraulic dif       longer fully readjust within a single cycle, and part of the oscillatory in
-fusivity. At Tuolumne Meadows, the inversion yields   2.3 d and               put is dissipated locally. This leads to stronger attenuation with distance
-  0.12 d. We interpret  as the boundary flux-adjustment time asso             (larger ) while the signal does not propagate far enough to build up a
-ciated with a permeable skin and bank-storage exchange that transmits         substantial phase gradient (small ), producing the contrasting influence
-most of the semi-diurnal amplitude, whereas the much shorter  in              of  on  and  seen in Fig. 4.
-dicates only minor slow-domain influence, consistent with a coarse,
-unconfined meadow and the observed small head lag. At the Meghna              3.3. Phase-amplitude diffusivity mismatch and system sensitivity
-River site, the inversion returns   2.07 d and   38.60 d. Here,                   In the lagging solution for periodic forcing (Eq. 12), the estimates of
-again reflects a dominant fast pathway that preserves near-unit ampli
-tudes, while the weeks-scale  points to a slow near-bank unit (low-           diffusivity yielded from phase lag and amplitude decay diverge because
-pockets/organic clogging and fine interbeds) that adds substantial phase      the damping coefficient  and the phase gradient  respond differ
-and long-time memory, consistent with interbedded alluvium, clays, and        ently to the flux and head lag times. This divergence is quantified by
-a low-permeability organic/clogging layer (Sobolevskaia et al., 2021).        the ratio  =  (Eq. 21); values above 1 indicate that a phase-
-This fast-slow interpretation is also consistent with Xia et al. (2021),      based inversion yields a larger diffusivity, while values below 1 imply
-who showed via Markov chain Monte Carlo that retention time scales in         dominance of the amplitude-based estimate. From a groundwater-flow
-heterogeneous or clogged beds cluster at days­weeks with heavy-tailed         perspective,  measures how efficiently the oscillatory boundary in
-probability extending to months­years, linking heterogeneous  fields          put is dissipated into local storage and other losses as the signal travels
-to long-memory behavior compatible with our (, ) inferences.                  inland, whereas  measures how rapidly the pressure wavefront ad
-                                                                              vances in time. When near-boundary heterogeneity or strong head lag
-3.2. Head behavior of the lagging model                                       causes additional damping without a commensurate increase in travel
-                                                                              time, the amplitude suggests a lower diffusivity than the phase ( < 1).
-    This section focuses exclusively on how two dimensionless variables,      Conversely, when flow concentrates along faster pathways or head lag
-the normalized forcing frequency D =  and the lag ratio  = ,                  is relatively weak, the phase can advance more quickly than the ampli
-control the evolution of periodic heads. In the lagging model, the com        tude decays, so phase-based inversion yields a larger apparent diffusivity
-plex wave number  = - +  encapsulates the response. Its real part             than amplitude-based inversion ( > 1).
- dictates amplitude damping with distance, whereas its imaginary part
- sets the accompanying phase shift. By examining the limiting cases of            Fig. 5 maps log() across the (, D) domain. For long-period forcing
-low frequency (D  1) and high frequency (D  1), we investigate                (D < 0.1), below the lower dashed line, the color scale is predomi
-when  amplifies or suppresses these two coefficients. When the forcing        nantly red or near-neutral (  1). Phase lags are smaller than expected
-period is much longer than the flux lag (D =   1) (Fig. 4), the rate          based on amplitude decay, so inversions that rely on phase data alone
-at which the signal attenuates with distance is governed by   D2.             will under-estimate diffusivity relative to amplitude-based estimates.
-This value is largely insensitive to the lag ratio . Consequently, the three
-curves in Fig. 4(a) ( = 1, 0.8, 0.7) exhibit nearly identical oscillation
-ranges, while their crests shift in time according to the phase gradient
-  D2. The opposite behavior emerges when the forcing period is
-short relative to the flux lag  but still long compared to the head lag
-. In this case,   (2)-12 increases with , while  approaches zero.
-As shown in Fig. 4(b), increasing  from 1 to 2 suppresses the amplitude
-without significantly affecting timing. In physical terms, when D  1
-the aquifer has sufficient time within each cycle for flux and hydraulic
-gradient to nearly equilibrate, so additional head lag mainly manifests as
-extra phase delay (larger ) while the amplitude envelope (set by ) re
-mains close to the classic homogeneous diffusion case. When the period
-becomes short relative to  but still long compared to , the flux can no
-
-Fig. 4. Temporal distribution of dimensionless head D at an observation distance D = 5 with the cases of (a) low-frequency forcing D = 0.5 with  decreasing
-from 1 to 0.7 and (b) high-frequency forcing (D = 8) with  increasing from 1 to 2.
-
-                                                                                                                          7
-Y.-F. Lin and B.L. Kurylyk                                                      Journal of Hydrology 667 (2026) 134913
-
-Fig. 6. System sensitivity overall effect  (Eq. 25) versus dimensionless distance D of (a) dimensionless amplitude  and (b) phase shift  for the lag ratio  and
-dimensionless frequency D.
-
-This bias becomes more pronounced as  increases, because stronger               the same  as the lagging model. In practice, Loheide and Lundquist
-head lag damps the signal yet does not produce a proportionately larger         (2009) calibrated to amplitude, which explains why the classic model re
-phase shift. For intermediate forcing (0.1  D  10), log() varies most           produced the correct order-of-magnitude diffusivity yet failed to match
-rapidly--small shifts in  or D can flip the mismatch. For short peri            phase.
-ods (D > 10), the bias is set by :  < 1 gives  > ,  > 1 gives
- > , with a sharp transition near   1. In practice,   1 flags                       For the Meghna River transect the fitted parameters are   18.7
-which metric over- or under-estimates ; long periods make phase-only            and D  0.27 (black square in Fig. 5). This point falls in the reddish
-inversions under-predict , whereas at high frequency the sign depends           sector where  > 1. Here the phase shift is amplified relative to the
-on whether flux or head lag dominates.                                          attenuation, so a classic, amplitude-only calibration under-predicts  by
-                                                                                nearly an order of magnitude, while a phase-only fit would over-predict
-    Fig. 6 presents the overall Morris sensitivity index  (Eq. 25) as           it by roughly the same factor (  7.7). The lagging model reconciles the
-a function of scaled distance D. For the dimensionless amplitude                two data types and reduces both RMSE and AIC (Table 1).
-(Fig. 6a), both  (solid line) and D (dashed line) exhibit low and nearly
-indistinguishable sensitivity within the first few tenths of a penetration          Taken together, the sites sample the two most sensitive regions of
-depth (D  0.1); at these short distances, the signal has not propa              the mismatch map and illustrate two practical rules:
-gated far enough for either lag effect to become pronounced. Beyond
-D  0.1, sensitivity to  increases more rapidly, peaking near D  0.7,               1. For high-frequency forcing with small lag ratio (e.g., diel snow-
-while sensitivity to D continues to rise more gradually and reaches a                  melt, barometric waves, short-period tides; D  1,   0.1), the
-lower maximum around D  1. Beyond D  3, the index for D begins                         classic diffusion calibrated to amplitude can provide a reasonable
-to decline, whereas the index for  continues to increase and eventu                    , but is unlikely to fit phase; the lagging model is preferable when
-ally dominates, indicating that amplitude damping at larger distances is               phase information is required.
-controlled primarily by the ratio of head to flux lag.
-                                                                                   2. For low-frequency forcing with a large lag ratio (e.g., spring-neap
-    The phase-shift sensitivity (Fig. 6(b)) follows a markedly different               tides, seasonal groundwater level oscillations; D  1,   1), the
-trend. The overall sensitivity  remains negligible near the boundary                   classic diffusion model is biased. If it must be used, one should fa
-(D  1), then increases sharply with distance inland. By D  20, the                     vor an amplitude-based estimate (phase-only inversions tend to
-sensitivity of phase shift exceeds that of amplitude by more than two                  underestimate  in this regime), whereas the lagging model is
-orders of magnitude. Throughout this range, the index associated with                  supported by both residuals and information-criterion scores.
- remains consistently greater than that of D, confirming that phase
-lag is controlled predominantly by the relative magnitude of head lag to            Finally, the choice of the lagging model offers a physical advan
-flux lag.                                                                       tage beyond statistical improvement. As demonstrated in Appendix D,
-                                                                                the lagging parameters are mathematically equivalent to the effective
-    It is worth noting that  and D exhibit significant interaction effects.     parameters of structural heterogeneity models (e.g., dual-porosity or
-Mathematically, they appear as a coupled product term (1 + 2D2 ) in the         two-zone skin). Therefore, adopting the lagging framework allows prac
-denominator of the dispersion relation (Eq. 15). Physically, this implies       titioners to implicitly capture and quantify the bulk effects of unresolved
-that the system's sensitivity to forcing frequency is not independent but       microstructure (such as skin thickness or matrix exchange rates) that
-is modulated by the aquifer's lag capacity. The spatial variation of            the homogeneous diffusion model inherently neglects. From a model-
-in Fig. 6 reflects this dynamic interaction, where the regime transition        selection perspective, we rely on the AIC to decide whether the two
-depends non-linearly on the combination of both parameters.                     additional parameters in the lagging model are justified; in both field ex
-                                                                                amples, the decrease in AIC is substantial, indicating that the improved
-3.4. Practical guidance for model choice                                        fit is not merely a consequence of added model flexibility. These crite
-                                                                                ria are intended for situations where a dominant harmonic component
-    This section interprets the two field transects within the phase-           can be robustly extracted from the data, so that amplitude and phase
-amplitude mismatch framework and offers practical guidance on when              of that component are well resolved despite moderate field noise or
-the classic diffusion model may suffice and when the lagging model be           mildly non-sinusoidal forcing. When the periodic signal is weak com
-comes necessary. Fig. 5 positions the two transects on the mismatch map         pared to the noise, or the boundary condition is poorly constrained, the
-and helps to decide when the extra complexity of the lagging model is           lagging model may become underdetermined, and a simpler diffusion in
-warranted. For the 17­100 m transect at Tuolumne Meadow, the com                version based primarily on amplitude is more appropriate. In practice,
-posite inversion gives   0.05 and D  8.3 (see the circle symbol in              the lagging framework should therefore be applied only when phase
-Fig. 5). This lies in the dark-blue zone where  =  < 1: phase                   measurements are sufficiently precise relative to the total phase shift
-shifts are smaller than expected from amplitude decay. A classic, phase-        across the transect and when information-criterion scores clearly favor
-based inversion would therefore under-estimate diffusivity by a factor of       the lagging model over the homogeneous alternative.
- 15 (because   0.06), whereas an amplitude-based fit retrieves almost
-
-                                                                             8
-Y.-F. Lin and B.L. Kurylyk                                                                                     Journal of Hydrology 667 (2026) 134913
-
-4. Concluding remarks                                                       CRediT authorship contribution statement
-
-    This study applies the lagging Darcy law and proposes a new ana             Ying-Fan Lin: Writing ­ review & editing, Writing ­ original
-lytical solution for its application when subjected to periodic forcing.    draft, Validation, Software, Resources, Methodology, Formal analysis,
-The new solution was applied to interpret previously published data         Conceptualization. Barret L. Kurylyk: Writing ­ review & editing,
-for a snow-melt-driven diel periodic groundwater level recorded in an       Validation, Methodology.
-aquifer in the Tuolumne Meadows, California and a tide-driven record
-from an aquifer connected to the Meghna River, Bangladesh. The main         Declaration of competing interest
-findings are:
-                                                                                The authors declare that they have no known competing financial
-   1. This study separates two field-scale delays: a flux lag (discharge    interests or personal relationships that could have appeared to influence
-       adjustment) and a head lag (inter-domain equilibration). This        the work reported in this paper.
-       resolves the diffusivity mismatch often obtained through the in
-       version of phase vs. amplitude, improves fits, and reverts to the    Acknowledgement
-       classic diffusion behavior when both delays are zero.
-                                                                                We acknowledge financial support from the John Su Foundation to
-   2. Long-period signals are mainly phase-shifted (flux lag dominates);    Ying-Fan Lin. Additional funding was provided by the Taiwan National
-       short-period signals are mainly amplitude-damped (head lag dom       Science and Technology Council (grants 113­2222-E-033­002-MY2 and
-       inates); the intermediate band is most sensitive and is where        114­2221-E-033­005-) and Chung Yuan Christian University (grant
-       phase-amplitude inconsistencies typically arise.                     114CYCU-RG-1). We also thank the Office of Research and Development
-                                                                            at Chung Yuan Christian University (grant 114-CYCU-RG-1). Helpful
-   3. At Tuolumne Meadows (diel forcing), the lagging fit gives  =          comments from the Associate Editor and three anonymous reviewers
-       2.2 × 104 m2/d with a 2.28-day flux lag and a 0.12-day head lag,     have greatly improved this paper.
-       reducing both amplitude and phase errors. At the Meghna River
-       transect (semidiurnal tide), the lagging fit gives  = 8.7 × 103      Appendix A. Derivation and model verification of head (Eq. 12),
-       m2/d with a 2.07-day flux lag and a 38.60-day head lag, yield        amplitude and phase (Eq. 13)
-       ing a plausible specific storage. The classic model fits the phase
-       only by inflating  by orders of magnitude and still overdamps            Starting from the dispersion relation in Eq. (11), we let  = - + 
-       the amplitude.                                                       with  > 0 to enforce decay as D  . Multiplying the numerator and
-                                                                            denominator by the complex conjugate of the denominator and then
-   4. For short-period signals, the classic model calibrated to am          separating the real and imaginary parts yields
-       plitude can recover a reasonable  but typically misfits the
-       phase. For long-period signals, the classic model is systematically  2 - 2 = ( - 1) 2D ,                (A.1a)
-       biased.                                                                            1 + 2D2              (A.1b)
-
-    By distinguishing flux lag and head lag, the lagging framework rec       - 2 = D +  D3 .                    (A.2)
-onciles phase-amplitude inconsistencies, delivers hydraulic properties                    1 + 2D2
-that align with independent evidence, and outperforms the classic dif
-fusion model even after accounting for the additional parameters. We        Moreover, using ||2 = 2 + 2 gives
-also demonstrate in Appendix D that its frequency-domain formula
-tion is consistent with standard dual-porosity and layered diffusion                
-descriptions, which supports its use as a compact upscaled represen
-tation of heterogeneous systems, although more research is required         2 + 2      4D + D2     .
-to relate the lagging parameters to specific site conditions. It thus of
-fers a robust alternative for analyzing periodic tidal, diel, and seasonal             1 + 22D
-groundwater head time series. However, further research is required                =
-to provide a more theoretical process-based understanding of what
-controls these lags, how they vary in space and time, and how to                Combining Eqs. (A.1a)­(A.2) yields the closed-form expressions for
-link them to measurable properties (e.g., streambed conductance, dual-       and , as shown in Eq. (14). With the decaying branch ({} < 0),
-porosity exchange, unsaturated parameters). Controlled laboratory and       the sign of  is non-positive. The corresponding solutions for head,
-field tests, together with process-based numerical models, are needed       amplitude, and phase are then obtained as Eqs. (12) and (13).
-to map mechanism-level properties to bulk lag times and to test their
-(non)stationarity.                                                              To verify Eqs. (12) and (13), the dimensionless governing equation
-                                                                            is solved in the frequency domain:
-
-                                                                            (       )     (             ) 2 .  (A.3)
-                                                                              1+        = 1 + 
-                                                                                                       2
-
-Fig. A.1. Spatial distributions of (a) head at =0, (b) amplitude ratio , and (c) phase  versus distance  predicted by analytical solutions (Eqs. (12) and (13))
-and numerical solutions.
-
-                                                                                                                          9
-Y.-F. Lin and B.L. Kurylyk                                                                                                                   Journal of Hydrology 667 (2026) 134913
-
-A harmonic boundary (0, ) = cos() and a radiation condition                 with predictions mod = exp[-()] and mod = (). The classical
-at a distant boundary are imposed. The complex amplitude  () satis          model used 0 = (1 + )(2), giving mod = exp[-(2)] and
-fies   - 2 = 0 with  (0) = 1 and  () =  (), where  is taken                 mod = (2).
-on the attenuating branch. The equation   - 2 = 0 is discretized
-                                                                                Parameter estimation minimized a whitened least-squares cost over
-on a uniform grid (second-order tri-diagonal scheme), and head, am          all retained (, ) using a bounded Levenberg-Marquardt algorithm
-                                                                            (Levenberg, 1944; Marquardt, 1963) with a soft-1 loss. Bounds were
-plitude, and phase are recovered from  . Numerical settings include a       101 <  < 106 m2/d and 10-1 < ,  < 106 s. Ten random restarts
-                                                                            were performed to mitigate local minima. Model selection was guided
-tri-diagonal frequency-domain solver on [0, ] with radiation condition      by the AIC which evaluates model quality by balancing the goodness
- () =  (), grid size   1200­1400, and domain length   20 to                 of fit against the number of estimated parameters. This criterion explic
-                                                                            itly penalizes model complexity to guard against overfitting, allowing us
-suppress boundary reflection. The branch with the negative real part of     to determine whether the improved fit of the lagging model statistically
-                                                                            justifies its additional parameters compared to the simpler classic model.
- is used.                                                                   The AIC was computed from the whitened residual sum of squares.
-
-    Fig. A.1 compares the numerical solutions with the closed-form ex           Uncertainty was assessed through a nonparametric bootstrap. A to
-                                                                            tal of 5000 synthetic (, ) realizations at the retained  were drawn
-pressions (, 0) = exp(-) cos(),  = exp(-), and  =                           from Gaussian errors (ln , ), refit, and summarized as posterior means
-for two representative cases:  = 0.1 and  = 10 at  = 1. The                 and one-sigma intervals after interquartile filtering of aberrant refits. A
-agreement is excellent. RMSE over the plotted domain is  3 × 10-5           single (, ) yields only two observables (, ). Therefore, multiple well-
-for amplitude,  1.3 × 10-4 for phase, and  3 × 10-5 for head. These re      separated frequencies and at least two distances were required. When
-sults confirm the correctness of the analytical expressions and the branch  only one frequency was available, one lag parameter was fixed a priori,
-                                                                            and the remaining two were estimated.
-selection.
-                                                                            Appendix C. Bootstrap uncertainty analysis
-Appendix B. Data processing, inversion settings, and uncertainty
-                                                                                Bootstrap resamples,  = 103, were generated for each multi-
-    Time series were resampled to a uniform 15­20 min cadence, de-          frequency record by sampling with replacement at the tidal-constituent
-                                                                            level. Both the lagging and classic diffusion models were refitted using
-meaned, and linearly detrended over the analysis window. Discrete           identical settings. For each resample, the inferred hydraulic diffusivity
-Fourier transforms (DFTs) produced the stage autospectrum 00 = 00            was recorded and kernel-smoothed density estimates were derived.
-and cross-spectrum 0 =  0 (asterisk: complex conjugate). Spectra
-were smoothed with a three-bin Daniell kernel (Percival and Walden,             For the Yosemite site (Loheide and Lundquist, 2009), posterior
-1993; Bloomfield, 2004). The transfer function  = 000 was                   widths are comparable; the lagging estimate peaks at slightly lower 
-then formed, and peaks in the 2­48 h band with magnitude-squared            than the classic fit (Figs. C.1).
-coherence 2  0.8 (Bendat and Piersol, 2011) were retained.
-                                                                                For the Meghna transect (Sobolevskaia et al., 2021), the lagging pos
-    From  , the observed amplitude ratio and phase lag were defined as      terior is more compact and centered at lower , whereas the classic
-obs, = | | and obs, = arg  . Uncertainties (, ) were estimated              posterior is broader and right-skewed (Fig. C.2).
-using a delete-one-block jackknife with eight non-overlapping blocks
-
-(Efron and Tibshirani, 1994) and propagated to ln  with ln   .
-The lagging model was defined as:
-
-                            (B.1)
-(; ) = (1 + ) ,
-
-                (1 + )
-
-Fig. C.1. Bootstrap posterior distributions of hydraulic diffusivity  for the Yosemite site (Loheide and Lundquist, 2009). Panels show fits from (a) the lagging model
-and (b) the classic diffusion model; solid curves denote kernel-smoothed densities.
-
-Fig. C.2. Bootstrap posterior distributions of hydraulic diffusivity  for the Meghna transect (Sobolevskaia et al., 2021). Panels show fits from (a) the lagging model
-and (b) the classic diffusion model; solid curves denote kernel-smoothed densities.
-
-                                                                                                                          10
-Y.-F. Lin and B.L. Kurylyk                                                                                                    Journal of Hydrology 667 (2026) 134913
-
-Appendix D. Physical interpretation and equivalence to                          skin and entering the aquifer at  =  is determined by the aquifer's
-heterogeneous models                                                            input impedance:
-
-    Here, we demonstrate that the lagging parameters (, ) are not ar            ()   =  -       |    =   ().                  (D.7)
-bitrary fitting coefficients but are macroscopic effective representations                      |
-of underlying structural heterogeneity. We derive the frequency-domain                          ||=
-effective wavenumber, eff(), for two classical heterogeneous concep
-tual models, dual-porosity and two-zone models, and show that both                  To derive the effective wavenumber of the coupled system, we in
-reduce to the Jeffreys-type lagging form derived in Eq. (B.1).                  tegrate the skin governing Eq. (D.6a) across the thickness . Assuming
-                                                                                the skin is thin (  0) such that the head profile is linear (constant
-                                                                                gradient) but storage is non-negligible:
-
-D.1. Equivalence to dual-porosity model                                                                                       (D.8)
-
-    Consider a standard 1D dual-porosity system (Warren and Root,               (0) - () = 0  ()   ().
-1963) consisting of a mobile domain (fracture, subscript  ) and an
-immobile domain (matrix, subscript ) with linear mass exchange:                 The flux entering the skin at  = 0 is driven by the head difference across
-                                                                                the resistive layer:
-        =  2
-              2  - ( - ),                                      (D.1a)                      ( 0  -  ()) .
-                                                               (D.1b)                   
-                                                                                (0)                                           (D.9)
-    
-        = (  - ),
-
-where  is storativity,  is transmissivity, and  is the exchange rate co         Combining Eqs. (D.7)­(D.9) to eliminate the interface head  (), and
-efficient [T­1]. Applying the harmonic ansatz (, ) = [ ()] allows
-for the algebraic elimination of the immobile head  :                           defining the effective wavenumber TZ via the boundary impedance
-                                                                                relation (0) = TZ 0, we obtain:
-
-                                                                                           1      (       +  )   
-                                                                                                                 .
-                                                                                TZ()    =                                     (D.10)
-   =             .                                             (D.2)                            
-        +                                                                                         +       +  
-                                                                                                                     
-
-    Substituting this back into the mobile domain equation yields the               Squaring this result and rearranging terms to isolate the frequency
-effective dispersion relation   - D2 P()  = 0, with:                            dependence yields the specific squared wavenumber form:
-
-             [                  ]                                                                1 +  ( 2              )
-                                  .                                                                                      
-
-D2 P()  =        +                                             (D.3)            T2Z()                         +   ,           (D.11)
-                                                                                            
-                            +                                                                        1 +  ( 2 )             
-                                                                                                                            
-                                                                                                                    2       
-
-Rearranging Eq. (D.3) into a rational polynomial form yields:
-
-D2 P()  =   [( + ) +  ] .                                      (D.4)            where  is a scaling factor close to unity for conductive aquifers.
-                     ( + )                                                          We can explicitly map the physical parameters. The effective diffu
-
-                                                                                sivity is  = , and the lag parameters correspond directly to the
-                                                                                skin properties:
-
-Comparing Eq. (D.4) with the lagging form in Eq. (B.1), the mathe                    2 ,                  (            )
-matical structures are identical. By matching coefficients, we derive the            2                                   .
-explicit physical definitions of the lagging parameters:                          =               =           +               (D.12)
-
- =  ,               =        ,       =  (      )               (D.5)            Thus,  represents the characteristic diffusion time across the skin
-       +                                   +     ,                              thickness, and  represents a relaxation time modulated by the stor
-                                                                                age contrast. This illustrates that the lagging model is the macroscopic
-where  recovers the bulk diffusivity. Crucially, the head lag  is
-identified as the characteristic equilibration time of the matrix blocks        equivalent of a two-zone series heterogeneity in the thin-skin limit.
-
-(inversely proportional to the exchange rate ), while  represents a             Data availability
-scaled relaxation time associated with the mobile domain capacity.                  Data will be made available on request.
-
-D.2. Equivalence to two-zone model (Series heterogeneity)                       References
-
-    Consider a semi-infinite aquifer (subscript ) with transmissivity           Barenblatt, G.I., Zheltov, I.P., Kochina, I.N., 1960. Basic concepts in the theory of seepage
-and storativity , overlain by a thin skin layer (subscript ) of thick                of homogeneous liquids in fissured rocks [strata]. J. Appl. Math. Mech. 24, 1286­1303.
-ness , transmissivity , and storativity . This two-zone composite                    https://doi.org/10.1016/0021-8928(60)90107-6
-representation follows the standard formulations used in tidal two-zone
-aquifer models (e.g., Trefry, 1999; Guo et al., 2010). The governing            Batu, V., 1998. Aquifer Hydraulics: A Comprehensive Guide to Hydrogeologic Data
-equations in the frequency domain are:                                               Analysis. John Wiley & Sons.
-
-   2    -        = 0,       0 <  < ,                           (D.6a)           Bendat, J.S., Piersol, A.G., 2011. Random Data: Analysis and Measurement Procedures.
-   2                         > .                               (D.6b)                John Wiley & Sons.
-
-   2    -        =  0,                                                          Berube, M., Jewell, K., Myers, K.D., Knappett, P.S.K., Shuai, P., Hossain, A., Lipsi, M.,
-   2                                                                                 Hossain, S., Hossain, A., Aitkenhead-Peterson, J., et al., 2018. The fate of arsenic in
-                                                                                     groundwater discharged to the meghna river, Bangladesh. Environ. Chem. 15, 29­45.
-    The aquifer solution satisfies the far-field condition  () =                     https://doi.org/10.1071/EN17104
- ()-(-), where  = . Consequently, the flux leaving the
-                                                                                Bloomfield, P., 2004. Fourier Analysis of Time Series: An Introduction. John Wiley & Sons.
-                                                                                Campolongo, F., Cariboni, J., Saltelli, A., 2007. An effective screening design for sensitivity
-
-                                                                                     analysis of large models. Environ. Model. Softw. 22, 1509­1518. https://doi.org/10.
-                                                                                     1016/j.envsoft.2006.10.004
-                                                                                Caputo, M., 2000. Models of flux in porous media with memory. Water Resour. Res. 36,
-                                                                                     693­705. https://doi.org/10.1029/1999WR900299
-                                                                                Caputo, M., Carcione, J.M., 2013. A memory model of sedimentation in water reservoirs.
-                                                                                     J. Hydrol. 476, 426­432. https://doi.org/10.1016/j.jhydrol.2012.11.016
-
-                                                                            11
-Y.-F. Lin and B.L. Kurylyk                                                                                                                                            Journal of Hydrology 667 (2026) 134913
-
-Carslaw, H.S., Jaeger, J.C. ed), 1947. Conduction of Heat in Solids, first ed. Clarendon             Loheide, S.P., Lundquist, J.D., 2009. Snowmelt-induced diel fluxes through the hyporheic
-     Press, Oxford.                                                                                       zone. Water Resour. Res. 45, W07404. https://doi.org/10.1029/2008WR007329
-
-Cho, H.J., Fiacco, R.J., Daly, M.H., 2004. Pumping test analysis in a fractured crystalline          Magnusson, J., Jonas, T., Kirchner, J.W., 2012. Temperature dynamics of a proglacial
-     bedrock. In: Proceedings of, pp. 161­172.                                                            stream: identifying dominant energy balance components and inferring spatially inte
-                                                                                                          grated hydraulic geometry. Water Resour. Res. 48, W06510. https://doi.org/10.1029/
-Constantz, J., 2008. Heat as a tracer to determine streambed water exchanges. Water                       2011WR011378
-     Resour. Res. 44, https://doi.org/10.1029/2008WR006996
-                                                                                                     Magnusson, J., Kobierska, F., Huxol, S., Hayashi, M., Jonas, T., Kirchner, J.W., 2014. Melt
-Domenico, P.A., Schwartz, F.W., 1990. Physical and Chemical Hydrogeology. John Wiley                      water driven stream and groundwater stage fluctuations on a glacier forefield (damma
-     & Sons, New York.                                                                                    gletscher, switzerland). Hydrol. Process. 28, 823­836. https://doi.org/10.1002/hyp.
-                                                                                                          9633
-Efron, B., Tibshirani, R.J., 1994. An Introduction to the Bootstrap. Chapman and
-     Hall/CRC.                                                                                       Marquardt, D.W., 1963. An algorithm for least-squares estimation of nonlinear parameters.
-                                                                                                          J. Soc. Ind. Appl. Math. 11, 431­441. https://doi.org/10.1137/0111030
-Fatt, I., 1959. A demonstration of the effect of dead-end volume on pressure transients in
-     porous media. J. Pet. Technol. 11, 66­70. https://doi.org/10.2118/1270-G                        Michael, H.A., Mulligan, A.E., Harvey, C.F., 2005. Seasonal oscillations in water exchange
-                                                                                                          between aquifers and the coastal ocean. Nature 436, 1145­1148. https://doi.org/10.
-Ferris, J.G., 1952. Cyclic Fluctuations of Water Level as a Basis for Determining Aquifer                 1038/nature03935
-     Transmissibility. Ground Water Note 1. U.S. Geological Survey, Washington, D.C.,
-     https://doi.org/10.3133/70133368                                                                Mls, J., Herrmann, L., 2011. Oscillations for an equation arising in groundwater flow
-                                                                                                          with the relaxation time. Math. Model. Anal. 16, 527­536. https://doi.org/10.3846/
-Greene, E.A., Shapiro, A.M., Carter, J.M., 1999. Hydrogeologic Characterization of                        13926292.2011.627597
-     the Minnelusa and Madison Aquifers Near Spearfish, South Dakota, vol. 98.
-     U.S. Department of the Interior, US Geological Survey, https://doi.org/10.3133/                 Moench, A.F., 1984. Double-porosity models for a fissured groundwater reservoir
-     wri984156                                                                                            with fracture skin. Water Resour. Res. 20, 831­846. https://doi.org/10.1029/
-                                                                                                          WR020i007p00831
-Guimond, J.A., Kurylyk, B.L., Sohn, R.A., 2024. Seasonal drivers and patterns of sediment
-     temperatures in a new england salt marsh. Hydrol. Process. 38, e15100. https://doi.             Morris, M.D., 1991. Factorial sampling plans for preliminary computational experiments.
-     org/10.1002/hyp.15100                                                                                Technometrics 33, 161­174. https://doi.org/10.1080/00401706.1991.10484804
-
-Guo, H., Jiao, J.J., Li, H., 2010. Groundwater response to tidal fluctuation in a two-zone           Nielsen, P., 1990. Tidal dynamics of the water table in beaches. Water Resour. Res. 26,
-     aquifer. J. Hydrol. 381, 364­371. https://doi.org/10.1016/j.jhydrol.2009.12.009                      2127­2134. https://doi.org/10.1029/WR026i009p02127
-
-Hantush, M.S., Jacob, C.E., 1955. Non-steady radial flow in an infinite leaky aquifer. Eos           Nygren, M., Giese, M., Kløve, B., Haaf, E., Rossi, P.M., Barthel, R., 2020. Changes in sea
-     Trans. Am. Geophys. Union 36, 95­100. https://doi.org/10.1029/TR036i001p00095                        sonality of groundwater level fluctuations in a temperate-cold climate transition zone.
-                                                                                                          J. Hydrol. X 8, 100062. https://doi.org/10.1016/j.hydroa.2020.100062
-Hatch, C.E., Fisher, A.T., Revenaugh, J.S., Constantz, J., Ruehl, C., 2006. Quantifying sur
-     face water­groundwater interactions using time series analysis of streambed thermal             Özgen-Xian, I., Navas-Montilla, A., Dwivedi, D., Molins, S., 2021. Hyperbolic reformu
-     records: method development. Water Resour. Res. 42, W10410. https://doi.org/10.                      lation approach to enable efficient simulation of groundwater flow and reactive
-     1029/2005WR004787                                                                                    transport. Environ. Eng. Sci. 38, 181­191. https://doi.org/10.1089/ees.2020.0363
-
-Herman, J., Usher, W., 2017. Salib: an open-source Python library for sensitivity analysis.          Percival, D.B., Walden, A.T., 1993. Spectral Analysis for Physical Applications. Cambridge
-     J. Open Source Softw. 2, https://doi.org/10.21105/joss.00097                                         University Press.
-
-Hsieh, P.A., Bredehoeft, J.D., Farr, J.M., 1987. Determination of aquifer transmissivity             Pyne, R.D.G., 2017. Groundwater Recharge and Wells: A Guide to Aquifer Storage
-     from earth tide analysis. Water Resour. Res. 23, 1824­1832. https://doi.org/10.1029/                 Recovery. CRC Press.
-     WR023i010p01824
-                                                                                                     Rau, G.C., Andersen, M.S., McCallum, A.M., Roshan, H., Acworth, R.I., 2014. Heat as a
-Huang, F.-K., Lin, Y.-F., Wang, G.S., Kurylyk, B.L., 2025. Tidal signal propagation in coastal            tracer to quantify water flow in near-surface sediments. Earth-Sci. Rev. 129, 40­58.
-     aquifers considering semi-permeable boundaries and partial penetration effects. J.                   https://doi.org/10.1016/j.earscirev.2013.10.015
-     Hydrol. 652, 132657.
-                                                                                                     Rau, G.C., Post, V.E.A., Shanafield, M., Krekeler, T., Banks, E.W., Blum, P., 2019. Error
-Irvine, D.J., Briggs, M.A., Lautz, L.K., Gordon, R.P., McKenzie, J.M., Cartwright, I.,                    in hydraulic head and gradient time-series measurements: a quantitative appraisal.
-     2017. Using diurnal temperature signals to infer vertical groundwater-surface water                  Hydrol. Earth Syst. Sci. 23, 3603­3629. https://doi.org/10.5194/hess-23-3603-2019
-     exchange. Groundwater 55, 10­26. https://doi.org/10.1111/gwat.12459
-                                                                                                     Reeves, H.W., Thibodeau, P.M., Underwood, R.G., Gardner, L.R., 2000. Incorporation of
-Iwanaga, T., Usher, W., Herman, J., 2022. Toward salib 2.0: advancing the accessibil                      total stress changes into the ground water model SUTRA. Groundwater 38, 89­98.
-     ity and interpretability of global sensitivity analyses. Socio-Environ. Syst. Model. 4,              https://doi.org/10.1111/j.1745-6584.2000.tb00205.x
-     18155. https://doi.org/10.18174/sesmo.18155
-                                                                                                     Rukolaine, S.A., 2025. Integral representation of solutions to initial-boundary value prob
-Jacob, C.E., 1950. Flow of groundwater. In: Rouse, H. (Ed.), Engineering Hydraulics. John                 lems on a finite interval in the framework of the hyperbolic heat equation. Math.
-     Wiley & Sons, New York, pp. 321­386.                                                                 Methods Appl. Sci. 48 (14), 13760­13772. https://doi.org/10.1002/mma.11140
-
-Jiao, J.J., Tang, Z., 1999. An analytical solution of groundwater response to tidal fluctua          Shapiro, A.M., Falcone, J.A., 2022. Mapping Areas of Groundwater Susceptible to
-     tion in a leaky confined aquifer. Water Resour. Res. 35, 747­751. https://doi.org/10.                Transient Contamination Events from Rapid Infiltration into Shallow Fractured-Rock
-     1029/1998WR900075                                                                                    Aquifers in Agricultural Regions of the Conterminous United States. Technical Report.
-                                                                                                          US Geological Survey.
-Joseph, D.D., Preziosi, L., 1989. Heat waves. Rev. Mod. Phys. 61, 41. https://doi.org/10.
-     1103/RevModPhys.61.41                                                                           Shuai, P., Knappett, P.S.K., Hossain, S., Hosain, A., Rhodes, K., Ahmed, K.M., Cardenas,
-                                                                                                          M.B., 2017. The impact of the degree of aquifer confinement and anisotropy on tidal
-Kelson, V., Bakker, M., 2013. Using periodic analytic elements to analyze aquifer tests near              pulse propagation. Groundwater 55, 519­531. https://doi.org/10.1111/gwat.12509
-     surface waters. Comput. Geosci. 51, 56­63. https://doi.org/10.1016/j.cageo.2012.02.
-     032                                                                                             Sobolevskaia, V., Cardenas, M.B., Hasanov, A.K., Knappett, P.S.K., 2021. Aquifer diffu
-                                                                                                          sivity estimation through joint inversion of the amplitude ratios and time lags of
-Kovács, R., 2024. Heat equations beyond fourier: from heat waves to thermal metamate                      dominant frequencies of fluctuating head. Water Resour. Res. 57, e2020WR027912.
-     rials. Phys. Rep. 1048, 1­75. https://doi.org/10.1016/j.physrep.2023.11.001                          https://doi.org/10.1029/2020WR027912
-
-Kurylyk, B.L., Bourque, C.P.-A., MacQuarrie, K.T.B., 2013. Potential surface temperature             Stallman, R.W., 1965. Steady one-dimensional fluid flow in a semi-infinite porous medium
-     and shallow groundwater temperature response to climate change: an example from a                    with sinusoidal surface temperature. J. Geophys. Res. 70, 2821­2827. https://doi.org/
-     small forested catchment in east-central new Brunswick (canada). Hydrol. Earth Syst.                 10.1029/JZ070i012p02821
-     Sci. 17, 2701­2716. https://doi.org/10.5194/hess-17-2701-2013
-                                                                                                     Tang, Z., Jiao, J.J., 2001. A two-dimensional analytical solution for groundwater flow in
-Kurylyk, B.L., Hayashi, M., 2017. Inferring hydraulic properties of alpine aquifers from                  a leaky confined aquifer system near open tidal water. Hydrol. Process. 15, 573­585.
-     the propagation of diurnal snowmelt signals. Water Resour. Res. 53, 4271­4285. https:                https://doi.org/10.1002/hyp.166
-     //doi.org/10.1002/2016WR019651
-                                                                                                     Taniguchi, M., 1993. Evaluation of vertical groundwater fluxes and thermal properties
-Lautz, L.K., 2010. Impacts of nonideal field conditions on vertical water velocity estimates              of aquifers based on transient temperature-depth profiles. Water Resour. Res. 29,
-     from streambed temperature time series. Water Resour. Res. 46, https://doi.org/10.                   2021­2026. https://doi.org/10.1029/93WR00541
-     1029/2009WR007917
-                                                                                                     Theis, C.V., 1935. The relation between the lowering of the piezometric surface and the
-LeRoux, N.K., Frey, S.K., Lapen, D.R., Guimond, J.A., Kurylyk, B.L., 2023. Mega-tidal and                 rate and duration of discharge of a well using ground-water storage. Eos Trans. Am.
-     surface flooding controls on coastal groundwater and saltwater intrusion within agri                 Geophys. Union 16, 519­524. https://doi.org/10.1029/TR016i002p00519
-     cultural dikelands. Water Resour. Res. 59, e2023WR035054. https://doi.org/10.1029/
-     2023WR035054                                                                                    Tiedeman, C.R., Hsieh, P.A., 2001. Assessing an open-well aquifer test in fractured
-                                                                                                          crystalline rock. Groundwater 39, 68­78. https://doi.org/10.1111/j.1745-6584.2001.
-Levenberg, K., 1944. A method for the solution of certain non-linear problems in least                    tb00352.x
-     squares. Q. Appl. Math. 2, 164­168.
-                                                                                                     Trefry, M.G., 1999. Periodic forcing in composite aquifers. Adv. Water Resour. 22,
-Li, H., Jiao, J.J., 2002. Analytical solutions of tidal groundwater flow in coastal two-aquifer           645­656. https://doi.org/10.1016/S0309-1708(98)00037-2
-     system. Adv. Water Resour. 25, 417­426. https://doi.org/10.1016/S0309-1708(02)
-     00004-0                                                                                         Tzou, D.Y., 1995. A unified field approach for heat conduction from macro-to micro-scales.
-                                                                                                          J. Heat Transf. 117, 8­16. https://doi.org/10.1115/1.2822329
-Li, L., Barry, D., Cunningham, C., Stagnitti, F., Parlange, J.-Y., 2000. A two-dimensional
-     analytical solution of groundwater responses to tidal loading in an estuary and ocean.          Warren, J.E., Root, P.J., 1963. The behavior of naturally fractured reservoirs. Soc. Pet.
-     Adv. Water Resour. 23, 825­833. https://doi.org/10.1016/S0309-1708(00)00016-6                        Eng. J. 3, 245­255. https://doi.org/10.2118/426-PA
-
-Liang, X., Wang, C.-Y., Ma, E., Zhang, Y.-K., 2022. Effects of unsaturated flow on hy                Werner, A.D., Bakker, M., Post, V.E.A., Vandenbohede, A., Lu, C., Ataie-Ashtiani,
-     draulic head response to earth tides­an analytical model. Water Resour. Res. 58,                     B., Simmons, C.T., Barry, D.A., 2013. Seawater intrusion processes, investigation
-     e2021WR030337. https://doi.org/10.1029/2021WR030337                                                  and management: recent advances and future challenges. Adv. Water Resour. 51,
-                                                                                                          3­26.
-Lin, Y.-C., Yeh, H.-D., 2017. A lagging model for describing drawdown induced by a
-     constant-rate pumping in a leaky confined aquifer. Water Resour. Res. 53, 8500­8511.            Wilson, A.M., Gardner, L.R., 2006. Tidally driven groundwater flow and solute exchange
-     https://doi.org/10.1002/2017WR021115                                                                 in a marsh: numerical simulations. Water Resour. Res. 42, https://doi.org/10.1029/
-                                                                                                          2005WR004302
-Lin, Y.-F., Chang, T.-H., 2025. Rethinking aquifer characterization: insights from lagging
-     models. J. Hydrol. 659, 133151. https://doi.org/10.1016/j.jhydrol.2025.133151
-
-                                                                                                 12
-Y.-F. Lin and B.L. Kurylyk                                                                                                                                          Journal of Hydrology 667 (2026) 134913
-
-Xia, Y., Zhang, Y., Green, C.T., Fogg, G.E., 2021. Time-fractional flow equations (t-ffes) to      Zhang, J., Liang, X., Wang, C.-Y., 2023. Capillary impact on tidal response of groundwa
-     upscale transient groundwater flow characterized by temporally non-darcian flow due                ter in unconfined aquifers with finite thickness, anisotropy and wellbore storage--an
-     to medium heterogeneity. Water Resour. Res. 57, e2020WR029554. https://doi.org/                    analytical model. Water Resour. Res. 59, e2022WR033578. https://doi.org/10.1029/
-     10.1029/2020WR029554                                                                               2022WR033578
-
-Xin, P., Kong, J., Li, L., Barry, D.A., 2012. Effects of soil stratigraphy on pore-water flow      Zhang, M., Hao, Y., Zhao, Z., Wang, T., Yang, L., 2021. Estimation of coastal aquifer prop
-     in a creek-marsh system. J. Hydrol. 475, 175­187. https://doi.org/10.1016/j.jhydrol.               erties: a review of the tidal method based on theoretical solutions. Wiley Interdiscip.
-     2012.09.047                                                                                        Rev: Water 8, e1498. https://doi.org/10.1002/wat2.1498
-
-                                                                                               13
-
+PUBLIC SOURCE-EVIDENCE DIGEST
+
+Work:
+Lin, Y.-F., and Kurylyk, B. L. (2026).
+Lagging Theory for Periodic Hydraulic Head Signals in Aquifers.
+Journal of Hydrology 667, 134913.
+
+Purpose:
+This file is a copyright-safe evidence digest for the public research-film
+repository. It was independently checked against the locally retained
+publisher PDF. The publisher-formatted article and its full extracted text are
+not redistributed here.
+
+Local source verification:
+- Publisher PDF SHA-256: 25c85f681d09c95fc83503a60b2bd93178039f877f59582e7841df74cb5d1dd7
+- Verification basis: equations, figures, tables, appendices, and source
+  passages at the locators listed below.
+- Evidence boundary: every statement below is a concise paraphrase prepared
+  for traceability; it is not a substitute for the published article.
+
+BACKGROUND EVIDENCE
+
+B01
+Locator: PDF pages 2-4; Sections 1 and 2.3; Equations 8-15.
+Verified claim: Periodic heads encode attenuation and phase shift as separate observables.
+
+B02
+Locator: PDF pages 2 and 5; Sections 1 and 2.4; Equations 20-21.
+Verified claim: Classical inversion can return inconsistent diffusivities from amplitude and phase.
+
+B03
+Locator: PDF page 3; Section 2.1; Equations 2-4.
+Verified claim: The lag parameters describe a causal constitutive memory, not literal signal shifts.
+
+METHOD EVIDENCE
+
+M01
+Locator: PDF page 3; Section 2.1; Equations 2-3.
+Verified operation: Present flux is evaluated from the weighted history of hydraulic gradient.
+
+M02
+Locator: PDF pages 3-4; Section 2.1; Equation 4.
+Verified operation: The constitutive law contains separate relaxation times for flux and head.
+
+M03
+Locator: PDF page 4; Section 2.2; Equations 5-7.
+Verified operation: Mass conservation closes the constitutive relation into the groundwater-flow equation.
+
+M04
+Locator: PDF page 4; Section 2.3; Equations 8-15.
+Verified operation: A harmonic ansatz yields a complex dispersion relation and an attenuating branch.
+
+M05
+Locator: PDF page 5; Section 2.4; Equations 20-21.
+Verified operation: Flux lag and head lag affect attenuation and phase differently.
+
+M06
+Locator: PDF page 5; Section 2.6; Equations 26-27.
+Verified operation: Cross-spectral analysis estimates complex river-to-well transfer functions.
+
+M07
+Locator: PDF page 10; Appendix B; Equation B.1.
+Verified operation: Field inversion jointly fits amplitude ratios and phase lags across distance and frequency.
+
+M08
+Locator: PDF page 10; Appendix B; PDF page 6; Table 1.
+Verified operation: AIC balances residual improvement against additional fitted parameters.
+
+M09
+Locator: PDF page 10; Appendix B.
+Verified operation: Five thousand synthetic realizations propagate observational errors through refitting.
+
+M10
+Locator: PDF page 10; Appendix B.
+Verified operation: Parameter estimation minimizes bounded whitened residuals across retained observations.
+
+M11
+Locator: PDF page 10; Appendix B.
+Verified operation: Interquartile filtering removes aberrant refits before uncertainty summaries.
+
+M12
+Locator: PDF page 10; Appendices B-C.
+Verified operation: Bootstrap refits produce posterior means and one-sigma parameter intervals.
+
+M13
+Locator: PDF pages 9-10; Appendix A; Figure A.1.
+Verified operation: Numerical solutions reproduce analytical amplitude, phase, and head predictions.
+
+M14
+Locator: PDF pages 5 and 8; Section 2.5; Equations 22-25; Figure 6.
+Verified operation: Morris elementary effects rank sensitivity of attenuation and phase to the lag parameters.
+
+RESULT AND INTERPRETATION BOUNDARIES
+
+- The two field examples are the Tuolumne River transect and the Meghna River
+  transect described in the article.
+- The field parameters are effective, frequency-band- and scale-dependent
+  descriptions of periodic head behavior. They are not asserted to be unique
+  microscopic material constants.
+- The classical and lagging models are compared with the same retained
+  observations, while AIC explicitly penalizes added model parameters.
+- Multiple separated frequencies and at least two distances are needed for the
+  full parameter set. When only one frequency is available, one lag parameter
+  is fixed before estimating the remaining parameters.
+- Analytical and numerical agreement checks the implementation of the selected
+  attenuating branch; it does not by itself prove that every field mechanism is
+  uniquely identified.
+
+END OF PUBLIC DIGEST

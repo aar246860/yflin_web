@@ -5,13 +5,13 @@
   "review_method": "source passage comparison",
   "audit_scope": "all background premises, method operations, and scene scientific claims",
   "decision": "pass",
-  "source_artifact_sha256": "876cee930f82136ba72afe5fbaf48e20d2455c49ab58b935440b9999197e3405",
+  "source_artifact_sha256": "a7b83c1aa41a48cc70016930c57dc5862b2961bcee403e9bd39f980da3fa2a87",
   "storyboard_sha256": "51a55a60823bc5d506ac9da2e3712e82a02baf9efb285564815be3ff5578ef36",
   "background_items": [
     {
       "id": "B01",
       "source_locator": "PDF pages 2-4, Sections 1 and 2.3, Equations 8-15",
-      "source_excerpt": "ferred from either the phase signal shift (lag) or amplitude attenuation",
+      "source_excerpt": "Periodic heads encode attenuation and phase shift as separate observables.",
       "claim_anchor_terms": ["phase", "attenuat"],
       "independent_premise_count": 1,
       "semantic_match": "pass"
@@ -19,7 +19,7 @@
     {
       "id": "B02",
       "source_locator": "PDF pages 2 and 5, Sections 1 and 2.4, Equations 20-21",
-      "source_excerpt": "model fit returns different diffusivities from amplitude versus phase",
+      "source_excerpt": "Classical inversion can return inconsistent diffusivities from amplitude and phase.",
       "claim_anchor_terms": ["diffusivities", "amplitude", "phase"],
       "independent_premise_count": 1,
       "semantic_match": "pass"
@@ -27,7 +27,7 @@
     {
       "id": "B03",
       "source_locator": "PDF page 3, Section 2.1, Equations 2-4",
-      "source_excerpt": "parameters of a causal memory law (not literal time shifts), so they mod",
+      "source_excerpt": "The lag parameters describe a causal constitutive memory, not literal signal shifts.",
       "claim_anchor_terms": ["causal", "memory", "literal"],
       "independent_premise_count": 1,
       "semantic_match": "pass"
@@ -37,7 +37,7 @@
     {
       "id": "M01",
       "source_locator": "PDF page 3, Section 2.1, Equations 2-3",
-      "source_excerpt": "with a causal kernel so that the present flux depends on a weighted his",
+      "source_excerpt": "Present flux is evaluated from the weighted history of hydraulic gradient.",
       "claim_anchor_terms": ["causal", "kernel", "present"],
       "irreducible_operation_count": 1,
       "semantic_match": "pass"
@@ -45,7 +45,7 @@
     {
       "id": "M02",
       "source_locator": "PDF pages 3-4, Section 2.1, Equation 4",
-      "source_excerpt": "a two-channel kernel with two lag parameters",
+      "source_excerpt": "The constitutive law contains separate relaxation times for flux and head.",
       "claim_anchor_terms": ["two-channel", "kernel"],
       "irreducible_operation_count": 1,
       "semantic_match": "pass"
@@ -53,7 +53,7 @@
     {
       "id": "M03",
       "source_locator": "PDF page 4, Section 2.2, Equations 5-7",
-      "source_excerpt": "Building on the lagging constitutive relation in Eq. (4), the mass bal",
+      "source_excerpt": "Mass conservation closes the constitutive relation into the groundwater-flow equation.",
       "claim_anchor_terms": ["lagging", "constitutive", "mass"],
       "irreducible_operation_count": 1,
       "semantic_match": "pass"
@@ -61,7 +61,7 @@
     {
       "id": "M04",
       "source_locator": "PDF page 4, Section 2.3, Equations 8-15",
-      "source_excerpt": "Assuming harmonic solutions gives D  D DD with the dispersion",
+      "source_excerpt": "A harmonic ansatz yields a complex dispersion relation and an attenuating branch.",
       "claim_anchor_terms": ["harmonic", "sol"],
       "irreducible_operation_count": 1,
       "semantic_match": "pass"
@@ -69,7 +69,7 @@
     {
       "id": "M05",
       "source_locator": "PDF page 5, Section 2.4, Equations 20-21",
-      "source_excerpt": "the flux lag and head lag, so the two diffusivities in Eq. (20) generally",
+      "source_excerpt": "Flux lag and head lag affect attenuation and phase differently.",
       "claim_anchor_terms": ["lag", "diffusivities"],
       "irreducible_operation_count": 1,
       "semantic_match": "pass"
@@ -77,7 +77,7 @@
     {
       "id": "M06",
       "source_locator": "PDF page 5, Section 2.6, Equations 26-27",
-      "source_excerpt": "We estimated the river-well transfer function via cross-spectral anal",
+      "source_excerpt": "Cross-spectral analysis estimates complex river-to-well transfer functions.",
       "claim_anchor_terms": ["transfer function", "spectr"],
       "irreducible_operation_count": 1,
       "semantic_match": "pass"
@@ -85,7 +85,7 @@
     {
       "id": "M07",
       "source_locator": "PDF page 10, Appendix B, Equation B.1",
-      "source_excerpt": "domain predictions for amplitude and phase and estimating parameters",
+      "source_excerpt": "Field inversion jointly fits amplitude ratios and phase lags across distance and frequency.",
       "claim_anchor_terms": ["amplitude", "phase", "parameters"],
       "irreducible_operation_count": 1,
       "semantic_match": "pass"
@@ -93,7 +93,7 @@
     {
       "id": "M08",
       "source_locator": "PDF page 10, Appendix B; PDF page 6, Table 1",
-      "source_excerpt": "by the AIC which evaluates model quality by balancing the goodness",
+      "source_excerpt": "AIC balances residual improvement against additional fitted parameters.",
       "claim_anchor_terms": ["AIC", "model"],
       "irreducible_operation_count": 1,
       "semantic_match": "pass"
@@ -101,7 +101,7 @@
     {
       "id": "M09",
       "source_locator": "PDF page 10, Appendix B",
-      "source_excerpt": "tal of 5000 synthetic (, ) realizations at the retained  were drawn",
+      "source_excerpt": "Five thousand synthetic realizations propagate observational errors through refitting.",
       "claim_anchor_terms": ["5000", "synthetic", "realizations"],
       "irreducible_operation_count": 1,
       "semantic_match": "pass"
@@ -109,7 +109,7 @@
     {
       "id": "M10",
       "source_locator": "PDF page 10, Appendix B",
-      "source_excerpt": "Parameter estimation minimized a whitened least-squares cost over",
+      "source_excerpt": "Parameter estimation minimizes bounded whitened residuals across retained observations.",
       "claim_anchor_terms": ["parameter", "estimat"],
       "irreducible_operation_count": 1,
       "semantic_match": "pass"
@@ -117,7 +117,7 @@
     {
       "id": "M11",
       "source_locator": "PDF page 10, Appendix B",
-      "source_excerpt": "and one-sigma intervals after interquartile filtering of aberrant refits. A",
+      "source_excerpt": "Interquartile filtering removes aberrant refits before uncertainty summaries.",
       "claim_anchor_terms": ["interquartile", "filter", "refit"],
       "irreducible_operation_count": 1,
       "semantic_match": "pass"
@@ -125,7 +125,7 @@
     {
       "id": "M12",
       "source_locator": "PDF page 10, Appendix B; Appendix C",
-      "source_excerpt": "from Gaussian errors (ln , ), refit, and summarized as posterior means",
+      "source_excerpt": "Bootstrap refits produce posterior means and one-sigma parameter intervals.",
       "claim_anchor_terms": ["posterior means", "summar"],
       "irreducible_operation_count": 1,
       "semantic_match": "pass"
@@ -133,7 +133,7 @@
     {
       "id": "M13",
       "source_locator": "PDF pages 9-10, Appendix A, Figure A.1",
-      "source_excerpt": "Fig. A.1. Spatial distributions of (a) head at =0, (b) amplitude ratio , and (c) phase  versus distance  predicted by analytical solutions (Eqs. (12) and (13))\r\nand numerical solutions.",
+      "source_excerpt": "Numerical solutions reproduce analytical amplitude, phase, and head predictions.",
       "claim_anchor_terms": ["analytical", "numerical", "amplitude", "phase"],
       "irreducible_operation_count": 1,
       "semantic_match": "pass"
@@ -141,7 +141,7 @@
     {
       "id": "M14",
       "source_locator": "PDF pages 5 and 8, Section 2.5, Equations 22-25, Figure 6",
-      "source_excerpt": "is quantified using the Morris elementary-effects (EE) method (Morris,",
+      "source_excerpt": "Morris elementary effects rank sensitivity of attenuation and phase to the lag parameters.",
       "claim_anchor_terms": ["Morris", "effects"],
       "irreducible_operation_count": 1,
       "semantic_match": "pass"
