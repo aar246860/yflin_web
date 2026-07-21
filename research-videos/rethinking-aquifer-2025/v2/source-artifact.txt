@@ -1,0 +1,61 @@
+Source excerpt digest for scientific QA. This file is not a substitute for the published article.
+Article: Rethinking Aquifer Characterization: Insights from Lagging Models
+DOI: 10.1016/j.jhydrol.2025.133151
+Publisher PDF SHA-256: 55c1e65544d0335a8ee3a85a80b424ee452d3bd0926f15b5ab2ec75480096996
+
+[B01]
+continuity equation yields the groundwater flow equation, introducing two important aquifer param- eters: the transmissivity and the storage coefficient.
+
+[B02]
+hydraulic gradient and groundwater flux but allows for temporal disparities between these events.
+
+[B03]
+two critical questions. First, are the two newly introduced lagging parameters necessary
+
+[B04]
+The lagging model, while beneficial, should therefore be seen as a complementary tool, not a replacement for detailed field investigations.
+
+[M01]
+the relationship between groundwater flow and hydraulic gradient does not occur simultaneously.
+
+[M02]
+the hydraulic gradient and the flow occur simultaneously, consistent with the assumptions of classical Darcy’s law.
+
+[M03]
+we introduce two defined parameters. The first is the lagging ratio (𝜃), expressed as: 𝜃 = 𝜏𝑠 𝜏𝑞 (3)
+
+[M04]
+inertial effects become increasingly significant. Conversely, when 𝜃 exceeds 1, microstructural interactions play a dominant role
+
+[M05]
+where 𝑆 is the storage coefficient [-], 𝑇 is the transmissivity [L2T−1], and 𝑟 is the radial distance from the pumping well [L].
+
+[M06]
+where 𝑡𝑐,𝐷𝑎𝑟𝑐𝑦 [T] is the characteristic time of Darcy’s diffusion.
+
+[M07]
+we utilize the least squares method in conjunction with the trust region reflective (TRF) algorithm
+
+[M08]
+Lower AIC and BIC values indicate a better balance between model complexity and goodness-of-fit
+
+[M09]
+the AIC and BIC values from the examined case studies (India, the United States, and Taiwan)
+
+[M10]
+we adopted copula interpolation due to its ability to model non-Gaussian dependencies and account for spatial anomalies
+
+[M11]
+we compute the 5th and 95th percentiles from the conditional cumulative distribution function of the parameter values
+
+[M12]
+transformed the estimated spatial distributions of 𝜏𝑞 and 𝜏𝑠 into the spatial distribution of 𝜃
+
+[M13]
+the fitted line is slightly shifted upward, indicating that 𝑡𝑐 values tend to be slightly greater than 𝑡𝑐,Darcy across the dataset. This is further supported by a coefficient of determination (𝑅2) of 0.83
+
+[M14]
+The transformation also improves the goodness-of-fit, with 𝑅2 of 0.96, indicating that 96% of the variability in 𝑡𝑐 can be explained by the relationship with 𝑡𝑐,Darcy after log transformation.
+
+[M15]
+Identifying whether inertial or microstructural effects dominate helps optimize pumping schedules, recovery time predictions, and long-term yield assessments.
