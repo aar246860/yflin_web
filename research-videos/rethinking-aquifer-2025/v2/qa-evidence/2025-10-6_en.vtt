@@ -1,0 +1,61 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:06.000
+Darcy's law and continuity support the conventional interpretation of transmissivity and storage.
+
+00:00:06.000 --> 00:00:12.000
+In complex media, flux and gradient responses may not be simultaneous; either may lead.
+
+00:00:12.000 --> 00:00:18.000
+The question is whether two lag parameters earn their complexity under penalized comparison.
+
+00:00:18.000 --> 00:00:24.000
+Lag ratios and characteristic times are diagnostics, not unique mechanism identifiers.
+
+00:00:24.000 --> 00:00:30.000
+The shifted law evaluates flux at t plus tau q and gradient at t plus tau s.
+
+00:00:30.000 --> 00:00:36.000
+The two lags have three regimes: tau q greater than, equal to, or less than tau s.
+
+00:00:36.000 --> 00:00:42.000
+Theta is tau s divided by tau q, a compact diagnostic of relative lag order.
+
+00:00:42.000 --> 00:00:48.000
+The paper associates theta below one with inertia and theta above one with microstructure; this is not causal proof.
+
+00:00:48.000 --> 00:00:54.000
+Equation 4 defines characteristic time from aquifer geometry and the lag ratio.
+
+00:00:54.000 --> 00:01:00.000
+Normalized by the Darcy time, the equation gives tau q over tau s, or one over theta; later prose points both ways.
+
+00:01:00.000 --> 00:01:06.000
+Four parameters are fitted by trust-region-reflective least squares; each well estimate averages a support volume.
+
+00:01:06.000 --> 00:01:12.000
+AIC and BIC balance fit against complexity; lower values express relative preference, not physical truth.
+
+00:01:12.000 --> 00:01:18.000
+Across the examined cases, the paper reports lower AIC and BIC for the lagging model.
+
+00:01:18.000 --> 00:01:24.000
+Copulas interpolate conditionally between irregular well support volumes; the field is not directly observed.
+
+00:01:24.000 --> 00:01:30.000
+The fifth-to-ninety-fifth percentile width comes from copula conditional distributions, not posteriors.
+
+00:01:30.000 --> 00:01:36.000
+Interpolated lag fields form a spatial theta diagnostic; wells remain support-volume averages.
+
+00:01:36.000 --> 00:01:42.000
+On linear axes, the paper reports R squared of 0.83; the plotted point locations are schematic.
+
+00:01:42.000 --> 00:01:48.000
+On log axes, R squared rises to 0.96, but the paper's mixed time-direction statements remain unresolved.
+
+00:01:48.000 --> 00:01:54.000
+Operational implications must pass through field evidence and remain conditional extrapolations.
+
+00:01:54.000 --> 00:02:00.000
+Return every diagnostic to the pumping field: better fit does not replace field characterization.

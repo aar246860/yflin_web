@@ -1,0 +1,88 @@
+{
+  "surface": "real Playwright browser against a clean Astro preview build",
+  "url": "http://127.0.0.1:4346/yflin_web/publications/",
+  "target": "Rethinking Aquifer Characterization: Insights from Lagging Models",
+  "desktop": {
+    "invocation": "set viewport 1440x1000; open Publications; click the unique target Play control; seek to the method scene; pause for visual inspection",
+    "viewport": [
+      1440,
+      1000
+    ],
+    "playback": {
+      "readyState": 4,
+      "duration": 120,
+      "currentTime_observed": 64.613182,
+      "paused": true,
+      "videoWidth": 1920,
+      "videoHeight": 1080,
+      "error": null,
+      "controls": true
+    },
+    "captions": {
+      "trackCount": 1,
+      "kind": "captions",
+      "defaultMode": "disabled",
+      "label": "English captions",
+      "language": "en",
+      "visualResult": "no native caption overlay obscures the in-frame Manim labels"
+    },
+    "horizontal_overflow": false
+  },
+  "mobile": {
+    "invocation": "set viewport 390x844; center the target publication card; seek to 63.5 seconds; pause for visual inspection",
+    "viewport": [
+      390,
+      844
+    ],
+    "card_rect_css_px": {
+      "x": 20,
+      "y": 116.609375,
+      "width": 350,
+      "height": 610.71875
+    },
+    "video_rect_css_px": {
+      "x": 0,
+      "y": 459.125,
+      "width": 390,
+      "height": 219.375
+    },
+    "playback": {
+      "readyState": 4,
+      "duration": 120,
+      "currentTime_observed": 63.5,
+      "paused": true,
+      "videoWidth": 1920,
+      "videoHeight": 1080,
+      "error": null,
+      "controls": true
+    },
+    "captions": {
+      "trackCount": 1,
+      "kind": "captions",
+      "defaultMode": "disabled",
+      "label": "English captions",
+      "language": "en",
+      "visualResult": "no duplicate native subtitle line covers the scientific animation"
+    },
+    "horizontal_overflow": false
+  },
+  "caption_enablement_probe": {
+    "action": "set the target text track to showing at 60 seconds, inspect it, then restore disabled mode",
+    "mode_while_enabled": "showing",
+    "cueCount": 20,
+    "activeCue_observed": "Four parameters are fitted by trust-region-reflective least squares; each well estimate averages a support volume.",
+    "restoredMode": "disabled"
+  },
+  "console": {
+    "errors": 0,
+    "warnings": 0
+  },
+  "browser_playback_verdict": "pass: finite duration, positive dimensions, no media error, no horizontal overflow, captions available on demand without default overlap",
+  "reviewed_at": "2026-07-21T11:27:00+08:00",
+  "video_file": "public/videos/publications/2025-10-6/2025-10-6.mp4",
+  "video_sha256": "6ea77efcc3400e9a223cc5276db4dafd6cad0be167f7a2f9dc90a1193ddabf4c",
+  "desktop_screenshot": "2025-10-6_publications_desktop.png",
+  "desktop_screenshot_sha256": "085145ac09bce8df4dcedd4fe3e6bd7143847ef32b4eec6769c67fbc02747ae7",
+  "mobile_screenshot": "2025-10-6_publications_mobile.png",
+  "mobile_screenshot_sha256": "330ab5c66ef95db90c5e5be18da103d762342647bd0ec9bcbf8ce188cfea000e"
+}

@@ -205,7 +205,7 @@ const homeSchema = [
                     aria-label={`Visual explanation for ${publication.title.en}`}
                   >
                     <source src={withMediaVersion(visual.film.video)} type="video/mp4" />
-                    {visual.film.captions && <track kind="captions" src={withMediaVersion(visual.film.captions)} srclang="en" label="English captions" default />}
+                    {visual.film.captions && <track kind="captions" src={withMediaVersion(visual.film.captions)} srclang="en" label="English captions" default={visual.film.id !== "2025-10-6"} />}
                     Your browser does not support the video element.
                   </video>
                   <figcaption>Visual explanation based on the published study · use full screen for figure labels · captions included</figcaption>

@@ -76,7 +76,7 @@ const availableFilmCount = allPublications.filter((publication) => getVisualStat
                       aria-label={`Visual explanation for ${pub.title.en}`}
                     >
                       <source src={withMediaVersion(visual.film.video)} type="video/mp4" />
-                      {visual.film.captions && <track kind="captions" src={withMediaVersion(visual.film.captions)} srclang="en" label="English captions" default />}
+                      {visual.film.captions && <track kind="captions" src={withMediaVersion(visual.film.captions)} srclang="en" label="English captions" default={visual.film.id !== "2025-10-6"} />}
                       Your browser does not support the video element.
                     </video>
                     <button class="publication-film__play" type="button" title="Play visual explanation" aria-label={`Play visual explanation for ${pub.title.en}`} data-publication-play hidden></button>

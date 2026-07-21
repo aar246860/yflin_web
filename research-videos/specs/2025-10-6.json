@@ -71,16 +71,16 @@
       "id": "M02",
       "input": "The lag-time pair tau_q and tau_s",
       "operation": "Compute lagging ratio",
-      "output": "Lagging ratio lambda with a threshold at one",
-      "validity": "The paper defines lambda as tau_q divided by tau_s and uses one as the boundary between the two lag regimes.",
+      "output": "Lagging ratio theta with a threshold at one",
+      "validity": "Equation (3) defines theta as tau_s divided by tau_q and uses one as the boundary between the two lag regimes.",
       "locator": "PDF page 2, Section 2.2, Equation (3)",
       "sourceExcerpt": "parameters. The first is the lagging ratio",
       "anchorTerms": ["lagging ratio", "parameters"],
-      "visualObject": "The two lag brackets collapse into a ratio gauge centered on lambda equals one.",
+      "visualObject": "The two lag brackets collapse into a ratio gauge centered on theta equals one.",
       "motionPurpose": "Convert the relative delay into a single dimensionless regime indicator.",
-      "stepDetail": "Place tau_q above tau_s as a ratio; form lambda; mark lambda equals one; preserve the two sides of the gauge.",
+      "stepDetail": "Place tau_s above tau_q as a ratio; form theta; mark theta equals one; preserve the two sides of the gauge.",
       "transitionBridge": "A separate time-scale diagnostic is formed from the lag pair and aquifer geometry in M03.",
-      "minimalText": "lambda = tau_q / tau_s"
+      "minimalText": "theta = tau_s / tau_q"
     },
     {
       "id": "M03",
@@ -212,16 +212,16 @@
       "id": "M11",
       "input": "Spatial tau_q and tau_s fields with their confidence-width context",
       "operation": "Classify lag regimes",
-      "output": "A lambda map partitioned into inertia-dominated and microstructure-dominated regions",
-      "validity": "The paper defines lambda=1 as the threshold, with lambda below one indicating inertia and lambda above one indicating microstructural interactions.",
+      "output": "A theta map partitioned into inertia-dominated and microstructure-dominated regions",
+      "validity": "The paper defines theta=1 as the threshold, with theta below one indicating inertia and theta above one indicating microstructural interactions.",
       "locator": "PDF pages 5-7, Sections 3.4-3.5 and Figures 9 and 13",
       "sourceExcerpt": "This figure facilitates the identification of areas where inertia dominates",
       "anchorTerms": ["identification of areas", "inertia dominates"],
-      "visualObject": "The two lag-time maps divide cell by cell into one thresholded lambda regime map.",
+      "visualObject": "The two lag-time maps divide cell by cell into one thresholded theta regime map.",
       "motionPurpose": "Make the physical interpretation emerge from the fitted spatial fields.",
-      "stepDetail": "Pair tau_q and tau_s at each cell; form lambda; draw the lambda=1 contour; label only the two resulting physical regimes.",
+      "stepDetail": "Pair tau_q and tau_s at each cell; form theta; draw the theta=1 contour; label only the two resulting physical regimes.",
       "transitionBridge": "The regime map is retained while the classical Darcy characteristic time is calculated in M12.",
-      "minimalText": "lambda < 1 inertia; > 1 pores"
+      "minimalText": "theta < 1 inertia; > 1 pores"
     },
     {
       "id": "M12",
@@ -275,7 +275,7 @@
       "transition": "Grow the bracket from the gradient peak to its reference time"
     },
     {
-      "latex": "\\lambda=\\tau_q/\\tau_s",
+      "latex": "\\theta=\\tau_s/\\tau_q",
       "firstUseOwner": "M02",
       "visualObject": "Threshold gauge built from the two lag brackets",
       "meaning": "Lagging ratio used to distinguish inertia-dominated and microstructure-dominated flow regimes",
@@ -308,7 +308,7 @@
     }
   ],
   "return": {
-    "visualObject": "The Massachusetts and Rapid City well maps carrying lambda regimes, 90% interval-width texture, and a tau_c versus Darcy-time inset.",
+    "visualObject": "The Massachusetts and Rapid City well maps carrying theta regimes, 90% interval-width texture, and a tau_c versus Darcy-time inset.",
     "claim": "For the examined pumping tests, the extra lag parameters were supported by lower information criteria and yielded interpretable spatial regimes and revised characteristic times.",
     "claimBoundary": "The fitted properties are spatial averages over each well's radius of influence, and the lagging model remains a simplified complementary tool rather than a replacement for detailed field characterization.",
     "locator": "PDF page 9, Sections 3.6-3.7 and 4, concluding remarks",

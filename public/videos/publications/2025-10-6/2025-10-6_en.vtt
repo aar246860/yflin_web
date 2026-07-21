@@ -1,66 +1,61 @@
 WEBVTT
 
-1
-00:00:00.000 --> 00:00:03.000
-Lagging theory conceptually permits groundwater flux and hydraulic
+00:00:00.000 --> 00:00:06.000
+Darcy's law and continuity support the conventional interpretation of transmissivity and storage.
 
-2
-00:00:04.000 --> 00:00:07.000
-Adding two lagging parameters creates both an over-parameterization
+00:00:06.000 --> 00:00:12.000
+In complex media, flux and gradient responses may not be simultaneous; either may lead.
 
-3
-00:00:08.000 --> 00:00:11.000
-A constitutive relation with flux lag tau q and gradient lag tau s
+00:00:12.000 --> 00:00:18.000
+The question is whether two lag parameters earn their complexity under penalized comparison.
 
-4
-00:00:12.000 --> 00:00:15.000
-Lagging ratio lambda with a threshold at one
+00:00:18.000 --> 00:00:24.000
+Lag ratios and characteristic times are diagnostics, not unique mechanism identifiers.
 
-5
-00:00:16.000 --> 00:00:19.000
-Lag-adjusted characteristic time tau c
+00:00:24.000 --> 00:00:30.000
+The shifted law evaluates flux at t plus tau q and gradient at t plus tau s.
 
-6
-00:00:20.000 --> 00:00:23.000
-Best-fit S, T, tau q, and tau s for each analyzed well
+00:00:30.000 --> 00:00:36.000
+The two lags have three regimes: tau q greater than, equal to, or less than tau s.
 
-7
-00:00:24.000 --> 00:00:27.000
-Baseline storage transmissivity and no-lag drawdown responses
+00:00:36.000 --> 00:00:42.000
+Theta is tau s divided by tau q, a compact diagnostic of relative lag order.
 
-8
-00:00:28.000 --> 00:00:31.000
-Lagging-model and Darcy-model likelihood terms paired with their
+00:00:42.000 --> 00:00:48.000
+The paper associates theta below one with inertia and theta above one with microstructure; this is not causal proof.
 
-9
-00:00:32.000 --> 00:00:35.000
-AIC and BIC evidence for or against the two added lag parameters
+00:00:48.000 --> 00:00:54.000
+Equation 4 defines characteristic time from aquifer geometry and the lag ratio.
 
-10
-00:00:36.000 --> 00:00:39.000
-Spatial fields of S, T, tau q, and tau s
+00:00:54.000 --> 00:01:00.000
+Normalized by the Darcy time, the equation gives tau q over tau s, or one over theta; later prose points both ways.
 
-11
-00:00:40.000 --> 00:00:43.000
-One conditional parameter cumulative distribution at each
+00:01:00.000 --> 00:01:06.000
+Four parameters are fitted by trust-region-reflective least squares; each well estimate averages a support volume.
 
-12
-00:00:44.000 --> 00:00:47.000
-Spatial maps of 90% confidence-interval width
+00:01:06.000 --> 00:01:12.000
+AIC and BIC balance fit against complexity; lower values express relative preference, not physical truth.
 
-13
-00:00:48.000 --> 00:00:51.000
-A lambda map partitioned into inertia-dominated and
+00:01:12.000 --> 00:01:18.000
+Across the examined cases, the paper reports lower AIC and BIC for the lagging model.
 
-14
-00:00:52.000 --> 00:00:55.000
-Classical Darcy diffusion time for every analyzed site
+00:01:18.000 --> 00:01:24.000
+Copulas interpolate conditionally between irregular well support volumes; the field is not directly observed.
 
-15
-00:00:56.000 --> 00:00:59.000
-Scatter evidence showing how tau c departs from the Darcy time scale
+00:01:24.000 --> 00:01:30.000
+The fifth-to-ninety-fifth percentile width comes from copula conditional distributions, not posteriors.
 
-16
-00:01:00.000 --> 00:01:03.000
-For the examined pumping tests, the extra lag parameters were
+00:01:30.000 --> 00:01:36.000
+Interpolated lag fields form a spatial theta diagnostic; wells remain support-volume averages.
 
+00:01:36.000 --> 00:01:42.000
+On linear axes, the paper reports R squared of 0.83; the plotted point locations are schematic.
+
+00:01:42.000 --> 00:01:48.000
+On log axes, R squared rises to 0.96, but the paper's mixed time-direction statements remain unresolved.
+
+00:01:48.000 --> 00:01:54.000
+Operational implications must pass through field evidence and remain conditional extrapolations.
+
+00:01:54.000 --> 00:02:00.000
+Return every diagnostic to the pumping field: better fit does not replace field characterization.

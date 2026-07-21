@@ -1,0 +1,15 @@
+{
+  "source": "research-videos/rethinking-aquifer-2025/v2/qa-evidence/2025-10-6_en.vtt",
+  "cueCount": 20,
+  "firstStart": "00:00:00.000",
+  "firstEnd": "00:00:06.000",
+  "lastStart": "00:01:54.000",
+  "lastEnd": "00:02:00.000",
+  "durationSeconds": 120,
+  "allCuesSixSeconds": true,
+  "allCuesContiguous": true,
+  "runtimeTrackRequest": "HTTP 200 OK, Content-Type: text/vtt, 2616 bytes",
+  "runtimeTrackState": "track kind captions, no default attribute, initial mode disabled; explicit enablement loaded 20 cues in showing mode and was restored to disabled",
+  "runtimeVisualEvidence": "Fresh desktop and 390x844 mobile screenshots show the method scene without a duplicate native subtitle overlay; captions remain available through the player controls",
+  "video_sha256": "6ea77efcc3400e9a223cc5276db4dafd6cad0be167f7a2f9dc90a1193ddabf4c"
+}
