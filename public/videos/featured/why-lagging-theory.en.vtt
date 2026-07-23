@@ -1,0 +1,76 @@
+WEBVTT
+
+00:00.000 --> 00:06.576
+Imagine this: a city-sized aquifer, understood through only three narrow wells.
+
+00:07.136 --> 00:09.682
+That is how groundwater science often works.
+
+00:09.682 --> 00:11.501
+We cannot see the aquifer.
+
+00:11.501 --> 00:18.776
+So we pump one well, watch the water levels in the others, and let the aquifer answer with a curve.
+
+00:19.316 --> 00:20.714
+The curve is measured.
+
+00:20.714 --> 00:28.052
+An analytical model then turns it into estimates of how easily water moves, and how much water the aquifer can release.
+
+00:28.572 --> 00:32.524
+Classical Darcy flow begins with an elegant rule.
+
+00:32.524 --> 00:37.464
+Groundwater flux follows the hydraulic gradient at the same moment.
+
+00:37.464 --> 00:38.452
+One gradient.
+
+00:38.452 --> 00:39.440
+One flux.
+
+00:39.440 --> 00:40.428
+One clock.
+
+00:41.008 --> 00:44.533
+But an aquifer is not an empty pipe.
+
+00:44.533 --> 00:50.260
+Water bends around layers, threads through connected pores, and exchanges with slower domains.
+
+00:50.260 --> 00:53.344
+Space can leave a trace in time.
+
+00:53.924 --> 00:55.972
+Now ask a different question.
+
+00:55.972 --> 01:01.707
+What if flux and the drawdown gradient do not keep exactly the same time?
+
+01:01.707 --> 01:05.804
+Lagging Theory gives the response two effective hydraulic time scales.
+
+01:06.404 --> 01:12.980
+When those time scales separate, the calculated drawdown can form a smooth, S-shaped transition.
+
+01:13.540 --> 01:17.729
+The extra flexibility still has to earn its place.
+
+01:17.729 --> 01:21.453
+The 2017 pumping-test comparison improved the early-time fit.
+
+01:21.453 --> 01:31.228
+In the 2025 tests, the lagging model was penalized for its added parameters, and still ranked better by A-I-C and B-I-C.
+
+01:31.848 --> 01:35.288
+So the point is not simply a better curve.
+
+01:35.288 --> 01:40.639
+Time may preserve evidence of aquifer behavior that a few wells cannot map directly.
+
+01:40.639 --> 01:44.461
+A well is narrow in space, but deep in time.
+
+01:44.461 --> 01:47.136
+Lagging Theory is one way to listen.

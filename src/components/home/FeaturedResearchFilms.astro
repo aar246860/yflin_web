@@ -1,0 +1,310 @@
+---
+const base = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
+---
+
+<section class="featured-films" id="featured-films" aria-labelledby="featured-films-title">
+  <div class="featured-films__shell">
+    <header class="featured-films__heading">
+      <p class="featured-films__kicker">Featured films</p>
+      <h2 id="featured-films-title">Start with the field record.</h2>
+      <p>
+        These two short films introduce the questions that connect Lagging Theory with transformation uncertainty:
+        what a well measures, and what an analytical model adds.
+      </p>
+    </header>
+
+    <div class="featured-films__grid">
+      <article class="featured-film">
+        <div class="featured-film__player">
+          <video
+            controls
+            playsinline
+            preload="none"
+            poster={withBase("/videos/featured/why-lagging-theory.webp")}
+            width="720"
+            height="1280"
+            aria-label="Why Lagging Theory? research film"
+          >
+            <source src={withBase("/videos/featured/why-lagging-theory.mp4")} type="video/mp4" />
+            <track
+              kind="captions"
+              src={withBase("/videos/featured/why-lagging-theory.en.vtt")}
+              srclang="en"
+              label="English"
+            />
+            Your browser does not support the video element.
+          </video>
+        </div>
+        <div class="featured-film__copy">
+          <p class="featured-film__meta"><span>1 min 48 sec</span><span>Research story</span></p>
+          <h3>Why Lagging Theory?</h3>
+          <p>
+            Three wells cannot map an aquifer. This film follows the pumping-test record from measured drawdown to
+            the possibility that groundwater flux and hydraulic gradient evolve on different effective time scales.
+          </p>
+          <div class="featured-film__links">
+            <a href="https://x.com/AquiferMemory/status/2080137917390016827" target="_blank" rel="noreferrer">
+              View the X post
+            </a>
+            <a href={withBase("/publications/lin-yeh-2017/")}>Read the 2017 paper</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="featured-film">
+        <div class="featured-film__player">
+          <video
+            controls
+            playsinline
+            preload="none"
+            poster={withBase("/videos/featured/one-test-two-estimates.webp")}
+            width="720"
+            height="1280"
+            aria-label="One test, two storage estimates research film"
+          >
+            <source src={withBase("/videos/featured/one-test-two-estimates.mp4")} type="video/mp4" />
+            <track
+              kind="captions"
+              src={withBase("/videos/featured/one-test-two-estimates.en.vtt")}
+              srclang="en"
+              label="English"
+            />
+            Your browser does not support the video element.
+          </video>
+        </div>
+        <div class="featured-film__copy">
+          <p class="featured-film__meta"><span>20 sec</span><span>Field reanalysis</span></p>
+          <h3>One test, two storage estimates</h3>
+          <p>
+            At Maheshwaram, the same drawdown record yielded storativity estimates 4,942 times apart under two
+            analytical models. The disagreement begins in interpretation, not measurement.
+          </p>
+          <div class="featured-film__links">
+            <a href="https://doi.org/10.1016/j.jhydrol.2025.133151" target="_blank" rel="noreferrer">
+              Read the 2025 paper
+            </a>
+            <a href={withBase("/concepts/transformation-uncertainty/")}>Why model choice matters</a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<style>
+  .featured-films {
+    background: var(--text);
+    color: var(--surface);
+    overflow: hidden;
+  }
+
+  .featured-films__shell {
+    margin: 0 auto;
+    max-width: 1240px;
+    padding: 5rem 1.5rem 5.5rem;
+  }
+
+  .featured-films__heading {
+    display: grid;
+    gap: 0.85rem;
+    grid-template-columns: minmax(0, 0.8fr) minmax(300px, 1.2fr);
+    margin-bottom: 3rem;
+  }
+
+  .featured-films__heading h2 {
+    color: var(--surface);
+    font-family: Merriweather, Georgia, serif;
+    font-size: clamp(2.15rem, 4vw, 3.65rem);
+    grid-column: 1;
+    letter-spacing: 0;
+    line-height: 1.08;
+    max-width: 13ch;
+  }
+
+  .featured-films__heading > p:last-child {
+    align-self: end;
+    color: rgb(var(--surface-rgb) / 0.72);
+    font-size: 1.02rem;
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    line-height: 1.75;
+    max-width: 60ch;
+  }
+
+  .featured-films__kicker {
+    color: var(--signal-measured);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .featured-films__grid {
+    border-top: 1px solid rgb(var(--surface-rgb) / 0.24);
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .featured-film {
+    display: grid;
+    gap: 1.75rem;
+    grid-template-columns: minmax(190px, 0.72fr) minmax(220px, 1fr);
+    padding: 2rem 2rem 0 0;
+  }
+
+  .featured-film + .featured-film {
+    border-left: 1px solid rgb(var(--surface-rgb) / 0.24);
+    padding-left: 2rem;
+    padding-right: 0;
+  }
+
+  .featured-film__player {
+    align-self: start;
+    background: #050707;
+    box-shadow: 0 18px 45px rgb(0 0 0 / 0.26);
+  }
+
+  .featured-film video {
+    aspect-ratio: 9 / 16;
+    display: block;
+    height: auto;
+    width: 100%;
+  }
+
+  .featured-film__copy {
+    align-content: start;
+    display: grid;
+    gap: 0.85rem;
+    padding-top: 0.3rem;
+  }
+
+  .featured-film__meta {
+    color: rgb(var(--surface-rgb) / 0.55);
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 0.7rem;
+    font-weight: 750;
+    gap: 0.45rem 0.9rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .featured-film__meta span + span::before {
+    content: "";
+    border-left: 1px solid rgb(var(--surface-rgb) / 0.3);
+    margin-right: 0.9rem;
+  }
+
+  .featured-film h3 {
+    color: var(--surface);
+    font-family: Merriweather, Georgia, serif;
+    font-size: 1.45rem;
+    letter-spacing: 0;
+    line-height: 1.25;
+  }
+
+  .featured-film__copy > p:not(.featured-film__meta) {
+    color: rgb(var(--surface-rgb) / 0.7);
+    font-size: 0.91rem;
+    line-height: 1.68;
+  }
+
+  .featured-film__links {
+    border-top: 1px solid rgb(var(--surface-rgb) / 0.2);
+    display: grid;
+    gap: 0.45rem;
+    margin-top: 0.35rem;
+    padding-top: 0.9rem;
+  }
+
+  .featured-film__links a {
+    color: var(--surface);
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-decoration: underline;
+    text-decoration-color: rgb(var(--surface-rgb) / 0.35);
+    text-underline-offset: 0.24em;
+  }
+
+  .featured-film__links a:hover {
+    text-decoration-color: var(--signal-measured);
+  }
+
+  @media (max-width: 980px) {
+    .featured-films__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .featured-film {
+      grid-template-columns: minmax(190px, 0.55fr) minmax(0, 1fr);
+      padding: 2rem 0;
+    }
+
+    .featured-film + .featured-film {
+      border-left: 0;
+      border-top: 1px solid rgb(var(--surface-rgb) / 0.24);
+      padding-left: 0;
+    }
+
+    .featured-film__player {
+      max-width: 290px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .featured-films__shell {
+      padding: 3.75rem 1rem 4rem;
+    }
+
+    .featured-films__heading {
+      grid-template-columns: 1fr;
+      margin-bottom: 2rem;
+    }
+
+    .featured-films__heading > p:last-child {
+      grid-column: 1;
+      grid-row: auto;
+    }
+
+    .featured-films__heading h2 {
+      font-size: 2.25rem;
+    }
+
+    .featured-film {
+      gap: 1.25rem;
+      grid-template-columns: minmax(140px, 0.72fr) minmax(0, 1fr);
+    }
+
+    .featured-film h3 {
+      font-size: 1.18rem;
+    }
+
+    .featured-film__copy > p:not(.featured-film__meta) {
+      font-size: 0.84rem;
+      line-height: 1.58;
+    }
+
+    .featured-film__links a {
+      font-size: 0.78rem;
+    }
+  }
+
+  @media (max-width: 430px) {
+    .featured-film {
+      grid-template-columns: 1fr;
+    }
+
+    .featured-film__player {
+      max-width: 240px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .featured-film__links a {
+      scroll-behavior: auto;
+    }
+  }
+</style>
