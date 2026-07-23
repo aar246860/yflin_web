@@ -55,6 +55,13 @@ const xiaolin = defineCollection({
     public: z.boolean().default(false),
     autoPublish: z.boolean().default(false),
     draft: z.boolean().default(true),
+    generated: z.boolean().default(false),
+    operator: z.string().optional(),
+    format: z.enum(["diary", "doodle", "field-report"]).optional(),
+    artwork: z.string().optional(),
+    artworkAlt: z.string().optional(),
+    disclosure: z.string().optional(),
+    fictionalized: z.boolean().default(false),
   }),
 });
 

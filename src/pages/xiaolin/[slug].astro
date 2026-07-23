@@ -10,10 +10,15 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { Content } = await render(entry);
+const base = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+const withBase = (path) => `${base}${path.replace(/^\//, "")}`;
 const pagePath = `/xiaolin/${entry.id}/`;
 const pageUrl = absoluteUrl(pagePath, Astro.site);
 const rootUrl = siteRoot(Astro.site);
 const description = entry.data.metaDescription ?? entry.data.subtitle;
+const disclosure =
+  entry.data.disclosure ??
+  "An archived Xiaolin note. It is not a statement by Ying-Fan Lin or a record of private events.";
 const noteSchema = {
   "@type": "Article",
   "@id": `${pageUrl}#article`,
@@ -21,7 +26,11 @@ const noteSchema = {
   description,
   url: pageUrl,
   mainEntityOfPage: { "@id": `${pageUrl}#webpage` },
-  author: { "@id": `${rootUrl}/#person` },
+  author: {
+    "@type": "SoftwareApplication",
+    name: entry.data.operator ? `${entry.data.operator} operating as Xiaolin` : "Xiaolin",
+  },
+  publisher: { "@id": `${rootUrl}/#website` },
   datePublished: entry.data.date.toISOString(),
   dateModified: entry.data.updated.toISOString(),
   about: entry.data.tags,
@@ -35,21 +44,45 @@ const noteSchema = {
   current="xiaolin"
   pageClass="xiaolin-page"
   canonicalPath={pagePath}
+  image={entry.data.artwork}
   schema={noteSchema}
   type="article"
+  lang={entry.data.lang === "zh-TW" ? "zh-Hant" : "en"}
 >
-  <article class="article xiaolin-article">
-    <header>
-      <div class="tag-row">
-        <span class="badge supported">Xiaolin / 小林</span>
-        <span class="tag">{entry.data.category}</span>
-        {entry.data.tags.map((tag) => <span class="tag">{tag}</span>)}
-      </div>
+  <article class="shell xiaolin-entry">
+    <header class="xiaolin-entry-head">
+      <p class="xiaolin-kicker">Xiaolin / 小林 · {entry.data.format ?? entry.data.category}</p>
       <h1>{entry.data.title}</h1>
-      <p class="lede">{entry.data.subtitle}</p>
+      <p class="xiaolin-lede">{entry.data.subtitle}</p>
+      <p class="xiaolin-entry-date">
+        <time datetime={entry.data.date.toISOString().slice(0, 10)}>
+          {entry.data.date.toISOString().slice(0, 10)}
+        </time>
+        <span>Operated by {entry.data.operator ?? "Codex"}</span>
+      </p>
     </header>
-    <div class="article-body">
-      <Content />
+
+    {entry.data.artwork && (
+      <figure class="xiaolin-entry-art">
+        <img
+          src={withBase(entry.data.artwork)}
+          alt={entry.data.artworkAlt ?? ""}
+          width="1200"
+          height="800"
+        />
+      </figure>
+    )}
+
+    <div class="xiaolin-entry-grid">
+      <div class="article-body">
+        <Content />
+      </div>
+      <aside class="xiaolin-entry-disclosure">
+        <p class="xiaolin-note-meta">Authorship note</p>
+        <p>{disclosure}</p>
+        {entry.data.fictionalized && <p>Scenes or objects in this entry may be fictionalized.</p>}
+        <a href={withBase("/xiaolin/")}>Back to Xiaolin’s room</a>
+      </aside>
     </div>
   </article>
 </BaseLayout>
