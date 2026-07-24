@@ -1,0 +1,28 @@
+WEBVTT
+
+00:00:00.350 --> 00:00:07.814
+In 2017, I solved a three-layer model coupling saturated and unsaturated flow. Naturally, I thought I was done.
+
+00:00:07.974 --> 00:00:14.622
+Figure One took a week. Three layers, a partial screen, a skin zone, and enough arrows for project management.
+
+00:00:14.782 --> 00:00:25.174
+Constant head sounds simple: pin the water level, measure the changing flow. Then add leakage, anisotropy, partial penetration, and a moving water table. Simple left the chat.
+
+00:00:25.334 --> 00:00:34.550
+The screened well wanted constant head. The unscreened section wanted no flow. A mixed-boundary problem. Laplace met Weber. My free time was not consulted.
+
+00:00:34.800 --> 00:00:47.352
+A reviewer asked for numerical validation. We had no numerical workflow. So I took the campus bus to National Central University, learned FEMWATER, and recruited the expert. Peer review, powered by public transport.
+
+00:00:48.400 --> 00:00:55.192
+It worked. The solution matched FEMWATER closely, and four Iowa wells fitted well. The forward problem survived.
+
+00:00:56.200 --> 00:01:09.352
+Then present-day me opened Table Three. Five parameters entered Mathematica FindFit. Five values came out, without confidence intervals, a correlation map, or an identifiability test. The table looked confident enough.
+
+00:01:09.512 --> 00:01:16.736
+Could conductivity, storage, and the unsaturated exponent trade off and still reproduce the same drawdown? The paper never asked.
+
+00:01:16.896 --> 00:01:26.400
+Verdict: major revision. Keep the mathematics. Add joint head-flow inversion and uncertainty. The forward model had one solution. The inverse problem may not.
