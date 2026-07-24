@@ -11,8 +11,8 @@ const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
       <p class="featured-films__kicker">Featured films</p>
       <h2 id="featured-films-title">Start with the field record.</h2>
       <p>
-        These two short films introduce the questions that connect Lagging Theory with transformation uncertainty:
-        what a well measures, and what an analytical model adds.
+        These short films follow the argument from pumping-test measurements to model-conditioned parameters and
+        periodic groundwater memory.
       </p>
     </header>
 
@@ -90,6 +90,46 @@ const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
           </div>
         </div>
       </article>
+
+      <article class="featured-film featured-film--wide">
+        <div class="featured-film__player">
+          <video
+            controls
+            playsinline
+            preload="none"
+            poster={withBase("/videos/featured/one-wave-two-answers.webp")}
+            width="720"
+            height="1280"
+            aria-label="One aquifer, two answers research film"
+          >
+            <source src={withBase("/videos/featured/one-wave-two-answers.mp4")} type="video/mp4" />
+            <track
+              kind="captions"
+              src={withBase("/videos/featured/one-wave-two-answers.en.vtt")}
+              srclang="en"
+              label="English"
+            />
+            Your browser does not support the video element.
+          </video>
+        </div>
+        <div class="featured-film__copy">
+          <p class="featured-film__meta"><span>56 sec</span><span>Periodic groundwater memory</span></p>
+          <h3>One aquifer, two answers</h3>
+          <p>
+            The same periodic head signal can imply conflicting hydraulic diffusivities when an
+            instantaneous-equilibrium model is made to explain both attenuation and phase. Lagging Theory introduces
+            distinct relaxation times for flux and head equilibration.
+          </p>
+          <div class="featured-film__links">
+            <a href="https://x.com/AquiferMemory/status/2080462518041092494" target="_blank" rel="noreferrer">
+              View the X post
+            </a>
+            <a href="https://doi.org/10.1016/j.jhydrol.2026.134913" target="_blank" rel="noreferrer">
+              Read the 2026 paper
+            </a>
+          </div>
+        </div>
+      </article>
     </div>
   </div>
 </section>
@@ -159,6 +199,15 @@ const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
     border-left: 1px solid rgb(var(--surface-rgb) / 0.24);
     padding-left: 2rem;
     padding-right: 0;
+  }
+
+  .featured-film--wide {
+    border-left: 0;
+    border-top: 1px solid rgb(var(--surface-rgb) / 0.24);
+    grid-column: 1 / -1;
+    grid-template-columns: minmax(190px, 0.34fr) minmax(0, 1fr);
+    margin-top: 2rem;
+    padding: 2rem 0 0;
   }
 
   .featured-film__player {
