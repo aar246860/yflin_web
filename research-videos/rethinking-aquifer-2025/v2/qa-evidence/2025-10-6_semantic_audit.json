@@ -1,0 +1,367 @@
+{
+  "reviewer": "Codex independent auditor",
+  "reviewer_role": "independent source auditor",
+  "reviewed_at": "2026-07-20T23:59:00+08:00",
+  "review_method": "source passage comparison",
+  "audit_scope": "all background premises, method operations, and scene scientific claims",
+  "decision": "pass",
+  "source_artifact_sha256": "2664fd64723355906716ff20a7bab09b3d3e8ee2d7722f7c400d78eeb5917bf6",
+  "storyboard_sha256": "5800f8e8bb56b0fe96dd32a948c8c617539352f2c18d8c286e2280853d0329af",
+  "background_items": [
+    {
+      "id": "B01",
+      "source_locator": "PDF page 1, Introduction, opening paragraph",
+      "source_excerpt": "continuity equation yields the groundwater flow equation, introducing two important aquifer param- eters: the transmissivity and the storage coefficient.",
+      "claim_anchor_terms": [
+        "transmissivity",
+        "storage coefficient"
+      ],
+      "independent_premise_count": 1,
+      "semantic_match": "pass"
+    },
+    {
+      "id": "B02",
+      "source_locator": "PDF pages 1-2, Introduction and Section 2.1, Equation (2)",
+      "source_excerpt": "hydraulic gradient and groundwater flux but allows for temporal disparities between these events.",
+      "claim_anchor_terms": [
+        "groundwater flux",
+        "temporal"
+      ],
+      "independent_premise_count": 1,
+      "semantic_match": "pass"
+    },
+    {
+      "id": "B03",
+      "source_locator": "PDF page 2, Introduction, two critical questions paragraph",
+      "source_excerpt": "two critical questions. First, are the two newly introduced lagging parameters necessary",
+      "claim_anchor_terms": [
+        "question",
+        "parameter"
+      ],
+      "independent_premise_count": 1,
+      "semantic_match": "pass"
+    },
+    {
+      "id": "B04",
+      "source_locator": "PDF pages 2 and 9, Section 2.2 and Section 4 limitations paragraph",
+      "source_excerpt": "The lagging model, while beneficial, should therefore be seen as a complementary tool, not a replacement for detailed field investigations.",
+      "claim_anchor_terms": [
+        "complementary",
+        "field investigations"
+      ],
+      "independent_premise_count": 1,
+      "semantic_match": "pass"
+    }
+  ],
+  "method_items": [
+    {
+      "id": "M01",
+      "source_locator": "PDF page 2, Section 2.1, Equation (2)",
+      "source_excerpt": "the relationship between groundwater flow and hydraulic gradient does not occur simultaneously.",
+      "claim_anchor_terms": [
+        "groundwater",
+        "hydraulic"
+      ],
+      "irreducible_operation_count": 1,
+      "semantic_match": "pass"
+    },
+    {
+      "id": "M02",
+      "source_locator": "PDF page 2, Section 2.1, lag ordering paragraph and Figure 1",
+      "source_excerpt": "the hydraulic gradient and the flow occur simultaneously, consistent with the assumptions of classical Darcy’s law.",
+      "claim_anchor_terms": [
+        "simultaneous",
+        "Darcy"
+      ],
+      "irreducible_operation_count": 1,
+      "semantic_match": "pass"
+    },
+    {
+      "id": "M03",
+      "source_locator": "PDF page 2, Section 2.2, Equation (3)",
+      "source_excerpt": "we introduce two defined parameters. The first is the lagging ratio (𝜃), expressed as: 𝜃 = 𝜏𝑠 𝜏𝑞 (3)",
+      "claim_anchor_terms": [
+        "parameters",
+        "lagging ratio"
+      ],
+      "irreducible_operation_count": 1,
+      "semantic_match": "pass"
+    },
+    {
+      "id": "M04",
+      "source_locator": "PDF page 2, Section 2.2, paragraph after Equation (3)",
+      "source_excerpt": "inertial effects become increasingly significant. Conversely, when 𝜃 exceeds 1, microstructural interactions play a dominant role",
+      "claim_anchor_terms": [
+        "inertial",
+        "microstructural"
+      ],
+      "irreducible_operation_count": 1,
+      "semantic_match": "pass"
+    },
+    {
+      "id": "M05",
+      "source_locator": "PDF page 2, Section 2.2, Equation (4)",
+      "source_excerpt": "where 𝑆 is the storage coefficient [-], 𝑇 is the transmissivity [L2T−1], and 𝑟 is the radial distance from the pumping well [L].",
+      "claim_anchor_terms": [
+        "storage coefficient",
+        "transmissivity"
+      ],
+      "irreducible_operation_count": 1,
+      "semantic_match": "pass"
+    },
+    {
+      "id": "M06",
+      "source_locator": "PDF page 2, Section 2.2, paragraph after Equation (4)",
+      "source_excerpt": "where 𝑡𝑐,𝐷𝑎𝑟𝑐𝑦 [T] is the characteristic time of Darcy’s diffusion.",
+      "claim_anchor_terms": [
+        "characteristic time",
+        "Darcy"
+      ],
+      "irreducible_operation_count": 1,
+      "semantic_match": "pass"
+    },
+    {
+      "id": "M07",
+      "source_locator": "PDF pages 2-3, Section 2.3, Equation (5)",
+      "source_excerpt": "we utilize the least squares method in conjunction with the trust region reflective (TRF) algorithm",
+      "claim_anchor_terms": [
+        "trust region reflective",
+        "least squares"
+      ],
+      "irreducible_operation_count": 1,
+      "semantic_match": "pass"
+    },
+    {
+      "id": "M08",
+      "source_locator": "PDF page 3, Section 3.1, AIC and BIC definitions",
+      "source_excerpt": "Lower AIC and BIC values indicate a better balance between model complexity and goodness-of-fit",
+      "claim_anchor_terms": [
+        "AIC and BIC",
+        "complexity"
+      ],
+      "irreducible_operation_count": 1,
+      "semantic_match": "pass"
+    },
+    {
+      "id": "M09",
+      "source_locator": "PDF pages 3-5 and 9, Sections 3.1-3.4 and 3.7",
+      "source_excerpt": "the AIC and BIC values from the examined case studies (India, the United States, and Taiwan)",
+      "claim_anchor_terms": [
+        "AIC and BIC",
+        "examined case"
+      ],
+      "irreducible_operation_count": 1,
+      "semantic_match": "pass"
+    },
+    {
+      "id": "M10",
+      "source_locator": "PDF pages 3 and 5, Section 2.3 and Section 3.4, Figure 7",
+      "source_excerpt": "we adopted copula interpolation due to its ability to model non-Gaussian dependencies and account for spatial anomalies",
+      "claim_anchor_terms": [
+        "copula interpolation",
+        "non-Gaussian"
+      ],
+      "irreducible_operation_count": 1,
+      "semantic_match": "pass"
+    },
+    {
+      "id": "M11",
+      "source_locator": "PDF page 5, Section 3.4, Figure 8 percentile-width paragraph",
+      "source_excerpt": "we compute the 5th and 95th percentiles from the conditional cumulative distribution function of the parameter values",
+      "claim_anchor_terms": [
+        "conditional cumulative distribution",
+        "percentile"
+      ],
+      "irreducible_operation_count": 1,
+      "semantic_match": "pass"
+    },
+    {
+      "id": "M12",
+      "source_locator": "PDF pages 5-7, Sections 3.4-3.5, Figures 9 and 13",
+      "source_excerpt": "transformed the estimated spatial distributions of 𝜏𝑞 and 𝜏𝑠 into the spatial distribution of 𝜃",
+      "claim_anchor_terms": [
+        "transform",
+        "spatial"
+      ],
+      "irreducible_operation_count": 1,
+      "semantic_match": "pass"
+    },
+    {
+      "id": "M13",
+      "source_locator": "PDF pages 7 and 9, Section 3.6, Figure 14(a)",
+      "source_excerpt": "the fitted line is slightly shifted upward, indicating that 𝑡𝑐 values tend to be slightly greater than 𝑡𝑐,Darcy across the dataset. This is further supported by a coefficient of determination (𝑅2) of 0.83",
+      "claim_anchor_terms": [
+        "fitted line",
+        "0.83"
+      ],
+      "irreducible_operation_count": 1,
+      "semantic_match": "pass"
+    },
+    {
+      "id": "M14",
+      "source_locator": "PDF page 9, Section 3.6, Figure 14(b)",
+      "source_excerpt": "The transformation also improves the goodness-of-fit, with 𝑅2 of 0.96, indicating that 96% of the variability in 𝑡𝑐 can be explained by the relationship with 𝑡𝑐,Darcy after log transformation.",
+      "claim_anchor_terms": [
+        "log transformation",
+        "0.96"
+      ],
+      "irreducible_operation_count": 1,
+      "semantic_match": "pass"
+    },
+    {
+      "id": "M15",
+      "source_locator": "PDF page 9, Section 3.7, practical implications paragraphs",
+      "source_excerpt": "Identifying whether inertial or microstructural effects dominate helps optimize pumping schedules, recovery time predictions, and long-term yield assessments.",
+      "claim_anchor_terms": [
+        "pumping",
+        "recovery"
+      ],
+      "irreducible_operation_count": 1,
+      "semantic_match": "pass"
+    }
+  ],
+  "scene_items": [
+    {
+      "scene": 1,
+      "background_premise_count": 1,
+      "method_operation_count": 0,
+      "undeclared_scientific_content": "none",
+      "source_claims_checked": "pass"
+    },
+    {
+      "scene": 2,
+      "background_premise_count": 1,
+      "method_operation_count": 0,
+      "undeclared_scientific_content": "none",
+      "source_claims_checked": "pass"
+    },
+    {
+      "scene": 3,
+      "background_premise_count": 1,
+      "method_operation_count": 0,
+      "undeclared_scientific_content": "none",
+      "source_claims_checked": "pass"
+    },
+    {
+      "scene": 4,
+      "background_premise_count": 1,
+      "method_operation_count": 0,
+      "undeclared_scientific_content": "none",
+      "source_claims_checked": "pass"
+    },
+    {
+      "scene": 5,
+      "background_premise_count": 0,
+      "method_operation_count": 1,
+      "undeclared_scientific_content": "none",
+      "source_claims_checked": "pass"
+    },
+    {
+      "scene": 6,
+      "background_premise_count": 0,
+      "method_operation_count": 1,
+      "undeclared_scientific_content": "none",
+      "source_claims_checked": "pass"
+    },
+    {
+      "scene": 7,
+      "background_premise_count": 0,
+      "method_operation_count": 1,
+      "undeclared_scientific_content": "none",
+      "source_claims_checked": "pass"
+    },
+    {
+      "scene": 8,
+      "background_premise_count": 0,
+      "method_operation_count": 1,
+      "undeclared_scientific_content": "none",
+      "source_claims_checked": "pass"
+    },
+    {
+      "scene": 9,
+      "background_premise_count": 0,
+      "method_operation_count": 1,
+      "undeclared_scientific_content": "none",
+      "source_claims_checked": "pass"
+    },
+    {
+      "scene": 10,
+      "background_premise_count": 0,
+      "method_operation_count": 1,
+      "undeclared_scientific_content": "none",
+      "source_claims_checked": "pass"
+    },
+    {
+      "scene": 11,
+      "background_premise_count": 0,
+      "method_operation_count": 1,
+      "undeclared_scientific_content": "none",
+      "source_claims_checked": "pass"
+    },
+    {
+      "scene": 12,
+      "background_premise_count": 0,
+      "method_operation_count": 1,
+      "undeclared_scientific_content": "none",
+      "source_claims_checked": "pass"
+    },
+    {
+      "scene": 13,
+      "background_premise_count": 0,
+      "method_operation_count": 1,
+      "undeclared_scientific_content": "none",
+      "source_claims_checked": "pass"
+    },
+    {
+      "scene": 14,
+      "background_premise_count": 0,
+      "method_operation_count": 1,
+      "undeclared_scientific_content": "none",
+      "source_claims_checked": "pass"
+    },
+    {
+      "scene": 15,
+      "background_premise_count": 0,
+      "method_operation_count": 1,
+      "undeclared_scientific_content": "none",
+      "source_claims_checked": "pass"
+    },
+    {
+      "scene": 16,
+      "background_premise_count": 0,
+      "method_operation_count": 1,
+      "undeclared_scientific_content": "none",
+      "source_claims_checked": "pass"
+    },
+    {
+      "scene": 17,
+      "background_premise_count": 0,
+      "method_operation_count": 1,
+      "undeclared_scientific_content": "none",
+      "source_claims_checked": "pass"
+    },
+    {
+      "scene": 18,
+      "background_premise_count": 0,
+      "method_operation_count": 1,
+      "undeclared_scientific_content": "none",
+      "source_claims_checked": "pass"
+    },
+    {
+      "scene": 19,
+      "background_premise_count": 0,
+      "method_operation_count": 1,
+      "undeclared_scientific_content": "none",
+      "source_claims_checked": "pass"
+    },
+    {
+      "scene": 20,
+      "background_premise_count": 0,
+      "method_operation_count": 0,
+      "undeclared_scientific_content": "none",
+      "source_claims_checked": "pass"
+    }
+  ],
+  "unmapped_source_items": [],
+  "publisher_pdf_sha256": "55c1e65544d0335a8ee3a85a80b424ee452d3bd0926f15b5ab2ec75480096996"
+}

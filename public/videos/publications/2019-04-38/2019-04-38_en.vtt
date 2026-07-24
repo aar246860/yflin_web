@@ -1,74 +1,73 @@
 WEBVTT
 
 1
-00:00:00.000 --> 00:00:03.000
-Measured unconfined-aquifer drawdown commonly forms an S-shaped curve
+00:00:00.000 --> 00:00:06.250
+Unconfined drawdown can pass through aquifer-storage, gravity-drainage, and combined-release regimes.
 
 2
-00:00:04.000 --> 00:00:07.000
-Capillary force retains pore water above a declining water table, so
+00:00:06.250 --> 00:00:12.500
+Capillary force retains pore water above the falling water table, so drainage is not instantaneous.
 
 3
-00:00:08.000 --> 00:00:11.000
-Instantaneous complete drainage at the water table can fail to provide
+00:00:12.500 --> 00:00:18.750
+Assuming instantaneous drainage can distort the specific yield inferred from a pumping test.
 
 4
-00:00:12.000 --> 00:00:15.000
-A radial-vertical groundwater-flow equation for drawdown
+00:00:18.750 --> 00:00:25.100
+The analysis begins with axisymmetric radial-vertical flow in a homogeneous anisotropic aquifer.
 
 5
-00:00:16.000 --> 00:00:19.000
-An inner flux condition containing wellbore storage
+00:00:25.100 --> 00:00:31.350
+The pumping rate is partitioned between aquifer inflow and water released from casing storage.
 
 6
-00:00:20.000 --> 00:00:23.000
-A free-surface relation with flux lag tau q and drawdown lag tau s
+00:00:31.350 --> 00:00:37.700
+Equation 7b assigns separate response times to vertical flux and drawdown at the free surface.
 
 7
-00:00:24.000 --> 00:00:27.000
-A first-order Taylor representation of the delayed relation
+00:00:37.700 --> 00:00:43.950
+The two time shifts are represented by a first-order Taylor expansion.
 
 8
-00:00:28.000 --> 00:00:31.000
-A linearized free-surface equation containing tau q and tau s
+00:00:43.950 --> 00:00:50.300
+Substitution into free-surface mass balance gives Equation 9, which returns to Neuman when both lag times vanish.
 
 9
-00:00:32.000 --> 00:00:35.000
-A dimensionless pumping model and dimensionless lag parameters
+00:00:50.300 --> 00:00:56.550
+Dimensionless variables retain aquifer anisotropy, well geometry, and both lag parameters.
 
 10
-00:00:36.000 --> 00:00:39.000
-Governing equations represented in the Laplace parameter p
+00:00:56.550 --> 00:01:02.800
+The Laplace transform moves the time derivatives into the transform parameter.
 
 11
-00:00:40.000 --> 00:00:43.000
-Drawdown and well-level amplitudes in the Laplace-Weber domain
+00:01:02.800 --> 00:01:09.050
+The Weber transform resolves the finite-radius radial boundary.
 
 12
-00:00:44.000 --> 00:00:47.000
-A radial drawdown integral in the Laplace domain
+00:01:09.050 --> 00:01:15.300
+Inverse Weber integration restores radial position in the Laplace domain.
 
 13
-00:00:48.000 --> 00:00:51.000
-Transient drawdown in the time domain
+00:01:15.300 --> 00:01:21.650
+Crump inversion returns the transient drawdown hydrograph in physical time.
 
 14
-00:00:52.000 --> 00:00:55.000
-Dimensionless sensitivity curves X k for drawdown
+00:01:21.650 --> 00:01:28.000
+The reported sensitivity analysis ranks the drawdown lag above the flux lag.
 
 15
-00:00:56.000 --> 00:00:59.000
-Cape Cod hydraulic parameter estimates with SEE and ME for four
+00:01:28.000 --> 00:01:34.850
+Cape Cod fits give specific-yield estimates of 0.20, 0.16, 0.18, and 0.18.
 
 16
-00:01:00.000 --> 00:01:03.000
-Borden hydraulic and lag parameter estimates with SEE and ME for four
+00:01:34.850 --> 00:01:41.600
+Borden fits give 0.12, 0.20, 0.11, and 0.17, compared with the cited laboratory value of 0.30.
 
 17
-00:01:04.000 --> 00:01:07.000
-Saint Pardon hydraulic and lag parameter estimates with SEE and ME for
+00:01:41.600 --> 00:01:48.450
+At Saint Pardon, the fitted lag pair changes between observation distances of 10 and 30 metres.
 
 18
-00:01:08.000 --> 00:01:11.000
-Across the three owned site-fit operations, the present two-lag
-
+00:01:48.450 --> 00:01:55.200
+Across three field sites, the fitted lag times remain test- and site-conditioned rather than universal constants.

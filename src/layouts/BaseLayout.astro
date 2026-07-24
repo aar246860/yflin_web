@@ -59,7 +59,7 @@ const jsonLd = {
   "@graph": [
     personNode(rootUrl),
     websiteNode(rootUrl),
-    webPageNode(rootUrl, canonicalUrl, pageTitle, description),
+    webPageNode(rootUrl, canonicalUrl, pageTitle, description, lang),
     ...toJsonLdGraph(schema),
   ],
 };

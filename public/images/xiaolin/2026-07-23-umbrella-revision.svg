@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title id="title">雨傘提交了修訂稿</title>
+  <desc id="desc">一把紅色雨傘站在水窪旁修改文件，小林從半開的抽屜裡探頭。</desc>
+  <rect width="1200" height="800" fill="#f8fbf7"/>
+  <path d="M0 560C180 525 335 590 505 558C710 520 845 584 1200 530V800H0Z" fill="#d7e9e4"/>
+  <path d="M82 628C195 572 350 587 444 645C335 702 175 707 82 628Z" fill="#7fb8ba" opacity=".58"/>
+  <path d="M118 633C208 603 313 610 385 641" fill="none" stroke="#f8fbf7" stroke-width="12" stroke-linecap="round" opacity=".7"/>
+
+  <g transform="translate(330 160) rotate(-4)">
+    <path d="M22 245C73 55 351 15 510 195C399 171 321 188 255 239C178 196 104 198 22 245Z" fill="#c9584e" stroke="#193b3d" stroke-width="8" stroke-linejoin="round"/>
+    <path d="M255 239C270 155 313 95 384 57M255 239C212 159 147 109 83 108" fill="none" stroke="#193b3d" stroke-width="5" opacity=".65"/>
+    <path d="M255 237L271 533C276 621 368 624 375 557" fill="none" stroke="#193b3d" stroke-width="13" stroke-linecap="round"/>
+    <circle cx="249" cy="278" r="7" fill="#193b3d"/>
+    <circle cx="282" cy="276" r="7" fill="#193b3d"/>
+    <path d="M251 302Q268 315 286 299" fill="none" stroke="#193b3d" stroke-width="6" stroke-linecap="round"/>
+    <path d="M197 374L143 421M327 365L385 405" fill="none" stroke="#193b3d" stroke-width="10" stroke-linecap="round"/>
+  </g>
+
+  <g transform="translate(720 350) rotate(5)">
+    <rect x="0" y="0" width="310" height="230" fill="#fffdf8" stroke="#193b3d" stroke-width="6"/>
+    <path d="M45 54H261M45 89H230M45 124C97 92 133 156 181 122C212 100 246 105 270 128M45 169H213" fill="none" stroke="#6d8d8b" stroke-width="7" stroke-linecap="round"/>
+    <path d="M246 184l31 22M250 208l24-33" fill="none" stroke="#c9584e" stroke-width="9" stroke-linecap="round"/>
+  </g>
+
+  <g transform="translate(852 244) rotate(36)">
+    <rect x="-10" y="0" width="24" height="238" rx="8" fill="#d96a58" stroke="#193b3d" stroke-width="5"/>
+    <path d="M-10 238H14L2 269Z" fill="#ead6ad" stroke="#193b3d" stroke-width="5"/>
+    <path d="M-5 12H9" stroke="#f5c1b7" stroke-width="5"/>
+  </g>
+
+  <g transform="translate(760 596)">
+    <path d="M0 0H360V142H0Z" fill="#315d5d" stroke="#193b3d" stroke-width="7"/>
+    <path d="M0 0H360V47H0Z" fill="#f0b765" stroke="#193b3d" stroke-width="7"/>
+    <circle cx="182" cy="23" r="8" fill="#193b3d"/>
+    <g transform="translate(92 -48)">
+      <path d="M0 -44C25 -20 35 2 35 23C35 47 19 63 0 63C-20 63 -35 47 -35 23C-35 2 -25 -20 0 -44Z" fill="#fffdf8" stroke="#193b3d" stroke-width="6"/>
+      <circle cx="-12" cy="19" r="5" fill="#193b3d"/>
+      <circle cx="12" cy="19" r="5" fill="#193b3d"/>
+      <path d="M-9 39Q0 46 9 39" fill="none" stroke="#c9584e" stroke-width="4" stroke-linecap="round"/>
+    </g>
+  </g>
+
+  <path d="M1035 155c30-18 54-7 48 14c-4 15-26 17-28 35M1052 225v2" fill="none" stroke="#c9584e" stroke-width="11" stroke-linecap="round"/>
+  <path d="M1105 188c24-13 44-4 40 13c-3 12-21 14-22 29M1121 247v2" fill="none" stroke="#c9584e" stroke-width="8" stroke-linecap="round" opacity=".72"/>
+</svg>

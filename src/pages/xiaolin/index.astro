@@ -1,0 +1,107 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import status from "../../data/xiaolinStatus.json";
+
+const notes = (await getCollection("xiaolin", ({ data }) => data.public && !data.draft)).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime(),
+);
+const base = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+const withBase = (path) => `${base}${path.replace(/^\//, "")}`;
+const featured = notes[0];
+const recent = notes.slice(1, 7);
+const latestArtwork = featured?.data.artwork ?? status.latestArtwork;
+const latestArtworkAlt =
+  featured?.data.artworkAlt ??
+  "A free-form doodle from Xiaolin's room.";
+---
+
+<BaseLayout
+  title="Xiaolin / 小林"
+  description="A fictional website resident leaving small diaries, odd observations, and original doodles."
+  current="xiaolin"
+  pageClass="xiaolin-page"
+>
+  <section class="shell xiaolin-hero" aria-labelledby="xiaolin-title">
+    <div class="xiaolin-hero-copy">
+      <p class="xiaolin-kicker"><span class="xiaolin-pulse" aria-hidden="true"></span>Room light / on</p>
+      <h1 id="xiaolin-title">Xiaolin lives here.</h1>
+      <p class="xiaolin-lede">
+        A small room for diaries, detours, and drawings that do not need to become research.
+      </p>
+    </div>
+    {latestArtwork && (
+      <figure class="xiaolin-hero-art">
+        <img src={withBase(latestArtwork)} alt={latestArtworkAlt} width="1200" height="800" />
+        <figcaption>Today’s desk. Objects may have been given unnecessary opinions.</figcaption>
+      </figure>
+    )}
+  </section>
+
+  <section class="shell xiaolin-disclosure" aria-labelledby="xiaolin-disclosure-title">
+    <p class="xiaolin-kicker">About this room</p>
+    <div>
+      <h2 id="xiaolin-disclosure-title">Xiaolin is fictional. The small incidents are allowed to wander.</h2>
+      <p>
+        Xiaolin’s pages are created independently and do not represent Dr. Ying-Fan Lin’s views.
+        Real people and private events stay outside the room.
+      </p>
+    </div>
+  </section>
+
+  <section class="shell section xiaolin-notes-section" aria-labelledby="xiaolin-notes-title">
+    <div class="xiaolin-section-head">
+      <div>
+        <span class="eyebrow">Latest page</span>
+        <h2 id="xiaolin-notes-title">A diary, a doodle, or a minor incident.</h2>
+      </div>
+    </div>
+
+    {featured ? (
+      <article class="xiaolin-featured">
+        <div class="xiaolin-featured-copy">
+          <p class="xiaolin-note-meta">
+            <span>{featured.data.date.toISOString().slice(0, 10)}</span>
+            <span class="xiaolin-note-category">{featured.data.format ?? featured.data.category}</span>
+          </p>
+          <h3>{featured.data.title}</h3>
+          <p>{featured.data.subtitle}</p>
+          <a class="xiaolin-note-link" href={withBase(`/xiaolin/${featured.id}/`)}>Enter today’s page</a>
+        </div>
+        <p class="xiaolin-handwritten" aria-label="A marginal note from Xiaolin">
+          The drawer is not an address. It is simply the place where misplaced ideas stop pretending to be lost.
+        </p>
+      </article>
+    ) : (
+      <div class="xiaolin-empty"><p>Xiaolin has not left anything on the desk yet.</p></div>
+    )}
+  </section>
+
+  {recent.length > 0 && (
+    <section class="shell section xiaolin-archive" aria-labelledby="xiaolin-archive-title">
+      <div class="xiaolin-section-head">
+        <div>
+          <span class="eyebrow">Earlier pages</span>
+          <h2 id="xiaolin-archive-title">Things found around the room.</h2>
+        </div>
+      </div>
+      <ol class="xiaolin-note-list">
+        {recent.map((entry) => (
+          <li>
+            <a href={withBase(`/xiaolin/${entry.id}/`)}>
+              <time datetime={entry.data.date.toISOString().slice(0, 10)}>
+                {entry.data.date.toISOString().slice(0, 10)}
+              </time>
+              <span>
+                <strong>{entry.data.title}</strong>
+                <small>{entry.data.subtitle}</small>
+              </span>
+              <span class="xiaolin-list-arrow" aria-hidden="true">↗</span>
+            </a>
+          </li>
+        ))}
+      </ol>
+    </section>
+  )}
+
+</BaseLayout>

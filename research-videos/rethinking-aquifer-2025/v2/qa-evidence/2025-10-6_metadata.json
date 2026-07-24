@@ -1,0 +1,12 @@
+{
+  "title": "Rethinking Aquifer Characterization",
+  "description": "A geometry-first visual explanation of lag diagnostics, penalized model comparison, and conditional spatial interpretation in pumping-test aquifer characterization.",
+  "generated_at": "2026-07-21T00:45:33.967136+00:00",
+  "artifacts": {
+    "mp4": "2025-10-6.mp4",
+    "contact_sheet": "2025-10-6_contact_sheet.png",
+    "html": "2025-10-6.html",
+    "qa_notes": "2025-10-6_qa.md"
+  },
+  "ffprobe": "codec_name=h264\nprofile=Constrained Baseline\nwidth=1920\nheight=1080\npix_fmt=yuv420p\nlevel=31\nduration=120.000000\nnb_frames=3600\nformat_name=mov,mp4,m4a,3gp,3g2,mj2\nduration=120.000000\nsize=10612949\n"
+}

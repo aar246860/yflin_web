@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">鈕扣搭錯了洗衣機</title>
+  <desc id="desc">暖色手繪洗衣間。一枚橘色鈕扣拿著車票站在洗衣機前，滾筒內有襪子、衣物和泡泡，周圍還有洗衣籃、硬幣、失物招領告示與從洗衣間一角探頭的小林。</desc>
+  <rect width="1200" height="760" fill="#f6f1e8"/>
+  <rect y="570" width="1200" height="190" fill="#dbe6df"/>
+  <path d="M0 570H1200" stroke="#375a62" stroke-width="8"/>
+
+  <g id="tiles" opacity=".5" stroke="#c9d8d2" stroke-width="3">
+    <path d="M0 145H1200M0 290H1200M0 435H1200"/>
+    <path d="M150 0V570M300 0V570M450 0V570M600 0V570M750 0V570M900 0V570M1050 0V570"/>
+  </g>
+
+  <g id="washer">
+    <rect x="435" y="135" width="445" height="500" rx="28" fill="#fffdf7" stroke="#264b52" stroke-width="10"/>
+    <rect x="470" y="178" width="375" height="85" rx="16" fill="#d9ece8" stroke="#264b52" stroke-width="7"/>
+    <circle cx="780" cy="220" r="24" fill="#f2a65a" stroke="#264b52" stroke-width="6"/>
+    <circle cx="720" cy="220" r="13" fill="#79aeb2"/>
+    <circle cx="655" cy="220" r="13" fill="#c96f58"/>
+    <circle cx="658" cy="446" r="155" fill="#b8d5d7" stroke="#264b52" stroke-width="12"/>
+    <circle cx="658" cy="446" r="123" fill="#eef7f5" stroke="#6f989b" stroke-width="6"/>
+    <path d="M547 445c49-71 96 49 154-4 43-40 74 11 79 52-34 47-82 75-137 75-54 0-102-28-136-71 2-18 14-37 40-52z" fill="#7fb9bf" opacity=".72"/>
+    <path d="M575 379c42-30 68-14 76 24-21 29-45 39-75 20-17-12-17-31-1-44z" fill="#e6b85c" stroke="#264b52" stroke-width="5"/>
+    <path d="M692 383c31-17 60 5 53 38l-33 40-47-28z" fill="#d96f5f" stroke="#264b52" stroke-width="5"/>
+    <path d="M565 507c27-28 64-29 91-2l-27 54-63-17z" fill="#fff7e5" stroke="#264b52" stroke-width="5"/>
+    <path d="M573 515l55 30M687 390l42 55" stroke="#264b52" stroke-width="4" opacity=".55"/>
+    <g fill="#fff" stroke="#6f989b" stroke-width="3">
+      <circle cx="599" cy="349" r="16"/><circle cx="633" cy="334" r="10"/><circle cx="754" cy="354" r="15"/>
+      <circle cx="772" cy="383" r="9"/><circle cx="536" cy="474" r="12"/><circle cx="734" cy="528" r="18"/>
+    </g>
+  </g>
+
+  <g id="button-character">
+    <circle cx="357" cy="548" r="70" fill="#ef9d4d" stroke="#264b52" stroke-width="9"/>
+    <g fill="#f7d7aa" stroke="#264b52" stroke-width="5">
+      <circle cx="334" cy="526" r="10"/><circle cx="379" cy="526" r="10"/>
+      <circle cx="334" cy="568" r="10"/><circle cx="379" cy="568" r="10"/>
+    </g>
+    <path d="M313 543c-37-11-58-2-73 22M399 543c34-8 57 1 70 25" fill="none" stroke="#264b52" stroke-width="7" stroke-linecap="round"/>
+    <path d="M330 616l-15 46M382 615l19 47" stroke="#264b52" stroke-width="8" stroke-linecap="round"/>
+    <path d="M240 542l-22-55 93-17 17 57z" fill="#fff7dd" stroke="#264b52" stroke-width="6"/>
+    <path d="M236 504l61-11M242 520l47-9" stroke="#c96f58" stroke-width="4"/>
+    <path d="M340 594c12 8 25 8 37 0" fill="none" stroke="#264b52" stroke-width="5" stroke-linecap="round"/>
+  </g>
+
+  <g id="laundry-basket">
+    <path d="M915 470h190l-24 178H938z" fill="#e4b96f" stroke="#264b52" stroke-width="9"/>
+    <path d="M935 505h150M928 548h164M945 592h130" stroke="#b0794a" stroke-width="6"/>
+    <path d="M966 470c-15-58 65-74 85-12" fill="#7caeb2" stroke="#264b52" stroke-width="7"/>
+    <path d="M1005 459c16-52 83-35 78 12" fill="#d96f5f" stroke="#264b52" stroke-width="7"/>
+  </g>
+
+  <g id="lost-and-found-note">
+    <rect x="70" y="115" width="250" height="185" rx="8" fill="#fff8df" stroke="#264b52" stroke-width="7" transform="rotate(-2 195 207)"/>
+    <path d="M113 165h164M110 204h132M109 242h151" stroke="#c96f58" stroke-width="7" stroke-linecap="round"/>
+    <circle cx="195" cy="102" r="12" fill="#ef9d4d" stroke="#264b52" stroke-width="5"/>
+  </g>
+
+  <g id="floor-objects">
+    <circle cx="525" cy="674" r="24" fill="#d5b450" stroke="#264b52" stroke-width="6"/>
+    <circle cx="525" cy="674" r="12" fill="none" stroke="#fff0a3" stroke-width="4"/>
+    <path d="M721 650l124 15-18 55-125-15z" fill="#f4e3c1" stroke="#264b52" stroke-width="6"/>
+    <path d="M731 673l82 10M728 693l61 7" stroke="#b98a6a" stroke-width="4"/>
+    <path d="M590 690c25-25 53-26 78-3l-10 42h-78z" fill="#d96f5f" stroke="#264b52" stroke-width="6"/>
+    <path d="M596 699h57" stroke="#fff7e5" stroke-width="5"/>
+  </g>
+
+  <g id="xiaolin">
+    <path d="M105 430c14-58 66-95 124-83 57 11 94 68 80 126l-25 102H80z" fill="#375a62" stroke="#264b52" stroke-width="9"/>
+    <circle cx="198" cy="419" r="58" fill="#f3c8a9" stroke="#264b52" stroke-width="8"/>
+    <path d="M143 407c6-54 93-78 118-19-35-17-66-4-91 27z" fill="#2f3f42"/>
+    <circle cx="181" cy="424" r="5" fill="#264b52"/><circle cx="219" cy="424" r="5" fill="#264b52"/>
+    <path d="M187 448c10 6 20 6 29-1" fill="none" stroke="#264b52" stroke-width="4" stroke-linecap="round"/>
+    <path d="M87 386h54v210H87z" fill="#efe7d5" stroke="#264b52" stroke-width="8"/>
+    <path d="M114 403v168" stroke="#b7a58d" stroke-width="5"/>
+  </g>
+
+  <g id="motion-marks" fill="none" stroke="#c96f58" stroke-width="7" stroke-linecap="round">
+    <path d="M890 337c32 6 51 21 60 45"/>
+    <path d="M908 307c37 5 68 24 87 55"/>
+    <path d="M410 451c24-18 43-25 68-21"/>
+  </g>
+</svg>

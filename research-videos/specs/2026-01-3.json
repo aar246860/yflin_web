@@ -10,7 +10,7 @@
     "inputData": "Multi-frequency river-stage and groundwater-head records at multiple distances from Tuolumne Meadows, USA, and the Meghna River, Bangladesh.",
     "method": "Replace instantaneous Darcy response with a two-lag causal kernel, derive harmonic amplitude and phase, quantify the phase-amplitude mismatch, extract coherent transfer functions, fit lagging and classical models, and evaluate sensitivity, AIC, and bootstrap uncertainty.",
     "benchmark": "The homogeneous diffusion solution, numerical frequency-domain verification, independent site lithology and hydraulic-property ranges, residual RMSE, and AIC.",
-    "uncertainty": "Delete-one-block jackknife errors weight the inversion. Five thousand Gaussian amplitude-phase realizations are refitted, interquartile-filtered, and summarized by posterior means and one-sigma intervals; a separate 1000-resample constituent bootstrap produces diffusivity densities. Joint estimation of diffusivity and both lags requires multiple well-separated frequencies and at least two distances, while a one-frequency fit fixes one lag a priori.",
+    "uncertainty": "Delete-one-block jackknife errors weight the inversion. Five thousand Gaussian amplitude-phase realizations are refitted, interquartile-filtered, and summarized by ensemble means and one-sigma intervals; a separate 1000-resample constituent bootstrap produces diffusivity densities. Joint estimation of diffusivity and both lags requires multiple well-separated frequencies and at least two distances, while a one-frequency fit fixes one lag a priori.",
     "conclusion": "Two field-scale delays jointly fit amplitude and phase with more plausible diffusivities at both sites, while reducing to classical diffusion when both delays vanish."
   },
   "narrative": {
@@ -119,7 +119,7 @@
       "motionPurpose": "Turn one propagating wave into separately inspectable envelope and crest motion.",
       "stepDetail": "Apply the harmonic ansatz, choose the decaying root, separate real and imaginary parts, and label amplitude and phase.",
       "transitionBridge": "Alpha and beta generate the two apparent classical diffusivities.",
-      "minimalText": "kappa = -alpha + i beta"
+      "minimalText": "lambda = -alpha - i beta; beta = |Im lambda|"
     },
     {
       "id": "M04",
@@ -450,12 +450,12 @@
       "input": "Five thousand synthetic amplitude-phase records",
       "operation": "Fit uncertainty realizations",
       "output": "Five thousand candidate diffusivity and lag parameter refits",
-      "validity": "The source states that the Gaussian realizations are refit before posterior summaries are formed.",
+      "validity": "The source states that the Gaussian realizations are refit before ensemble summaries are formed.",
       "locator": "PDF page 10, Appendix B Data processing inversion settings and uncertainty",
-      "sourceExcerpt": "refit, and summarized as posterior means",
+      "sourceExcerpt": "refit and summarized as ensemble means and one-sigma intervals",
       "anchorTerms": [
         "refit",
-        "posterior means"
+        "ensemble means"
       ],
       "visualObject": "Repeated bounded parameter fits converging from the Gaussian amplitude-phase cloud",
       "motionPurpose": "Propagate observation error through the full parameter inversion.",
@@ -468,7 +468,7 @@
       "input": "Candidate parameter vectors from the 5000 uncertainty refits",
       "operation": "Filter aberrant refits",
       "output": "Interquartile-filtered diffusivity and lag parameter samples",
-      "validity": "Appendix B applies interquartile filtering to aberrant refits before reporting posterior summaries.",
+      "validity": "Appendix B applies interquartile filtering to aberrant refits before reporting ensemble summaries.",
       "locator": "PDF page 10, Appendix B Data processing inversion settings and uncertainty",
       "sourceExcerpt": "interquartile filtering of aberrant refits",
       "anchorTerms": [
@@ -476,28 +476,28 @@
         "aberrant refits"
       ],
       "visualObject": "Candidate parameter points passing through an interquartile fence into a retained cloud",
-      "motionPurpose": "Separate the reported posterior sample from aberrant numerical refits.",
+      "motionPurpose": "Separate the retained refit ensemble from aberrant numerical refits.",
       "stepDetail": "Place the candidate parameter vectors against the interquartile bounds and retain only the non-aberrant refits.",
-      "transitionBridge": "The retained parameter cloud supplies the posterior summaries in M24.",
+      "transitionBridge": "The retained parameter cloud supplies the ensemble summaries in M24.",
       "minimalText": "Filter aberrant refits"
     },
     {
       "id": "M24",
       "input": "Interquartile-filtered parameter samples",
-      "operation": "Summarize posterior intervals",
-      "output": "Posterior means and one-sigma intervals for diffusivity and lag parameters",
-      "validity": "The filtered refits are summarized by posterior means and one-sigma intervals as stated in Appendix B.",
+      "operation": "Summarize ensemble intervals",
+      "output": "Ensemble means and one-sigma intervals for diffusivity and lag parameters",
+      "validity": "The filtered refits are summarized by ensemble means and one-sigma intervals as stated in Appendix B.",
       "locator": "PDF page 10, Appendix B Data processing inversion settings and uncertainty",
       "sourceExcerpt": "and one-sigma intervals after",
       "anchorTerms": [
         "one-sigma intervals",
         "after"
       ],
-      "visualObject": "Filtered parameter distributions with posterior-mean markers and one-sigma interval widths",
+      "visualObject": "Filtered parameter refits with ensemble-mean markers and one-sigma interval widths",
       "motionPurpose": "Expose the location and spread of the retained parameter uncertainty.",
       "stepDetail": "Mark the mean of each filtered parameter distribution and span one standard deviation around it.",
       "transitionBridge": "The full three-parameter uncertainty result exposes the fallback needed for one-frequency data in M25.",
-      "minimalText": "Posterior mean plus one sigma"
+      "minimalText": "Ensemble mean plus one sigma"
     },
     {
       "id": "M25",
@@ -629,7 +629,7 @@
   "symbols": [
     {"latex": "\\tau_q", "firstUseOwner": "B03", "visualObject": "Clock attached to discharge-path adjustment", "meaning": "Flux-relaxation time", "unit": "T", "transition": "Label the flux-memory clock tau_q."},
     {"latex": "\\tau_h", "firstUseOwner": "B03", "visualObject": "Clock between communicating storage domains", "meaning": "Inter-domain head-equilibration time", "unit": "T", "transition": "Label the inter-domain clock tau_h."},
-    {"latex": "\\kappa=-\\alpha+i\\beta", "firstUseOwner": "M03", "visualObject": "Damped propagating groundwater wave", "meaning": "Complex spatial wavenumber with damping coefficient and phase gradient", "unit": "L^{-1}", "transition": "Split the wave into envelope alpha and crest-motion beta."},
+    {"latex": "\\lambda=-\\alpha-i\\beta,\\quad\\beta=|\\operatorname{Im}\\lambda|", "firstUseOwner": "M03", "visualObject": "Damped propagating groundwater wave", "meaning": "Decaying complex spatial wavenumber with attenuation and positive phase-lag gradient", "unit": "L^{-1}", "transition": "Split the wave into envelope alpha and crest-motion beta."},
     {"latex": "A_h=e^{-\\alpha x_D}", "firstUseOwner": "M03", "visualObject": "Exponential amplitude envelope", "meaning": "Head amplitude ratio", "unit": "dimensionless", "transition": "Transform the shrinking wave envelope into Ah."},
     {"latex": "R=D_{phase}/D_{amplitude}", "firstUseOwner": "M04", "visualObject": "Phase-amplitude mismatch color map", "meaning": "Ratio of apparent diffusivities", "unit": "dimensionless", "transition": "Combine the two diffusivity gauges into R."}
   ],

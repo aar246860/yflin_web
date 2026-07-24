@@ -38,6 +38,32 @@ const fieldNotes = defineCollection({
   }),
 });
 
+const xiaolin = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./src/content/xiaolin" }),
+  schema: z.object({
+    title: z.string(),
+    subtitle: z.string(),
+    lang: z.enum(["en", "zh-TW"]),
+    date: z.coerce.date(),
+    updated: z.coerce.date(),
+    category: z.string(),
+    tags: z.array(z.string()),
+    sourceProjects: z.array(z.string()),
+    relatedPublications: z.array(z.string()),
+    summaryZh: z.string(),
+    metaDescription: z.string().optional(),
+    public: z.boolean().default(false),
+    autoPublish: z.boolean().default(false),
+    draft: z.boolean().default(true),
+    generated: z.boolean().default(false),
+    format: z.enum(["diary", "doodle", "field-report"]).optional(),
+    artwork: z.string().optional(),
+    artworkAlt: z.string().optional(),
+    disclosure: z.string().optional(),
+    fictionalized: z.boolean().default(false),
+  }),
+});
+
 const projects = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./src/content/projects" }),
   schema: z.object({
@@ -56,5 +82,6 @@ const projects = defineCollection({
 export const collections = {
   concepts,
   "field-notes": fieldNotes,
+  xiaolin,
   projects,
 };

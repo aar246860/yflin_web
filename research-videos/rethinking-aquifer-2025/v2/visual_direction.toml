@@ -1,0 +1,68 @@
+schema_version = 1
+rendering_target = "1080p"
+audience = "groundwater researchers, practitioners, and technically curious collaborators"
+viewing_conditions = ["desktop", "projection", "phone"]
+visual_character = ["rigorous", "geometry-first", "field-grounded"]
+design_read = "For a technically capable public audience viewing on projection, desktop, or phone, a paper-white aquifer stage turns one pumping-test timing mismatch into lag geometry, penalized comparisons, conditional spatial distributions, and bounded field diagnostics at 1080p."
+design_variance = 4
+motion_intensity = 5
+visual_density = 5
+forbidden_defaults = ["decorative_particles", "card_grid", "unmotivated_glow", "unmotivated_bounce"]
+
+[reference]
+kind = "manuscript"
+locator = "paper.pdf, Figures 1-14 and Equations (1)-(5); local Manim style-frame study"
+external_access_authorized = false
+
+[typography]
+font_family = "Arial"
+math_font = "Latin Modern Math"
+title_px = 44
+body_px = 30
+math_px = 38
+annotation_px = 24
+minimum_downsampled_px = 18
+
+[color_roles]
+background = "#F6F8F5"
+foreground = "#112D32"
+focal = "#087F8C"
+secondary = "#566D70"
+warning = "#B64A35"
+uncertainty = "#B77A1F"
+
+[stroke_widths]
+grid = 1.0
+secondary = 2.0
+primary = 4.0
+focus = 6.0
+
+[spacing]
+frame_margin = 0.45
+caption_band = 1.0
+formula_lane = 1.25
+minimum_gap = 0.10
+
+[motion]
+runtime = "manim"
+gsap_role = "concept-only"
+allowed_classes = ["trace", "reveal", "same-object-transform", "camera-bridge", "fade-replace", "hold"]
+default_duration = 0.8
+revelation_pause = 1.5
+formula_pause = 1.6
+view_change_pause = 1.3
+
+[[style_frames]]
+role = "context"
+path = "style-frames/context.png"
+sha256 = "62381546e5f572ac238b1235f31d78d93dd14e0591e50dd92a2b96497cbf8c8f"
+
+[[style_frames]]
+role = "method"
+path = "style-frames/method.png"
+sha256 = "cfb0f810b988bf24091b087b4300155ac200983b2d5283c37955a8a2283f5c48"
+
+[[style_frames]]
+role = "result"
+path = "style-frames/result.png"
+sha256 = "a3814e0831b77f7f332b7eab2047c6aa603a45f5325d0ee6245d1e398fe6976b"

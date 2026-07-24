@@ -29,7 +29,7 @@ const selectedPublications = selectedPublicationIds
   .filter(Boolean);
 const publicRecords = publications.filter((publication) => ["published", "accepted"].includes(publication.status));
 const studentPublications = publications.filter((publication) => studentPublicationIds.includes(publication.id));
-const publicationMediaVersion = "20260719";
+const publicationMediaVersion = "20260721";
 const withMediaVersion = (path: string) => `${withBase(path)}?v=${publicationMediaVersion}`;
 const roleLabel: Record<string, string> = {
   team_role_pi: "Faculty",
@@ -57,7 +57,7 @@ const homeSchema = [
 
 <BaseLayout
   title="Lin Groundwater Hydraulics Group"
-  description="Lin Groundwater Hydraulics Group studies analytical well hydraulics, Lagging Theory, transformation uncertainty, and groundwater-informed subsurface energy systems."
+  description="Lin Groundwater Hydraulics Group studies analytical well hydraulics, Lagging Theory, transformation uncertainty, and groundwater-informed subsurface energy decisions."
   current="home"
   canonicalPath="/"
   image="/media/team-life/jpgu-2026/jpgu-2026-team-selfie.jpg"
@@ -82,7 +82,7 @@ const homeSchema = [
         <div class="home-team__people">
           <p>
             Conference exchange, student-led presentations, derivation, model comparison, and figure checking are part
-            of how the group formulates research questions.
+            of how the group develops research questions.
           </p>
           <ul>
             {members.currentMembers.map((member) => (
@@ -114,7 +114,7 @@ const homeSchema = [
       <div class="home-section-heading">
         <p class="home-kicker">One physical question · four research lines</p>
         <h2 id="programs-title">When does the subsurface fail to respond instantaneously?</h2>
-        <p>The programme moves from analytical structure to field analysis, then propagates analytical-model discrepancies into engineering decisions.</p>
+        <p>The programme moves from analytical structure to field interpretation, then carries model disagreement into engineering decisions.</p>
       </div>
       <div class="home-program-list">
         {researchPrograms.map((program) => (
@@ -139,12 +139,12 @@ const homeSchema = [
         <h2 id="evidence-title">A research programme built from equations, records, and decisions.</h2>
         <p>
           The group’s work moves from analytical well hydraulics to non-instantaneous responses and model-conditioned
-          uncertainty. The statements below are strictly grounded in the published research record.
+          uncertainty. The claims below are deliberately tied to the public research record.
         </p>
       </div>
       <div class="home-proof__numbers" aria-label="Public research record">
         <div><strong>{publicRecords.length}</strong><span>records indexed in the public publication archive</span></div>
-        <div><strong>10+</strong><span>years connecting analytical solutions with field observations and parameter estimation</span></div>
+        <div><strong>10+</strong><span>years connecting analytical solutions with field interpretation</span></div>
         <div><strong>4</strong><span>research lines linking hydraulics, memory, uncertainty, and energy</span></div>
       </div>
       <div class="home-proof__grid">
@@ -154,15 +154,15 @@ const homeSchema = [
             <li><span>Analytical solutions</span><small>Radial flow, boundaries, islands, streams, faults, and near-well effects.</small></li>
             <li><span>Lagging Theory</span><small>Flux and hydraulic-gradient responses that may not evolve on one time scale.</small></li>
             <li><span>Transformation uncertainty</span><small>How model choice changes inferred parameters and the decisions that use them.</small></li>
-            <li><span>Subsurface energy systems</span><small>Thermal response and hydrogeological context before a system is scaled up.</small></li>
+            <li><span>Subsurface energy</span><small>Thermal response and groundwater context before a system is scaled up.</small></li>
           </ol>
         </div>
         <aside class="home-boundary-note">
-          <p class="home-kicker">Scope and limitations</p>
-          <h3>Published results are separated from research questions still under development.</h3>
+          <p class="home-kicker">Evidence boundary</p>
+          <h3>The website distinguishes a published result from a research question in development.</h3>
           <p>
-            Publication pages identify the physical system, method, result, assumptions, and limitations. Concept pages
-            describe frameworks that are still being tested. This distinction is part of the group’s research practice.
+            Publication pages identify the physical system, method, result, and interpretation limits. Concept pages are
+            used for frameworks that are still being tested. This distinction is part of the group’s research practice.
           </p>
           <a href={withBase("/about/")}>Read the academic trajectory <span aria-hidden="true">→</span></a>
         </aside>
@@ -202,7 +202,6 @@ const homeSchema = [
                 <figure class="home-publication-list__visual">
                   <video
                     controls
-                    playsinline
                     preload="none"
                     poster={withMediaVersion(visual.film.poster)}
                     width="1280"
@@ -210,7 +209,7 @@ const homeSchema = [
                     aria-label={`Visual explanation for ${publication.title.en}`}
                   >
                     <source src={withMediaVersion(visual.film.video)} type="video/mp4" />
-                    {visual.film.captions && <track kind="captions" src={withMediaVersion(visual.film.captions)} srclang="en" label="English captions" default />}
+                    {visual.film.captions && <track kind="captions" src={withMediaVersion(visual.film.captions)} srclang="en" label="English captions" default={visual.film.id !== "2025-10-6"} />}
                     Your browser does not support the video element.
                   </video>
                   <figcaption>Visual explanation based on the published study · use full screen for figure labels · captions included</figcaption>
@@ -222,7 +221,7 @@ const homeSchema = [
       </div>
       {studentPublications.length > 0 && (
         <p class="home-student-note">
-          Publications featuring student contributions are marked in the archive. The public index currently includes {studentPublications.length} publication record{studentPublications.length === 1 ? "" : "s"} with an explicitly documented student contribution.
+          Student-involved work is marked in the publication archive. The public index currently includes {studentPublications.length} explicitly linked student publication record{studentPublications.length === 1 ? "" : "s"}.
         </p>
       )}
     </div>
@@ -232,12 +231,12 @@ const homeSchema = [
     <div class="home-shell home-collaborate__grid">
       <div>
         <p class="home-kicker">Collaboration</p>
-        <h2 id="collaborate-title">Bring your forcing history, observed responses, and the critical decision at stake.</h2>
+        <h2 id="collaborate-title">Bring the forcing history, the observed response, and the decision at risk.</h2>
       </div>
       <div>
         <p>
-          We work with groundwater, geotechnical, and subsurface-energy teams when analytical-model choice changes what
-          should be built, operated, or monitored.
+          We work with groundwater, geotechnical, and subsurface-energy teams when interpretation changes what should
+          be built, operated, or monitored.
         </p>
         <a class="home-button home-button--dark" href={withBase("/collaborate/")}>Send a technical brief <span aria-hidden="true">→</span></a>
       </div>

@@ -11,8 +11,8 @@ const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
       <p class="featured-films__kicker">Featured films</p>
       <h2 id="featured-films-title">Start with the field record.</h2>
       <p>
-        These two short films introduce the questions that connect Lagging Theory with transformation uncertainty:
-        what a well records, and what an analytical model derives.
+        These short films follow the argument from pumping-test measurements to model-conditioned parameters and
+        periodic groundwater memory.
       </p>
     </header>
 
@@ -42,9 +42,8 @@ const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
           <p class="featured-film__meta"><span>1 min 48 sec</span><span>Research story</span></p>
           <h3>Why Lagging Theory?</h3>
           <p>
-            Three wells alone cannot fully characterize an aquifer. This film follows a pumping-test record from
-            measured drawdown to the possibility that groundwater flux and hydraulic gradient adjust on different
-            effective time scales.
+            Three wells cannot map an aquifer. This film follows the pumping-test record from measured drawdown to
+            the possibility that groundwater flux and hydraulic gradient evolve on different effective time scales.
           </p>
           <div class="featured-film__links">
             <a href="https://x.com/AquiferMemory/status/2080137917390016827" target="_blank" rel="noreferrer">
@@ -81,14 +80,53 @@ const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
           <h3>One test, two storage estimates</h3>
           <p>
             At Maheshwaram, the same drawdown record yielded storativity estimates 4,942 times apart under two
-            analytical models. The discrepancy stems from the analytical model applied, not from a second
-            measurement.
+            analytical models. The disagreement begins in interpretation, not measurement.
           </p>
           <div class="featured-film__links">
             <a href="https://doi.org/10.1016/j.jhydrol.2025.133151" target="_blank" rel="noreferrer">
               Read the 2025 paper
             </a>
             <a href={withBase("/concepts/transformation-uncertainty/")}>Why model choice matters</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="featured-film featured-film--wide">
+        <div class="featured-film__player">
+          <video
+            controls
+            playsinline
+            preload="none"
+            poster={withBase("/videos/featured/one-wave-two-answers.webp")}
+            width="720"
+            height="1280"
+            aria-label="One aquifer, two answers research film"
+          >
+            <source src={withBase("/videos/featured/one-wave-two-answers.mp4")} type="video/mp4" />
+            <track
+              kind="captions"
+              src={withBase("/videos/featured/one-wave-two-answers.en.vtt")}
+              srclang="en"
+              label="English"
+            />
+            Your browser does not support the video element.
+          </video>
+        </div>
+        <div class="featured-film__copy">
+          <p class="featured-film__meta"><span>56 sec</span><span>Periodic groundwater memory</span></p>
+          <h3>One aquifer, two answers</h3>
+          <p>
+            The same periodic head signal can imply conflicting hydraulic diffusivities when an
+            instantaneous-equilibrium model is made to explain both attenuation and phase. Lagging Theory introduces
+            distinct relaxation times for flux and head equilibration.
+          </p>
+          <div class="featured-film__links">
+            <a href="https://x.com/AquiferMemory/status/2080462518041092494" target="_blank" rel="noreferrer">
+              View the X post
+            </a>
+            <a href="https://doi.org/10.1016/j.jhydrol.2026.134913" target="_blank" rel="noreferrer">
+              Read the 2026 paper
+            </a>
           </div>
         </div>
       </article>
@@ -161,6 +199,15 @@ const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
     border-left: 1px solid rgb(var(--surface-rgb) / 0.24);
     padding-left: 2rem;
     padding-right: 0;
+  }
+
+  .featured-film--wide {
+    border-left: 0;
+    border-top: 1px solid rgb(var(--surface-rgb) / 0.24);
+    grid-column: 1 / -1;
+    grid-template-columns: minmax(190px, 0.34fr) minmax(0, 1fr);
+    margin-top: 2rem;
+    padding: 2rem 0 0;
   }
 
   .featured-film__player {

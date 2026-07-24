@@ -101,6 +101,7 @@ export function webPageNode(
   canonicalUrl: string,
   pageTitle: string,
   description: string,
+  inLanguage: "en" | "zh-Hant" = "en",
 ): JsonLdNode {
   return {
     "@type": "WebPage",
@@ -110,6 +111,6 @@ export function webPageNode(
     description,
     isPartOf: { "@id": `${rootUrl}/#website` },
     author: { "@id": `${rootUrl}/#person` },
-    inLanguage: "en",
+    inLanguage,
   };
 }
