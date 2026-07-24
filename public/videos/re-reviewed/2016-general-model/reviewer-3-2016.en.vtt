@@ -1,0 +1,25 @@
+WEBVTT
+
+00:00:00.350 --> 00:00:04.022
+In 2016, I published a general groundwater model.
+
+00:00:04.202 --> 00:00:12.530
+General, provided the aquifer was confined, radial, homogeneous, isotropic, fully penetrating, and perfectly circular.
+
+00:00:12.710 --> 00:00:18.398
+The outer boundary made sense for a circular island. Taiwan, unfortunately, declined to become one.
+
+00:00:19.000 --> 00:00:24.880
+Solving it required Bessel functions, characteristic roots, infinite series, and convergence acceleration.
+
+00:00:27.100 --> 00:00:32.596
+We proved it could be solved. We did not prove it could be fitted robustly to noisy field data.
+
+00:00:35.100 --> 00:00:42.492
+Then came the sensitivity analysis: one parameter moved by zero point one percent while every other parameter waited politely outside.
+
+00:00:44.100 --> 00:00:49.788
+Meanwhile, practicing hydrogeologists clicked Theis, estimated transmissivity, and went home.
+
+00:00:51.000 --> 00:00:57.504
+The mathematics was real. The lesson came later: a difficult solution is not automatically an important problem.

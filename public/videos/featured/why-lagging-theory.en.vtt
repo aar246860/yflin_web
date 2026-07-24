@@ -1,0 +1,76 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:06.384
+Imagine this: a city-sized aquifer, observed through only three narrow wells.
+
+00:00:06.944 --> 00:00:09.490
+That is how groundwater science often works.
+
+00:00:09.490 --> 00:00:11.309
+We cannot see the aquifer.
+
+00:00:11.309 --> 00:00:18.584
+So we pump one well, watch the water levels in the others, and let the aquifer answer with a curve.
+
+00:00:19.124 --> 00:00:20.522
+The curve is measured.
+
+00:00:20.522 --> 00:00:27.860
+An analytical model then turns it into estimates of how easily water moves, and how much water the aquifer can release.
+
+00:00:28.380 --> 00:00:32.332
+Classical Darcy flow begins with an elegant rule.
+
+00:00:32.332 --> 00:00:37.272
+Groundwater flux follows the hydraulic gradient at the same moment.
+
+00:00:37.272 --> 00:00:38.260
+One gradient.
+
+00:00:38.260 --> 00:00:39.248
+One flux.
+
+00:00:39.248 --> 00:00:40.236
+One clock.
+
+00:00:40.816 --> 00:00:44.341
+But an aquifer is not an empty pipe.
+
+00:00:44.341 --> 00:00:50.068
+Water bends around layers, threads through connected pores, and exchanges with slower domains.
+
+00:00:50.068 --> 00:00:53.152
+Space can leave a trace in time.
+
+00:00:53.732 --> 00:00:55.906
+Now ask a different question.
+
+00:00:55.906 --> 00:01:00.688
+What if flux and the drawdown gradient adjust at different rates?
+
+00:01:00.688 --> 00:01:05.036
+Lagging Theory gives the response two effective hydraulic time scales.
+
+00:01:05.636 --> 00:01:12.212
+When those time scales separate, the calculated drawdown can form a smooth, S-shaped transition.
+
+00:01:12.772 --> 00:01:16.961
+The extra flexibility still has to earn its place.
+
+00:01:16.961 --> 00:01:20.685
+The 2017 pumping-test comparison improved the early-time fit.
+
+00:01:20.685 --> 00:01:30.460
+In the 2025 tests, the lagging model was penalized for its added parameters, and still ranked better by A-I-C and B-I-C.
+
+00:01:31.080 --> 00:01:34.657
+So the point is not simply a better curve.
+
+00:01:34.657 --> 00:01:40.619
+Time may preserve evidence of aquifer behavior that sparse wells cannot fully characterize in space.
+
+00:01:40.619 --> 00:01:44.594
+A well is narrow in space, but deep in time.
+
+00:01:44.594 --> 00:01:47.376
+Lagging Theory is one way to listen.
