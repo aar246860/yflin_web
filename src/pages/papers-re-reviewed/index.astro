@@ -17,7 +17,7 @@ const schema = {
   "@id": `${pageUrl}#episode-01`,
   name: "A General Solution to a Very Specific Aquifer",
   description:
-    "Ying-Fan Lin revisits his 2016 analytical pumping-test model, preserving its mathematical contribution while examining its field geometry, inversion pathway, numerical implementation, and sensitivity analysis.",
+    "Ying-Fan Lin revisits the 2016 analytical pumping-test paper published under the name Ye-Chen Lin, preserving its mathematical contribution while examining its field geometry, inversion pathway, numerical implementation, and sensitivity analysis.",
   thumbnailUrl: posterUrl,
   contentUrl: videoUrl,
   uploadDate: "2026-07-24",
@@ -46,7 +46,7 @@ const schema = {
     </div>
   </header>
 
-  <main class="episode">
+  <section class="episode" aria-labelledby="episode-title">
     <div class="episode__shell">
       <aside class="episode__index" aria-label="Episode information">
         <span>01</span>
@@ -57,8 +57,8 @@ const schema = {
 
       <article class="episode__body">
         <header class="episode__heading">
-          <p class="rereview-kicker">Lin et al. (2016) · Journal of Hydrology</p>
-          <h2>A general solution to a very specific aquifer.</h2>
+          <p class="rereview-kicker">Ying-Fan Lin, published as Ye-Chen Lin, et al. (2016) · Journal of Hydrology</p>
+          <h2 id="episode-title">A general solution to a very specific aquifer.</h2>
           <p>
             The paper derived an analytical pumping-test model for a radial, finite, two-zone confined aquifer with
             a Robin-type outer boundary. Ten years later, the derivation is not the part I would challenge.
@@ -114,6 +114,24 @@ const schema = {
           </div>
         </section>
 
+        <aside class="episode__source-boundary" aria-labelledby="source-boundary-title">
+          <p class="rereview-kicker">Source boundary</p>
+          <h3 id="source-boundary-title">The paper and the retrospective make different claims.</h3>
+          <p>
+            The paper supports the analytical derivation, recovered boundary cases, parameter sweeps, and normalized
+            one-at-a-time sensitivity analysis reported in Sections 2–3 and Figure 5. The comments about field
+            representativeness, identifiability, reproducible inversion, and parameter interaction are my later
+            assessment of questions that the 2016 study did not test.
+          </p>
+          <p>
+            The video's Taiwan comparison is editorial shorthand for the restrictive concentric geometry; it is not
+            a field application claimed by the 2016 paper.
+          </p>
+          <p class="episode__published-credit">
+            Published record: Ye-Chen Lin, Shaw-Yang Yang, Chiu-Shia Fen, and Hund-Der Yeh.
+          </p>
+        </aside>
+
         <blockquote>
           <p>“The mathematics was real. So was the later lesson.”</p>
           <footer>Reviewer #3: Future Me</footer>
@@ -132,12 +150,12 @@ const schema = {
             <a href="https://doi.org/10.1016/j.jhydrol.2016.07.028" target="_blank" rel="noreferrer">
               Read the published paper
             </a>
-            <a href={withBase("/publications/")}>Browse the publication record</a>
+            <a href={withBase("/publications/#publication-2016-07-41")}>Open this paper in the publication record</a>
           </p>
         </section>
       </article>
     </div>
-  </main>
+  </section>
 </BaseLayout>
 
 <style>
@@ -155,7 +173,7 @@ const schema = {
   }
 
   .rereview-kicker {
-    color: #0f807d;
+    color: #0b6663;
     font-size: 0.72rem;
     font-weight: 800;
     letter-spacing: 0.1em;
@@ -287,6 +305,32 @@ const schema = {
     letter-spacing: 0;
     line-height: 1.28;
     margin: 0 0 1rem;
+  }
+
+  .episode__source-boundary {
+    border-block: 1px solid rgb(var(--text-rgb) / 0.18);
+    margin: 3rem 0;
+    padding: 2rem 0;
+  }
+
+  .episode__source-boundary h3 {
+    font-family: Merriweather, Georgia, serif;
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    letter-spacing: 0;
+    line-height: 1.2;
+    margin: 0;
+  }
+
+  .episode__source-boundary > p:last-child {
+    color: rgb(var(--text-rgb) / 0.72);
+    line-height: 1.75;
+    margin: 1rem 0 0;
+    max-width: 74ch;
+  }
+
+  .episode__source-boundary .episode__published-credit {
+    font-size: 0.82rem;
+    margin-top: 0.65rem;
   }
 
   .episode__grid div > p:last-child {

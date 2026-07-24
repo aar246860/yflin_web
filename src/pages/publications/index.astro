@@ -13,6 +13,7 @@ const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
 const publicationMediaVersion = "20260721";
 const withMediaVersion = (path: string) => `${withBase(path)}?v=${publicationMediaVersion}`;
 const availableFilmCount = allPublications.filter((publication) => getVisualStatus(publication).kind === "available").length;
+const retrospectivePublicationId = "2016-07-41";
 ---
 
 <BaseLayout title="Publications by Research Concept" description="Ying-Fan Lin publications on Lagging Theory, well hydraulics, transformation uncertainty, and subsurface energy interpretation." current="publications" pageClass="publications-archive">
@@ -65,7 +66,7 @@ const availableFilmCount = allPublications.filter((publication) => getVisualStat
     </div>
     <div class="publication-archive" data-publication-archive>
       {allPublications.map((pub) => (
-        <article class="publication-record">
+        <article class="publication-record" id={`publication-${pub.id}`}>
           <div class="publication-record__copy">
             <div class="publication-record__eyebrow">
               <time datetime={String(pub.year)}>{pub.year}</time>
@@ -84,6 +85,9 @@ const availableFilmCount = allPublications.filter((publication) => getVisualStat
             <p class="publication-record__meta">
               {pub.publicRecord && <a href={pub.publicRecord} target="_blank" rel="noreferrer">Open DOI record</a>}
               {getPublicationFeature(pub) && <a href={withBase(`/publications/${getPublicationFeature(pub)?.id}/`)}>Read the research note</a>}
+              {pub.id === retrospectivePublicationId && (
+                <a href={withBase("/papers-re-reviewed/")}>Read the retrospective episode</a>
+              )}
             </p>
           </div>
           <div class="publication-record__visual">
