@@ -28,6 +28,7 @@ pnpm-debug.log*
 media-qa/
 test-results/
 reports/
+automation/reports/
 research-videos/*/rendered*/
 research-videos/*/debug-render*/
 research-videos/**/__pycache__/

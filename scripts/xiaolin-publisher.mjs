@@ -4,6 +4,7 @@ import { basename, resolve } from "node:path";
 const forbidden = [
   /confidential|password|credential|private diary|private memory/i,
   /unpublished manuscript|reviewer report|student record/i,
+  /\bCodex\b|automation prompt|editing reminder|daily script|scheduled at/i,
   /[\w.+-]+@[\w.-]+\.[A-Za-z]{2,}/,
   /(?:\+?\d[\s().-]*){9,}/,
 ];
@@ -34,16 +35,20 @@ function validateEntry(file, parsed, root) {
   if (meta.public !== true) errors.push(`${label}: public must be true`);
   if (meta.draft !== false) errors.push(`${label}: draft must be false`);
   if (!meta.title) errors.push(`${label}: title is missing`);
-  if (!/^\d{4}-\d{2}-\d{2}$/.test(String(meta.date ?? ""))) {
-    errors.push(`${label}: date must use YYYY-MM-DD`);
+  if (!/^\d{4}-\d{2}-\d{2}(?:T\d{2}:\d{2}:\d{2}[+-]\d{2}:\d{2})?$/.test(String(meta.date ?? ""))) {
+    errors.push(`${label}: date must use YYYY-MM-DD or a full ISO 8601 timestamp`);
   }
 
   if (meta.generated === true) {
-    if (meta.operator !== "Codex") errors.push(`${label}: generated entry operator must be Codex`);
+    if ("operator" in meta) errors.push(`${label}: public entries must not expose an operator`);
     if (!["diary", "doodle", "field-report"].includes(meta.format)) {
       errors.push(`${label}: generated entry format is invalid`);
     }
-    if (!String(meta.disclosure ?? "").includes("did not direct or pre-approve")) {
+    const disclosure = String(meta.disclosure ?? "");
+    if (
+      !disclosure.includes("fictional character") ||
+      !disclosure.includes("do not represent")
+    ) {
       errors.push(`${label}: generated entry needs the public non-endorsement disclosure`);
     }
   }

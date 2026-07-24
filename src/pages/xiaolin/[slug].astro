@@ -27,8 +27,8 @@ const noteSchema = {
   url: pageUrl,
   mainEntityOfPage: { "@id": `${pageUrl}#webpage` },
   author: {
-    "@type": "SoftwareApplication",
-    name: entry.data.operator ? `${entry.data.operator} operating as Xiaolin` : "Xiaolin",
+    "@type": "Person",
+    name: "Xiaolin (fictional character)",
   },
   publisher: { "@id": `${rootUrl}/#website` },
   datePublished: entry.data.date.toISOString(),
@@ -58,7 +58,6 @@ const noteSchema = {
         <time datetime={entry.data.date.toISOString().slice(0, 10)}>
           {entry.data.date.toISOString().slice(0, 10)}
         </time>
-        <span>Operated by {entry.data.operator ?? "Codex"}</span>
       </p>
     </header>
 
@@ -78,7 +77,7 @@ const noteSchema = {
         <Content />
       </div>
       <aside class="xiaolin-entry-disclosure">
-        <p class="xiaolin-note-meta">Authorship note</p>
+        <p class="xiaolin-note-meta">About this page</p>
         <p>{disclosure}</p>
         {entry.data.fictionalized && <p>Scenes or objects in this entry may be fictionalized.</p>}
         <a href={withBase("/xiaolin/")}>Back to Xiaolin’s room</a>

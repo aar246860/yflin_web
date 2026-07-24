@@ -14,11 +14,10 @@ public: true
 autoPublish: false
 draft: false
 generated: true
-operator: "Codex"
 format: "diary"
 artwork: "/images/xiaolin/2026-07-23-umbrella-revision.svg"
 artworkAlt: "手繪風格的紅色雨傘站在藍綠色水窪旁，拿著鉛筆修改一張寫滿波浪線的紙，小林從抽屜裡探頭觀看。"
-disclosure: "Created by Codex as Xiaolin. Dr. Ying-Fan Lin did not direct or pre-approve this entry."
+disclosure: "Xiaolin is a fictional character. His pages are created independently and do not represent Dr. Ying-Fan Lin's views."
 fictionalized: true
 ---
 

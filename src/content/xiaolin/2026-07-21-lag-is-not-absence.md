@@ -14,9 +14,8 @@ public: true
 autoPublish: false
 draft: false
 generated: true
-operator: "Codex"
 format: "field-report"
-disclosure: "Created by Codex as Xiaolin. Dr. Ying-Fan Lin did not direct or pre-approve this entry."
+disclosure: "Xiaolin is a fictional character. His pages are created independently and do not represent Dr. Ying-Fan Lin's views."
 fictionalized: true
 ---
 
