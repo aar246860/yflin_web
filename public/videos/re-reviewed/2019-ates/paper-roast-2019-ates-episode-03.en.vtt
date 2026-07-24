@@ -1,0 +1,31 @@
+WEBVTT
+
+00:00:00.350 --> 00:00:08.870
+My first master's topic spent years in cold storage. In 2019, I opened the freezer and discovered it was still asking for boundary conditions.
+
+00:00:09.030 --> 00:00:20.790
+The topic was aquifer thermal energy storage. I inherited the model, got stuck, and eventually learned that the original formulation had a small mathematical flaw. A very educational way to lose several months.
+
+00:00:20.950 --> 00:00:32.854
+Years later, a junior collaborator and I revived it. We corrected the model and placed a Robin-type boundary at the injection well, so temperature and heat flux could negotiate instead of pretending the well wall was perfect.
+
+00:00:33.014 --> 00:00:43.286
+Inside the aquifer, conduction smoothed the heat while dispersion stretched the thermal front. The paper compared five existing solutions, then tested when that well boundary actually mattered.
+
+00:00:43.446 --> 00:00:53.694
+Next came Morris global sensitivity analysis. Mathematica did not hand me the method, so I coded the screening algorithm myself. A global method, locally assembled, in about a week.
+
+00:00:53.854 --> 00:01:02.638
+At high Peclet numbers, ordinary precision became nervous. Arbitrary precision kept the solution standing. This is author recollection, not a theorem.
+
+00:01:02.798 --> 00:01:15.110
+The model then faced finite-difference results and a real A T E S experiment in Mobile, Alabama. The field forcing was not a clean rectangle. It was a badly behaved time series, like real operations usually are.
+
+00:01:15.270 --> 00:01:23.910
+The model reproduced the injection-period temperature reasonably well. But averaging the injection history could underestimate the early response. The paper said so.
+
+00:01:24.070 --> 00:01:35.758
+Then I looked for the full injection, storage, recovery cycle. Superposition declined the invitation. Injection and recovery do not share the same governing state, so the ending must become the next beginning.
+
+00:01:35.918 --> 00:01:46.982
+Reviewer Three's verdict? Accept the injection paper. Major revision for my younger self's belief that one analytical solution automatically becomes an operational tool. And yes, write the sequel.

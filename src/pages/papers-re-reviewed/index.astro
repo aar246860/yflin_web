@@ -1,6 +1,7 @@
 ---
 import PapersRereviewedEpisode from "../../components/PapersRereviewedEpisode.astro";
 import PapersRereviewedEpisode02 from "../../components/PapersRereviewedEpisode02.astro";
+import PapersRereviewedEpisode03 from "../../components/PapersRereviewedEpisode03.astro";
 import PapersRereviewedHero from "../../components/PapersRereviewedHero.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { absoluteUrl } from "../../lib/seo";
@@ -37,7 +38,21 @@ const episode02Schema = {
   duration: "PT1M27S",
   author: { "@id": `${absoluteUrl("/", Astro.site)}#person` },
 };
-const schema = [episode01Schema, episode02Schema];
+const episode03VideoPath = "/videos/re-reviewed/2019-ates/paper-roast-2019-ates-episode-03.mp4";
+const episode03PosterPath = "/videos/re-reviewed/2019-ates/paper-roast-2019-ates-episode-03.jpg";
+const episode03Schema = {
+  "@type": "VideoObject",
+  "@id": `${pageUrl}#episode-03`,
+  name: "The Paper I Put in a Freezer",
+  description:
+    "Ying-Fan Lin revisits the 2019 aquifer thermal energy storage model, preserving its injection-period contribution while examining what a complete injection-storage-recovery analysis would require.",
+  thumbnailUrl: absoluteUrl(episode03PosterPath, Astro.site),
+  contentUrl: absoluteUrl(episode03VideoPath, Astro.site),
+  uploadDate: "2026-07-25",
+  duration: "PT1M48S",
+  author: { "@id": `${absoluteUrl("/", Astro.site)}#person` },
+};
+const schema = [episode01Schema, episode02Schema, episode03Schema];
 ---
 
 <BaseLayout
@@ -52,6 +67,7 @@ const schema = [episode01Schema, episode02Schema];
   <PapersRereviewedHero />
   <PapersRereviewedEpisode />
   <PapersRereviewedEpisode02 />
+  <PapersRereviewedEpisode03 />
 </BaseLayout>
 
 <style>

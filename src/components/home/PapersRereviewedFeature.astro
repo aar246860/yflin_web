@@ -8,11 +8,11 @@ const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
 <section class="rereview-feature" aria-labelledby="rereview-feature-title">
   <div class="rereview-feature__shell">
     <div class="rereview-feature__copy">
-      <p class="rereview-feature__kicker">My Papers, Re-reviewed · Episode 01</p>
-      <h2 id="rereview-feature-title">A general solution to a very specific aquifer.</h2>
+      <p class="rereview-feature__kicker">My Papers, Re-reviewed · Episode 03</p>
+      <h2 id="rereview-feature-title">The paper I put in a freezer.</h2>
       <p>
-        I returned to my first Journal of Hydrology paper with ten years of hindsight. The mathematics still stands.
-        The field geometry, inversion pathway, and sensitivity analysis deserve a less polite second review.
+        My first master's topic spent years in cold storage. I reopened the 2019 ATES paper to ask what survived,
+        what the injection-period solution never promised, and why recovery refused a convenient superposition.
       </p>
       <a href={withBase("/papers-re-reviewed/")}>
         Read the retrospective <span aria-hidden="true">→</span>
@@ -24,18 +24,18 @@ const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
         controls
         playsinline
         preload="metadata"
-        poster={withBase("/videos/re-reviewed/2016-general-model/reviewer-3-2016.webp")}
+        poster={withBase("/videos/re-reviewed/2019-ates/paper-roast-2019-ates-episode-03.jpg")}
         width="1080"
         height="1920"
-        aria-label="Reviewer number three revisits the 2016 general analytical aquifer model"
+        aria-label="Reviewer number three revisits the 2019 aquifer thermal energy storage model"
       >
         <source
-          src={withBase("/videos/re-reviewed/2016-general-model/reviewer-3-2016.mp4")}
+          src={withBase("/videos/re-reviewed/2019-ates/paper-roast-2019-ates-episode-03.mp4")}
           type="video/mp4"
         />
         <track
           kind="captions"
-          src={withBase("/videos/re-reviewed/2016-general-model/reviewer-3-2016.en.vtt")}
+          src={withBase("/videos/re-reviewed/2019-ates/paper-roast-2019-ates-episode-03.en.vtt")}
           srclang="en"
           label="English"
           default
