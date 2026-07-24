@@ -1,5 +1,6 @@
 ---
 import PapersRereviewedEpisode from "../../components/PapersRereviewedEpisode.astro";
+import PapersRereviewedEpisode02 from "../../components/PapersRereviewedEpisode02.astro";
 import PapersRereviewedHero from "../../components/PapersRereviewedHero.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { absoluteUrl } from "../../lib/seo";
@@ -10,7 +11,7 @@ const posterPath = "/videos/re-reviewed/2016-general-model/reviewer-3-2016.webp"
 const pageUrl = absoluteUrl(canonicalPath, Astro.site);
 const videoUrl = absoluteUrl(videoPath, Astro.site);
 const posterUrl = absoluteUrl(posterPath, Astro.site);
-const schema = {
+const episode01Schema = {
   "@type": "VideoObject",
   "@id": `${pageUrl}#episode-01`,
   name: "A General Solution to a Very Specific Aquifer",
@@ -22,6 +23,21 @@ const schema = {
   duration: "PT58S",
   author: { "@id": `${absoluteUrl("/", Astro.site)}#person` },
 };
+const episode02VideoPath = "/videos/re-reviewed/2017-constant-head/reviewer-3-2017-constant-head.mp4";
+const episode02PosterPath = "/videos/re-reviewed/2017-constant-head/reviewer-3-2017-constant-head.webp";
+const episode02Schema = {
+  "@type": "VideoObject",
+  "@id": `${pageUrl}#episode-02`,
+  name: "The Forward Problem Had a Solution. Did the Inverse Problem Have One Answer?",
+  description:
+    "Ying-Fan Lin revisits the 2017 constant-head pumping model, preserving its analytical, numerical, and field contributions while asking how parameter identifiability and uncertainty should be tested today.",
+  thumbnailUrl: absoluteUrl(episode02PosterPath, Astro.site),
+  contentUrl: absoluteUrl(episode02VideoPath, Astro.site),
+  uploadDate: "2026-07-24",
+  duration: "PT1M27S",
+  author: { "@id": `${absoluteUrl("/", Astro.site)}#person` },
+};
+const schema = [episode01Schema, episode02Schema];
 ---
 
 <BaseLayout
@@ -35,6 +51,7 @@ const schema = {
 >
   <PapersRereviewedHero />
   <PapersRereviewedEpisode />
+  <PapersRereviewedEpisode02 />
 </BaseLayout>
 
 <style>

@@ -1,0 +1,123 @@
+---
+import "../styles/papers-rereviewed-episode.css";
+
+const base = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
+const videoPath = "/videos/re-reviewed/2017-constant-head/reviewer-3-2017-constant-head.mp4";
+const posterPath = "/videos/re-reviewed/2017-constant-head/reviewer-3-2017-constant-head.webp";
+---
+
+<section class="episode" aria-labelledby="episode-02-title">
+  <div class="episode__shell">
+    <aside class="episode__index" aria-label="Episode information">
+      <span>02</span>
+      <p>July 2026</p>
+      <p>87 seconds</p>
+      <p>Reviewer #3: Future Me</p>
+    </aside>
+
+    <article class="episode__body">
+      <header class="episode__heading">
+        <p class="rereview-kicker">Ying-Fan Lin, published as Ye-Chen Lin, et al. (2017) · Advances in Water Resources</p>
+        <h2 id="episode-02-title">The forward problem had a solution. Did the inverse problem have one answer?</h2>
+        <p>
+          The paper coupled saturated and unsaturated flow in a leaky unconfined aquifer under constant-head
+          pumping. It also marked a practical change in how I worked: a reviewer request led me onto the campus
+          bus, into FEMWATER, and toward a broader standard of evidence.
+        </p>
+      </header>
+
+      <figure class="episode__film">
+        <video
+          controls
+          playsinline
+          preload="metadata"
+          poster={withBase(posterPath)}
+          width="1080"
+          height="1920"
+          aria-label="A retrospective review of Lin, Li, and Yeh's 2017 constant-head pumping model"
+        >
+          <source src={withBase(videoPath)} type="video/mp4" />
+          <track
+            kind="captions"
+            src={withBase("/videos/re-reviewed/2017-constant-head/reviewer-3-2017-constant-head.en.vtt")}
+            srclang="en"
+            label="English"
+            default
+          />
+          Your browser does not support the video element.
+        </video>
+        <figcaption>
+          Original paper pages and Figure 1 appear in the film. The pumping-test photograph is a public-domain
+          USGS image used illustratively; it does not depict the Iowa field site.
+        </figcaption>
+      </figure>
+
+      <section class="episode__grid" aria-labelledby="episode-02-review-title">
+        <h2 id="episode-02-review-title" class="sr-only">Retrospective review</h2>
+        <div>
+          <p class="rereview-kicker">What still holds</p>
+          <h3>The model crossed several difficult boundaries.</h3>
+          <p>
+            The study joined Richards' equation with saturated groundwater flow, treated the screened and
+            unscreened parts of a partially penetrating well as a mixed boundary, and obtained the solution through
+            Laplace and Weber transforms. It then compared the result with FEMWATER and fitted records from four
+            observation wells.
+          </p>
+        </div>
+        <div>
+          <p class="rereview-kicker">What I would change</p>
+          <h3>A fitted table is not an identifiability analysis.</h3>
+          <p>
+            Five parameters were estimated with Mathematica FindFit, but the paper did not report confidence
+            intervals, parameter correlations, or a joint identifiability assessment. A new analysis should combine
+            head and wellbore-flow information, compare defensible conceptual models, and propagate uncertainty
+            beyond the fitted curves.
+          </p>
+        </div>
+      </section>
+
+      <aside class="episode__source-boundary" aria-labelledby="episode-02-boundary-title">
+        <p class="rereview-kicker">Source boundary</p>
+        <h3 id="episode-02-boundary-title">The retrospective asks a question that the paper did not test.</h3>
+        <p>
+          The published article supports the analytical derivation, FEMWATER comparison, Iowa application,
+          Levenberg–Marquardt fitting, and the five reported hydrogeological parameters. It does not establish that
+          those parameters were non-identifiable. The film instead asks whether parameter tradeoffs could reproduce
+          similar drawdown and should therefore be tested in a re-analysis.
+        </p>
+        <p>
+          The week spent drawing Figure 1, the bus trips to National Central University, and the process of learning
+          FEMWATER are the author's recollections of how the paper was produced; they are not claims reported in the
+          article.
+        </p>
+        <p class="episode__published-credit">
+          Published record: Ye-Chen Lin, Ming-Hsu Li, and Hund-Der Yeh.
+        </p>
+      </aside>
+
+      <blockquote>
+        <p>“The forward problem had a solution. The inverse problem may not have had one answer.”</p>
+        <footer>Reviewer #3: Future Me</footer>
+      </blockquote>
+
+      <section class="episode__afterword" aria-labelledby="episode-02-afterword-title">
+        <p class="rereview-kicker">What the paper changed</p>
+        <h2 id="episode-02-afterword-title">An aquifer-test model should eventually answer an aquifer-test question.</h2>
+        <p>
+          The derivation mattered, but the field purpose matters more: what can the observations actually teach us
+          about the aquifer? That question now makes parameter estimation, uncertainty, and model comparison part of
+          the theory rather than optional work after the analytical solution is complete.
+        </p>
+        <p class="episode__links">
+          <a href="https://doi.org/10.1016/j.advwatres.2017.05.018" target="_blank" rel="noreferrer">
+            Read the published paper
+          </a>
+          <a href={withBase("/publications/#publication-2017-06-40")}>Open this paper in the publication record</a>
+        </p>
+      </section>
+    </article>
+  </div>
+</section>
