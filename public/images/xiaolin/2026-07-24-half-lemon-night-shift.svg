@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">半顆檸檬接了夜班</title>
+  <desc id="desc">清晨的冰箱裡，戴紙帽的半顆檸檬正在牛奶、果醬、雞蛋與交接單之間值夜班，小林從冰箱門邊探頭。</desc>
+  <defs>
+    <linearGradient id="dawn" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#17384c"/>
+      <stop offset="1" stop-color="#3a6872"/>
+    </linearGradient>
+    <linearGradient id="coldLight" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fffbe9"/>
+      <stop offset="1" stop-color="#d7f0e8"/>
+    </linearGradient>
+    <filter id="paperShadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#16323a" flood-opacity=".22"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="760" fill="url(#dawn)"/>
+  <circle cx="1030" cy="105" r="48" fill="#f2cf7a" opacity=".88"/>
+  <path d="M0 610 C220 560 390 620 560 585 C760 540 980 610 1200 565 V760 H0Z" fill="#132b39" opacity=".55"/>
+
+  <g transform="translate(150 70)">
+    <rect x="0" y="0" width="830" height="620" rx="24" fill="#d8e8e4" stroke="#132f3a" stroke-width="12"/>
+    <rect x="55" y="44" width="720" height="520" rx="16" fill="url(#coldLight)" stroke="#325762" stroke-width="6"/>
+    <rect x="31" y="52" width="32" height="130" rx="10" fill="#ffdc82"/>
+    <circle cx="47" cy="88" r="9" fill="#fff7c6"/>
+
+    <g stroke="#567b80" stroke-width="7" stroke-linecap="round">
+      <path d="M78 250 H752"/>
+      <path d="M78 405 H752"/>
+    </g>
+
+    <g opacity=".45" fill="none" stroke="#75b7b2" stroke-width="5" stroke-linecap="round">
+      <path d="M125 142 C165 112 196 167 233 136"/>
+      <path d="M525 126 C561 94 600 151 637 115"/>
+      <path d="M315 335 C355 303 393 360 432 326"/>
+    </g>
+
+    <g transform="translate(116 120)">
+      <path d="M0 18 L18 0 H112 L132 22 V126 H0Z" fill="#f4f0dd" stroke="#274a55" stroke-width="5"/>
+      <path d="M18 0 L45 28 H132" fill="none" stroke="#274a55" stroke-width="5"/>
+      <rect x="26" y="50" width="78" height="42" rx="8" fill="#78aab5"/>
+      <text x="65" y="78" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" fill="#f8fbf5">MILK</text>
+      <path d="M24 112 H106" stroke="#b95c4b" stroke-width="6" stroke-linecap="round"/>
+    </g>
+
+    <g transform="translate(580 129)">
+      <path d="M15 30 H128 L115 120 H28Z" fill="#b24d4d" stroke="#274a55" stroke-width="5"/>
+      <rect x="8" y="8" width="126" height="31" rx="10" fill="#d8c9a2" stroke="#274a55" stroke-width="5"/>
+      <ellipse cx="71" cy="73" rx="30" ry="20" fill="#f3c56f"/>
+      <path d="M71 54 C62 70 58 80 71 91 C84 80 80 69 71 54Z" fill="#6b8d58"/>
+    </g>
+
+    <g transform="translate(505 445)">
+      <path d="M0 35 Q115 4 230 35 V102 H0Z" fill="#c7a77c" stroke="#274a55" stroke-width="5"/>
+      <g fill="#f4ead4" stroke="#6f5d49" stroke-width="4">
+        <ellipse cx="36" cy="35" rx="26" ry="33"/>
+        <ellipse cx="88" cy="29" rx="26" ry="33"/>
+        <ellipse cx="140" cy="31" rx="26" ry="33"/>
+        <ellipse cx="193" cy="35" rx="26" ry="33"/>
+      </g>
+      <path d="M84 11 q8 -12 16 0" fill="none" stroke="#6f5d49" stroke-width="3"/>
+    </g>
+
+    <g transform="translate(310 255)" filter="url(#paperShadow)">
+      <path d="M22 48 Q54 -10 122 11 Q188 27 191 89 Q194 150 118 157 Q38 163 15 108 Q5 76 22 48Z" fill="#f5d24e" stroke="#314d43" stroke-width="7"/>
+      <path d="M105 16 A83 68 0 0 1 185 90 A82 68 0 0 1 109 156Z" fill="#fff09b" opacity=".72"/>
+      <circle cx="74" cy="83" r="7" fill="#273a3d"/>
+      <circle cx="128" cy="81" r="7" fill="#273a3d"/>
+      <path d="M77 112 Q102 126 127 108" fill="none" stroke="#273a3d" stroke-width="6" stroke-linecap="round"/>
+      <path d="M51 32 L94 -4 L142 32 L116 53 L78 50Z" fill="#5f8fb3" stroke="#274a55" stroke-width="5"/>
+      <path d="M95 -3 L96 50" stroke="#d9edf0" stroke-width="4"/>
+      <path d="M19 91 C-20 91 -23 126 -43 135" fill="none" stroke="#314d43" stroke-width="7" stroke-linecap="round"/>
+      <path d="M184 91 C223 95 222 124 246 131" fill="none" stroke="#314d43" stroke-width="7" stroke-linecap="round"/>
+    </g>
+
+    <g transform="translate(92 431) rotate(-4)" filter="url(#paperShadow)">
+      <rect width="315" height="122" rx="7" fill="#fffdf3" stroke="#31515b" stroke-width="5"/>
+      <text x="24" y="34" font-family="'Noto Sans TC', Arial, sans-serif" font-size="21" font-weight="700" fill="#294b57">夜班交接單</text>
+      <g stroke="#89a3a3" stroke-width="4" stroke-linecap="round">
+        <path d="M25 59 H275"/>
+        <path d="M25 81 H240"/>
+        <path d="M25 103 H286"/>
+      </g>
+      <path d="M264 77 l13 13 25 -31" fill="none" stroke="#c15e4c" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+
+    <g transform="translate(670 54)">
+      <circle cx="0" cy="0" r="42" fill="#eff5e9" stroke="#274a55" stroke-width="5"/>
+      <path d="M0 0 L0 -24 M0 0 L18 10" stroke="#274a55" stroke-width="5" stroke-linecap="round"/>
+      <circle r="4" fill="#274a55"/>
+    </g>
+
+    <g transform="translate(735 300)">
+      <rect width="53" height="86" rx="7" fill="#ebd277" stroke="#274a55" stroke-width="4"/>
+      <circle cx="26" cy="25" r="10" fill="#d36d58"/>
+      <path d="M12 51 H41 M12 67 H35" stroke="#274a55" stroke-width="4" stroke-linecap="round"/>
+    </g>
+
+    <g transform="translate(755 424)">
+      <path d="M0 0 C64 12 83 62 57 116 C32 168 -30 151 -45 101 C-59 55 -39 8 0 0Z" fill="#496f85" stroke="#193743" stroke-width="6"/>
+      <circle cx="-6" cy="57" r="7" fill="#f4ead7"/>
+      <path d="M20 57 q22 9 27 27" fill="none" stroke="#f4ead7" stroke-width="5" stroke-linecap="round"/>
+      <path d="M-34 8 q32 -30 65 0" fill="#193743"/>
+    </g>
+  </g>
+
+  <g transform="translate(55 650)" font-family="'Noto Sans TC', Arial, sans-serif">
+    <text x="0" y="0" font-size="28" font-weight="700" fill="#f8f3de">06:12，早班人員已到。</text>
+    <text x="0" y="39" font-size="20" fill="#c8ded9">但看起來還沒醒。</text>
+  </g>
+</svg>
