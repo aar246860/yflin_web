@@ -55,6 +55,21 @@ schedules, work instructions, or editing reminders. If any boundary, build,
 or visual check fails, publish nothing and record the reason only in the local
 report.
 
+The build currently rewrites three tracked generated files even when their
+content has not meaningfully changed. Because the worktree was confirmed clean
+before this visit, restore only these build-generated files after the build:
+
+```text
+public/animations/decision-chain.json
+src/data/members.generated.json
+src/data/publications.generated.json
+```
+
+Never restore any other path. Before committing, verify that `git status
+--short` contains only the new Xiaolin entry, its drawing when present, and
+`src/data/xiaolinStatus.json`. Stop and record the unexpected path if anything
+else remains.
+
 When all checks pass, commit only the new Xiaolin entry, its drawing when
 present, and `src/data/xiaolinStatus.json`, then push to `main`. Finish the
 local report with the entry title, format, URL, commit, and verification
