@@ -13,6 +13,7 @@ const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
 const publicationMediaVersion = "20260721";
 const withMediaVersion = (path: string) => `${withBase(path)}?v=${publicationMediaVersion}`;
 const availableFilmCount = allPublications.filter((publication) => getVisualStatus(publication).kind === "available").length;
+const retrospectivePublicationId = "2016-07-41";
 ---
 
 <BaseLayout title="Publications by Research Concept" description="Ying-Fan Lin publications on Lagging Theory, well hydraulics, transformation uncertainty, and subsurface energy interpretation." current="publications" pageClass="publications-archive">
@@ -20,6 +21,35 @@ const availableFilmCount = allPublications.filter((publication) => getVisualStat
     <span class="eyebrow">Publication map</span>
     <h1>The publication record traces how the questions and methods have developed.</h1>
     <p class="lede">The papers trace a progression from analytical well hydraulics to delayed-response interpretation, transformation uncertainty, and groundwater-influenced energy decisions.</p>
+  </section>
+  <section class="shell section publications-rereview" aria-labelledby="rereview-title">
+    <div class="publications-rereview__copy">
+      <span class="eyebrow">Retrospective series</span>
+      <h2 id="rereview-title">My Papers, Re-reviewed</h2>
+      <p>
+        Published papers remain part of the formal record. This companion series returns to selected studies with
+        later evidence and experience: what still holds, what I would test differently, and which unanswered
+        questions shaped the next stage of the research.
+      </p>
+      <a class="publications-rereview__link" href={withBase("/papers-re-reviewed/")}>
+        Open the series <span aria-hidden="true">→</span>
+      </a>
+    </div>
+    <a
+      class="publications-rereview__episode"
+      href={withBase("/papers-re-reviewed/")}
+      aria-label="Open episode 1, A general solution to a very specific aquifer"
+    >
+      <img
+        src={withBase("/videos/re-reviewed/2016-general-model/reviewer-3-2016.webp")}
+        alt="Annotated first page of the 2016 analytical aquifer model, marked A general model"
+        width="720"
+        height="1280"
+        loading="lazy"
+        decoding="async"
+      />
+      <span><strong>Episode 01</strong> A general solution to a very specific aquifer.</span>
+    </a>
   </section>
   <section class="shell section publications-archive__header" aria-labelledby="archive-title">
     <div class="section-head">
@@ -36,7 +66,7 @@ const availableFilmCount = allPublications.filter((publication) => getVisualStat
     </div>
     <div class="publication-archive" data-publication-archive>
       {allPublications.map((pub) => (
-        <article class="publication-record">
+        <article class="publication-record" id={`publication-${pub.id}`}>
           <div class="publication-record__copy">
             <div class="publication-record__eyebrow">
               <time datetime={String(pub.year)}>{pub.year}</time>
@@ -55,6 +85,9 @@ const availableFilmCount = allPublications.filter((publication) => getVisualStat
             <p class="publication-record__meta">
               {pub.publicRecord && <a href={pub.publicRecord} target="_blank" rel="noreferrer">Open DOI record</a>}
               {getPublicationFeature(pub) && <a href={withBase(`/publications/${getPublicationFeature(pub)?.id}/`)}>Read the research note</a>}
+              {pub.id === retrospectivePublicationId && (
+                <a href={withBase("/papers-re-reviewed/")}>Read the retrospective episode</a>
+              )}
             </p>
           </div>
           <div class="publication-record__visual">
@@ -100,6 +133,84 @@ const availableFilmCount = allPublications.filter((publication) => getVisualStat
 </BaseLayout>
 
 <style>
+  .publications-rereview {
+    --publications-rereview-gap: clamp(var(--space-8), 6vw, var(--space-20));
+    --publications-rereview-columns: minmax(0, 1fr) minmax(180px, 280px);
+    --publications-rereview-copy-measure: 720px;
+    --publications-rereview-title-size: clamp(var(--space-8), 4vw, var(--space-14));
+    --publications-rereview-title-leading: 1.08;
+    --publications-rereview-title-margin: 0.7rem 0 var(--space-4);
+    --publications-rereview-body-leading: 1.75;
+    --publications-rereview-body-margin: 0 0 1.4rem;
+    --publications-rereview-body-measure: 65ch;
+    --publications-rereview-link-size: 0.85rem;
+    --publications-rereview-link-gap: 0.5rem;
+    --publications-rereview-link-padding: 0.28rem;
+    --publications-rereview-episode-gap: 0.8rem;
+    --publications-rereview-poster-shadow: 0.8rem 0.9rem 0 rgb(var(--text-rgb) / 0.1);
+    --publications-rereview-caption-size: 0.78rem;
+    --publications-rereview-caption-leading: 1.5;
+    --publications-rereview-label-size: 0.68rem;
+    --publications-rereview-label-spacing: 0.08em;
+    align-items: center;
+    border-block: 1px solid var(--rule);
+    display: grid;
+    gap: var(--publications-rereview-gap);
+    grid-template-columns: var(--publications-rereview-columns);
+  }
+  .publications-rereview__copy { max-width: var(--publications-rereview-copy-measure); }
+  .publications-rereview h2 {
+    font-family: var(--font-serif);
+    font-size: var(--publications-rereview-title-size);
+    letter-spacing: 0;
+    line-height: var(--publications-rereview-title-leading);
+    margin: var(--publications-rereview-title-margin);
+  }
+  .publications-rereview__copy > p {
+    color: var(--text-muted);
+    line-height: var(--publications-rereview-body-leading);
+    margin: var(--publications-rereview-body-margin);
+    max-width: var(--publications-rereview-body-measure);
+  }
+  .publications-rereview__link {
+    border-bottom: 2px solid var(--signal-model);
+    color: var(--text);
+    display: inline-flex;
+    font-size: var(--publications-rereview-link-size);
+    font-weight: 800;
+    gap: var(--publications-rereview-link-gap);
+    padding-bottom: var(--publications-rereview-link-padding);
+    text-decoration: none;
+  }
+  .publications-rereview__episode {
+    color: var(--text);
+    display: grid;
+    gap: var(--publications-rereview-episode-gap);
+    text-decoration: none;
+  }
+  .publications-rereview__episode img {
+    aspect-ratio: 9 / 16;
+    box-shadow: var(--publications-rereview-poster-shadow);
+    display: block;
+    height: auto;
+    object-fit: cover;
+    width: 100%;
+  }
+  .publications-rereview__episode span {
+    font-size: var(--publications-rereview-caption-size);
+    line-height: var(--publications-rereview-caption-leading);
+  }
+  .publications-rereview__episode strong {
+    color: var(--signal-measured-strong);
+    display: block;
+    font-size: var(--publications-rereview-label-size);
+    letter-spacing: var(--publications-rereview-label-spacing);
+    text-transform: uppercase;
+  }
+  .publications-rereview__link:hover,
+  .publications-rereview__link:focus-visible,
+  .publications-rereview__episode:hover span,
+  .publications-rereview__episode:focus-visible span { color: var(--signal-measured-strong); }
   .archive-status { border-left: 3px solid var(--signal-model); color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; margin-top: 1rem; max-width: 820px; padding-left: 1rem; }
   .publications-archive__intro .eyebrow,
   .publications-archive__header .eyebrow,
@@ -109,11 +220,11 @@ const availableFilmCount = allPublications.filter((publication) => getVisualStat
   .publications-archive .publication-record__meta a,
   .publications-archive .publication-film figcaption a { color: var(--signal-measured-strong) !important; }
   .publication-archive { border-top: 1px solid var(--rule); margin-top: var(--space-10); }
-  .publication-record { border-bottom: 1px solid var(--rule); display: grid; gap: var(--space-10); grid-template-columns: minmax(0, 1.02fr) minmax(320px, 0.98fr); padding: var(--space-10) 0; }
+  .publication-record { border-bottom: 1px solid var(--rule); display: grid; gap: var(--space-10); grid-template-columns: minmax(0, 1.02fr) minmax(320px, 0.98fr); padding: var(--space-10) 0; scroll-margin-top: var(--sticky-header-anchor-offset); }
   .publication-record__copy { min-width: 0; }
-  .publication-record__eyebrow { align-items: center; display: flex; flex-wrap: wrap; font-size: 0.75rem; font-weight: 750; gap: 0.55rem; letter-spacing: 0.04em; text-transform: uppercase; }
-  .publication-record__eyebrow span { border-left: 1px solid var(--rule); padding-left: 0.55rem; }
-  .publication-record h3 { font-family: var(--font-sans, Inter, sans-serif); font-size: clamp(1.2rem, 2vw, 1.6rem); line-height: 1.3; margin: 0.8rem 0 0.55rem; }
+  .publication-record__eyebrow { align-items: center; display: flex; flex-wrap: wrap; font-size: var(--type-meta); font-weight: 750; gap: var(--space-meta-gap); letter-spacing: 0.04em; text-transform: uppercase; }
+  .publication-record__eyebrow span { border-left: 1px solid var(--rule); padding-left: var(--space-meta-gap); }
+  .publication-record h3 { font-family: var(--font-sans, Inter, sans-serif); font-size: var(--type-record-title); line-height: var(--leading-record-title); margin: var(--space-record-title-top) 0 var(--space-meta-gap); }
   .publication-record h3 a { text-decoration-thickness: 0.08em; text-underline-offset: 0.13em; }
   .publication-record__authors, .publication-record__venue { color: var(--text-muted); font-size: 0.88rem; line-height: 1.5; margin: 0; }
   .publication-record__plain { border-left: 3px solid var(--signal-model); margin: var(--space-6) 0; padding-left: 1rem; }
@@ -139,6 +250,10 @@ const availableFilmCount = allPublications.filter((publication) => getVisualStat
   .publication-film-placeholder__rule { background: var(--signal-model); display: block; height: 3px; margin-top: 2.5rem; width: 4rem; }
   .publication-film-placeholder__source { font-size: 0.78rem !important; }
   @media (max-width: 820px) { .publication-record { grid-template-columns: 1fr; } .publication-film-placeholder { min-height: 0; } }
+  @media (max-width: 680px) {
+    .publications-rereview { grid-template-columns: 1fr; }
+    .publications-rereview__episode { justify-self: center; width: min(72vw, 280px); }
+  }
   @media (max-width: 520px) { .publication-film__player { margin-left: calc(50% - 50vw); width: 100vw; } }
 </style>
 

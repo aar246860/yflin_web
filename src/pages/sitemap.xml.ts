@@ -8,6 +8,7 @@ const staticPages = [
   "/decision-lab/",
   "/tools/",
   "/field-notes/",
+  "/papers-re-reviewed/",
   "/publications/",
   "/network/",
   "/collaborate/",

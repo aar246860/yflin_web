@@ -1,0 +1,84 @@
+---
+import PapersRereviewedEpisode from "../../components/PapersRereviewedEpisode.astro";
+import PapersRereviewedHero from "../../components/PapersRereviewedHero.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { absoluteUrl } from "../../lib/seo";
+
+const canonicalPath = "/papers-re-reviewed/";
+const videoPath = "/videos/re-reviewed/2016-general-model/reviewer-3-2016.mp4";
+const posterPath = "/videos/re-reviewed/2016-general-model/reviewer-3-2016.webp";
+const pageUrl = absoluteUrl(canonicalPath, Astro.site);
+const videoUrl = absoluteUrl(videoPath, Astro.site);
+const posterUrl = absoluteUrl(posterPath, Astro.site);
+const schema = {
+  "@type": "VideoObject",
+  "@id": `${pageUrl}#episode-01`,
+  name: "A General Solution to a Very Specific Aquifer",
+  description:
+    "Ying-Fan Lin revisits the 2016 analytical pumping-test paper published under the name Ye-Chen Lin, preserving its mathematical contribution while examining its field geometry, inversion pathway, numerical implementation, and sensitivity analysis.",
+  thumbnailUrl: posterUrl,
+  contentUrl: videoUrl,
+  uploadDate: "2026-07-24",
+  duration: "PT58S",
+  author: { "@id": `${absoluteUrl("/", Astro.site)}#person` },
+};
+---
+
+<BaseLayout
+  title="My Papers, Re-reviewed"
+  description="Ying-Fan Lin revisits earlier groundwater papers with the benefit of later evidence, preserving what worked and identifying what he would test differently now."
+  canonicalPath={canonicalPath}
+  image={posterPath}
+  schema={schema}
+  type="article"
+  pageClass="papers-rereviewed"
+>
+  <PapersRereviewedHero />
+  <PapersRereviewedEpisode />
+</BaseLayout>
+
+<style>
+  :global(.papers-rereviewed) {
+    --rereview-kicker-spacing: 0.1em;
+    --rereview-kicker-margin: var(--space-4);
+    --rereview-hero-leading: 0.9;
+    --rereview-deck-size: clamp(1.05rem, 2vw, 1.28rem);
+    --rereview-deck-measure: 680px;
+    --rereview-index-width: 155px;
+    --rereview-index-size: 0.76rem;
+    --rereview-index-leading: 1.55;
+    --rereview-index-number-size: 3.4rem;
+    --rereview-index-row-gap: 0.35rem;
+    --rereview-heading-measure: 790px;
+    --rereview-copy-leading: 1.8;
+    --rereview-body-leading: 1.75;
+    --rereview-copy-margin: 1.4rem;
+    --rereview-copy-measure: 68ch;
+    --rereview-film-columns: minmax(260px, 390px) minmax(180px, 1fr);
+    --rereview-film-shadow: 1.2rem 1.4rem 0 rgb(var(--shadow-rgb) / 0.12);
+    --rereview-caption-leading: 1.65;
+    --rereview-grid-padding-end: 2.75rem;
+    --rereview-card-title-size: 1.6rem;
+    --rereview-card-title-leading: 1.28;
+    --rereview-boundary-title-size: clamp(1.4rem, 3vw, 2rem);
+    --rereview-boundary-title-leading: 1.2;
+    --rereview-boundary-measure: 74ch;
+    --rereview-credit-margin: 0.65rem;
+    --rereview-quote-border: 5px;
+    --rereview-quote-padding-block: 0.4rem;
+    --rereview-quote-padding-inline: clamp(var(--space-6), 4vw, var(--space-12));
+    --rereview-quote-leading: 1.12;
+    --rereview-quote-measure: 17ch;
+    --rereview-quote-credit-size: 0.78rem;
+    --rereview-quote-credit-spacing: 0.08em;
+    --rereview-quote-credit-margin: 1.4rem;
+    --rereview-afterword-measure: 780px;
+    --rereview-link-gap: var(--space-4) 1.6rem;
+    --rereview-link-size: 0.84rem;
+    --rereview-link-padding: 0.26rem;
+    --rereview-focus-width: 3px;
+    --rereview-focus-offset: 4px;
+    --rereview-mobile-index-gap: 0.4rem 1.2rem;
+    --rereview-mobile-video-width: 370px;
+  }
+</style>
