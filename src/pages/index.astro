@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import FeaturedResearchFilms from "../components/home/FeaturedResearchFilms.astro";
 import HomeResearchHero from "../components/home/HomeResearchHero.astro";
+import PapersRereviewedFeature from "../components/home/PapersRereviewedFeature.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { absoluteUrl, siteRoot } from "../lib/seo";
 import members from "../data/members.generated.json";
@@ -66,6 +67,7 @@ const homeSchema = [
 >
   <HomeResearchHero />
   <FeaturedResearchFilms />
+  <PapersRereviewedFeature />
 
   <section class="home-section home-team" aria-labelledby="team-title">
     <div class="home-shell">

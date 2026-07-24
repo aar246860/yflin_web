@@ -1,0 +1,136 @@
+---
+const base = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
+---
+
+<section class="rereview-feature" aria-labelledby="rereview-feature-title">
+  <div class="rereview-feature__shell">
+    <div class="rereview-feature__copy">
+      <p class="rereview-feature__kicker">My Papers, Re-reviewed · Episode 01</p>
+      <h2 id="rereview-feature-title">A general solution to a very specific aquifer.</h2>
+      <p>
+        I returned to my first Journal of Hydrology paper with ten years of hindsight. The mathematics still stands.
+        The field geometry, inversion pathway, and sensitivity analysis deserve a less polite second review.
+      </p>
+      <a href={withBase("/papers-re-reviewed/")}>
+        Read the retrospective <span aria-hidden="true">→</span>
+      </a>
+    </div>
+
+    <div class="rereview-feature__player">
+      <video
+        controls
+        playsinline
+        preload="metadata"
+        poster={withBase("/videos/re-reviewed/2016-general-model/reviewer-3-2016.webp")}
+        width="1080"
+        height="1920"
+        aria-label="Reviewer number three revisits the 2016 general analytical aquifer model"
+      >
+        <source
+          src={withBase("/videos/re-reviewed/2016-general-model/reviewer-3-2016.mp4")}
+          type="video/mp4"
+        />
+        <track
+          kind="captions"
+          src={withBase("/videos/re-reviewed/2016-general-model/reviewer-3-2016.en.vtt")}
+          srclang="en"
+          label="English"
+          default
+        />
+        Your browser does not support the video element.
+      </video>
+    </div>
+  </div>
+</section>
+
+<style>
+  .rereview-feature {
+    background: #f4f0e7;
+    border-block: 1px solid rgb(var(--text-rgb) / 0.14);
+    color: var(--text);
+  }
+
+  .rereview-feature__shell {
+    align-items: center;
+    display: grid;
+    gap: clamp(2.5rem, 7vw, 7rem);
+    grid-template-columns: minmax(0, 1fr) minmax(260px, 0.54fr);
+    margin: 0 auto;
+    max-width: 1120px;
+    padding: clamp(4.25rem, 8vw, 7rem) 1.5rem;
+  }
+
+  .rereview-feature__copy {
+    max-width: 650px;
+  }
+
+  .rereview-feature__kicker {
+    color: #0f807d;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    margin: 0 0 1.15rem;
+    text-transform: uppercase;
+  }
+
+  .rereview-feature h2 {
+    font-family: Merriweather, Georgia, serif;
+    font-size: clamp(2.35rem, 5vw, 4.65rem);
+    letter-spacing: 0;
+    line-height: 1.02;
+    margin: 0;
+    max-width: 13ch;
+  }
+
+  .rereview-feature__copy > p:not(.rereview-feature__kicker) {
+    color: rgb(var(--text-rgb) / 0.72);
+    font-size: 1.04rem;
+    line-height: 1.78;
+    margin: 1.45rem 0 1.7rem;
+    max-width: 61ch;
+  }
+
+  .rereview-feature a {
+    border-bottom: 2px solid #bf342d;
+    color: var(--text);
+    display: inline-flex;
+    font-size: 0.88rem;
+    font-weight: 800;
+    gap: 0.55rem;
+    padding-bottom: 0.32rem;
+    text-decoration: none;
+  }
+
+  .rereview-feature a:hover,
+  .rereview-feature a:focus-visible {
+    color: #a82d27;
+  }
+
+  .rereview-feature__player {
+    background: #111a18;
+    box-shadow: 1.25rem 1.4rem 0 rgb(20 40 36 / 0.12);
+    justify-self: end;
+    width: min(100%, 340px);
+  }
+
+  .rereview-feature video {
+    aspect-ratio: 9 / 16;
+    display: block;
+    height: auto;
+    width: 100%;
+  }
+
+  @media (max-width: 760px) {
+    .rereview-feature__shell {
+      grid-template-columns: 1fr;
+    }
+
+    .rereview-feature__player {
+      justify-self: center;
+      width: min(86vw, 360px);
+    }
+  }
+</style>
