@@ -16,6 +16,7 @@ const pagePath = `/xiaolin/${entry.id}/`;
 const pageUrl = absoluteUrl(pagePath, Astro.site);
 const rootUrl = siteRoot(Astro.site);
 const description = entry.data.metaDescription ?? entry.data.subtitle;
+const pageLanguage = entry.data.lang === "zh-TW" ? "zh-Hant" : "en";
 const disclosure =
   entry.data.disclosure ??
   "An archived Xiaolin note. It is not a statement by Ying-Fan Lin or a record of private events.";
@@ -33,6 +34,7 @@ const noteSchema = {
   publisher: { "@id": `${rootUrl}/#website` },
   datePublished: entry.data.date.toISOString(),
   dateModified: entry.data.updated.toISOString(),
+  inLanguage: pageLanguage,
   about: entry.data.tags,
   keywords: entry.data.tags,
 };
@@ -47,7 +49,7 @@ const noteSchema = {
   image={entry.data.artwork}
   schema={noteSchema}
   type="article"
-  lang={entry.data.lang === "zh-TW" ? "zh-Hant" : "en"}
+  lang={pageLanguage}
 >
   <article class="shell xiaolin-entry">
     <header class="xiaolin-entry-head">
