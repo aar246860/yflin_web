@@ -1,11 +1,9 @@
 ---
+import PapersRereviewedEpisode from "../../components/PapersRereviewedEpisode.astro";
+import PapersRereviewedHero from "../../components/PapersRereviewedHero.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { absoluteUrl } from "../../lib/seo";
 
-const base = import.meta.env.BASE_URL.endsWith("/")
-  ? import.meta.env.BASE_URL
-  : `${import.meta.env.BASE_URL}/`;
-const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
 const canonicalPath = "/papers-re-reviewed/";
 const videoPath = "/videos/re-reviewed/2016-general-model/reviewer-3-2016.mp4";
 const posterPath = "/videos/re-reviewed/2016-general-model/reviewer-3-2016.webp";
@@ -35,405 +33,52 @@ const schema = {
   type="article"
   pageClass="papers-rereviewed"
 >
-  <header class="rereview-hero">
-    <div class="rereview-shell">
-      <p class="rereview-kicker">A retrospective research series</p>
-      <h1>My Papers,<br /><em>Re-reviewed.</em></h1>
-      <p class="rereview-deck">
-        Published work should survive more than peer review. In this series, I return to my own papers, keep the
-        contribution that still holds, and name the questions I did not yet know how to ask.
-      </p>
-    </div>
-  </header>
-
-  <section class="episode" aria-labelledby="episode-title">
-    <div class="episode__shell">
-      <aside class="episode__index" aria-label="Episode information">
-        <span>01</span>
-        <p>July 2026</p>
-        <p>58 seconds</p>
-        <p>Reviewer #3: Future Me</p>
-      </aside>
-
-      <article class="episode__body">
-        <header class="episode__heading">
-          <p class="rereview-kicker">Ying-Fan Lin, published as Ye-Chen Lin, et al. (2016) · Journal of Hydrology</p>
-          <h2 id="episode-title">A general solution to a very specific aquifer.</h2>
-          <p>
-            The paper derived an analytical pumping-test model for a radial, finite, two-zone confined aquifer with
-            a Robin-type outer boundary. Ten years later, the derivation is not the part I would challenge.
-          </p>
-        </header>
-
-        <figure class="episode__film">
-          <video
-            controls
-            playsinline
-            preload="metadata"
-            poster={withBase(posterPath)}
-            width="1080"
-            height="1920"
-            aria-label="A retrospective review of Lin and colleagues' 2016 analytical aquifer model"
-          >
-            <source src={withBase(videoPath)} type="video/mp4" />
-            <track
-              kind="captions"
-              src={withBase("/videos/re-reviewed/2016-general-model/reviewer-3-2016.en.vtt")}
-              srclang="en"
-              label="English"
-              default
-            />
-            Your browser does not support the video element.
-          </video>
-          <figcaption>
-            The visual annotations are retrospective commentary. The paper image and technical statements refer to
-            the published article.
-          </figcaption>
-        </figure>
-
-        <section class="episode__grid" aria-labelledby="episode-review-title">
-          <h2 id="episode-review-title" class="sr-only">Retrospective review</h2>
-          <div>
-            <p class="rereview-kicker">What still holds</p>
-            <h3>The analytical contribution was real.</h3>
-            <p>
-              The work produced a general solution within its stated conceptual model and examined how the
-              Robin-type outer boundary, the finite radial extent, and the two-zone structure affect drawdown and
-              wellbore response. That is the paper's legitimate contribution.
-            </p>
-          </div>
-          <div>
-            <p class="rereview-kicker">What I would change</p>
-            <h3>Solvability is not field readiness.</h3>
-            <p>
-              The concentric outer boundary is difficult to defend for most field settings. The paper did not fit
-              field data, test parameter identifiability, or turn its root-search procedure into a reproducible
-              inversion workflow. Its one-at-a-time sensitivity analysis also left parameter interactions largely
-              unexamined.
-            </p>
-          </div>
-        </section>
-
-        <aside class="episode__source-boundary" aria-labelledby="source-boundary-title">
-          <p class="rereview-kicker">Source boundary</p>
-          <h3 id="source-boundary-title">The paper and the retrospective make different claims.</h3>
-          <p>
-            The paper supports the analytical derivation, recovered boundary cases, parameter sweeps, and normalized
-            one-at-a-time sensitivity analysis reported in Sections 2–3 and Figure 5. The comments about field
-            representativeness, identifiability, reproducible inversion, and parameter interaction are my later
-            assessment of questions that the 2016 study did not test.
-          </p>
-          <p>
-            The video's Taiwan comparison is editorial shorthand for the restrictive concentric geometry; it is not
-            a field application claimed by the 2016 paper.
-          </p>
-          <p class="episode__published-credit">
-            Published record: Ye-Chen Lin, Shaw-Yang Yang, Chiu-Shia Fen, and Hund-Der Yeh.
-          </p>
-        </aside>
-
-        <blockquote>
-          <p>“The mathematics was real. So was the later lesson.”</p>
-          <footer>Reviewer #3: Future Me</footer>
-        </blockquote>
-
-        <section class="episode__afterword" aria-labelledby="afterword-title">
-          <p class="rereview-kicker">Why publish the criticism?</p>
-          <h2 id="afterword-title">Because a research trajectory should show correction, not just accumulation.</h2>
-          <p>
-            This is not a retraction and it does not claim that the derivation is wrong. It is a record of how my
-            standard changed: from asking whether a groundwater problem admits an analytical solution to asking
-            whether the model can be identified, reproduced, compared with alternatives, and used without hiding
-            consequential uncertainty.
-          </p>
-          <p class="episode__links">
-            <a href="https://doi.org/10.1016/j.jhydrol.2016.07.028" target="_blank" rel="noreferrer">
-              Read the published paper
-            </a>
-            <a href={withBase("/publications/#publication-2016-07-41")}>Open this paper in the publication record</a>
-          </p>
-        </section>
-      </article>
-    </div>
-  </section>
+  <PapersRereviewedHero />
+  <PapersRereviewedEpisode />
 </BaseLayout>
 
 <style>
-  .rereview-shell,
-  .episode__shell {
-    margin: 0 auto;
-    max-width: 1160px;
-    padding-inline: 1.5rem;
-  }
-
-  .rereview-hero {
-    background: #f4f0e7;
-    border-bottom: 1px solid rgb(var(--text-rgb) / 0.16);
-    padding: clamp(5rem, 11vw, 9.5rem) 0 clamp(4rem, 8vw, 7rem);
-  }
-
-  .rereview-kicker {
-    color: #0b6663;
-    font-size: 0.72rem;
-    font-weight: 800;
-    letter-spacing: 0.1em;
-    margin: 0 0 1rem;
-    text-transform: uppercase;
-  }
-
-  .rereview-hero h1 {
-    color: var(--text);
-    font-family: Merriweather, Georgia, serif;
-    font-size: clamp(3.8rem, 11vw, 8.7rem);
-    letter-spacing: 0;
-    line-height: 0.9;
-    margin: 0;
-  }
-
-  .rereview-hero h1 em {
-    color: #bf342d;
-    font-style: normal;
-  }
-
-  .rereview-deck {
-    color: rgb(var(--text-rgb) / 0.72);
-    font-size: clamp(1.05rem, 2vw, 1.28rem);
-    line-height: 1.75;
-    margin: 2rem 0 0 auto;
-    max-width: 680px;
-  }
-
-  .episode {
-    background: #fffdf7;
-    color: var(--text);
-    padding: clamp(4rem, 8vw, 7rem) 0 7rem;
-  }
-
-  .episode__shell {
-    display: grid;
-    gap: clamp(2rem, 5vw, 5.5rem);
-    grid-template-columns: 155px minmax(0, 1fr);
-  }
-
-  .episode__index {
-    border-top: 3px solid #bf342d;
-    color: rgb(var(--text-rgb) / 0.66);
-    font-size: 0.76rem;
-    line-height: 1.55;
-    padding-top: 1rem;
-  }
-
-  .episode__index span {
-    color: var(--text);
-    display: block;
-    font-family: Merriweather, Georgia, serif;
-    font-size: 3.4rem;
-    line-height: 1;
-    margin-bottom: 1.25rem;
-  }
-
-  .episode__index p {
-    margin: 0.35rem 0;
-  }
-
-  .episode__heading {
-    max-width: 790px;
-  }
-
-  .episode__heading h2,
-  .episode__afterword h2 {
-    font-family: Merriweather, Georgia, serif;
-    font-size: clamp(2.25rem, 5vw, 4.35rem);
-    letter-spacing: 0;
-    line-height: 1.05;
-    margin: 0;
-  }
-
-  .episode__heading > p:last-child,
-  .episode__afterword > p:not(.rereview-kicker, .episode__links) {
-    color: rgb(var(--text-rgb) / 0.72);
-    font-size: 1.04rem;
-    line-height: 1.8;
-    margin-top: 1.4rem;
-    max-width: 68ch;
-  }
-
-  .episode__film {
-    align-items: start;
-    display: grid;
-    gap: 1.25rem 2rem;
-    grid-template-columns: minmax(260px, 390px) minmax(180px, 1fr);
-    margin: 3.5rem 0 4.5rem;
-  }
-
-  .episode__film video {
-    aspect-ratio: 9 / 16;
-    background: #111a18;
-    box-shadow: 1.2rem 1.4rem 0 rgb(20 40 36 / 0.12);
-    display: block;
-    height: auto;
-    width: 100%;
-  }
-
-  .episode__film figcaption {
-    border-top: 1px solid rgb(var(--text-rgb) / 0.2);
-    color: rgb(var(--text-rgb) / 0.62);
-    font-size: 0.82rem;
-    line-height: 1.65;
-    padding-top: 1rem;
-  }
-
-  .episode__grid {
-    border-block: 1px solid rgb(var(--text-rgb) / 0.18);
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    margin: 0 0 4.5rem;
-  }
-
-  .episode__grid > div {
-    padding: 2.5rem 2.5rem 2.75rem 0;
-  }
-
-  .episode__grid > div + div {
-    border-left: 1px solid rgb(var(--text-rgb) / 0.18);
-    padding-left: 2.5rem;
-  }
-
-  .episode__grid h3 {
-    font-family: Merriweather, Georgia, serif;
-    font-size: 1.6rem;
-    letter-spacing: 0;
-    line-height: 1.28;
-    margin: 0 0 1rem;
-  }
-
-  .episode__source-boundary {
-    border-block: 1px solid rgb(var(--text-rgb) / 0.18);
-    margin: 3rem 0;
-    padding: 2rem 0;
-  }
-
-  .episode__source-boundary h3 {
-    font-family: Merriweather, Georgia, serif;
-    font-size: clamp(1.4rem, 3vw, 2rem);
-    letter-spacing: 0;
-    line-height: 1.2;
-    margin: 0;
-  }
-
-  .episode__source-boundary > p:last-child {
-    color: rgb(var(--text-rgb) / 0.72);
-    line-height: 1.75;
-    margin: 1rem 0 0;
-    max-width: 74ch;
-  }
-
-  .episode__source-boundary .episode__published-credit {
-    font-size: 0.82rem;
-    margin-top: 0.65rem;
-  }
-
-  .episode__grid div > p:last-child {
-    color: rgb(var(--text-rgb) / 0.7);
-    line-height: 1.75;
-  }
-
-  blockquote {
-    border-left: 5px solid #bf342d;
-    margin: 0 0 5rem;
-    padding: 0.4rem 0 0.4rem clamp(1.5rem, 4vw, 3rem);
-  }
-
-  blockquote p {
-    font-family: Merriweather, Georgia, serif;
-    font-size: clamp(2rem, 5vw, 4rem);
-    letter-spacing: 0;
-    line-height: 1.12;
-    margin: 0;
-    max-width: 17ch;
-  }
-
-  blockquote footer {
-    color: rgb(var(--text-rgb) / 0.58);
-    font-size: 0.78rem;
-    font-weight: 800;
-    letter-spacing: 0.08em;
-    margin-top: 1.4rem;
-    text-transform: uppercase;
-  }
-
-  .episode__afterword {
-    max-width: 780px;
-  }
-
-  .episode__links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem 1.6rem;
-    margin-top: 2rem;
-  }
-
-  .episode__links a {
-    border-bottom: 2px solid #bf342d;
-    color: var(--text);
-    font-size: 0.84rem;
-    font-weight: 800;
-    padding-bottom: 0.26rem;
-    text-decoration: none;
-  }
-
-  .episode__links a:hover,
-  .episode__links a:focus-visible {
-    color: #a82d27;
-  }
-
-  .sr-only {
-    clip: rect(0, 0, 0, 0);
-    clip-path: inset(50%);
-    height: 1px;
-    overflow: hidden;
-    position: absolute;
-    white-space: nowrap;
-    width: 1px;
-  }
-
-  @media (max-width: 760px) {
-    .episode__shell {
-      grid-template-columns: 1fr;
-    }
-
-    .episode__index {
-      display: grid;
-      gap: 0.4rem 1.2rem;
-      grid-template-columns: auto 1fr;
-    }
-
-    .episode__index span {
-      grid-row: 1 / span 3;
-      margin: 0;
-    }
-
-    .episode__film {
-      grid-template-columns: 1fr;
-      justify-items: center;
-    }
-
-    .episode__film video {
-      max-width: 370px;
-    }
-
-    .episode__grid {
-      grid-template-columns: 1fr;
-    }
-
-    .episode__grid > div {
-      padding: 2rem 0;
-    }
-
-    .episode__grid > div + div {
-      border-left: 0;
-      border-top: 1px solid rgb(var(--text-rgb) / 0.18);
-      padding-left: 0;
-    }
+  :global(.papers-rereviewed) {
+    --rereview-kicker-spacing: 0.1em;
+    --rereview-kicker-margin: var(--space-4);
+    --rereview-hero-leading: 0.9;
+    --rereview-deck-size: clamp(1.05rem, 2vw, 1.28rem);
+    --rereview-deck-measure: 680px;
+    --rereview-index-width: 155px;
+    --rereview-index-size: 0.76rem;
+    --rereview-index-leading: 1.55;
+    --rereview-index-number-size: 3.4rem;
+    --rereview-index-row-gap: 0.35rem;
+    --rereview-heading-measure: 790px;
+    --rereview-copy-leading: 1.8;
+    --rereview-body-leading: 1.75;
+    --rereview-copy-margin: 1.4rem;
+    --rereview-copy-measure: 68ch;
+    --rereview-film-columns: minmax(260px, 390px) minmax(180px, 1fr);
+    --rereview-film-shadow: 1.2rem 1.4rem 0 rgb(var(--shadow-rgb) / 0.12);
+    --rereview-caption-leading: 1.65;
+    --rereview-grid-padding-end: 2.75rem;
+    --rereview-card-title-size: 1.6rem;
+    --rereview-card-title-leading: 1.28;
+    --rereview-boundary-title-size: clamp(1.4rem, 3vw, 2rem);
+    --rereview-boundary-title-leading: 1.2;
+    --rereview-boundary-measure: 74ch;
+    --rereview-credit-margin: 0.65rem;
+    --rereview-quote-border: 5px;
+    --rereview-quote-padding-block: 0.4rem;
+    --rereview-quote-padding-inline: clamp(var(--space-6), 4vw, var(--space-12));
+    --rereview-quote-leading: 1.12;
+    --rereview-quote-measure: 17ch;
+    --rereview-quote-credit-size: 0.78rem;
+    --rereview-quote-credit-spacing: 0.08em;
+    --rereview-quote-credit-margin: 1.4rem;
+    --rereview-afterword-measure: 780px;
+    --rereview-link-gap: var(--space-4) 1.6rem;
+    --rereview-link-size: 0.84rem;
+    --rereview-link-padding: 0.26rem;
+    --rereview-focus-width: 3px;
+    --rereview-focus-offset: 4px;
+    --rereview-mobile-index-gap: 0.4rem 1.2rem;
+    --rereview-mobile-video-width: 370px;
   }
 </style>

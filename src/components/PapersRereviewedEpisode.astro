@@ -1,0 +1,121 @@
+---
+import "../styles/papers-rereviewed-episode.css";
+
+const base = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
+const videoPath = "/videos/re-reviewed/2016-general-model/reviewer-3-2016.mp4";
+const posterPath = "/videos/re-reviewed/2016-general-model/reviewer-3-2016.webp";
+---
+
+<section class="episode" aria-labelledby="episode-title">
+  <div class="episode__shell">
+    <aside class="episode__index" aria-label="Episode information">
+      <span>01</span>
+      <p>July 2026</p>
+      <p>58 seconds</p>
+      <p>Reviewer #3: Future Me</p>
+    </aside>
+
+    <article class="episode__body">
+      <header class="episode__heading">
+        <p class="rereview-kicker">Ying-Fan Lin, published as Ye-Chen Lin, et al. (2016) · Journal of Hydrology</p>
+        <h2 id="episode-title">A general solution to a very specific aquifer.</h2>
+        <p>
+          The paper derived an analytical pumping-test model for a radial, finite, two-zone confined aquifer with a
+          Robin-type outer boundary. Ten years later, the derivation is not the part I would challenge.
+        </p>
+      </header>
+
+      <figure class="episode__film">
+        <video
+          controls
+          playsinline
+          preload="metadata"
+          poster={withBase(posterPath)}
+          width="1080"
+          height="1920"
+          aria-label="A retrospective review of Lin and colleagues' 2016 analytical aquifer model"
+        >
+          <source src={withBase(videoPath)} type="video/mp4" />
+          <track
+            kind="captions"
+            src={withBase("/videos/re-reviewed/2016-general-model/reviewer-3-2016.en.vtt")}
+            srclang="en"
+            label="English"
+            default
+          />
+          Your browser does not support the video element.
+        </video>
+        <figcaption>
+          The visual annotations are retrospective commentary. The paper image and technical statements refer to
+          the published article.
+        </figcaption>
+      </figure>
+
+      <section class="episode__grid" aria-labelledby="episode-review-title">
+        <h2 id="episode-review-title" class="sr-only">Retrospective review</h2>
+        <div>
+          <p class="rereview-kicker">What still holds</p>
+          <h3>The analytical contribution was real.</h3>
+          <p>
+            The work produced a general solution within its stated conceptual model and examined how the Robin-type
+            outer boundary, the finite radial extent, and the two-zone structure affect drawdown and wellbore
+            response. That is the paper's legitimate contribution.
+          </p>
+        </div>
+        <div>
+          <p class="rereview-kicker">What I would change</p>
+          <h3>Solvability is not field readiness.</h3>
+          <p>
+            The concentric outer boundary is difficult to defend for most field settings. The paper did not fit
+            field data, test parameter identifiability, or turn its root-search procedure into a reproducible
+            inversion workflow. Its one-at-a-time sensitivity analysis also left parameter interactions largely
+            unexamined.
+          </p>
+        </div>
+      </section>
+
+      <aside class="episode__source-boundary" aria-labelledby="source-boundary-title">
+        <p class="rereview-kicker">Source boundary</p>
+        <h3 id="source-boundary-title">The paper and the retrospective make different claims.</h3>
+        <p>
+          The paper supports the analytical derivation, recovered boundary cases, parameter sweeps, and normalized
+          one-at-a-time sensitivity analysis reported in Sections 2–3 and Figure 5. The comments about field
+          representativeness, identifiability, reproducible inversion, and parameter interaction are my later
+          assessment of questions that the 2016 study did not test.
+        </p>
+        <p>
+          The video's Taiwan comparison is editorial shorthand for the restrictive concentric geometry; it is not a
+          field application claimed by the 2016 paper.
+        </p>
+        <p class="episode__published-credit">
+          Published record: Ye-Chen Lin, Shaw-Yang Yang, Chiu-Shia Fen, and Hund-Der Yeh.
+        </p>
+      </aside>
+
+      <blockquote>
+        <p>“The mathematics was real. So was the later lesson.”</p>
+        <footer>Reviewer #3: Future Me</footer>
+      </blockquote>
+
+      <section class="episode__afterword" aria-labelledby="afterword-title">
+        <p class="rereview-kicker">Why publish the criticism?</p>
+        <h2 id="afterword-title">Because a research trajectory should show correction, not just accumulation.</h2>
+        <p>
+          This is not a retraction and it does not claim that the derivation is wrong. It is a record of how my
+          standard changed: from asking whether a groundwater problem admits an analytical solution to asking
+          whether the model can be identified, reproduced, compared with alternatives, and used without hiding
+          consequential uncertainty.
+        </p>
+        <p class="episode__links">
+          <a href="https://doi.org/10.1016/j.jhydrol.2016.07.028" target="_blank" rel="noreferrer">
+            Read the published paper
+          </a>
+          <a href={withBase("/publications/#publication-2016-07-41")}>Open this paper in the publication record</a>
+        </p>
+      </section>
+    </article>
+  </div>
+</section>

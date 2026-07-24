@@ -48,7 +48,24 @@ const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
 
 <style>
   .rereview-feature {
-    background: #f4f0e7;
+    --rereview-feature-kicker-spacing: 0.1em;
+    --rereview-feature-kicker-margin: 1.15rem;
+    --rereview-feature-title-leading: 1.02;
+    --rereview-feature-title-measure: 13ch;
+    --rereview-feature-copy-margin: 1.45rem 0 1.7rem;
+    --rereview-feature-copy-measure: 61ch;
+    --rereview-feature-link-size: 0.88rem;
+    --rereview-feature-link-gap: 0.55rem;
+    --rereview-feature-link-padding: 0.32rem;
+    --rereview-feature-focus-width: 3px;
+    --rereview-feature-focus-offset: 4px;
+    --rereview-feature-shadow: 1.25rem 1.4rem 0 rgb(var(--shadow-rgb) / 0.12);
+    --rereview-feature-player-width: 340px;
+    --rereview-feature-player-mobile-width: min(86vw, 360px);
+    --rereview-feature-shell-columns: minmax(0, 1fr) minmax(260px, 0.54fr);
+    --rereview-feature-shell-measure: 1120px;
+    --rereview-feature-copy-shell-measure: 650px;
+    background: var(--group-wax);
     border-block: 1px solid rgb(var(--text-rgb) / 0.14);
     color: var(--text);
   }
@@ -56,64 +73,69 @@ const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
   .rereview-feature__shell {
     align-items: center;
     display: grid;
-    gap: clamp(2.5rem, 7vw, 7rem);
-    grid-template-columns: minmax(0, 1fr) minmax(260px, 0.54fr);
+    gap: var(--space-layout-gap);
+    grid-template-columns: var(--rereview-feature-shell-columns);
     margin: 0 auto;
-    max-width: 1120px;
-    padding: clamp(4.25rem, 8vw, 7rem) 1.5rem;
+    max-width: var(--rereview-feature-shell-measure);
+    padding: var(--space-section-large) var(--space-content-inline);
   }
 
   .rereview-feature__copy {
-    max-width: 650px;
+    max-width: var(--rereview-feature-copy-shell-measure);
   }
 
   .rereview-feature__kicker {
-    color: #0b6663;
-    font-size: 0.72rem;
+    color: var(--palette-numerical);
+    font-size: var(--type-label);
     font-weight: 800;
-    letter-spacing: 0.1em;
-    margin: 0 0 1.15rem;
+    letter-spacing: var(--rereview-feature-kicker-spacing);
+    margin: 0 0 var(--rereview-feature-kicker-margin);
     text-transform: uppercase;
   }
 
   .rereview-feature h2 {
-    font-family: Merriweather, Georgia, serif;
-    font-size: clamp(2.35rem, 5vw, 4.65rem);
+    font-family: var(--font-serif);
+    font-size: var(--type-display-feature);
     letter-spacing: 0;
-    line-height: 1.02;
+    line-height: var(--rereview-feature-title-leading);
     margin: 0;
-    max-width: 13ch;
+    max-width: var(--rereview-feature-title-measure);
   }
 
   .rereview-feature__copy > p:not(.rereview-feature__kicker) {
     color: rgb(var(--text-rgb) / 0.72);
-    font-size: 1.04rem;
-    line-height: 1.78;
-    margin: 1.45rem 0 1.7rem;
-    max-width: 61ch;
+    font-size: var(--type-body-large);
+    line-height: var(--leading-body);
+    margin: var(--rereview-feature-copy-margin);
+    max-width: var(--rereview-feature-copy-measure);
   }
 
   .rereview-feature a {
-    border-bottom: 2px solid #bf342d;
+    border-bottom: 2px solid var(--palette-warm);
     color: var(--text);
     display: inline-flex;
-    font-size: 0.88rem;
+    font-size: var(--rereview-feature-link-size);
     font-weight: 800;
-    gap: 0.55rem;
-    padding-bottom: 0.32rem;
+    gap: var(--rereview-feature-link-gap);
+    padding-bottom: var(--rereview-feature-link-padding);
     text-decoration: none;
   }
 
   .rereview-feature a:hover,
   .rereview-feature a:focus-visible {
-    color: #a82d27;
+    color: var(--signal-measured-strong);
+  }
+
+  .rereview-feature a:focus-visible {
+    outline: var(--rereview-feature-focus-width) solid var(--focus);
+    outline-offset: var(--rereview-feature-focus-offset);
   }
 
   .rereview-feature__player {
-    background: #111a18;
-    box-shadow: 1.25rem 1.4rem 0 rgb(20 40 36 / 0.12);
+    background: var(--signal-model);
+    box-shadow: var(--rereview-feature-shadow);
     justify-self: end;
-    width: min(100%, 340px);
+    width: min(100%, var(--rereview-feature-player-width));
   }
 
   .rereview-feature video {
@@ -130,7 +152,7 @@ const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
 
     .rereview-feature__player {
       justify-self: center;
-      width: min(86vw, 360px);
+      width: var(--rereview-feature-player-mobile-width);
     }
   }
 </style>
