@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 600" role="img" aria-labelledby="title desc">
+  <title id="title">今晚的風沒有附說明書</title>
+  <desc id="desc">半開的窗戶面向深藍夜色。青綠窗簾向室內飄動，遠方公寓亮著幾扇窗，月亮、機車尾燈、塑膠袋和金屬碰撞符號散落在風的路徑上；小林坐在窗邊聆聽。</desc>
+  <defs>
+    <linearGradient id="night" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#102a38"/>
+      <stop offset="1" stop-color="#1e4550"/>
+    </linearGradient>
+    <linearGradient id="room" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f0e8d6"/>
+      <stop offset="1" stop-color="#c7b99d"/>
+    </linearGradient>
+    <filter id="soft" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="5"/>
+    </filter>
+  </defs>
+
+  <rect width="960" height="600" fill="url(#room)"/>
+  <rect x="270" y="45" width="650" height="430" rx="8" fill="url(#night)" stroke="#243c42" stroke-width="12"/>
+  <path d="M595 50V475M275 300H915" fill="none" stroke="#45636a" stroke-width="7"/>
+  <path d="M280 470H925L960 520H240Z" fill="#6d665d"/>
+
+  <path d="M820 105a43 43 0 1 0 43 43 35 35 0 0 1-43-43Z" fill="#f4cf77"/>
+  <circle cx="790" cy="185" r="3" fill="#e8f0e8"/>
+  <circle cx="850" cy="225" r="2.5" fill="#e8f0e8"/>
+  <circle cx="735" cy="95" r="2" fill="#e8f0e8"/>
+
+  <g fill="#20343c" stroke="#688087" stroke-width="3">
+    <path d="M620 255h95v220h-95Z"/>
+    <path d="M730 315h150v160H730Z"/>
+  </g>
+  <g fill="#e5b75f">
+    <rect x="640" y="278" width="17" height="22" rx="2"/>
+    <rect x="674" y="338" width="17" height="22" rx="2"/>
+    <rect x="752" y="344" width="20" height="24" rx="2"/>
+    <rect x="798" y="388" width="20" height="24" rx="2"/>
+    <rect x="842" y="335" width="20" height="24" rx="2"/>
+  </g>
+
+  <path d="M290 70C205 150 205 238 270 300C210 350 190 420 245 490C135 455 95 370 125 275C152 187 205 105 290 70Z" fill="#4f8b87"/>
+  <path d="M292 72C245 170 250 260 285 338C230 390 220 445 245 490" fill="none" stroke="#2f6868" stroke-width="7" stroke-linecap="round"/>
+  <path d="M275 220C350 202 414 216 470 250C515 277 565 285 625 270" fill="none" stroke="#79b8ad" stroke-width="5" stroke-linecap="round" stroke-dasharray="18 16"/>
+  <path d="M310 248C370 238 420 253 465 278" fill="none" stroke="#79b8ad" stroke-width="3" stroke-linecap="round"/>
+
+  <g transform="translate(668 365)">
+    <circle cx="0" cy="0" r="22" fill="#c95743" filter="url(#soft)" opacity=".45"/>
+    <circle cx="0" cy="0" r="8" fill="#ef7158"/>
+    <path d="M-55 8h38l15 10h38" fill="none" stroke="#dce7e5" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="-39" cy="17" r="10" fill="#182a31" stroke="#dce7e5" stroke-width="3"/>
+    <circle cx="21" cy="17" r="10" fill="#182a31" stroke="#dce7e5" stroke-width="3"/>
+  </g>
+
+  <path d="M550 205c18-22 44-14 45 6 3 22-22 28-37 17-13-9-19-9-26 2 7-18 8-18 18-25Z" fill="#e8e1c9" stroke="#c7b99d" stroke-width="3"/>
+  <path d="M527 212c-18 8-30 3-39-9M528 222c-20 15-38 15-55 7" fill="none" stroke="#8ac1b6" stroke-width="3" stroke-linecap="round"/>
+
+  <g transform="translate(490 130)" fill="none" stroke="#e8ca79" stroke-linecap="round">
+    <path d="M0 20h22" stroke-width="5"/>
+    <path d="M11 9v22" stroke-width="5"/>
+    <path d="M-9 0-20-12M31 0 42-12M-9 40-22 50M31 40 44 50" stroke-width="3"/>
+    <circle cx="11" cy="20" r="35" stroke-width="2" opacity=".55"/>
+  </g>
+
+  <g transform="translate(145 395)">
+    <path d="M40 5c0-25 18-43 42-43s43 18 43 43v20H40Z" fill="#293d43"/>
+    <circle cx="82" cy="-52" r="33" fill="#d6b08c"/>
+    <path d="M50-58c12-35 54-38 68-7-12-8-21-9-31-7-14 3-23 7-37 14Z" fill="#1f3035"/>
+    <path d="M55-48c8 6 16 8 25 8M88-40c8 0 15-3 21-8" fill="none" stroke="#735b4a" stroke-width="3" stroke-linecap="round"/>
+    <path d="M124 18c35-20 66-23 96-9" fill="none" stroke="#293d43" stroke-width="20" stroke-linecap="round"/>
+    <rect x="28" y="25" width="118" height="18" rx="8" fill="#9b7454"/>
+  </g>
+
+  <path d="M0 510H960V600H0Z" fill="#746a5c"/>
+  <path d="M0 510H960" stroke="#4d4943" stroke-width="8"/>
+  <g fill="none" stroke="#d9caa8" stroke-width="3" stroke-linecap="round">
+    <path d="M375 520c28-18 56-18 84 0"/>
+    <path d="M500 535c30-16 62-16 92 0"/>
+    <path d="M680 515c24-14 50-14 75 0"/>
+  </g>
+</svg>
