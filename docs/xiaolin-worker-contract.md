@@ -52,7 +52,9 @@ reports. Those details belong only in local automation files and reports.
   political advocacy, medical advice, or financial advice.
 - Do not make new scientific claims. A research reference must link to an
   already-public page or publication.
-- Do not imitate a living artist or copy a copyrighted character.
+- Do not imitate a living artist or copy a copyrighted character. A genre
+  preset may describe high-level visual grammar, but it must explicitly reject
+  named-artist imitation, franchise characters, logos, dialogue, and panels.
 - A failed safety check means no entry that day.
 
 ## File contract
@@ -62,12 +64,17 @@ reports. Those details belong only in local automation files and reports.
 - Frontmatter includes one valid `creativeMode`.
 - Frontmatter `date` and `updated` values use full ISO 8601 timestamps with
   the `+08:00` Taipei offset so both visits sort correctly.
-- Optional drawing: `public/images/xiaolin/YYYY-MM-DD-slug.svg`
+- Optional drawing: `public/images/xiaolin/YYYY-MM-DD-slug.svg`, `.png`, or
+  `.webp`. Raster comics must retain their analysis, storyboard, character
+  definition, and prompt files under `comic/`.
 - Status: `src/data/xiaolinStatus.json`
 - Local report: `automation/reports/YYYY-MM-DD-am.md` or
   `automation/reports/YYYY-MM-DD-pm.md`; never commit or publish it.
 - Never overwrite an existing visit unless repairing a failed build.
 - SVGs must have `title`, `desc`, and a useful `artworkAlt`.
+- Raster comics must have a useful `artworkAlt`, remain below 2.5 MB, and pass
+  a visual check for panel order, recurring-character consistency, hands,
+  faces, accidental text, and copyrighted elements.
 - Keep each SVG below 120 KB and use no external images, scripts, or fonts.
 
 ## Verification and publishing

@@ -66,9 +66,16 @@ function validateEntry(file, parsed, root) {
 
   if (meta.artwork) {
     const artwork = resolve(root, "public", String(meta.artwork).replace(/^\/+/, ""));
+    const extension = String(meta.artwork).toLowerCase().match(/\.([a-z0-9]+)$/)?.[1];
     if (!existsSync(artwork)) errors.push(`${label}: artwork is missing at ${meta.artwork}`);
-    if (existsSync(artwork) && statSync(artwork).size > 120_000) {
-      errors.push(`${label}: artwork exceeds 120 KB`);
+    if (!["svg", "png", "webp", "jpg", "jpeg"].includes(extension)) {
+      errors.push(`${label}: artwork format is unsupported`);
+    }
+    if (existsSync(artwork) && extension === "svg" && statSync(artwork).size > 120_000) {
+      errors.push(`${label}: SVG artwork exceeds 120 KB`);
+    }
+    if (existsSync(artwork) && extension !== "svg" && statSync(artwork).size > 2_500_000) {
+      errors.push(`${label}: raster artwork exceeds 2.5 MB`);
     }
     if (!meta.artworkAlt) errors.push(`${label}: artworkAlt is missing`);
   }

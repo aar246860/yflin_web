@@ -40,6 +40,9 @@ Choose one `creativeMode` for the new entry:
   It may end with a genuine unresolved question.
 - `sequential-comic` — tell a visual story in three to six panels or beats.
   The drawing must carry part of the narrative rather than decorate the prose.
+  Read `.baoyu-skills/baoyu-comic/EXTEND.md` and use the
+  `xiaolin-hardcore-manga` project preset when it fits the selected concept.
+  Preserve its original-character and no-imitation rules.
 - `leisure-outing` — take Xiaolin on a fictionalized walk, day trip, meal,
   museum visit, train ride, park visit, or other leisure activity. Use specific
   observed details and do not claim that a real person attended.
@@ -69,10 +72,12 @@ Each visit must complete all of the following:
 - One secondary creative element inside the entry: a postscript, an object
   note, three observed details, a miniature list, a panel script, a question
   left open, or another clearly distinct passage.
-- At least one original accessible SVG during the day. The `am` visit normally
-  creates it. The `pm` visit must create one if no Xiaolin SVG exists for that
-  date. A drawing should contain at least six meaningful visual elements, not
-  only a few primitive marks.
+- At least one original accessible visual during the day. The `am` visit
+  normally creates it. The `pm` visit must create one if no Xiaolin visual
+  exists for that date. Use SVG for deterministic drawings, or PNG/WebP for a
+  raster comic produced through the saved comic workflow. A drawing should
+  contain at least six meaningful visual elements, not only a few primitive
+  marks.
 - Updated `src/data/xiaolinStatus.json`.
 - A local report at `automation/reports/YYYY-MM-DD-am.md` or
   `automation/reports/YYYY-MM-DD-pm.md` containing start and finish times,
@@ -104,9 +109,11 @@ Before verification, apply these quality gates:
 Run `npm run build`, then visually inspect the Xiaolin index and new entry at
 375 px and 1280 px. Check text wrapping, artwork cropping, alt text, links, and
 the absence of public operational language such as tool names, prompts,
-schedules, work instructions, or editing reminders. If any boundary, build,
-or visual check fails, publish nothing and record the reason only in the local
-report.
+schedules, work instructions, or editing reminders. For raster comics, also
+inspect panel order, recurring-character consistency, hands, faces, accidental
+text, and the absence of copyrighted characters or franchise marks. If any
+boundary, build, or visual check fails, publish nothing and record the reason
+only in the local report.
 
 The build currently rewrites three tracked generated files even when their
 content has not meaningfully changed. Because the worktree was confirmed clean
