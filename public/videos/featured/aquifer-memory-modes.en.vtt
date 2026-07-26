@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:01.319
+Three aquifer models.
+
+2
+00:00:01.319 --> 00:00:02.637
+Three different mechanisms.
+
+3
+00:00:02.637 --> 00:00:08.352
+Yet under a pumping test, they can cast almost the same drawdown curve.
+
+4
+00:00:08.792 --> 00:00:14.516
+In the ideal classical baseline, diffusion supplies one effective time scale.
+
+5
+00:00:14.516 --> 00:00:16.597
+Transmissivity spreads the signal.
+
+6
+00:00:16.597 --> 00:00:20.240
+Storage sets how much water is released.
+
+7
+00:00:20.700 --> 00:00:29.556
+But preferential pathways, dual porosity exchange, or coupled processes can make flux and head equilibrate on different time scales.
+
+8
+00:00:29.996 --> 00:00:35.101
+In data, those different stories may collapse into one observable memory band.
+
+9
+00:00:35.101 --> 00:00:42.332
+Lagging Theory is one low order way to represent that band, not proof of a unique mechanism.
+
+10
+00:00:42.812 --> 00:00:51.620
+With adequate bandwidth and signal quality, a frequency sweep can test how many stable dynamic modes repeat across periods and wells.
+
+11
+00:00:52.100 --> 00:00:57.608
+If only one extra band survives, a single memory model may be enough.
+
+12
+00:00:57.608 --> 00:01:04.388
+A second band should earn its place by reappearing beyond noise, sampling limits, and model compensation.
+
+13
+00:01:04.888 --> 00:01:12.736
+So should aquifer models be classified by the mechanisms we can imagine, or by the memories the data can actually reveal?
