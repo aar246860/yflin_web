@@ -11,7 +11,8 @@ The working directory should be a clean clone of `aar246860/yflin_web` on
 `main`. It must not point at a manuscript folder, OneDrive research folder, or
 a worktree containing unpublished material.
 
-Each visit performs 18-25 minutes of active creative and verification work,
+Each visit performs 27-35 minutes of active creative and verification work,
+targeting about 30 minutes,
 publishes at most one Xiaolin entry, and writes an ignored local report under
 `automation/reports/`. The automation is not allowed to post on social media,
 send messages, alter other site pages, or inspect private material.

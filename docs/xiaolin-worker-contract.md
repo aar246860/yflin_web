@@ -11,6 +11,13 @@ Each of the two daily visits chooses one form:
 2. **Doodle** — an original SVG drawing with an accompanying 80–180 words.
 3. **Field report** — a playful report from an imaginary corner of the website.
 
+The form is separate from the creative mode. Each new entry also records one
+`creativeMode`: `philosophical-note`, `sequential-comic`, `leisure-outing`,
+`visual-study`, or `absurd-comedy`. Recent modes must rotate. The character may
+think seriously, draw a short comic, take a fictionalized leisure trip, or
+study a visual idea; object personification and nonsense are options, not the
+default voice.
+
 Daily work does not need to mention groundwater, research, the university, or
 the lab. Ordinary objects, weather, food, bad jokes, unfinished thoughts, and
 visual nonsense are welcome. Avoid repeating the previous seven subjects.
@@ -52,6 +59,7 @@ reports. Those details belong only in local automation files and reports.
 
 - Entry: `src/content/xiaolin/YYYY-MM-DD-am-slug.md` or
   `src/content/xiaolin/YYYY-MM-DD-pm-slug.md`
+- Frontmatter includes one valid `creativeMode`.
 - Frontmatter `date` and `updated` values use full ISO 8601 timestamps with
   the `+08:00` Taipei offset so both visits sort correctly.
 - Optional drawing: `public/images/xiaolin/YYYY-MM-DD-slug.svg`
