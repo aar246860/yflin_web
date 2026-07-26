@@ -11,13 +11,49 @@ const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
       <p class="featured-films__kicker">Featured films</p>
       <h2 id="featured-films-title">Start with the field record.</h2>
       <p>
-        These short films follow the argument from pumping-test measurements to model-conditioned parameters and
-        periodic groundwater memory.
+        These films move from field measurements to model-conditioned parameters, resolvable aquifer dynamics, and
+        the research workflows used to examine them.
       </p>
     </header>
 
     <div class="featured-films__grid">
-      <article class="featured-film">
+      <article class="featured-film featured-film--wide featured-film--lead">
+        <div class="featured-film__player">
+          <video
+            controls
+            playsinline
+            preload="none"
+            poster={withBase("/videos/featured/aquifer-memory-modes.webp")}
+            width="720"
+            height="1280"
+            aria-label="How many memories does an aquifer need research film"
+          >
+            <source src={withBase("/videos/featured/aquifer-memory-modes.mp4")} type="video/mp4" />
+            <track
+              kind="captions"
+              src={withBase("/videos/featured/aquifer-memory-modes.en.vtt")}
+              srclang="en"
+              label="English"
+            />
+            Your browser does not support the video element.
+          </video>
+        </div>
+        <div class="featured-film__copy">
+          <p class="featured-film__meta"><span>1 min 14 sec</span><span>Model-order question</span></p>
+          <h3>How many memories does an aquifer need?</h3>
+          <p>
+            Different physical mechanisms can leave nearly the same drawdown response. This film asks whether we
+            should first identify how many stable dynamic modes the data support, then examine which mechanisms could
+            have produced them. A multiple-memory response remains a testable direction, not a presumed result.
+          </p>
+          <div class="featured-film__links">
+            <a href={withBase("/concepts/lagging-theory/")}>The Lagging Theory framework</a>
+            <a href={withBase("/publications/")}>Related analytical studies</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="featured-film featured-film--column-start">
         <div class="featured-film__player">
           <video
             controls
@@ -130,6 +166,44 @@ const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
           </div>
         </div>
       </article>
+
+      <article class="featured-film featured-film--wide">
+        <div class="featured-film__player">
+          <video
+            controls
+            playsinline
+            preload="none"
+            poster={withBase("/videos/featured/web-first-manuscript-workflow.webp")}
+            width="720"
+            height="1280"
+            aria-label="Web-first manuscript workflow research film"
+          >
+            <source src={withBase("/videos/featured/web-first-manuscript-workflow.mp4")} type="video/mp4" />
+            <track
+              kind="captions"
+              src={withBase("/videos/featured/web-first-manuscript-workflow.en.vtt")}
+              srclang="en"
+              label="English"
+            />
+            Your browser does not support the video element.
+          </video>
+        </div>
+        <div class="featured-film__copy">
+          <p class="featured-film__meta"><span>24 sec</span><span>Research workflow</span></p>
+          <h3>What if LaTeX were the output?</h3>
+          <p>
+            Word made review familiar, Overleaf made equation-heavy collaboration practical, and GitHub preserved
+            version history. This working experiment asks whether the everyday draft could remain directly editable
+            on the web, with LaTeX produced when the manuscript is ready.
+          </p>
+          <div class="featured-film__links">
+            <a href="https://x.com/AquiferMemory/status/2081312688182116613" target="_blank" rel="noreferrer">
+              View the X post
+            </a>
+            <span class="featured-film__status">Prototype in development</span>
+          </div>
+        </div>
+      </article>
     </div>
   </div>
 </section>
@@ -210,6 +284,17 @@ const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
     padding: 2rem 0 0;
   }
 
+  .featured-film--lead {
+    border-top: 0;
+    margin-top: 0;
+  }
+
+  .featured-film--column-start {
+    border-left: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 2rem !important;
+  }
+
   .featured-film__player {
     align-self: start;
     background: #050707;
@@ -278,6 +363,14 @@ const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
     text-underline-offset: 0.24em;
   }
 
+  .featured-film__status {
+    color: rgb(var(--surface-rgb) / 0.55);
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
   .featured-film__links a:hover {
     text-decoration-color: var(--signal-measured);
   }
@@ -296,6 +389,10 @@ const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
       border-left: 0;
       border-top: 1px solid rgb(var(--surface-rgb) / 0.24);
       padding-left: 0;
+    }
+
+    .featured-film--column-start {
+      padding-right: 0 !important;
     }
 
     .featured-film__player {
