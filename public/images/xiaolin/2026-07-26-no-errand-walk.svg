@@ -1,0 +1,151 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 900" role="img" aria-labelledby="title desc">
+  <title id="title">一趟沒有差事的散步</title>
+  <desc id="desc">六格手繪漫畫。小林從門口出發，在紅燈前停下，經過便利商店，看狗研究水溝蓋，在樹蔭長椅休息，最後繞路回家。</desc>
+  <defs>
+    <linearGradient id="paper" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f8fbf7"/>
+      <stop offset="1" stop-color="#edf4ef"/>
+    </linearGradient>
+    <pattern id="grain" width="18" height="18" patternUnits="userSpaceOnUse">
+      <circle cx="3" cy="4" r="1" fill="#1d4e4a" opacity=".05"/>
+      <circle cx="14" cy="11" r=".8" fill="#1d4e4a" opacity=".04"/>
+    </pattern>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="5" flood-color="#163b3a" flood-opacity=".14"/>
+    </filter>
+    <style>
+      .panel{fill:#fff;stroke:#1d4e4a;stroke-width:4}
+      .ink{fill:none;stroke:#183f3d;stroke-width:5;stroke-linecap:round;stroke-linejoin:round}
+      .fine{fill:none;stroke:#183f3d;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+      .teal{fill:#4f9e91}
+      .pale{fill:#dbece6}
+      .gold{fill:#efbd62}
+      .orange{fill:#e77b4e}
+      .navy{fill:#24556a}
+      .cream{fill:#fff5da}
+      .caption{font:700 24px system-ui,sans-serif;fill:#183f3d}
+      .number{font:800 21px system-ui,sans-serif;fill:#fff}
+    </style>
+  </defs>
+
+  <rect width="1280" height="900" rx="34" fill="url(#paper)"/>
+  <rect width="1280" height="900" rx="34" fill="url(#grain)"/>
+
+  <!-- Panel 1: departure -->
+  <g transform="translate(45 45)" filter="url(#shadow)">
+    <rect class="panel" width="370" height="370" rx="18"/>
+    <circle cx="42" cy="42" r="22" class="navy"/><text x="35" y="50" class="number">1</text>
+    <rect x="42" y="95" width="132" height="215" rx="4" class="pale"/>
+    <path d="M174 95v215M72 197h6" class="ink"/>
+    <path d="M248 82v232" class="fine"/>
+    <path d="M248 103l82-23v210l-82 24z" class="cream" stroke="#183f3d" stroke-width="4"/>
+    <circle cx="309" cy="192" r="6" class="gold"/>
+    <ellipse cx="125" cy="325" rx="40" ry="10" fill="#b9d7cc"/>
+    <g transform="translate(188 164)">
+      <circle cx="0" cy="0" r="26" class="gold" stroke="#183f3d" stroke-width="4"/>
+      <path d="M-19-7q19-20 39 0" class="ink"/>
+      <path d="M0 27v92M0 55l-35 34M0 58l39 22M0 119l-27 45M0 119l32 43" class="ink"/>
+      <path d="M-10 38l28 11-8 30-31-13z" class="navy"/>
+      <path d="M18 38l30 18" stroke="#e77b4e" stroke-width="9" stroke-linecap="round"/>
+    </g>
+    <path d="M279 52q30 17 50 0" class="fine"/>
+    <circle cx="282" cy="49" r="5" class="orange"/><circle cx="329" cy="49" r="5" class="orange"/>
+  </g>
+
+  <!-- Panel 2: red light -->
+  <g transform="translate(455 45)" filter="url(#shadow)">
+    <rect class="panel" width="370" height="370" rx="18"/>
+    <circle cx="42" cy="42" r="22" class="navy"/><text x="35" y="50" class="number">2</text>
+    <rect x="0" y="260" width="370" height="110" fill="#dbece6"/>
+    <path d="M20 286h70M116 286h70M212 286h70M308 286h42" stroke="#fff" stroke-width="26"/>
+    <path d="M300 82v192" class="ink"/>
+    <rect x="273" y="73" width="54" height="104" rx="12" class="navy"/>
+    <circle cx="300" cy="101" r="14" class="orange"/>
+    <circle cx="300" cy="145" r="14" fill="#8dbab0" opacity=".45"/>
+    <g transform="translate(135 175)">
+      <circle cx="0" cy="0" r="23" class="gold" stroke="#183f3d" stroke-width="4"/>
+      <path d="M-17-6q17-18 35 0" class="ink"/>
+      <path d="M0 24v76M0 48l-27 28M0 49l27 20M0 100l-20 42M0 100l24 42" class="ink"/>
+      <path d="M13 34l27 13" stroke="#e77b4e" stroke-width="8" stroke-linecap="round"/>
+    </g>
+    <path d="M72 104q15-14 31 0M103 104q15-14 31 0" class="fine"/>
+    <path d="M46 244q39-21 73 0" class="fine" opacity=".45"/>
+  </g>
+
+  <!-- Panel 3: convenience-store breeze -->
+  <g transform="translate(865 45)" filter="url(#shadow)">
+    <rect class="panel" width="370" height="370" rx="18"/>
+    <circle cx="42" cy="42" r="22" class="navy"/><text x="35" y="50" class="number">3</text>
+    <rect x="42" y="92" width="214" height="205" class="cream" stroke="#183f3d" stroke-width="4"/>
+    <path d="M42 118h214" stroke="#4f9e91" stroke-width="18"/>
+    <path d="M64 92v205M234 92v205" class="fine"/>
+    <path d="M148 140v157" class="ink"/>
+    <path d="M145 152q-58 18-76 62M145 176q-72 33-95 78M145 203q-48 32-67 72" fill="none" stroke="#7fc5ba" stroke-width="6" stroke-linecap="round"/>
+    <g transform="translate(291 188)">
+      <circle cx="0" cy="0" r="22" class="gold" stroke="#183f3d" stroke-width="4"/>
+      <path d="M-16-6q16-18 33 0" class="ink"/>
+      <path d="M0 23v69M0 45l-24 23M0 46l25 13M0 92l-19 40M0 92l22 39" class="ink"/>
+      <path d="M14 31l25 12" stroke="#e77b4e" stroke-width="8" stroke-linecap="round"/>
+    </g>
+    <circle cx="94" cy="257" r="8" fill="#fff"/>
+    <circle cx="118" cy="235" r="5" fill="#fff"/>
+  </g>
+
+  <!-- Panel 4: dog and drain cover -->
+  <g transform="translate(45 455)" filter="url(#shadow)">
+    <rect class="panel" width="370" height="370" rx="18"/>
+    <circle cx="42" cy="42" r="22" class="navy"/><text x="35" y="50" class="number">4</text>
+    <path d="M0 279q93-27 185 0t185 0v91H0z" class="pale"/>
+    <ellipse cx="242" cy="287" rx="70" ry="27" fill="#9abfb5" stroke="#183f3d" stroke-width="4"/>
+    <path d="M191 283h103M207 272h71M211 294h65" class="fine" opacity=".7"/>
+    <g transform="translate(182 174)">
+      <path d="M-45 40q20-49 68-27l34 21-16 58h-85z" class="gold" stroke="#183f3d" stroke-width="4"/>
+      <circle cx="47" cy="16" r="31" class="gold" stroke="#183f3d" stroke-width="4"/>
+      <path d="M33-8L19-37q29 3 38 24M62-6l17-25q11 27 3 42" class="gold" stroke="#183f3d" stroke-width="4"/>
+      <circle cx="57" cy="12" r="4" fill="#183f3d"/>
+      <path d="M73 23q16 8 0 16" class="fine"/>
+      <path d="M-26 90v34M20 90v34M-44 42q-28-6-28-28" class="ink"/>
+    </g>
+    <path d="M287 125q22-20 42 0M304 106q12-14 24-3" class="fine"/>
+    <path d="M77 282q19-23 38 0" class="fine" opacity=".6"/>
+  </g>
+
+  <!-- Panel 5: half-shade bench -->
+  <g transform="translate(455 455)" filter="url(#shadow)">
+    <rect class="panel" width="370" height="370" rx="18"/>
+    <circle cx="42" cy="42" r="22" class="navy"/><text x="35" y="50" class="number">5</text>
+    <circle cx="297" cy="74" r="34" class="gold"/>
+    <path d="M82 84v216" class="ink"/>
+    <path d="M82 114q-58-8-48-51 36-27 62 3 24-36 62-10 22 38-20 59z" class="teal" stroke="#183f3d" stroke-width="4"/>
+    <path d="M59 227h248M72 257h222M88 227v72M282 227v72" class="ink"/>
+    <path d="M45 370L212 182l93 188z" fill="#4f9e91" opacity=".16"/>
+    <g transform="translate(174 195)">
+      <circle cx="0" cy="0" r="22" class="gold" stroke="#183f3d" stroke-width="4"/>
+      <path d="M-16-6q16-18 33 0" class="ink"/>
+      <path d="M0 23v52M0 40l-28 28M0 42l30 25M0 75l-30 36M0 75l35 35" class="ink"/>
+      <path d="M14 31l28 14" stroke="#e77b4e" stroke-width="8" stroke-linecap="round"/>
+    </g>
+    <path d="M218 89q22-16 40 2M242 113q24-14 43 4" class="fine"/>
+  </g>
+
+  <!-- Panel 6: the loop home -->
+  <g transform="translate(865 455)" filter="url(#shadow)">
+    <rect class="panel" width="370" height="370" rx="18"/>
+    <circle cx="42" cy="42" r="22" class="navy"/><text x="35" y="50" class="number">6</text>
+    <path d="M70 292C45 236 86 181 144 194c62 15 52-84 119-71 65 12 80 109 18 143-49 27-117-4-164 36" fill="none" stroke="#4f9e91" stroke-width="15" stroke-linecap="round" stroke-dasharray="2 25"/>
+    <path d="M63 286l18 7-10 17" class="ink"/>
+    <rect x="55" y="73" width="84" height="101" rx="5" class="cream" stroke="#183f3d" stroke-width="4"/>
+    <path d="M97 73v101M70 174v35M124 174v35M60 209h75" class="ink"/>
+    <circle cx="123" cy="126" r="5" class="gold"/>
+    <g transform="translate(265 248)">
+      <circle cx="0" cy="0" r="22" class="gold" stroke="#183f3d" stroke-width="4"/>
+      <path d="M-16-6q16-18 33 0" class="ink"/>
+      <path d="M0 23v58M0 42l-26 23M0 43l26 18M0 81l-23 40M0 81l25 40" class="ink"/>
+      <path d="M14 31l28 14" stroke="#e77b4e" stroke-width="8" stroke-linecap="round"/>
+    </g>
+    <path d="M172 318q18-11 36 0M212 326q14-8 28 0" class="fine" opacity=".55"/>
+    <circle cx="145" cy="120" r="7" class="orange"/>
+    <circle cx="274" cy="123" r="7" class="gold"/>
+    <circle cx="289" cy="270" r="7" class="navy"/>
+  </g>
+</svg>

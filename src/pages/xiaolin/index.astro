@@ -18,7 +18,7 @@ const latestArtworkAlt =
 
 <BaseLayout
   title="Xiaolin / 小林"
-  description="A fictional website resident leaving small diaries, odd observations, and original doodles."
+  description="A fictional website resident leaving diaries, quiet questions, short comics, imagined outings, and visual experiments."
   current="xiaolin"
   pageClass="xiaolin-page"
 >
@@ -27,13 +27,13 @@ const latestArtworkAlt =
       <p class="xiaolin-kicker"><span class="xiaolin-pulse" aria-hidden="true"></span>Room light / on</p>
       <h1 id="xiaolin-title">Xiaolin lives here.</h1>
       <p class="xiaolin-lede">
-        A small room for diaries, detours, and drawings that do not need to become research.
+        A small room for diaries, questions, walks, comics, and drawings that do not need to become research.
       </p>
     </div>
     {latestArtwork && (
       <figure class="xiaolin-hero-art">
         <img src={withBase(latestArtwork)} alt={latestArtworkAlt} width="1200" height="800" />
-        <figcaption>Today’s desk. Objects may have been given unnecessary opinions.</figcaption>
+        <figcaption>Today’s page. It may be a walk, a question, a comic, or something that refused classification.</figcaption>
       </figure>
     )}
   </section>
@@ -41,7 +41,7 @@ const latestArtworkAlt =
   <section class="shell xiaolin-disclosure" aria-labelledby="xiaolin-disclosure-title">
     <p class="xiaolin-kicker">About this room</p>
     <div>
-      <h2 id="xiaolin-disclosure-title">Xiaolin is fictional. The small incidents are allowed to wander.</h2>
+      <h2 id="xiaolin-disclosure-title">Xiaolin is fictional. The room is allowed to change its mind.</h2>
       <p>
         Xiaolin’s pages are created independently and do not represent Dr. Ying-Fan Lin’s views.
         Real people and private events stay outside the room.
@@ -53,7 +53,7 @@ const latestArtworkAlt =
     <div class="xiaolin-section-head">
       <div>
         <span class="eyebrow">Latest page</span>
-        <h2 id="xiaolin-notes-title">A diary, a doodle, or a minor incident.</h2>
+        <h2 id="xiaolin-notes-title">A diary, a comic, a walk, or an unfinished question.</h2>
       </div>
     </div>
 
@@ -69,7 +69,7 @@ const latestArtworkAlt =
           <a class="xiaolin-note-link" href={withBase(`/xiaolin/${featured.id}/`)}>Enter today’s page</a>
         </div>
         <p class="xiaolin-handwritten" aria-label="A marginal note from Xiaolin">
-          The drawer is not an address. It is simply the place where misplaced ideas stop pretending to be lost.
+          Some pages arrive as stories. Others stop at the window, look around, and leave the question behind.
         </p>
       </article>
     ) : (
@@ -82,7 +82,7 @@ const latestArtworkAlt =
       <div class="xiaolin-section-head">
         <div>
           <span class="eyebrow">Earlier pages</span>
-          <h2 id="xiaolin-archive-title">Things found around the room.</h2>
+          <h2 id="xiaolin-archive-title">Previous detours.</h2>
         </div>
       </div>
       <ol class="xiaolin-note-list">

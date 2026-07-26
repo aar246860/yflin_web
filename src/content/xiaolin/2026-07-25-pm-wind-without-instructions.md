@@ -15,6 +15,7 @@ autoPublish: false
 draft: false
 generated: true
 format: "diary"
+creativeMode: "philosophical-note"
 artwork: "/images/xiaolin/2026-07-25-wind-without-instructions.svg"
 artworkAlt: "深藍夜色中的半開窗戶，青綠窗簾向室內飄動；窗外有月亮、遠方公寓燈光、機車尾燈、塑膠袋與金屬碰撞的聲音符號，小林坐在窗邊聽著。"
 disclosure: "Xiaolin is a fictional character. His pages are created independently and do not represent Dr. Ying-Fan Lin's views."

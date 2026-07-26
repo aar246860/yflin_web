@@ -8,6 +8,14 @@ const forbidden = [
   /[\w.+-]+@[\w.-]+\.[A-Za-z]{2,}/,
   /(?:\+?\d[\s().-]*){9,}/,
 ];
+const creativeModes = new Set([
+  "philosophical-note",
+  "sequential-comic",
+  "leisure-outing",
+  "visual-study",
+  "absurd-comedy",
+]);
+const rotationCutover = Date.parse("2026-07-26T13:23:35+08:00");
 
 function parseFrontmatter(source) {
   const match = source.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/);
@@ -51,6 +59,9 @@ function validateEntry(file, parsed, root) {
     ) {
       errors.push(`${label}: generated entry needs the public non-endorsement disclosure`);
     }
+    if (!creativeModes.has(meta.creativeMode)) {
+      errors.push(`${label}: generated entry needs a valid creativeMode`);
+    }
   }
 
   if (meta.artwork) {
@@ -68,17 +79,53 @@ function validateEntry(file, parsed, root) {
   return errors;
 }
 
+function validateCreativeRotation(entries) {
+  const errors = [];
+  const ordered = entries
+    .filter(({ parsed }) => parsed?.meta.generated === true)
+    .sort(
+      (a, b) =>
+        Date.parse(String(a.parsed.meta.date ?? "")) -
+        Date.parse(String(b.parsed.meta.date ?? "")),
+    );
+
+  for (let index = 0; index < ordered.length; index += 1) {
+    const current = ordered[index];
+    const currentTime = Date.parse(String(current.parsed.meta.date ?? ""));
+    if (!Number.isFinite(currentTime) || currentTime < rotationCutover) continue;
+
+    const mode = current.parsed.meta.creativeMode;
+    const previousThree = ordered.slice(Math.max(0, index - 3), index);
+    if (previousThree.some(({ parsed }) => parsed.meta.creativeMode === mode)) {
+      errors.push(`${basename(current.file)}: creativeMode repeats within the previous three visits`);
+    }
+
+    if (mode === "absurd-comedy") {
+      const previousFour = ordered.slice(Math.max(0, index - 4), index);
+      if (previousFour.some(({ parsed }) => parsed.meta.creativeMode === mode)) {
+        errors.push(`${basename(current.file)}: absurd-comedy repeats within the previous four visits`);
+      }
+    }
+  }
+  return errors;
+}
+
 export function runPublisher({ root = process.cwd() } = {}) {
   const sourceDir = resolve(root, "src/content/xiaolin");
-  const files = readdirSync(sourceDir)
+  const entries = readdirSync(sourceDir)
     .filter((file) => file.endsWith(".md"))
-    .map((file) => resolve(sourceDir, file));
-  const errors = files.flatMap((file) =>
-    validateEntry(file, parseFrontmatter(readFileSync(file, "utf8")), root),
-  );
+    .map((file) => resolve(sourceDir, file))
+    .map((file) => ({
+      file,
+      parsed: parseFrontmatter(readFileSync(file, "utf8")),
+    }));
+  const errors = [
+    ...entries.flatMap(({ file, parsed }) => validateEntry(file, parsed, root)),
+    ...validateCreativeRotation(entries),
+  ];
   return {
     status: errors.length ? "failed" : "passed",
-    checked: files.length,
+    checked: entries.length,
     errors,
   };
 }

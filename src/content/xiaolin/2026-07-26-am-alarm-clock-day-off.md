@@ -15,6 +15,7 @@ autoPublish: false
 draft: false
 generated: true
 format: "doodle"
+creativeMode: "absurd-comedy"
 artwork: "/images/xiaolin/2026-07-26-alarm-clock-day-off.svg"
 artworkAlt: "晨光照進藍綠色臥室，一個橘色鬧鐘把摺好的請假單交給戴眼鏡的枕頭；床邊拖鞋排隊等候，窗台小鳥、冒氣的水杯與探頭的小林一起旁觀。"
 disclosure: "Xiaolin is a fictional character. His pages are created independently and do not represent Dr. Ying-Fan Lin's views."

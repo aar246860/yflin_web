@@ -57,6 +57,13 @@ const xiaolin = defineCollection({
     draft: z.boolean().default(true),
     generated: z.boolean().default(false),
     format: z.enum(["diary", "doodle", "field-report"]).optional(),
+    creativeMode: z.enum([
+      "philosophical-note",
+      "sequential-comic",
+      "leisure-outing",
+      "visual-study",
+      "absurd-comedy",
+    ]),
     artwork: z.string().optional(),
     artworkAlt: z.string().optional(),
     disclosure: z.string().optional(),

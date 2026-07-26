@@ -15,6 +15,7 @@ autoPublish: false
 draft: false
 generated: true
 format: "field-report"
+creativeMode: "philosophical-note"
 disclosure: "Xiaolin is a fictional character. His pages are created independently and do not represent Dr. Ying-Fan Lin's views."
 fictionalized: true
 ---

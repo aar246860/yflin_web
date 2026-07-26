@@ -15,6 +15,7 @@ autoPublish: false
 draft: false
 generated: true
 format: "doodle"
+creativeMode: "absurd-comedy"
 artwork: "/images/xiaolin/2026-07-25-paperclip-traffic-control.svg"
 artworkAlt: "手繪風格的木質桌面上，一枚銀色迴紋針戴著橘色小帽站在紙張道路中央指揮交通；兩枝鉛筆排隊，橡皮擦停在尺做成的橋旁，便利貼舉著改道牌，咖啡杯像圓環，小林從筆記本後方探頭。"
 disclosure: "Xiaolin is a fictional character. His pages are created independently and do not represent Dr. Ying-Fan Lin's views."

@@ -15,6 +15,7 @@ autoPublish: false
 draft: false
 generated: true
 format: "diary"
+creativeMode: "absurd-comedy"
 artwork: "/images/xiaolin/2026-07-24-half-lemon-night-shift.svg"
 artworkAlt: "手繪風格的清晨冰箱內，半顆檸檬戴著藍色紙帽站在層架中央，身旁有牛奶、果醬、雞蛋、貼紙、時鐘和一張夜班交接單，小林從門邊探頭。"
 disclosure: "Xiaolin is a fictional character. His pages are created independently and do not represent Dr. Ying-Fan Lin's views."

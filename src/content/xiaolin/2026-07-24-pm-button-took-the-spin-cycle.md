@@ -15,6 +15,7 @@ autoPublish: false
 draft: false
 generated: true
 format: "doodle"
+creativeMode: "absurd-comedy"
 artwork: "/images/xiaolin/2026-07-24-button-took-the-spin-cycle.svg"
 artworkAlt: "手繪風格的洗衣間裡，一枚橘色四孔鈕扣拿著皺掉的車票站在洗衣機門口，滾筒內有襪子、條紋衣物和泡泡，旁邊放著洗衣籃、掉落的硬幣與一張失物招領告示，小林從洗衣間一角探頭。"
 disclosure: "Xiaolin is a fictional character. His pages are created independently and do not represent Dr. Ying-Fan Lin's views."
