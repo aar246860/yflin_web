@@ -36,7 +36,7 @@ for (const file of walk(contentRoot)) {
   if (!/sourceProjects:\s*(\[[^\]]+\]|\n\s+-\s+)/.test(fm)) {
     issues.push(`${rel}: missing sourceProjects list`);
   }
-  if (!/relatedPublications:\s*(\[[^\]]+\]|\n\s+-\s+)/.test(fm) && !rel.includes(`${path.sep}projects${path.sep}`)) {
+  if (!/relatedPublications:\s*(\[[^\]]*\]|\n\s+-\s+)/.test(fm) && !rel.includes(`${path.sep}projects${path.sep}`)) {
     issues.push(`${rel}: missing relatedPublications list`);
   }
   riskyClaims.forEach((pattern) => {
