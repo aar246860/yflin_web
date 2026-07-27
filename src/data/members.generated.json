@@ -7,48 +7,58 @@
       },
       "roleKey": "team_role_pi",
       "focus": {
-        "zh-TW": "地下水模擬、地下水資源管理",
-        "en": "Groundwater modeling, coastal aquifers, thermal transport, and inverse problems"
+        "zh-TW": "地下水解析模型、延遲理論、轉換不確定性與地下能源",
+        "en": "Analytical groundwater hydraulics, Lagging Theory, transformation uncertainty, and subsurface energy"
       },
-      "photo": "professor_林穎凡.png"
-    },
+      "photo": "professor_ying_fan_lin.png"
+    }
+  ],
+  "alumniMembers": [
     {
       "name": {
         "zh-TW": "蔡鼎翔",
-        "en": "Ding-Xiang Tsai"
+        "en": "Ting-Hsiang Tsai"
       },
       "roleKey": "team_role_master",
+      "status": {
+        "zh-TW": "已畢業",
+        "en": "Graduated"
+      },
       "focus": {
-        "zh-TW": "橢圓海島抽水最佳化之研析",
-        "en": "Pumping optimization for elliptical islands"
+        "zh-TW": "考慮延遲理論之振盪抽水解析解建立與應用",
+        "en": "Development and Application of an Analytical Solution for Oscillatory Pumping Considering Lagging Theory"
       },
       "photo": "student_tsai.png"
     },
     {
       "name": {
         "zh-TW": "羅于翔",
-        "en": "Yu-Xiang Lo"
+        "en": "Yu-Hsiang Lo"
       },
       "roleKey": "team_role_master",
+      "status": {
+        "zh-TW": "已畢業",
+        "en": "Graduated"
+      },
       "focus": {
-        "zh-TW": "延遲理論應用在熱響應試驗",
-        "en": "Lagging theory applications in thermal response tests"
+        "zh-TW": "應用雙相位延遲理論於地熱能評估之熱響應試驗",
+        "en": "Applying Dual-Phase Lag Theory to Thermal Response Test in Thermal Energy Evaluation"
       },
       "photo": "student_lo.png"
     },
     {
       "name": {
         "zh-TW": "王湘雯",
-        "en": "Xiang-Wen Wang"
+        "en": "Hsiang-Wen Wang"
       },
       "roleKey": "team_role_ra",
-      "focus": {
-        "zh-TW": "研究井內grout的熱傳性質於熱響應試驗",
-        "en": "Thermal properties of borehole grout in thermal response tests"
+      "status": {
+        "zh-TW": "已畢業",
+        "en": "Graduated"
       },
-      "admission": {
-        "zh-TW": "國立台灣大學 生物環境系統工程學系（尚未畢業）",
-        "en": "National Taiwan University, Department of Bioenvironmental Systems Engineering (not yet graduated)"
+      "focus": {
+        "zh-TW": "熱響應試驗、鑽孔回填材料蓄熱與熱參數推估",
+        "en": "Thermal response testing, borehole grout heat storage, and thermal-parameter estimation"
       },
       "photo": "student_wang.png"
     },
@@ -58,13 +68,13 @@
         "en": "Hao-Ju Chen"
       },
       "roleKey": "team_role_ra",
-      "focus": {
-        "zh-TW": "延遲理論的新參數空間分布",
-        "en": "New spatial parameter distributions in lagging theory"
+      "status": {
+        "zh-TW": "已畢業",
+        "en": "Graduated"
       },
-      "admission": {
-        "zh-TW": "國立陽明交通大學 土木工程學系（尚未畢業）",
-        "en": "National Yang Ming Chiao Tung University, Department of Civil Engineering (not yet graduated)"
+      "focus": {
+        "zh-TW": "延遲理論與空間參數分布",
+        "en": "Lagging Theory and spatial parameter distributions"
       },
       "photo": "student_chen.png"
     },
@@ -74,12 +84,31 @@
         "en": "Shao-Hsuan Chiu"
       },
       "roleKey": "team_role_ra",
+      "status": {
+        "zh-TW": "已畢業",
+        "en": "Graduated"
+      },
       "focus": {
-        "zh-TW": "進行中",
-        "en": "In progress"
+        "zh-TW": "研究專題已完成",
+        "en": "Completed student research project"
       },
       "photo": "student_chiu.png"
+    },
+    {
+      "name": {
+        "zh-TW": "Li-Chen Cheng",
+        "en": "Li-Chen Cheng"
+      },
+      "roleKey": "team_role_ra",
+      "status": {
+        "zh-TW": "已畢業",
+        "en": "Graduated"
+      },
+      "focus": {
+        "zh-TW": "加壓微水試驗中的水力記憶與不確定性診斷",
+        "en": "Hydraulic memory and uncertainty diagnostics in pressurized slug tests"
+      },
+      "photo": "student_cheng.png"
     }
-  ],
-  "alumniMembers": []
+  ]
 }

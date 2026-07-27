@@ -1,0 +1,69 @@
+---
+import type { TeamPublicationHighlight } from "../../data/teamShowcase";
+
+interface Props {
+  publications: TeamPublicationHighlight[];
+}
+
+const { publications } = Astro.props;
+const base = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
+---
+
+<section class="shell team-section" aria-labelledby="publication-title">
+  <div class="team-section__heading team-section__heading--split">
+    <div>
+      <p class="team-kicker">Published evidence</p>
+      <h2 id="publication-title">Student work carried into peer-reviewed publications.</h2>
+    </div>
+    <p>
+      Each record links to its DOI and uses the first page of the published paper as its visual source.
+    </p>
+  </div>
+
+  <div class="team-publications">
+    {publications.map((publication) => (
+      <article class="team-publication">
+        <a
+          class="team-publication__cover"
+          href={`https://doi.org/${publication.doi}`}
+          target="_blank"
+          rel="noreferrer"
+          aria-label={`Open ${publication.title} via DOI`}
+        >
+          <img
+            src={withBase(publication.cover)}
+            alt={`First page of ${publication.title}.`}
+            width={publication.coverWidth}
+            height={publication.coverHeight}
+            loading="lazy"
+            decoding="async"
+          />
+        </a>
+        <div class="team-publication__copy">
+          <div class="team-publication__meta">
+            <time datetime={publication.date}>{publication.dateLabel}</time>
+            <span>{publication.venue}</span>
+            <span>{publication.volume}</span>
+          </div>
+          <h3>{publication.title}</h3>
+          <p class="team-publication__authors">{publication.authors}</p>
+          <p class="team-publication__plain">{publication.plainLanguage}</p>
+          <div class="team-publication__footer">
+            <a href={`https://doi.org/${publication.doi}`} target="_blank" rel="noreferrer">
+              DOI: {publication.doi}
+            </a>
+            <p>
+              Group contributors: <strong>{publication.teamContributors.join(", ")}</strong>
+            </p>
+          </div>
+        </div>
+      </article>
+    ))}
+  </div>
+  <p class="team-publication-note">
+    Author names above follow the journal records. Roster names follow the group record supplied for this website.
+  </p>
+</section>

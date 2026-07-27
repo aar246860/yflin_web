@@ -36,6 +36,11 @@ const roleLabel: Record<string, string> = {
   team_role_master: "Graduate student",
   team_role_ra: "Research assistant",
 };
+const visibleMembers = [...members.currentMembers, ...members.alumniMembers];
+const memberRole = (member: (typeof visibleMembers)[number]) =>
+  member.status?.en === "Graduated"
+    ? "Graduate research contributor"
+    : roleLabel[member.roleKey] ?? "Research member";
 const homeSchema = [
   {
     "@type": "Organization",
@@ -85,10 +90,10 @@ const homeSchema = [
             of how the group develops research questions.
           </p>
           <ul>
-            {members.currentMembers.map((member) => (
+            {visibleMembers.map((member) => (
               <li>
                 <strong>{member.name.en}</strong>
-                <span>{roleLabel[member.roleKey] ?? "Research member"}</span>
+                <span>{memberRole(member)}</span>
               </li>
             ))}
           </ul>

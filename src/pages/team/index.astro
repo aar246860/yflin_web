@@ -1,91 +1,59 @@
 ---
-import BaseLayout from "../../layouts/BaseLayout.astro";
-import { Button } from "@/components/starwind/button";
+import TeamActivity from "../../components/team/TeamActivity.astro";
+import TeamClosing from "../../components/team/TeamClosing.astro";
+import TeamDirection from "../../components/team/TeamDirection.astro";
+import TeamGraduates from "../../components/team/TeamGraduates.astro";
+import TeamHero from "../../components/team/TeamHero.astro";
+import TeamPublications from "../../components/team/TeamPublications.astro";
+import { activityPhotos } from "../../data/groupSite";
 import members from "../../data/members.generated.json";
-import publications from "../../data/publications.generated.json";
-import { activityPhotos, studentPublicationIds } from "../../data/groupSite";
+import { teamPublicationHighlights } from "../../data/teamShowcase";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import "../../styles/team-shared.css";
+import "../../styles/team-hero.css";
+import "../../styles/team-direction.css";
+import "../../styles/team-graduates.css";
+import "../../styles/team-publications.css";
+import "../../styles/team-activity.css";
+import "../../styles/team-closing.css";
 
 const base = import.meta.env.BASE_URL.endsWith("/")
   ? import.meta.env.BASE_URL
   : `${import.meta.env.BASE_URL}/`;
 const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
-const studentPublications = publications.filter((pub) => studentPublicationIds.includes(pub.id));
+
+const principalInvestigator = members.currentMembers[0];
+const graduates = members.alumniMembers;
+const thesisGraduates = graduates.slice(0, 2);
+const researchContributors = graduates.slice(2);
+const groupSchema = {
+  "@type": "ResearchOrganization",
+  name: "Lin Groundwater Hydraulics Group",
+  url: new URL(withBase("/team/"), Astro.site),
+  founder: {
+    "@type": "Person",
+    name: principalInvestigator.name.en,
+  },
+  member: [...members.currentMembers, ...graduates].map((member) => ({
+    "@type": "Person",
+    name: member.name.en,
+  })),
+};
 ---
 
 <BaseLayout
-  title="People"
-  description="People and student activity in the Lin Groundwater Hydraulics Group directed by Ying-Fan Lin."
+  title="People and Research Outcomes"
+  description="Graduate research, student-involved publications, and group activity in the Lin Groundwater Hydraulics Group."
   current="team"
   canonicalPath="/team/"
+  image="/media/team-life/jpgu-2026/jpgu-2026-team-selfie.jpg"
+  schema={groupSchema}
+  pageClass="team-showcase-page"
 >
-  <section class="shell section group-page-hero">
-    <span class="eyebrow">People</span>
-    <h1>Research is developed through students, analytical work, field-facing data, and external collaboration.</h1>
-    <p class="lede">
-      The group combines analytical modeling, field interpretation, conference exchange, and project work around
-      aquifer-test interpretation, transformation uncertainty, and groundwater-influenced subsurface energy.
-    </p>
-  </section>
-
-  <section class="shell section">
-    <div class="section-head section-head--editorial">
-      <div>
-        <span class="eyebrow">Current members</span>
-        <h2>Research roles are presented using public information only.</h2>
-      </div>
-      <Button href={withBase("/collaborate/")} variant="outline">Work with us</Button>
-    </div>
-    <div class="people-grid">
-      {members.currentMembers.map((member) => (
-        <article class="person-card person-card--large">
-          <div class="person-card__avatar" aria-hidden="true">{member.name.en.split(" ").map((part) => part[0]).join("").slice(0, 2)}</div>
-          <div>
-            <h3>{member.name.en}</h3>
-            <p>{member.focus.en}</p>
-            {member.admission?.en && <span>{member.admission.en}</span>}
-          </div>
-        </article>
-      ))}
-    </div>
-  </section>
-
-  <section class="shell section">
-    <div class="section-head section-head--editorial">
-      <div>
-        <span class="eyebrow">Student presentations and group activity</span>
-        <h2>Photos show the working layer behind posters, conference exchange, and project discussion.</h2>
-      </div>
-    </div>
-    <div class="activity-strip activity-strip--large">
-      {activityPhotos.map((photo) => (
-        <figure>
-          <img src={withBase(photo.src)} alt={photo.alt} loading="lazy" decoding="async" />
-          <figcaption>{photo.label}</figcaption>
-        </figure>
-      ))}
-    </div>
-  </section>
-
-  {studentPublications.length > 0 && (
-    <section class="shell section">
-      <div class="section-head section-head--editorial">
-        <div>
-          <span class="eyebrow">Student-involved publication</span>
-        <h2>Publications are listed when the publication record supports the student connection.</h2>
-        </div>
-      </div>
-      <div class="publication-list">
-        {studentPublications.map((pub) => (
-          <div class="publication">
-            <time>{pub.year}</time>
-            <div>
-              <h3>{pub.title.en}</h3>
-              <p>{pub.authors}</p>
-              <p>{pub.venue}</p>
-            </div>
-          </div>
-        ))}
-      </div>
-    </section>
-  )}
+  <TeamHero graduatesCount={graduates.length} publicationCount={teamPublicationHighlights.length} />
+  <TeamDirection {principalInvestigator} />
+  <TeamGraduates {thesisGraduates} {researchContributors} />
+  <TeamPublications publications={teamPublicationHighlights} />
+  <TeamActivity photos={activityPhotos} />
+  <TeamClosing />
 </BaseLayout>

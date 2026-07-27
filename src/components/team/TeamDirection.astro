@@ -1,0 +1,42 @@
+---
+import { Button } from "@/components/starwind/button";
+import members from "../../data/members.generated.json";
+
+interface Props {
+  principalInvestigator: (typeof members.currentMembers)[number];
+}
+
+const { principalInvestigator } = Astro.props;
+const base = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
+---
+
+<section class="shell team-section team-direction" aria-labelledby="direction-title">
+  <div class="team-section__heading">
+    <p class="team-kicker">Faculty direction</p>
+    <h2 id="direction-title">One research programme, carried across water, heat, and uncertainty.</h2>
+  </div>
+  <div class="team-direction__body">
+    <div class="team-direction__identity">
+      <span class="team-direction__monogram" aria-hidden="true">YL</span>
+      <div>
+        <p class="team-label">Principal investigator</p>
+        <h3>{principalInvestigator.name.en}</h3>
+        <p>{principalInvestigator.name["zh-TW"]}</p>
+      </div>
+    </div>
+    <div class="team-direction__statement">
+      <p>
+        The group develops analytical models for groundwater and subsurface heat transport, then asks how
+        model structure changes inferred parameters and engineering decisions. Lagging Theory provides a
+        shared line of inquiry into non-instantaneous hydraulic response.
+      </p>
+      <div class="team-direction__links">
+        <Button href={withBase("/projects/")} variant="outline">Research programme</Button>
+        <Button href={withBase("/publications/")} variant="outline">Publication record</Button>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,59 @@
+---
+interface Props {
+  graduatesCount: number;
+  publicationCount: number;
+}
+
+const { graduatesCount, publicationCount } = Astro.props;
+const base = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
+const heroPath = "/media/team-life/jpgu-2026/jpgu-2026-team-selfie.jpg";
+const imageVariant = (width: number, extension: "avif" | "webp") =>
+  heroPath.replace(/\.jpg$/i, `-${width}.${extension}`);
+const imageSrcset = (extension: "avif" | "webp") =>
+  [640, 960, 1440]
+    .map((width) => `${withBase(imageVariant(width, extension))} ${width}w`)
+    .join(", ");
+---
+
+<section class="team-hero" aria-labelledby="team-page-title">
+  <picture class="team-hero__media">
+    <source type="image/avif" srcset={imageSrcset("avif")} sizes="100vw" />
+    <source type="image/webp" srcset={imageSrcset("webp")} sizes="100vw" />
+    <img
+      src={withBase(heroPath)}
+      alt="Members of the groundwater research group outside the JpGU 2026 conference venue."
+      width="1200"
+      height="900"
+      fetchpriority="high"
+    />
+  </picture>
+  <div class="team-hero__shade" aria-hidden="true"></div>
+  <div class="shell team-hero__content">
+    <p class="team-kicker">Lin Groundwater Hydraulics Group</p>
+    <h1 id="team-page-title">People who turn groundwater questions into traceable research.</h1>
+    <p>
+      Student projects have advanced analytical well hydraulics, Lagging Theory, thermal-response
+      interpretation, and uncertainty diagnostics.
+    </p>
+  </div>
+</section>
+
+<section class="team-proof" aria-label="Group record">
+  <div class="shell team-proof__grid">
+    <div>
+      <strong>{graduatesCount}</strong>
+      <span>graduate research contributors</span>
+    </div>
+    <div>
+      <strong>{publicationCount}</strong>
+      <span>student-involved papers highlighted from 2026</span>
+    </div>
+    <div>
+      <strong>4</strong>
+      <span>connected research lines</span>
+    </div>
+  </div>
+</section>

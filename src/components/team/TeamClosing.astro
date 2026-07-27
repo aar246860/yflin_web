@@ -1,0 +1,22 @@
+---
+import { Button } from "@/components/starwind/button";
+
+const base = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
+---
+
+<section class="shell team-section team-closing" aria-labelledby="team-closing-title">
+  <div>
+    <p class="team-kicker">Work with the group</p>
+    <h2 id="team-closing-title">Bring a groundwater response that the usual interpretation does not explain.</h2>
+  </div>
+  <div>
+    <p>
+      Suitable collaborations begin with a measured response, a forcing history, and a clear account of the
+      decision that depends on the interpretation.
+    </p>
+    <Button href={withBase("/collaborate/")} variant="default">Start a technical conversation</Button>
+  </div>
+</section>

@@ -1,0 +1,55 @@
+---
+import members from "../../data/members.generated.json";
+
+type Graduate = (typeof members.alumniMembers)[number];
+
+interface Props {
+  thesisGraduates: Graduate[];
+  researchContributors: Graduate[];
+}
+
+const { thesisGraduates, researchContributors } = Astro.props;
+---
+
+<section class="team-band team-band--mineral">
+  <div class="shell team-section" aria-labelledby="graduate-title">
+    <div class="team-section__heading team-section__heading--split">
+      <div>
+        <p class="team-kicker">Graduate work</p>
+        <h2 id="graduate-title">Completed projects remain part of the group's research record.</h2>
+      </div>
+      <p>
+        Thesis titles are shown in English and Traditional Chinese where the final title was supplied.
+      </p>
+    </div>
+
+    <div class="thesis-list">
+      {thesisGraduates.map((member, index) => (
+        <article class="thesis-entry">
+          <span class="thesis-entry__number">{String(index + 1).padStart(2, "0")}</span>
+          <div class="thesis-entry__person">
+            <p class="team-status">{member.status.en}</p>
+            <h3>{member.name.en}</h3>
+            {member.name["zh-TW"] !== member.name.en && <p>{member.name["zh-TW"]}</p>}
+          </div>
+          <div class="thesis-entry__title">
+            <p>{member.focus.en}</p>
+            <p lang="zh-Hant">{member.focus["zh-TW"]}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <div class="contributor-list" aria-label="Other graduate research contributors">
+      {researchContributors.map((member) => (
+        <article>
+          <div>
+            <p class="team-status">{member.status.en}</p>
+            <h3>{member.name.en}</h3>
+          </div>
+          <p>{member.focus.en}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

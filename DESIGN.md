@@ -38,6 +38,18 @@ The home page has one `h1`. Section headings use `h2`, and item headings use `h3
 
 Training, Network, Open Tools, Glossary, Explain­ers, and About remain available through the footer and relevant contextual links.
 
+## Team page proof sequence
+
+The People page is an evidence-led group record rather than a directory of equal profile cards. It follows this order:
+
+1. **Shared identity**: one real team photograph and a direct statement of the group's research practice.
+2. **Research direction**: the faculty lead and the four connected research lines.
+3. **Graduate work**: completed student topics, with thesis titles shown in both English and Traditional Chinese when supplied.
+4. **Published evidence**: verified journal metadata, DOI links, and first-page previews from the published papers.
+5. **Group life**: real conference, poster, and working-meal photographs.
+
+Graduated researchers are not shown as current students. Publication author names follow the journal record, while roster names follow the group record supplied for the website.
+
 ## Visual system
 
 - **Base**: paper white and pale mineral green, with deep ink for headings.

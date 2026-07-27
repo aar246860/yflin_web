@@ -1,0 +1,21 @@
+.team-closing {
+  align-items: end;
+  grid-template-columns: minmax(0, 1.45fr) minmax(280px, 0.55fr);
+}
+
+.team-closing h2 {
+  font-size: clamp(2.2rem, 4.8vw, 4.25rem);
+  margin-top: 0.7rem;
+}
+
+.team-closing > div:last-child {
+  display: grid;
+  gap: 1.25rem;
+  justify-items: start;
+}
+
+@media (max-width: 900px) {
+  .team-closing {
+    grid-template-columns: 1fr;
+  }
+}

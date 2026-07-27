@@ -1,0 +1,61 @@
+---
+import { activityPhotos } from "../../data/groupSite";
+
+interface Props {
+  photos: typeof activityPhotos;
+}
+
+const { photos } = Astro.props;
+const base = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
+const imageVariant = (path: string, width: number, extension: "avif" | "webp") =>
+  path.replace(/\.jpg$/i, `-${width}.${extension}`);
+const imageSrcset = (path: string, extension: "avif" | "webp") =>
+  [640, 960, 1440]
+    .map((width) => `${withBase(imageVariant(path, width, extension))} ${width}w`)
+    .join(", ");
+---
+
+<section class="team-band team-band--ink">
+  <div class="shell team-section team-life-showcase" aria-labelledby="team-life-title">
+    <div class="team-section__heading team-section__heading--split">
+      <div>
+        <p class="team-kicker">Research in public</p>
+        <h2 id="team-life-title">Posters, questions, travel, and the conversations between them.</h2>
+      </div>
+      <p>
+        Conference participation is where derivations meet questions from outside the group.
+      </p>
+    </div>
+    <div class="team-life-showcase__mosaic">
+      {photos.map((photo, index) => (
+        <figure class={`team-life-showcase__photo team-life-showcase__photo--${index + 1}`}>
+          <picture>
+            <source
+              type="image/avif"
+              srcset={imageSrcset(photo.src, "avif")}
+              sizes="(max-width: 720px) 100vw, 50vw"
+            />
+            <source
+              type="image/webp"
+              srcset={imageSrcset(photo.src, "webp")}
+              sizes="(max-width: 720px) 100vw, 50vw"
+            />
+            <img
+              src={withBase(photo.src)}
+              alt={photo.alt}
+              loading="lazy"
+              decoding="async"
+            />
+          </picture>
+          <figcaption>
+            <span>{String(index + 1).padStart(2, "0")}</span>
+            {photo.label}
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  </div>
+</section>

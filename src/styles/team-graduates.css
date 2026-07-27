@@ -1,0 +1,111 @@
+.team-band--mineral {
+  background: var(--page-depth);
+  border-bottom: 1px solid var(--rule);
+  border-top: 1px solid var(--rule);
+}
+
+.thesis-list {
+  border-top: 1px solid var(--rule-strong);
+}
+
+.thesis-entry {
+  align-items: start;
+  border-bottom: 1px solid var(--rule);
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 3rem minmax(180px, 0.42fr) minmax(0, 1fr);
+  padding: 2rem 0;
+}
+
+.thesis-entry__number {
+  color: var(--signal-measured);
+  font-family: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.thesis-entry__person h3,
+.contributor-list h3 {
+  font-family: var(--font-serif);
+  font-size: 1.42rem;
+  margin-top: 0.45rem;
+}
+
+.thesis-entry__person > p:last-child {
+  font-size: 0.82rem;
+  margin-top: 0.3rem;
+}
+
+.thesis-entry__title {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.thesis-entry__title p:first-child {
+  color: var(--text);
+  font-family: var(--font-serif);
+  font-size: clamp(1.18rem, 2.2vw, 1.65rem);
+  line-height: 1.45;
+}
+
+.thesis-entry__title p:last-child {
+  font-size: 0.92rem;
+  line-height: 1.75;
+}
+
+.contributor-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.contributor-list article {
+  border-bottom: 1px solid var(--rule);
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: minmax(150px, 0.72fr) minmax(0, 1fr);
+  padding: 1.45rem 1.4rem 1.45rem 0;
+}
+
+.contributor-list article:nth-child(odd) {
+  border-right: 1px solid var(--rule);
+}
+
+.contributor-list article:nth-child(even) {
+  padding-left: 1.4rem;
+}
+
+.contributor-list > article > p {
+  font-size: 0.88rem;
+  line-height: 1.65;
+}
+
+
+@media (max-width: 900px) {
+  .thesis-entry {
+    grid-template-columns: 2.5rem minmax(160px, 0.45fr) minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 680px) {
+  .thesis-entry {
+    gap: 0.9rem;
+    grid-template-columns: 2rem minmax(0, 1fr);
+  }
+
+  .thesis-entry__title {
+    grid-column: 2;
+  }
+
+  .contributor-list {
+    grid-template-columns: 1fr;
+  }
+
+  .contributor-list article,
+  .contributor-list article:nth-child(even) {
+    border-right: 0;
+    gap: 0.8rem;
+    grid-template-columns: 1fr;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
