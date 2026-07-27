@@ -13,7 +13,7 @@ The People page uses a roster supplied directly by Ying-Fan Lin, the principal i
 - Ting-Hsiang Tsai
 - Yu-Hsiang Lo
 - Hsiang-Wen Wang
-- Hao-Ju Chen
+- Hao-Chu Chen
 - Shao-Hsuan Chiu
 - Li-Chen Cheng
 
