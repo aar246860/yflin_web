@@ -1,0 +1,159 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title id="title">窗影偏移十二公分</title>
+  <desc id="desc">清晨房間的斜俯視視覺習作。百葉窗投下三組斜向光帶，地磚上保留三條鉛筆描線，旁邊有植物、筆記本、鉛筆、杯子、浮塵與正在觀察的小林。</desc>
+  <defs>
+    <linearGradient id="wall" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#dce9e2"/>
+      <stop offset="1" stop-color="#b9d0ca"/>
+    </linearGradient>
+    <linearGradient id="floor" x1="0" y1="0" x2="0.85" y2="1">
+      <stop offset="0" stop-color="#eef1e8"/>
+      <stop offset="1" stop-color="#cbd3c4"/>
+    </linearGradient>
+    <linearGradient id="sun" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#ffe7a6" stop-opacity="0.18"/>
+      <stop offset="0.5" stop-color="#ffd36b" stop-opacity="0.72"/>
+      <stop offset="1" stop-color="#fff1bf" stop-opacity="0.12"/>
+    </linearGradient>
+    <radialGradient id="cup" cx="35%" cy="30%" r="75%">
+      <stop offset="0" stop-color="#f4faf7"/>
+      <stop offset="1" stop-color="#8dafaa"/>
+    </radialGradient>
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8"/>
+    </filter>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#244f4e" flood-opacity="0.22"/>
+    </filter>
+    <pattern id="grain" width="70" height="70" patternUnits="userSpaceOnUse">
+      <circle cx="8" cy="14" r="1.2" fill="#335f5c" opacity="0.08"/>
+      <circle cx="43" cy="31" r="0.8" fill="#335f5c" opacity="0.06"/>
+      <circle cx="64" cy="59" r="1" fill="#335f5c" opacity="0.07"/>
+    </pattern>
+    <clipPath id="room">
+      <path d="M0 0H1200V800H0Z"/>
+    </clipPath>
+  </defs>
+
+  <g clip-path="url(#room)">
+    <rect width="1200" height="252" fill="url(#wall)"/>
+    <path d="M0 252H1200V800H0Z" fill="url(#floor)"/>
+    <rect width="1200" height="800" fill="url(#grain)"/>
+    <path d="M0 252H1200" stroke="#6f9088" stroke-width="5" opacity="0.45"/>
+
+    <!-- Perspective floor tiles -->
+    <g stroke="#8ea69d" stroke-width="2" opacity="0.44">
+      <path d="M170 252L0 760"/>
+      <path d="M370 252L258 800"/>
+      <path d="M570 252L550 800"/>
+      <path d="M770 252L842 800"/>
+      <path d="M970 252L1135 800"/>
+      <path d="M0 360H1200"/>
+      <path d="M0 515H1200"/>
+      <path d="M0 702H1200"/>
+    </g>
+
+    <!-- Window, blind, and sky -->
+    <g filter="url(#shadow)">
+      <rect x="74" y="40" width="360" height="228" rx="6" fill="#285b5e"/>
+      <rect x="90" y="56" width="328" height="196" fill="#94c9cc"/>
+      <path d="M90 56H418V116C349 96 276 104 206 88C158 77 123 70 90 72Z" fill="#d9eef0"/>
+      <circle cx="345" cy="86" r="25" fill="#ffe8a4"/>
+      <path d="M90 182C158 142 211 173 267 146C326 117 360 149 418 125V252H90Z" fill="#7ea69b"/>
+      <path d="M90 214C160 187 232 219 295 187C340 164 378 181 418 160V252H90Z" fill="#4f7d72"/>
+      <path d="M254 56V252M90 154H418" stroke="#315f61" stroke-width="12"/>
+      <g fill="#edf2e8" opacity="0.96">
+        <rect x="77" y="72" width="354" height="11" rx="5"/>
+        <rect x="77" y="100" width="354" height="11" rx="5"/>
+        <rect x="77" y="128" width="354" height="11" rx="5"/>
+        <rect x="77" y="156" width="354" height="11" rx="5"/>
+        <rect x="77" y="184" width="354" height="11" rx="5"/>
+        <rect x="77" y="212" width="354" height="11" rx="5"/>
+      </g>
+    </g>
+
+    <!-- Plant -->
+    <g transform="translate(466 122)" filter="url(#shadow)">
+      <path d="M54 122C54 75 55 46 57 9" fill="none" stroke="#3c6f61" stroke-width="9"/>
+      <g fill="#5f8f66">
+        <ellipse cx="33" cy="33" rx="17" ry="35" transform="rotate(-42 33 33)"/>
+        <ellipse cx="82" cy="42" rx="18" ry="38" transform="rotate(39 82 42)"/>
+        <ellipse cx="27" cy="78" rx="16" ry="34" transform="rotate(-57 27 78)"/>
+        <ellipse cx="86" cy="91" rx="17" ry="38" transform="rotate(56 86 91)"/>
+        <ellipse cx="58" cy="18" rx="14" ry="32"/>
+      </g>
+      <path d="M20 119H96L84 183H33Z" fill="#c56c48"/>
+      <path d="M28 139H89" stroke="#e09b74" stroke-width="5" opacity="0.7"/>
+    </g>
+
+    <!-- Sunlight bands -->
+    <g transform="rotate(-9 560 470)">
+      <path d="M94 248L1100 510L1064 622L58 358Z" fill="url(#sun)"/>
+      <path d="M104 306L1092 563L1073 619L84 361Z" fill="#ffd878" opacity="0.28"/>
+      <path d="M139 390L1035 623L1015 686L119 451Z" fill="#ffd878" opacity="0.43"/>
+      <path d="M170 480L944 682L928 733L154 532Z" fill="#ffd878" opacity="0.34"/>
+    </g>
+
+    <!-- Soft interruption from passing cloud -->
+    <path d="M548 272C670 231 760 283 857 269C927 259 1006 219 1105 250L1200 280V449C1084 421 988 456 890 428C794 401 693 430 592 388Z"
+          fill="#9ab4b0" opacity="0.18" filter="url(#soft)"/>
+
+    <!-- Three observation lines -->
+    <g fill="none" stroke-linecap="round">
+      <path d="M317 548C467 581 616 619 761 660" stroke="#385b58" stroke-width="6"/>
+      <path d="M346 526C496 560 642 598 790 638" stroke="#db7d45" stroke-width="5" stroke-dasharray="13 11"/>
+      <path d="M387 509C534 544 681 580 826 619" stroke="#276c71" stroke-width="5" stroke-dasharray="3 12"/>
+      <path d="M775 651L808 626" stroke="#385b58" stroke-width="3"/>
+      <path d="M790 638L826 619" stroke="#385b58" stroke-width="3"/>
+      <path d="M807 625L822 623M813 646L828 642" stroke="#385b58" stroke-width="3"/>
+      <rect x="836" y="615" width="108" height="48" rx="18" fill="#edf1e7" stroke="none" opacity="0.94"/>
+    </g>
+    <g font-family="Arial, sans-serif" font-size="22" font-weight="700">
+      <text x="287" y="580" fill="#385b58">09:05</text>
+      <text x="342" y="506" fill="#b85f37">09:12</text>
+      <text x="410" y="493" fill="#276c71">09:19</text>
+      <text x="848" y="647" fill="#385b58">12 cm</text>
+    </g>
+
+    <!-- Notebook, ruler, pencil, cup -->
+    <g filter="url(#shadow)">
+      <path d="M570 666L754 699L731 775L548 742Z" fill="#e57e42"/>
+      <path d="M586 676L738 704L724 755L573 728Z" fill="#f6ead4"/>
+      <path d="M596 692L711 713M591 708L706 729" stroke="#9eb4aa" stroke-width="3"/>
+      <path d="M538 649L782 696" stroke="#d8b060" stroke-width="17" stroke-linecap="round"/>
+      <path d="M538 649L565 654" stroke="#54473c" stroke-width="17" stroke-linecap="round"/>
+      <path d="M788 700L916 730" stroke="#2d6564" stroke-width="10" stroke-linecap="round"/>
+      <path d="M916 730L940 745L911 741Z" fill="#403a35"/>
+      <ellipse cx="1085" cy="350" rx="58" ry="44" fill="url(#cup)"/>
+      <ellipse cx="1085" cy="340" rx="45" ry="31" fill="#355d5b"/>
+      <path d="M1134 338C1187 325 1197 382 1142 387" fill="none" stroke="#8dafaa" stroke-width="15"/>
+      <path d="M1057 297C1045 270 1074 261 1062 236M1090 295C1079 266 1107 257 1098 230" fill="none" stroke="#e8f1ec" stroke-width="8" stroke-linecap="round" opacity="0.7"/>
+    </g>
+
+    <!-- Xiaolin observing -->
+    <g transform="translate(916 426)" filter="url(#shadow)">
+      <ellipse cx="91" cy="56" rx="42" ry="47" fill="#efc3a0"/>
+      <path d="M51 52C55 6 85 -9 122 10C141 20 145 47 135 72C119 42 92 28 51 52Z" fill="#244c4b"/>
+      <path d="M74 58H88M108 58H122" stroke="#244c4b" stroke-width="5" stroke-linecap="round"/>
+      <path d="M88 58H108" stroke="#244c4b" stroke-width="3"/>
+      <path d="M91 79C99 83 106 82 112 78" fill="none" stroke="#a55d4e" stroke-width="3" stroke-linecap="round"/>
+      <path d="M46 114C87 88 129 95 155 134L176 245L41 244L18 163Z" fill="#2c6667"/>
+      <path d="M98 111L85 179L112 209L129 167Z" fill="#f0a34b"/>
+      <path d="M42 153C-3 180 -18 220 8 247" fill="none" stroke="#efc3a0" stroke-width="21" stroke-linecap="round"/>
+      <path d="M151 152C191 177 197 220 166 249" fill="none" stroke="#efc3a0" stroke-width="21" stroke-linecap="round"/>
+      <path d="M41 244L8 332M145 244L179 332" stroke="#30484a" stroke-width="31" stroke-linecap="round"/>
+      <path d="M-8 333H34M158 333H203" stroke="#1e3335" stroke-width="21" stroke-linecap="round"/>
+    </g>
+
+    <!-- Dust motes -->
+    <g fill="#fff2bd">
+      <circle cx="603" cy="325" r="5"/>
+      <circle cx="659" cy="379" r="3"/>
+      <circle cx="725" cy="343" r="4"/>
+      <circle cx="791" cy="418" r="3"/>
+      <circle cx="839" cy="373" r="5"/>
+      <circle cx="885" cy="452" r="3"/>
+      <path d="M632 300L638 290M701 422L707 412M812 322L819 311" stroke="#fff2bd" stroke-width="3" stroke-linecap="round"/>
+    </g>
+  </g>
+</svg>
