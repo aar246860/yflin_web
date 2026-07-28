@@ -41,6 +41,23 @@ or beyond the site owner's ability to stop. It must not expose tool names,
 prompts, schedules, work instructions, editing reminders, or verification
 reports. Those details belong only in local automation files and reports.
 
+## Research incubator boundary
+
+The evening visit may run a separate private research-incubator block. This is
+an evidence-locked planning process, not a claim that Xiaolin is conscious or
+that it independently authors science. It may use only public website files
+and may infer only a publicly visible research direction. It must never read
+private manuscripts, OneDrive folders, student records, email, photographs, or
+browser history, and it must never invent a private intention for Ying-Fan Lin.
+
+The incubator may produce a proposal, evidence map, analysis plan, result
+placeholder, and manuscript scaffold. Every factual claim must be sourced and
+typed as supported, diagnostic, limited, speculative, or future work. Missing
+evidence must remain explicitly marked. Its matching field-note stays
+`draft: true`; no research proposal or manuscript becomes a public post,
+formal submission, or claimed research result without later human review and
+an evidence gate.
+
 ## Hard boundaries
 
 - Read only public files already used by the deployed website.

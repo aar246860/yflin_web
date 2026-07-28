@@ -1,0 +1,29 @@
+updated: 2026-07-28
+source_boundary: public-website-files-only
+current_bet: frequency-response-minimum-model
+stage: proposal
+confidence: low
+note: "The incubator may infer public research directions, but it cannot infer private intent or invent evidence."
+bets:
+  - id: frequency-response-minimum-model
+    title: "Frequency-response diagnostics for a minimal aquifer-response model"
+    stage: proposal
+    evidence_level: diagnostic
+    next_gate: "Run a known-truth synthetic benchmark and compare held-out response prediction."
+    kill_criterion: "Stop if the single-memory model cannot separate from classical diffusion under identifiable forcing, or if the result changes no interpretation or decision variable."
+    public_sources:
+      - src/content/concepts/lagging-theory.md
+      - src/content/field-notes/flux-gradient-asynchrony-is-not-simple-delay.md
+      - src/content/projects/tu-lag.md
+  - id: archive-to-site-transfer
+    title: "Archive-to-site transfer of aquifer-test information"
+    stage: watch
+    evidence_level: future_work
+    next_gate: "Acquire and quality-screen a permitted public aquifer-test archive."
+    kill_criterion: "Park if source tests cannot be compared without unrecorded site context."
+  - id: model-complexity-audit
+    title: "Minimum mechanism set for pumping-test interpretation"
+    stage: watch
+    evidence_level: future_work
+    next_gate: "Define a reproducible model family and a decision-oriented scoring rule."
+    kill_criterion: "Park if model labels cannot be separated from boundary or observation-geometry effects."

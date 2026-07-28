@@ -1,0 +1,23 @@
+generated: 2026-07-28
+selected_bet: frequency-response-minimum-model
+queue:
+  - id: R1
+    action: "Implement a known-truth synthetic benchmark for classical diffusion versus one-memory lagging response."
+    owner: codex
+    gate: "Reproducible script, fixed parameter manifest, and regenerated response curves."
+  - id: R2
+    action: "Run parameter identifiability and held-out prediction checks across forcing periods and observation windows."
+    owner: codex
+    gate: "Metrics table includes prediction error, interval coverage, and parameter correlation."
+  - id: R3
+    action: "Map each result to the evidence ledger and classify it as supported, diagnostic, limited, speculative, or future_work."
+    owner: codex
+    gate: "No numerical statement lacks a source output or reproducible run."
+  - id: R4
+    action: "Review whether the result changes an aquifer-test interpretation or decision variable."
+    owner: human
+    gate: "Ying-Fan Lin confirms the decision relevance before public release."
+  - id: R5
+    action: "Only after R1-R4 pass, convert the private field-note draft into a public research note."
+    owner: human
+    gate: "draft is changed to false after evidence review; no automatic publication."

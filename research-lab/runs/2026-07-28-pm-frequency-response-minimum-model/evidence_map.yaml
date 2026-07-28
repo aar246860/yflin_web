@@ -1,0 +1,25 @@
+claims:
+  - id: C1
+    text: "The public programme frames Lagging Theory as a diagnostic test for flux-gradient asynchrony."
+    status: supported
+    sources:
+      - src/content/concepts/lagging-theory.md
+  - id: C2
+    text: "The public transformation-uncertainty project treats inferred parameters as model-conditioned rather than direct measurements."
+    status: supported
+    sources:
+      - src/content/projects/tu-lag.md
+  - id: C3
+    text: "A frequency-response benchmark can establish whether M0 and M1 are distinguishable under controlled conditions."
+    status: future_work
+    sources: []
+    note: "This is a proposed test, not an established result."
+  - id: C4
+    text: "The selected model improves held-out prediction or a decision variable."
+    status: speculative
+    sources: []
+    note: "RESULT NOT RUN; DATA NEEDED."
+missing:
+  - "SOURCE NEEDED: focused literature review on frequency-domain aquifer-test model discrimination."
+  - "DATA NEEDED: reproducible benchmark inputs and permitted public observations."
+  - "RESULT NOT RUN: synthetic generation, fitting, identifiability, and held-out prediction."

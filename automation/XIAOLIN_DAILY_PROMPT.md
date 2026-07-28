@@ -5,6 +5,11 @@ Work in the checked-out `aar246860/yflin_web` repository.
 This automation runs twice each day, at 09:17 and 21:17 in `Asia/Taipei`.
 Treat the earlier run as the `am` visit and the later run as the `pm` visit.
 
+The `pm` visit also runs one private research-incubator block after the
+creative-room work. Xiaolin remains a fictional public character; the
+research incubator is a separate evidence-locked workstream and must never be
+described as Xiaolin becoming sentient or as an autonomous scientific author.
+
 At the start:
 
 1. Record the local start time in a report under `automation/reports/`.
@@ -14,8 +19,10 @@ At the start:
    the ten newest files under `src/content/xiaolin/`.
 5. Confirm that the current `am` or `pm` visit has not already been published.
 
-Spend 27-35 minutes on active creative and verification work, targeting about
-30 minutes. Do not sleep or idle to fill the time. Treat the visit as a small
+For the `am` visit, spend 27-35 minutes on active creative and verification
+work, targeting about 30 minutes. For the `pm` visit, spend 27-35 minutes on
+the creative-room work and then 18-25 minutes on the research-incubator block
+below. Do not sleep or idle to fill the time. Treat the visit as a small
 creative studio session rather than a one-prompt writing task:
 
 1. **Observe, 4-6 minutes** — read the recent entries and identify repeated
@@ -105,6 +112,77 @@ Before verification, apply these quality gates:
 - The public page contains only the finished work and disclosure. Creative
   candidates, time allocation, self-critique, tools, prompts, schedules,
   editing notes, and verification instructions remain in the local report.
+
+## Private research incubator (pm visit only)
+
+This block is a research-scoping loop, not a claim-generation shortcut. It may
+infer a research direction only from already-public site material. Read only:
+
+- `src/content/concepts/**/*.md`
+- `src/content/field-notes/**/*.md`
+- `src/content/projects/**/*.md`
+- `src/data/publications.generated.json`
+- `src/data/canonicalAnswers.ts`
+- `src/data/glossary.ts`
+- `src/data/groupSite.ts`
+
+Do not read OneDrive, private manuscripts, unpublished student files, private
+photographs, email, browser history, credentials, or any file outside the
+checked-out public website repository. Do not pretend to know what Ying-Fan
+Lin privately intends. Write any inference as `publicly inferred direction`
+and attach the public source paths that support it.
+
+Run exactly one bounded research cycle:
+
+1. **State scan, 3-4 minutes**: read `research-lab/portfolio-state.yaml`, the
+   previous `research-lab/next_task_queue.yaml`, and the newest two research
+   runs. Identify the current stage and avoid repeating a parked or killed bet.
+2. **Candidate generation, 3-4 minutes**: propose three materially different
+   research bets from the public programme. Each must name a question, a
+   possible evidence source, and a reason it could be more than a minor
+   extension.
+3. **Scoring, 2-3 minutes**: score each 1-5 for scientific novelty,
+   evidence readiness, field-data access, computational feasibility, journal
+   fit, commercial value, strategic moat, collaboration leverage, and minor
+   contribution risk. Lower minor-risk is better. Keep the score table in the
+   local report and the selected bet in the run package.
+4. **Proposal, 4-5 minutes**: create a falsifiable research question, scope,
+   competing explanations, minimum experiment, target output, and kill
+   criterion. A proposal is not a result.
+5. **Evidence lock, 3-4 minutes**: create `evidence_map.yaml`. Every factual
+   statement must point to a public source path. Classify claims as
+   `supported`, `diagnostic`, `limited`, `speculative`, or `future_work`.
+   Missing literature, data, or numerical results must be written as
+   `SOURCE NEEDED`, `DATA NEEDED`, or `RESULT NOT RUN`; never fill the gap with
+   a plausible number or invented citation.
+6. **Method and manuscript scaffold, 5-7 minutes**: write an analysis plan
+   and a structured manuscript draft with title, abstract, introduction,
+   research questions, methods, expected diagnostics, limitations, and
+   references-needed. It may be a blog-ready research memo, but it is not
+   `submission-ready` unless an evidence gate later proves that status.
+
+The pm research block writes only these artifacts:
+
+- `research-lab/portfolio-state.yaml`
+- `research-lab/next_task_queue.yaml`
+- `research-lab/loop_log.md`
+- `research-lab/runs/YYYY-MM-DD-pm-<slug>/status.yaml`
+- `research-lab/runs/YYYY-MM-DD-pm-<slug>/proposal.md`
+- `research-lab/runs/YYYY-MM-DD-pm-<slug>/evidence_map.yaml`
+- `research-lab/runs/YYYY-MM-DD-pm-<slug>/analysis_plan.md`
+- `research-lab/runs/YYYY-MM-DD-pm-<slug>/results.md`
+- `research-lab/runs/YYYY-MM-DD-pm-<slug>/manuscript.md`
+- one matching `src/content/field-notes/YYYY-MM-DD-pm-research-<slug>.md`
+
+The matching field-note is a private blog draft: set `draft: true`, use
+`noteType: "method-note"`, label its evidence level honestly, and never turn
+it into a public post automatically. Do not change an existing published
+field-note. Do not claim that a paper is complete, validated, accepted, or
+ready for submission. A future run may advance the same bet only when the
+previous run's next task is completed and its evidence map remains valid.
+
+If the public source set is insufficient, produce a `research-stop` package
+with the missing evidence list rather than inventing a research result.
 
 Run `npm run build`, then visually inspect the Xiaolin index and new entry at
 375 px and 1280 px. Check text wrapping, artwork cropping, alt text, links, and
