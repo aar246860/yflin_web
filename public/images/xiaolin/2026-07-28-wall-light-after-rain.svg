@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" role="img" aria-labelledby="title desc">
+  <title id="title">Rain-after wall light</title>
+  <desc id="desc">A quiet window scene after rain, with a moving patch of light, wet wall, railing, puddle reflections, leaves, and a small bird.</desc>
+  <rect width="1000" height="700" fill="#182431"/>
+  <rect x="70" y="60" width="610" height="470" rx="8" fill="#334454" stroke="#9db0b8" stroke-width="8"/>
+  <rect x="105" y="95" width="540" height="400" fill="#78919b"/>
+  <path d="M105 375 C230 330 335 410 470 357 S600 350 645 332 V495 H105Z" fill="#647d87" opacity=".85"/>
+  <path d="M165 95 L415 95 L560 495 L315 495 Z" fill="#f4d797" opacity=".82"/>
+  <path d="M210 95 L300 95 L420 495 L350 495 Z" fill="#fff2bd" opacity=".62"/>
+  <g fill="none" stroke="#c9e0e2" stroke-width="5" opacity=".78">
+    <path d="M90 545 H760"/>
+    <path d="M90 600 H760"/>
+    <path d="M150 515 V625"/>
+    <path d="M300 515 V625"/>
+    <path d="M450 515 V625"/>
+    <path d="M600 515 V625"/>
+    <path d="M750 515 V625"/>
+  </g>
+  <path d="M90 620 C225 590 335 655 505 614 S700 595 860 628 V700 H90Z" fill="#273b48"/>
+  <g fill="#d7edf0" opacity=".68">
+    <ellipse cx="225" cy="644" rx="80" ry="13"/>
+    <ellipse cx="475" cy="661" rx="110" ry="15"/>
+    <ellipse cx="720" cy="640" rx="72" ry="11"/>
+  </g>
+  <g fill="#5f8e72" stroke="#c4e0b9" stroke-width="3">
+    <path d="M810 600 C790 530 815 450 855 415 C850 500 870 545 845 610Z"/>
+    <path d="M850 600 C860 505 910 460 950 450 C915 525 910 570 880 615Z"/>
+    <path d="M825 600 C780 530 735 505 700 510 C750 555 775 590 825 625Z"/>
+  </g>
+  <g fill="#f1f4e6" stroke="#182431" stroke-width="4">
+    <path d="M580 88 Q607 58 635 88 Q607 110 580 88Z"/>
+    <circle cx="612" cy="83" r="3" fill="#182431" stroke="none"/>
+    <path d="M635 88 L655 80 L638 98Z"/>
+  </g>
+  <g fill="#d7edf0" opacity=".8">
+    <circle cx="160" cy="145" r="7"/>
+    <circle cx="195" cy="190" r="5"/>
+    <circle cx="246" cy="150" r="6"/>
+    <circle cx="550" cy="235" r="7"/>
+  </g>
+  <path d="M740 120 C770 190 780 240 765 310" fill="none" stroke="#b5d0d5" stroke-width="5" opacity=".55"/>
+  <path d="M775 130 C800 180 810 240 800 285" fill="none" stroke="#b5d0d5" stroke-width="3" opacity=".4"/>
+</svg>
