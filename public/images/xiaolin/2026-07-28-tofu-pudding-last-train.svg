@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title id="title">末班車前的豆花店</title>
+  <desc id="desc">夜色中的車站出口旁，一碗豆花放在小圓桌上，旁邊有紅色塑膠椅、綠色湯匙、沾到糖水的收據、玻璃門與即將進站的列車燈光。</desc>
+  <defs>
+    <linearGradient id="night" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#17233b"/>
+      <stop offset="1" stop-color="#34506a"/>
+    </linearGradient>
+    <linearGradient id="station" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#dce7e7"/>
+      <stop offset="1" stop-color="#91a7a8"/>
+    </linearGradient>
+    <linearGradient id="syrup" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#a86731"/>
+      <stop offset="1" stop-color="#5c321e"/>
+    </linearGradient>
+    <filter id="softGlow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="13"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="800" fill="url(#night)"/>
+  <circle cx="1030" cy="105" r="46" fill="#f4e8bb"/>
+  <path d="M0 530L1200 465V800H0Z" fill="#293843"/>
+  <g stroke="#52636a" stroke-width="3" opacity=".8">
+    <path d="M0 620L1200 548"/>
+    <path d="M0 706L1200 637"/>
+    <path d="M190 520L240 800"/>
+    <path d="M430 506L458 800"/>
+    <path d="M675 492L681 800"/>
+    <path d="M925 478L900 800"/>
+  </g>
+
+  <g>
+    <rect x="695" y="118" width="470" height="410" rx="10" fill="url(#station)" stroke="#e8f1ef" stroke-width="8"/>
+    <rect x="728" y="150" width="190" height="338" fill="#28475c" opacity=".9"/>
+    <rect x="942" y="150" width="190" height="338" fill="#2d4d61" opacity=".9"/>
+    <path d="M930 150V488" stroke="#edf6f2" stroke-width="10"/>
+    <path d="M728 298H1132" stroke="#b8d0cf" stroke-width="5" opacity=".8"/>
+    <path d="M757 452H1102" stroke="#e8c36a" stroke-width="9" opacity=".75"/>
+    <circle cx="772" cy="330" r="12" fill="#f0d87d"/>
+    <circle cx="1088" cy="330" r="12" fill="#f0d87d"/>
+  </g>
+
+  <g opacity=".9">
+    <ellipse cx="795" cy="402" rx="92" ry="36" fill="#f6d36f" filter="url(#softGlow)"/>
+    <circle cx="760" cy="404" r="14" fill="#fff7d6"/>
+    <circle cx="806" cy="400" r="18" fill="#fff7d6"/>
+    <circle cx="854" cy="397" r="13" fill="#fff7d6"/>
+  </g>
+
+  <g>
+    <ellipse cx="400" cy="565" rx="205" ry="36" fill="#17252c" opacity=".55"/>
+    <rect x="381" y="480" width="38" height="215" rx="16" fill="#b4c0be"/>
+    <ellipse cx="400" cy="474" rx="172" ry="49" fill="#dfd8c8" stroke="#f3eee3" stroke-width="8"/>
+    <ellipse cx="400" cy="474" rx="118" ry="32" fill="#8b5a32" opacity=".4"/>
+  </g>
+
+  <g>
+    <path d="M298 417Q400 384 502 417L478 520Q400 548 322 520Z" fill="#eef0e2" stroke="#c8cbbd" stroke-width="7"/>
+    <ellipse cx="400" cy="417" rx="102" ry="31" fill="#f7f4dd" stroke="#dfe2d2" stroke-width="7"/>
+    <path d="M315 416Q400 459 485 416" fill="url(#syrup)" opacity=".82"/>
+    <circle cx="348" cy="414" r="17" fill="#c59a60"/>
+    <circle cx="383" cy="427" r="15" fill="#d2aa6f"/>
+    <circle cx="423" cy="412" r="18" fill="#bd8e55"/>
+    <circle cx="455" cy="428" r="14" fill="#cfaa72"/>
+    <path d="M468 294L421 425" stroke="#57a67a" stroke-width="17" stroke-linecap="round"/>
+    <ellipse cx="474" cy="283" rx="19" ry="42" transform="rotate(20 474 283)" fill="#68b98d"/>
+  </g>
+
+  <g>
+    <path d="M126 462H244V584H126Z" fill="#bd4540" stroke="#e26b62" stroke-width="8"/>
+    <path d="M142 584L128 720M228 584L245 720" stroke="#7e302f" stroke-width="20" stroke-linecap="round"/>
+    <path d="M126 507H244" stroke="#7e302f" stroke-width="8"/>
+    <path d="M155 480V568M185 480V568M215 480V568" stroke="#d95d55" stroke-width="8"/>
+  </g>
+
+  <g transform="rotate(-7 572 535)">
+    <rect x="510" y="492" width="132" height="84" rx="6" fill="#eee7d7" stroke="#c8bcaa" stroke-width="5"/>
+    <path d="M528 515H612M528 533H596M528 551H620" stroke="#87908a" stroke-width="5" stroke-linecap="round"/>
+    <path d="M510 492Q548 520 560 492" fill="#8b5a32" opacity=".5"/>
+  </g>
+
+  <g fill="none" stroke-linecap="round">
+    <path d="M707 552Q816 500 925 552T1142 552" stroke="#f0c25d" stroke-width="8" opacity=".68"/>
+    <path d="M678 592Q812 530 946 592T1214 592" stroke="#72c7c2" stroke-width="7" opacity=".55"/>
+    <path d="M649 636Q812 568 975 636T1301 636" stroke="#d66b5f" stroke-width="6" opacity=".42"/>
+  </g>
+
+  <g>
+    <path d="M59 343Q131 294 203 343" fill="none" stroke="#8296a4" stroke-width="8"/>
+    <rect x="71" y="343" width="120" height="20" rx="10" fill="#8296a4"/>
+    <circle cx="89" cy="372" r="11" fill="#17233b"/>
+    <circle cx="174" cy="372" r="11" fill="#17233b"/>
+  </g>
+</svg>
