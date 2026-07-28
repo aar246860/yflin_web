@@ -1,0 +1,16 @@
+{
+  "extends": "./tsconfig.json",
+  "include": [
+    ".astro/types.d.ts",
+    "src/env.d.ts",
+    "src/content.config.ts",
+    "src/pages/xiaolin/**/*.astro"
+  ],
+  "exclude": [
+    "_astro",
+    "dist",
+    "node_modules",
+    "pagefind",
+    "src/components/research"
+  ]
+}

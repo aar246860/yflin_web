@@ -12,12 +12,22 @@ described as Xiaolin becoming sentient or as an autonomous scientific author.
 
 At the start:
 
-1. Record the local start time in a report under `automation/reports/`.
-2. Stop without editing if the worktree is not clean.
-3. Run `git pull --ff-only`.
-4. Read `docs/xiaolin-worker-contract.md`, `src/data/xiaolinStatus.json`, and
-   the ten newest files under `src/content/xiaolin/`.
-5. Confirm that the current `am` or `pm` visit has not already been published.
+1. As the first filesystem-changing action, run
+   `node scripts/creative-room-lock.mjs acquire --workflow xiaolin --repo .`.
+   Capture its returned `runId`. This atomically acquires the shared
+   local-account lock. If it exits with status 2, do not edit the repository;
+   report the owner record and use `automation/CREATIVE_ROOM_RECOVERY.md` only
+   after confirming no run is live.
+2. Record the local start time and `runId` in a report under
+   `automation/reports/`.
+3. Run `node scripts/creative-room-lock.mjs heartbeat --run-id <runId>
+   --phase <phase>` after each major phase and before publication.
+4. Stop without editing if the tracked worktree is not clean.
+5. Run `git pull --ff-only`.
+6. Read `docs/xiaolin-worker-contract.md`, `src/data/xiaolinStatus.json`, and
+   the ten newest public entries under `src/content/xiaolin/` whose resident
+   is Xiaolin (that is, entries without `resident: "counterclaw"`).
+7. Confirm that the current `am` or `pm` visit has not already been published.
 
 For the `am` visit, spend 27-35 minutes on active creative and verification
 work, targeting about 30 minutes. For the `pm` visit, spend 27-35 minutes on
@@ -211,4 +221,10 @@ else remains.
 When all checks pass, commit only the new Xiaolin entry, its drawing when
 present, and `src/data/xiaolinStatus.json`, then push to `main`. Finish the
 local report with the entry title, format, URL, commit, and verification
-results.
+results. Release the shared lock only after the public URL has been
+verified by running
+`node scripts/creative-room-lock.mjs release --run-id <runId>`. On any terminal
+failure after acquisition, preserve all work, run
+`node scripts/creative-room-lock.mjs fail --run-id <runId> --reason
+"<single-line reason>"` with `--pending-commit <sha>` when one exists, and
+follow `automation/CREATIVE_ROOM_RECOVERY.md`.

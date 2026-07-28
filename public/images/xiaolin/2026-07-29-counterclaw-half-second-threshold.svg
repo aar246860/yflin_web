@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title id="title">對鉗夾住豆花波紋的兩道抵達線</title>
+  <desc id="desc">深紅與紙白構成的桌面剖面。中央豆花碗有兩圈波紋，左右龍蝦螯分別夾住四道時間刻線中的兩道，遠方列車光斜穿玻璃門。</desc>
+  <defs>
+    <linearGradient id="night" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#201416"/>
+      <stop offset="0.58" stop-color="#442125"/>
+      <stop offset="1" stop-color="#8f2f2f"/>
+    </linearGradient>
+    <linearGradient id="beam" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#f6e5df" stop-opacity="0"/>
+      <stop offset="0.55" stop-color="#fff7d8" stop-opacity=".7"/>
+      <stop offset="1" stop-color="#fff7d8" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="syrup" cx=".45" cy=".32" r=".7">
+      <stop offset="0" stop-color="#f8d7a4"/>
+      <stop offset=".58" stop-color="#b86642"/>
+      <stop offset="1" stop-color="#6f2d2d"/>
+    </radialGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="180%">
+      <feDropShadow dx="0" dy="18" stdDeviation="16" flood-color="#12090a" flood-opacity=".42"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="800" fill="url(#night)"/>
+  <path d="M0 188L1200 52V280L0 360Z" fill="url(#beam)"/>
+  <g opacity=".34" stroke="#f6e5df" stroke-width="3">
+    <path d="M154 98V398"/>
+    <path d="M248 86V382"/>
+    <path d="M342 75V365"/>
+    <path d="M436 64V348"/>
+  </g>
+
+  <ellipse cx="600" cy="606" rx="466" ry="96" fill="#150d0f" opacity=".48"/>
+  <path d="M124 492Q600 420 1076 492L1030 678Q600 744 170 678Z" fill="#f1d8c7" filter="url(#shadow)"/>
+  <path d="M154 510Q600 451 1046 510" fill="none" stroke="#b88973" stroke-width="6"/>
+
+  <g filter="url(#shadow)">
+    <ellipse cx="600" cy="474" rx="170" ry="66" fill="#fffaf0" stroke="#2b1718" stroke-width="10"/>
+    <path d="M440 474Q462 628 600 640Q738 628 760 474" fill="#f6e5df" stroke="#2b1718" stroke-width="10"/>
+    <ellipse cx="600" cy="474" rx="145" ry="48" fill="url(#syrup)"/>
+    <ellipse cx="600" cy="474" rx="96" ry="27" fill="none" stroke="#ffe7b7" stroke-width="5" opacity=".84"/>
+    <ellipse cx="600" cy="474" rx="50" ry="13" fill="none" stroke="#fff4d9" stroke-width="4" opacity=".92"/>
+    <circle cx="540" cy="457" r="12" fill="#d6a55d"/>
+    <circle cx="570" cy="449" r="9" fill="#e1b56c"/>
+    <circle cx="650" cy="458" r="11" fill="#c9904f"/>
+  </g>
+
+  <g stroke="#f8c7ba" stroke-width="4" opacity=".88">
+    <path d="M404 238V638"/>
+    <path d="M502 208V664"/>
+    <path d="M698 208V664"/>
+    <path d="M796 238V638"/>
+  </g>
+  <g fill="#f8c7ba">
+    <circle cx="404" cy="238" r="8"/>
+    <circle cx="502" cy="208" r="8"/>
+    <circle cx="698" cy="208" r="8"/>
+    <circle cx="796" cy="238" r="8"/>
+  </g>
+
+  <g fill="#8f2f2f" stroke="#f8c7ba" stroke-width="8" stroke-linejoin="round" filter="url(#shadow)">
+    <path d="M88 536C142 422 230 380 350 402L414 450L366 502L292 470L344 548L278 596L214 504L184 612L112 592Z"/>
+    <path d="M1112 536C1058 422 970 380 850 402L786 450L834 502L908 470L856 548L922 596L986 504L1016 612L1088 592Z"/>
+  </g>
+  <path d="M352 446Q430 418 502 454" fill="none" stroke="#c64a3c" stroke-width="20" stroke-linecap="round"/>
+  <path d="M848 446Q770 418 698 454" fill="none" stroke="#c64a3c" stroke-width="20" stroke-linecap="round"/>
+
+  <g fill="#fffaf0" font-family="ui-monospace, monospace" font-size="28" font-weight="700">
+    <text x="386" y="704">01</text>
+    <text x="484" y="704">02</text>
+    <text x="680" y="704">03</text>
+    <text x="778" y="704">04</text>
+  </g>
+  <path d="M455 168Q600 108 745 168" fill="none" stroke="#f6e5df" stroke-width="3" stroke-dasharray="10 12"/>
+  <circle cx="600" cy="136" r="8" fill="#fff7d8"/>
+</svg>

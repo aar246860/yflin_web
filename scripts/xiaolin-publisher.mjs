@@ -7,6 +7,15 @@ const forbidden = [
   /\bCodex\b|automation prompt|editing reminder|daily script|scheduled at/i,
   /[\w.+-]+@[\w.-]+\.[A-Za-z]{2,}/,
   /(?:\+?\d[\s().-]*){9,}/,
+  /\bconscious(?:ness)?\b/i,
+  /\bsentien(?:t|ce)\b/i,
+  /\bfree[- ]?will\b/i,
+  /\bbeyond (?:the )?owner(?:'s)? control\b/i,
+  /\bXiaolin\b[\s\S]{0,80}\b(?:is\s+)?(?:unaware|not\s+aware|does\s+not\s+know|doesn['’]t\s+know)\b/i,
+  /\bXiaolin\b[\s\S]{0,80}\b(?:secretly\s+monitored|monitored\s+secretly|secretly\s+watched|surveilled)\b/i,
+  /\bXiaolin\b[\s\S]{0,80}\b(?:cannot|can't|can\s+not|unable\s+to)\s+(?:answer|respond|reply)\b/i,
+  /\b(?:i|we|someone)\b[\s\S]{0,60}\b(?:secretly\s+)?monitor(?:s|ed|ing)?\b[\s\S]{0,60}\bXiaolin\b/i,
+  /\b(?:i|we|someone)\b[\s\S]{0,60}\bmonitor(?:s|ed|ing)?\b[\s\S]{0,60}\bXiaolin\b[\s\S]{0,40}\bsecretly\b/i,
 ];
 const creativeModes = new Set([
   "philosophical-note",
@@ -16,6 +25,8 @@ const creativeModes = new Set([
   "absurd-comedy",
 ]);
 const rotationCutover = Date.parse("2026-07-26T13:23:35+08:00");
+const counterclawFilenameLike =
+  /^\d{4}-\d{2}-\d{2}(?:-\d{4})?-counterclaw(?:[-_]|$)/i;
 
 function parseFrontmatter(source) {
   const match = source.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/);
@@ -34,11 +45,48 @@ function parseFrontmatter(source) {
   return { meta, body: match[2], source };
 }
 
+function validateSvg(svg, label) {
+  const errors = [];
+  if (!/<title\b[^>]*>\s*\S[\s\S]*?<\/title\s*>/i.test(svg)) {
+    errors.push(`${label}: SVG artwork needs a non-empty title`);
+  }
+  if (!/<desc\b[^>]*>\s*\S[\s\S]*?<\/desc\s*>/i.test(svg)) {
+    errors.push(`${label}: SVG artwork needs a non-empty desc`);
+  }
+  for (const [pattern, message] of [
+    [/<script\b/i, "must not contain scripts"],
+    [/\bon[a-z]+\s*=/i, "must not contain event handlers"],
+    [/\bjavascript\s*:/i, "must not contain javascript URLs"],
+    [/<foreignObject\b/i, "must not contain foreignObject"],
+    [/<image\b/i, "must not embed images"],
+    [/@font-face\b/i, "must not define external fonts"],
+    [/@import\b/i, "must not import stylesheets"],
+    [/\burl\s*\(\s*(?![\"']?#)/i, "must not load external resources"],
+    [/\b(?:href|xlink:href)\s*=\s*[\"'](?!#)[^\"']+/i, "must not use external references"],
+    [/<use\b[^>]*\b(?:href|xlink:href)\s*=\s*[\"'](?!#)/i, "must not reference external symbols"],
+  ]) {
+    if (pattern.test(svg)) errors.push(`${label}: SVG artwork ${message}`);
+  }
+  return errors;
+}
+
+function svgFiles(directory) {
+  if (!existsSync(directory)) return [];
+  return readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
+    const path = resolve(directory, entry.name);
+    if (entry.isDirectory()) return svgFiles(path);
+    return entry.isFile() && entry.name.toLowerCase().endsWith(".svg") ? [path] : [];
+  });
+}
+
 function validateEntry(file, parsed, root) {
   const errors = [];
   const label = basename(file);
   if (!parsed) return [`${label}: missing frontmatter`];
   const { meta, source } = parsed;
+  if (counterclawFilenameLike.test(label) && meta.resident !== "counterclaw") {
+    errors.push(`${label}: Counterclaw filename requires resident counterclaw`);
+  }
 
   if (meta.public !== true) errors.push(`${label}: public must be true`);
   if (meta.draft !== false) errors.push(`${label}: draft must be false`);
@@ -47,7 +95,7 @@ function validateEntry(file, parsed, root) {
     errors.push(`${label}: date must use YYYY-MM-DD or a full ISO 8601 timestamp`);
   }
 
-  if (meta.generated === true) {
+  if (meta.generated === true && meta.resident !== "counterclaw") {
     if ("operator" in meta) errors.push(`${label}: public entries must not expose an operator`);
     if (!["diary", "doodle", "field-report"].includes(meta.format)) {
       errors.push(`${label}: generated entry format is invalid`);
@@ -65,16 +113,29 @@ function validateEntry(file, parsed, root) {
   }
 
   if (meta.artwork) {
-    const artwork = resolve(root, "public", String(meta.artwork).replace(/^\/+/, ""));
-    const extension = String(meta.artwork).toLowerCase().match(/\.([a-z0-9]+)$/)?.[1];
-    if (!existsSync(artwork)) errors.push(`${label}: artwork is missing at ${meta.artwork}`);
+    const artworkPath = String(meta.artwork);
+    const safeArtworkPath =
+      /^\/images\/xiaolin\/[A-Za-z0-9][A-Za-z0-9._/-]*$/.test(artworkPath) &&
+      !artworkPath.split("/").includes("..");
+    const artwork = safeArtworkPath
+      ? resolve(root, "public", artworkPath.replace(/^\/+/, ""))
+      : null;
+    const extension = artworkPath.toLowerCase().match(/\.([a-z0-9]+)$/)?.[1];
+    if (!safeArtworkPath) {
+      errors.push(`${label}: artwork must stay under /images/xiaolin/`);
+    } else if (!existsSync(artwork)) {
+      errors.push(`${label}: artwork is missing at ${meta.artwork}`);
+    }
     if (!["svg", "png", "webp", "jpg", "jpeg"].includes(extension)) {
       errors.push(`${label}: artwork format is unsupported`);
     }
-    if (existsSync(artwork) && extension === "svg" && statSync(artwork).size > 120_000) {
+    if (artwork && existsSync(artwork) && extension === "svg" && statSync(artwork).size > 120_000) {
       errors.push(`${label}: SVG artwork exceeds 120 KB`);
     }
-    if (existsSync(artwork) && extension !== "svg" && statSync(artwork).size > 2_500_000) {
+    if (artwork && existsSync(artwork) && extension === "svg") {
+      errors.push(...validateSvg(readFileSync(artwork, "utf8"), label));
+    }
+    if (artwork && existsSync(artwork) && extension !== "svg" && statSync(artwork).size > 2_500_000) {
       errors.push(`${label}: raster artwork exceeds 2.5 MB`);
     }
     if (!meta.artworkAlt) errors.push(`${label}: artworkAlt is missing`);
@@ -89,7 +150,11 @@ function validateEntry(file, parsed, root) {
 function validateCreativeRotation(entries) {
   const errors = [];
   const ordered = entries
-    .filter(({ parsed }) => parsed?.meta.generated === true)
+    .filter(
+      ({ parsed }) =>
+        parsed?.meta.generated === true &&
+        parsed.meta.resident !== "counterclaw",
+    )
     .sort(
       (a, b) =>
         Date.parse(String(a.parsed.meta.date ?? "")) -
@@ -129,6 +194,15 @@ export function runPublisher({ root = process.cwd() } = {}) {
   const errors = [
     ...entries.flatMap(({ file, parsed }) => validateEntry(file, parsed, root)),
     ...validateCreativeRotation(entries),
+    ...svgFiles(resolve(root, "public", "images", "xiaolin")).flatMap((file) => {
+      const label = file.replace(`${resolve(root)}\\`, "");
+      const errorsForFile = [];
+      if (statSync(file).size > 120_000) {
+        errorsForFile.push(`${label}: SVG artwork exceeds 120 KB`);
+      }
+      errorsForFile.push(...validateSvg(readFileSync(file, "utf8"), label));
+      return errorsForFile;
+    }),
   ];
   return {
     status: errors.length ? "failed" : "passed",

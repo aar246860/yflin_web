@@ -7,7 +7,26 @@ on:
       - "src/content/xiaolin/**"
       - "public/images/xiaolin/**"
       - "src/data/xiaolinStatus.json"
+      - "src/content.config.ts"
+      - "src/pages/xiaolin/**"
+      - "src/styles/xiaolin.css"
+      - "src/styles/counterclaw.css"
+      - "src/styles/global.css"
+      - "scripts/counterclaw-publisher.mjs"
+      - "scripts/creative-room-lock.mjs"
+      - "scripts/xiaolin-publisher.mjs"
+      - "tests/counterclaw-*.test.mjs"
+      - "automation/COUNTERCLAW_EVERY_THREE_HOURS.md"
+      - "automation/CREATIVE_ROOM_RECOVERY.md"
+      - "automation/README.md"
+      - "automation/XIAOLIN_DAILY_PROMPT.md"
+      - "automation/counterclaw-memory.json"
       - "docs/xiaolin-worker-contract.md"
+      - "package.json"
+      - "package-lock.json"
+      - "playwright.config.mjs"
+      - "tsconfig.counterclaw.json"
+      - ".github/workflows/xiaolin-content-guard.yml"
 
 permissions:
   contents: read
@@ -25,7 +44,17 @@ jobs:
       - name: Install FFmpeg for research-video verification
         run: sudo apt-get update && sudo apt-get install -y ffmpeg
       - run: npm ci
+      - name: Run Counterclaw unit tests
+        run: npm run test:counterclaw:unit
       - name: Validate Xiaolin content boundaries
         run: npm run xiaolin:check
+      - name: Validate Counterclaw content and memory
+        run: npm run counterclaw:check
+      - name: Type-check Astro source
+        run: npm run typecheck
       - name: Build the complete site
         run: npm run build
+      - name: Install Chromium for page checks
+        run: npx playwright install --with-deps chromium
+      - name: Test the shared Xiaolin room
+        run: npm run test:counterclaw:pages

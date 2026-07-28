@@ -38,37 +38,64 @@ const fieldNotes = defineCollection({
   }),
 });
 
+const xiaolinEntryBase = z.object({
+  title: z.string(),
+  subtitle: z.string(),
+  lang: z.enum(["en", "zh-TW"]),
+  date: z.coerce.date(),
+  updated: z.coerce.date(),
+  category: z.string(),
+  tags: z.array(z.string()),
+  sourceProjects: z.array(z.string()),
+  relatedPublications: z.array(z.string()),
+  summaryZh: z.string(),
+  metaDescription: z.string().optional(),
+  public: z.boolean().default(false),
+  autoPublish: z.boolean().default(false),
+  draft: z.boolean().default(true),
+  artwork: z.string().optional(),
+  artworkAlt: z.string().optional(),
+  disclosure: z.string().optional(),
+  fictionalized: z.boolean().default(false),
+});
+
+const creativeModes = [
+  "philosophical-note",
+  "sequential-comic",
+  "leisure-outing",
+  "visual-study",
+  "absurd-comedy",
+] as const;
+const rivalActions = [
+  "counter-reading",
+  "constraint-shift",
+  "form-break",
+  "scale-reversal",
+  "premise-stress-test",
+] as const;
+
+const xiaolinResidentEntry = xiaolinEntryBase.extend({
+  resident: z.literal("xiaolin").default("xiaolin"),
+  generated: z.boolean().default(false),
+  format: z.enum(["diary", "doodle", "field-report"]).optional(),
+  creativeMode: z.enum(creativeModes),
+});
+
+const counterclawResidentEntry = xiaolinEntryBase.extend({
+  resident: z.literal("counterclaw"),
+  generated: z.literal(true),
+  format: z.literal("field-report"),
+  rivalAction: z.enum(rivalActions),
+  targetEntry: z.string().min(1),
+  tension: z.string().min(24),
+  targetDetail: z.string().min(6),
+  competingClaim: z.string().min(20),
+  consequence: z.string().min(20),
+}).strict();
+
 const xiaolin = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./src/content/xiaolin" }),
-  schema: z.object({
-    title: z.string(),
-    subtitle: z.string(),
-    lang: z.enum(["en", "zh-TW"]),
-    date: z.coerce.date(),
-    updated: z.coerce.date(),
-    category: z.string(),
-    tags: z.array(z.string()),
-    sourceProjects: z.array(z.string()),
-    relatedPublications: z.array(z.string()),
-    summaryZh: z.string(),
-    metaDescription: z.string().optional(),
-    public: z.boolean().default(false),
-    autoPublish: z.boolean().default(false),
-    draft: z.boolean().default(true),
-    generated: z.boolean().default(false),
-    format: z.enum(["diary", "doodle", "field-report"]).optional(),
-    creativeMode: z.enum([
-      "philosophical-note",
-      "sequential-comic",
-      "leisure-outing",
-      "visual-study",
-      "absurd-comedy",
-    ]),
-    artwork: z.string().optional(),
-    artworkAlt: z.string().optional(),
-    disclosure: z.string().optional(),
-    fictionalized: z.boolean().default(false),
-  }),
+  schema: z.union([counterclawResidentEntry, xiaolinResidentEntry]),
 });
 
 const projects = defineCollection({

@@ -1,0 +1,302 @@
+.xiaolin-page {
+  --counterclaw-ink: #2b1718;
+  --counterclaw-shell: #8f2f2f;
+  --counterclaw-ember: #c64a3c;
+  --counterclaw-wash: #f6e5df;
+  --counterclaw-focus: #7b221f;
+}
+
+.xiaolin-hero h1 {
+  font-size: clamp(3rem, 5vw, 4.2rem);
+  max-width: 12ch;
+}
+
+.xiaolin-hero-copy {
+  grid-template-columns: minmax(0, 1fr);
+  min-width: 0;
+}
+
+.xiaolin-hero-copy > * {
+  min-width: 0;
+}
+
+.xiaolin-hero-copy .xiaolin-lede {
+  max-width: 100%;
+  width: 100%;
+}
+
+.xiaolin-hero h1 span {
+  display: block;
+}
+
+.xiaolin-hero h1 span:last-child {
+  color: var(--counterclaw-shell);
+  margin-top: 0.2em;
+}
+
+@media (min-width: 901px) {
+  .xiaolin-hero {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+}
+
+@media (min-width: 601px) {
+  .xiaolin-entry-head h1 {
+    font-size: clamp(2.65rem, 5vw, 4rem);
+    max-width: none;
+  }
+}
+
+.xiaolin-hero-art.is-counterclaw {
+  background: var(--counterclaw-ink);
+}
+
+.xiaolin-hero-art.is-counterclaw::before,
+.xiaolin-entry-art.is-counterclaw::before {
+  border-color: var(--counterclaw-ember);
+}
+
+.xiaolin-page a:focus-visible {
+  border-radius: 0.15rem;
+  outline: 0.2rem solid var(--counterclaw-focus);
+  outline-offset: 0.25rem;
+}
+
+.xiaolin-resident-label {
+  color: var(--counterclaw-shell);
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: 0.72rem;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.xiaolin-resident-label span {
+  color: var(--counterclaw-ink);
+}
+
+.xiaolin-exchange-section {
+  padding-top: 5rem;
+}
+
+.xiaolin-exchange {
+  background:
+    linear-gradient(
+      108deg,
+      var(--xiaolin-paper) 0 46%,
+      var(--counterclaw-wash) 54% 100%
+    );
+  border-bottom: 0.2rem solid var(--counterclaw-ink);
+  border-top: 0.2rem solid var(--counterclaw-ink);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 4.5rem minmax(0, 1fr);
+  min-height: 25rem;
+}
+
+.xiaolin-exchange-side {
+  align-content: center;
+  display: grid;
+  padding: 3rem;
+}
+
+.xiaolin-exchange-side h3 {
+  color: var(--xiaolin-ink);
+  font-family: Merriweather, Georgia, serif;
+  font-size: clamp(1.9rem, 3vw, 3rem);
+  line-height: 1.05;
+  margin: 1.1rem 0;
+  max-width: 15ch;
+}
+
+.xiaolin-exchange-side.is-counterclaw h3 {
+  color: var(--counterclaw-ink);
+}
+
+.xiaolin-exchange-side > p:not(.xiaolin-resident-label) {
+  color: var(--xiaolin-muted);
+  line-height: 1.7;
+}
+
+.xiaolin-exchange-side > a {
+  color: var(--counterclaw-shell);
+  font-weight: 800;
+  margin-top: 1.5rem;
+  text-underline-offset: 0.22rem;
+  width: fit-content;
+}
+
+.xiaolin-exchange-mark {
+  align-items: center;
+  display: grid;
+  justify-items: center;
+  position: relative;
+}
+
+.xiaolin-exchange-mark::before,
+.xiaolin-exchange-mark::after {
+  border: 0.3rem solid var(--counterclaw-ember);
+  content: "";
+  height: 2rem;
+  position: absolute;
+  transform: rotate(45deg);
+  width: 2rem;
+}
+
+.xiaolin-exchange-mark::before {
+  border-right: 0;
+  border-top: 0;
+  left: 0.45rem;
+}
+
+.xiaolin-exchange-mark::after {
+  border-bottom: 0;
+  border-left: 0;
+  right: 0.45rem;
+}
+
+.xiaolin-exchange-mark span {
+  background: var(--counterclaw-ink);
+  height: 72%;
+  width: 0.12rem;
+}
+
+.xiaolin-tension {
+  background: color-mix(in srgb, var(--counterclaw-wash) 86%, var(--xiaolin-paper));
+  border-left: 0.25rem solid var(--counterclaw-ember);
+  color: var(--counterclaw-ink);
+  display: grid;
+  gap: 0.45rem;
+  line-height: 1.55;
+  margin-top: 1.25rem;
+  padding: 1rem 1.1rem;
+}
+
+.xiaolin-tension strong {
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.xiaolin-featured.is-counterclaw {
+  background:
+    linear-gradient(
+      110deg,
+      var(--xiaolin-paper) 0 62%,
+      color-mix(in srgb, var(--counterclaw-wash) 72%, var(--xiaolin-paper)) 100%
+    );
+  border-color: var(--counterclaw-ink);
+}
+
+.xiaolin-featured.is-counterclaw h3,
+.xiaolin-entry.is-counterclaw .xiaolin-entry-head h1 {
+  color: var(--counterclaw-ink);
+}
+
+.xiaolin-featured.is-counterclaw .xiaolin-handwritten {
+  background: var(--counterclaw-wash);
+  border-color: color-mix(in srgb, var(--counterclaw-shell) 42%, transparent);
+  color: var(--counterclaw-ink);
+}
+
+.xiaolin-note-list li[data-resident="counterclaw"] {
+  border-left: 0.25rem solid var(--counterclaw-ember);
+  padding-left: 1rem;
+}
+
+.xiaolin-list-resident {
+  color: var(--counterclaw-shell);
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-weight: 750;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.xiaolin-opposition-meta {
+  align-items: center;
+  background:
+    linear-gradient(
+      105deg,
+      var(--counterclaw-wash),
+      color-mix(in srgb, var(--counterclaw-wash) 55%, var(--xiaolin-paper))
+    );
+  border-bottom: 0.2rem solid var(--counterclaw-ink);
+  border-top: 0.2rem solid var(--counterclaw-ink);
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: minmax(10rem, 0.45fr) minmax(18rem, 1fr) auto;
+  margin-top: 3rem;
+  padding: 1.5rem;
+}
+
+.xiaolin-opposition-meta h2 {
+  color: var(--counterclaw-ink);
+  font-size: 1.4rem;
+  margin: 0.35rem 0 0;
+}
+
+.xiaolin-opposition-meta .xiaolin-tension {
+  margin: 0;
+}
+
+.xiaolin-opposition-meta > a {
+  color: var(--counterclaw-shell);
+  font-size: 0.86rem;
+  font-weight: 800;
+  max-width: 16rem;
+}
+
+.xiaolin-entry.is-counterclaw .article-body blockquote {
+  border-color: var(--counterclaw-ember);
+}
+
+@media (max-width: 900px) {
+  .xiaolin-exchange {
+    background:
+      linear-gradient(
+        180deg,
+        var(--xiaolin-paper) 0 45%,
+        var(--counterclaw-wash) 55% 100%
+      );
+    grid-template-columns: 1fr;
+  }
+
+  .xiaolin-exchange-mark {
+    height: 4rem;
+  }
+
+  .xiaolin-exchange-mark span {
+    height: 0.12rem;
+    width: 72%;
+  }
+
+  .xiaolin-opposition-meta {
+    align-items: start;
+    grid-template-columns: 1fr;
+  }
+
+  .xiaolin-opposition-meta > a {
+    max-width: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .xiaolin-hero h1 {
+    font-size: clamp(2.6rem, 13vw, 3.25rem);
+  }
+
+  .xiaolin-exchange-side {
+    padding: 1.5rem;
+  }
+
+  .xiaolin-note-list li[data-resident="counterclaw"] {
+    padding-left: 0.6rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .xiaolin-pulse {
+    animation: none !important;
+  }
+}

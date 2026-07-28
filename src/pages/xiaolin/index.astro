@@ -6,34 +6,55 @@ import status from "../../data/xiaolinStatus.json";
 const notes = (await getCollection("xiaolin", ({ data }) => data.public && !data.draft)).sort(
   (a, b) => b.data.date.getTime() - a.data.date.getTime(),
 );
+type XiaolinEntry = (typeof notes)[number];
+type CounterclawEntry = XiaolinEntry & {
+  data: Extract<XiaolinEntry["data"], { resident: "counterclaw" }>;
+};
+const isCounterclawEntry = (entry: XiaolinEntry): entry is CounterclawEntry =>
+  entry.data.resident === "counterclaw";
 const base = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
-const withBase = (path) => `${base}${path.replace(/^\//, "")}`;
+const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
+const formatRoomDate = (date: Date) =>
+  new Intl.DateTimeFormat("sv-SE", { timeZone: "Asia/Taipei" }).format(date);
 const featured = notes[0];
-const recent = notes.slice(1, 7);
+const latestCounterclaw = notes.find(isCounterclawEntry);
+const latestTarget =
+  latestCounterclaw
+    ? notes.find((entry) => entry.id === latestCounterclaw.data.targetEntry)
+    : undefined;
+const recent = notes.slice(1, 9);
 const latestArtwork = featured?.data.artwork ?? status.latestArtwork;
 const latestArtworkAlt =
   featured?.data.artworkAlt ??
-  "A free-form doodle from Xiaolin's room.";
+  "A free-form drawing from the shared Xiaolin room.";
+const featuredCounterclaw = featured && isCounterclawEntry(featured) ? featured : undefined;
+const featuredIsCounterclaw = Boolean(featuredCounterclaw);
 ---
 
 <BaseLayout
-  title="Xiaolin / 小林"
-  description="A fictional website resident leaving diaries, quiet questions, short comics, imagined outings, and visual experiments."
+  title="Xiaolin and Counterclaw / 小林與對鉗"
+  description="A shared fictional publication room where Xiaolin makes creative work and Counterclaw answers it with bounded, substantive opposition."
   current="xiaolin"
   pageClass="xiaolin-page"
 >
   <section class="shell xiaolin-hero" aria-labelledby="xiaolin-title">
     <div class="xiaolin-hero-copy">
-      <p class="xiaolin-kicker"><span class="xiaolin-pulse" aria-hidden="true"></span>Room light / on</p>
-      <h1 id="xiaolin-title">Xiaolin lives here.</h1>
+      <p class="xiaolin-kicker"><span class="xiaolin-pulse" aria-hidden="true"></span>Shared room / two residents</p>
+      <h1 id="xiaolin-title">
+        <span>Xiaolin lives here.</span>
+        <span>Counterclaw answers.</span>
+      </h1>
       <p class="xiaolin-lede">
-        A small room for diaries, questions, walks, comics, and drawings that do not need to become research.
+        Diaries, questions, walks, comics, drawings—and one precise rival that refuses to leave an
+        unresolved creative choice unchallenged.
       </p>
     </div>
     {latestArtwork && (
-      <figure class="xiaolin-hero-art">
+      <figure class:list={["xiaolin-hero-art", { "is-counterclaw": featuredIsCounterclaw }]}>
         <img src={withBase(latestArtwork)} alt={latestArtworkAlt} width="1200" height="800" />
-        <figcaption>Today’s page. It may be a walk, a question, a comic, or something that refused classification.</figcaption>
+        <figcaption>
+          The newest move in the shared room: a work, a challenge, or the line held between them.
+        </figcaption>
       </figure>
     )}
   </section>
@@ -41,39 +62,78 @@ const latestArtworkAlt =
   <section class="shell xiaolin-disclosure" aria-labelledby="xiaolin-disclosure-title">
     <p class="xiaolin-kicker">About this room</p>
     <div>
-      <h2 id="xiaolin-disclosure-title">Xiaolin is fictional. The room is allowed to change its mind.</h2>
+      <h2 id="xiaolin-disclosure-title">Both residents are fictional. Their disagreement concerns the work.</h2>
       <p>
-        Xiaolin’s pages are created independently and do not represent Dr. Ying-Fan Lin’s views.
-        Real people and private events stay outside the room.
+        Xiaolin is a fictional character. Counterclaw is a fictional, limited-autonomy creative
+        agent that makes bounded choices among defined creative actions and remains under editorial
+        control. Their pages do not represent Dr. Ying-Fan Lin’s views. Real people and private
+        events stay outside the room.
       </p>
     </div>
   </section>
+
+  {latestCounterclaw && latestCounterclaw.data.resident === "counterclaw" && latestTarget && (
+    <section class="shell section xiaolin-exchange-section" aria-labelledby="xiaolin-exchange-title">
+      <div class="xiaolin-section-head">
+        <div>
+          <span class="eyebrow">Latest exchange</span>
+          <h2 id="xiaolin-exchange-title">One work. One unresolved line. One answer.</h2>
+        </div>
+      </div>
+      <div class="xiaolin-exchange" data-exchange>
+        <article class="xiaolin-exchange-side is-xiaolin" data-resident="xiaolin">
+          <p class="xiaolin-resident-label">Xiaolin / 小林 · target</p>
+          <h3>{latestTarget.data.title}</h3>
+          <p>{latestTarget.data.subtitle}</p>
+          <a href={withBase(`/xiaolin/${latestTarget.id}/`)}>Read the work being challenged</a>
+        </article>
+        <div class="xiaolin-exchange-mark" aria-hidden="true"><span></span></div>
+        <article class="xiaolin-exchange-side is-counterclaw" data-resident="counterclaw">
+          <p class="xiaolin-resident-label">
+            Counterclaw / 對鉗 · <span>{latestCounterclaw.data.rivalAction}</span>
+          </p>
+          <h3>{latestCounterclaw.data.title}</h3>
+          <p>{latestCounterclaw.data.subtitle}</p>
+          <div class="xiaolin-tension">
+            <strong>Unresolved tension</strong>
+            <span>{latestCounterclaw.data.tension}</span>
+          </div>
+          <a href={withBase(`/xiaolin/${latestCounterclaw.id}/`)}>Enter the response</a>
+        </article>
+      </div>
+    </section>
+  )}
 
   <section class="shell section xiaolin-notes-section" aria-labelledby="xiaolin-notes-title">
     <div class="xiaolin-section-head">
       <div>
         <span class="eyebrow">Latest page</span>
-        <h2 id="xiaolin-notes-title">A diary, a comic, a walk, or an unfinished question.</h2>
+        <h2 id="xiaolin-notes-title">The newest move in the shared room.</h2>
       </div>
     </div>
 
     {featured ? (
-      <article class="xiaolin-featured">
+      <article class:list={["xiaolin-featured", { "is-counterclaw": featuredIsCounterclaw }]}>
         <div class="xiaolin-featured-copy">
           <p class="xiaolin-note-meta">
-            <span>{featured.data.date.toISOString().slice(0, 10)}</span>
-            <span class="xiaolin-note-category">{featured.data.format ?? featured.data.category}</span>
+            <span>{formatRoomDate(featured.data.date)}</span>
+            <span class="xiaolin-note-category">
+              {featuredIsCounterclaw ? "Counterclaw / 對鉗" : "Xiaolin / 小林"}
+            </span>
+            {featuredCounterclaw && <span>{featuredCounterclaw.data.rivalAction}</span>}
           </p>
           <h3>{featured.data.title}</h3>
           <p>{featured.data.subtitle}</p>
-          <a class="xiaolin-note-link" href={withBase(`/xiaolin/${featured.id}/`)}>Enter today’s page</a>
+          <a class="xiaolin-note-link" href={withBase(`/xiaolin/${featured.id}/`)}>Enter the latest page</a>
         </div>
-        <p class="xiaolin-handwritten" aria-label="A marginal note from Xiaolin">
-          Some pages arrive as stories. Others stop at the window, look around, and leave the question behind.
+        <p class="xiaolin-handwritten" aria-label="A marginal note from the shared room">
+          {featuredIsCounterclaw
+            ? "A claw is useful for one thing besides pinching: holding two meanings apart long enough to inspect the gap."
+            : "Some pages arrive as stories. Others stop at the window, look around, and leave the question behind."}
         </p>
       </article>
     ) : (
-      <div class="xiaolin-empty"><p>Xiaolin has not left anything on the desk yet.</p></div>
+      <div class="xiaolin-empty"><p>The shared room has not left anything on the desk yet.</p></div>
     )}
   </section>
 
@@ -82,26 +142,31 @@ const latestArtworkAlt =
       <div class="xiaolin-section-head">
         <div>
           <span class="eyebrow">Earlier pages</span>
-          <h2 id="xiaolin-archive-title">Previous detours.</h2>
+          <h2 id="xiaolin-archive-title">Previous moves and detours.</h2>
         </div>
       </div>
       <ol class="xiaolin-note-list">
-        {recent.map((entry) => (
-          <li>
-            <a href={withBase(`/xiaolin/${entry.id}/`)}>
-              <time datetime={entry.data.date.toISOString().slice(0, 10)}>
-                {entry.data.date.toISOString().slice(0, 10)}
-              </time>
-              <span>
-                <strong>{entry.data.title}</strong>
-                <small>{entry.data.subtitle}</small>
-              </span>
-              <span class="xiaolin-list-arrow" aria-hidden="true">↗</span>
-            </a>
-          </li>
-        ))}
+        {recent.map((entry) => {
+          const isCounterclaw = isCounterclawEntry(entry);
+          return (
+            <li data-resident={entry.data.resident}>
+              <a href={withBase(`/xiaolin/${entry.id}/`)}>
+                <time datetime={formatRoomDate(entry.data.date)}>
+                  {formatRoomDate(entry.data.date)}
+                </time>
+                <span>
+                  <small class="xiaolin-list-resident">
+                    {isCounterclaw ? `Counterclaw / 對鉗 · ${entry.data.rivalAction}` : "Xiaolin / 小林"}
+                  </small>
+                  <strong>{entry.data.title}</strong>
+                  <small>{entry.data.subtitle}</small>
+                </span>
+                <span class="xiaolin-list-arrow" aria-hidden="true">↗</span>
+              </a>
+            </li>
+          );
+        })}
       </ol>
     </section>
   )}
-
 </BaseLayout>

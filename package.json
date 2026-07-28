@@ -25,13 +25,17 @@
     "video:verify:2025-10-6": "node scripts/verify_rethinking_aquifer_video.mjs",
     "predev": "node scripts/generate_motion_assets.mjs && node scripts/import_publications.mjs",
     "dev": "astro dev",
-    "prebuild": "node scripts/generate_motion_assets.mjs && node scripts/import_publications.mjs && node scripts/publication_gate.mjs && node scripts/video_companion_gate.mjs && node scripts/verify_rethinking_aquifer_video.mjs && node scripts/evidence_gate.mjs && node scripts/lint_prose.mjs && node scripts/xiaolin-publisher.mjs",
+    "prebuild": "node scripts/generate_motion_assets.mjs && node scripts/import_publications.mjs && node scripts/publication_gate.mjs && node scripts/video_companion_gate.mjs && node scripts/verify_rethinking_aquifer_video.mjs && node scripts/evidence_gate.mjs && node scripts/lint_prose.mjs && node scripts/xiaolin-publisher.mjs && node scripts/counterclaw-publisher.mjs",
     "build": "astro build && pagefind --site dist",
     "indexnow": "node scripts/submit_indexnow.mjs",
     "indexnow:dry-run": "node scripts/submit_indexnow.mjs --dry-run",
     "distribution:pack": "node scripts/generate_distribution_pack.mjs",
     "distribution:pack:all": "node scripts/generate_distribution_pack.mjs --all",
     "xiaolin:check": "node scripts/xiaolin-publisher.mjs",
+    "counterclaw:check": "node scripts/counterclaw-publisher.mjs",
+    "test:counterclaw:unit": "node --test tests/counterclaw-lock.test.mjs tests/counterclaw-publisher.test.mjs tests/counterclaw-validator.test.mjs",
+    "test:counterclaw:pages": "playwright test tests/counterclaw-pages.test.mjs",
+    "typecheck": "astro check --tsconfig tsconfig.counterclaw.json --minimumSeverity error",
     "preview": "astro preview",
     "astro": "astro"
   },
@@ -50,8 +54,11 @@
     "tw-animate-css": "^1.4.0"
   },
   "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "@playwright/test": "^1.62.0",
     "fflate": "^0.8.3",
     "pagefind": "^1.4.0",
+    "typescript": "^6.0.3",
     "write-good": "^1.0.8"
   }
 }

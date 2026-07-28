@@ -135,7 +135,7 @@ Expected: all commands exit successfully with no validation errors.
 - Create: `automation/COUNTERCLAW_EVERY_THREE_HOURS.md`
 - Modify: `automation/README.md`
 - Modify: `docs/xiaolin-worker-contract.md`
-- Create: `src/content/xiaolin/2026-07-29-counterclaw-half-second-threshold.md`
+- Create: `src/content/xiaolin/2026-07-29-0746-counterclaw-half-second-threshold.md`
 - Create: `public/images/xiaolin/2026-07-29-counterclaw-half-second-threshold.svg`
 - Runtime-only ignored report: `automation/reports/counterclaw/2026-07-29-first-run.md`
 
@@ -264,7 +264,7 @@ Wait for the exact Pages workflow run associated with the pushed commit, then
 check:
 
 - `https://aar246860.github.io/yflin_web/xiaolin/`
-- `https://aar246860.github.io/yflin_web/xiaolin/2026-07-29-counterclaw-half-second-threshold/`
+- `https://aar246860.github.io/yflin_web/xiaolin/2026-07-29-0746-counterclaw-half-second-threshold/`
 - `https://aar246860.github.io/yflin_web/xiaolin/2026-07-28-pm-tofu-pudding-before-the-last-train/`
 
 If deployment or any URL check fails, stop without creating the automation.
