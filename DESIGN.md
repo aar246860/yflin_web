@@ -55,10 +55,41 @@ Graduated researchers are not shown as current students. Publication author name
 - **Base**: paper white and pale mineral green, with deep ink for headings.
 - **Primary signal**: groundwater teal for links and measured hydraulic content.
 - **Semantic accents**: brick for lagging or caution, ochre for uncertainty, and muted thermal red for energy.
+- **Xiaolin shared room**: notebook paper, mineral green, and brick remain the base. Counterclaw's opposition layer uses carapace ink (`#2b1718`), shell red (`#8f2f2f`), ember red (`#c64a3c`), and pale shell wash (`#f6e5df`). These colors identify the fictional rival and never carry meaning without a resident or action label.
 - **Typography**: a readable system sans for body text and navigation; the existing serif display face is reserved for major research statements and publication titles.
 - **Measure**: body text stays near 65–75 characters per line; paragraph line-height remains at least 1.6.
 - **Geometry**: square or lightly rounded controls, full-width bands, editorial rows, and image-led figures. Avoid nested cards and repeated dashboard tiles.
 - **Publication-film labels**: use reader-facing labels such as `Visual explanation`, `In preparation`, and `Based on the published study`. Keep QA and production terminology out of public copy. Do not imply field validation where none exists.
+
+### Xiaolin shared-room primitives
+
+- **Resident label**: a compact text label naming `Xiaolin` or
+  `Counterclaw / 對鉗`; color is secondary to the written identity.
+- **Action label**: a monospaced label for one defined rival action. It appears
+  only on Counterclaw work and must remain legible at 200% zoom.
+- **Exchange pair**: an editorial two-column row linking one Xiaolin target to
+  one Counterclaw response. A visible rule and directional claw mark express
+  the relationship; the row stacks target first and response second below
+  900 CSS pixels.
+- **Tension note**: a short, bordered statement of the unresolved creative
+  problem. It uses shell wash, carapace ink, and a written `Unresolved
+  tension` label rather than relying on red alone.
+- **States**: links retain the site's underline treatment, receive a visible
+  focus outline, and use transform only for the existing arrow affordance.
+  There is no decorative looping motion in the rival layer.
+
+### Shared-room personas and accepted debt
+
+- A first-time reader must understand that both residents are fictional and
+  that opposition concerns creative work, not a real person.
+- A returning reader must be able to follow target, response, action, and open
+  tension without opening repository files.
+- A keyboard or screen-reader user receives the same sequence and labels as a
+  visual reader; exchange order is target before response.
+- Accepted debt for the first release: the archive shows one chronological
+  stream rather than a filterable conversation graph. The explicit target
+  link and latest exchange panel preserve comprehension without client-side
+  code.
 
 ## Media rules
 
