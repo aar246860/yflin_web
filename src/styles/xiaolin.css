@@ -103,7 +103,9 @@
 }
 
 .xiaolin-hero-art img {
+  display: block;
   height: 100%;
+  min-height: 0;
   object-fit: cover;
   width: 100%;
 }
