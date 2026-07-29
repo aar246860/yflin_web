@@ -1,0 +1,172 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title id="title">紅燈在車輪裡變成十二段</title>
+  <desc id="desc">夜間路口的斜俯視視覺習作。青綠色腳踏車停在白線前，紅色號誌映在前輪輻條上，留下十二段反光與一小段運動弧。</desc>
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#123f46"/>
+      <stop offset="1" stop-color="#245d60"/>
+    </linearGradient>
+    <linearGradient id="road" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#315151"/>
+      <stop offset="1" stop-color="#182f31"/>
+    </linearGradient>
+    <linearGradient id="shop" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffd995"/>
+      <stop offset="1" stop-color="#e48a57"/>
+    </linearGradient>
+    <radialGradient id="redGlow">
+      <stop offset="0" stop-color="#ff8a6b" stop-opacity="0.85"/>
+      <stop offset="0.45" stop-color="#e34d43" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#e34d43" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="soft" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="18"/>
+    </filter>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="13" stdDeviation="10" flood-color="#07191b" flood-opacity="0.5"/>
+    </filter>
+    <pattern id="grain" width="58" height="58" patternUnits="userSpaceOnUse">
+      <circle cx="7" cy="13" r="1" fill="#d6e5dd" opacity="0.055"/>
+      <circle cx="34" cy="42" r="0.8" fill="#d6e5dd" opacity="0.045"/>
+      <circle cx="52" cy="21" r="1.1" fill="#d6e5dd" opacity="0.04"/>
+    </pattern>
+    <clipPath id="frontWheel">
+      <circle cx="730" cy="515" r="177"/>
+    </clipPath>
+  </defs>
+
+  <rect width="1200" height="800" fill="url(#sky)"/>
+
+  <!-- Shops and distant street -->
+  <g opacity="0.96">
+    <path d="M0 0H1200V227H0Z" fill="#16383d"/>
+    <rect x="45" y="44" width="260" height="145" rx="4" fill="#214b50"/>
+    <rect x="68" y="69" width="214" height="93" fill="url(#shop)"/>
+    <path d="M175 69V162M68 116H282" stroke="#6d4d45" stroke-width="7" opacity="0.65"/>
+    <rect x="351" y="35" width="222" height="160" rx="4" fill="#1d474b"/>
+    <g fill="#88c0b8" opacity="0.64">
+      <rect x="375" y="59" width="56" height="42"/>
+      <rect x="450" y="59" width="96" height="42"/>
+      <rect x="375" y="120" width="76" height="46"/>
+      <rect x="469" y="120" width="77" height="46"/>
+    </g>
+    <rect x="938" y="51" width="192" height="138" rx="4" fill="#214a4e"/>
+    <rect x="966" y="78" width="138" height="84" fill="#9cc6b6" opacity="0.58"/>
+    <path d="M0 218H1200" stroke="#6e9290" stroke-width="11" opacity="0.55"/>
+  </g>
+
+  <!-- Road and intersection -->
+  <path d="M0 219H1200V800H0Z" fill="url(#road)"/>
+  <rect width="1200" height="800" fill="url(#grain)"/>
+  <g transform="skewX(-8)" fill="#e9eee6" opacity="0.9">
+    <rect x="90" y="266" width="160" height="48" rx="3"/>
+    <rect x="303" y="266" width="160" height="48" rx="3"/>
+    <rect x="516" y="266" width="160" height="48" rx="3"/>
+    <rect x="729" y="266" width="160" height="48" rx="3"/>
+    <rect x="942" y="266" width="160" height="48" rx="3"/>
+  </g>
+  <path d="M50 642L1110 642" stroke="#f6efe0" stroke-width="20" opacity="0.92"/>
+  <path d="M0 741C240 720 407 732 620 742C818 752 1007 742 1200 720" fill="none" stroke="#274749" stroke-width="9" opacity="0.6"/>
+
+  <!-- Signal pole and red lamp -->
+  <g filter="url(#shadow)">
+    <path d="M1000 93V534" stroke="#172a2d" stroke-width="29" stroke-linecap="round"/>
+    <path d="M1000 134H881" stroke="#172a2d" stroke-width="26" stroke-linecap="round"/>
+    <rect x="828" y="78" width="87" height="171" rx="22" fill="#15282b"/>
+    <circle cx="872" cy="122" r="28" fill="#e75248"/>
+    <circle cx="872" cy="122" r="69" fill="url(#redGlow)" filter="url(#soft)"/>
+    <circle cx="872" cy="165" r="24" fill="#5a523d"/>
+    <circle cx="872" cy="211" r="24" fill="#315948"/>
+    <rect x="957" y="327" width="88" height="111" rx="10" fill="#e5eee7"/>
+    <path d="M987 352C987 342 1001 342 1001 352V376C1015 373 1023 381 1023 393C1023 415 1006 424 995 424C978 424 966 408 966 392C966 381 975 376 987 378Z" fill="#ce6754"/>
+  </g>
+
+  <!-- Red light cast -->
+  <path d="M861 129L577 644" stroke="#e85b4c" stroke-width="74" opacity="0.075" filter="url(#soft)"/>
+
+  <!-- Rear bicycle wheel -->
+  <g opacity="0.82" filter="url(#shadow)">
+    <circle cx="345" cy="549" r="145" fill="none" stroke="#11282a" stroke-width="24"/>
+    <circle cx="345" cy="549" r="137" fill="none" stroke="#c3d9d1" stroke-width="5"/>
+    <circle cx="345" cy="549" r="13" fill="#db9a53"/>
+    <g stroke="#8fb0aa" stroke-width="3">
+      <path d="M345 412V686M208 549H482M248 452L442 646M248 646L442 452"/>
+      <path d="M277 430L413 668M226 481L464 617M226 617L464 481M277 668L413 430"/>
+    </g>
+  </g>
+
+  <!-- Front wheel -->
+  <g filter="url(#shadow)">
+    <circle cx="730" cy="515" r="189" fill="#13282a" opacity="0.5"/>
+    <circle cx="730" cy="515" r="177" fill="#203d3e"/>
+    <circle cx="730" cy="515" r="168" fill="#24494a"/>
+    <circle cx="730" cy="515" r="170" fill="none" stroke="#d2e1d9" stroke-width="7"/>
+    <circle cx="730" cy="515" r="15" fill="#e4a252"/>
+    <g stroke="#abc5be" stroke-width="3.2" opacity="0.92">
+      <path d="M730 345V685"/>
+      <path d="M560 515H900"/>
+      <path d="M610 395L850 635"/>
+      <path d="M610 635L850 395"/>
+      <path d="M645 368L815 662"/>
+      <path d="M583 430L877 600"/>
+      <path d="M583 600L877 430"/>
+      <path d="M645 662L815 368"/>
+      <path d="M686 351L774 679"/>
+      <path d="M566 471L894 559"/>
+      <path d="M566 559L894 471"/>
+      <path d="M686 679L774 351"/>
+    </g>
+
+    <!-- Twelve clipped reflection fragments -->
+    <g clip-path="url(#frontWheel)" stroke="#ff7460" stroke-width="10" stroke-linecap="round">
+      <path d="M704 355L714 392" opacity="0.6"/>
+      <path d="M666 374L686 407" opacity="0.72"/>
+      <path d="M632 400L663 427" opacity="0.84"/>
+      <path d="M604 435L643 454" opacity="0.94"/>
+      <path d="M584 475L630 486"/>
+      <path d="M577 517L625 518"/>
+      <path d="M584 560L629 548" opacity="0.94"/>
+      <path d="M601 600L643 578" opacity="0.84"/>
+      <path d="M629 633L663 605" opacity="0.74"/>
+      <path d="M664 657L686 622" opacity="0.64"/>
+      <path d="M704 674L714 637" opacity="0.52"/>
+      <path d="M746 676L742 639" opacity="0.4"/>
+    </g>
+    <path d="M579 468A177 177 0 0 0 605 604" fill="none" stroke="#fb7560" stroke-width="9" stroke-linecap="round" opacity="0.72"/>
+    <path d="M563 454A194 194 0 0 0 587 623" fill="none" stroke="#f58e72" stroke-width="4" stroke-dasharray="3 16" stroke-linecap="round" opacity="0.48"/>
+  </g>
+
+  <!-- Bicycle frame and controls -->
+  <g fill="none" stroke="#56a49b" stroke-width="21" stroke-linecap="round" stroke-linejoin="round" filter="url(#shadow)">
+    <path d="M345 549L485 410L579 555L345 549L466 560L485 410"/>
+    <path d="M466 560L730 515"/>
+    <path d="M485 410L621 375"/>
+    <path d="M621 375L730 515"/>
+  </g>
+  <g stroke="#172b2e" stroke-width="15" stroke-linecap="round">
+    <path d="M463 394H524"/>
+    <path d="M606 359L644 328"/>
+    <path d="M629 335H687"/>
+  </g>
+  <circle cx="466" cy="560" r="34" fill="none" stroke="#e1a35e" stroke-width="8"/>
+  <path d="M466 560L506 582" stroke="#e1a35e" stroke-width="8" stroke-linecap="round"/>
+
+  <!-- Rider, cropped to keep the visual about the wheel -->
+  <g filter="url(#shadow)">
+    <path d="M493 399C474 332 503 288 548 279C590 270 623 305 620 354L599 429Z" fill="#e9a35c"/>
+    <path d="M500 395C472 435 462 486 466 548" fill="none" stroke="#f0bd95" stroke-width="28" stroke-linecap="round"/>
+    <path d="M592 408C628 429 648 456 659 491" fill="none" stroke="#f0bd95" stroke-width="28" stroke-linecap="round"/>
+    <path d="M512 430L466 560" stroke="#263f43" stroke-width="36" stroke-linecap="round"/>
+    <path d="M579 430L542 541" stroke="#263f43" stroke-width="36" stroke-linecap="round"/>
+    <path d="M466 560L506 582M542 541L506 582" stroke="#192d30" stroke-width="22" stroke-linecap="round"/>
+  </g>
+
+  <!-- Foreground curb and small street details -->
+  <path d="M0 754C257 733 421 750 631 762C829 774 1021 765 1200 744V800H0Z" fill="#122a2c"/>
+  <g opacity="0.78">
+    <circle cx="105" cy="700" r="5" fill="#d5c29a"/>
+    <circle cx="173" cy="714" r="3" fill="#d5c29a"/>
+    <path d="M101 676L146 660" stroke="#78928a" stroke-width="5" stroke-linecap="round"/>
+    <path d="M1089 683C1104 671 1121 674 1129 688C1111 695 1097 695 1089 683Z" fill="#8a9e7a"/>
+  </g>
+</svg>
