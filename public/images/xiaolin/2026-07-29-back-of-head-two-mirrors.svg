@@ -1,0 +1,163 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="850" viewBox="0 0 1200 850" role="img" aria-labelledby="title desc">
+  <title id="title">後腦勺只在兩面鏡子之間出現</title>
+  <desc id="desc">六格彩色漫畫：小林走進理髮店、披上圍巾、看著落髮，接著透過手鏡與牆鏡看見後腦勺，最後走出店外用手確認剛修短的髮尾。</desc>
+  <defs>
+    <linearGradient id="wall" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f5f1e9"/>
+      <stop offset="1" stop-color="#dce8e3"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#b9d8d9" stop-opacity=".85"/>
+      <stop offset="1" stop-color="#6f9fa1" stop-opacity=".42"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="9" flood-color="#163d44" flood-opacity=".16"/>
+    </filter>
+    <clipPath id="p1"><rect x="45" y="45" width="530" height="305" rx="18"/></clipPath>
+    <clipPath id="p2"><rect x="625" y="45" width="530" height="305" rx="18"/></clipPath>
+    <clipPath id="p3"><rect x="45" y="398" width="530" height="305" rx="18"/></clipPath>
+    <clipPath id="p4"><rect x="625" y="398" width="530" height="305" rx="18"/></clipPath>
+    <clipPath id="p5"><rect x="45" y="750" width="530" height="305" rx="18"/></clipPath>
+    <clipPath id="p6"><rect x="625" y="750" width="530" height="305" rx="18"/></clipPath>
+  </defs>
+
+  <rect width="1200" height="850" fill="#f8faf7"/>
+
+  <!-- Panel 1: entering the barbershop -->
+  <g transform="translate(245 70) scale(.62) translate(-45 -45)">
+  <g clip-path="url(#p1)">
+    <rect x="45" y="45" width="530" height="305" fill="#d5e7e3"/>
+    <rect x="45" y="268" width="530" height="82" fill="#94a99f"/>
+    <rect x="95" y="80" width="330" height="230" rx="8" fill="url(#glass)" stroke="#254e55" stroke-width="8"/>
+    <line x1="260" y1="80" x2="260" y2="310" stroke="#254e55" stroke-width="7"/>
+    <rect x="442" y="93" width="42" height="155" rx="20" fill="#f4eee4" stroke="#254e55" stroke-width="6"/>
+    <path d="M448 100l30 20-30 22 30 22-30 22 30 22-30 24" fill="none" stroke="#d85c4a" stroke-width="12"/>
+    <circle cx="445" cy="262" r="32" fill="#d19a44"/>
+    <path d="M421 293c-18 26-20 52-16 72h88c5-31-6-60-24-75z" fill="#1e6067"/>
+    <path d="M446 267c12-3 24 4 29 16-18 8-36 7-54-2 4-7 13-12 25-14z" fill="#2b3131"/>
+    <path d="M390 329c40-10 88-8 126 3" fill="none" stroke="#cf673f" stroke-width="8" stroke-linecap="round"/>
+    <circle cx="78" cy="77" r="20" fill="#f0b54c"/>
+    <text x="78" y="85" text-anchor="middle" font-family="Arial, sans-serif" font-size="23" font-weight="700" fill="#21474d">1</text>
+  </g>
+  <rect x="45" y="45" width="530" height="305" rx="18" fill="none" stroke="#193f46" stroke-width="7"/>
+  </g>
+
+  <!-- Panel 2: cape and scissors -->
+  <g transform="translate(625 70) scale(.62) translate(-625 -45)">
+  <g clip-path="url(#p2)">
+    <rect x="625" y="45" width="530" height="305" fill="url(#wall)"/>
+    <rect x="690" y="75" width="270" height="224" rx="10" fill="#bdd3d0" stroke="#355a5d" stroke-width="8"/>
+    <circle cx="820" cy="157" r="48" fill="#d19a44"/>
+    <path d="M775 150c8-43 72-56 92-8l-6 35c-22-9-54-13-86-7z" fill="#293334"/>
+    <path d="M721 322c1-79 39-132 99-132s99 53 99 132z" fill="#183c57"/>
+    <path d="M731 291c48 18 126 17 177-2" fill="none" stroke="#346e78" stroke-width="8" opacity=".65"/>
+    <g transform="translate(978 126) rotate(-13)">
+      <circle cx="0" cy="0" r="18" fill="none" stroke="#bf5948" stroke-width="8"/>
+      <circle cx="0" cy="45" r="18" fill="none" stroke="#bf5948" stroke-width="8"/>
+      <path d="M12 14l83 61M12 31l83-51" stroke="#3d5252" stroke-width="7" stroke-linecap="round"/>
+    </g>
+    <path d="M1002 199q19 28 47 42M982 209q10 33 30 56M1035 192q28 17 50 26" fill="none" stroke="#303838" stroke-width="5" stroke-linecap="round"/>
+    <path d="M659 313h462" stroke="#8c7660" stroke-width="9"/>
+    <path d="M672 323q15-16 30 0M712 327q12-19 27-2M1071 323q13-15 28 1" fill="none" stroke="#313737" stroke-width="5"/>
+    <circle cx="657" cy="78" r="20" fill="#f0b54c"/>
+    <text x="657" y="86" text-anchor="middle" font-family="Arial, sans-serif" font-size="23" font-weight="700" fill="#21474d">2</text>
+  </g>
+  <rect x="625" y="45" width="530" height="305" rx="18" fill="none" stroke="#193f46" stroke-width="7"/>
+  </g>
+
+  <!-- Panel 3: hair falls -->
+  <g transform="translate(245 280) scale(.62) translate(-45 -398)">
+  <g clip-path="url(#p3)">
+    <rect x="45" y="398" width="530" height="305" fill="#e8dfcf"/>
+    <path d="M45 650h530v53H45z" fill="#75968d"/>
+    <path d="M180 399l72 304M312 399l29 304M446 399l-20 304" stroke="#c5b9a5" stroke-width="4"/>
+    <circle cx="294" cy="474" r="62" fill="#d19a44"/>
+    <path d="M235 468c12-57 104-67 126-10l-8 48c-28-18-76-20-118-6z" fill="#293334"/>
+    <path d="M178 689c7-111 49-169 116-169s111 63 118 169z" fill="#183c57"/>
+    <g fill="none" stroke="#2d3838" stroke-width="6" stroke-linecap="round">
+      <path d="M437 457q34 17 46 50"/>
+      <path d="M461 432q38 26 53 66"/>
+      <path d="M484 477q22 10 33 32"/>
+      <path d="M120 612q17 18 39 24"/>
+      <path d="M463 638q21 15 44 12"/>
+    </g>
+    <g fill="#bf5948">
+      <circle cx="454" cy="449" r="8"/>
+      <circle cx="487" cy="520" r="7"/>
+      <circle cx="511" cy="459" r="6"/>
+    </g>
+    <circle cx="78" cy="430" r="20" fill="#f0b54c"/>
+    <text x="78" y="438" text-anchor="middle" font-family="Arial, sans-serif" font-size="23" font-weight="700" fill="#21474d">3</text>
+  </g>
+  <rect x="45" y="398" width="530" height="305" rx="18" fill="none" stroke="#193f46" stroke-width="7"/>
+  </g>
+
+  <!-- Panel 4: mirror within mirror -->
+  <g transform="translate(625 280) scale(.62) translate(-625 -398)">
+  <g clip-path="url(#p4)">
+    <rect x="625" y="398" width="530" height="305" fill="#203d46"/>
+    <rect x="674" y="428" width="392" height="245" rx="9" fill="#8db8b7" stroke="#efd9ad" stroke-width="12"/>
+    <circle cx="826" cy="537" r="67" fill="#d19a44"/>
+    <path d="M762 530c18-64 111-70 131-6l-5 42c-35-16-84-16-126 1z" fill="#293334"/>
+    <path d="M732 668c13-83 47-121 94-121s81 38 94 121z" fill="#183c57"/>
+    <g filter="url(#shadow)">
+      <rect x="870" y="454" width="208" height="164" rx="16" fill="#d7e5df" stroke="#c76946" stroke-width="9" transform="rotate(7 974 536)"/>
+      <ellipse cx="979" cy="529" rx="56" ry="66" fill="#d19a44"/>
+      <path d="M928 520q51-58 104 1v31q-55-20-104 0z" fill="#293334"/>
+      <rect x="936" y="480" width="88" height="109" rx="8" fill="none" stroke="#628f8d" stroke-width="5"/>
+      <rect x="953" y="496" width="54" height="74" rx="7" fill="none" stroke="#d6b15c" stroke-width="4"/>
+      <rect x="966" y="509" width="29" height="46" rx="5" fill="none" stroke="#365d62" stroke-width="3"/>
+    </g>
+    <path d="M1094 604q-17 35-8 70" fill="none" stroke="#d19a44" stroke-width="18" stroke-linecap="round"/>
+    <path d="M1087 674l-21 14" stroke="#3d5153" stroke-width="9" stroke-linecap="round"/>
+    <circle cx="657" cy="430" r="20" fill="#f0b54c"/>
+    <text x="657" y="438" text-anchor="middle" font-family="Arial, sans-serif" font-size="23" font-weight="700" fill="#21474d">4</text>
+  </g>
+  <rect x="625" y="398" width="530" height="305" rx="18" fill="none" stroke="#193f46" stroke-width="7"/>
+  </g>
+
+  <!-- Panel 5: cape lifts and hair moves -->
+  <g transform="translate(245 490) scale(.62) translate(-45 -750)">
+  <g clip-path="url(#p5)">
+    <rect x="45" y="750" width="530" height="305" fill="#e4eee8"/>
+    <path d="M45 1000h530v55H45z" fill="#8aa69e"/>
+    <circle cx="300" cy="823" r="58" fill="#d19a44"/>
+    <path d="M245 817c10-48 91-63 113-10l-8 39c-30-13-69-15-105-3z" fill="#293334"/>
+    <path d="M190 1006c7-101 49-155 110-155s103 54 110 155z" fill="#1e6067"/>
+    <path d="M160 881q134 78 302 17-13 77-48 118H201q-31-53-41-135z" fill="#183c57"/>
+    <path d="M160 881q132 68 302 17" fill="none" stroke="#4c8890" stroke-width="10"/>
+    <path d="M455 895q46-36 73-9M456 919q40-22 74-5" fill="none" stroke="#d19a44" stroke-width="14" stroke-linecap="round"/>
+    <g fill="none" stroke="#303838" stroke-width="6" stroke-linecap="round">
+      <path d="M99 956q22-22 46-1"/>
+      <path d="M129 1019q18-20 41-2"/>
+      <path d="M449 1024q19-21 43-1"/>
+      <path d="M495 970q19-17 40 0"/>
+    </g>
+    <circle cx="78" cy="782" r="20" fill="#f0b54c"/>
+    <text x="78" y="790" text-anchor="middle" font-family="Arial, sans-serif" font-size="23" font-weight="700" fill="#21474d">5</text>
+  </g>
+  <rect x="45" y="750" width="530" height="305" rx="18" fill="none" stroke="#193f46" stroke-width="7"/>
+  </g>
+
+  <!-- Panel 6: outside, touching the unseen haircut -->
+  <g transform="translate(625 490) scale(.62) translate(-625 -750)">
+  <g clip-path="url(#p6)">
+    <rect x="625" y="750" width="530" height="305" fill="#a8cbc5"/>
+    <rect x="625" y="986" width="530" height="69" fill="#7d938b"/>
+    <rect x="962" y="765" width="158" height="223" fill="url(#glass)" stroke="#254e55" stroke-width="7"/>
+    <path d="M982 786l110 169M1030 773l90 139" stroke="#f0f6ed" stroke-width="8" opacity=".55"/>
+    <rect x="907" y="780" width="35" height="150" rx="17" fill="#f4eee4" stroke="#254e55" stroke-width="5"/>
+    <path d="M913 787l23 20-23 20 23 20-23 20 23 20-23 24" fill="none" stroke="#d85c4a" stroke-width="10"/>
+    <circle cx="790" cy="831" r="58" fill="#d19a44"/>
+    <path d="M738 823c15-50 90-60 110-9l-6 35c-31-13-68-13-104 0z" fill="#293334"/>
+    <path d="M693 1040c7-104 45-163 97-163s91 59 98 163z" fill="#1e6067"/>
+    <path d="M849 848q40-1 46-42" fill="none" stroke="#d19a44" stroke-width="18" stroke-linecap="round"/>
+    <circle cx="895" cy="803" r="12" fill="#d19a44"/>
+    <path d="M680 960q-29 15-41 47M884 973q27 17 41 48" fill="none" stroke="#d19a44" stroke-width="16" stroke-linecap="round"/>
+    <path d="M661 1027h322" stroke="#d5c6ad" stroke-width="7" stroke-dasharray="26 18"/>
+    <circle cx="657" cy="782" r="20" fill="#f0b54c"/>
+    <text x="657" y="790" text-anchor="middle" font-family="Arial, sans-serif" font-size="23" font-weight="700" fill="#21474d">6</text>
+  </g>
+  <rect x="625" y="750" width="530" height="305" rx="18" fill="none" stroke="#193f46" stroke-width="7"/>
+  </g>
+</svg>
