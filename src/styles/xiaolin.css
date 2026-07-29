@@ -413,6 +413,12 @@
     font-size: 3rem;
   }
 
+  .xiaolin-hero h1 {
+    max-width: none;
+    overflow-wrap: normal;
+    word-break: normal;
+  }
+
   .xiaolin-entry-head h1 {
     font-size: clamp(2.35rem, 12vw, 2.75rem);
     hyphens: none;
