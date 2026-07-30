@@ -1,0 +1,682 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { absoluteUrl, siteRoot } from "../../../lib/seo";
+
+const base = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
+const pageUrl = absoluteUrl("/games/wbwwb/", Astro.site);
+const playUrl = withBase("/games/wbwwb/play/");
+const playUrlAbsolute = absoluteUrl("/games/wbwwb/play/", Astro.site);
+const rootUrl = siteRoot(Astro.site);
+const description =
+  "以模型產生的合成地下水資料，完成場址、建井、定流量抽水、資料整理、Theis 或 Cooper–Jacob 分析與 K、Ss 評分的互動科學遊戲。";
+const schema = {
+  "@type": "SoftwareApplication",
+  "@id": `${pageUrl}#pumping-test-game`,
+  name: "地下水抽水試驗科學遊戲",
+  alternateName: "抽水試驗現地研究站",
+  description,
+  applicationCategory: "ScientificApplication",
+  applicationSubCategory: "Interactive groundwater pumping-test simulation game",
+  operatingSystem: "Web",
+  url: pageUrl,
+  contentUrl: playUrlAbsolute,
+  inLanguage: "zh-Hant",
+  isAccessibleForFree: true,
+  creator: { "@id": `${rootUrl}/#person` },
+  isPartOf: { "@id": `${rootUrl}/#website` },
+  keywords: [
+    "地下水",
+    "抽水試驗",
+    "合成資料",
+    "Theis",
+    "Cooper-Jacob",
+    "水力傳導係數",
+    "比儲水係數",
+  ],
+  featureList: [
+    "場址選擇與預算內建井",
+    "定流量抽水與停止時間決策",
+    "合成時間序列整理",
+    "Theis 與 Cooper-Jacob 分析",
+    "河流與阻水邊界假設",
+    "K、Ss 與決策評分",
+  ],
+  potentialAction: {
+    "@type": "PlayAction",
+    target: playUrlAbsolute,
+  },
+};
+---
+
+<BaseLayout
+  title="地下水抽水試驗科學遊戲"
+  description={description}
+  current="tools"
+  canonicalPath="/games/wbwwb/"
+  pageClass="pumping-game-page"
+  lang="zh-Hant"
+  schema={schema}
+>
+  <section class="shell section game-hero" aria-labelledby="game-title">
+    <div class="game-hero__copy">
+      <span class="eyebrow">互動科學遊戲｜合成地下水資料</span>
+      <h1 id="game-title">
+        從<span class="game-title-keep">現地決策</span><span class="game-title-keep">開始</span>，<span class="game-title-keep">完成</span>一場<span class="game-title-keep">抽水試驗</span>。
+      </h1>
+      <p class="lede">
+        選場址、在預算內配置抽水井與觀測井，鎖定定流量後決定何時停泵；
+        接著整理合成時間序列、選擇分析方法與邊界假設，取得 K、Ss 與試驗評分。
+      </p>
+      <div class="game-hero__actions">
+        <a class="game-link game-link--primary" href={playUrl} target="_blank" rel="noopener noreferrer">
+          在獨立視窗開啟完整遊戲
+        </a>
+        <a class="game-link game-link--secondary" href="#play-here">直接在本頁遊玩</a>
+      </div>
+      <dl class="game-hero__facts" aria-label="遊戲摘要">
+        <div>
+          <dt>流程</dt>
+          <dd>6 個現地與分析階段</dd>
+        </div>
+        <div>
+          <dt>模式</dt>
+          <dd>1 個引導、2 個專家情境</dd>
+        </div>
+        <div>
+          <dt>結果</dt>
+          <dd>K、Ss 與決策評分</dd>
+        </div>
+      </dl>
+    </div>
+
+    <aside class="evidence-boundary" aria-labelledby="evidence-title">
+      <span class="eyebrow">資料界線</span>
+      <h2 id="evidence-title">這是模型產生的科學情境。</h2>
+      <p>
+        遊戲中的水位、降深、基線、雜訊與離群值都是合成資料，不是現地觀測，
+        也不是任何場址的設計值。評分只反映這一局設定下的判斷，不可取代校正過的現地分析。
+      </p>
+    </aside>
+  </section>
+
+  <section class="shell section game-brief" aria-labelledby="brief-title">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">一局怎麼進行</span>
+        <h2 id="brief-title">把現地選擇一路帶到參數判讀。</h2>
+      </div>
+      <p>先完成必要決策，再讓合成記錄告訴你：方法與邊界假設是否合理。</p>
+    </div>
+
+    <ol class="game-steps">
+      <li>
+        <span>01</span>
+        <div>
+          <h3>踏勘與建井</h3>
+          <p>閱讀場址線索，指派團隊，並在預算與井距限制內配置抽水井及觀測井。</p>
+        </div>
+      </li>
+      <li>
+        <span>02</span>
+        <div>
+          <h3>定流量與停泵</h3>
+          <p>選定抽水率後鎖定定流量；觀察記錄長度與成本，決定何時停止試驗。</p>
+        </div>
+      </li>
+      <li>
+        <span>03</span>
+        <div>
+          <h3>整理時間序列</h3>
+          <p>保留可用的合成降深資料，設定分析時窗；專家模式還要處理基線、雜訊與離群值。</p>
+        </div>
+      </li>
+      <li>
+        <span>04</span>
+        <div>
+          <h3>分析與評分</h3>
+          <p>選擇 Theis 或 Cooper–Jacob，判斷無限、河流或阻水邊界，提交 K 與 Ss 後查看評分。</p>
+        </div>
+      </li>
+    </ol>
+
+    <div class="mode-comparison" aria-label="遊戲模式">
+      <article>
+        <span class="eyebrow">引導模式</span>
+        <h3>理想 Theis 情境</h3>
+        <p>使用乾淨的合成曲線熟悉完整流程，適合第一次操作。</p>
+      </article>
+      <article>
+        <span class="eyebrow">專家模式</span>
+        <h3>含雜訊的河流／阻水情境</h3>
+        <p>面對基線、雜訊與離群值，並判斷定水頭河流邊界或無流量阻水邊界。</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="play-here" class="shell section game-stage" aria-labelledby="stage-title">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">完整遊戲</span>
+        <h2 id="stage-title">直接在本頁完成<span class="game-title-keep">抽水試驗</span>。</h2>
+      </div>
+      <p id="game-embed-description">
+        可使用鍵盤、滑鼠或觸控操作。小螢幕採較高的嵌入區，方便閱讀堆疊後的語意控制項。
+      </p>
+    </div>
+
+    <div class="game-frame">
+      <iframe
+        title="地下水抽水試驗現地研究站互動科學遊戲"
+        src={playUrl}
+        loading="eager"
+        width="1600"
+        height="900"
+        aria-describedby="game-embed-description"
+      ></iframe>
+    </div>
+
+    <div class="game-stage__after">
+      <p>若嵌入區不方便操作，可保留進度前先改用較大的獨立視窗。</p>
+      <a class="game-link game-link--secondary" href={playUrl} target="_blank" rel="noopener noreferrer">
+        另開完整遊戲
+      </a>
+    </div>
+  </section>
+
+  <section class="shell section game-credit" aria-labelledby="credit-title">
+    <div>
+      <span class="eyebrow">製作與授權界線</span>
+      <h2 id="credit-title">科學情境與遊戲內容為本站新製。</h2>
+    </div>
+    <div class="game-credit__copy">
+      <p>
+        本站製作遊戲流程、文字、合成情境與科學示範。遊戲執行時使用
+        <a href="https://pixijs.com/" target="_blank" rel="noopener noreferrer">PixiJS</a>（MIT License）。
+      </p>
+      <p>
+        該<span class="game-credit__term">第三方函式庫</span>的名稱、著作權與授權均歸其權利人所有，並依其條款使用；
+        <span class="game-credit__term">函式庫授權</span>不延伸至本站新製的<span class="game-credit__term">遊戲內容</span>、文字或科學情境。
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  :global(body.pumping-game-page) {
+    max-inline-size: none;
+    min-inline-size: 0;
+    overflow-wrap: anywhere;
+    overflow-x: visible;
+  }
+
+  :global(body.pumping-game-page main) {
+    max-inline-size: 100%;
+    overflow: visible;
+  }
+
+  :global(body.pumping-game-page .site-header .brand) {
+    min-block-size: 44px;
+  }
+
+  :global(body.pumping-game-page .site-header .nav-links a) {
+    align-items: center;
+    display: flex;
+    min-block-size: 44px;
+    overflow-wrap: anywhere;
+  }
+
+  :global(body.pumping-game-page .site-header a:focus-visible) {
+    outline: 3px solid var(--signal-measured);
+    outline-offset: 3px;
+  }
+
+  .game-hero {
+    align-items: end;
+    display: grid;
+    gap: var(--space-content-gap);
+    grid-template-columns: minmax(0, 1.2fr) minmax(18rem, 0.58fr);
+    padding-bottom: var(--space-section-large);
+    padding-top: var(--space-section-large);
+  }
+
+  .game-hero__copy {
+    display: grid;
+    gap: 1.25rem;
+    min-width: 0;
+  }
+
+  .game-hero__copy h1 {
+    max-width: 15ch;
+  }
+
+  .game-title-keep {
+    white-space: nowrap;
+  }
+
+  .game-hero__actions,
+  .game-stage__after {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .game-link {
+    align-items: center;
+    display: inline-flex;
+    font-weight: 700;
+    justify-content: center;
+    min-height: 44px;
+    padding: 0.65rem 1rem;
+    text-underline-offset: 0.2em;
+    touch-action: manipulation;
+  }
+
+  .game-link--primary {
+    background: var(--text);
+    color: var(--paper);
+    text-decoration: none;
+  }
+
+  .game-link--secondary {
+    border: 1px solid var(--line);
+    color: var(--text);
+  }
+
+  .game-link:focus-visible,
+  .game-credit a:focus-visible {
+    outline: 3px solid var(--signal-measured);
+    outline-offset: 3px;
+  }
+
+  .game-hero__facts {
+    border-top: 1px solid var(--line);
+    display: grid;
+    gap: 0;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin: 0;
+    padding-top: 1rem;
+  }
+
+  .game-hero__facts div {
+    display: grid;
+    gap: 0.25rem;
+    min-width: 0;
+    padding-right: 1rem;
+  }
+
+  .game-hero__facts div + div {
+    border-left: 1px solid var(--line);
+    padding-left: 1rem;
+  }
+
+  .game-hero__facts dt {
+    color: var(--text-muted);
+    font-size: var(--type-caption);
+  }
+
+  .game-hero__facts dd {
+    font-weight: 700;
+    margin: 0;
+  }
+
+  .evidence-boundary {
+    background:
+      linear-gradient(150deg, rgb(var(--signal-measured-rgb) / 0.22), transparent 68%),
+      var(--text);
+    color: var(--paper);
+    display: grid;
+    gap: 0.85rem;
+    padding: 1.5rem;
+  }
+
+  .evidence-boundary .eyebrow,
+  .evidence-boundary p {
+    color: rgb(var(--surface-rgb) / 0.78);
+  }
+
+  .evidence-boundary h2 {
+    color: var(--paper);
+    font-size: clamp(1.55rem, 3vw, 2.35rem);
+  }
+
+  .evidence-boundary p {
+    line-height: 1.72;
+  }
+
+  .game-brief,
+  .game-stage,
+  .game-credit {
+    border-top: 1px solid var(--line);
+  }
+
+  .game-steps {
+    display: grid;
+    gap: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .game-steps li {
+    align-items: start;
+    border-top: 1px solid var(--line);
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 3rem minmax(0, 1fr);
+    padding: 1.1rem 0;
+  }
+
+  .game-steps li > span {
+    color: var(--signal-measured);
+    font-size: var(--type-caption);
+    font-weight: 700;
+  }
+
+  .game-steps li div {
+    display: grid;
+    gap: 0.35rem;
+  }
+
+  .game-steps h3,
+  .mode-comparison h3 {
+    font-family: var(--font-serif);
+    font-size: 1.35rem;
+    line-height: 1.25;
+  }
+
+  .mode-comparison {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-top: 1.5rem;
+  }
+
+  .mode-comparison article {
+    border-left: 3px solid var(--signal-measured);
+    display: grid;
+    gap: 0.55rem;
+    padding: 0.25rem 0 0.25rem 1rem;
+  }
+
+  .mode-comparison article + article {
+    border-left-color: var(--uncertainty-band);
+  }
+
+  .game-frame {
+    background: var(--text);
+    box-shadow: var(--shadow);
+    margin: 0 auto;
+    max-width: 70rem;
+    width: 100%;
+  }
+
+  .game-frame iframe {
+    background: var(--surface);
+    border: 0;
+    display: block;
+    height: 72rem;
+    min-height: 72rem;
+    width: 100%;
+  }
+
+  .game-stage__after {
+    justify-content: space-between;
+    margin: 1rem auto 0;
+    max-width: 70rem;
+  }
+
+  .game-stage__after p {
+    color: var(--text-muted);
+    font-size: var(--type-caption);
+    max-width: 60ch;
+  }
+
+  .game-credit {
+    display: grid;
+    gap: var(--space-content-gap);
+    grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.3fr);
+    min-inline-size: 0;
+  }
+
+  .game-credit__copy {
+    display: grid;
+    gap: 0.8rem;
+    min-inline-size: 0;
+  }
+
+  .game-credit__copy p {
+    line-break: strict;
+    text-wrap: pretty;
+  }
+
+  .game-credit__term {
+    white-space: nowrap;
+  }
+
+  .game-credit a {
+    overflow-wrap: anywhere;
+  }
+
+  @media (min-width: 640px) {
+    .game-frame {
+      aspect-ratio: 16 / 9;
+    }
+
+    .game-frame iframe {
+      aspect-ratio: 16 / 9;
+      height: 100%;
+      min-height: 0;
+    }
+  }
+
+  @media (max-width: 900px) {
+    .game-hero,
+    .game-credit {
+      grid-template-columns: 1fr;
+    }
+
+    .evidence-boundary {
+      max-width: 44rem;
+    }
+  }
+
+  @media (max-width: 639px) {
+    :global(body.pumping-game-page .nav-links) {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    :global(body.pumping-game-page .nav-links a) {
+      justify-content: center;
+      min-inline-size: 0;
+      padding-inline: 0.5rem;
+      text-align: center;
+    }
+
+    .game-hero h1,
+    .game-hero h2,
+    .game-stage h2 {
+      text-wrap: balance;
+    }
+
+    .game-hero {
+      padding-top: 2.5rem;
+    }
+
+    .game-hero__facts,
+    .mode-comparison {
+      grid-template-columns: 1fr;
+    }
+
+    .game-hero__facts {
+      gap: 0.75rem;
+    }
+
+    .game-hero__facts div,
+    .game-hero__facts div + div {
+      border-left: 0;
+      padding: 0;
+    }
+
+    .game-frame {
+      margin-left: calc(var(--space-5) * -1);
+      width: calc(100% + (var(--space-5) * 2));
+    }
+
+    .game-frame iframe {
+      aspect-ratio: auto;
+      height: 72rem;
+      min-height: 72rem;
+    }
+
+    .game-stage__after {
+      align-items: stretch;
+      flex-direction: column;
+    }
+  }
+
+  @media (max-width: 240px) {
+    :global(body.pumping-game-page) {
+      --game-compact-inset: calc(var(--space-4) / 2);
+      --game-compact-control-target: calc(var(--space-10) + (var(--space-4) / 4));
+      --game-compact-display-size: calc(var(--type-record-title) + (var(--type-label) / 4));
+      --game-compact-section-size: calc(var(--type-body-large) + (var(--type-label) / 4));
+      --game-compact-heading-size: var(--type-body-large);
+      --game-compact-copy-size: var(--type-caption);
+      --game-compact-leading: var(--leading-record-title);
+    }
+
+    :global(body.pumping-game-page .nav) {
+      align-items: stretch;
+      display: grid;
+      gap: var(--game-compact-inset);
+      grid-template-columns: minmax(0, 1fr);
+      max-inline-size: 100%;
+      min-inline-size: 0;
+      padding: var(--game-compact-inset);
+    }
+
+    :global(body.pumping-game-page .brand),
+    :global(body.pumping-game-page .brand strong),
+    :global(body.pumping-game-page .nav-links),
+    :global(body.pumping-game-page .nav-links a),
+    :global(body.pumping-game-page .footer-grid > *) {
+      max-inline-size: 100%;
+      min-inline-size: 0;
+    }
+
+    :global(body.pumping-game-page .brand strong) {
+      overflow-wrap: anywhere;
+      white-space: normal;
+    }
+
+    :global(body.pumping-game-page .nav-links),
+    :global(body.pumping-game-page .footer-grid),
+    :global(body.pumping-game-page .footer-grid .stack) {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    :global(body.pumping-game-page .nav-links a) {
+      align-items: center;
+      display: flex;
+      justify-content: center;
+      min-block-size: var(--game-compact-control-target);
+      overflow-wrap: anywhere;
+      padding: var(--game-compact-inset);
+    }
+
+    :global(body.pumping-game-page .footer-grid a),
+    :global(body.pumping-game-page .footer-grid p),
+    :global(body.pumping-game-page .footer-grid strong) {
+      max-inline-size: 100%;
+      min-inline-size: 0;
+      overflow-wrap: anywhere;
+    }
+
+    :global(body.pumping-game-page .footer-grid) {
+      padding-inline: var(--game-compact-inset);
+    }
+
+    :global(body.pumping-game-page .footer-grid a),
+    :global(body.pumping-game-page .footer-grid p) {
+      font-size: var(--game-compact-copy-size);
+    }
+
+    .shell.section {
+      max-inline-size: 100%;
+      min-inline-size: 0;
+      padding-inline: var(--game-compact-inset);
+    }
+
+    .game-hero,
+    .game-credit,
+    .game-steps li {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .game-hero__copy,
+    .game-hero__actions,
+    .game-hero__facts,
+    .mode-comparison,
+    .game-stage__after,
+    .game-credit__copy,
+    .evidence-boundary {
+      max-inline-size: 100%;
+      min-inline-size: 0;
+    }
+
+    .game-link {
+      inline-size: 100%;
+      max-inline-size: 100%;
+      min-inline-size: 0;
+      overflow-wrap: anywhere;
+      padding-inline: var(--game-compact-inset);
+      text-align: center;
+    }
+
+    .evidence-boundary {
+      padding: var(--game-compact-inset);
+    }
+
+    .game-hero h1 {
+      font-size: var(--game-compact-display-size);
+      line-height: var(--game-compact-leading);
+      text-wrap: pretty;
+    }
+
+    .evidence-boundary h2 {
+      font-size: var(--game-compact-section-size);
+    }
+
+    .game-brief .section-head h2,
+    .game-stage .section-head h2,
+    .game-credit h2 {
+      font-size: var(--game-compact-section-size);
+      line-height: var(--game-compact-leading);
+      text-wrap: pretty;
+    }
+
+    .game-steps h3,
+    .mode-comparison h3 {
+      font-size: var(--game-compact-heading-size);
+    }
+
+    .game-hero__facts dd {
+      font-size: var(--game-compact-copy-size);
+    }
+
+    .mode-comparison article {
+      padding-left: calc(var(--space-6) / 2);
+    }
+
+    .game-frame {
+      margin-inline: calc(var(--game-compact-inset) * -1);
+      width: calc(100% + var(--space-4));
+    }
+
+  }
+
+</style>

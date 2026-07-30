@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      name="description"
+      content="一個可操作的六階段抽水試驗科學模擬遊戲。"
+    >
+    <title>抽水試驗現地研究站</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230b5f61'/%3E%3Cpath d='M32 9C22 24 16 32 16 42a16 16 0 0 0 32 0c0-10-6-18-16-33Z' fill='%23f4fbf7'/%3E%3C/svg%3E"
+    >
+    <link rel="stylesheet" href="css/pumping-game.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#game-controls">跳至遊戲控制區</a>
+    <main class="page-shell">
+      <header class="masthead">
+        <p class="eyebrow">地下水現地方法 · 科學模擬</p>
+        <h1><span>抽水試驗</span><wbr><span>現地研究站</span></h1>
+        <p>
+          帶領四人團隊完成場址踏勘、試驗井建置、定流量抽水、資料整理、
+          參數分析與含水層判讀。所有曲線都是模型產生的合成資料，並非現地量測。
+        </p>
+      </header>
+
+      <section id="start-panel" class="paper-panel" aria-labelledby="mode-heading">
+        <div>
+          <p class="step-label">任務簡報</p>
+          <h2 id="mode-heading">選擇水文情境</h2>
+          <p>每個模式對應固定案例；重玩相同案例可重現完全相同的合成記錄。</p>
+        </div>
+        <fieldset class="mode-grid">
+          <legend class="visually-hidden">抽水試驗模式</legend>
+          <label class="mode-card">
+            <input type="radio" name="mode" value="guided" checked>
+            <span>
+              <strong>引導模式</strong>
+              <small>無限含水層 · 乾淨合成資料</small>
+            </span>
+          </label>
+          <label class="mode-card">
+            <input type="radio" name="mode" value="expert-river">
+            <span>
+              <strong>專家模式 · 河流</strong>
+              <small>定水頭邊界 · 基線與離群值</small>
+            </span>
+          </label>
+          <label class="mode-card">
+            <input type="radio" name="mode" value="expert-barrier">
+            <span>
+              <strong>專家模式 · 阻水層</strong>
+              <small>無流量邊界 · 基線與離群值</small>
+            </span>
+          </label>
+        </fieldset>
+        <div class="synthetic-notice">
+          <strong>合成資料標示</strong>
+          <span id="briefing-case">引導固定案例</span>
+          <span>模型產生 · 非現地量測</span>
+        </div>
+        <button id="start-game" class="primary-action" type="button">
+          開始現地任務
+        </button>
+      </section>
+
+      <section id="game-panel" class="game-panel" aria-labelledby="game-heading" hidden>
+        <div class="game-heading-row">
+          <div>
+            <p id="stage-step" class="step-label">階段 1／6</p>
+            <h2 id="game-heading">場址踏勘</h2>
+            <p id="stage-instruction">指派水文地質師，閱讀線索後選定一處試驗場址。</p>
+          </div>
+          <button id="reset-game" class="quiet-action" type="button">
+            返回模式選擇
+          </button>
+        </div>
+
+        <dl class="hud" aria-label="遊戲狀態">
+          <div><dt>模式</dt><dd id="hud-mode">—</dd></div>
+          <div><dt>階段</dt><dd id="hud-stage">尚未開始</dd></div>
+          <div><dt>預算</dt><dd id="hud-budget">—</dd></div>
+          <div><dt>抽水時間</dt><dd id="hud-clock">0 分</dd></div>
+          <div><dt>案例</dt><dd id="hud-case">—</dd></div>
+        </dl>
+
+        <div id="canvas-shell" class="canvas-shell">
+          <div id="pixi-stage" class="pixi-stage" aria-hidden="true"></div>
+          <div id="canvas-fallback" class="canvas-fallback" hidden>
+            <strong>視覺場景目前無法顯示。</strong>
+            <span>下方仍保留所有完整操作控制。</span>
+          </div>
+        </div>
+
+        <div id="game-controls" class="control-deck" tabindex="-1">
+          <section class="tool-panel" aria-labelledby="tool-heading">
+            <h3 id="tool-heading">現階段工具</h3>
+            <div id="stage-controls"></div>
+            <div id="data-summary" class="data-summary" aria-live="polite"></div>
+          </section>
+          <section class="target-panel" aria-labelledby="target-heading">
+            <h3 id="target-heading">現地目標</h3>
+            <div id="target-controls" class="button-grid"></div>
+          </section>
+        </div>
+
+        <section class="crew-strip" aria-labelledby="crew-heading">
+          <div>
+            <p class="step-label">現地團隊</p>
+            <h3 id="crew-heading">先選人員，再選目標</h3>
+          </div>
+          <div id="crew-controls" class="crew-grid"></div>
+        </section>
+
+        <aside class="field-note" aria-labelledby="field-note-heading">
+          <h3 id="field-note-heading">科學筆記</h3>
+          <p id="field-note-copy">所有圖表皆為模型產生的合成資料，單位會直接標在圖面上。</p>
+        </aside>
+      </section>
+
+      <div id="status-region" class="status-region" role="status" aria-live="polite">
+        選擇模式後開始。按 Escape 可取消人員選擇。
+      </div>
+    </main>
+
+    <script src="js/lib/pixi.min.js"></script>
+    <script type="module" src="js/pumping/app.mjs"></script>
+  </body>
+</html>

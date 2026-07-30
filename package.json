@@ -37,6 +37,9 @@
     "room:match": "node scripts/room-match.mjs",
     "test:counterclaw:unit": "node --test tests/counterclaw-lock.test.mjs tests/counterclaw-publisher.test.mjs tests/counterclaw-validator.test.mjs tests/room-publisher.test.mjs",
     "test:counterclaw:pages": "playwright test tests/counterclaw-pages.test.mjs",
+    "test:game:unit": "node --test tests/game/pumping-gameplay.test.mjs tests/game/pumping-physics.test.mjs tests/game/pumping-runtime.test.mjs tests/game/pumping-state.test.mjs",
+    "typecheck:game": "astro check --tsconfig tsconfig.counterclaw.json --minimumSeverity error && node scripts/check-pumping-game.mjs",
+    "test:game:e2e": "node scripts/check-pumping-game.mjs --dist && playwright test --config playwright.game.config.mjs",
     "typecheck": "astro check --tsconfig tsconfig.counterclaw.json --minimumSeverity error",
     "preview": "astro preview",
     "astro": "astro"
