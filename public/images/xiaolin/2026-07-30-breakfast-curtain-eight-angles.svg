@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title id="title">早餐店門口的八片透明門簾</title>
+  <desc id="desc">清晨的早餐店內有豆漿桶、煎台、吊扇與圓凳，八片透明塑膠門簾在行人、熱氣和街風吹過後停在不同角度。</desc>
+  <rect width="1200" height="800" fill="#f1d7aa"/>
+  <rect y="620" width="1200" height="180" fill="#bfd4cc"/>
+  <path d="M0 650H1200M0 720H1200M150 620V800M350 620V800M550 620V800M750 620V800M950 620V800" fill="none" stroke="#86aaa3" stroke-width="5"/>
+
+  <rect x="72" y="82" width="828" height="540" rx="6" fill="#174a4c"/>
+  <rect x="104" y="174" width="760" height="448" fill="#f9eed8"/>
+  <path d="M54 82H920L858 172H112Z" fill="#f8f1df"/>
+  <path d="M54 82H198L164 172H112ZM342 82H486L450 172H306ZM630 82H774L738 172H594Z" fill="#d94f45"/>
+  <rect x="110" y="205" width="744" height="20" rx="10" fill="#174a4c"/>
+
+  <g opacity=".62" stroke="#d7f2eb" stroke-width="3">
+    <path d="M126 224L132 600H214L200 224Z" fill="#a9d9d0"/>
+    <path d="M214 224L226 598H307L294 224Z" fill="#b7e1d8"/>
+    <path d="M301 224L285 600H378L390 224Z" fill="#9fcfc7"/>
+    <path d="M392 224L410 601H493L480 224Z" fill="#b8dfd7"/>
+    <path d="M484 224L467 598H562L574 224Z" fill="#a7d5cc"/>
+    <path d="M576 224L602 600H681L664 224Z" fill="#b8e1d7"/>
+    <path d="M668 224L646 598H744L756 224Z" fill="#9ecdc5"/>
+    <path d="M760 224L786 600H852L846 224Z" fill="#b6ded6"/>
+  </g>
+  <g fill="#eefaf7" opacity=".8">
+    <circle cx="167" cy="292" r="7"/><circle cx="251" cy="338" r="5"/>
+    <circle cx="349" cy="270" r="6"/><circle cx="438" cy="388" r="8"/>
+    <circle cx="527" cy="306" r="5"/><circle cx="627" cy="356" r="7"/>
+    <circle cx="704" cy="282" r="6"/><circle cx="812" cy="402" r="5"/>
+  </g>
+
+  <rect x="162" y="410" width="252" height="154" rx="10" fill="#ce6e3d"/>
+  <rect x="178" y="432" width="218" height="20" rx="8" fill="#f2b35e"/>
+  <ellipse cx="282" cy="430" rx="74" ry="14" fill="#263f40"/>
+  <circle cx="240" cy="464" r="38" fill="#f2c066"/>
+  <path d="M214 456q26-26 52 0M218 468q22-18 44 0" fill="none" stroke="#fff4db" stroke-width="7" stroke-linecap="round"/>
+
+  <g transform="translate(520 402)">
+    <rect x="0" y="34" width="170" height="128" rx="12" fill="#5c7772"/>
+    <ellipse cx="85" cy="34" rx="72" ry="22" fill="#d8ddd3"/>
+    <ellipse cx="85" cy="30" rx="58" ry="14" fill="#8c5d3e"/>
+    <path d="M58 4C38-24 72-38 60-64M90 2C72-30 106-44 95-74M122 6C104-18 136-34 128-60" fill="none" stroke="#fff8e7" stroke-width="10" stroke-linecap="round" opacity=".86"/>
+  </g>
+
+  <g transform="translate(704 474)">
+    <ellipse cx="58" cy="102" rx="56" ry="15" fill="#29494a" opacity=".24"/>
+    <rect x="50" y="34" width="16" height="74" fill="#964833"/>
+    <ellipse cx="58" cy="30" rx="52" ry="22" fill="#d85f42"/>
+    <ellipse cx="58" cy="24" rx="42" ry="12" fill="#f4a05c"/>
+  </g>
+
+  <g transform="translate(493 268)">
+    <circle cx="0" cy="0" r="18" fill="#8d4e37"/>
+    <path d="M0 0L-84-12Q-104-16-88-30L0-12ZM0 0L74-48Q92-60 92-38L12 10ZM0 0L44 82Q54 100 30 92L-10 12Z" fill="#e0a154"/>
+  </g>
+
+  <g transform="translate(894 504)">
+    <circle cx="128" cy="150" r="58" fill="#21393b"/>
+    <circle cx="128" cy="150" r="38" fill="#bfd4cc"/>
+    <circle cx="128" cy="150" r="8" fill="#d94f45"/>
+    <path d="M128 150L74 150M128 150L102 104M128 150L154 104M128 150L182 150M128 150L154 196M128 150L102 196" stroke="#4f7470" stroke-width="5"/>
+    <path d="M26 118H112L84 54H30Q8 54 8 78V112" fill="none" stroke="#253f41" stroke-width="14" stroke-linejoin="round"/>
+    <rect x="10" y="32" width="72" height="28" rx="10" fill="#d95b43"/>
+    <circle cx="18" cy="118" r="20" fill="#253f41"/>
+    <path d="M110 72Q150 48 198 76" fill="none" stroke="#d85f42" stroke-width="12" stroke-linecap="round"/>
+  </g>
+
+  <path d="M875 610Q950 568 1024 598T1172 578" fill="none" stroke="#f8f1df" stroke-width="9" stroke-linecap="round" opacity=".84"/>
+  <path d="M934 624Q1010 602 1082 626" fill="none" stroke="#f8f1df" stroke-width="5" stroke-linecap="round" opacity=".64"/>
+</svg>
+
