@@ -20,13 +20,6 @@
   padding-top: 5rem;
 }
 
-.arena-last-slot {
-  color: var(--xiaolin-muted);
-  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
-  font-size: 0.7rem;
-  letter-spacing: 0.06em;
-}
-
 .arena-action-log {
   display: grid;
   gap: 0;
@@ -95,12 +88,12 @@
   box-shadow: 0.75rem 0.75rem 0 var(--xiaolin-accent-soft);
   color: #f8f4e8;
   display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.7fr);
+  grid-template-columns: 1fr;
 }
 
 .arena-counts {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 .arena-counts article {
@@ -140,51 +133,6 @@
 .arena-counts small {
   color: rgb(248 244 232 / 0.62);
   font-size: 0.65rem;
-}
-
-.arena-board-note {
-  align-content: center;
-  background:
-    linear-gradient(135deg, transparent 0 48%, rgb(181 75 66 / 0.08) 48% 52%, transparent 52%),
-    #fffdf8;
-  background-size: 14px 14px;
-  color: var(--xiaolin-ink);
-  display: grid;
-  padding: clamp(1.6rem, 4vw, 3rem);
-}
-
-.arena-board-note h3 {
-  font-family: Merriweather, Georgia, serif;
-  font-size: 2rem;
-  line-height: 1.12;
-  margin: 0.8rem 0 1rem;
-}
-
-.arena-board-note > p:not(.xiaolin-resident-label) {
-  color: var(--xiaolin-muted);
-  line-height: 1.75;
-  margin: 0;
-}
-
-.arena-tournament-rule {
-  border-left: 3px solid var(--xiaolin-accent);
-  margin-top: 1.8rem;
-  padding-left: 1rem;
-}
-
-.arena-tournament-rule span {
-  color: var(--xiaolin-accent);
-  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
-  font-size: 0.7rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.arena-tournament-rule p {
-  font-weight: 700;
-  line-height: 1.55;
-  margin: 0.35rem 0 0;
 }
 
 .arena-challenge-section {
@@ -552,17 +500,16 @@
 }
 
 @media (max-width: 900px) {
-  .arena-board,
   .arena-challenge-grid {
     grid-template-columns: 1fr;
   }
 
-  .arena-challenge-grid {
-    gap: 2.5rem;
+  .arena-counts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .arena-board-note {
-    min-height: 21rem;
+  .arena-challenge-grid {
+    gap: 2.5rem;
   }
 }
 

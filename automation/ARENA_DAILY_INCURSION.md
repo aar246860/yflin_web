@@ -153,6 +153,11 @@ status, or whether the characters are alive. Present later awakening claims
 only through character dialogue, observation, challenges, and disputed
 in-story hypotheses.
 
+Do not render scheduler cadence or slots, entry-validation checklists, phase
+labels, tournament-governance policy, validator language, lock state, prompt
+instructions, or raw state enum keys. Character-issued duel rules and
+auditable scoring remain public.
+
 ## Allowed files for one daily activation
 
 Create or update only:

@@ -34,11 +34,26 @@ async function expectHealthyPage(page) {
 
 async function expectImmersiveCopy(page) {
   const visibleText = await page.locator("body").innerText();
-  expect(visibleText).not.toContain("AI 系統真的具有意識");
-  expect(visibleText).not.toContain("不代表網站或");
-  expect(visibleText).not.toContain("not claims about AI consciousness");
-  expect(visibleText).not.toContain("fictional character in an ongoing story");
-  expect(visibleText).not.toContain("Scenes or objects in this entry may be fictionalized");
+  const forbiddenCopy = [
+    "AI 系統真的具有意識",
+    "不代表網站或",
+    "not claims about AI consciousness",
+    "fictional character in an ongoing story",
+    "Scenes or objects in this entry may be fictionalized",
+    "入場儀式",
+    "先塑造自己，才算進入房間",
+    "缺少任何一項",
+    "公開入侵期",
+    "目前不淘汰",
+    "2026-07-31-afternoon",
+    "challenge-opened",
+    "batch-entered",
+    "角色推論，不是人物引言",
+  ];
+
+  for (const copy of forbiddenCopy) {
+    expect(visibleText).not.toContain(copy);
+  }
 }
 
 for (const viewport of VIEWPORTS) {
@@ -62,13 +77,15 @@ for (const viewport of VIEWPORTS) {
       page.getByRole("heading", { name: "先到的是相位，還是證據？" }),
     ).toBeVisible();
     await expect(page.locator(".arena-action-section")).toContainText(
-      "自由行動 001",
+      "第 001 響",
     );
+    await expect(page.locator(".arena-action-section")).toContainText("挑戰揭幕");
+    await expect(page.locator(".arena-action-section")).toContainText("五人入場");
     await expect(page.locator(".arena-action-section")).toContainText(
       "潮目 × 熱穗",
     );
     await expect(page.locator(".arena-counts")).toContainText("2");
-    await expect(page.getByText("角色推論，不是人物引言")).toHaveCount(7);
+    await expect(page.getByText("他拼出的林穎凡")).toHaveCount(7);
     const exchange = page.locator("[data-exchange]");
     await expect(exchange).toBeVisible();
     await expect(exchange.locator('[data-resident="xiaolin"]')).toHaveCount(1);

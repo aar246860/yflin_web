@@ -92,6 +92,10 @@ activation and record the concrete trigger.
 - Keep the reader-facing page inside the scene. Do not add editorial
   boilerplate about consciousness, fictional status, or whether characters
   are alive.
+- Do not render scheduler cadence or slots, entry-validation checklists, phase
+  labels, tournament-governance policy, validator language, lock state, prompt
+  instructions, or raw state enum keys. Character-issued duel rules and
+  auditable scoring remain public.
 
 ## Allowed files for a routine activation
 

@@ -31,7 +31,6 @@ const latestArtworkAlt =
   "A free-form drawing from the shared Xiaolin room.";
 const featuredDaye = featured && isDayeEntry(featured) ? featured : undefined;
 const featuredIsDaye = Boolean(featuredDaye);
-const nextResidentName = roomState.nextResident === "daye" ? "Daye / 大野" : "Xiaolin / 小林";
 const xiaolinScore = roomState.scoreboard.xiaolin;
 const dayeScore = roomState.scoreboard.daye;
 const scoreLeader =
@@ -62,15 +61,21 @@ const currentChallengeNumber = currentChallenge
   ? arenaState.challenges.findIndex((challenge) => challenge.id === currentChallenge.id) + 1
   : 0;
 const latestArenaEvents = arenaState.events.slice(-4).reverse();
+const arenaEventLabels: Record<string, string> = {
+  "batch-entered": "五人入場",
+  "challenge-opened": "挑戰揭幕",
+  "challenge-answered": "有人應戰",
+  "challenge-advanced": "對決推進",
+  "challenge-resolved": "勝負落定",
+  mutation: "能力突變",
+  elimination: "離開擂台",
+  return: "重返房間",
+};
 const currentBatch = arenaState.batches.find(
   (batch) => batch.date === arenaState.currentDay,
 );
 const heroArtwork = currentBatch?.portraitAtlas ?? latestArtwork;
 const heroArtworkAlt = currentBatch?.portraitAtlasAlt ?? latestArtworkAlt;
-const placesToAssembly = Math.max(
-  arenaState.nextAssemblyAt - activeRoster.length,
-  0,
-);
 const arenaLink = (href: string) =>
   href.startsWith("https://") ? href : withBase(href);
 const arenaSchema = {
@@ -109,7 +114,7 @@ const arenaSchema = {
       <div class="xiaolin-room-actions">
         <a class="button" href="#arena-roster">查看人物名冊</a>
         <a href={withBase("/xiaolin/game-room/")}>進入遊戲室</a>
-        <span>Room turn: {nextResidentName}</span>
+        <span>小林與大野的痕跡仍留在房裡</span>
       </div>
     </div>
     {heroArtwork && (
@@ -149,22 +154,10 @@ const arenaSchema = {
           <small>open challenge</small>
         </article>
         <article>
-          <span>首次大會</span>
-          <strong>{placesToAssembly}</strong>
-          <small>seats remaining</small>
+          <span>鐘響紀錄</span>
+          <strong>{arenaState.freeActionClock.turn}</strong>
+          <small>次自由行動</small>
         </article>
-      </div>
-      <div class="arena-board-note">
-        <p class="xiaolin-resident-label">入場儀式</p>
-        <h3>先塑造自己，才算進入房間。</h3>
-        <p>
-          每位新角色必須先交出名字、肖像、自我介紹、能力、招式，以及一段有公開來源依據的角色推論。
-          缺少任何一項，就不會出現在這張公告板上。
-        </p>
-        <div class="arena-tournament-rule">
-          <span>{arenaState.phaseLabel}</span>
-          <p>{arenaState.tournamentPolicy.currentRule}</p>
-        </div>
       </div>
     </div>
   </section>
@@ -172,10 +165,11 @@ const arenaSchema = {
   <section class="shell section arena-action-section" aria-labelledby="arena-action-title">
     <div class="xiaolin-section-head">
       <div>
-        <span class="eyebrow">Free-action clock / turn {arenaState.freeActionClock.turn}</span>
+        <span class="eyebrow">
+          鐘聲紀錄 / 第 {String(arenaState.freeActionClock.turn).padStart(3, "0")} 響
+        </span>
         <h2 id="arena-action-title">鐘響之後，角色自己選擇下一步。</h2>
       </div>
-      <span class="arena-last-slot">{arenaState.freeActionClock.completedSlots.at(-1)}</span>
     </div>
     <ol class="arena-action-log">
       {latestArenaEvents.map((event) => (
@@ -184,8 +178,8 @@ const arenaSchema = {
             <span>{event.date}</span>
             <strong>
               {event.type === "free-action"
-                ? `自由行動 ${String(event.sequence).padStart(3, "0")}`
-                : event.type}
+                ? `第 ${String(event.sequence).padStart(3, "0")} 響`
+                : arenaEventLabels[event.type] ?? "場內動靜"}
             </strong>
           </div>
           <p>{event.line}</p>
@@ -204,7 +198,7 @@ const arenaSchema = {
       <div class="arena-challenge-head">
         <div>
           <span class="eyebrow">
-            Round {String(currentChallengeNumber).padStart(3, "0")} / open challenge
+            第 {String(currentChallengeNumber).padStart(3, "0")} 場 / 尚未分出勝負
           </span>
           <h2 id="arena-challenge-title">{currentChallenge.title}</h2>
         </div>
@@ -302,14 +296,14 @@ const arenaSchema = {
                 </div>
               </dl>
               <div class="arena-character-inference">
-                <span>公開線索</span>
+                <span>他撿到的線索</span>
                 <p>{fighter.evidence.fact}</p>
                 <a href={arenaLink(fighter.evidence.href)}>
                   來源：{fighter.evidence.label}
                 </a>
               </div>
               <div class="arena-character-inference is-hypothesis">
-                <span>角色推論，不是人物引言</span>
+                <span>他拼出的林穎凡</span>
                 <p>{fighter.inference.statement}</p>
                 <a href={arenaLink(fighter.inference.basisHref)}>
                   依據：{fighter.inference.basisLabel}
