@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title id="title">大野的八片門簾預測板</title>
+  <desc id="desc">八片半透明門簾斜跨九宮格，大野的金色預測線連到亮起綠色訊號的右上格。</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#08182d"/>
+      <stop offset="1" stop-color="#17314a"/>
+    </linearGradient>
+    <linearGradient id="curtain" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f8f1df" stop-opacity=".72"/>
+      <stop offset="1" stop-color="#9cc6c3" stop-opacity=".18"/>
+    </linearGradient>
+    <filter id="glow" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="18"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="800" rx="36" fill="url(#bg)"/>
+  <path d="M86 96H1114" stroke="#d8a940" stroke-width="3" opacity=".72"/>
+  <text x="90" y="72" fill="#f5d98f" font-size="28" font-family="system-ui, sans-serif" letter-spacing="5">DAYE · PREDICT</text>
+
+  <g transform="translate(650 126)">
+    <g fill="#0d2238" stroke="#78909f" stroke-width="3">
+      <rect x="0" y="0" width="138" height="138" rx="18"/>
+      <rect x="154" y="0" width="138" height="138" rx="18"/>
+      <rect x="308" y="0" width="138" height="138" rx="18" fill="#153e35" stroke="#85d6a1" stroke-width="5"/>
+      <rect x="0" y="154" width="138" height="138" rx="18"/>
+      <rect x="154" y="154" width="138" height="138" rx="18"/>
+      <rect x="308" y="154" width="138" height="138" rx="18"/>
+      <rect x="0" y="308" width="138" height="138" rx="18"/>
+      <rect x="154" y="308" width="138" height="138" rx="18"/>
+      <rect x="308" y="308" width="138" height="138" rx="18"/>
+    </g>
+    <circle cx="377" cy="69" r="45" fill="#6ee7a2" opacity=".25" filter="url(#glow)"/>
+    <circle cx="377" cy="69" r="22" fill="#8df0b4"/>
+    <circle cx="377" cy="69" r="7" fill="#effff4"/>
+    <g fill="#a9bbc6" opacity=".42">
+      <circle cx="69" cy="69" r="6"/><circle cx="223" cy="69" r="6"/>
+      <circle cx="69" cy="223" r="6"/><circle cx="223" cy="223" r="6"/><circle cx="377" cy="223" r="6"/>
+      <circle cx="69" cy="377" r="6"/><circle cx="223" cy="377" r="6"/><circle cx="377" cy="377" r="6"/>
+    </g>
+  </g>
+
+  <g transform="translate(120 132)">
+    <path d="M0 0H470" stroke="#f5d98f" stroke-width="8" stroke-linecap="round"/>
+    <g fill="url(#curtain)" stroke="#d8f0ec" stroke-opacity=".38" stroke-width="2">
+      <path d="M18 8H66L47 452H3Z"/>
+      <path d="M74 8H122L137 452H90Z"/>
+      <path d="M130 8H178L157 452H111Z"/>
+      <path d="M186 8H234L251 452H205Z"/>
+      <path d="M242 8H290L279 452H231Z"/>
+      <path d="M298 8H346L373 452H327Z"/>
+      <path d="M354 8H402L385 452H337Z"/>
+      <path d="M410 8H458L470 452H423Z"/>
+    </g>
+    <g fill="#b9e1dc" opacity=".8">
+      <circle cx="25" cy="96" r="4"/><circle cx="108" cy="132" r="5"/>
+      <circle cx="155" cy="74" r="3"/><circle cx="215" cy="166" r="4"/>
+      <circle cx="269" cy="111" r="5"/><circle cx="336" cy="83" r="4"/>
+      <circle cx="382" cy="144" r="3"/><circle cx="444" cy="103" r="5"/>
+    </g>
+  </g>
+
+  <path d="M350 612C520 622 655 548 765 414C848 313 930 233 1027 195" fill="none" stroke="#e4b94f" stroke-width="10" stroke-linecap="round"/>
+  <path d="M1002 177L1048 190L1021 229" fill="none" stroke="#e4b94f" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="350" cy="612" r="16" fill="#f5d98f"/>
+  <text x="88" y="754" fill="#e8eef2" font-size="25" font-family="system-ui, sans-serif">八種剛才，只押一個下一秒</text>
+  <text x="1110" y="754" fill="#8df0b4" font-size="30" font-family="system-ui, sans-serif" text-anchor="end">1638</text>
+</svg>

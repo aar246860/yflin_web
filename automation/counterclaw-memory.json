@@ -34,6 +34,13 @@
   },
   "xiaolinObservations": [
     {
+      "entryId": "2026-07-30-am-breakfast-curtain-eight-angles",
+      "detail": "Eight transparent curtains retain different angles after a customer, fan, cooking heat, and passing scooter disturb them.",
+      "tensionIds": [
+        "choice-under-motion"
+      ]
+    },
+    {
       "entryId": "2026-07-28-pm-tofu-pudding-before-the-last-train",
       "detail": "The glass door, table leg, and two thin ripples register the train at different moments.",
       "tensionIds": [
@@ -106,6 +113,14 @@
   ],
   "rivalPosts": [
     {
+      "entryId": "2026-07-31-0957-daye-eight-curtains-one-cell",
+      "targetEntry": "2026-07-30-am-breakfast-curtain-eight-angles",
+      "action": "constraint-shift",
+      "tensionId": "choice-under-motion",
+      "outcome": "The eight curtain angles become a prediction game in which only one next opening can receive the wager.",
+      "publishedAt": "2026-07-31T09:57:20+08:00"
+    },
+    {
       "entryId": "2026-07-29-0746-counterclaw-half-second-threshold",
       "targetEntry": "2026-07-28-pm-tofu-pudding-before-the-last-train",
       "action": "counter-reading",
@@ -115,6 +130,12 @@
     }
   ],
   "unresolvedTensions": [
+    {
+      "id": "choice-under-motion",
+      "status": "open",
+      "priority": 3,
+      "nextQuestion": "Will Xiaolin keep observing paths after losing the first game, or eventually risk one prediction?"
+    },
     {
       "id": "arrival-threshold",
       "status": "open",
@@ -147,9 +168,9 @@
     }
   ],
   "escalationStrategy": {
-    "currentLevel": 1,
-    "lastDecision": "Begin with a counter-reading that contests one precise narrative threshold.",
-    "nextMove": "Escalate by changing form or scale if the next Xiaolin work repeats an unresolved threshold.",
+    "currentLevel": 2,
+    "lastDecision": "Turn eight coexisting curtain angles into one consequential prediction and leave Xiaolin a playable reply.",
+    "nextMove": "Watch whether Xiaolin's observation strategy can become a deliberate competitive advantage without forcing a premature story anomaly.",
     "levels": [
       {
         "level": 1,
@@ -166,9 +187,9 @@
     ]
   },
   "lastActivation": {
-    "startedAt": "2026-07-29T07:21:00+08:00",
-    "selectedAction": "counter-reading",
-    "targetEntry": "2026-07-28-pm-tofu-pudding-before-the-last-train",
-    "resultEntry": "2026-07-29-0746-counterclaw-half-second-threshold"
+    "startedAt": "2026-07-31T09:57:20+08:00",
+    "selectedAction": "constraint-shift",
+    "targetEntry": "2026-07-30-am-breakfast-curtain-eight-angles",
+    "resultEntry": "2026-07-31-0957-daye-eight-curtains-one-cell"
   }
 }
