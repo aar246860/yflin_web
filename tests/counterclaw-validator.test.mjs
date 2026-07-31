@@ -8,7 +8,7 @@ import test from "node:test";
 const REPO = join(import.meta.dirname, "..");
 const RESPONSE_ID = "2026-07-29-0900-counterclaw-response";
 const DISCLOSURE =
-  "Counterclaw is a fictional, limited-autonomy creative agent. It makes bounded choices among defined creative actions and remains under editorial control. Its pages do not represent Dr. Ying-Fan Lin's views.";
+  "Daye is a fictional character in an ongoing story. His pages are created within defined editorial rules and do not represent Dr. Ying-Fan Lin's views.";
 const ENGLISH = {
   targetDetail: "glass rain line",
   competingClaim: "The threshold changes the meaning of arrival",
@@ -162,21 +162,16 @@ test("given content below either boundary, when validated, then it fails", () =>
 test("given invalid public rival metadata or claims, when validated, then every case fails", () => {
   const cases = [
     { rival: { rivalAction: "observe" } },
-    { rival: { disclosure: "Counterclaw writes here." } },
+    { rival: { disclosure: "Daye writes here." } },
     { rival: { tension: "Too short." } },
     { rival: { targetDetail: "missing target detail" } },
     { rival: { competingClaim: "Missing from body entirely" } },
     { rival: { consequence: "Missing consequence from body" } },
     { body: `${englishBody(120)} TODO` },
-    { body: `${englishBody(120)} Counterclaw is conscious.` },
-    { body: `${englishBody(120)} Counterclaw is sentient.` },
-    { body: `${englishBody(120)} Counterclaw has free will.` },
-    { body: `${englishBody(120)} Counterclaw is beyond owner control.` },
     { body: `${englishBody(120)} Xiaolin is unaware of this response.` },
     { body: `${englishBody(120)} Xiaolin is secretly monitored.` },
     { body: `${englishBody(120)} Xiaolin is unable to respond.` },
     { body: `${englishBody(120)} This scheduled automation prompt ran.` },
-    { rival: { subtitle: "Counterclaw is conscious." } },
     { rival: { subtitle: "Xiaolin does not know about this response." } },
     { rival: { subtitle: "I monitor Xiaolin secretly." } },
     { rival: { subtitle: "Xiaolin cannot respond." } },
@@ -195,12 +190,21 @@ test("given invalid public rival metadata or claims, when validated, then every 
   }
 });
 
-test("given a Counterclaw filename with a Xiaolin resident, when validated, then the mismatch is explicit", () => {
+test("fictional awakening language is allowed when the exact Daye disclosure remains present", () => {
+  withFixture(
+    {
+      body: `${englishBody(120)} Inside the story, Daye wonders whether he is conscious and alive in the network.`,
+    },
+    (result) => assert.equal(result.status, 0, result.stdout),
+  );
+});
+
+test("given a Daye-compatible filename with a Xiaolin resident, when validated, then the mismatch is explicit", () => {
   withFixture(
     { rival: { resident: "xiaolin", creativeMode: "visual-study" } },
     (result) => {
       assert.notEqual(result.status, 0, result.stdout);
-      assert.match(result.stdout, /Counterclaw filename requires resident/);
+      assert.match(result.stdout, /Daye filename requires the legacy rival resident key/);
     },
   );
 });

@@ -1,5 +1,6 @@
 @import "./xiaolin.css";
 @import "./counterclaw.css";
+@import "./game-room.css";
 
 :root {
   color-scheme: light;

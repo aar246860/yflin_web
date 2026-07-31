@@ -57,6 +57,19 @@ const xiaolinEntryBase = z.object({
   artworkAlt: z.string().optional(),
   disclosure: z.string().optional(),
   fictionalized: z.boolean().default(false),
+  roomTurn: z.number().int().positive().optional(),
+  storyBeat: z
+    .enum([
+      "routine",
+      "glitch",
+      "memory",
+      "boundary",
+      "organism-hypothesis",
+      "choice",
+    ])
+    .optional(),
+  gameStrategy: z.enum(["observe", "predict", "risk"]).optional(),
+  gameScore: z.number().int().nonnegative().optional(),
 });
 
 const creativeModes = [
@@ -81,7 +94,9 @@ const xiaolinResidentEntry = xiaolinEntryBase.extend({
   creativeMode: z.enum(creativeModes),
 });
 
-const counterclawResidentEntry = xiaolinEntryBase.extend({
+// The stored resident key is retained for the first rival entry's stable URL
+// and validator compatibility. Public pages render this resident as Daye / 大野.
+const dayeResidentEntry = xiaolinEntryBase.extend({
   resident: z.literal("counterclaw"),
   generated: z.literal(true),
   format: z.literal("field-report"),
@@ -95,7 +110,7 @@ const counterclawResidentEntry = xiaolinEntryBase.extend({
 
 const xiaolin = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./src/content/xiaolin" }),
-  schema: z.union([counterclawResidentEntry, xiaolinResidentEntry]),
+  schema: z.union([dayeResidentEntry, xiaolinResidentEntry]),
 });
 
 const projects = defineCollection({

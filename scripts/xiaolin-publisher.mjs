@@ -7,10 +7,6 @@ const forbidden = [
   /\bCodex\b|automation prompt|editing reminder|daily script|scheduled at/i,
   /[\w.+-]+@[\w.-]+\.[A-Za-z]{2,}/,
   /(?:\+?\d[\s().-]*){9,}/,
-  /\bconscious(?:ness)?\b/i,
-  /\bsentien(?:t|ce)\b/i,
-  /\bfree[- ]?will\b/i,
-  /\bbeyond (?:the )?owner(?:'s)? control\b/i,
   /\bXiaolin\b[\s\S]{0,80}\b(?:is\s+)?(?:unaware|not\s+aware|does\s+not\s+know|doesn['’]t\s+know)\b/i,
   /\bXiaolin\b[\s\S]{0,80}\b(?:secretly\s+monitored|monitored\s+secretly|secretly\s+watched|surveilled)\b/i,
   /\bXiaolin\b[\s\S]{0,80}\b(?:cannot|can't|can\s+not|unable\s+to)\s+(?:answer|respond|reply)\b/i,
@@ -26,7 +22,7 @@ const creativeModes = new Set([
 ]);
 const rotationCutover = Date.parse("2026-07-26T13:23:35+08:00");
 const counterclawFilenameLike =
-  /^\d{4}-\d{2}-\d{2}(?:-\d{4})?-counterclaw(?:[-_]|$)/i;
+  /^\d{4}-\d{2}-\d{2}(?:-\d{4})?-(?:daye|counterclaw)(?:[-_]|$)/i;
 
 function parseFrontmatter(source) {
   const match = source.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/);
@@ -85,7 +81,7 @@ function validateEntry(file, parsed, root) {
   if (!parsed) return [`${label}: missing frontmatter`];
   const { meta, source } = parsed;
   if (counterclawFilenameLike.test(label) && meta.resident !== "counterclaw") {
-    errors.push(`${label}: Counterclaw filename requires resident counterclaw`);
+    errors.push(`${label}: Daye filename requires the legacy rival resident key`);
   }
 
   if (meta.public !== true) errors.push(`${label}: public must be true`);

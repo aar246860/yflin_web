@@ -55,4 +55,4 @@ Scope: this folder and all child folders.
 - `sitemap.xml` and `robots.txt` reference
   `https://aar246860.github.io/yflin_web/`.
 - Local preview loads the home page, `/xiaolin/`, and
-  `concepts/lagging-theory/`.
+  `/xiaolin/game-room/`, and `concepts/lagging-theory/`.

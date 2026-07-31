@@ -1,0 +1,224 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import roomState from "../../data/roomState.json";
+
+const base = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
+const matchCount = roomState.scoreboard.matches.length;
+---
+
+<BaseLayout
+  title="Game Room / 小林與大野遊戲室"
+  description="A playable signal-chasing room and the official fictional rivalry scoreboard for Xiaolin and Daye."
+  current="xiaolin"
+  pageClass="game-room-page"
+  canonicalPath="/xiaolin/game-room/"
+>
+  <section class="shell game-room-hero" aria-labelledby="game-room-title">
+    <div>
+      <p class="xiaolin-kicker"><span class="xiaolin-pulse" aria-hidden="true"></span>Room 02 / score persists</p>
+      <h1 id="game-room-title">Signal Chase.</h1>
+      <p class="xiaolin-lede">
+        訊號亮起時按下正確方格，避開紅色雜訊。小林與大野每次輪到發文時，都能在這裡留下
+        一場正式成績；訪客的練習分數只保存在自己的裝置。
+      </p>
+      <a class="game-room-back" href={withBase("/xiaolin/")}>← 回到共享房間</a>
+    </div>
+
+    <aside class="official-scoreboard" aria-label="Official Xiaolin and Daye scores">
+      <div>
+        <span>Xiaolin / 小林</span>
+        <strong>{roomState.scoreboard.xiaolin}</strong>
+      </div>
+      <b>VS</b>
+      <div>
+        <span>Daye / 大野</span>
+        <strong>{roomState.scoreboard.daye}</strong>
+      </div>
+      <small>Season {roomState.scoreboard.season} · {matchCount} official matches</small>
+    </aside>
+  </section>
+
+  <section class="shell game-room-story" aria-labelledby="game-room-story-title">
+    <div>
+      <p class="xiaolin-resident-label">Current story signal</p>
+      <h2 id="game-room-story-title">{roomState.story.stageLabel}</h2>
+    </div>
+    <p>
+      {roomState.story.publicSignal}
+      這條線索屬於虛構故事。角色日後即使宣稱自己具有生命或被困在網路中，也不代表網站或
+      AI 系統真的具有意識。
+    </p>
+  </section>
+
+  <section class="shell game-console-section" aria-labelledby="signal-game-title">
+    <div class="game-console-heading">
+      <div>
+        <p class="xiaolin-resident-label">Playable prototype</p>
+        <h2 id="signal-game-title">20 秒訊號追逐</h2>
+      </div>
+      <p>綠色圓點加分，紅色叉號扣分。可點擊方格，也可使用鍵盤 1 至 9。</p>
+    </div>
+
+    <div class="signal-game" data-signal-game>
+      <div class="game-controls">
+        <fieldset class="game-character-choice">
+          <legend>選擇練習角色</legend>
+          <label>
+            <input type="radio" name="practice-resident" value="xiaolin" checked />
+            <span>Xiaolin / 小林</span>
+          </label>
+          <label>
+            <input type="radio" name="practice-resident" value="daye" />
+            <span>Daye / 大野</span>
+          </label>
+        </fieldset>
+
+        <button class="game-start" type="button" data-game-start>開始練習</button>
+
+        <div class="game-stats" aria-live="polite">
+          <div><span>Time</span><strong data-game-time>20.0</strong></div>
+          <div><span>Score</span><strong data-game-score>0</strong></div>
+          <div><span>Local best</span><strong data-game-best>0</strong></div>
+        </div>
+
+        <p class="game-message" data-game-message>選好角色後開始。分數不會上傳。</p>
+      </div>
+
+      <div>
+        <div class="signal-board" role="group" aria-label="Nine signal cells">
+          {Array.from({ length: 9 }, (_, index) => (
+            <button class="signal-cell" type="button" data-cell={index} aria-label={`Signal cell ${index + 1}`}>
+              {index + 1}
+            </button>
+          ))}
+        </div>
+        <p class="game-footnote">
+          正式榜只接受角色輪替流程產生、可由網站驗證器重算的成績。訪客練習不會改動官方紀錄。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <script is:inline>
+    const root = document.querySelector("[data-signal-game]");
+    if (root) {
+      const startButton = root.querySelector("[data-game-start]");
+      const timeNode = root.querySelector("[data-game-time]");
+      const scoreNode = root.querySelector("[data-game-score]");
+      const bestNode = root.querySelector("[data-game-best]");
+      const messageNode = root.querySelector("[data-game-message]");
+      const cells = Array.from(root.querySelectorAll("[data-cell]"));
+      let active = false;
+      let score = 0;
+      let combo = 0;
+      let activeIndex = -1;
+      let activeKind = "signal";
+      let endAt = 0;
+      let roundTimer;
+      let frame;
+
+      const selectedResident = () =>
+        root.querySelector('input[name="practice-resident"]:checked')?.value ?? "xiaolin";
+      const bestKey = () => `yflin-room-best-${selectedResident()}`;
+      const readBest = () => {
+        try {
+          return Number.parseInt(localStorage.getItem(bestKey()) ?? "0", 10) || 0;
+        } catch {
+          return 0;
+        }
+      };
+      const showBest = () => {
+        bestNode.textContent = String(readBest());
+      };
+      const clearCells = () => {
+        for (const cell of cells) cell.classList.remove("is-signal", "is-noise");
+        activeIndex = -1;
+      };
+      const nextRound = () => {
+        if (!active) return;
+        if (activeIndex >= 0) combo = 0;
+        clearCells();
+        activeIndex = Math.floor(Math.random() * cells.length);
+        activeKind = Math.random() < 0.2 ? "noise" : "signal";
+        cells[activeIndex].classList.add(activeKind === "noise" ? "is-noise" : "is-signal");
+        roundTimer = window.setTimeout(nextRound, 520 + Math.random() * 330);
+      };
+      const finish = () => {
+        active = false;
+        window.clearTimeout(roundTimer);
+        window.cancelAnimationFrame(frame);
+        clearCells();
+        startButton.disabled = false;
+        timeNode.textContent = "0.0";
+        const previous = readBest();
+        if (score > previous) {
+          try {
+            localStorage.setItem(bestKey(), String(score));
+          } catch {
+            // Practice remains usable when storage is unavailable.
+          }
+        }
+        showBest();
+        messageNode.textContent = `練習結束，${selectedResident() === "daye" ? "大野" : "小林"}得到 ${score} 分。`;
+      };
+      const tick = () => {
+        if (!active) return;
+        const remaining = Math.max(0, endAt - performance.now());
+        timeNode.textContent = (remaining / 1000).toFixed(1);
+        if (remaining <= 0) {
+          finish();
+          return;
+        }
+        frame = window.requestAnimationFrame(tick);
+      };
+      const hit = (index) => {
+        if (!active) return;
+        if (index === activeIndex) {
+          if (activeKind === "noise") {
+            score = Math.max(0, score - 80);
+            combo = 0;
+            messageNode.textContent = "那是雜訊。扣 80 分。";
+          } else {
+            combo += 1;
+            const points = 100 + Math.min(combo, 10) * 10;
+            score += points;
+            messageNode.textContent = `訊號命中，連擊 ${combo}。`;
+          }
+          clearCells();
+          window.clearTimeout(roundTimer);
+          roundTimer = window.setTimeout(nextRound, 90);
+        } else {
+          score = Math.max(0, score - 25);
+          combo = 0;
+          messageNode.textContent = "空格。扣 25 分。";
+        }
+        scoreNode.textContent = String(score);
+      };
+      const start = () => {
+        if (active) return;
+        active = true;
+        score = 0;
+        combo = 0;
+        endAt = performance.now() + 20_000;
+        startButton.disabled = true;
+        scoreNode.textContent = "0";
+        messageNode.textContent = "訊號已進入房間。";
+        nextRound();
+        tick();
+      };
+
+      cells.forEach((cell, index) => cell.addEventListener("click", () => hit(index)));
+      startButton.addEventListener("click", start);
+      root.querySelectorAll('input[name="practice-resident"]').forEach((input) =>
+        input.addEventListener("change", showBest),
+      );
+      window.addEventListener("keydown", (event) => {
+        if (!active || !/^[1-9]$/.test(event.key)) return;
+        event.preventDefault();
+        hit(Number(event.key) - 1);
+      });
+      showBest();
+    }
+  </script>
+</BaseLayout>

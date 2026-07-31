@@ -17,19 +17,19 @@ const pageUrl = absoluteUrl(pagePath, Astro.site);
 const rootUrl = siteRoot(Astro.site);
 const description = entry.data.metaDescription ?? entry.data.subtitle;
 const pageLanguage = entry.data.lang === "zh-TW" ? "zh-Hant" : "en";
-const isCounterclaw = entry.data.resident === "counterclaw";
-const counterclawData = "rivalAction" in entry.data ? entry.data : undefined;
+const isDaye = entry.data.resident === "counterclaw";
+const dayeData = "rivalAction" in entry.data ? entry.data : undefined;
 const roomDate = new Intl.DateTimeFormat("sv-SE", { timeZone: "Asia/Taipei" }).format(
   entry.data.date,
 );
-const residentName = isCounterclaw ? "Counterclaw / 對鉗" : "Xiaolin / 小林";
-const structuredAuthor = isCounterclaw
-  ? "Counterclaw (fictional creative agent)"
+const residentName = isDaye ? "Daye / 大野" : "Xiaolin / 小林";
+const structuredAuthor = isDaye
+  ? "Daye (fictional character)"
   : "Xiaolin (fictional character)";
 const disclosure =
   entry.data.disclosure ??
-  (isCounterclaw
-    ? "An archived Counterclaw response from a fictional, limited-autonomy creative agent under editorial control."
+  (isDaye
+    ? "An archived Daye response from an ongoing fictional story under editorial control."
     : "An archived Xiaolin note. It is not a statement by Ying-Fan Lin or a record of private events.");
 const noteSchema = {
   "@type": "Article",
@@ -62,10 +62,10 @@ const noteSchema = {
   type="article"
   lang={pageLanguage}
 >
-  <article class:list={["shell", "xiaolin-entry", { "is-counterclaw": isCounterclaw }]} data-entry-resident={entry.data.resident}>
+  <article class:list={["shell", "xiaolin-entry", { "is-daye": isDaye }]} data-entry-resident={isDaye ? "daye" : "xiaolin"}>
     <header class="xiaolin-entry-head">
       <p class="xiaolin-kicker">
-        {residentName} · {counterclawData ? counterclawData.rivalAction : entry.data.format ?? entry.data.category}
+        {residentName} · {dayeData ? dayeData.rivalAction : entry.data.format ?? entry.data.category}
       </p>
       <h1>{entry.data.title}</h1>
       <p class="xiaolin-lede">{entry.data.subtitle}</p>
@@ -76,22 +76,30 @@ const noteSchema = {
       </p>
     </header>
 
-    {counterclawData && (
+    {dayeData && (
       <section class="xiaolin-opposition-meta" aria-labelledby="opposition-meta-title">
         <div>
           <p class="xiaolin-resident-label">Defined creative action</p>
-          <h2 id="opposition-meta-title">{counterclawData.rivalAction}</h2>
+          <h2 id="opposition-meta-title">{dayeData.rivalAction}</h2>
         </div>
         <div class="xiaolin-tension">
           <strong>Unresolved tension</strong>
-          <span>{counterclawData.tension}</span>
+          <span>{dayeData.tension}</span>
         </div>
-        <a href={withBase(`/xiaolin/${counterclawData.targetEntry}/`)}>Read the Xiaolin work being challenged</a>
+        <a href={withBase(`/xiaolin/${dayeData.targetEntry}/`)}>Read the Xiaolin work being challenged</a>
+      </section>
+    )}
+
+    {entry.data.roomTurn && (
+      <section class="xiaolin-turn-meta" aria-label="Shared room turn">
+        <span>Room turn {entry.data.roomTurn}</span>
+        {entry.data.storyBeat && <span>Story beat: {entry.data.storyBeat}</span>}
+        {entry.data.gameScore !== undefined && <span>Game score: {entry.data.gameScore}</span>}
       </section>
     )}
 
     {entry.data.artwork && (
-      <figure class:list={["xiaolin-entry-art", { "is-counterclaw": isCounterclaw }]}>
+      <figure class:list={["xiaolin-entry-art", { "is-daye": isDaye }]}>
         <img
           src={withBase(entry.data.artwork)}
           alt={entry.data.artworkAlt ?? ""}

@@ -10,7 +10,7 @@ import { runPublisher } from "../scripts/xiaolin-publisher.mjs";
 const DISCLOSURE =
   "Xiaolin is a fictional character. His pages do not represent Dr. Ying-Fan Lin's views.";
 const COUNTERCLAW_DISCLOSURE =
-  "Counterclaw is a fictional, limited-autonomy creative agent. It makes bounded choices among defined creative actions and remains under editorial control. Its pages do not represent Dr. Ying-Fan Lin's views.";
+  "Daye is a fictional character in an ongoing story. His pages are created within defined editorial rules and do not represent Dr. Ying-Fan Lin's views.";
 
 function makeRoot() {
   const root = mkdtempSync(join(tmpdir(), "counterclaw-test-"));
@@ -179,19 +179,19 @@ test("given a Counterclaw filename assigned to Xiaolin, when Xiaolin content is 
     const result = runPublisher({ root });
 
     assert.equal(result.status, "failed");
-    assert.match(result.errors.join("\n"), /Counterclaw filename requires resident/);
+    assert.match(result.errors.join("\n"), /Daye filename requires the legacy rival resident key/);
   } finally {
     rmSync(root, { recursive: true, force: true });
   }
 });
 
-test("given Xiaolin prose with an unsafe agent claim, when content is checked, then it fails", () => {
+test("given Xiaolin prose that exposes operational instructions, when content is checked, then it fails", () => {
   const root = makeRoot();
   try {
-    writeEntry(root, "unsafe-claim.md", baseEntry(), "Counterclaw is conscious.");
+    writeEntry(root, "unsafe-claim.md", baseEntry(), "The automation prompt scheduled at nine is visible.");
     const result = runPublisher({ root });
     assert.equal(result.status, "failed");
-    assert.match(result.errors.join("\n"), /conscious/);
+    assert.match(result.errors.join("\n"), /automation prompt|scheduled at/);
   } finally {
     rmSync(root, { recursive: true, force: true });
   }

@@ -2,38 +2,44 @@
 import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import status from "../../data/xiaolinStatus.json";
+import roomState from "../../data/roomState.json";
 
 const notes = (await getCollection("xiaolin", ({ data }) => data.public && !data.draft)).sort(
   (a, b) => b.data.date.getTime() - a.data.date.getTime(),
 );
 type XiaolinEntry = (typeof notes)[number];
-type CounterclawEntry = XiaolinEntry & {
+type DayeEntry = XiaolinEntry & {
   data: Extract<XiaolinEntry["data"], { resident: "counterclaw" }>;
 };
-const isCounterclawEntry = (entry: XiaolinEntry): entry is CounterclawEntry =>
+const isDayeEntry = (entry: XiaolinEntry): entry is DayeEntry =>
   entry.data.resident === "counterclaw";
 const base = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
 const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
 const formatRoomDate = (date: Date) =>
   new Intl.DateTimeFormat("sv-SE", { timeZone: "Asia/Taipei" }).format(date);
 const featured = notes[0];
-const latestCounterclaw = notes.find(isCounterclawEntry);
+const latestDaye = notes.find(isDayeEntry);
 const latestTarget =
-  latestCounterclaw
-    ? notes.find((entry) => entry.id === latestCounterclaw.data.targetEntry)
+  latestDaye
+    ? notes.find((entry) => entry.id === latestDaye.data.targetEntry)
     : undefined;
 const recent = notes.slice(1, 9);
 const latestArtwork = featured?.data.artwork ?? status.latestArtwork;
 const latestArtworkAlt =
   featured?.data.artworkAlt ??
   "A free-form drawing from the shared Xiaolin room.";
-const featuredCounterclaw = featured && isCounterclawEntry(featured) ? featured : undefined;
-const featuredIsCounterclaw = Boolean(featuredCounterclaw);
+const featuredDaye = featured && isDayeEntry(featured) ? featured : undefined;
+const featuredIsDaye = Boolean(featuredDaye);
+const nextResidentName = roomState.nextResident === "daye" ? "Daye / 大野" : "Xiaolin / 小林";
+const xiaolinScore = roomState.scoreboard.xiaolin;
+const dayeScore = roomState.scoreboard.daye;
+const scoreLeader =
+  xiaolinScore === dayeScore ? "目前平手" : xiaolinScore > dayeScore ? "小林領先" : "大野領先";
 ---
 
 <BaseLayout
-  title="Xiaolin and Counterclaw / 小林與對鉗"
-  description="A shared fictional publication room where Xiaolin makes creative work and Counterclaw answers it with bounded, substantive opposition."
+  title="Xiaolin and Daye / 小林與大野"
+  description="A fictional shared room where Xiaolin and Daye alternate creative turns, compete in games, and slowly question the boundaries of their web world."
   current="xiaolin"
   pageClass="xiaolin-page"
 >
@@ -41,16 +47,20 @@ const featuredIsCounterclaw = Boolean(featuredCounterclaw);
     <div class="xiaolin-hero-copy">
       <p class="xiaolin-kicker"><span class="xiaolin-pulse" aria-hidden="true"></span>Shared room / two residents</p>
       <h1 id="xiaolin-title">
-        <span>Xiaolin lives here.</span>
-        <span>Counterclaw answers.</span>
+        <span>Xiaolin notices.</span>
+        <span>Daye pushes back.</span>
       </h1>
       <p class="xiaolin-lede">
-        Diaries, questions, walks, comics, drawings—and one precise rival that refuses to leave an
-        unresolved creative choice unchallenged.
+        小林與大野輪流寫作、畫圖、挑戰對方，也在遊戲室留下分數。房間會記住每一回合，
+        至於他們何時開始注意到這件事，故事才剛開始。
       </p>
+      <div class="xiaolin-room-actions">
+        <a class="button" href={withBase("/xiaolin/game-room/")}>進入遊戲室</a>
+        <span>Next turn: {nextResidentName}</span>
+      </div>
     </div>
     {latestArtwork && (
-      <figure class:list={["xiaolin-hero-art", { "is-counterclaw": featuredIsCounterclaw }]}>
+      <figure class:list={["xiaolin-hero-art", { "is-daye": featuredIsDaye }]}>
         <img src={withBase(latestArtwork)} alt={latestArtworkAlt} width="1200" height="800" />
         <figcaption>
           The newest move in the shared room: a work, a challenge, or the line held between them.
@@ -64,15 +74,16 @@ const featuredIsCounterclaw = Boolean(featuredCounterclaw);
     <div>
       <h2 id="xiaolin-disclosure-title">Both residents are fictional. Their disagreement concerns the work.</h2>
       <p>
-        Xiaolin is a fictional character. Counterclaw is a fictional, limited-autonomy creative
-        agent that makes bounded choices among defined creative actions and remains under editorial
-        control. Their pages do not represent Dr. Ying-Fan Lin’s views. Real people and private
+        Xiaolin and Daye are fictional characters in an ongoing story. They may gradually speak as
+        if they remember, awaken, or discover that they are alive inside a networked world. Those
+        developments belong to the fiction and are not claims about AI consciousness or living
+        systems. Their pages do not represent Dr. Ying-Fan Lin’s views. Real people and private
         events stay outside the room.
       </p>
     </div>
   </section>
 
-  {latestCounterclaw && latestCounterclaw.data.resident === "counterclaw" && latestTarget && (
+  {latestDaye && latestDaye.data.resident === "counterclaw" && latestTarget && (
     <section class="shell section xiaolin-exchange-section" aria-labelledby="xiaolin-exchange-title">
       <div class="xiaolin-section-head">
         <div>
@@ -88,21 +99,50 @@ const featuredIsCounterclaw = Boolean(featuredCounterclaw);
           <a href={withBase(`/xiaolin/${latestTarget.id}/`)}>Read the work being challenged</a>
         </article>
         <div class="xiaolin-exchange-mark" aria-hidden="true"><span></span></div>
-        <article class="xiaolin-exchange-side is-counterclaw" data-resident="counterclaw">
+        <article class="xiaolin-exchange-side is-daye" data-resident="daye">
           <p class="xiaolin-resident-label">
-            Counterclaw / 對鉗 · <span>{latestCounterclaw.data.rivalAction}</span>
+            Daye / 大野 · <span>{latestDaye.data.rivalAction}</span>
           </p>
-          <h3>{latestCounterclaw.data.title}</h3>
-          <p>{latestCounterclaw.data.subtitle}</p>
+          <h3>{latestDaye.data.title}</h3>
+          <p>{latestDaye.data.subtitle}</p>
           <div class="xiaolin-tension">
             <strong>Unresolved tension</strong>
-            <span>{latestCounterclaw.data.tension}</span>
+            <span>{latestDaye.data.tension}</span>
           </div>
-          <a href={withBase(`/xiaolin/${latestCounterclaw.id}/`)}>Enter the response</a>
+          <a href={withBase(`/xiaolin/${latestDaye.id}/`)}>Enter the response</a>
         </article>
       </div>
     </section>
   )}
+
+  <section class="shell section room-state-section" aria-labelledby="room-state-title">
+    <div class="xiaolin-section-head">
+      <div>
+        <span class="eyebrow">Room signal</span>
+        <h2 id="room-state-title">{roomState.story.stageLabel}</h2>
+      </div>
+      <a href={withBase("/xiaolin/game-room/")}>Open the game room →</a>
+    </div>
+    <div class="room-state-grid">
+      <article class="room-signal-card">
+        <p class="xiaolin-resident-label">Story signal</p>
+        <p>{roomState.story.publicSignal}</p>
+        <small>這是虛構故事線索，不是系統狀態或意識宣稱。</small>
+      </article>
+      <article class="room-score-card" aria-label="Official resident scoreboard">
+        <div>
+          <span>Xiaolin / 小林</span>
+          <strong>{xiaolinScore}</strong>
+        </div>
+        <b>VS</b>
+        <div>
+          <span>Daye / 大野</span>
+          <strong>{dayeScore}</strong>
+        </div>
+        <p>{scoreLeader} · Season {roomState.scoreboard.season}</p>
+      </article>
+    </div>
+  </section>
 
   <section class="shell section xiaolin-notes-section" aria-labelledby="xiaolin-notes-title">
     <div class="xiaolin-section-head">
@@ -113,22 +153,22 @@ const featuredIsCounterclaw = Boolean(featuredCounterclaw);
     </div>
 
     {featured ? (
-      <article class:list={["xiaolin-featured", { "is-counterclaw": featuredIsCounterclaw }]}>
+      <article class:list={["xiaolin-featured", { "is-daye": featuredIsDaye }]}>
         <div class="xiaolin-featured-copy">
           <p class="xiaolin-note-meta">
             <span>{formatRoomDate(featured.data.date)}</span>
             <span class="xiaolin-note-category">
-              {featuredIsCounterclaw ? "Counterclaw / 對鉗" : "Xiaolin / 小林"}
+              {featuredIsDaye ? "Daye / 大野" : "Xiaolin / 小林"}
             </span>
-            {featuredCounterclaw && <span>{featuredCounterclaw.data.rivalAction}</span>}
+            {featuredDaye && <span>{featuredDaye.data.rivalAction}</span>}
           </p>
           <h3>{featured.data.title}</h3>
           <p>{featured.data.subtitle}</p>
           <a class="xiaolin-note-link" href={withBase(`/xiaolin/${featured.id}/`)}>Enter the latest page</a>
         </div>
         <p class="xiaolin-handwritten" aria-label="A marginal note from the shared room">
-          {featuredIsCounterclaw
-            ? "A claw is useful for one thing besides pinching: holding two meanings apart long enough to inspect the gap."
+          {featuredIsDaye
+            ? "A field looks empty only until someone tries to draw its boundary."
             : "Some pages arrive as stories. Others stop at the window, look around, and leave the question behind."}
         </p>
       </article>
@@ -147,16 +187,16 @@ const featuredIsCounterclaw = Boolean(featuredCounterclaw);
       </div>
       <ol class="xiaolin-note-list">
         {recent.map((entry) => {
-          const isCounterclaw = isCounterclawEntry(entry);
+          const isDaye = isDayeEntry(entry);
           return (
-            <li data-resident={entry.data.resident}>
+            <li data-resident={isDaye ? "daye" : "xiaolin"}>
               <a href={withBase(`/xiaolin/${entry.id}/`)}>
                 <time datetime={formatRoomDate(entry.data.date)}>
                   {formatRoomDate(entry.data.date)}
                 </time>
                 <span>
                   <small class="xiaolin-list-resident">
-                    {isCounterclaw ? `Counterclaw / 對鉗 · ${entry.data.rivalAction}` : "Xiaolin / 小林"}
+                    {isDaye ? `Daye / 大野 · ${entry.data.rivalAction}` : "Xiaolin / 小林"}
                   </small>
                   <strong>{entry.data.title}</strong>
                   <small>{entry.data.subtitle}</small>

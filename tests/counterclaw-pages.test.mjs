@@ -35,12 +35,12 @@ for (const viewport of VIEWPORTS) {
 
     await expectHealthyPage(page);
     await expect(page.getByRole("heading", { level: 1 })).toContainText(
-      "Counterclaw answers",
+      "Daye pushes back",
     );
     const exchange = page.locator("[data-exchange]");
     await expect(exchange).toBeVisible();
     await expect(exchange.locator('[data-resident="xiaolin"]')).toHaveCount(1);
-    await expect(exchange.locator('[data-resident="counterclaw"]')).toHaveCount(1);
+    await expect(exchange.locator('[data-resident="daye"]')).toHaveCount(1);
     await expect(exchange).toContainText("counter-reading");
     await expect(exchange).toContainText("Unresolved tension");
     const target = exchange.locator(`a[href$="${TARGET_PATH}"]`);
@@ -48,9 +48,9 @@ for (const viewport of VIEWPORTS) {
     await expect(target).toBeVisible();
     await expect(response).toBeVisible();
     const order = await exchange
-      .locator('[data-resident="xiaolin"], [data-resident="counterclaw"]')
+      .locator('[data-resident="xiaolin"], [data-resident="daye"]')
       .evaluateAll((nodes) => nodes.map((node) => node.getAttribute("data-resident")));
-    expect(order).toEqual(["xiaolin", "counterclaw"]);
+    expect(order).toEqual(["xiaolin", "daye"]);
     await target.focus();
     const focusVisible = await target.evaluate((element) => {
       const style = getComputedStyle(element);
@@ -61,20 +61,34 @@ for (const viewport of VIEWPORTS) {
 }
 
 for (const viewport of VIEWPORTS) {
-  test(`rival entry identifies Counterclaw at ${viewport.name}`, async ({ page }) => {
+  test(`rival entry identifies Daye at ${viewport.name}`, async ({ page }) => {
     await page.setViewportSize(viewport);
     await page.goto(RIVAL_ROUTE);
 
     await expectHealthyPage(page);
-    await expect(page.locator('[data-entry-resident="counterclaw"]')).toBeVisible();
-    await expect(page.getByText("Counterclaw / 對鉗", { exact: false })).toBeVisible();
+    await expect(page.locator('[data-entry-resident="daye"]')).toBeVisible();
+    await expect(page.getByText("Daye / 大野", { exact: false })).toBeVisible();
     await expect(page.getByText("counter-reading", { exact: true })).toBeVisible();
     await expect(page.getByText("Unresolved tension", { exact: true })).toBeVisible();
     await expect(page.locator(`a[href$="${TARGET_PATH}"]`)).toBeVisible();
-    await expect(page.getByText("fictional, limited-autonomy creative agent")).toBeVisible();
+    await expect(page.getByText("fictional character in an ongoing story")).toBeVisible();
     const jsonLd = await page.locator('script[type="application/ld+json"]').allTextContents();
-    expect(jsonLd.join(" ")).toContain("Counterclaw (fictional creative agent)");
+    expect(jsonLd.join(" ")).toContain("Daye (fictional character)");
     expect(jsonLd.join(" ")).not.toContain("Xiaolin (fictional character)");
+  });
+}
+
+for (const viewport of VIEWPORTS) {
+  test(`game room is playable at ${viewport.name}`, async ({ page }) => {
+    await page.setViewportSize(viewport);
+    await page.goto("xiaolin/game-room/");
+
+    await expectHealthyPage(page);
+    await expect(page.getByRole("heading", { level: 1 })).toContainText("Signal Chase");
+    await expect(page.locator(".signal-cell")).toHaveCount(9);
+    await page.getByRole("button", { name: "開始練習" }).click();
+    await expect(page.locator(".signal-cell.is-signal, .signal-cell.is-noise")).toHaveCount(1);
+    await expect(page.locator("[data-game-time]")).not.toHaveText("20.0");
   });
 }
 

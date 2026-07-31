@@ -1,16 +1,14 @@
-# Creative-room lock recovery
+# Shared-room lock recovery
 
-Xiaolin and Counterclaw use one atomically acquired lock shared by Codex
-automations under the same local operating-system account. This installation
-runs both workflows under the `CYCU` account. A failed or interrupted run
-leaves that lock in place so another automation cannot overwrite unfinished
-work. Recovery is deliberate; lock age alone is never proof that a run is
-stale.
+Xiaolin and Daye use one atomically acquired `room` lock. A failed or
+interrupted run leaves that lock in place so another activation cannot
+overwrite unfinished work. Recovery is deliberate; lock age alone is never
+proof that a run is stale.
 
 ## 1. Confirm that no run is live
 
-In the Codex app, confirm that neither the Xiaolin nor Counterclaw automation
-is currently running. Also confirm that no terminal is still building,
+In ChatGPT Work, confirm that the shared-room automation is not currently
+running. Also confirm that no terminal is still building,
 committing, pushing, or polling a Pages deployment for this repository. Do not
 continue while either workflow may still be active.
 
