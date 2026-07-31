@@ -1,0 +1,351 @@
+---
+type ResidentPortrait = {
+  src: string;
+  alt: string;
+  atlasPanel?: number;
+};
+
+type Resident = {
+  id: string;
+  nameZh: string;
+  nameEn: string;
+  portrait: ResidentPortrait;
+};
+
+interface Props {
+  residents: Resident[];
+  focusedIds: string[];
+  seed: string;
+}
+
+const { residents, focusedIds, seed } = Astro.props;
+const base = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
+const focusedSet = new Set(focusedIds);
+const focusedResidents = focusedIds
+  .map((id) => residents.find((resident) => resident.id === id))
+  .filter((resident): resident is Resident => Boolean(resident));
+const restingBehaviors = ["wander", "rest", "watch", "wander", "rest"];
+const restingPositions = [
+  { x: 9, y: 72 },
+  { x: 23, y: 56 },
+  { x: 72, y: 71 },
+  { x: 85, y: 54 },
+  { x: 92, y: 73 },
+];
+const focusPositions = [
+  { x: 43, y: 51 },
+  { x: 57, y: 51 },
+  { x: 50, y: 61 },
+];
+const palettes = [
+  { coat: "#174c58", accent: "#c69c51" },
+  { coat: "#8f3e35", accent: "#e3b85e" },
+  { coat: "#163f64", accent: "#77b7c1" },
+  { coat: "#1d5b52", accent: "#d0a861" },
+  { coat: "#9a672d", accent: "#f2d18a" },
+  { coat: "#3f3d62", accent: "#b77555" },
+  { coat: "#6d3d35", accent: "#d1ab77" },
+];
+let restingIndex = 0;
+let focusIndex = 0;
+const stagedResidents = residents.map((resident, index) => {
+  const isFocused = focusedSet.has(resident.id);
+  const residentFocusIndex = focusIndex;
+  const position = isFocused
+    ? focusPositions[residentFocusIndex % focusPositions.length]
+    : restingPositions[restingIndex % restingPositions.length];
+  const behavior = isFocused
+    ? "focus"
+    : restingBehaviors[restingIndex++ % restingBehaviors.length];
+  if (isFocused) focusIndex += 1;
+  const palette = palettes[index % palettes.length];
+
+  return {
+    ...resident,
+    isFocused,
+    behavior,
+    initialState:
+      behavior === "focus" ? "focus" : behavior === "rest" ? "sleep" : "idle",
+    facing:
+      isFocused && residentFocusIndex % 2 === 0 ? "right" : "left",
+    position,
+    palette,
+  };
+});
+const focusedNames = focusedResidents.map((resident) => resident.nameZh);
+const stageLine =
+  focusedNames.length > 0
+    ? `${focusedNames.join("與")}仍留在中央，其餘居民沿著房間各自活動。`
+    : "擂台暫時安靜，居民沿著房間各自活動。";
+---
+
+<section
+  class="shell section arena-resident-stage-section"
+  aria-labelledby="arena-resident-stage-title"
+>
+  <div class="xiaolin-section-head arena-resident-stage-head">
+    <div>
+      <span class="eyebrow">Resident floor / room activity</span>
+      <h2 id="arena-resident-stage-title">房間醒著，沒有每個人都在工作。</h2>
+    </div>
+    <p>{stageLine}</p>
+  </div>
+
+  <div
+    class="arena-resident-stage"
+    data-resident-stage
+    data-seed={seed}
+    aria-label="七位 AI 居民在房間內散步、觀察、對峙或休息"
+  >
+    <div class="arena-room-board" aria-hidden="true">
+      <span>ROOM SIGNAL</span>
+      <i></i><i></i><i></i>
+    </div>
+    <div class="arena-room-ring" aria-hidden="true">
+      <span>對決中央</span>
+    </div>
+    <div class="arena-room-rest-corner" aria-hidden="true">
+      <span>休息角</span>
+    </div>
+    <div class="arena-room-floor-line" aria-hidden="true"></div>
+
+    {stagedResidents.map((resident, index) => {
+      const atlasPortrait = Number.isInteger(resident.portrait.atlasPanel);
+      const style = [
+        `--resident-x: ${resident.position.x}%`,
+        `--resident-y: ${resident.position.y}%`,
+        `--resident-delay: ${index * -0.37}s`,
+        `--resident-coat: ${resident.palette.coat}`,
+        `--resident-accent: ${resident.palette.accent}`,
+        atlasPortrait
+          ? `--resident-panel: ${resident.portrait.atlasPanel}`
+          : "",
+      ]
+        .filter(Boolean)
+        .join("; ");
+
+      return (
+        <div
+          class="arena-resident"
+          data-resident-id={resident.id}
+          data-behavior={resident.behavior}
+          data-state={resident.initialState}
+          data-facing={resident.facing}
+          style={style}
+          role="img"
+          aria-label={`${resident.nameZh}，目前${
+            resident.behavior === "focus"
+              ? "留在對決中央"
+              : resident.behavior === "rest"
+                ? "在休息角打瞌睡"
+                : resident.behavior === "watch"
+                  ? "觀察房內動靜"
+                  : "在房內散步"
+          }`}
+        >
+          <div class="arena-resident-figure" aria-hidden="true">
+            <span class="arena-resident-zzz">Z<span>z</span><span>z</span></span>
+            <span
+              class:list={[
+                "arena-resident-head",
+                { "is-atlas": atlasPortrait },
+              ]}
+            >
+              <img
+                src={withBase(resident.portrait.src)}
+                alt=""
+                width="96"
+                height="104"
+                loading="lazy"
+              />
+            </span>
+            <span class="arena-resident-body">
+              <i class="arena-resident-arm is-left"></i>
+              <i class="arena-resident-arm is-right"></i>
+              <i class="arena-resident-leg is-left"></i>
+              <i class="arena-resident-leg is-right"></i>
+            </span>
+            <span class="arena-resident-name">
+              <strong>{resident.nameZh}</strong>
+              <small>{resident.nameEn}</small>
+            </span>
+          </div>
+        </div>
+      );
+    })}
+  </div>
+</section>
+
+<script>
+  const residentStageControllers = new WeakMap<
+    HTMLElement,
+    { dispose: () => void }
+  >();
+
+  const hashText = (text: string) => {
+    let hash = 2166136261;
+    for (let index = 0; index < text.length; index += 1) {
+      hash ^= text.charCodeAt(index);
+      hash = Math.imul(hash, 16777619);
+    }
+    return hash >>> 0;
+  };
+
+  const createRandom = (seed: number) => {
+    let value = seed || 1;
+    return () => {
+      value += 0x6d2b79f5;
+      let mixed = value;
+      mixed = Math.imul(mixed ^ (mixed >>> 15), mixed | 1);
+      mixed ^= mixed + Math.imul(mixed ^ (mixed >>> 7), mixed | 61);
+      return ((mixed ^ (mixed >>> 14)) >>> 0) / 4294967296;
+    };
+  };
+
+  const initializeResidentStages = () => {
+    document
+      .querySelectorAll<HTMLElement>("[data-resident-stage]")
+      .forEach((stage) => {
+        if (residentStageControllers.has(stage)) return;
+
+        const reduceMotion = window.matchMedia(
+          "(prefers-reduced-motion: reduce)",
+        ).matches;
+        const timers = new Set<number>();
+        let disposed = false;
+
+        const schedule = (callback: () => void, delay: number) => {
+          const timer = window.setTimeout(() => {
+            timers.delete(timer);
+            if (!disposed) callback();
+          }, delay);
+          timers.add(timer);
+        };
+
+        const setPaused = () => {
+          stage.dataset.paused = document.hidden ? "true" : "false";
+        };
+
+        const residents = Array.from(
+          stage.querySelectorAll<HTMLElement>("[data-resident-id]"),
+        );
+        stage.dataset.enhanced = "true";
+        stage.dataset.reducedMotion = String(reduceMotion);
+        setPaused();
+        document.addEventListener("visibilitychange", setPaused);
+
+        residents.forEach((resident, index) => {
+          const behavior = resident.dataset.behavior ?? "watch";
+          const residentId = resident.dataset.residentId ?? String(index);
+          const random = createRandom(
+            hashText(`${stage.dataset.seed ?? "room"}:${residentId}`),
+          );
+
+          if (reduceMotion || behavior === "focus") {
+            resident.dataset.state =
+              behavior === "focus"
+                ? "focus"
+                : behavior === "rest"
+                  ? "sleep"
+                  : "idle";
+            return;
+          }
+
+          let trips = 0;
+
+          const idle = (next: () => void) => {
+            resident.dataset.state =
+              behavior === "watch" ? "watch" : "idle";
+            schedule(next, 2600 + Math.round(random() * 2400));
+          };
+
+          const sleep = (next: () => void) => {
+            resident.dataset.state = "sleep";
+            schedule(next, 9000 + Math.round(random() * 7000));
+          };
+
+          const walk = (next: () => void) => {
+            const oldX = Number.parseFloat(
+              resident.style.getPropertyValue("--resident-x"),
+            );
+            const nextX = 7 + Math.round(random() * 86);
+            const nextY = 48 + Math.round(random() * 27);
+            const travelTime = 6200 + Math.round(random() * 4200);
+            resident.dataset.facing = nextX >= oldX ? "right" : "left";
+            resident.style.setProperty("--resident-x", `${nextX}%`);
+            resident.style.setProperty("--resident-y", `${nextY}%`);
+            resident.style.setProperty("--resident-travel", `${travelTime}ms`);
+            resident.dataset.state = "walk";
+            schedule(next, travelTime);
+          };
+
+          const wanderLoop = () => {
+            if (document.hidden) {
+              schedule(wanderLoop, 1800);
+              return;
+            }
+            if (trips > 0 && trips % 3 === 0) {
+              trips += 1;
+              sleep(() => idle(wanderLoop));
+              return;
+            }
+            trips += 1;
+            walk(() => idle(wanderLoop));
+          };
+
+          const restLoop = () => {
+            if (document.hidden) {
+              schedule(restLoop, 1800);
+              return;
+            }
+            sleep(() => idle(restLoop));
+          };
+
+          const watchLoop = () => {
+            if (document.hidden) {
+              schedule(watchLoop, 1800);
+              return;
+            }
+            idle(() => {
+              if (random() > 0.62) {
+                walk(watchLoop);
+              } else {
+                watchLoop();
+              }
+            });
+          };
+
+          const start =
+            behavior === "rest"
+              ? restLoop
+              : behavior === "wander"
+                ? wanderLoop
+                : watchLoop;
+          schedule(start, 900 + index * 430);
+        });
+
+        residentStageControllers.set(stage, {
+          dispose: () => {
+            disposed = true;
+            timers.forEach((timer) => window.clearTimeout(timer));
+            timers.clear();
+            document.removeEventListener("visibilitychange", setPaused);
+          },
+        });
+      });
+  };
+
+  document.addEventListener("astro:before-swap", () => {
+    document
+      .querySelectorAll<HTMLElement>("[data-resident-stage]")
+      .forEach((stage) => {
+        residentStageControllers.get(stage)?.dispose();
+        residentStageControllers.delete(stage);
+      });
+  });
+  document.addEventListener("astro:page-load", initializeResidentStages);
+  initializeResidentStages();
+</script>

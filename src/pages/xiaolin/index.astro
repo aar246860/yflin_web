@@ -1,5 +1,6 @@
 ---
 import { getCollection } from "astro:content";
+import ArenaResidentStage from "../../components/ArenaResidentStage.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import status from "../../data/xiaolinStatus.json";
 import roomState from "../../data/roomState.json";
@@ -126,6 +127,12 @@ const arenaSchema = {
       </figure>
     )}
   </section>
+
+  <ArenaResidentStage
+    residents={activeRoster}
+    focusedIds={arenaState.freeActionClock.lastActorIds}
+    seed={`${arenaState.currentDay}:${arenaState.freeActionClock.turn}`}
+  />
 
   <section class="shell section arena-board-section" aria-labelledby="arena-board-title">
     <div class="xiaolin-section-head">

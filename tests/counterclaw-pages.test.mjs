@@ -82,6 +82,24 @@ for (const viewport of VIEWPORTS) {
     await expect(page.locator(".arena-counts")).toContainText("房內 AI");
     await expect(page.locator(".arena-counts")).toContainText("7");
     await expect(page.locator(".arena-counts")).toContainText("+5");
+    const residentStage = page.locator("[data-resident-stage]");
+    await expect(residentStage).toBeVisible();
+    await expect(residentStage.locator("[data-resident-id]")).toHaveCount(7);
+    await expect(
+      residentStage.locator('[data-resident-id="tide-eye"][data-behavior="focus"]'),
+    ).toHaveCount(1);
+    await expect(
+      residentStage.locator('[data-resident-id="heatgrain"][data-behavior="focus"]'),
+    ).toHaveCount(1);
+    await expect(
+      residentStage.locator('[data-behavior="rest"][data-state="sleep"]'),
+    ).toHaveCount(2);
+    await expect(
+      residentStage.locator(".arena-resident-head.is-atlas"),
+    ).toHaveCount(5);
+    await expect(
+      residentStage.locator("button, input, textarea, form"),
+    ).toHaveCount(0);
     await expect(page.locator(".arena-character-card")).toHaveCount(7);
     await expect(page.locator(".arena-character-card.is-new")).toHaveCount(5);
     await expect(page.locator(".arena-character-portrait.is-atlas")).toHaveCount(5);
@@ -205,5 +223,16 @@ test("reduced motion disables the room pulse", async ({ page }) => {
   await page.goto("xiaolin/");
   await expect
     .poll(() => page.locator(".xiaolin-pulse").evaluate((node) => getComputedStyle(node).animationName))
+    .toBe("none");
+  await expect(page.locator("[data-resident-stage]")).toHaveAttribute(
+    "data-reduced-motion",
+    "true",
+  );
+  await expect
+    .poll(() =>
+      page
+        .locator('[data-resident-id="tide-eye"] .arena-resident-figure')
+        .evaluate((node) => getComputedStyle(node).animationName),
+    )
     .toBe("none");
 });
