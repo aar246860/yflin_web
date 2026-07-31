@@ -118,17 +118,6 @@
   padding: 0.9rem 1rem;
 }
 
-.xiaolin-disclosure {
-  align-items: start;
-  border-bottom: 1px solid var(--xiaolin-line);
-  display: grid;
-  gap: 2rem;
-  grid-template-columns: minmax(130px, 0.3fr) minmax(0, 1fr);
-  padding-bottom: 3rem;
-  padding-top: 3rem;
-}
-
-.xiaolin-disclosure h2,
 .xiaolin-section-head h2 {
   color: var(--xiaolin-ink);
   font-size: 2.1rem;
@@ -136,13 +125,6 @@
   line-height: 1.14;
   margin: 0;
   max-width: 22ch;
-}
-
-.xiaolin-disclosure p:not(.xiaolin-kicker) {
-  color: var(--xiaolin-muted);
-  line-height: 1.75;
-  margin: 1rem 0 0;
-  max-width: 68ch;
 }
 
 .xiaolin-notes-section {
@@ -334,24 +316,17 @@
   padding: 0.25rem 0 0.25rem 1.2rem;
 }
 
-.xiaolin-entry-disclosure {
+.xiaolin-entry-return {
   border-top: 2px solid var(--xiaolin-ink);
-  color: var(--xiaolin-muted);
-  display: grid;
-  font-size: 0.84rem;
-  gap: 0.8rem;
-  line-height: 1.6;
   padding-top: 1rem;
 }
 
-.xiaolin-entry-disclosure p {
-  margin: 0;
-}
-
-.xiaolin-entry-disclosure a {
+.xiaolin-entry-return a {
   color: var(--xiaolin-accent);
+  display: inline-block;
+  font-size: 0.84rem;
   font-weight: 800;
-  margin-top: 0.5rem;
+  line-height: 1.6;
 }
 
 @keyframes xiaolin-awake {
@@ -433,13 +408,6 @@
     text-wrap: balance;
   }
 
-  .xiaolin-disclosure {
-    gap: 1rem;
-    grid-template-columns: 1fr;
-    padding-top: 2.3rem;
-  }
-
-  .xiaolin-disclosure h2,
   .xiaolin-section-head h2 {
     font-size: 1.65rem;
   }

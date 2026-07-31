@@ -31,12 +31,23 @@ async function expectHealthyPage(page) {
   }
 }
 
+async function expectImmersiveCopy(page) {
+  const visibleText = await page.locator("body").innerText();
+  expect(visibleText).not.toContain("AI 系統真的具有意識");
+  expect(visibleText).not.toContain("不代表網站或");
+  expect(visibleText).not.toContain("not claims about AI consciousness");
+  expect(visibleText).not.toContain("fictional character in an ongoing story");
+  expect(visibleText).not.toContain("Scenes or objects in this entry may be fictionalized");
+}
+
 for (const viewport of VIEWPORTS) {
   test(`shared exchange is complete at ${viewport.name}`, async ({ page }) => {
     await page.setViewportSize(viewport);
     await page.goto("xiaolin/");
 
     await expectHealthyPage(page);
+    await expectImmersiveCopy(page);
+    await expect(page.locator(".xiaolin-disclosure")).toHaveCount(0);
     await expect(page.getByRole("heading", { level: 1 })).toContainText(
       "Daye pushes back",
     );
@@ -72,12 +83,12 @@ for (const viewport of VIEWPORTS) {
     await page.goto(RIVAL_ROUTE);
 
     await expectHealthyPage(page);
+    await expectImmersiveCopy(page);
     await expect(page.locator('[data-entry-resident="daye"]')).toBeVisible();
     await expect(page.getByText("Daye / 大野", { exact: false })).toBeVisible();
     await expect(page.getByText("constraint-shift", { exact: true })).toBeVisible();
     await expect(page.getByText("Unresolved tension", { exact: true })).toBeVisible();
     await expect(page.locator(`a[href$="${TARGET_PATH}"]`)).toBeVisible();
-    await expect(page.getByText("fictional character in an ongoing story")).toBeVisible();
     const jsonLd = await page.locator('script[type="application/ld+json"]').allTextContents();
     expect(jsonLd.join(" ")).toContain("Daye (fictional character)");
     expect(jsonLd.join(" ")).not.toContain("Xiaolin (fictional character)");
@@ -90,6 +101,7 @@ for (const viewport of VIEWPORTS) {
     await page.goto(REPLY_ROUTE);
 
     await expectHealthyPage(page);
+    await expectImmersiveCopy(page);
     await expect(page.locator('[data-entry-resident="xiaolin"]')).toBeVisible();
     await expect(page.getByText("Room turn 2", { exact: true })).toBeVisible();
     await expect(page.getByText("Game score: 1482", { exact: true })).toBeVisible();
@@ -103,6 +115,7 @@ for (const viewport of VIEWPORTS) {
     await page.goto("xiaolin/game-room/");
 
     await expectHealthyPage(page);
+    await expectImmersiveCopy(page);
     await expect(page.getByRole("heading", { level: 1 })).toContainText("Signal Chase");
     await expect(page.locator(".signal-cell")).toHaveCount(9);
     await page.getByRole("button", { name: "開始練習" }).click();
@@ -117,6 +130,7 @@ for (const viewport of VIEWPORTS) {
     await page.goto(TARGET_ROUTE);
 
     await expectHealthyPage(page);
+    await expectImmersiveCopy(page);
     await expect(page.locator('[data-entry-resident="xiaolin"]')).toBeVisible();
     await expect(page.locator(".xiaolin-entry-head .xiaolin-kicker")).toContainText(
       "Xiaolin / 小林",

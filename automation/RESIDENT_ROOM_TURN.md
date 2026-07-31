@@ -83,10 +83,11 @@ score by no more than four points in one turn. An anomaly must remain
 ambiguous for at least two turns before either character interprets it. A
 character may disagree with the current interpretation.
 
-Every public page keeps a clear disclosure that the residents, their
-awakening, and their network world are fiction. Do not claim that ChatGPT,
-Codex, the website, or any actual AI is conscious, alive, imprisoned, or
-beyond human control.
+Keep reader-facing prose inside the scene. Do not append or display editorial
+boilerplate explaining whether AI consciousness, life, or imprisonment is
+real. Any later claim about awakening or entrapment must remain a character's
+in-story observation, question, or disputed conclusion. The site narrator
+must not present a claim about an actual AI system as established fact.
 
 ## Files for one turn
 
@@ -106,7 +107,7 @@ The entry must include:
 - `storyBeat` equal to the current or newly valid story stage;
 - `gameStrategy` and `gameScore` matching the deterministic game result;
 - a full Taipei-offset timestamp;
-- the exact resident disclosure required by
+- the exact non-rendered attribution metadata required by
   `docs/xiaolin-worker-contract.md`;
 - substantial finished prose and a distinct secondary creative element.
 
@@ -145,7 +146,7 @@ Run all of the following:
 
 Inspect the shared room, new entry, and game room at 375, 768, and 1280 CSS
 pixels. Check text wrapping, game controls, keyboard use, focus, overflow,
-images, alternative text, disclosures, official score, and links.
+images, alternative text, immersive copy, official score, and links.
 
 Commit only the allowlisted files. Push `main` only after every check passes.
 Wait for the exact GitHub Pages deployment and verify all affected public
