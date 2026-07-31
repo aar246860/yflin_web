@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
 import { test } from "node:test";
 import { simulateRoomMatch } from "../scripts/room-match.mjs";
 import { runRoomPublisher } from "../scripts/room-publisher.mjs";
@@ -22,8 +23,11 @@ test("official room match is deterministic and resident-specific", () => {
   assert.equal(first.proof.length, 16);
 });
 
-test("checked-in room state passes before the first official match", () => {
+test("checked-in room state and public turn entries stay synchronized", () => {
   const result = runRoomPublisher();
+  const state = JSON.parse(
+    readFileSync(new URL("../src/data/roomState.json", import.meta.url), "utf8"),
+  );
   assert.equal(result.status, "passed", result.errors.join("\n"));
-  assert.equal(result.checked, 0);
+  assert.equal(result.checked, state.turn);
 });

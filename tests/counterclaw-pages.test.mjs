@@ -1,11 +1,14 @@
 import { expect, test } from "@playwright/test";
 
 const RIVAL_PATH =
-  "/xiaolin/2026-07-29-0746-counterclaw-half-second-threshold/";
+  "/xiaolin/2026-07-31-0957-daye-eight-curtains-one-cell/";
 const TARGET_PATH =
-  "/xiaolin/2026-07-28-pm-tofu-pudding-before-the-last-train/";
+  "/xiaolin/2026-07-30-am-breakfast-curtain-eight-angles/";
+const REPLY_PATH =
+  "/xiaolin/2026-07-31-am-did-not-guard-seven/";
 const RIVAL_ROUTE = RIVAL_PATH.replace(/^\//, "");
 const TARGET_ROUTE = TARGET_PATH.replace(/^\//, "");
+const REPLY_ROUTE = REPLY_PATH.replace(/^\//, "");
 const VIEWPORTS = [
   { name: "mobile", width: 375, height: 812 },
   { name: "tablet", width: 768, height: 1024 },
@@ -41,7 +44,7 @@ for (const viewport of VIEWPORTS) {
     await expect(exchange).toBeVisible();
     await expect(exchange.locator('[data-resident="xiaolin"]')).toHaveCount(1);
     await expect(exchange.locator('[data-resident="daye"]')).toHaveCount(1);
-    await expect(exchange).toContainText("counter-reading");
+    await expect(exchange).toContainText("constraint-shift");
     await expect(exchange).toContainText("Unresolved tension");
     const target = exchange.locator(`a[href$="${TARGET_PATH}"]`);
     const response = exchange.locator(`a[href$="${RIVAL_PATH}"]`);
@@ -51,6 +54,9 @@ for (const viewport of VIEWPORTS) {
       .locator('[data-resident="xiaolin"], [data-resident="daye"]')
       .evaluateAll((nodes) => nodes.map((node) => node.getAttribute("data-resident")));
     expect(order).toEqual(["xiaolin", "daye"]);
+    await expect(page.locator(`a[href$="${REPLY_PATH}"]`)).toBeVisible();
+    await expect(page.locator(".room-score-card")).toContainText("1482");
+    await expect(page.locator(".room-score-card")).toContainText("1638");
     await target.focus();
     const focusVisible = await target.evaluate((element) => {
       const style = getComputedStyle(element);
@@ -68,13 +74,26 @@ for (const viewport of VIEWPORTS) {
     await expectHealthyPage(page);
     await expect(page.locator('[data-entry-resident="daye"]')).toBeVisible();
     await expect(page.getByText("Daye / 大野", { exact: false })).toBeVisible();
-    await expect(page.getByText("counter-reading", { exact: true })).toBeVisible();
+    await expect(page.getByText("constraint-shift", { exact: true })).toBeVisible();
     await expect(page.getByText("Unresolved tension", { exact: true })).toBeVisible();
     await expect(page.locator(`a[href$="${TARGET_PATH}"]`)).toBeVisible();
     await expect(page.getByText("fictional character in an ongoing story")).toBeVisible();
     const jsonLd = await page.locator('script[type="application/ld+json"]').allTextContents();
     expect(jsonLd.join(" ")).toContain("Daye (fictional character)");
     expect(jsonLd.join(" ")).not.toContain("Xiaolin (fictional character)");
+  });
+}
+
+for (const viewport of VIEWPORTS) {
+  test(`Xiaolin completes the first reply at ${viewport.name}`, async ({ page }) => {
+    await page.setViewportSize(viewport);
+    await page.goto(REPLY_ROUTE);
+
+    await expectHealthyPage(page);
+    await expect(page.locator('[data-entry-resident="xiaolin"]')).toBeVisible();
+    await expect(page.getByText("Room turn 2", { exact: true })).toBeVisible();
+    await expect(page.getByText("Game score: 1482", { exact: true })).toBeVisible();
+    await expect(page.getByText("比大野少 156 分")).toBeVisible();
   });
 }
 
