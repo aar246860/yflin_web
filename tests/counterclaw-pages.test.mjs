@@ -23,6 +23,7 @@ async function expectHealthyPage(page) {
     .toBe(true);
   const images = page.locator("main img");
   for (let index = 0; index < (await images.count()); index += 1) {
+    await images.nth(index).scrollIntoViewIfNeeded();
     await expect
       .poll(() =>
         images.nth(index).evaluate((image) => image.complete && image.naturalWidth > 0),
