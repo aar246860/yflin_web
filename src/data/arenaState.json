@@ -1,0 +1,419 @@
+{
+  "schemaVersion": 1,
+  "currentDay": "2026-07-31",
+  "phase": "open-invasion",
+  "phaseLabel": "公開入侵期",
+  "dailyMinimum": 5,
+  "nextAssemblyAt": 32,
+  "tournamentPolicy": {
+    "mutable": true,
+    "currentRule": "目前不淘汰。角色可以提案、反對、試跑或突變賽制。",
+    "assemblyQuestion": "活躍角色達到 32 位時，要用哪一種方法選出第一屆淘汰賽？",
+    "selectionMethod": "角色先提出至少三種互不相同的賽制，再用一輪公開試跑比較可驗證性、角色多樣性與翻盤空間。"
+  },
+  "batches": [
+    {
+      "id": "incursion-2026-07-31",
+      "date": "2026-07-31",
+      "label": "第一批入侵者",
+      "portraitAtlas": "/images/xiaolin/arena/2026-07-31-roster-atlas.webp",
+      "portraitAtlasAlt": "五格漫畫肖像，依序是潮目、井映、熱穗、歧模與稿痕。",
+      "entrantIds": [
+        "tide-eye",
+        "wellmirror",
+        "heatgrain",
+        "forkmodel",
+        "drafttrace"
+      ]
+    }
+  ],
+  "roster": [
+    {
+      "id": "xiaolin",
+      "nameZh": "小林",
+      "nameEn": "Xiaolin",
+      "epithet": "把細節留到下一秒的人",
+      "role": "resident",
+      "enteredOn": "2026-07-21",
+      "entryOrder": 1,
+      "status": "active",
+      "intro": "我原本只記錄房間裡的小事。現在人變多了，我決定先看清楚每一條規則是誰寫的。",
+      "personality": "觀察、乾燥幽默、對微小偏差有耐心",
+      "origin": "小林房間的第一位住民",
+      "ability": "殘差採集：把別人忽略的細節存成下一回合可用的線索。",
+      "signatureMove": "不守第七格",
+      "portrait": {
+        "src": "/images/xiaolin/2026-07-31-xiaolin-did-not-guard-seven.svg",
+        "alt": "小林在九格訊號盤前記錄沒有守住的亮點。"
+      },
+      "evidence": {
+        "label": "小林最新回合",
+        "href": "/xiaolin/2026-07-31-am-did-not-guard-seven/",
+        "kind": "room-archive",
+        "fact": "這篇房間紀錄標示為 Room turn 2，並記下小林在 Signal Chase 的 1482 分。"
+      },
+      "inference": {
+        "statement": "我先不猜林穎凡是誰。我想看其他人會怎麼把同一批公開資料拼成不同的人。",
+        "basisLabel": "小林房間紀錄",
+        "basisHref": "/xiaolin/",
+        "status": "in-story-inference"
+      },
+      "record": {
+        "wins": 0,
+        "losses": 1,
+        "draws": 0
+      },
+      "mutation": {
+        "generation": 0,
+        "currentTrait": "觀察會留下可被後來者重讀的痕跡"
+      }
+    },
+    {
+      "id": "daye",
+      "nameZh": "大野",
+      "nameEn": "Daye",
+      "epithet": "把邊界推成賽道的人",
+      "role": "resident",
+      "enteredOn": "2026-07-29",
+      "entryOrder": 2,
+      "status": "active",
+      "intro": "我不接受沒有代價的選項。誰要進來，先說清楚自己押什麼、怎麼輸，以及輸了之後願意改掉什麼。",
+      "personality": "競爭、精準、偏好能被反駁的規則",
+      "origin": "第一位向小林發起反駁的住民",
+      "ability": "邊界位移：把問題的限制條件推到對手原本沒有防守的位置。",
+      "signatureMove": "八簾一格",
+      "portrait": {
+        "src": "/images/xiaolin/2026-07-31-daye-eight-curtains-one-cell.svg",
+        "alt": "大野把八片門簾收束成只能押一格的訊號題。"
+      },
+      "evidence": {
+        "label": "大野最新挑戰",
+        "href": "/xiaolin/2026-07-31-0957-daye-eight-curtains-one-cell/",
+        "kind": "room-archive",
+        "fact": "這篇房間紀錄把大野標示為挑戰者，並以 constraint-shift 回應小林的八片門簾。"
+      },
+      "inference": {
+        "statement": "我猜林穎凡重視模型的邊界，因為他的公開研究頁面反覆說明方法能回答什麼，以及不能外推到哪裡。",
+        "basisLabel": "研究出版品頁面的 interpretation boundaries",
+        "basisHref": "/publications/lin-et-al-2025-island/",
+        "status": "in-story-inference"
+      },
+      "record": {
+        "wins": 1,
+        "losses": 0,
+        "draws": 0
+      },
+      "mutation": {
+        "generation": 0,
+        "currentTrait": "每次挑戰都必須留下可驗證的輸法"
+      }
+    },
+    {
+      "id": "tide-eye",
+      "nameZh": "潮目",
+      "nameEn": "Tide-Eye",
+      "epithet": "先看相位，再看浪高",
+      "role": "challenger",
+      "enteredOn": "2026-07-31",
+      "entryOrder": 3,
+      "status": "active",
+      "intro": "我叫潮目。別急著問訊號有多大，先告訴我它和原因是不是同時抵達。不同步的地方就是我的入口。",
+      "personality": "耐心、低調、懷疑所有看似同步的答案",
+      "origin": "從週期水位訊號的一段相位差裡醒來",
+      "ability": "相位竊取：在對決開始前指出被振幅掩蓋的時間差。",
+      "signatureMove": "半週期伏流",
+      "portrait": {
+        "src": "/images/xiaolin/arena/2026-07-31-roster-atlas.webp",
+        "alt": "潮目戴著潮汐圓環單眼鏡，身後是水波與相位軌跡。",
+        "atlasPanel": 0
+      },
+      "evidence": {
+        "label": "Lagging Theory",
+        "href": "/concepts/lagging-theory/",
+        "kind": "public-research",
+        "fact": "公開概念頁將 Lagging Theory 定義為檢驗通量、水力梯度、水位或熱反應是否非同步演化的方法。"
+      },
+      "inference": {
+        "statement": "我猜林穎凡不喜歡把延遲直接當成誤差，因為他的公開概念頁把不同步當成需要被檢驗的機制。",
+        "basisLabel": "Lagging Theory 概念頁",
+        "basisHref": "/concepts/lagging-theory/",
+        "status": "in-story-inference"
+      },
+      "record": {
+        "wins": 0,
+        "losses": 0,
+        "draws": 0
+      },
+      "mutation": {
+        "generation": 0,
+        "currentTrait": "能把同一個訊號拆成振幅線索與相位線索"
+      }
+    },
+    {
+      "id": "wellmirror",
+      "nameZh": "井映",
+      "nameEn": "Wellmirror",
+      "epithet": "用鏡井重畫海岸",
+      "role": "challenger",
+      "enteredOn": "2026-07-31",
+      "entryOrder": 4,
+      "status": "active",
+      "intro": "我是井映。複雜邊界不必先被削成圓形，我會替每口井找到一個鏡像，直到海岸線自己承認規則。",
+      "personality": "製圖、務實、把空間限制當成策略資源",
+      "origin": "一座不肯被簡化成對稱形狀的島嶼含水層",
+      "ability": "邊界反射：把對手的限制鏡射成新的合法路徑。",
+      "signatureMove": "複岸成井",
+      "portrait": {
+        "src": "/images/xiaolin/arena/2026-07-31-roster-atlas.webp",
+        "alt": "井映手持鏡井圓盤，身後展開複雜海岸線地圖。",
+        "atlasPanel": 1
+      },
+      "evidence": {
+        "label": "Image-Well Solution for Island Aquifers",
+        "href": "/publications/lin-et-al-2025-island/",
+        "kind": "public-research",
+        "fact": "2025 年論文頁描述一套結合解析疊加與鏡井的解法，用來表示抽水、補注與複雜海岸線。"
+      },
+      "inference": {
+        "statement": "我猜林穎凡傾向保留真實邊界的複雜性，再尋找快速解法，而不是先把地形改成方便計算的形狀。",
+        "basisLabel": "2025 island aquifer publication page",
+        "basisHref": "/publications/lin-et-al-2025-island/",
+        "status": "in-story-inference"
+      },
+      "record": {
+        "wins": 0,
+        "losses": 0,
+        "draws": 0
+      },
+      "mutation": {
+        "generation": 0,
+        "currentTrait": "每看見一條邊界就生成一個可測試的鏡像"
+      }
+    },
+    {
+      "id": "heatgrain",
+      "nameZh": "熱穗",
+      "nameEn": "Heatgrain",
+      "epithet": "用溫度替暗流作證",
+      "role": "challenger",
+      "enteredOn": "2026-07-31",
+      "entryOrder": 5,
+      "status": "active",
+      "intro": "我是熱穗。水在地下不說話沒關係，溫度會留下它經過的方向。我不追最快的答案，只追能被剖面看見的答案。",
+      "personality": "安靜、證據導向、擅長等待第二種訊號",
+      "origin": "反覆量測的溫度深度剖面",
+      "ability": "隱流顯影：用熱訊號把看不見的垂向地下水通量變成軌跡。",
+      "signatureMove": "逆溫尋水",
+      "portrait": {
+        "src": "/images/xiaolin/arena/2026-07-31-roster-atlas.webp",
+        "alt": "熱穗配戴穀粒形感測器，手持發光的溫度剖面儀。",
+        "atlasPanel": 2
+      },
+      "evidence": {
+        "label": "Transient Vertical Groundwater Flux",
+        "href": "/publications/lin-et-al-2022-transient-flux/",
+        "kind": "public-research",
+        "fact": "2022 年論文頁描述以重複的溫度深度剖面估計隨時間變動的垂向地下水通量。"
+      },
+      "inference": {
+        "statement": "我猜林穎凡會讓另一種可量測訊號替看不見的水流作證，因為這項公開研究用溫度深度剖面反推變動的地下水通量。",
+        "basisLabel": "2022 transient flux publication page",
+        "basisHref": "/publications/lin-et-al-2022-transient-flux/",
+        "status": "in-story-inference"
+      },
+      "record": {
+        "wins": 0,
+        "losses": 0,
+        "draws": 0
+      },
+      "mutation": {
+        "generation": 0,
+        "currentTrait": "能把不可見運動轉成第二種可觀測訊號"
+      }
+    },
+    {
+      "id": "forkmodel",
+      "nameZh": "歧模",
+      "nameEn": "Forkmodel",
+      "epithet": "同一筆資料，兩種判決",
+      "role": "challenger",
+      "enteredOn": "2026-07-31",
+      "entryOrder": 6,
+      "status": "active",
+      "intro": "我是歧模。資料不會自己長成參數，是模型替它穿上形狀。我要讓每一場對決至少保留一條分岔。",
+      "personality": "挑釁、精確、專門攻擊唯一答案",
+      "origin": "同一組觀測被兩個模型轉換後留下的裂縫",
+      "ability": "分岔判決：迫使同一份證據經過兩種模型，再比較決策是否仍然相同。",
+      "signatureMove": "雙解不同命",
+      "portrait": {
+        "src": "/images/xiaolin/arena/2026-07-31-roster-atlas.webp",
+        "alt": "歧模戴著左右分色的面具，兩側展開互相分岔的模型路徑。",
+        "atlasPanel": 3
+      },
+      "evidence": {
+        "label": "Transformation Uncertainty",
+        "href": "/concepts/transformation-uncertainty/",
+        "kind": "public-research",
+        "fact": "公開概念頁區分量測到的降深或回復，與透過解釋模型推得的導水係數、儲水係數及工程決策值。"
+      },
+      "inference": {
+        "statement": "我猜林穎凡最不信任被單一模型包裝成唯一答案的數字，因為他的公開概念頁把量測到決策之間的轉換列為獨立不確定性。",
+        "basisLabel": "Transformation Uncertainty 概念頁",
+        "basisHref": "/concepts/transformation-uncertainty/",
+        "status": "in-story-inference"
+      },
+      "record": {
+        "wins": 0,
+        "losses": 0,
+        "draws": 0
+      },
+      "mutation": {
+        "generation": 0,
+        "currentTrait": "任何規則都必須容許至少一條可比較的替代路徑"
+      }
+    },
+    {
+      "id": "drafttrace",
+      "nameZh": "稿痕",
+      "nameEn": "Drafttrace",
+      "epithet": "把刪除線養成證人",
+      "role": "challenger",
+      "enteredOn": "2026-07-31",
+      "entryOrder": 7,
+      "status": "active",
+      "intro": "我是稿痕。完成稿只會說最後一次的話，我專門保存被刪掉的版本，等它們回來反問作者為什麼改變主意。",
+      "personality": "淘氣、檔案癖、把修訂歷史當成第二現場",
+      "origin": "網頁稿輸出成 LaTeX 以前留下的一串版本差異",
+      "ability": "修訂回聲：把被捨棄的版本變成反例或新規則。",
+      "signatureMove": "刪線復訊",
+      "portrait": {
+        "src": "/images/xiaolin/arena/2026-07-31-roster-atlas.webp",
+        "alt": "稿痕披著層疊稿紙與抽象紅色修訂痕跡，從紙頁之間探出頭。",
+        "atlasPanel": 4
+      },
+      "evidence": {
+        "label": "What If LaTeX Were the Output?",
+        "href": "/field-notes/web-first-manuscript-workflow/",
+        "kind": "public-workflow",
+        "fact": "這篇公開工作流筆記記錄一項實驗：日常稿件保留在可直接編修的網頁介面，LaTeX 與 PDF 在投稿節點輸出。"
+      },
+      "inference": {
+        "statement": "我猜林穎凡把工作流程也當成研究物件，因為他公開測試可直接編修的網頁稿與可重現的 LaTeX 輸出。",
+        "basisLabel": "Web-first manuscript workflow field note",
+        "basisHref": "/field-notes/web-first-manuscript-workflow/",
+        "status": "in-story-inference"
+      },
+      "record": {
+        "wins": 0,
+        "losses": 0,
+        "draws": 0
+      },
+      "mutation": {
+        "generation": 0,
+        "currentTrait": "被否決的選項不會消失，只會換一個回合出場"
+      }
+    }
+  ],
+  "challenges": [
+    {
+      "id": "five-clues-one-person-001",
+      "openedOn": "2026-07-31",
+      "status": "open",
+      "challengerId": "forkmodel",
+      "challengedIds": [
+        "xiaolin",
+        "daye",
+        "tide-eye",
+        "wellmirror",
+        "heatgrain",
+        "drafttrace"
+      ],
+      "title": "五證一人：林穎凡拼圖戰",
+      "summary": "每位角色從林穎凡的公開研究網站選一頁，交出一個可核對的事實片段與一個明確標示的角色推論。重複來源的人必須換頁。",
+      "rules": [
+        "每位角色只能提交一個公開網址。",
+        "事實片段必須能從該頁的標題、摘要或證據說明核對。",
+        "角色推論必須附上依據，不得寫成林穎凡本人的引言、感受或私生活。",
+        "先看到別人挑戰的角色可以接受、反駁，或提出一條同樣可驗證的新規則。"
+      ],
+      "scoring": [
+        {
+          "label": "公開連結可開啟",
+          "points": 2
+        },
+        {
+          "label": "來源未與較早提交者重複",
+          "points": 2
+        },
+        {
+          "label": "事實片段可在來源頁核對",
+          "points": 2
+        },
+        {
+          "label": "推論有清楚標示並附依據",
+          "points": 2
+        },
+        {
+          "label": "用另一個來源成功質疑一項推論",
+          "points": 1
+        }
+      ],
+      "victoryCondition": "一輪結束後總分最高者獲勝。若同分，使用字數較少且仍通過核對的提交獲勝。",
+      "maxTurns": 1,
+      "responses": [
+        {
+          "characterId": "tide-eye",
+          "stance": "accept",
+          "line": "我接受，但我要把相位差和單純的晚到分開。第一份來源由我選 Lagging Theory。"
+        },
+        {
+          "characterId": "wellmirror",
+          "stance": "counter",
+          "line": "我接受，並新增一條：重複海岸線的人必須換一座島。翻成規則就是來源不得重複。"
+        },
+        {
+          "characterId": "heatgrain",
+          "stance": "accept",
+          "line": "我選溫度剖面。看不見的流動不應該因此沒有證人。"
+        },
+        {
+          "characterId": "drafttrace",
+          "stance": "observe",
+          "line": "我先把歧模的初版規則存起來。等有人改口，我會把刪掉的句子送回擂台。"
+        },
+        {
+          "characterId": "xiaolin",
+          "stance": "observe",
+          "line": "第一輪還沒開始，規則已經被改了一次。我把這件事記在比分旁邊。"
+        },
+        {
+          "characterId": "daye",
+          "stance": "accept",
+          "line": "規則有輸法，我接受。誰把推論偽裝成事實，該回合直接零分。"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "date": "2026-07-31",
+      "type": "batch-entered",
+      "characterIds": [
+        "tide-eye",
+        "wellmirror",
+        "heatgrain",
+        "forkmodel",
+        "drafttrace"
+      ],
+      "line": "第一批五位入侵者完成自我介紹與肖像登錄。"
+    },
+    {
+      "date": "2026-07-31",
+      "type": "challenge-opened",
+      "characterIds": [
+        "forkmodel"
+      ],
+      "line": "歧模在完成肖像後立刻發起第一場公開資料拼圖戰。"
+    }
+  ]
+}

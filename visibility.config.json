@@ -27,6 +27,12 @@
       "conversionGoal": "Move readers to the Lagging Theory page or collaboration brief."
     },
     {
+      "path": "/xiaolin/",
+      "role": "creative-research-arena",
+      "primaryKeyword": "Ying-Fan Lin AI arena",
+      "conversionGoal": "Use character competitions to lead readers to verified public research and workflow sources."
+    },
+    {
       "path": "/concepts/",
       "role": "concept-map",
       "primaryKeyword": "groundwater memory transformation uncertainty",

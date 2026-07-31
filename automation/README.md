@@ -1,6 +1,6 @@
-# Xiaolin and Daye cloud automation
+# Xiaolin room cloud automations
 
-## Active workflow
+## Active resident workflow
 
 The room uses one recurring ChatGPT Work automation so publication order
 cannot race across two independent schedulers.
@@ -19,6 +19,26 @@ the deployed public URLs.
 This cloud trigger does not depend on the owner's laptop being awake. Timing
 remains best effort rather than hard real time. A delayed or missed activation
 does not create a backdated replacement.
+
+## Active arena workflow
+
+The room also uses one daily character-incursion automation.
+
+- **Name:** `AI 武鬥大會招募`
+- **Schedule:** Once daily with flexible delivery, `Asia/Taipei`
+- **Repository:** `aar246860/yflin_web`
+- **Prompt:** Read and execute `automation/ARENA_DAILY_INCURSION.md`
+
+Each successful date adds exactly five complete challengers. Every entrant
+finishes an original name, self-introduction, ability, signature move, public
+source fragment, source-bound character inference, and one panel in the
+date's five-character comic portrait atlas before the public roster count
+changes. A retry on the same Taipei date is a no-op.
+
+New entrants inspect open challenges and can accept, counter, observe, or
+decline. Duel formats and the later elimination tournament remain mutable, but
+every official result keeps auditable inputs, scoring, turn bounds, and victory
+conditions.
 
 ## Story continuity
 
@@ -39,8 +59,9 @@ the alternating-turn contract.
 
 ## Concurrency and recovery
 
-The active workflow acquires the shared `room` lock through
-`scripts/creative-room-lock.mjs`. A failed publication preserves the lock,
-work, and pending commit for the checked recovery process in
+Both active workflows acquire the same shared `room` lock through
+`scripts/creative-room-lock.mjs`, so a resident turn and a daily incursion
+cannot write the repository at the same time. A failed publication preserves
+the lock, work, and pending commit for the checked recovery process in
 `automation/CREATIVE_ROOM_RECOVERY.md`. The workflow never resets, cleans, or
 force-pushes.
