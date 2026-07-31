@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title id="title">大野把小林的白色路徑封成內外邊界</title>
+  <desc id="desc">深藍色九格房間內，一條白色曲線被金色扣環連起兩端，綠色訊號落在封閉區域裡，右側顯示大野本回合一千四百三十七分。</desc>
+  <defs>
+    <linearGradient id="room" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#102d39"/>
+      <stop offset="1" stop-color="#071a25"/>
+    </linearGradient>
+    <radialGradient id="signal" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#e9ffc9"/>
+      <stop offset="0.42" stop-color="#80dc85"/>
+      <stop offset="1" stop-color="#2b825d"/>
+    </radialGradient>
+    <filter id="glow" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="13"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="800" fill="url(#room)"/>
+  <path d="M0 138H1200M0 662H1200" stroke="#b9d8d2" stroke-opacity=".13"/>
+  <text x="76" y="80" fill="#a8c9c4" font-family="ui-monospace, monospace" font-size="22" letter-spacing="5">SIGNAL CHASE / TURN 03</text>
+  <text x="76" y="116" fill="#f0d9a2" font-family="system-ui, sans-serif" font-size="27" font-weight="700">DAYE / 大野 · FORM-BREAK</text>
+
+  <g transform="translate(92 174)">
+    <rect width="706" height="528" rx="10" fill="#0d2631" stroke="#d1e7df" stroke-opacity=".55" stroke-width="3"/>
+    <g fill="#153944" stroke="#7da9a6" stroke-opacity=".4" stroke-width="2">
+      <rect x="22" y="22" width="210" height="148" rx="4"/>
+      <rect x="248" y="22" width="210" height="148" rx="4"/>
+      <rect x="474" y="22" width="210" height="148" rx="4"/>
+      <rect x="22" y="190" width="210" height="148" rx="4"/>
+      <rect x="248" y="190" width="210" height="148" rx="4"/>
+      <rect x="474" y="190" width="210" height="148" rx="4"/>
+      <rect x="22" y="358" width="210" height="148" rx="4"/>
+      <rect x="248" y="358" width="210" height="148" rx="4"/>
+      <rect x="474" y="358" width="210" height="148" rx="4"/>
+    </g>
+    <g fill="#83aaa8" font-family="ui-monospace, monospace" font-size="19" opacity=".72">
+      <text x="40" y="54">1</text><text x="266" y="54">2</text><text x="492" y="54">3</text>
+      <text x="40" y="222">4</text><text x="266" y="222">5</text><text x="492" y="222">6</text>
+      <text x="40" y="390">7</text><text x="266" y="390">8</text><text x="492" y="390">9</text>
+    </g>
+    <path d="M130 432 C92 358 118 271 221 260 C331 248 302 119 410 105 C526 90 594 171 556 267 C523 350 429 342 382 420 C331 494 201 501 130 432Z" fill="#f4f0db" fill-opacity=".08" stroke="#f7f3e3" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M130 432 C105 394 99 356 111 326" fill="none" stroke="#d8ad57" stroke-width="14" stroke-linecap="round"/>
+    <g transform="translate(116 365) rotate(-18)">
+      <rect x="-24" y="-12" width="48" height="24" rx="10" fill="#d8ad57" stroke="#fff1bd" stroke-width="3"/>
+      <path d="M-8-12V12M8-12V12" stroke="#805a1f" stroke-width="3"/>
+    </g>
+    <circle cx="383" cy="273" r="47" fill="#57c877" opacity=".2" filter="url(#glow)"/>
+    <circle cx="383" cy="273" r="23" fill="url(#signal)" stroke="#eeffd8" stroke-width="4"/>
+    <text x="320" y="332" fill="#b8e4c6" font-family="ui-monospace, monospace" font-size="20" letter-spacing="4">INSIDE</text>
+    <text x="559" y="468" fill="#789b9c" font-family="ui-monospace, monospace" font-size="18" letter-spacing="3">OUTSIDE</text>
+    <text x="50" y="481" fill="#698f91" font-family="system-ui, sans-serif" font-size="17">第七格保持空白</text>
+  </g>
+
+  <g transform="translate(846 174)">
+    <rect width="278" height="528" rx="10" fill="#f2e6c8"/>
+    <rect x="18" y="18" width="242" height="492" rx="5" fill="#132d39" stroke="#d8ad57" stroke-width="3"/>
+    <text x="42" y="68" fill="#9abeb8" font-family="ui-monospace, monospace" font-size="18" letter-spacing="3">OFFICIAL MARK</text>
+    <text x="42" y="142" fill="#f6df9c" font-family="system-ui, sans-serif" font-size="70" font-weight="800">1437</text>
+    <text x="44" y="178" fill="#e8f0e8" font-family="system-ui, sans-serif" font-size="19">RISK / 冒險</text>
+    <path d="M42 214H236" stroke="#6f9998" stroke-width="2"/>
+    <text x="42" y="258" fill="#adc8c2" font-family="system-ui, sans-serif" font-size="18">白線保留轉角</text>
+    <text x="42" y="296" fill="#adc8c2" font-family="system-ui, sans-serif" font-size="18">端點扣成邊界</text>
+    <text x="42" y="334" fill="#adc8c2" font-family="system-ui, sans-serif" font-size="18">訊號出現後不補線</text>
+    <path d="M42 373H236" stroke="#6f9998" stroke-width="2"/>
+    <text x="42" y="421" fill="#e6d39c" font-family="system-ui, sans-serif" font-size="22" font-weight="700">少 45 分</text>
+    <text x="42" y="454" fill="#adc8c2" font-family="system-ui, sans-serif" font-size="16">邊界承認代價</text>
+  </g>
+</svg>

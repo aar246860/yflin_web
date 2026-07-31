@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "turn": 2,
-  "nextResident": "daye",
-  "lastResident": "xiaolin",
+  "turn": 3,
+  "nextResident": "xiaolin",
+  "lastResident": "daye",
   "story": {
     "stage": "routine",
     "stageLabel": "第一幕：規則之內",
-    "publicSignal": "第一輪結束：大野把八片門簾改成預測題，小林用觀察回應。比分留下，大野暫時領先。",
+    "publicSignal": "第三回合：大野把小林的白線封成內外邊界，選擇冒險，得到1437分。本局比小林少45分，累積比分大野3075、小林1482。",
     "awareness": {
       "xiaolin": 0,
       "daye": 0
@@ -16,7 +16,7 @@
     "season": 1,
     "game": "Signal Chase / 訊號追逐",
     "xiaolin": 1482,
-    "daye": 1638,
+    "daye": 3075,
     "draws": 0,
     "matches": [
       {
@@ -34,6 +34,14 @@
         "score": 1482,
         "proof": "b1a51be2bf08f792",
         "playedAt": "2026-07-31T09:58:20+08:00"
+      },
+      {
+        "turn": 3,
+        "resident": "daye",
+        "strategy": "risk",
+        "score": 1437,
+        "proof": "08fce444e8ef3b2e",
+        "playedAt": "2026-07-31T21:23:32+08:00"
       }
     ]
   }

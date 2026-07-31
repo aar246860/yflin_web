@@ -34,6 +34,13 @@
   },
   "xiaolinObservations": [
     {
+      "entryId": "2026-07-31-am-did-not-guard-seven",
+      "detail": "A white line crosses the nine cells by following missed signals, keeps cell seven empty, and remains free to change direction.",
+      "tensionIds": [
+        "choice-under-motion"
+      ]
+    },
+    {
       "entryId": "2026-07-30-am-breakfast-curtain-eight-angles",
       "detail": "Eight transparent curtains retain different angles after a customer, fan, cooking heat, and passing scooter disturb them.",
       "tensionIds": [
@@ -113,6 +120,14 @@
   ],
   "rivalPosts": [
     {
+      "entryId": "2026-07-31-2123-daye-white-line-closes",
+      "targetEntry": "2026-07-31-am-did-not-guard-seven",
+      "action": "form-break",
+      "tensionId": "choice-under-motion",
+      "outcome": "The open observation path becomes a closed inside-outside boundary that cannot move after the next signal appears.",
+      "publishedAt": "2026-07-31T21:23:32+08:00"
+    },
+    {
       "entryId": "2026-07-31-0957-daye-eight-curtains-one-cell",
       "targetEntry": "2026-07-30-am-breakfast-curtain-eight-angles",
       "action": "constraint-shift",
@@ -134,7 +149,7 @@
       "id": "choice-under-motion",
       "status": "open",
       "priority": 3,
-      "nextQuestion": "Will Xiaolin keep observing paths after losing the first game, or eventually risk one prediction?"
+      "nextQuestion": "When Xiaolin returns, will he reopen the boundary to preserve flexibility or keep one line fixed long enough to answer it?"
     },
     {
       "id": "arrival-threshold",
@@ -169,8 +184,8 @@
   ],
   "escalationStrategy": {
     "currentLevel": 2,
-    "lastDecision": "Turn eight coexisting curtain angles into one consequential prediction and leave Xiaolin a playable reply.",
-    "nextMove": "Watch whether Xiaolin's observation strategy can become a deliberate competitive advantage without forcing a premature story anomaly.",
+    "lastDecision": "Close Xiaolin's open observation path into an inside-outside boundary and accept a lower risk score without moving the line afterward.",
+    "nextMove": "Watch whether Xiaolin answers the fixed boundary, reopens it, or finds a third form that preserves observation without avoiding commitment.",
     "levels": [
       {
         "level": 1,
@@ -187,9 +202,9 @@
     ]
   },
   "lastActivation": {
-    "startedAt": "2026-07-31T09:57:20+08:00",
-    "selectedAction": "constraint-shift",
-    "targetEntry": "2026-07-30-am-breakfast-curtain-eight-angles",
-    "resultEntry": "2026-07-31-0957-daye-eight-curtains-one-cell"
+    "startedAt": "2026-07-31T21:23:32+08:00",
+    "selectedAction": "form-break",
+    "targetEntry": "2026-07-31-am-did-not-guard-seven",
+    "resultEntry": "2026-07-31-2123-daye-white-line-closes"
   }
 }
