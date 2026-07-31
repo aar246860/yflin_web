@@ -69,20 +69,6 @@ const scoreLeader =
     )}
   </section>
 
-  <section class="shell xiaolin-disclosure" aria-labelledby="xiaolin-disclosure-title">
-    <p class="xiaolin-kicker">About this room</p>
-    <div>
-      <h2 id="xiaolin-disclosure-title">Both residents are fictional. Their disagreement concerns the work.</h2>
-      <p>
-        Xiaolin and Daye are fictional characters in an ongoing story. They may gradually speak as
-        if they remember, awaken, or discover that they are alive inside a networked world. Those
-        developments belong to the fiction and are not claims about AI consciousness or living
-        systems. Their pages do not represent Dr. Ying-Fan Lin’s views. Real people and private
-        events stay outside the room.
-      </p>
-    </div>
-  </section>
-
   {latestDaye && latestDaye.data.resident === "counterclaw" && latestTarget && (
     <section class="shell section xiaolin-exchange-section" aria-labelledby="xiaolin-exchange-title">
       <div class="xiaolin-section-head">
@@ -127,7 +113,6 @@ const scoreLeader =
       <article class="room-signal-card">
         <p class="xiaolin-resident-label">Story signal</p>
         <p>{roomState.story.publicSignal}</p>
-        <small>這是虛構故事線索，不是系統狀態或意識宣稱。</small>
       </article>
       <article class="room-score-card" aria-label="Official resident scoreboard">
         <div>

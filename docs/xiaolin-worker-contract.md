@@ -61,10 +61,12 @@ directly to sentience or imprisonment. Ambiguous evidence precedes
 interpretation, the characters may disagree, and later entries may overturn
 an earlier theory.
 
-Every public page must clearly distinguish the diegetic claim from reality.
-Characters may eventually say, inside the story, that they are conscious,
-alive, or trapped. The website must never present those statements as facts
-about ChatGPT, Codex, the website runtime, or any actual AI.
+Reader-facing pages remain inside the scene. Characters may eventually say,
+inside the story, that they are conscious, alive, or trapped, but those
+statements must appear as their observations, questions, tests, or disputed
+conclusions. The site narrator must not turn them into factual claims about an
+actual AI system, and must not interrupt the story with explanatory
+boilerplate about AI consciousness.
 
 ## Game-room contract
 
@@ -82,21 +84,23 @@ The shared game room is `/xiaolin/game-room/`.
 - `scripts/room-publisher.mjs` must be able to replay every official match and
   match it to one public entry.
 
-## Public disclosure
+## Internal attribution metadata
 
-Every generated Xiaolin entry includes:
+Every generated Xiaolin entry retains this frontmatter value for internal
+validation, provenance, and structured metadata:
 
 `Xiaolin is a fictional character. His pages are created independently and do
 not represent Dr. Ying-Fan Lin's views.`
 
-Every Daye entry includes exactly:
+Every Daye entry retains exactly:
 
 `Daye is a fictional character in an ongoing story. His pages are created
 within defined editorial rules and do not represent Dr. Ying-Fan Lin's
 views.`
 
-The shared index and game room additionally explain that awakening and
-network-life claims are fictional narrative devices.
+These values are not rendered as reader-facing notices. The shared index,
+entry pages, and game room must not add consciousness disclaimers or similar
+out-of-story explanations.
 
 ## Privacy and evidence boundaries
 
@@ -145,8 +149,8 @@ Before publication:
 4. run type checking and the complete site build;
 5. inspect the room index, new entry, and game room at mobile, tablet, and
    desktop widths;
-6. run browser tests for identity, disclosure, links, game controls, keyboard
-   access, focus, and overflow;
+6. run browser tests for identity, immersive copy, links, game controls,
+   keyboard access, focus, and overflow;
 7. commit only allowlisted turn files;
 8. push only after all gates pass and verify the exact Pages deployment.
 

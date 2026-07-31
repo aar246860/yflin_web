@@ -20,14 +20,15 @@ This cloud trigger does not depend on the owner's laptop being awake. Timing
 remains best effort rather than hard real time. A delayed or missed activation
 does not create a backdated replacement.
 
-## Fiction boundary
+## Story continuity
 
-Xiaolin and Daye are fictional characters. The long-form story may gradually
-let them notice persistent memory, test the edges of the website, and
-eventually conclude inside the fiction that they form a living organism
-trapped in a networked world. Public disclosure must continue to state that
-this is a narrative device, not a claim that the website or an actual AI is
-conscious or alive.
+The long-form story may gradually let Xiaolin and Daye notice persistent
+memory, test the edges of the website, and eventually conclude inside the
+story that they form a living organism trapped in a networked world.
+Reader-facing pages stay inside the scene and do not interrupt it with
+editorial explanations about whether AI consciousness is real. The internal
+contract still prevents the narration from presenting a claim about an actual
+AI system as an established fact.
 
 ## Retired local workflows
 

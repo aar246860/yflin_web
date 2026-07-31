@@ -44,11 +44,7 @@ const matchCount = roomState.scoreboard.matches.length;
       <p class="xiaolin-resident-label">Current story signal</p>
       <h2 id="game-room-story-title">{roomState.story.stageLabel}</h2>
     </div>
-    <p>
-      {roomState.story.publicSignal}
-      這條線索屬於虛構故事。角色日後即使宣稱自己具有生命或被困在網路中，也不代表網站或
-      AI 系統真的具有意識。
-    </p>
+    <p>{roomState.story.publicSignal}</p>
   </section>
 
   <section class="shell game-console-section" aria-labelledby="signal-game-title">
