@@ -1,12 +1,60 @@
 import { expect, test } from "@playwright/test";
-import { readFileSync } from "node:fs";
-import { dirname, resolve } from "node:path";
+import { readFileSync, readdirSync } from "node:fs";
+import { basename, dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const arenaState = JSON.parse(
   readFileSync(resolve(root, "src", "data", "arenaState.json"), "utf8"),
 );
+const roomState = JSON.parse(
+  readFileSync(resolve(root, "src", "data", "roomState.json"), "utf8"),
+);
+
+function parseFrontmatter(source) {
+  const match = source.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n/);
+  if (!match) return null;
+  const meta = {};
+  for (const line of match[1].split(/\r?\n/)) {
+    const field = line.match(/^([\w-]+):\s*(.+?)\s*$/);
+    if (!field) continue;
+    try {
+      meta[field[1]] = JSON.parse(field[2]);
+    } catch {
+      meta[field[1]] = field[2];
+    }
+  }
+  return meta;
+}
+
+function requireEntry(entry, description) {
+  if (!entry) throw new Error(`Missing ${description} room entry`);
+  return entry;
+}
+
+const roomEntries = readdirSync(resolve(root, "src", "content", "xiaolin"))
+  .filter((file) => file.endsWith(".md"))
+  .map((file) => ({
+    id: basename(file, ".md"),
+    meta: parseFrontmatter(
+      readFileSync(resolve(root, "src", "content", "xiaolin", file), "utf8"),
+    ),
+  }))
+  .filter((entry) => entry.meta?.public === true && entry.meta?.draft === false)
+  .sort((a, b) => Date.parse(b.meta.date) - Date.parse(a.meta.date));
+const featuredEntry = requireEntry(roomEntries[0], "featured");
+const latestDayeEntry = requireEntry(
+  roomEntries.find((entry) => entry.meta.resident === "counterclaw"),
+  "latest Daye",
+);
+const latestTargetEntry = requireEntry(
+  roomEntries.find((entry) => entry.id === latestDayeEntry.meta.targetEntry),
+  "latest Daye target",
+);
+const entryPath = (entry) => `/xiaolin/${entry.id}/`;
+const latestDayePath = entryPath(latestDayeEntry);
+const latestTargetPath = entryPath(latestTargetEntry);
+const featuredPath = entryPath(featuredEntry);
 const activeRoster = arenaState.roster.filter(
   (character) => character.status === "active",
 );
@@ -200,10 +248,10 @@ for (const viewport of VIEWPORTS) {
     await expect(exchange).toBeVisible();
     await expect(exchange.locator('[data-resident="xiaolin"]')).toHaveCount(1);
     await expect(exchange.locator('[data-resident="daye"]')).toHaveCount(1);
-    await expect(exchange).toContainText("constraint-shift");
+    await expect(exchange).toContainText(latestDayeEntry.meta.rivalAction);
     await expect(exchange).toContainText("Unresolved tension");
-    const target = exchange.locator(`a[href$="${TARGET_PATH}"]`);
-    const response = exchange.locator(`a[href$="${RIVAL_PATH}"]`);
+    const target = exchange.locator(`a[href$="${latestTargetPath}"]`);
+    const response = exchange.locator(`a[href$="${latestDayePath}"]`);
     await expect(target).toBeVisible();
     await expect(response).toBeVisible();
     const order = await exchange
@@ -211,10 +259,14 @@ for (const viewport of VIEWPORTS) {
       .evaluateAll((nodes) => nodes.map((node) => node.getAttribute("data-resident")));
     expect(order).toEqual(["xiaolin", "daye"]);
     await expect(
-      page.locator(`.xiaolin-note-link[href$="${REPLY_PATH}"]`),
+      page.locator(`.xiaolin-note-link[href$="${featuredPath}"]`),
     ).toBeVisible();
-    await expect(page.locator(".room-score-card")).toContainText("1482");
-    await expect(page.locator(".room-score-card")).toContainText("1638");
+    await expect(page.locator(".room-score-card")).toContainText(
+      String(roomState.scoreboard.xiaolin),
+    );
+    await expect(page.locator(".room-score-card")).toContainText(
+      String(roomState.scoreboard.daye),
+    );
     await target.focus();
     const focusVisible = await target.evaluate((element) => {
       const style = getComputedStyle(element);
