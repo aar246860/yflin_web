@@ -17,7 +17,7 @@ const copyState = () => structuredClone(state);
 test("the checked-in arena state has five complete new challengers", () => {
   const result = runArenaPublisher(root);
   assert.equal(result.status, "passed");
-  assert.equal(result.checked, 7);
+  assert.equal(result.checked, state.roster.length);
 
   const currentEntrants = state.roster.filter(
     (character) =>
@@ -25,34 +25,39 @@ test("the checked-in arena state has five complete new challengers", () => {
       character.enteredOn === state.currentDay &&
       character.status === "active",
   );
-  assert.equal(currentEntrants.length, 5);
+  assert.equal(currentEntrants.length, state.dailyMinimum);
   assert.deepEqual(
     currentEntrants.map((character) => character.portrait.atlasPanel),
-    [0, 1, 2, 3, 4],
+    Array.from({ length: state.dailyMinimum }, (_, index) => index),
   );
 });
 
 test("the shared free-action clock is persistent and matches its latest event", () => {
   const result = runArenaPublisher(root);
   assert.equal(result.status, "passed");
-  assert.equal(state.freeActionClock.turn, 1);
-  assert.equal(state.freeActionClock.lastActionId, "free-action-001");
-  assert.deepEqual(state.freeActionClock.lastActorIds, [
-    "tide-eye",
-    "heatgrain",
-  ]);
-  assert.ok(
-    state.freeActionClock.completedSlots.includes("2026-07-31-afternoon"),
+  const freeActionEvents = state.events.filter(
+    (event) => event.type === "free-action",
   );
-  const latest = state.events.at(-1);
+  const latest = freeActionEvents.at(-1);
+
+  assert.equal(state.freeActionClock.turn, freeActionEvents.length);
+  assert.equal(state.freeActionClock.lastActionId, latest.id);
+  assert.equal(state.freeActionClock.lastActionOn, latest.date);
+  assert.deepEqual(state.freeActionClock.lastActorIds, latest.characterIds);
+  assert.equal(
+    state.freeActionClock.completedSlots.length,
+    freeActionEvents.length,
+  );
   assert.equal(latest.type, "free-action");
-  assert.equal(latest.actionKind, "challenge-opened");
-  assert.equal(latest.sequence, 1);
+  assert.match(latest.id, /^free-action-\d{3}$/);
+  assert.equal(latest.sequence, freeActionEvents.length);
 });
 
 test("a duplicated free-action slot is rejected", () => {
   const invalid = copyState();
-  invalid.freeActionClock.completedSlots.push("2026-07-31-afternoon");
+  invalid.freeActionClock.completedSlots.push(
+    invalid.freeActionClock.completedSlots[0],
+  );
   const errors = validateArenaState(invalid, { root });
   assert.ok(
     errors.some((error) => error.includes("unique Taipei slots")),

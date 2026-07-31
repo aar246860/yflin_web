@@ -1,4 +1,45 @@
 import { expect, test } from "@playwright/test";
+import { readFileSync } from "node:fs";
+import { dirname, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
+
+const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
+const arenaState = JSON.parse(
+  readFileSync(resolve(root, "src", "data", "arenaState.json"), "utf8"),
+);
+const activeRoster = arenaState.roster.filter(
+  (character) => character.status === "active",
+);
+const todaysEntrants = activeRoster.filter(
+  (character) =>
+    character.role === "challenger" &&
+    character.enteredOn === arenaState.currentDay,
+);
+const atlasPortraitCount = activeRoster.filter((character) =>
+  Number.isInteger(character.portrait.atlasPanel),
+).length;
+const latestFreeAction = arenaState.events
+  .filter((event) => event.type === "free-action")
+  .at(-1);
+const latestSignal = `第 ${String(latestFreeAction.sequence).padStart(3, "0")} 響`;
+const latestActorNames = latestFreeAction.characterIds
+  .map(
+    (id) =>
+      activeRoster.find((character) => character.id === id)?.nameZh ?? id,
+  )
+  .join(" × ");
+const focusedIds = new Set(arenaState.freeActionClock.lastActorIds);
+const nonFocusedCount = activeRoster.filter(
+  (character) => !focusedIds.has(character.id),
+).length;
+const restingPattern = ["wander", "rest", "watch", "wander", "rest"];
+const expectedRestCount = Array.from(
+  { length: nonFocusedCount },
+  (_, index) => restingPattern[index % restingPattern.length],
+).filter((behavior) => behavior === "rest").length;
+const openChallengeCount = arenaState.challenges.filter(
+  (challenge) => challenge.status === "open",
+).length;
 
 const RIVAL_PATH =
   "/xiaolin/2026-07-31-0957-daye-eight-curtains-one-cell/";
@@ -23,7 +64,9 @@ async function expectHealthyPage(page) {
     .toBe(true);
   const images = page.locator("main img");
   for (let index = 0; index < (await images.count()); index += 1) {
-    await images.nth(index).scrollIntoViewIfNeeded();
+    await images.nth(index).evaluate((image) =>
+      image.scrollIntoView({ behavior: "instant", block: "center" }),
+    );
     await expect
       .poll(() =>
         images.nth(index).evaluate((image) => image.complete && image.naturalWidth > 0),
@@ -45,7 +88,6 @@ async function expectImmersiveCopy(page) {
     "缺少任何一項",
     "公開入侵期",
     "目前不淘汰",
-    "2026-07-31-afternoon",
     "challenge-opened",
     "batch-entered",
     "角色推論，不是人物引言",
@@ -54,6 +96,9 @@ async function expectImmersiveCopy(page) {
   for (const copy of forbiddenCopy) {
     expect(visibleText).not.toContain(copy);
   }
+  expect(visibleText).not.toMatch(
+    /\d{4}-\d{2}-\d{2}-(morning|afternoon|evening)/,
+  );
 }
 
 for (const viewport of VIEWPORTS) {
@@ -69,40 +114,56 @@ for (const viewport of VIEWPORTS) {
     );
     await expect(
       page.locator('.nav-links a[href$="/xiaolin/"]'),
-    ).toHaveText("AI 入侵中 · 7");
+    ).toHaveText(`AI 入侵中 · ${activeRoster.length}`);
     await expect(
       page.locator('.site-footer a[href$="/xiaolin/"]'),
-    ).toHaveText("AI 入侵中 · 7");
+    ).toHaveText(`AI 入侵中 · ${activeRoster.length}`);
     await expect(page.locator(".xiaolin-kicker")).toContainText(
       "小林房間 / AI 天下武鬥大會",
     );
     await expect(page.getByRole("heading", { level: 1 })).toContainText(
-      "7 minds now",
+      `${activeRoster.length} minds now`,
     );
     await expect(page.locator(".arena-counts")).toContainText("房內 AI");
-    await expect(page.locator(".arena-counts")).toContainText("7");
-    await expect(page.locator(".arena-counts")).toContainText("+5");
+    await expect(page.locator(".arena-counts")).toContainText(
+      String(activeRoster.length),
+    );
+    await expect(page.locator(".arena-counts")).toContainText(
+      `+${todaysEntrants.length}`,
+    );
     const residentStage = page.locator("[data-resident-stage]");
     await expect(residentStage).toBeVisible();
-    await expect(residentStage.locator("[data-resident-id]")).toHaveCount(7);
+    await expect(residentStage.locator("[data-resident-id]")).toHaveCount(
+      activeRoster.length,
+    );
+    for (const actorId of arenaState.freeActionClock.lastActorIds) {
+      await expect(
+        residentStage.locator(
+          `[data-resident-id="${actorId}"][data-behavior="focus"]`,
+        ),
+      ).toHaveCount(1);
+    }
     await expect(
-      residentStage.locator('[data-resident-id="tide-eye"][data-behavior="focus"]'),
-    ).toHaveCount(1);
-    await expect(
-      residentStage.locator('[data-resident-id="heatgrain"][data-behavior="focus"]'),
-    ).toHaveCount(1);
+      residentStage.locator('[data-behavior="focus"]'),
+    ).toHaveCount(arenaState.freeActionClock.lastActorIds.length);
     await expect(
       residentStage.locator('[data-behavior="rest"][data-state="sleep"]'),
-    ).toHaveCount(2);
+    ).toHaveCount(expectedRestCount);
     await expect(
       residentStage.locator(".arena-resident-head.is-atlas"),
-    ).toHaveCount(5);
+    ).toHaveCount(atlasPortraitCount);
     await expect(
       residentStage.locator("button, input, textarea, form"),
     ).toHaveCount(0);
-    await expect(page.locator(".arena-character-card")).toHaveCount(7);
-    await expect(page.locator(".arena-character-card.is-new")).toHaveCount(5);
-    await expect(page.locator(".arena-character-portrait.is-atlas")).toHaveCount(5);
+    await expect(page.locator(".arena-character-card")).toHaveCount(
+      activeRoster.length,
+    );
+    await expect(page.locator(".arena-character-card.is-new")).toHaveCount(
+      todaysEntrants.length,
+    );
+    await expect(
+      page.locator(".arena-character-portrait.is-atlas"),
+    ).toHaveCount(atlasPortraitCount);
     await expect(
       page.locator(
         '[data-character="xiaolin"] img[src$="2026-07-31-xiaolin-roster-portrait-v2.webp"]',
@@ -117,15 +178,24 @@ for (const viewport of VIEWPORTS) {
       page.getByRole("heading", { name: "先到的是相位，還是證據？" }),
     ).toBeVisible();
     await expect(page.locator(".arena-action-section")).toContainText(
-      "第 001 響",
+      latestSignal,
     );
-    await expect(page.locator(".arena-action-section")).toContainText("挑戰揭幕");
+    await expect(page.locator(".arena-action-section")).toContainText(
+      latestFreeAction.line,
+    );
     await expect(page.locator(".arena-action-section")).toContainText("五人入場");
     await expect(page.locator(".arena-action-section")).toContainText(
-      "潮目 × 熱穗",
+      latestActorNames,
     );
-    await expect(page.locator(".arena-counts")).toContainText("2");
-    await expect(page.getByText("他拼出的林穎凡")).toHaveCount(7);
+    await expect(
+      page.locator(".arena-counts article", { hasText: "未決挑戰" }).locator("strong"),
+    ).toHaveText(String(openChallengeCount));
+    await expect(
+      page.locator(".arena-counts article", { hasText: "鐘響紀錄" }).locator("strong"),
+    ).toHaveText(String(arenaState.freeActionClock.turn));
+    await expect(page.getByText("他拼出的林穎凡")).toHaveCount(
+      activeRoster.length,
+    );
     const exchange = page.locator("[data-exchange]");
     await expect(exchange).toBeVisible();
     await expect(exchange.locator('[data-resident="xiaolin"]')).toHaveCount(1);
@@ -231,7 +301,9 @@ test("reduced motion disables the room pulse", async ({ page }) => {
   await expect
     .poll(() =>
       page
-        .locator('[data-resident-id="tide-eye"] .arena-resident-figure')
+        .locator(
+          `[data-resident-id="${activeRoster[0].id}"] .arena-resident-figure`,
+        )
         .evaluate((node) => getComputedStyle(node).animationName),
     )
     .toBe("none");
