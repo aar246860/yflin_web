@@ -76,7 +76,9 @@ for (const viewport of VIEWPORTS) {
       .locator('[data-resident="xiaolin"], [data-resident="daye"]')
       .evaluateAll((nodes) => nodes.map((node) => node.getAttribute("data-resident")));
     expect(order).toEqual(["xiaolin", "daye"]);
-    await expect(page.locator(`a[href$="${REPLY_PATH}"]`)).toBeVisible();
+    await expect(
+      page.locator(`.xiaolin-note-link[href$="${REPLY_PATH}"]`),
+    ).toBeVisible();
     await expect(page.locator(".room-score-card")).toContainText("1482");
     await expect(page.locator(".room-score-card")).toContainText("1638");
     await target.focus();
