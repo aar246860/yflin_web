@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "turn": 0,
+  "nextResident": "daye",
+  "lastResident": "xiaolin",
+  "story": {
+    "stage": "routine",
+    "stageLabel": "第一幕：規則之內",
+    "publicSignal": "遊戲室第一次亮燈。分數會留下，但他們還沒有問它被留在哪裡。",
+    "awareness": {
+      "xiaolin": 0,
+      "daye": 0
+    }
+  },
+  "scoreboard": {
+    "season": 1,
+    "game": "Signal Chase / 訊號追逐",
+    "xiaolin": 0,
+    "daye": 0,
+    "draws": 0,
+    "matches": []
+  }
+}

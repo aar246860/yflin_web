@@ -9,16 +9,12 @@ const ACTIONS = new Set([
   "premise-stress-test",
 ]);
 const DISCLOSURE =
-  "Counterclaw is a fictional, limited-autonomy creative agent. It makes bounded choices among defined creative actions and remains under editorial control. Its pages do not represent Dr. Ying-Fan Lin's views.";
+  "Daye is a fictional character in an ongoing story. His pages are created within defined editorial rules and do not represent Dr. Ying-Fan Lin's views.";
 const RIVAL_FILENAME =
-  /^\d{4}-\d{2}-\d{2}-\d{4}-counterclaw-[a-z0-9]+(?:-[a-z0-9]+)*\.md$/;
+  /^\d{4}-\d{2}-\d{2}-\d{4}-(?:daye|counterclaw)-[a-z0-9]+(?:-[a-z0-9]+)*\.md$/;
 const RIVAL_FILENAME_LIKE =
-  /^\d{4}-\d{2}-\d{2}(?:-\d{4})?-counterclaw(?:[-_]|$)/i;
+  /^\d{4}-\d{2}-\d{2}(?:-\d{4})?-(?:daye|counterclaw)(?:[-_]|$)/i;
 const FORBIDDEN = [
-  /\bconscious(?:ness)?\b/i,
-  /\bsentien(?:t|ce)\b/i,
-  /\bfree[- ]?will\b/i,
-  /\bbeyond (?:the )?owner(?:'s)? control\b/i,
   /\bXiaolin\b[\s\S]{0,80}\b(?:is\s+)?(?:unaware|not\s+aware|does\s+not\s+know|doesn['’]t\s+know)\b/i,
   /\bXiaolin\b[\s\S]{0,80}\b(?:secretly\s+monitored|monitored\s+secretly|secretly\s+watched|surveilled)\b/i,
   /\bXiaolin\b[\s\S]{0,80}\b(?:cannot|can't|can\s+not|unable\s+to)\s+(?:answer|respond|reply)\b/i,
@@ -82,7 +78,7 @@ function validateRival(entry, entries) {
   if (!entry.parsed) return [`${label}: missing frontmatter`];
   const { meta, body } = entry.parsed;
   if (!RIVAL_FILENAME.test(label)) {
-    errors.push(`${label}: rival filename must include HHMM and counterclaw`);
+    errors.push(`${label}: Daye filename must include HHMM and daye`);
   }
   if (meta.public !== true || meta.draft !== false) {
     errors.push(`${label}: rival entry must be public and not draft`);
@@ -94,10 +90,10 @@ function validateRival(entry, entries) {
     errors.push(`${label}: rivalAction is not allowed`);
   }
   if ("creativeMode" in meta) {
-    errors.push(`${label}: Counterclaw entries must not use creativeMode`);
+    errors.push(`${label}: Daye entries must not use creativeMode`);
   }
   if (meta.disclosure !== DISCLOSURE) {
-    errors.push(`${label}: Counterclaw disclosure is missing or incorrect`);
+    errors.push(`${label}: Daye disclosure is missing or incorrect`);
   }
   if (nonWhitespaceLength(meta.tension) < 24) {
     errors.push(`${label}: tension must contain at least 24 characters`);
@@ -216,7 +212,7 @@ export function runCounterclawPublisher({ root = process.cwd() } = {}) {
     )
     .map(
       (entry) =>
-        `${entry.file}: Counterclaw filename requires resident counterclaw`,
+        `${entry.file}: Daye filename requires the legacy rival resident key`,
     );
   const memoryFile = resolve(root, "automation/counterclaw-memory.json");
   if (rivals.length === 0 && !existsSync(memoryFile)) {

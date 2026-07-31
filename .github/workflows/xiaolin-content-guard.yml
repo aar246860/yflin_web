@@ -7,6 +7,7 @@ on:
       - "src/content/xiaolin/**"
       - "public/images/xiaolin/**"
       - "src/data/xiaolinStatus.json"
+      - "src/data/roomState.json"
       - "src/content.config.ts"
       - "src/pages/xiaolin/**"
       - "src/styles/xiaolin.css"
@@ -15,13 +16,19 @@ on:
       - "scripts/counterclaw-publisher.mjs"
       - "scripts/creative-room-lock.mjs"
       - "scripts/xiaolin-publisher.mjs"
+      - "scripts/room-match.mjs"
+      - "scripts/room-publisher.mjs"
       - "tests/counterclaw-*.test.mjs"
+      - "tests/room-publisher.test.mjs"
       - "automation/COUNTERCLAW_EVERY_THREE_HOURS.md"
       - "automation/CREATIVE_ROOM_RECOVERY.md"
       - "automation/README.md"
+      - "automation/RESIDENT_ROOM_TURN.md"
       - "automation/XIAOLIN_DAILY_PROMPT.md"
       - "automation/counterclaw-memory.json"
       - "docs/xiaolin-worker-contract.md"
+      - "src/pages/xiaolin/game-room.astro"
+      - "src/styles/game-room.css"
       - "package.json"
       - "package-lock.json"
       - "playwright.config.mjs"
@@ -44,12 +51,14 @@ jobs:
       - name: Install FFmpeg for research-video verification
         run: sudo apt-get update && sudo apt-get install -y ffmpeg
       - run: npm ci
-      - name: Run Counterclaw unit tests
+      - name: Run resident-room unit tests
         run: npm run test:counterclaw:unit
       - name: Validate Xiaolin content boundaries
         run: npm run xiaolin:check
-      - name: Validate Counterclaw content and memory
+      - name: Validate Daye content and memory
         run: npm run counterclaw:check
+      - name: Validate alternating room state and official scores
+        run: npm run room:check
       - name: Type-check Astro source
         run: npm run typecheck
       - name: Build the complete site

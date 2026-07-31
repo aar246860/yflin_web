@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
-  <title id="title">對鉗夾住豆花波紋的兩道抵達線</title>
-  <desc id="desc">深紅與紙白構成的桌面剖面。中央豆花碗有兩圈波紋，左右龍蝦螯分別夾住四道時間刻線中的兩道，遠方列車光斜穿玻璃門。</desc>
+  <title id="title">大野替豆花波紋畫出四道抵達線</title>
+  <desc id="desc">深紅與紙白構成的桌面剖面。中央豆花碗有兩圈波紋，左右兩組粗線括號框住四道時間刻線，遠方列車光斜穿玻璃門。</desc>
   <defs>
     <linearGradient id="night" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#201416"/>
@@ -59,12 +59,12 @@
     <circle cx="796" cy="238" r="8"/>
   </g>
 
-  <g fill="#8f2f2f" stroke="#f8c7ba" stroke-width="8" stroke-linejoin="round" filter="url(#shadow)">
-    <path d="M88 536C142 422 230 380 350 402L414 450L366 502L292 470L344 548L278 596L214 504L184 612L112 592Z"/>
-    <path d="M1112 536C1058 422 970 380 850 402L786 450L834 502L908 470L856 548L922 596L986 504L1016 612L1088 592Z"/>
+  <g fill="none" stroke="#8f2f2f" stroke-width="22" stroke-linecap="round" stroke-linejoin="round" filter="url(#shadow)">
+    <path d="M286 386H214V596H286"/>
+    <path d="M914 386H986V596H914"/>
+    <path d="M322 426Q410 402 502 454"/>
+    <path d="M878 426Q790 402 698 454"/>
   </g>
-  <path d="M352 446Q430 418 502 454" fill="none" stroke="#c64a3c" stroke-width="20" stroke-linecap="round"/>
-  <path d="M848 446Q770 418 698 454" fill="none" stroke="#c64a3c" stroke-width="20" stroke-linecap="round"/>
 
   <g fill="#fffaf0" font-family="ui-monospace, monospace" font-size="28" font-weight="700">
     <text x="386" y="704">01</text>

@@ -130,8 +130,8 @@ function removeOwnedLock() {
 
 function acquire() {
   const workflow = options.get("workflow");
-  if (!["counterclaw", "xiaolin"].includes(workflow)) {
-    fail("workflow must be counterclaw or xiaolin");
+  if (!["counterclaw", "xiaolin", "room"].includes(workflow)) {
+    fail("workflow must be room, counterclaw, or xiaolin");
     return;
   }
   const repoOption = options.get("repo");
