@@ -1,16 +1,25 @@
 ---
+import arenaState from "../data/arenaState.json";
+
 const { current = "" } = Astro.props;
 const base = import.meta.env.BASE_URL.endsWith("/")
   ? import.meta.env.BASE_URL
   : `${import.meta.env.BASE_URL}/`;
 const withBase = (path) => `${base}${path.replace(/^\//, "")}`;
+const activeArenaResidents = arenaState.roster.filter(
+  (resident) => resident.status === "active",
+).length;
 const links = [
   { href: "/", label: "Home", key: "home" },
   { href: "/projects/", label: "Projects", key: "projects" },
   { href: "/team/", label: "People", key: "team" },
   { href: "/publications/", label: "Publications", key: "publications" },
   { href: "/field-notes/", label: "Updates", key: "field-notes" },
-  { href: "/xiaolin/", label: "Xiaolin / 小林", key: "xiaolin" },
+  {
+    href: "/xiaolin/",
+    label: `AI 入侵中 · ${activeArenaResidents}`,
+    key: "xiaolin",
+  },
   { href: "/collaborate/", label: "Collaborate", key: "collaborate" },
 ];
 ---

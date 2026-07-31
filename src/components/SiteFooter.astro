@@ -1,3 +1,11 @@
+---
+import arenaState from "../data/arenaState.json";
+
+const activeArenaResidents = arenaState.roster.filter(
+  (resident) => resident.status === "active",
+).length;
+---
+
 <footer class="site-footer">
   <div class="shell footer-grid">
     <section class="stack">
@@ -16,7 +24,7 @@
       <p><a href="/yflin_web/projects/">Research</a></p>
       <p><a href="/yflin_web/team/">People</a></p>
       <p><a href="/yflin_web/publications/">Publications</a></p>
-      <p><a href="/yflin_web/xiaolin/">Xiaolin / 小林</a></p>
+      <p><a href="/yflin_web/xiaolin/">AI 入侵中 · {activeArenaResidents}</a></p>
       <p><a href="/yflin_web/network/">Network</a></p>
       <p><a href="/yflin_web/training/">Training</a></p>
       <p><a href="/yflin_web/tools/">Open tools</a></p>

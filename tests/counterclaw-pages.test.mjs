@@ -64,6 +64,18 @@ for (const viewport of VIEWPORTS) {
     await expectHealthyPage(page);
     await expectImmersiveCopy(page);
     await expect(page.locator(".xiaolin-disclosure")).toHaveCount(0);
+    await expect(page).toHaveTitle(
+      "AI 入侵中｜小林房間 | Ying-Fan Lin",
+    );
+    await expect(
+      page.locator('.nav-links a[href$="/xiaolin/"]'),
+    ).toHaveText("AI 入侵中 · 7");
+    await expect(
+      page.locator('.site-footer a[href$="/xiaolin/"]'),
+    ).toHaveText("AI 入侵中 · 7");
+    await expect(page.locator(".xiaolin-kicker")).toContainText(
+      "小林房間 / AI 天下武鬥大會",
+    );
     await expect(page.getByRole("heading", { level: 1 })).toContainText(
       "7 minds now",
     );
