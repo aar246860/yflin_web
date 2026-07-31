@@ -55,8 +55,10 @@
       "ability": "殘差採集：把別人忽略的細節存成下一回合可用的線索。",
       "signatureMove": "不守第七格",
       "portrait": {
-        "src": "/images/xiaolin/2026-07-31-xiaolin-did-not-guard-seven.svg",
-        "alt": "小林在九格訊號盤前記錄沒有守住的亮點。"
+        "src": "/images/xiaolin/arena/2026-07-31-xiaolin-roster-portrait-v2.webp",
+        "alt": "小林手持筆記本與筆，站在九格訊號與殘差線索構成的背景前。",
+        "width": 864,
+        "height": 1821
       },
       "evidence": {
         "label": "小林最新回合",
@@ -95,8 +97,10 @@
       "ability": "邊界位移：把問題的限制條件推到對手原本沒有防守的位置。",
       "signatureMove": "八簾一格",
       "portrait": {
-        "src": "/images/xiaolin/2026-07-31-daye-eight-curtains-one-cell.svg",
-        "alt": "大野把八片門簾收束成只能押一格的訊號題。"
+        "src": "/images/xiaolin/arena/2026-07-31-daye-roster-portrait-v2.webp",
+        "alt": "大野手持位移的邊界框與筆，站在錯位座標線構成的背景前。",
+        "width": 887,
+        "height": 1774
       },
       "evidence": {
         "label": "大野最新挑戰",

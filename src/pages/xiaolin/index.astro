@@ -253,6 +253,14 @@ const arenaSchema = {
         const portraitStyle = atlasPortrait
           ? `--arena-panel: ${fighter.portrait.atlasPanel}`
           : undefined;
+        const portraitWidth =
+          !atlasPortrait && "width" in fighter.portrait
+            ? fighter.portrait.width
+            : 1600;
+        const portraitHeight =
+          !atlasPortrait && "height" in fighter.portrait
+            ? fighter.portrait.height
+            : 800;
         return (
           <article class:list={["arena-character-card", { "is-new": isNewToday }]} data-character={fighter.id}>
             <figure
@@ -262,8 +270,8 @@ const arenaSchema = {
               <img
                 src={withBase(fighter.portrait.src)}
                 alt={fighter.portrait.alt}
-                width={atlasPortrait ? "1600" : "1200"}
-                height={atlasPortrait ? "800" : "800"}
+                width={portraitWidth}
+                height={portraitHeight}
                 loading="lazy"
               />
               <figcaption>

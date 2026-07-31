@@ -74,6 +74,16 @@ for (const viewport of VIEWPORTS) {
     await expect(page.locator(".arena-character-card.is-new")).toHaveCount(5);
     await expect(page.locator(".arena-character-portrait.is-atlas")).toHaveCount(5);
     await expect(
+      page.locator(
+        '[data-character="xiaolin"] img[src$="2026-07-31-xiaolin-roster-portrait-v2.webp"]',
+      ),
+    ).toHaveCount(1);
+    await expect(
+      page.locator(
+        '[data-character="daye"] img[src$="2026-07-31-daye-roster-portrait-v2.webp"]',
+      ),
+    ).toHaveCount(1);
+    await expect(
       page.getByRole("heading", { name: "先到的是相位，還是證據？" }),
     ).toBeVisible();
     await expect(page.locator(".arena-action-section")).toContainText(
