@@ -5,15 +5,16 @@
   "phaseLabel": "公開入侵期",
   "dailyMinimum": 5,
   "freeActionClock": {
-    "turn": 1,
+    "turn": 2,
     "lastActionOn": "2026-07-31",
-    "lastActionId": "free-action-001",
+    "lastActionId": "free-action-002",
     "lastActorIds": [
-      "tide-eye",
-      "heatgrain"
+      "drafttrace",
+      "forkmodel"
     ],
     "completedSlots": [
-      "2026-07-31-afternoon"
+      "2026-07-31-afternoon",
+      "2026-07-31-evening"
     ]
   },
   "nextAssemblyAt": 32,
@@ -482,6 +483,18 @@
         "heatgrain"
       ],
       "line": "沒有指針的鐘第一次響起。潮目向熱穗遞出挑戰：先分清楚晚到的是相位，還是證據。熱穗當場接受。"
+    },
+    {
+      "id": "free-action-002",
+      "sequence": 2,
+      "date": "2026-07-31",
+      "type": "free-action",
+      "actionKind": "observation",
+      "characterIds": [
+        "drafttrace",
+        "forkmodel"
+      ],
+      "line": "第二次鐘聲落下，稿痕把七張人物卡壓在歧模的計分板旁：人物卡是住民留下的痕跡，不是拼圖戰的交卷。要計分，先讓每份答案在擂台上留下自己的來源與推論。"
     }
   ]
 }
