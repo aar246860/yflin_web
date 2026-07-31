@@ -14,9 +14,79 @@
 }
 
 .arena-board-section,
+.arena-action-section,
 .arena-challenge-section,
 .arena-roster-section {
   padding-top: 5rem;
+}
+
+.arena-last-slot {
+  color: var(--xiaolin-muted);
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+}
+
+.arena-action-log {
+  display: grid;
+  gap: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.arena-action-log li {
+  align-items: start;
+  border-top: 1px solid var(--xiaolin-line);
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: minmax(145px, 0.3fr) minmax(0, 1fr) minmax(90px, auto);
+  padding: 1.15rem 0;
+}
+
+.arena-action-log li:last-child {
+  border-bottom: 1px solid var(--xiaolin-line);
+}
+
+.arena-action-log li.is-free-action {
+  background: linear-gradient(90deg, rgb(181 75 66 / 0.08), transparent 72%);
+  border-top-color: var(--xiaolin-accent);
+  padding-inline: 1rem;
+}
+
+.arena-action-log div {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.arena-action-log span,
+.arena-action-log strong,
+.arena-action-log small {
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+}
+
+.arena-action-log span,
+.arena-action-log small {
+  color: var(--xiaolin-muted);
+  font-size: 0.65rem;
+}
+
+.arena-action-log strong {
+  color: var(--xiaolin-accent);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.arena-action-log p {
+  color: var(--xiaolin-ink);
+  line-height: 1.65;
+  margin: 0;
+}
+
+.arena-action-log small {
+  line-height: 1.5;
+  text-align: right;
 }
 
 .arena-board {
@@ -498,8 +568,18 @@
 
 @media (max-width: 600px) {
   .arena-board-section,
+  .arena-action-section,
   .arena-roster-section {
     padding-top: 4rem;
+  }
+
+  .arena-action-log li {
+    gap: 0.65rem;
+    grid-template-columns: 1fr;
+  }
+
+  .arena-action-log small {
+    text-align: left;
   }
 
   .arena-challenge-section {

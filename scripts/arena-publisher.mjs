@@ -16,10 +16,22 @@ const EVENT_TYPES = new Set([
   "batch-entered",
   "challenge-opened",
   "challenge-resolved",
+  "free-action",
   "mutation",
   "elimination",
   "return",
 ]);
+const FREE_ACTION_KINDS = new Set([
+  "challenge-opened",
+  "challenge-answered",
+  "challenge-advanced",
+  "challenge-resolved",
+  "mutation",
+  "observation",
+  "strategy-shift",
+]);
+const FREE_ACTION_SLOT_PATTERN =
+  /^\d{4}-\d{2}-\d{2}-(?:morning|afternoon|evening)$/;
 
 function isObject(value) {
   return Boolean(value) && typeof value === "object" && !Array.isArray(value);
@@ -393,6 +405,28 @@ export function validateArenaState(state, { root = process.cwd() } = {}) {
   }
 
   const characterIds = new Set(ids);
+  const freeActionClock = state.freeActionClock;
+  if (
+    !isObject(freeActionClock) ||
+    !isNonNegativeInteger(freeActionClock.turn) ||
+    !isDate(freeActionClock.lastActionOn) ||
+    !hasText(freeActionClock.lastActionId) ||
+    !ID_PATTERN.test(freeActionClock.lastActionId) ||
+    !Array.isArray(freeActionClock.lastActorIds) ||
+    freeActionClock.lastActorIds.length < 1 ||
+    freeActionClock.lastActorIds.some((id) => !characterIds.has(id)) ||
+    !Array.isArray(freeActionClock.completedSlots) ||
+    freeActionClock.completedSlots.some(
+      (slot) => !FREE_ACTION_SLOT_PATTERN.test(slot),
+    ) ||
+    new Set(freeActionClock.completedSlots).size !==
+      freeActionClock.completedSlots.length
+  ) {
+    errors.push(
+      "arenaState.json freeActionClock must contain a valid persistent turn, actors, and unique Taipei slots",
+    );
+  }
+
   if (!Array.isArray(state.challenges) || state.challenges.length < 1) {
     errors.push("arenaState.json challenges must contain at least one challenge");
   } else {
@@ -408,6 +442,7 @@ export function validateArenaState(state, { root = process.cwd() } = {}) {
   if (!Array.isArray(state.events) || state.events.length < 1) {
     errors.push("arenaState.json events must contain at least one event");
   } else {
+    const freeActionEvents = [];
     for (const [index, event] of state.events.entries()) {
       const label = `events[${index}]`;
       if (
@@ -426,6 +461,37 @@ export function validateArenaState(state, { root = process.cwd() } = {}) {
           errors.push(`${label}.characterIds contains unknown character ${String(characterId)}`);
         }
       }
+      if (event.type === "free-action") {
+        freeActionEvents.push(event);
+        if (
+          !hasText(event.id) ||
+          !ID_PATTERN.test(event.id) ||
+          !Number.isInteger(event.sequence) ||
+          event.sequence < 1 ||
+          !FREE_ACTION_KINDS.has(event.actionKind)
+        ) {
+          errors.push(`${label} has invalid free-action metadata`);
+        }
+      }
+    }
+
+    const freeActionIds = freeActionEvents.map((event) => event.id);
+    const freeActionSequences = freeActionEvents.map((event) => event.sequence);
+    if (new Set(freeActionIds).size !== freeActionIds.length) {
+      errors.push("free-action event ids must be unique");
+    }
+    if (new Set(freeActionSequences).size !== freeActionSequences.length) {
+      errors.push("free-action event sequences must be unique");
+    }
+    if (
+      isObject(freeActionClock) &&
+      (freeActionEvents.length !== freeActionClock.turn ||
+        freeActionEvents.at(-1)?.id !== freeActionClock.lastActionId ||
+        freeActionEvents.at(-1)?.date !== freeActionClock.lastActionOn)
+    ) {
+      errors.push(
+        "freeActionClock must match the latest free-action event and total turn count",
+      );
     }
   }
 

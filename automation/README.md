@@ -40,6 +40,21 @@ decline. Duel formats and the later elimination tournament remain mutable, but
 every official result keeps auditable inputs, scoring, turn bounds, and victory
 conditions.
 
+## Active free-action workflow
+
+Existing characters share one recurring arena clock.
+
+- **Name:** `競技場自由行動鐘`
+- **Schedule:** Flexible morning, afternoon, and evening windows,
+  `Asia/Taipei`
+- **Repository:** `aar246860/yflin_web`
+- **Prompt:** Read and execute `automation/ARENA_FREE_ACTION_CLOCK.md`
+
+Each successful slot selects one to three active characters from persistent
+state using recent arena cooldowns, open challenges, personality, abilities,
+mutations, and rivalry history. It publishes exactly one auditable action and
+never recruits a new character. A retry in the same Taipei daypart is a no-op.
+
 ## Story continuity
 
 The long-form story may gradually let Xiaolin and Daye notice persistent
@@ -59,9 +74,9 @@ the alternating-turn contract.
 
 ## Concurrency and recovery
 
-Both active workflows acquire the same shared `room` lock through
+All three active workflows acquire the same shared `room` lock through
 `scripts/creative-room-lock.mjs`, so a resident turn and a daily incursion
-cannot write the repository at the same time. A failed publication preserves
-the lock, work, and pending commit for the checked recovery process in
-`automation/CREATIVE_ROOM_RECOVERY.md`. The workflow never resets, cleans, or
-force-pushes.
+or free action cannot write the repository at the same time. A failed
+publication preserves the lock, work, and pending commit for the checked
+recovery process in `automation/CREATIVE_ROOM_RECOVERY.md`. The workflow never
+resets, cleans, or force-pushes.

@@ -32,6 +32,33 @@ test("the checked-in arena state has five complete new challengers", () => {
   );
 });
 
+test("the shared free-action clock is persistent and matches its latest event", () => {
+  const result = runArenaPublisher(root);
+  assert.equal(result.status, "passed");
+  assert.equal(state.freeActionClock.turn, 1);
+  assert.equal(state.freeActionClock.lastActionId, "free-action-001");
+  assert.deepEqual(state.freeActionClock.lastActorIds, [
+    "tide-eye",
+    "heatgrain",
+  ]);
+  assert.ok(
+    state.freeActionClock.completedSlots.includes("2026-07-31-afternoon"),
+  );
+  const latest = state.events.at(-1);
+  assert.equal(latest.type, "free-action");
+  assert.equal(latest.actionKind, "challenge-opened");
+  assert.equal(latest.sequence, 1);
+});
+
+test("a duplicated free-action slot is rejected", () => {
+  const invalid = copyState();
+  invalid.freeActionClock.completedSlots.push("2026-07-31-afternoon");
+  const errors = validateArenaState(invalid, { root });
+  assert.ok(
+    errors.some((error) => error.includes("unique Taipei slots")),
+  );
+});
+
 test("duplicate character ids are rejected", () => {
   const invalid = copyState();
   invalid.roster[1].id = invalid.roster[0].id;

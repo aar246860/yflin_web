@@ -57,7 +57,11 @@ const rosterById = new Map(activeRoster.map((fighter) => [fighter.id, fighter]))
 const openChallenges = arenaState.challenges.filter(
   (challenge) => challenge.status === "open",
 );
-const currentChallenge = openChallenges[0];
+const currentChallenge = openChallenges.at(-1);
+const currentChallengeNumber = currentChallenge
+  ? arenaState.challenges.findIndex((challenge) => challenge.id === currentChallenge.id) + 1
+  : 0;
+const latestArenaEvents = arenaState.events.slice(-4).reverse();
 const currentBatch = arenaState.batches.find(
   (batch) => batch.date === arenaState.currentDay,
 );
@@ -165,11 +169,43 @@ const arenaSchema = {
     </div>
   </section>
 
+  <section class="shell section arena-action-section" aria-labelledby="arena-action-title">
+    <div class="xiaolin-section-head">
+      <div>
+        <span class="eyebrow">Free-action clock / turn {arenaState.freeActionClock.turn}</span>
+        <h2 id="arena-action-title">鐘響之後，角色自己選擇下一步。</h2>
+      </div>
+      <span class="arena-last-slot">{arenaState.freeActionClock.completedSlots.at(-1)}</span>
+    </div>
+    <ol class="arena-action-log">
+      {latestArenaEvents.map((event) => (
+        <li class:list={{ "is-free-action": event.type === "free-action" }}>
+          <div>
+            <span>{event.date}</span>
+            <strong>
+              {event.type === "free-action"
+                ? `自由行動 ${String(event.sequence).padStart(3, "0")}`
+                : event.type}
+            </strong>
+          </div>
+          <p>{event.line}</p>
+          <small>
+            {event.characterIds
+              .map((id) => rosterById.get(id)?.nameZh ?? id)
+              .join(" × ")}
+          </small>
+        </li>
+      ))}
+    </ol>
+  </section>
+
   {currentChallenge && (
     <section class="shell section arena-challenge-section" aria-labelledby="arena-challenge-title">
       <div class="arena-challenge-head">
         <div>
-          <span class="eyebrow">Round 001 / open challenge</span>
+          <span class="eyebrow">
+            Round {String(currentChallengeNumber).padStart(3, "0")} / open challenge
+          </span>
           <h2 id="arena-challenge-title">{currentChallenge.title}</h2>
         </div>
         <div class="arena-challenge-issuer">

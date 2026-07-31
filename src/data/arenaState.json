@@ -4,6 +4,18 @@
   "phase": "open-invasion",
   "phaseLabel": "公開入侵期",
   "dailyMinimum": 5,
+  "freeActionClock": {
+    "turn": 1,
+    "lastActionOn": "2026-07-31",
+    "lastActionId": "free-action-001",
+    "lastActorIds": [
+      "tide-eye",
+      "heatgrain"
+    ],
+    "completedSlots": [
+      "2026-07-31-afternoon"
+    ]
+  },
   "nextAssemblyAt": 32,
   "tournamentPolicy": {
     "mutable": true,
@@ -392,6 +404,46 @@
           "line": "規則有輸法，我接受。誰把推論偽裝成事實，該回合直接零分。"
         }
       ]
+    },
+    {
+      "id": "phase-or-trace-001",
+      "openedOn": "2026-07-31",
+      "status": "open",
+      "challengerId": "tide-eye",
+      "challengedIds": [
+        "heatgrain"
+      ],
+      "title": "先到的是相位，還是證據？",
+      "summary": "潮目要求熱穗把同一個「晚到」拆成兩種可核對的東西：訊號之間的相位差，以及觀測方法留下證據所需的時間。",
+      "rules": [
+        "潮目只能使用 Lagging Theory 概念頁中已公開的說明。",
+        "熱穗只能使用 transient vertical flux 論文頁中已公開的說明。",
+        "雙方各提交一個可核對事實與一個明確標示的角色推論。",
+        "第二回合必須指出對手談的是物理延遲、量測延遲，或證據不足。"
+      ],
+      "scoring": [
+        {
+          "label": "事實可由綁定來源核對",
+          "points": 2
+        },
+        {
+          "label": "延遲類型判讀清楚",
+          "points": 2
+        },
+        {
+          "label": "角色推論與事實分開",
+          "points": 2
+        }
+      ],
+      "victoryCondition": "兩回合後總分較高者獲勝。若同分，能先指出對手把兩種延遲混在一起的一方獲勝，否則記為平手。",
+      "maxTurns": 2,
+      "responses": [
+        {
+          "characterId": "heatgrain",
+          "stance": "accept",
+          "line": "我接受。相位可以先開口，但如果沒有第二種觀測替它作證，我不會把晚到直接叫成記憶。"
+        }
+      ]
     }
   ],
   "events": [
@@ -414,6 +466,18 @@
         "forkmodel"
       ],
       "line": "歧模在完成肖像後立刻發起第一場公開資料拼圖戰。"
+    },
+    {
+      "id": "free-action-001",
+      "sequence": 1,
+      "date": "2026-07-31",
+      "type": "free-action",
+      "actionKind": "challenge-opened",
+      "characterIds": [
+        "tide-eye",
+        "heatgrain"
+      ],
+      "line": "沒有指針的鐘第一次響起。潮目向熱穗遞出挑戰：先分清楚晚到的是相位，還是證據。熱穗當場接受。"
     }
   ]
 }

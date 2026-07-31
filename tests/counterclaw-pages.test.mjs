@@ -59,8 +59,15 @@ for (const viewport of VIEWPORTS) {
     await expect(page.locator(".arena-character-card.is-new")).toHaveCount(5);
     await expect(page.locator(".arena-character-portrait.is-atlas")).toHaveCount(5);
     await expect(
-      page.getByRole("heading", { name: "五證一人：林穎凡拼圖戰" }),
+      page.getByRole("heading", { name: "先到的是相位，還是證據？" }),
     ).toBeVisible();
+    await expect(page.locator(".arena-action-section")).toContainText(
+      "自由行動 001",
+    );
+    await expect(page.locator(".arena-action-section")).toContainText(
+      "潮目 × 熱穗",
+    );
+    await expect(page.locator(".arena-counts")).toContainText("2");
     await expect(page.getByText("角色推論，不是人物引言")).toHaveCount(7);
     const exchange = page.locator("[data-exchange]");
     await expect(exchange).toBeVisible();
