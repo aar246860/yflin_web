@@ -1,0 +1,553 @@
+.arena-hero-art {
+  align-content: center;
+  background:
+    radial-gradient(circle at 16% 18%, rgb(255 253 248 / 0.82) 0 2px, transparent 2.5px),
+    #17383b;
+  background-size: 11px 11px;
+  grid-template-rows: auto auto;
+}
+
+.xiaolin-hero-art.arena-hero-art img {
+  height: auto;
+  min-height: 0;
+  object-fit: contain;
+}
+
+.arena-board-section,
+.arena-challenge-section,
+.arena-roster-section {
+  padding-top: 5rem;
+}
+
+.arena-board {
+  background: var(--xiaolin-ink);
+  border: 1px solid var(--xiaolin-ink);
+  box-shadow: 0.75rem 0.75rem 0 var(--xiaolin-accent-soft);
+  color: #f8f4e8;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.7fr);
+}
+
+.arena-counts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.arena-counts article {
+  align-content: space-between;
+  border-bottom: 1px solid rgb(248 244 232 / 0.2);
+  border-right: 1px solid rgb(248 244 232 / 0.2);
+  display: grid;
+  min-height: 12rem;
+  padding: 1.4rem;
+}
+
+.arena-counts article:nth-child(2),
+.arena-counts article:nth-child(3) {
+  background: rgb(255 253 248 / 0.05);
+}
+
+.arena-counts span,
+.arena-counts small {
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.arena-counts span {
+  color: #b8d9d2;
+  font-size: 0.74rem;
+  font-weight: 800;
+}
+
+.arena-counts strong {
+  color: #fff4d0;
+  font-family: Merriweather, Georgia, serif;
+  font-size: clamp(3.5rem, 8vw, 6.5rem);
+  line-height: 0.8;
+}
+
+.arena-counts small {
+  color: rgb(248 244 232 / 0.62);
+  font-size: 0.65rem;
+}
+
+.arena-board-note {
+  align-content: center;
+  background:
+    linear-gradient(135deg, transparent 0 48%, rgb(181 75 66 / 0.08) 48% 52%, transparent 52%),
+    #fffdf8;
+  background-size: 14px 14px;
+  color: var(--xiaolin-ink);
+  display: grid;
+  padding: clamp(1.6rem, 4vw, 3rem);
+}
+
+.arena-board-note h3 {
+  font-family: Merriweather, Georgia, serif;
+  font-size: 2rem;
+  line-height: 1.12;
+  margin: 0.8rem 0 1rem;
+}
+
+.arena-board-note > p:not(.xiaolin-resident-label) {
+  color: var(--xiaolin-muted);
+  line-height: 1.75;
+  margin: 0;
+}
+
+.arena-tournament-rule {
+  border-left: 3px solid var(--xiaolin-accent);
+  margin-top: 1.8rem;
+  padding-left: 1rem;
+}
+
+.arena-tournament-rule span {
+  color: var(--xiaolin-accent);
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.arena-tournament-rule p {
+  font-weight: 700;
+  line-height: 1.55;
+  margin: 0.35rem 0 0;
+}
+
+.arena-challenge-section {
+  background:
+    radial-gradient(circle at 2px 2px, rgb(24 56 59 / 0.08) 1.2px, transparent 1.4px),
+    var(--xiaolin-paper);
+  background-size: 14px 14px;
+  border: 2px solid var(--xiaolin-ink);
+  margin-top: 5rem;
+  padding: clamp(1.5rem, 4vw, 3rem);
+  position: relative;
+}
+
+.arena-challenge-section::before {
+  background: var(--xiaolin-accent);
+  color: #fffdf8;
+  content: "挑戰狀";
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.18em;
+  padding: 0.55rem 0.9rem;
+  position: absolute;
+  right: 1.4rem;
+  top: -1rem;
+}
+
+.arena-challenge-head {
+  align-items: start;
+  display: flex;
+  gap: 2rem;
+  justify-content: space-between;
+}
+
+.arena-challenge-head h2 {
+  color: var(--xiaolin-ink);
+  font-family: Merriweather, Georgia, serif;
+  font-size: clamp(2.1rem, 5vw, 4rem);
+  line-height: 1.03;
+  margin: 0.5rem 0 0;
+  max-width: 13ch;
+}
+
+.arena-challenge-issuer {
+  border: 1px solid var(--xiaolin-accent);
+  color: var(--xiaolin-accent);
+  display: grid;
+  flex: 0 0 auto;
+  padding: 0.85rem 1rem;
+  text-align: right;
+  transform: rotate(2deg);
+}
+
+.arena-challenge-issuer span {
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.arena-challenge-issuer strong {
+  font-size: 1.35rem;
+}
+
+.arena-challenge-summary {
+  color: var(--xiaolin-muted);
+  font-size: 1.08rem;
+  line-height: 1.75;
+  margin: 1.8rem 0 0;
+  max-width: 66ch;
+}
+
+.arena-challenge-grid {
+  display: grid;
+  gap: clamp(2rem, 6vw, 5rem);
+  grid-template-columns: minmax(0, 0.8fr) minmax(320px, 1.2fr);
+  margin-top: 2.5rem;
+}
+
+.arena-challenge-grid h3 {
+  color: var(--xiaolin-ink);
+  font-size: 1.1rem;
+  margin: 0 0 1rem;
+}
+
+.arena-challenge-grid ol {
+  display: grid;
+  gap: 0.9rem;
+  margin: 0;
+  padding-left: 1.4rem;
+}
+
+.arena-challenge-grid li {
+  color: var(--xiaolin-muted);
+  line-height: 1.65;
+  padding-left: 0.35rem;
+}
+
+.arena-victory-condition {
+  border-top: 2px solid var(--xiaolin-ink);
+  display: grid;
+  gap: 0.45rem;
+  line-height: 1.6;
+  margin: 1.8rem 0 0;
+  padding-top: 1rem;
+}
+
+.arena-victory-condition strong {
+  color: var(--xiaolin-accent);
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+}
+
+.arena-response-log {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.arena-response-log blockquote {
+  background: #fffdf8;
+  border: 1px solid var(--xiaolin-line);
+  border-left: 4px solid #2b8278;
+  margin: 0;
+  padding: 1rem 1.1rem;
+}
+
+.arena-response-log blockquote[data-stance="counter"] {
+  border-left-color: var(--xiaolin-accent);
+}
+
+.arena-response-log blockquote[data-stance="observe"] {
+  border-left-color: #9e7e42;
+}
+
+.arena-response-log p {
+  color: var(--xiaolin-ink);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.arena-response-log cite {
+  color: var(--xiaolin-accent);
+  display: block;
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: 0.68rem;
+  font-style: normal;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  margin-top: 0.55rem;
+}
+
+.arena-roster-section {
+  scroll-margin-top: 7rem;
+}
+
+.arena-roster-order {
+  color: var(--xiaolin-muted);
+  font-size: 0.82rem;
+  margin: 0;
+}
+
+.arena-roster-grid {
+  display: grid;
+  gap: 1.4rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.arena-character-card {
+  background: var(--xiaolin-paper);
+  border: 1px solid var(--xiaolin-line);
+  box-shadow: 0.35rem 0.4rem 0 rgb(24 56 59 / 0.08);
+  display: grid;
+  grid-template-columns: minmax(160px, 0.42fr) minmax(0, 0.58fr);
+  min-height: 42rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.arena-character-card.is-new {
+  border-color: var(--xiaolin-accent);
+}
+
+.arena-character-card.is-new::after {
+  border: 1px solid rgb(181 75 66 / 0.35);
+  content: "";
+  inset: 0.38rem;
+  pointer-events: none;
+  position: absolute;
+}
+
+.arena-character-portrait {
+  background: #14373b;
+  margin: 0;
+  min-height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.arena-character-portrait > img {
+  display: block;
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+.arena-character-portrait.is-atlas > img {
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  transform: translateX(calc(var(--arena-panel) * -20%));
+  width: 500%;
+}
+
+.arena-character-portrait figcaption {
+  align-items: center;
+  background: linear-gradient(180deg, transparent, rgb(13 35 38 / 0.92));
+  bottom: 0;
+  color: #fffdf8;
+  display: flex;
+  inset-inline: 0;
+  justify-content: space-between;
+  padding: 2.8rem 0.85rem 0.9rem;
+  position: absolute;
+  z-index: 1;
+}
+
+.arena-character-portrait figcaption span,
+.arena-character-portrait figcaption strong {
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+}
+
+.arena-character-portrait figcaption strong {
+  color: #ffcf66;
+}
+
+.arena-character-copy {
+  align-content: start;
+  display: grid;
+  padding: 1.35rem;
+  position: relative;
+  z-index: 1;
+}
+
+.arena-character-copy header > p {
+  color: var(--xiaolin-accent);
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: 0.67rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  margin: 0;
+}
+
+.arena-character-copy h3 {
+  color: var(--xiaolin-ink);
+  font-family: Merriweather, Georgia, serif;
+  font-size: 2.3rem;
+  line-height: 0.95;
+  margin: 0.65rem 0 0;
+}
+
+.arena-character-copy h3 span {
+  color: var(--xiaolin-muted);
+  display: block;
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  margin-top: 0.6rem;
+  text-transform: uppercase;
+}
+
+.arena-character-copy > blockquote {
+  border-left: 2px solid var(--xiaolin-accent);
+  color: var(--xiaolin-ink);
+  font-family: "Segoe Print", "Bradley Hand", cursive;
+  line-height: 1.65;
+  margin: 1.2rem 0;
+  padding-left: 0.85rem;
+}
+
+.arena-character-copy dl {
+  border-top: 1px solid var(--xiaolin-line);
+  display: grid;
+  margin: 0;
+}
+
+.arena-character-copy dl div {
+  border-bottom: 1px solid var(--xiaolin-line);
+  display: grid;
+  gap: 0.65rem;
+  grid-template-columns: 3.2rem minmax(0, 1fr);
+  padding: 0.6rem 0;
+}
+
+.arena-character-copy dt {
+  color: var(--xiaolin-accent);
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: 0.65rem;
+  font-weight: 800;
+}
+
+.arena-character-copy dd {
+  color: var(--xiaolin-muted);
+  font-size: 0.8rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.arena-character-inference {
+  background: #edf5f2;
+  border: 1px dashed #8eaaa4;
+  margin-top: 1rem;
+  padding: 0.85rem;
+}
+
+.arena-character-inference span {
+  color: #2b6f69;
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: 0.6rem;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+}
+
+.arena-character-inference p {
+  color: var(--xiaolin-ink);
+  font-size: 0.78rem;
+  line-height: 1.55;
+  margin: 0.5rem 0;
+}
+
+.arena-character-inference a,
+.arena-character-copy footer a {
+  color: var(--xiaolin-accent);
+  font-size: 0.67rem;
+  font-weight: 800;
+  overflow-wrap: anywhere;
+  text-underline-offset: 0.18rem;
+}
+
+.arena-character-copy footer {
+  align-items: end;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.arena-character-copy footer span {
+  color: var(--xiaolin-muted);
+  flex: 0 0 auto;
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: 0.64rem;
+}
+
+@media (max-width: 1050px) {
+  .arena-roster-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .arena-character-card {
+    min-height: 38rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .arena-board,
+  .arena-challenge-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .arena-challenge-grid {
+    gap: 2.5rem;
+  }
+
+  .arena-board-note {
+    min-height: 21rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .arena-board-section,
+  .arena-roster-section {
+    padding-top: 4rem;
+  }
+
+  .arena-challenge-section {
+    margin-inline: 1rem;
+    margin-top: 4rem;
+    padding: 1.25rem;
+    width: auto;
+  }
+
+  .arena-counts article {
+    min-height: 9.5rem;
+    padding: 1rem;
+  }
+
+  .arena-counts strong {
+    font-size: 3.6rem;
+  }
+
+  .arena-challenge-head {
+    display: grid;
+  }
+
+  .arena-challenge-issuer {
+    justify-self: start;
+    text-align: left;
+  }
+
+  .arena-character-card {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+
+  .arena-character-portrait {
+    aspect-ratio: 4 / 5;
+    min-height: 0;
+  }
+
+  .arena-character-copy {
+    padding: 1.2rem;
+  }
+
+  .arena-character-copy h3 {
+    font-size: 2rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .arena-character-portrait.is-atlas > img {
+    transition: none;
+  }
+}

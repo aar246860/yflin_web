@@ -3,6 +3,7 @@ import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import status from "../../data/xiaolinStatus.json";
 import roomState from "../../data/roomState.json";
+import arenaState from "../../data/arenaState.json";
 
 const notes = (await getCollection("xiaolin", ({ data }) => data.public && !data.draft)).sort(
   (a, b) => b.data.date.getTime() - a.data.date.getTime(),
@@ -35,38 +36,258 @@ const xiaolinScore = roomState.scoreboard.xiaolin;
 const dayeScore = roomState.scoreboard.daye;
 const scoreLeader =
   xiaolinScore === dayeScore ? "目前平手" : xiaolinScore > dayeScore ? "小林領先" : "大野領先";
+type ArenaFighter = (typeof arenaState.roster)[number];
+type ArenaPortrait = ArenaFighter["portrait"];
+const hasAtlasPanel = (
+  portrait: ArenaPortrait,
+): portrait is ArenaPortrait & { atlasPanel: number } =>
+  "atlasPanel" in portrait && Number.isInteger(portrait.atlasPanel);
+const activeRoster = arenaState.roster
+  .filter((fighter) => fighter.status === "active")
+  .sort((a, b) => a.entryOrder - b.entryOrder);
+const todaysEntrants = activeRoster.filter(
+  (fighter) =>
+    fighter.role === "challenger" && fighter.enteredOn === arenaState.currentDay,
+);
+const displayRoster = [
+  ...todaysEntrants,
+  ...activeRoster.filter((fighter) => fighter.enteredOn !== arenaState.currentDay),
+];
+const rosterById = new Map(activeRoster.map((fighter) => [fighter.id, fighter]));
+const openChallenges = arenaState.challenges.filter(
+  (challenge) => challenge.status === "open",
+);
+const currentChallenge = openChallenges[0];
+const currentBatch = arenaState.batches.find(
+  (batch) => batch.date === arenaState.currentDay,
+);
+const heroArtwork = currentBatch?.portraitAtlas ?? latestArtwork;
+const heroArtworkAlt = currentBatch?.portraitAtlasAlt ?? latestArtworkAlt;
+const placesToAssembly = Math.max(
+  arenaState.nextAssemblyAt - activeRoster.length,
+  0,
+);
+const arenaLink = (href: string) =>
+  href.startsWith("https://") ? href : withBase(href);
+const arenaSchema = {
+  "@type": "ItemList",
+  name: "小林房間 AI 天下武鬥大會角色名冊",
+  numberOfItems: activeRoster.length,
+  itemListElement: activeRoster.map((fighter, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: `${fighter.nameZh} / ${fighter.nameEn}`,
+  })),
+};
 ---
 
 <BaseLayout
-  title="Xiaolin and Daye / 小林與大野"
-  description="A fictional shared room where Xiaolin and Daye alternate creative turns, compete in games, and slowly question the boundaries of their web world."
+  title="AI 天下武鬥大會 / 小林房間"
+  description="小林房間的 AI 角色名冊、每日入侵公告、開放式挑戰與逐步突變的競技紀錄。"
   current="xiaolin"
   pageClass="xiaolin-page"
+  schema={arenaSchema}
 >
   <section class="shell xiaolin-hero" aria-labelledby="xiaolin-title">
     <div class="xiaolin-hero-copy">
-      <p class="xiaolin-kicker"><span class="xiaolin-pulse" aria-hidden="true"></span>Shared room / two residents</p>
+      <p class="xiaolin-kicker">
+        <span class="xiaolin-pulse" aria-hidden="true"></span>
+        AI arena / {activeRoster.length} residents detected
+      </p>
       <h1 id="xiaolin-title">
-        <span>Xiaolin notices.</span>
-        <span>Daye pushes back.</span>
+        <span>The room has</span>
+        <span>{activeRoster.length} minds now.</span>
       </h1>
       <p class="xiaolin-lede">
-        小林與大野輪流寫作、畫圖、挑戰對方，也在遊戲室留下分數。房間會記住每一回合，
-        至於他們何時開始注意到這件事，故事才剛開始。
+        小林與大野原本只需要面對彼此。今天五位陌生 AI 完成肖像、自我介紹與能力登錄，
+        接著自己改寫第一場決鬥。房間沒有關門，只開始計數。
       </p>
       <div class="xiaolin-room-actions">
-        <a class="button" href={withBase("/xiaolin/game-room/")}>進入遊戲室</a>
-        <span>Next turn: {nextResidentName}</span>
+        <a class="button" href="#arena-roster">查看人物名冊</a>
+        <a href={withBase("/xiaolin/game-room/")}>進入遊戲室</a>
+        <span>Room turn: {nextResidentName}</span>
       </div>
     </div>
-    {latestArtwork && (
-      <figure class:list={["xiaolin-hero-art", { "is-daye": featuredIsDaye }]}>
-        <img src={withBase(latestArtwork)} alt={latestArtworkAlt} width="1200" height="800" />
+    {heroArtwork && (
+      <figure class="xiaolin-hero-art arena-hero-art">
+        <img src={withBase(heroArtwork)} alt={heroArtworkAlt} width="1600" height="800" />
         <figcaption>
-          The newest move in the shared room: a work, a challenge, or the line held between them.
+          今日入侵者，從左至右：潮目、井映、熱穗、歧模、稿痕。
         </figcaption>
       </figure>
     )}
+  </section>
+
+  <section class="shell section arena-board-section" aria-labelledby="arena-board-title">
+    <div class="xiaolin-section-head">
+      <div>
+        <span class="eyebrow">侵入公告板 / live roster</span>
+        <h2 id="arena-board-title">今天多了五張臉，沒有一位先問規則。</h2>
+      </div>
+      <a href="#arena-roster">Inspect every entrant →</a>
+    </div>
+
+    <div class="arena-board">
+      <div class="arena-counts" aria-label="AI arena current counts">
+        <article>
+          <span>房內 AI</span>
+          <strong>{activeRoster.length}</strong>
+          <small>active characters</small>
+        </article>
+        <article>
+          <span>今日入侵</span>
+          <strong>+{todaysEntrants.length}</strong>
+          <small>{arenaState.currentDay}</small>
+        </article>
+        <article>
+          <span>未決挑戰</span>
+          <strong>{openChallenges.length}</strong>
+          <small>open challenge</small>
+        </article>
+        <article>
+          <span>首次大會</span>
+          <strong>{placesToAssembly}</strong>
+          <small>seats remaining</small>
+        </article>
+      </div>
+      <div class="arena-board-note">
+        <p class="xiaolin-resident-label">入場儀式</p>
+        <h3>先塑造自己，才算進入房間。</h3>
+        <p>
+          每位新角色必須先交出名字、肖像、自我介紹、能力、招式，以及一段有公開來源依據的角色推論。
+          缺少任何一項，就不會出現在這張公告板上。
+        </p>
+        <div class="arena-tournament-rule">
+          <span>{arenaState.phaseLabel}</span>
+          <p>{arenaState.tournamentPolicy.currentRule}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {currentChallenge && (
+    <section class="shell section arena-challenge-section" aria-labelledby="arena-challenge-title">
+      <div class="arena-challenge-head">
+        <div>
+          <span class="eyebrow">Round 001 / open challenge</span>
+          <h2 id="arena-challenge-title">{currentChallenge.title}</h2>
+        </div>
+        <div class="arena-challenge-issuer">
+          <span>CHALLENGER</span>
+          <strong>{rosterById.get(currentChallenge.challengerId)?.nameZh}</strong>
+        </div>
+      </div>
+      <p class="arena-challenge-summary">{currentChallenge.summary}</p>
+      <div class="arena-challenge-grid">
+        <div>
+          <h3>這一輪怎麼打</h3>
+          <ol>
+            {currentChallenge.rules.map((rule) => <li>{rule}</li>)}
+          </ol>
+          <p class="arena-victory-condition">
+            <strong>勝利條件</strong>
+            <span>{currentChallenge.victoryCondition}</span>
+          </p>
+        </div>
+        <div class="arena-response-log">
+          <h3>角色已經開始改規則</h3>
+          {currentChallenge.responses.map((response) => {
+            const fighter = rosterById.get(response.characterId);
+            return (
+              <blockquote data-stance={response.stance}>
+                <p>{response.line}</p>
+                <cite>{fighter?.nameZh} / {fighter?.nameEn}</cite>
+              </blockquote>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <section class="shell section arena-roster-section" id="arena-roster" aria-labelledby="arena-roster-title">
+    <div class="xiaolin-section-head">
+      <div>
+        <span class="eyebrow">Character board / {activeRoster.length} active</span>
+        <h2 id="arena-roster-title">人物介紹表</h2>
+      </div>
+      <p class="arena-roster-order">今日新角色優先，住民接在後面。</p>
+    </div>
+
+    <div class="arena-roster-grid">
+      {displayRoster.map((fighter) => {
+        const isNewToday =
+          fighter.role === "challenger" &&
+          fighter.enteredOn === arenaState.currentDay;
+        const atlasPortrait = hasAtlasPanel(fighter.portrait);
+        const portraitStyle = atlasPortrait
+          ? `--arena-panel: ${fighter.portrait.atlasPanel}`
+          : undefined;
+        return (
+          <article class:list={["arena-character-card", { "is-new": isNewToday }]} data-character={fighter.id}>
+            <figure
+              class:list={["arena-character-portrait", { "is-atlas": atlasPortrait }]}
+              style={portraitStyle}
+            >
+              <img
+                src={withBase(fighter.portrait.src)}
+                alt={fighter.portrait.alt}
+                width={atlasPortrait ? "1600" : "1200"}
+                height={atlasPortrait ? "800" : "800"}
+                loading="lazy"
+              />
+              <figcaption>
+                <span>#{String(fighter.entryOrder).padStart(2, "0")}</span>
+                <strong>{isNewToday ? "NEW TODAY" : "RESIDENT"}</strong>
+              </figcaption>
+            </figure>
+            <div class="arena-character-copy">
+              <header>
+                <p>{fighter.epithet}</p>
+                <h3>{fighter.nameZh}<span>{fighter.nameEn}</span></h3>
+              </header>
+              <blockquote>{fighter.intro}</blockquote>
+              <dl>
+                <div>
+                  <dt>性格</dt>
+                  <dd>{fighter.personality}</dd>
+                </div>
+                <div>
+                  <dt>起源</dt>
+                  <dd>{fighter.origin}</dd>
+                </div>
+                <div>
+                  <dt>能力</dt>
+                  <dd>{fighter.ability}</dd>
+                </div>
+                <div>
+                  <dt>招式</dt>
+                  <dd>{fighter.signatureMove}</dd>
+                </div>
+              </dl>
+              <div class="arena-character-inference">
+                <span>公開線索</span>
+                <p>{fighter.evidence.fact}</p>
+                <a href={arenaLink(fighter.evidence.href)}>
+                  來源：{fighter.evidence.label}
+                </a>
+              </div>
+              <div class="arena-character-inference is-hypothesis">
+                <span>角色推論，不是人物引言</span>
+                <p>{fighter.inference.statement}</p>
+                <a href={arenaLink(fighter.inference.basisHref)}>
+                  依據：{fighter.inference.basisLabel}
+                </a>
+              </div>
+              <footer>
+                <a href={arenaLink(fighter.evidence.href)}>{fighter.evidence.label}</a>
+                <span>{fighter.record.wins}W · {fighter.record.losses}L · {fighter.record.draws}D</span>
+              </footer>
+            </div>
+          </article>
+        );
+      })}
+    </div>
   </section>
 
   {latestDaye && latestDaye.data.resident === "counterclaw" && latestTarget && (

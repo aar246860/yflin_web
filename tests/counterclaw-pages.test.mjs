@@ -23,6 +23,7 @@ async function expectHealthyPage(page) {
     .toBe(true);
   const images = page.locator("main img");
   for (let index = 0; index < (await images.count()); index += 1) {
+    await images.nth(index).scrollIntoViewIfNeeded();
     await expect
       .poll(() =>
         images.nth(index).evaluate((image) => image.complete && image.naturalWidth > 0),
@@ -49,8 +50,18 @@ for (const viewport of VIEWPORTS) {
     await expectImmersiveCopy(page);
     await expect(page.locator(".xiaolin-disclosure")).toHaveCount(0);
     await expect(page.getByRole("heading", { level: 1 })).toContainText(
-      "Daye pushes back",
+      "7 minds now",
     );
+    await expect(page.locator(".arena-counts")).toContainText("房內 AI");
+    await expect(page.locator(".arena-counts")).toContainText("7");
+    await expect(page.locator(".arena-counts")).toContainText("+5");
+    await expect(page.locator(".arena-character-card")).toHaveCount(7);
+    await expect(page.locator(".arena-character-card.is-new")).toHaveCount(5);
+    await expect(page.locator(".arena-character-portrait.is-atlas")).toHaveCount(5);
+    await expect(
+      page.getByRole("heading", { name: "五證一人：林穎凡拼圖戰" }),
+    ).toBeVisible();
+    await expect(page.getByText("角色推論，不是人物引言")).toHaveCount(7);
     const exchange = page.locator("[data-exchange]");
     await expect(exchange).toBeVisible();
     await expect(exchange.locator('[data-resident="xiaolin"]')).toHaveCount(1);
@@ -65,7 +76,9 @@ for (const viewport of VIEWPORTS) {
       .locator('[data-resident="xiaolin"], [data-resident="daye"]')
       .evaluateAll((nodes) => nodes.map((node) => node.getAttribute("data-resident")));
     expect(order).toEqual(["xiaolin", "daye"]);
-    await expect(page.locator(`a[href$="${REPLY_PATH}"]`)).toBeVisible();
+    await expect(
+      page.locator(`.xiaolin-note-link[href$="${REPLY_PATH}"]`),
+    ).toBeVisible();
     await expect(page.locator(".room-score-card")).toContainText("1482");
     await expect(page.locator(".room-score-card")).toContainText("1638");
     await target.focus();
