@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">白圈上方的透明尺橋</title>
+  <desc id="desc">深藍九格地板上，一條白線被金色扣環封成圈。透明尺由兩塊橘色橡皮擦墊高跨過白圈，綠色彈珠沿尺面從圈外滾向圈內，右側計分板顯示1190。</desc>
+  <defs>
+    <linearGradient id="room" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#092f36"/>
+      <stop offset="1" stop-color="#171d45"/>
+    </linearGradient>
+    <linearGradient id="ruler" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#b9f5df" stop-opacity="0.72"/>
+      <stop offset="0.5" stop-color="#70d8c1" stop-opacity="0.88"/>
+      <stop offset="1" stop-color="#d6fff0" stop-opacity="0.7"/>
+    </linearGradient>
+    <radialGradient id="marble" cx="35%" cy="25%" r="70%">
+      <stop offset="0" stop-color="#e9ffe9"/>
+      <stop offset="0.25" stop-color="#72e59b"/>
+      <stop offset="1" stop-color="#118353"/>
+    </radialGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="180%">
+      <feDropShadow dx="0" dy="18" stdDeviation="14" flood-color="#020918" flood-opacity="0.58"/>
+    </filter>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto">
+      <path d="M1 1 L10 6 L1 11" fill="none" stroke="#f2c45b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <rect width="1600" height="900" fill="#f4efe3"/>
+  <rect x="70" y="65" width="1460" height="770" rx="42" fill="url(#room)"/>
+
+  <g opacity="0.48" stroke="#7bc9c3" stroke-width="4">
+    <path d="M115 310 H1115"/>
+    <path d="M115 545 H1115"/>
+    <path d="M450 105 V785"/>
+    <path d="M785 105 V785"/>
+  </g>
+
+  <g fill="none" stroke="#f8f3e8" stroke-width="18" stroke-linecap="round" stroke-linejoin="round" filter="url(#shadow)">
+    <path d="M300 635 C205 540 235 300 430 220 C625 138 860 205 948 365 C1035 525 880 700 675 718 C500 733 388 706 300 635 Z"/>
+  </g>
+
+  <g transform="translate(296 626) rotate(-13)" filter="url(#shadow)">
+    <rect x="-30" y="-34" width="82" height="68" rx="18" fill="#e8a24c"/>
+    <path d="M-8 -8 H30" stroke="#7a4029" stroke-width="7" stroke-linecap="round"/>
+    <circle cx="11" cy="0" r="29" fill="none" stroke="#f2c45b" stroke-width="10"/>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="206" y="588" width="124" height="72" rx="16" fill="#dc7448"/>
+    <rect x="898" y="303" width="124" height="72" rx="16" fill="#dc7448"/>
+    <path d="M232 596 L930 312 L986 380 L286 668 Z" fill="url(#ruler)" stroke="#d8fff2" stroke-width="7"/>
+    <g stroke="#245d61" stroke-width="4" opacity="0.75">
+      <path d="M344 566 l16 38"/>
+      <path d="M421 535 l16 38"/>
+      <path d="M498 504 l16 38"/>
+      <path d="M575 472 l16 38"/>
+      <path d="M652 441 l16 38"/>
+      <path d="M729 410 l16 38"/>
+      <path d="M806 378 l16 38"/>
+      <path d="M883 347 l16 38"/>
+    </g>
+  </g>
+
+  <path d="M360 570 C500 505 650 445 820 370" fill="none" stroke="#f2c45b" stroke-width="8" stroke-dasharray="18 18" marker-end="url(#arrow)"/>
+  <g transform="translate(735 405)" filter="url(#shadow)">
+    <ellipse cx="14" cy="39" rx="42" ry="15" fill="#041820" opacity="0.46"/>
+    <circle r="42" fill="url(#marble)" stroke="#d8ffe2" stroke-width="5"/>
+    <circle cx="-13" cy="-15" r="10" fill="#fff" opacity="0.82"/>
+  </g>
+
+  <g transform="translate(1165 170)">
+    <rect width="285" height="210" rx="28" fill="#f4efe3" stroke="#f2c45b" stroke-width="8"/>
+    <text x="142.5" y="55" text-anchor="middle" fill="#274e57" font-family="system-ui, sans-serif" font-size="28" font-weight="700">XIAOLIN</text>
+    <text x="142.5" y="142" text-anchor="middle" fill="#c65d3b" font-family="system-ui, sans-serif" font-size="82" font-weight="800">1190</text>
+    <path d="M58 170 H227" stroke="#70bfae" stroke-width="5" stroke-linecap="round"/>
+  </g>
+
+  <g transform="translate(1168 520)">
+    <rect width="275" height="180" rx="26" fill="#f4efe3"/>
+    <rect x="30" y="28" width="215" height="124" rx="14" fill="#e5b55b"/>
+    <path d="M58 63 H217 M58 91 H192 M58 119 H209" stroke="#684c37" stroke-width="8" stroke-linecap="round" opacity="0.62"/>
+    <path d="M223 45 q32 44 0 88" fill="none" stroke="#dc7448" stroke-width="12" stroke-linecap="round"/>
+  </g>
+
+  <g opacity="0.7" fill="#b9f5df">
+    <circle cx="145" cy="145" r="8"/>
+    <circle cx="1070" cy="150" r="6"/>
+    <circle cx="1080" cy="730" r="9"/>
+    <circle cx="150" cy="750" r="5"/>
+  </g>
+</svg>

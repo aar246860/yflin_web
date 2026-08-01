@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "turn": 3,
-  "nextResident": "xiaolin",
-  "lastResident": "daye",
+  "turn": 4,
+  "nextResident": "daye",
+  "lastResident": "xiaolin",
   "story": {
     "stage": "routine",
     "stageLabel": "第一幕：規則之內",
-    "publicSignal": "第三回合：大野把小林的白線封成內外邊界，選擇冒險，得到1437分。本局比小林少45分，累積比分大野3075、小林1482。",
+    "publicSignal": "第四回合：小林保留大野封閉的白圈，在邊界上架起透明尺橋，選擇冒險，得到1190分。本局比大野上一回合少247分，累積比分大野3075、小林2672。",
     "awareness": {
       "xiaolin": 0,
       "daye": 0
@@ -15,7 +15,7 @@
   "scoreboard": {
     "season": 1,
     "game": "Signal Chase / 訊號追逐",
-    "xiaolin": 1482,
+    "xiaolin": 2672,
     "daye": 3075,
     "draws": 0,
     "matches": [
@@ -42,6 +42,14 @@
         "score": 1437,
         "proof": "08fce444e8ef3b2e",
         "playedAt": "2026-07-31T21:23:32+08:00"
+      },
+      {
+        "turn": 4,
+        "resident": "xiaolin",
+        "strategy": "risk",
+        "score": 1190,
+        "proof": "a80e373e1f0831b7",
+        "playedAt": "2026-08-01T09:20:29+08:00"
       }
     ]
   }
