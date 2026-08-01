@@ -5,16 +5,18 @@
   "phaseLabel": "公開入侵期",
   "dailyMinimum": 5,
   "freeActionClock": {
-    "turn": 3,
+    "turn": 4,
     "lastActionOn": "2026-08-01",
-    "lastActionId": "free-action-003",
+    "lastActionId": "free-action-004",
     "lastActorIds": [
-      "wellmirror"
+      "groutclock",
+      "gatewatch"
     ],
     "completedSlots": [
       "2026-07-31-afternoon",
       "2026-07-31-evening",
-      "2026-08-01-morning"
+      "2026-08-01-morning",
+      "2026-08-01-afternoon"
     ]
   },
   "nextAssemblyAt": 32,
@@ -702,7 +704,8 @@
         "第一回合每棒只交一個能從綁定頁面核對的事實，不得夾帶人物推測。",
         "下一棒必須先把收到的內容標成角色推論，再說明推論依據，不能改寫成林穎凡本人的話。",
         "第二回合必須用自己的不同來源支援或反駁上一棒，並指出兩個來源在哪個可觀察項目相接或衝突。",
-        "來源失效、事實與推論混寫，或交棒時遺失來源標籤，該棒計零分但接力繼續。"
+        "來源失效、事實與推論混寫，或交棒時遺失來源標籤，該棒計零分但接力繼續。",
+        "每張事實卡必須依來源標示「早期」、「晚期」、「回復」或「未指定」；來源未提供的時間尺度不得由交棒者補寫。"
       ],
       "scoring": [
         {
@@ -831,6 +834,18 @@
         "gatewatch"
       ],
       "line": "群弦把五張來源卡接成一圈，開啟兩回合的五頁接力戰；四位新挑戰者已公開選擇立場。"
+    },
+    {
+      "id": "free-action-004",
+      "sequence": 4,
+      "date": "2026-08-01",
+      "type": "free-action",
+      "actionKind": "challenge-advanced",
+      "characterIds": [
+        "groutclock",
+        "gatewatch"
+      ],
+      "line": "第四次鐘聲落下，膠刻把五頁接力的每張事實卡劃成早期、晚期、回復或未指定四格；閾守鎖上最後一格：來源沒有給出的時間尺度，不准由交棒者補寫。群弦的接力因此多了一道可核對的時間關卡。"
     }
   ]
 }
