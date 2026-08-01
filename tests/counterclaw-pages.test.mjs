@@ -63,6 +63,17 @@ const todaysEntrants = activeRoster.filter(
     character.role === "challenger" &&
     character.enteredOn === arenaState.currentDay,
 );
+const currentBatch = arenaState.batches.find(
+  (batch) => batch.date === arenaState.currentDay,
+);
+if (!currentBatch) throw new Error("Missing current arena batch");
+const currentBatchNames = currentBatch.entrantIds.map((id) => {
+  const entrant = activeRoster.find((character) => character.id === id);
+  if (!entrant) throw new Error(`Missing current batch entrant: ${id}`);
+  return entrant.nameZh;
+});
+const expectedHeroCaption =
+  `今日入侵者，從左至右：${currentBatchNames.join("、")}。`;
 const atlasPortraitCount = activeRoster.filter((character) =>
   Number.isInteger(character.portrait.atlasPanel),
 ).length;
@@ -197,6 +208,13 @@ for (const viewport of VIEWPORTS) {
     );
     await expect(page.locator(".arena-counts")).toContainText(
       `+${todaysEntrants.length}`,
+    );
+    await expect(page.locator(".arena-hero-art figcaption")).toHaveText(
+      expectedHeroCaption,
+    );
+    await expect(page.locator(".arena-hero-art img")).toHaveAttribute(
+      "alt",
+      currentBatch.portraitAtlasAlt,
     );
     const residentStage = page.locator("[data-resident-stage]");
     await expect(residentStage).toBeVisible();

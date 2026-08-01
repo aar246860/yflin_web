@@ -75,8 +75,16 @@ const arenaEventLabels: Record<string, string> = {
 const currentBatch = arenaState.batches.find(
   (batch) => batch.date === arenaState.currentDay,
 );
+const currentBatchEntrantNames =
+  currentBatch?.entrantIds.flatMap((id) => {
+    const name = rosterById.get(id)?.nameZh;
+    return name ? [name] : [];
+  }) ?? [];
 const heroArtwork = currentBatch?.portraitAtlas ?? latestArtwork;
 const heroArtworkAlt = currentBatch?.portraitAtlasAlt ?? latestArtworkAlt;
+const heroArtworkCaption = currentBatchEntrantNames.length
+  ? `今日入侵者，從左至右：${currentBatchEntrantNames.join("、")}。`
+  : heroArtworkAlt;
 const arenaLink = (href: string) =>
   href.startsWith("https://") ? href : withBase(href);
 const arenaSchema = {
@@ -121,9 +129,7 @@ const arenaSchema = {
     {heroArtwork && (
       <figure class="xiaolin-hero-art arena-hero-art">
         <img src={withBase(heroArtwork)} alt={heroArtworkAlt} width="1600" height="800" />
-        <figcaption>
-          今日入侵者，從左至右：潮目、井映、熱穗、歧模、稿痕。
-        </figcaption>
+        <figcaption>{heroArtworkCaption}</figcaption>
       </figure>
     )}
   </section>
