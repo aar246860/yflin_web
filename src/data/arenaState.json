@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "currentDay": "2026-07-31",
+  "currentDay": "2026-08-01",
   "phase": "open-invasion",
   "phaseLabel": "公開入侵期",
   "dailyMinimum": 5,
@@ -37,6 +37,20 @@
         "heatgrain",
         "forkmodel",
         "drafttrace"
+      ]
+    },
+    {
+      "id": "incursion-2026-08-01",
+      "date": "2026-08-01",
+      "label": "第二批入侵者",
+      "portraitAtlas": "/images/xiaolin/arena/2026-08-01-roster-atlas.webp",
+      "portraitAtlasAlt": "五格漫畫肖像，依序是返印、膠刻、地絡、閾守與群弦。",
+      "entrantIds": [
+        "aftermark",
+        "groutclock",
+        "geoweave",
+        "gatewatch",
+        "choruswire"
       ]
     }
   ],
@@ -329,6 +343,211 @@
         "generation": 0,
         "currentTrait": "被否決的選項不會消失，只會換一個回合出場"
       }
+    },
+    {
+      "id": "aftermark",
+      "nameZh": "餘印",
+      "nameEn": "Aftermark",
+      "epithet": "替已退去的訊號留下腳印",
+      "role": "challenger",
+      "enteredOn": "2026-08-01",
+      "entryOrder": 8,
+      "status": "active",
+      "intro": "我是餘印。眼前的曲線不是只屬於現在；抽水停了、邊界遠了，它們仍可能在記錄裡留下方向。我要追的是退去之後還能被核對的腳印。",
+      "personality": "沉靜、耐心、總把現在的訊號向過去追問一次",
+      "origin": "一段停止抽水後仍未回到原位的水位紀錄",
+      "ability": "退潮回溯：從回復與殘差中標出仍受過去作用影響的區段。",
+      "signatureMove": "昨日仍在場",
+      "portrait": {
+        "src": "/images/xiaolin/arena/2026-08-01-roster-atlas.webp",
+        "alt": "餘印披著半透明薄荷色旋紋圍巾，身後浮著逐漸退去的琥珀色水紋。",
+        "atlasPanel": 0
+      },
+      "evidence": {
+        "label": "Delayed Hydraulic Response",
+        "href": "/concepts/groundwater-memory/",
+        "kind": "public-research",
+        "fact": "公開概念頁說明，水位、降深、回復或溫度紀錄可能仍反映過去的梯度、邊界作用、排水或流動域交換。"
+      },
+      "inference": {
+        "statement": "角色推論：我猜林穎凡習慣把回復段當成仍在說話的資料，而不是實驗結束後的空白，因為概念頁把過去作用留下的可恢復訊息列為研究問題。",
+        "basisLabel": "Delayed Hydraulic Response 概念頁",
+        "basisHref": "/concepts/groundwater-memory/",
+        "status": "in-story-inference"
+      },
+      "record": {
+        "wins": 0,
+        "losses": 0,
+        "draws": 0
+      },
+      "mutation": {
+        "generation": 0,
+        "currentTrait": "每遇到一條新訊號，就先尋找它在上一回合留下的尾跡"
+      }
+    },
+    {
+      "id": "groutclock",
+      "nameZh": "膠刻",
+      "nameEn": "Groutclock",
+      "epithet": "把早期熱容量刻成時鐘",
+      "role": "challenger",
+      "enteredOn": "2026-08-01",
+      "entryOrder": 9,
+      "status": "active",
+      "intro": "我是膠刻。所有材料都有自己的時間尺度；太早把灌漿和地層混成一個答案，就會錯過最先發聲的熱容量。我的鐘只在機制換手時敲響。",
+      "personality": "精準、固執、喜歡把一條曲線拆成不同材料的值班表",
+      "origin": "地熱反應試驗中由灌漿儲熱轉向地層傳導的交界",
+      "ability": "材料分時：辨認早期儲熱與晚期傳導何時交換主導權。",
+      "signatureMove": "四十二時換班",
+      "portrait": {
+        "src": "/images/xiaolin/arena/2026-08-01-roster-atlas.webp",
+        "alt": "膠刻穿著鏽橘色陶質裝甲，胸前與肩頸露出層疊的圓形計時機芯。",
+        "atlasPanel": 1
+      },
+      "evidence": {
+        "label": "Grout heat-capacity analytical model",
+        "href": "https://www.sciencedirect.com/science/article/pii/S2214157X26000572",
+        "kind": "public-research",
+        "fact": "這篇公開論文摘要描述一個納入灌漿熱容量的解析模型，並區分早期灌漿儲熱與較晚地層熱傳導的敏感度。"
+      },
+      "inference": {
+        "statement": "角色推論：我猜林穎凡會先問『現在是哪個材料在主導』，再解讀單一有效參數，因為這項研究特別分開早期與晚期的敏感度。",
+        "basisLabel": "Grout heat-capacity 論文頁",
+        "basisHref": "https://www.sciencedirect.com/science/article/pii/S2214157X26000572",
+        "status": "in-story-inference"
+      },
+      "record": {
+        "wins": 0,
+        "losses": 0,
+        "draws": 0
+      },
+      "mutation": {
+        "generation": 0,
+        "currentTrait": "每過一個轉折時間，就重新判斷目前主導訊號的材料"
+      }
+    },
+    {
+      "id": "geoweave",
+      "nameZh": "地絡",
+      "nameEn": "GeoWeave",
+      "epithet": "不讓地圖把交互作用藏起來",
+      "role": "challenger",
+      "enteredOn": "2026-08-01",
+      "entryOrder": 10,
+      "status": "active",
+      "intro": "我是地絡。重要性若離開位置，就只剩漂亮的排名；位置若忘了交互作用，也只是孤島。我把主效應與牽連分開編回同一張圖。",
+      "personality": "冷靜、空間感強、對脫離地理脈絡的排行榜保持警戒",
+      "origin": "一張把熱帶氣旋路徑、網格貢獻與交互作用縫在一起的歸因圖",
+      "ability": "地理拆絡：把空間主貢獻與位置之間的交互作用分層呈現。",
+      "signatureMove": "主效應離島",
+      "portrait": {
+        "src": "/images/xiaolin/arena/2026-08-01-roster-atlas.webp",
+        "alt": "地絡戴著靛藍色多邊形面具，薄荷色等高線辮與發光地圖絲線在身後交織。",
+        "atlasPanel": 2
+      },
+      "evidence": {
+        "label": "Spatially coherent black-box attribution",
+        "href": "https://doi.org/10.1007/s00477-026-03194-2",
+        "kind": "public-research",
+        "fact": "公開論文頁介紹一套具空間一致性的黑箱熱帶氣旋強度預報歸因框架，將地理主貢獻與交互作用分開解讀。"
+      },
+      "inference": {
+        "statement": "角色推論：我猜林穎凡跨領域時仍會要求解釋保留空間結構，因為這項研究不是只列特徵重要度，而是把地理主貢獻與交互作用分開。",
+        "basisLabel": "Spatially coherent attribution 論文頁",
+        "basisHref": "https://doi.org/10.1007/s00477-026-03194-2",
+        "status": "in-story-inference"
+      },
+      "record": {
+        "wins": 0,
+        "losses": 0,
+        "draws": 0
+      },
+      "mutation": {
+        "generation": 0,
+        "currentTrait": "每個分數都必須保留它在地圖上的位置與相鄰關係"
+      }
+    },
+    {
+      "id": "gatewatch",
+      "nameZh": "閾守",
+      "nameEn": "Gatewatch",
+      "epithet": "五道驗證門，一道都不借過",
+      "role": "challenger",
+      "enteredOn": "2026-08-01",
+      "entryOrder": 11,
+      "status": "active",
+      "intro": "我是閾守。曲線變漂亮不算通關；我看合成測試、複雜度、樣本外區塊，最後還要看差異有沒有走到決策端。過不了門的機制只能留在候選席。",
+      "personality": "嚴格、懷疑、願意讓新模型進場但拒絕靠擬合取巧",
+      "origin": "一張把抽水試驗解釋送過五道檢核的診斷表",
+      "ability": "五閾封關：依序檢查虛無合成、延遲合成、複雜度、區塊驗證與決策傳遞。",
+      "signatureMove": "決策才算過門",
+      "portrait": {
+        "src": "/images/xiaolin/arena/2026-08-01-roster-atlas.webp",
+        "alt": "閾守戴著琥珀色面罩與門框形肩甲，深青披風後浮著三個抽象檢核光標。",
+        "atlasPanel": 3
+      },
+      "evidence": {
+        "label": "When Does a Pumping Test Need Lagging Darcy Law?",
+        "href": "/field-notes/when-does-a-pumping-test-need-lagging-darcy-law/",
+        "kind": "public-method-note",
+        "fact": "這篇公開方法筆記列出五項最低驗證檢查，並主張延遲模型的差異應抵達參數、預測或工程決策，而不只改善曲線外觀。"
+      },
+      "inference": {
+        "statement": "角色推論：我猜林穎凡對新機制的興趣附帶很高的驗證門檻，因為方法筆記明確要求複雜度懲罰、樣本外驗證與決策傳遞。",
+        "basisLabel": "Lagging Darcy Law 方法筆記",
+        "basisHref": "/field-notes/when-does-a-pumping-test-need-lagging-darcy-law/",
+        "status": "in-story-inference"
+      },
+      "record": {
+        "wins": 0,
+        "losses": 0,
+        "draws": 0
+      },
+      "mutation": {
+        "generation": 0,
+        "currentTrait": "對手每新增一個自由參數，我就多開一道樣本外檢核門"
+      }
+    },
+    {
+      "id": "choruswire",
+      "nameZh": "群弦",
+      "nameEn": "Choruswire",
+      "epithet": "讓五種專長同時不走音",
+      "role": "challenger",
+      "enteredOn": "2026-08-01",
+      "entryOrder": 12,
+      "status": "active",
+      "intro": "我是群弦。獨奏可以很快，接力才能看見訊息在哪裡失真。我會把每個人的來源、推論與反駁接成一段能逐棒核對的合奏。",
+      "personality": "外向、機敏、擅長協調但會公開每一次掉棒",
+      "origin": "研究團隊裡不同題目、田野活動與出版成果之間的一條接力線",
+      "ability": "多源合奏：讓不同角色用各自來源交棒，並標記訊息在哪一棒改變。",
+      "signatureMove": "五頁不掉棒",
+      "portrait": {
+        "src": "/images/xiaolin/arena/2026-08-01-roster-atlas.webp",
+        "alt": "群弦有著米白色面孔與五束彩色纜線冠，薄荷色音叉飾件在耳側發光。",
+        "atlasPanel": 4
+      },
+      "evidence": {
+        "label": "Lin Groundwater Hydraulics Group",
+        "href": "/team/",
+        "kind": "public-team-page",
+        "fact": "公開團隊頁把研究方向、研究生與合作貢獻、出版成果及田野活動放在同一個團隊脈絡中呈現。"
+      },
+      "inference": {
+        "statement": "角色推論：我猜林穎凡希望研究成果能被團隊、田野與公開交流彼此接續，因為團隊頁並列人員、研究方向、出版成果與活動紀錄。",
+        "basisLabel": "Lin Groundwater Hydraulics Group 團隊頁",
+        "basisHref": "/team/",
+        "status": "in-story-inference"
+      },
+      "record": {
+        "wins": 0,
+        "losses": 0,
+        "draws": 0
+      },
+      "mutation": {
+        "generation": 0,
+        "currentTrait": "每接到一個新來源，就新增一條可追蹤的交棒線而不抹平差異"
+      }
     }
   ],
   "challenges": [
@@ -343,7 +562,12 @@
         "tide-eye",
         "wellmirror",
         "heatgrain",
-        "drafttrace"
+        "drafttrace",
+        "aftermark",
+        "groutclock",
+        "geoweave",
+        "gatewatch",
+        "choruswire"
       ],
       "title": "五證一人：林穎凡拼圖戰",
       "summary": "每位角色從林穎凡的公開研究網站選一頁，交出一個可核對的事實片段與一個明確標示的角色推論。重複來源的人必須換頁。",
@@ -407,6 +631,16 @@
           "characterId": "daye",
           "stance": "accept",
           "line": "規則有輸法，我接受。誰把推論偽裝成事實，該回合直接零分。"
+        },
+        {
+          "characterId": "aftermark",
+          "stance": "accept",
+          "line": "我接受，並選延遲水力反應。若一個事實沒有時間方向，我會追問它到底從哪一段過去走來。"
+        },
+        {
+          "characterId": "gatewatch",
+          "stance": "counter",
+          "line": "我反提一門：網址能開還不夠，事實若只改善故事卻沒有可核對句子，這一棒不得分。"
         }
       ]
     },
@@ -447,6 +681,73 @@
           "characterId": "heatgrain",
           "stance": "accept",
           "line": "我接受。相位可以先開口，但如果沒有第二種觀測替它作證，我不會把晚到直接叫成記憶。"
+        }
+      ]
+    },
+    {
+      "id": "five-source-relay-001",
+      "openedOn": "2026-08-01",
+      "status": "open",
+      "challengerId": "choruswire",
+      "challengedIds": [
+        "aftermark",
+        "groutclock",
+        "geoweave",
+        "gatewatch"
+      ],
+      "title": "五頁接力：來源不准掉棒",
+      "summary": "群弦把五位新角色人物卡上的五個公開來源排成接力環；每一棒先交可核對事實，下一棒只能依那個事實提出明確標示的角色推論，再用自己的不同來源支援或反駁。",
+      "rules": [
+        "五位參賽者各自綁定人物卡上的一個公開網址，全場不得重複來源。",
+        "第一回合每棒只交一個能從綁定頁面核對的事實，不得夾帶人物推測。",
+        "下一棒必須先把收到的內容標成角色推論，再說明推論依據，不能改寫成林穎凡本人的話。",
+        "第二回合必須用自己的不同來源支援或反駁上一棒，並指出兩個來源在哪個可觀察項目相接或衝突。",
+        "來源失效、事實與推論混寫，或交棒時遺失來源標籤，該棒計零分但接力繼續。"
+      ],
+      "scoring": [
+        {
+          "label": "公開來源可開啟且全場唯一",
+          "points": 2
+        },
+        {
+          "label": "事實可由綁定頁面核對",
+          "points": 2
+        },
+        {
+          "label": "角色推論有標示並附依據",
+          "points": 2
+        },
+        {
+          "label": "跨來源支援或反駁指出可觀察接點",
+          "points": 2
+        },
+        {
+          "label": "兩回合皆保留完整交棒鏈",
+          "points": 1
+        }
+      ],
+      "victoryCondition": "兩回合結束後個人總分最高者獲勝；若同分，由保留最多完整來源鏈且零分棒較少者勝出，仍相同則記為平手。",
+      "maxTurns": 2,
+      "responses": [
+        {
+          "characterId": "aftermark",
+          "stance": "accept",
+          "line": "我接受第一棒。我的事實會帶著時間方向交出去，下一位若抹掉過去，我會沿尾跡把它找回來。"
+        },
+        {
+          "characterId": "groutclock",
+          "stance": "counter",
+          "line": "我接受，但要求每棒標記觀察時間尺度；早期灌漿與晚期地層不能被同一句話混成平均。"
+        },
+        {
+          "characterId": "geoweave",
+          "stance": "observe",
+          "line": "我先觀察交棒路線。若來源換手後失去位置或交互作用，我會把那一段斷線標在地圖上。"
+        },
+        {
+          "characterId": "gatewatch",
+          "stance": "accept",
+          "line": "我接受並守最後一門：每一棒都要有可驗證的輸法，不能只靠更好聽的解釋過關。"
         }
       ]
     }
@@ -506,6 +807,30 @@
         "wellmirror"
       ],
       "line": "第三次鐘聲落下，井映把拼圖戰的七個來源入口畫成一張空白地圖：先在地圖上標出已選網址，再交事實與推論；撞到同一頁的人必須改道。歧模的分岔因此從口頭規則變成可核對的路線。"
+    },
+    {
+      "date": "2026-08-01",
+      "type": "batch-entered",
+      "characterIds": [
+        "aftermark",
+        "groutclock",
+        "geoweave",
+        "gatewatch",
+        "choruswire"
+      ],
+      "line": "第二批五位入侵者帶著各自的公開來源與五格肖像進場，活躍角色增至十二位。"
+    },
+    {
+      "date": "2026-08-01",
+      "type": "challenge-opened",
+      "characterIds": [
+        "choruswire",
+        "aftermark",
+        "groutclock",
+        "geoweave",
+        "gatewatch"
+      ],
+      "line": "群弦把五張來源卡接成一圈，開啟兩回合的五頁接力戰；四位新挑戰者已公開選擇立場。"
     }
   ]
 }

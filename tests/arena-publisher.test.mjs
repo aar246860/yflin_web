@@ -73,21 +73,37 @@ test("duplicate character ids are rejected", () => {
 
 test("an incomplete daily batch cannot inflate the public count", () => {
   const invalid = copyState();
+  const removedEntrant = invalid.roster.find(
+    (character) =>
+      character.role === "challenger" &&
+      character.enteredOn === invalid.currentDay &&
+      character.status === "active",
+  );
+  assert.ok(removedEntrant, "the fixture must contain a current-day entrant");
+
   invalid.roster = invalid.roster.filter(
-    (character) => character.id !== "drafttrace",
+    (character) => character.id !== removedEntrant.id,
   );
-  invalid.batches[0].entrantIds = invalid.batches[0].entrantIds.filter(
-    (id) => id !== "drafttrace",
+  const currentBatch = invalid.batches.find(
+    (batch) => batch.date === invalid.currentDay,
   );
-  invalid.challenges[0].challengedIds =
-    invalid.challenges[0].challengedIds.filter((id) => id !== "drafttrace");
-  invalid.challenges[0].responses =
-    invalid.challenges[0].responses.filter(
-      (response) => response.characterId !== "drafttrace",
+  assert.ok(currentBatch, "the fixture must contain a current-day batch");
+  currentBatch.entrantIds = currentBatch.entrantIds.filter(
+    (id) => id !== removedEntrant.id,
+  );
+  for (const challenge of invalid.challenges) {
+    challenge.challengedIds = challenge.challengedIds.filter(
+      (id) => id !== removedEntrant.id,
     );
-  invalid.events[0].characterIds = invalid.events[0].characterIds.filter(
-    (id) => id !== "drafttrace",
-  );
+    challenge.responses = challenge.responses.filter(
+      (response) => response.characterId !== removedEntrant.id,
+    );
+  }
+  for (const event of invalid.events) {
+    event.characterIds = event.characterIds.filter(
+      (id) => id !== removedEntrant.id,
+    );
+  }
   const errors = validateArenaState(invalid, { root });
   assert.ok(
     errors.some((error) =>

@@ -101,9 +101,12 @@ const expectedRestCount = Array.from(
   { length: nonFocusedCount },
   (_, index) => restingPattern[index % restingPattern.length],
 ).filter((behavior) => behavior === "rest").length;
-const openChallengeCount = arenaState.challenges.filter(
+const openChallenges = arenaState.challenges.filter(
   (challenge) => challenge.status === "open",
-).length;
+);
+const openChallengeCount = openChallenges.length;
+const currentChallenge = openChallenges.at(-1);
+if (!currentChallenge) throw new Error("Missing current open arena challenge");
 
 const RIVAL_PATH =
   "/xiaolin/2026-07-31-0957-daye-eight-curtains-one-cell/";
@@ -239,7 +242,7 @@ for (const viewport of VIEWPORTS) {
       ),
     ).toHaveCount(1);
     await expect(
-      page.getByRole("heading", { name: "先到的是相位，還是證據？" }),
+      page.getByRole("heading", { name: currentChallenge.title }),
     ).toBeVisible();
     await expect(page.locator(".arena-action-section")).toContainText(
       latestSignal,
