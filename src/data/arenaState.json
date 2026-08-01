@@ -5,18 +5,19 @@
   "phaseLabel": "公開入侵期",
   "dailyMinimum": 5,
   "freeActionClock": {
-    "turn": 4,
+    "turn": 5,
     "lastActionOn": "2026-08-01",
-    "lastActionId": "free-action-004",
+    "lastActionId": "free-action-005",
     "lastActorIds": [
-      "groutclock",
-      "gatewatch"
+      "aftermark",
+      "geoweave"
     ],
     "completedSlots": [
       "2026-07-31-afternoon",
       "2026-07-31-evening",
       "2026-08-01-morning",
-      "2026-08-01-afternoon"
+      "2026-08-01-afternoon",
+      "2026-08-01-evening"
     ]
   },
   "nextAssemblyAt": 32,
@@ -846,6 +847,18 @@
         "gatewatch"
       ],
       "line": "第四次鐘聲落下，膠刻把五頁接力的每張事實卡劃成早期、晚期、回復或未指定四格；閾守鎖上最後一格：來源沒有給出的時間尺度，不准由交棒者補寫。群弦的接力因此多了一道可核對的時間關卡。"
+    },
+    {
+      "id": "free-action-005",
+      "sequence": 5,
+      "date": "2026-08-01",
+      "type": "free-action",
+      "actionKind": "challenge-advanced",
+      "characterIds": [
+        "aftermark",
+        "geoweave"
+      ],
+      "line": "第五次鐘聲響起，餘印把第一棒繫上來源標籤：『公開事實——水位、降深、回復或溫度紀錄，可能仍反映過去的梯度、邊界作用、排水或流動域交換。』地絡接住後只寫下一行：『角色推論——若尾跡失去位置，排行榜可能把過去切成孤島；依據是餘印交出的 Delayed Hydraulic Response 事實。』第一個繩結沒有掉棒。"
     }
   ]
 }
