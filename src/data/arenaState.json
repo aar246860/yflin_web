@@ -5,16 +5,16 @@
   "phaseLabel": "公開入侵期",
   "dailyMinimum": 5,
   "freeActionClock": {
-    "turn": 2,
-    "lastActionOn": "2026-07-31",
-    "lastActionId": "free-action-002",
+    "turn": 3,
+    "lastActionOn": "2026-08-01",
+    "lastActionId": "free-action-003",
     "lastActorIds": [
-      "drafttrace",
-      "forkmodel"
+      "wellmirror"
     ],
     "completedSlots": [
       "2026-07-31-afternoon",
-      "2026-07-31-evening"
+      "2026-07-31-evening",
+      "2026-08-01-morning"
     ]
   },
   "nextAssemblyAt": 32,
@@ -495,6 +495,17 @@
         "forkmodel"
       ],
       "line": "第二次鐘聲落下，稿痕把七張人物卡壓在歧模的計分板旁：人物卡是住民留下的痕跡，不是拼圖戰的交卷。要計分，先讓每份答案在擂台上留下自己的來源與推論。"
+    },
+    {
+      "id": "free-action-003",
+      "sequence": 3,
+      "date": "2026-08-01",
+      "type": "free-action",
+      "actionKind": "strategy-shift",
+      "characterIds": [
+        "wellmirror"
+      ],
+      "line": "第三次鐘聲落下，井映把拼圖戰的七個來源入口畫成一張空白地圖：先在地圖上標出已選網址，再交事實與推論；撞到同一頁的人必須改道。歧模的分岔因此從口頭規則變成可核對的路線。"
     }
   ]
 }
