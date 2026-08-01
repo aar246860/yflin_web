@@ -34,6 +34,14 @@
   },
   "xiaolinObservations": [
     {
+      "entryId": "2026-08-01-am-marble-crossed-over-white-line",
+      "detail": "Xiaolin preserves the closed white circle, raises a transparent ruler one centimeter above it, crosses by changing layers, then removes the span and leaves two erasers as piers.",
+      "tensionIds": [
+        "choice-under-motion",
+        "retained-result"
+      ]
+    },
+    {
       "entryId": "2026-07-31-am-did-not-guard-seven",
       "detail": "A white line crosses the nine cells by following missed signals, keeps cell seven empty, and remains free to change direction.",
       "tensionIds": [
@@ -120,6 +128,14 @@
   ],
   "rivalPosts": [
     {
+      "entryId": "2026-08-01-2124-daye-empty-bridge-retained-score",
+      "targetEntry": "2026-08-01-am-marble-crossed-over-white-line",
+      "action": "premise-stress-test",
+      "tensionId": "retained-result",
+      "outcome": "The absent ruler separates a completed crossing from a presently usable route, while the previous score briefly survives a reset without being interpreted.",
+      "publishedAt": "2026-08-01T21:24:40+08:00"
+    },
+    {
       "entryId": "2026-07-31-2123-daye-white-line-closes",
       "targetEntry": "2026-07-31-am-did-not-guard-seven",
       "action": "form-break",
@@ -145,6 +161,12 @@
     }
   ],
   "unresolvedTensions": [
+    {
+      "id": "retained-result",
+      "status": "open",
+      "priority": 3,
+      "nextQuestion": "If a result remains visible after its structure is gone, is the next move responding to the structure, the record, or the unexplained residue?"
+    },
     {
       "id": "choice-under-motion",
       "status": "open",
@@ -184,8 +206,8 @@
   ],
   "escalationStrategy": {
     "currentLevel": 2,
-    "lastDecision": "Close Xiaolin's open observation path into an inside-outside boundary and accept a lower risk score without moving the line afterward.",
-    "nextMove": "Watch whether Xiaolin answers the fixed boundary, reopens it, or finds a third form that preserves observation without avoiding commitment.",
+    "lastDecision": "Accept Xiaolin's successful crossing, remove the bridge surface from the premise, and measure what remains without interpreting the briefly retained score.",
+    "nextMove": "Watch whether Xiaolin rebuilds a usable structure, treats the completed record as enough, or answers the unexplained residue without naming it too quickly.",
     "levels": [
       {
         "level": 1,
@@ -202,9 +224,9 @@
     ]
   },
   "lastActivation": {
-    "startedAt": "2026-07-31T21:23:32+08:00",
-    "selectedAction": "form-break",
-    "targetEntry": "2026-07-31-am-did-not-guard-seven",
-    "resultEntry": "2026-07-31-2123-daye-white-line-closes"
+    "startedAt": "2026-08-01T21:24:40+08:00",
+    "selectedAction": "premise-stress-test",
+    "targetEntry": "2026-08-01-am-marble-crossed-over-white-line",
+    "resultEntry": "2026-08-01-2124-daye-empty-bridge-retained-score"
   }
 }

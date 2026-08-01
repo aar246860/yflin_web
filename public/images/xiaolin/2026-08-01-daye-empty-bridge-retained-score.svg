@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">大野的撤橋測試與殘留分數</title>
+  <desc id="desc">深藍色九格遊戲室裡，兩塊橘色橋墩之間沒有橋面；牆上新分數下方短暫殘留上一局的1190。</desc>
+  <defs>
+    <linearGradient id="room" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#07172d"/>
+      <stop offset="1" stop-color="#102f46"/>
+    </linearGradient>
+    <linearGradient id="board" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#153c51"/>
+      <stop offset="1" stop-color="#071b2c"/>
+    </linearGradient>
+    <radialGradient id="marble" cx="35%" cy="28%" r="70%">
+      <stop offset="0" stop-color="#d9ffb6"/>
+      <stop offset="0.34" stop-color="#66d18b"/>
+      <stop offset="1" stop-color="#13715c"/>
+    </radialGradient>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="16" stdDeviation="14" flood-color="#000814" flood-opacity=".55"/>
+    </filter>
+    <pattern id="grid" width="180" height="180" patternUnits="userSpaceOnUse">
+      <rect width="180" height="180" fill="none" stroke="#7aa0ad" stroke-opacity=".18" stroke-width="2"/>
+    </pattern>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#room)"/>
+  <circle cx="250" cy="85" r="280" fill="#1f7e8b" opacity=".12"/>
+  <circle cx="1230" cy="770" r="360" fill="#d6903d" opacity=".08"/>
+
+  <g transform="translate(90 120)">
+    <text x="0" y="0" fill="#9fc5cc" font-family="sans-serif" font-size="24" letter-spacing="8">ROOM TURN 05 · DAYE</text>
+    <text x="0" y="72" fill="#f4eee1" font-family="sans-serif" font-size="55" font-weight="700">橋的位置，不是橋</text>
+    <text x="2" y="115" fill="#9fc5cc" font-family="sans-serif" font-size="24">EMPTY SPAN / PREMISE STRESS TEST</text>
+  </g>
+
+  <g transform="translate(100 300)" filter="url(#shadow)">
+    <path d="M36 420 L36 94 Q36 38 92 38 H920 Q976 38 976 94 V420 Z" fill="#0b2236" stroke="#3c6978" stroke-width="3"/>
+    <path d="M62 395 V90 H950 V395 Z" fill="url(#grid)"/>
+    <path d="M192 274 C298 142 455 143 555 230 C659 321 739 337 874 242 C896 226 917 207 938 186" fill="none" stroke="#f0eee7" stroke-width="11" stroke-linecap="round"/>
+    <path d="M192 274 C298 142 455 143 555 230 C659 321 739 337 874 242" fill="none" stroke="#f6c35b" stroke-opacity=".2" stroke-width="27"/>
+    <rect x="380" y="180" width="86" height="136" rx="18" fill="#e58a43" stroke="#ffc47f" stroke-width="5" transform="rotate(-5 423 248)"/>
+    <rect x="704" y="226" width="86" height="136" rx="18" fill="#e58a43" stroke="#ffc47f" stroke-width="5" transform="rotate(6 747 294)"/>
+    <path d="M476 236 H694" stroke="#f0eee7" stroke-opacity=".25" stroke-width="3" stroke-dasharray="8 12"/>
+    <path d="M475 210 v52 M695 210 v52" stroke="#73c9ce" stroke-width="3"/>
+    <text x="535" y="198" fill="#73c9ce" font-family="sans-serif" font-size="24">11.4 cm</text>
+    <rect x="495" y="254" width="180" height="74" rx="6" fill="#020915" opacity=".85"/>
+    <text x="548" y="300" fill="#9fc5cc" font-family="sans-serif" font-size="21" letter-spacing="5">EMPTY</text>
+    <circle cx="632" cy="362" r="33" fill="url(#marble)" stroke="#c8f6d7" stroke-width="4"/>
+    <circle cx="622" cy="351" r="8" fill="#fff" opacity=".72"/>
+  </g>
+
+  <g transform="translate(1135 215)" filter="url(#shadow)">
+    <rect width="365" height="470" rx="22" fill="url(#board)" stroke="#5f8792" stroke-width="3"/>
+    <text x="38" y="58" fill="#8fb5bd" font-family="sans-serif" font-size="21" letter-spacing="5">SIGNAL CHASE</text>
+    <line x1="38" y1="87" x2="327" y2="87" stroke="#436b76"/>
+    <text x="38" y="133" fill="#f2ba62" font-family="sans-serif" font-size="24">DAYE / 大野</text>
+    <text x="37" y="232" fill="#f7f0df" font-family="sans-serif" font-size="88" font-weight="700" filter="url(#glow)">1722</text>
+    <text x="41" y="278" fill="#73c9ce" font-family="monospace" font-size="16">PROOF 6b08e63e49bb4558</text>
+    <line x1="38" y1="322" x2="327" y2="322" stroke="#436b76" stroke-width="2"/>
+    <text x="41" y="382" fill="#f7f0df" fill-opacity=".14" font-family="sans-serif" font-size="52" font-weight="700">1190</text>
+    <text x="43" y="420" fill="#9fc5cc" fill-opacity=".45" font-family="sans-serif" font-size="18" letter-spacing="3">RESET AFTERIMAGE?</text>
+  </g>
+
+  <g transform="translate(114 808)">
+    <circle cx="13" cy="-8" r="8" fill="#e9b45c"/>
+    <text x="36" y="0" fill="#b8d2d5" font-family="sans-serif" font-size="22">兩端仍在 · 橋面已撤 · 舊分數短暫殘留</text>
+  </g>
+</svg>

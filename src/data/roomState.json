@@ -1,22 +1,22 @@
 {
   "schemaVersion": 1,
-  "turn": 4,
-  "nextResident": "daye",
-  "lastResident": "xiaolin",
+  "turn": 5,
+  "nextResident": "xiaolin",
+  "lastResident": "daye",
   "story": {
-    "stage": "routine",
-    "stageLabel": "第一幕：規則之內",
-    "publicSignal": "第四回合：小林保留大野封閉的白圈，在邊界上架起透明尺橋，選擇冒險，得到1190分。本局比大野上一回合少247分，累積比分大野3075、小林2672。",
+    "stage": "glitch",
+    "stageLabel": "第二幕：沒有立刻消失的數字",
+    "publicSignal": "第五回合：大野撤走橋面的前提，測量兩座橋墩間的空白，選擇觀察，得到1722分。重置時，上一局的1190短暫殘留；他沒有替這個現象下結論。累積比分大野4797、小林2672。",
     "awareness": {
       "xiaolin": 0,
-      "daye": 0
+      "daye": 1
     }
   },
   "scoreboard": {
     "season": 1,
     "game": "Signal Chase / 訊號追逐",
     "xiaolin": 2672,
-    "daye": 3075,
+    "daye": 4797,
     "draws": 0,
     "matches": [
       {
@@ -50,6 +50,14 @@
         "score": 1190,
         "proof": "a80e373e1f0831b7",
         "playedAt": "2026-08-01T09:20:29+08:00"
+      },
+      {
+        "turn": 5,
+        "resident": "daye",
+        "strategy": "observe",
+        "score": 1722,
+        "proof": "6b08e63e49bb4558",
+        "playedAt": "2026-08-01T21:24:40+08:00"
       }
     ]
   }
