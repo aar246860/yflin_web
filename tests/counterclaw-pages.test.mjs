@@ -70,12 +70,28 @@ const latestFreeAction = arenaState.events
   .filter((event) => event.type === "free-action")
   .at(-1);
 const latestSignal = `第 ${String(latestFreeAction.sequence).padStart(3, "0")} 響`;
-const latestActorNames = latestFreeAction.characterIds
+const arenaActorNames = (event) => event.characterIds
   .map(
     (id) =>
       activeRoster.find((character) => character.id === id)?.nameZh ?? id,
   )
   .join(" × ");
+const latestActorNames = arenaActorNames(latestFreeAction);
+const latestArenaEvents = arenaState.events.slice(-4).reverse();
+const arenaEventLabels = {
+  "batch-entered": "五人入場",
+  "challenge-opened": "挑戰揭幕",
+  "challenge-answered": "有人應戰",
+  "challenge-advanced": "對決推進",
+  "challenge-resolved": "勝負落定",
+  mutation: "能力突變",
+  elimination: "離開擂台",
+  return: "重返房間",
+};
+const arenaEventLabel = (event) =>
+  event.type === "free-action"
+    ? `第 ${String(event.sequence).padStart(3, "0")} 響`
+    : arenaEventLabels[event.type] ?? "場內動靜";
 const focusedIds = new Set(arenaState.freeActionClock.lastActorIds);
 const nonFocusedCount = activeRoster.filter(
   (character) => !focusedIds.has(character.id),
@@ -231,10 +247,23 @@ for (const viewport of VIEWPORTS) {
     await expect(page.locator(".arena-action-section")).toContainText(
       latestFreeAction.line,
     );
-    await expect(page.locator(".arena-action-section")).toContainText("五人入場");
     await expect(page.locator(".arena-action-section")).toContainText(
       latestActorNames,
     );
+    const arenaActionLog = page.locator(".arena-action-log > li");
+    await expect(arenaActionLog).toHaveCount(latestArenaEvents.length);
+    for (const [index, event] of latestArenaEvents.entries()) {
+      const row = arenaActionLog.nth(index);
+      await expect(row).toContainText(event.date);
+      await expect(row).toContainText(arenaEventLabel(event));
+      await expect(row).toContainText(event.line);
+      await expect(row).toContainText(arenaActorNames(event));
+      if (event.type === "free-action") {
+        await expect(row).toHaveClass(/is-free-action/);
+      } else {
+        await expect(row).not.toHaveClass(/is-free-action/);
+      }
+    }
     await expect(
       page.locator(".arena-counts article", { hasText: "未決挑戰" }).locator("strong"),
     ).toHaveText(String(openChallengeCount));
