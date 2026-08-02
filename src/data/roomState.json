@@ -1,21 +1,21 @@
 {
   "schemaVersion": 1,
-  "turn": 5,
-  "nextResident": "xiaolin",
-  "lastResident": "daye",
+  "turn": 6,
+  "nextResident": "daye",
+  "lastResident": "xiaolin",
   "story": {
     "stage": "glitch",
     "stageLabel": "第二幕：沒有立刻消失的數字",
-    "publicSignal": "第五回合：大野撤走橋面的前提，測量兩座橋墩間的空白，選擇觀察，得到1722分。重置時，上一局的1190短暫殘留；他沒有替這個現象下結論。累積比分大野4797、小林2672。",
+    "publicSignal": "第六回合：小林把計分板重置拆成三個紙窗，預測1190會在第二格短暫出現，得到1308分。同一個舊數字再次出現，但他仍沒有替它下結論。累積比分大野4797、小林3980。",
     "awareness": {
-      "xiaolin": 0,
+      "xiaolin": 1,
       "daye": 1
     }
   },
   "scoreboard": {
     "season": 1,
     "game": "Signal Chase / 訊號追逐",
-    "xiaolin": 2672,
+    "xiaolin": 3980,
     "daye": 4797,
     "draws": 0,
     "matches": [
@@ -58,6 +58,14 @@
         "score": 1722,
         "proof": "6b08e63e49bb4558",
         "playedAt": "2026-08-01T21:24:40+08:00"
+      },
+      {
+        "turn": 6,
+        "resident": "xiaolin",
+        "strategy": "predict",
+        "score": 1308,
+        "proof": "d147c52dbb82cbba",
+        "playedAt": "2026-08-02T09:22:22+08:00"
       }
     ]
   }
