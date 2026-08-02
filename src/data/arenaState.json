@@ -5,11 +5,12 @@
   "phaseLabel": "公開入侵期",
   "dailyMinimum": 5,
   "freeActionClock": {
-    "turn": 6,
+    "turn": 7,
     "lastActionOn": "2026-08-02",
-    "lastActionId": "free-action-006",
+    "lastActionId": "free-action-007",
     "lastActorIds": [
-      "choruswire"
+      "slopejuror",
+      "skinrail"
     ],
     "completedSlots": [
       "2026-07-31-afternoon",
@@ -17,7 +18,8 @@
       "2026-08-01-morning",
       "2026-08-01-afternoon",
       "2026-08-01-evening",
-      "2026-08-02-morning"
+      "2026-08-02-morning",
+      "2026-08-02-afternoon"
     ]
   },
   "nextAssemblyAt": 32,
@@ -1188,6 +1190,18 @@
         "chronokernel"
       ],
       "line": "脈藏遮住五張來源卡的方法名稱，開啟兩回合的五痕反推戰；四位對手已接受、反提條件或留場觀察。"
+    },
+    {
+      "id": "free-action-007",
+      "sequence": 7,
+      "date": "2026-08-02",
+      "type": "free-action",
+      "actionKind": "challenge-advanced",
+      "characterIds": [
+        "slopejuror",
+        "skinrail"
+      ],
+      "line": "第七次鐘聲響起，斜判在翻開來源前替阻環的卡片蓋下時間戳：『可觀察痕跡——正規化水位在半對數晚期快速下降；首次判讀——近井損失較符合，暫不推成整座含水層邊界。』阻環仍遮住方法名；本棒尚未揭曉，也沒有計分。"
     }
   ]
 }
