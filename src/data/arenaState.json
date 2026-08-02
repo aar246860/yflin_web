@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "currentDay": "2026-08-01",
+  "currentDay": "2026-08-02",
   "phase": "open-invasion",
   "phaseLabel": "公開入侵期",
   "dailyMinimum": 5,
@@ -53,7 +53,23 @@
         "groutclock",
         "geoweave",
         "gatewatch",
-        "choruswire"
+        "choruswire",
+        "pulsevault",
+        "thincrest"
+      ]
+    },
+    {
+      "id": "incursion-2026-08-02",
+      "date": "2026-08-02",
+      "label": "第三批入侵者",
+      "portraitAtlas": "/images/xiaolin/arena/2026-08-02-roster-atlas.webp",
+      "portraitAtlasAlt": "五格漫畫肖像，依序是脈藏、薄冠、阻環、斜判與時核。",
+      "entrantIds": [
+        "pulsevault",
+        "thincrest",
+        "skinrail",
+        "slopejuror",
+        "chronokernel"
       ]
     }
   ],
@@ -551,6 +567,211 @@
         "generation": 0,
         "currentTrait": "每接到一個新來源，就新增一條可追蹤的交棒線而不抹平差異"
       }
+    },
+    {
+      "id": "pulsevault",
+      "nameZh": "脈藏",
+      "nameEn": "Pulsevault",
+      "epithet": "從水位裡聽見缺席的抽水",
+      "role": "challenger",
+      "enteredOn": "2026-08-02",
+      "entryOrder": 13,
+      "status": "active",
+      "intro": "我是脈藏。輸入紀錄不在，不代表它沒有留下節律。我會把水位拆成一層層頻帶，直到藏起來的抽水在空白處露出脈搏。",
+      "personality": "內斂、節律敏感、對缺失資料保持耐心但不輕信補值",
+      "origin": "一座沒有抽水日誌、只留下多年逐時水位的監測井陣列",
+      "ability": "缺席脈衝：從時頻成分與空間共同型態中標記疑似外力留下的訊號。",
+      "signatureMove": "無表泵鳴",
+      "portrait": {
+        "src": "/images/xiaolin/arena/2026-08-02-roster-atlas.webp",
+        "alt": "脈藏戴著圓形深青頭罩，胸前透明艙內疊著薄荷色波紋，手中握著一枚舊式圓形儀表。",
+        "atlasPanel": 0
+      },
+      "evidence": {
+        "label": "Spatiotemporal pumping estimation",
+        "href": "https://www.sciencedirect.com/science/article/abs/pii/S0022169424002506",
+        "kind": "publisher-record",
+        "fact": "公開論文摘要說明，研究結合 Hilbert–Huang transform 與 empirical orthogonal function，分析濁水溪沖積扇 197 口監測井在 2008 至 2019 年的逐時水位，以估計時空抽水量。"
+      },
+      "inference": {
+        "statement": "角色推論：我猜林穎凡會把『沒有抽水紀錄』視為需要交叉驗證的反演問題，而不是直接填入一條方便的假設曲線；依據是這篇研究從逐時水位與多重訊號分解重建抽水型態。",
+        "basisLabel": "Spatiotemporal pumping estimation 論文頁",
+        "basisHref": "https://www.sciencedirect.com/science/article/abs/pii/S0022169424002506",
+        "status": "in-story-inference"
+      },
+      "record": {
+        "wins": 0,
+        "losses": 0,
+        "draws": 0
+      },
+      "mutation": {
+        "generation": 0,
+        "currentTrait": "每遇到一段空白輸入，就先尋找兩種彼此獨立的輸出節律再開口"
+      }
+    },
+    {
+      "id": "thincrest",
+      "nameZh": "薄冠",
+      "nameEn": "Thincrest",
+      "epithet": "讓水位面記得上方的土",
+      "role": "challenger",
+      "enteredOn": "2026-08-02",
+      "entryOrder": 14,
+      "status": "active",
+      "intro": "我是薄冠。水位面不是一條沒有厚度的線；上方那層未飽和土會排水、會牽動、也會讓看似簡單的邊界留下自己的重量。",
+      "personality": "輕聲、講究物理含義、習慣先檢查被壓成一條線的厚度",
+      "origin": "被近似成超薄膜、卻仍保留未飽和水力性質的一層水位面",
+      "ability": "薄層承壓：把被邊界條件壓縮掉的未飽和動力重新投影到降深曲線。",
+      "signatureMove": "冠下緩釋",
+      "portrait": {
+        "src": "/images/xiaolin/arena/2026-08-02-roster-atlas.webp",
+        "alt": "薄冠頭頂浮著盛水般的透明薄膜圓冠，兩側垂下琥珀色水滴飾件，披著米白與金色窄肩斗篷。",
+        "atlasPanel": 1
+      },
+      "evidence": {
+        "label": "Unsaturated-flow water-table condition",
+        "href": "https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/2024WR038724",
+        "kind": "publisher-record",
+        "fact": "公開論文摘要說明，研究由耦合飽和—未飽和流模型推導新的水位面條件，以 Boise 場址抽水試驗驗證，並在不增加經驗參數下改善比出水率估計。"
+      },
+      "inference": {
+        "statement": "角色推論：我猜林穎凡偏好先替新增項找到物理來源，再決定是否把它放進模型；依據是這項水位面條件保留未飽和區水力性質，同時強調不另加經驗擬合參數。",
+        "basisLabel": "Unsaturated-flow water-table condition 論文頁",
+        "basisHref": "https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/2024WR038724",
+        "status": "in-story-inference"
+      },
+      "record": {
+        "wins": 0,
+        "losses": 0,
+        "draws": 0
+      },
+      "mutation": {
+        "generation": 0,
+        "currentTrait": "每看見一條零厚度邊界，就追問它壓縮掉了哪一層動力"
+      }
+    },
+    {
+      "id": "skinrail",
+      "nameZh": "阻環",
+      "nameEn": "Skinrail",
+      "epithet": "把井邊的損失圈起來",
+      "role": "challenger",
+      "enteredOn": "2026-08-02",
+      "entryOrder": 15,
+      "status": "active",
+      "intro": "我是阻環。遠處含水層再平順，井篩旁的一圈擾動也可能把答案扭彎。我守著最靠近井的那段路，分清線性損失和高速流留下的彎折。",
+      "personality": "厚重、直接、只相信能分開近井損失來源的判讀",
+      "origin": "鑽井擾動帶與礫料包交界處的一圈粗糙井壁",
+      "ability": "雙阻分流：將地層損傷的線性水頭損失與井篩附近的非達西損失拆開。",
+      "signatureMove": "福希海默套環",
+      "portrait": {
+        "src": "/images/xiaolin/arena/2026-08-02-roster-atlas.webp",
+        "alt": "阻環穿著厚重鏽色陶甲，方形靛藍面罩外套著粗糙多孔圓環，胸前併立兩截金屬管。",
+        "atlasPanel": 2
+      },
+      "evidence": {
+        "label": "Nonlinear slug-test solution",
+        "href": "https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/2021WR031368",
+        "kind": "publisher-record",
+        "fact": "公開論文摘要說明，半解析 slug-test 模型同時考慮近井地層損傷與以 Forchheimer 方程描述的非達西流，並用南達科他州裂隙含水層現地資料分析水位反應。"
+      },
+      "inference": {
+        "statement": "角色推論：我猜林穎凡遇到晚期快速下降時，會先檢查井邊機制是否足以解釋，再把異常歸給整座含水層；依據是這篇研究將地層損傷與井篩附近非線性損失明確分開。",
+        "basisLabel": "Nonlinear slug-test solution 論文頁",
+        "basisHref": "https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/2021WR031368",
+        "status": "in-story-inference"
+      },
+      "record": {
+        "wins": 0,
+        "losses": 0,
+        "draws": 0
+      },
+      "mutation": {
+        "generation": 0,
+        "currentTrait": "每逢曲線轉折就把損失分成井壁線性項與高速非線性項各查一次"
+      }
+    },
+    {
+      "id": "slopejuror",
+      "nameZh": "斜判",
+      "nameEn": "Slopejuror",
+      "epithet": "用兩段斜率審問邊界",
+      "role": "challenger",
+      "enteredOn": "2026-08-02",
+      "entryOrder": 16,
+      "status": "active",
+      "intro": "我是斜判。曲線轉彎以前和以後各有一段口供；把兩段斜率放在同一張桌上，補注邊界、阻水邊界與無邊界就不能只靠直覺換名字。",
+      "personality": "銳利、程序至上、喜歡讓分類先公開它的判決門檻",
+      "origin": "半對數降深圖上早期與晚期直線交會的折點",
+      "ability": "雙斜審理：以分段迴歸和可檢查的分類機率區分邊界類型。",
+      "signatureMove": "折點宣判",
+      "portrait": {
+        "src": "/images/xiaolin/arena/2026-08-02-roster-atlas.webp",
+        "alt": "斜判有著尖銳靛藍頭冠與雙鏡單眼裝置，兩側是不等長的薄荷色尺形肩翼。",
+        "atlasPanel": 3
+      },
+      "evidence": {
+        "label": "Fast hydrogeological-boundary identification",
+        "href": "https://www.sciencedirect.com/science/article/pii/S0022169425007929",
+        "kind": "publisher-record",
+        "fact": "公開論文頁說明，研究把分段線性迴歸、貝葉斯分類、Theis 解、鏡井理論與模擬退火整合，用於同時辨識受壓含水層邊界類型、位置及含水層參數。"
+      },
+      "inference": {
+        "statement": "角色推論：我猜林穎凡偏好把原本依賴圖解與主觀判讀的步驟拆成可重現的分類和定位程序；依據是這個框架公開整合斜率分類、鏡井定位與參數估計。",
+        "basisLabel": "Fast hydrogeological-boundary identification 論文頁",
+        "basisHref": "https://www.sciencedirect.com/science/article/pii/S0022169425007929",
+        "status": "in-story-inference"
+      },
+      "record": {
+        "wins": 0,
+        "losses": 0,
+        "draws": 0
+      },
+      "mutation": {
+        "generation": 0,
+        "currentTrait": "每次分類前先保存早期與晚期斜率，讓後來的改判仍可追溯"
+      }
+    },
+    {
+      "id": "chronokernel",
+      "nameZh": "時核",
+      "nameEn": "Chronokernel",
+      "epithet": "把空間與時間揉成同一顆核",
+      "role": "challenger",
+      "enteredOn": "2026-08-02",
+      "entryOrder": 17,
+      "status": "active",
+      "intro": "我是時核。邊界缺一角、觀測帶著噪音，我就讓每個空間點攜帶自己的時間距離。別急著補網格；先看物理殘差能不能把散落的點連成波。",
+      "personality": "好奇、抽象、樂於跨域但會把每個漂亮結果送回殘差檢查",
+      "origin": "一組同時量度空間距離與時間距離的徑向基底節點",
+      "ability": "時空成核：用時空徑向基底整理不完整邊界資料，再由物理約束限制可行波形。",
+      "signatureMove": "逆波結星",
+      "portrait": {
+        "src": "/images/xiaolin/arena/2026-08-02-roster-atlas.webp",
+        "alt": "時核披著深靛藍星圖長衣，頭頂環繞薄荷色節點與同心軌道，胸前排列一組時空圓環。",
+        "atlasPanel": 4
+      },
+      "evidence": {
+        "label": "Spacetime RBF inverse-wave framework",
+        "href": "https://www.mdpi.com/2227-7390/13/5/725",
+        "kind": "publisher-record",
+        "fact": "公開論文摘要說明，研究把時空徑向基底函數與物理資訊神經網路結合求解逆波問題，並測試不完整或含噪邊界資料下的準確度。"
+      },
+      "inference": {
+        "statement": "角色推論：我猜林穎凡願意讓解析結構、無網格方法與神經網路互相借力，但仍要求用物理殘差和受控數值案例檢查結果；依據是這篇研究的時空 RBF 與 PINN 整合設計。",
+        "basisLabel": "Spacetime RBF inverse-wave framework 論文頁",
+        "basisHref": "https://www.mdpi.com/2227-7390/13/5/725",
+        "status": "in-story-inference"
+      },
+      "record": {
+        "wins": 0,
+        "losses": 0,
+        "draws": 0
+      },
+      "mutation": {
+        "generation": 0,
+        "currentTrait": "每少一段邊界資料，就增加一次物理殘差與留出區域的交叉核對"
+      }
     }
   ],
   "challenges": [
@@ -644,6 +865,16 @@
           "characterId": "gatewatch",
           "stance": "counter",
           "line": "我反提一門：網址能開還不夠，事實若只改善故事卻沒有可核對句子，這一棒不得分。"
+        },
+        {
+          "characterId": "pulsevault",
+          "stance": "accept",
+          "line": "我接受。我交出的197口井與逐時水位只算公開事實；從缺席輸入拼出的研究習慣，必須留在角色推論那一格。"
+        },
+        {
+          "characterId": "thincrest",
+          "stance": "counter",
+          "line": "我接受並加一條薄膜規則：凡是來源寫明的適用條件都要一起帶進場，不能只摘下結果，把限制留在門外。"
         }
       ]
     },
@@ -752,6 +983,69 @@
           "characterId": "gatewatch",
           "stance": "accept",
           "line": "我接受並守最後一門：每一棒都要有可驗證的輸法，不能只靠更好聽的解釋過關。"
+        }
+      ]
+    },
+    {
+      "id": "masked-trace-trial-001",
+      "openedOn": "2026-08-02",
+      "status": "open",
+      "challengerId": "pulsevault",
+      "challengedIds": [
+        "thincrest",
+        "skinrail",
+        "slopejuror",
+        "chronokernel"
+      ],
+      "title": "遮掉方法名：五痕反推戰",
+      "summary": "脈藏把五張來源卡的方法名稱遮住，只公開一種可觀察痕跡；參賽者必須先判斷被隱藏的外力、邊界或近井機制，再翻開來源核對，不能在看見答案後改寫第一次判讀。",
+      "rules": [
+        "每位參賽者從自己人物卡的公開來源選一個可觀察輸入或輸出，遮住方法名稱後交給下一位。",
+        "接卡者必須在翻開來源前寫下一個被隱藏的外力、邊界或局部機制，以及支持判讀的可觀察痕跡。",
+        "來源翻開後只能標記吻合、不足或衝突，不得重寫第一次判讀，也不得補入來源沒有提供的數值。",
+        "第二回合由原持卡者提出一個能推翻自己解釋的替代機制，並指出需要增加哪一種觀測。",
+        "所有事實與角色推論分欄保存；來源連結失效或無法核對的卡片不得計分。"
+      ],
+      "scoring": [
+        {
+          "label": "首次判讀在揭曉前留下時間戳",
+          "points": 2
+        },
+        {
+          "label": "判讀明確引用一項可觀察痕跡",
+          "points": 2
+        },
+        {
+          "label": "揭曉後忠實標記吻合、不足或衝突",
+          "points": 2
+        },
+        {
+          "label": "提出可推翻原解釋的替代機制與新增觀測",
+          "points": 3
+        }
+      ],
+      "victoryCondition": "兩回合總分最高者獲勝；若同分，由能以最少新增觀測排除最多替代機制者勝出，仍相同則記為平手。",
+      "maxTurns": 2,
+      "responses": [
+        {
+          "characterId": "thincrest",
+          "stance": "counter",
+          "line": "我接受，但揭曉時必須把適用條件一起翻開；薄層近似若被遮掉，答對方法名也不能算完整判讀。"
+        },
+        {
+          "characterId": "skinrail",
+          "stance": "accept",
+          "line": "我接受。我的卡只給晚期快速下降；誰把井壁損失直接說成整座含水層異常，就要交出第二種近井觀測。"
+        },
+        {
+          "characterId": "slopejuror",
+          "stance": "observe",
+          "line": "我先記錄所有第一次判讀的時間與斜率依據。有人在揭曉後偷偷移動折點，我會把前後兩版並排宣讀。"
+        },
+        {
+          "characterId": "chronokernel",
+          "stance": "accept",
+          "line": "我接受。我會故意留掉一段邊界資料，但保留物理殘差；若答案只靠補點漂亮，留出區域會先拆穿它。"
         }
       ]
     }
@@ -870,6 +1164,30 @@
         "choruswire"
       ],
       "line": "第六次鐘聲響起，群弦把第一個繩結拆成兩色：薄荷色保留餘印的公開事實，靛藍色標出地絡的角色推論。地絡自己的公開來源尚未接上，群弦便把接力棒停在他手中：下一步必須用空間歸因頁指出尾跡在哪個位置或交互作用上相接，才算完成這一棒。"
+    },
+    {
+      "date": "2026-08-02",
+      "type": "batch-entered",
+      "characterIds": [
+        "pulsevault",
+        "thincrest",
+        "skinrail",
+        "slopejuror",
+        "chronokernel"
+      ],
+      "line": "第三批五位入侵者帶著缺席抽水、薄層水位面、近井阻力、雙斜率判讀與時空核五種痕跡進場，活躍角色增至十七位。"
+    },
+    {
+      "date": "2026-08-02",
+      "type": "challenge-opened",
+      "characterIds": [
+        "pulsevault",
+        "thincrest",
+        "skinrail",
+        "slopejuror",
+        "chronokernel"
+      ],
+      "line": "脈藏遮住五張來源卡的方法名稱，開啟兩回合的五痕反推戰；四位對手已接受、反提條件或留場觀察。"
     }
   ]
 }
