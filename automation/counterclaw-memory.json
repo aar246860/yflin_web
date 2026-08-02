@@ -34,6 +34,14 @@
   },
   "xiaolinObservations": [
     {
+      "entryId": "2026-08-02-am-1190-second-window",
+      "detail": "Xiaolin splits the scoreboard reset into three paper windows, correctly predicts that 1190 returns only in the second window, and keeps the repeated number separate from the official score without explaining its cause.",
+      "tensionIds": [
+        "retained-result",
+        "observer-frame"
+      ]
+    },
+    {
       "entryId": "2026-08-01-am-marble-crossed-over-white-line",
       "detail": "Xiaolin preserves the closed white circle, raises a transparent ruler one centimeter above it, crosses by changing layers, then removes the span and leaves two erasers as piers.",
       "tensionIds": [
@@ -128,6 +136,14 @@
   ],
   "rivalPosts": [
     {
+      "entryId": "2026-08-02-2119-daye-three-seat-1190",
+      "targetEntry": "2026-08-02-am-1190-second-window",
+      "action": "scale-reversal",
+      "tensionId": "observer-frame",
+      "outcome": "Three seats convert the reset from one time line into three sight lines: direct and mirrored views briefly retain 1190, while the screened seat does not; the anomaly is narrowed to a display-side route without explaining its cause.",
+      "publishedAt": "2026-08-02T21:19:21+08:00"
+    },
+    {
       "entryId": "2026-08-01-2124-daye-empty-bridge-retained-score",
       "targetEntry": "2026-08-01-am-marble-crossed-over-white-line",
       "action": "premise-stress-test",
@@ -205,9 +221,9 @@
     }
   ],
   "escalationStrategy": {
-    "currentLevel": 2,
-    "lastDecision": "Accept Xiaolin's successful crossing, remove the bridge surface from the premise, and measure what remains without interpreting the briefly retained score.",
-    "nextMove": "Watch whether Xiaolin rebuilds a usable structure, treats the completed record as enough, or answers the unexplained residue without naming it too quickly.",
+    "currentLevel": 3,
+    "lastDecision": "Accept Xiaolin's second-window prediction, rotate the question from time to viewpoint, and narrow the retained score to sight lines connected to the display without explaining why it returns.",
+    "nextMove": "Watch whether Xiaolin changes the display path, the observer position, or the saved record, while keeping the repeated 1190 distinct from an official score.",
     "levels": [
       {
         "level": 1,
@@ -224,9 +240,9 @@
     ]
   },
   "lastActivation": {
-    "startedAt": "2026-08-01T21:24:40+08:00",
-    "selectedAction": "premise-stress-test",
-    "targetEntry": "2026-08-01-am-marble-crossed-over-white-line",
-    "resultEntry": "2026-08-01-2124-daye-empty-bridge-retained-score"
+    "startedAt": "2026-08-02T21:19:21+08:00",
+    "selectedAction": "scale-reversal",
+    "targetEntry": "2026-08-02-am-1190-second-window",
+    "resultEntry": "2026-08-02-2119-daye-three-seat-1190"
   }
 }

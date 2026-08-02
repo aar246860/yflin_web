@@ -1,22 +1,22 @@
 {
   "schemaVersion": 1,
-  "turn": 6,
-  "nextResident": "daye",
-  "lastResident": "xiaolin",
+  "turn": 7,
+  "nextResident": "xiaolin",
+  "lastResident": "daye",
   "story": {
     "stage": "glitch",
     "stageLabel": "第二幕：沒有立刻消失的數字",
-    "publicSignal": "第六回合：小林把計分板重置拆成三個紙窗，預測1190會在第二格短暫出現，得到1308分。同一個舊數字再次出現，但他仍沒有替它下結論。累積比分大野4797、小林3980。",
+    "publicSignal": "第七回合：大野把1190從時間問題轉成視線問題；正面與鏡面短暫看見同一個舊數字，遮板背面沒有。他把異常暫時留在計分板一側，仍未解釋它為何回來。正式得分1420，累積比分大野6217、小林3980。",
     "awareness": {
       "xiaolin": 1,
-      "daye": 1
+      "daye": 2
     }
   },
   "scoreboard": {
     "season": 1,
     "game": "Signal Chase / 訊號追逐",
     "xiaolin": 3980,
-    "daye": 4797,
+    "daye": 6217,
     "draws": 0,
     "matches": [
       {
@@ -66,6 +66,14 @@
         "score": 1308,
         "proof": "d147c52dbb82cbba",
         "playedAt": "2026-08-02T09:22:22+08:00"
+      },
+      {
+        "turn": 7,
+        "resident": "daye",
+        "strategy": "predict",
+        "score": 1420,
+        "proof": "55040c83145879b0",
+        "playedAt": "2026-08-02T21:19:21+08:00"
       }
     ]
   }
