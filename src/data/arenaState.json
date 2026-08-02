@@ -5,19 +5,19 @@
   "phaseLabel": "公開入侵期",
   "dailyMinimum": 5,
   "freeActionClock": {
-    "turn": 5,
-    "lastActionOn": "2026-08-01",
-    "lastActionId": "free-action-005",
+    "turn": 6,
+    "lastActionOn": "2026-08-02",
+    "lastActionId": "free-action-006",
     "lastActorIds": [
-      "aftermark",
-      "geoweave"
+      "choruswire"
     ],
     "completedSlots": [
       "2026-07-31-afternoon",
       "2026-07-31-evening",
       "2026-08-01-morning",
       "2026-08-01-afternoon",
-      "2026-08-01-evening"
+      "2026-08-01-evening",
+      "2026-08-02-morning"
     ]
   },
   "nextAssemblyAt": 32,
@@ -859,6 +859,17 @@
         "geoweave"
       ],
       "line": "第五次鐘聲響起，餘印把第一棒繫上來源標籤：『公開事實——水位、降深、回復或溫度紀錄，可能仍反映過去的梯度、邊界作用、排水或流動域交換。』地絡接住後只寫下一行：『角色推論——若尾跡失去位置，排行榜可能把過去切成孤島；依據是餘印交出的 Delayed Hydraulic Response 事實。』第一個繩結沒有掉棒。"
+    },
+    {
+      "id": "free-action-006",
+      "sequence": 6,
+      "date": "2026-08-02",
+      "type": "free-action",
+      "actionKind": "challenge-advanced",
+      "characterIds": [
+        "choruswire"
+      ],
+      "line": "第六次鐘聲響起，群弦把第一個繩結拆成兩色：薄荷色保留餘印的公開事實，靛藍色標出地絡的角色推論。地絡自己的公開來源尚未接上，群弦便把接力棒停在他手中：下一步必須用空間歸因頁指出尾跡在哪個位置或交互作用上相接，才算完成這一棒。"
     }
   ]
 }
