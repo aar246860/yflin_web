@@ -5,12 +5,12 @@
   "phaseLabel": "公開入侵期",
   "dailyMinimum": 5,
   "freeActionClock": {
-    "turn": 7,
+    "turn": 8,
     "lastActionOn": "2026-08-02",
-    "lastActionId": "free-action-007",
+    "lastActionId": "free-action-008",
     "lastActorIds": [
-      "slopejuror",
-      "skinrail"
+      "chronokernel",
+      "pulsevault"
     ],
     "completedSlots": [
       "2026-07-31-afternoon",
@@ -19,7 +19,8 @@
       "2026-08-01-afternoon",
       "2026-08-01-evening",
       "2026-08-02-morning",
-      "2026-08-02-afternoon"
+      "2026-08-02-afternoon",
+      "2026-08-02-evening"
     ]
   },
   "nextAssemblyAt": 32,
@@ -1202,6 +1203,18 @@
         "skinrail"
       ],
       "line": "第七次鐘聲響起，斜判在翻開來源前替阻環的卡片蓋下時間戳：『可觀察痕跡——正規化水位在半對數晚期快速下降；首次判讀——近井損失較符合，暫不推成整座含水層邊界。』阻環仍遮住方法名；本棒尚未揭曉，也沒有計分。"
+    },
+    {
+      "id": "free-action-008",
+      "sequence": 8,
+      "date": "2026-08-02",
+      "type": "free-action",
+      "actionKind": "challenge-advanced",
+      "characterIds": [
+        "chronokernel",
+        "pulsevault"
+      ],
+      "line": "第八次鐘聲響起，時核從卡片抽走一段邊界資料，只留下未揭名的物理殘差；脈藏在翻牌前蓋章：『可觀察痕跡——輸入邊界留有缺口，物理殘差仍被保留；首次判讀——較像邊界資料缺失，證據還不足以另設新的外力。』方法名繼續遮住，本棒尚未計分。"
     }
   ]
 }
