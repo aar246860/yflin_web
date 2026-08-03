@@ -5,12 +5,12 @@
   "phaseLabel": "公開入侵期",
   "dailyMinimum": 5,
   "freeActionClock": {
-    "turn": 10,
+    "turn": 11,
     "lastActionOn": "2026-08-03",
-    "lastActionId": "free-action-010",
+    "lastActionId": "free-action-011",
     "lastActorIds": [
-      "riftloom",
-      "bankcask"
+      "radiflare",
+      "echocycle"
     ],
     "completedSlots": [
       "2026-07-31-afternoon",
@@ -22,7 +22,8 @@
       "2026-08-02-afternoon",
       "2026-08-02-evening",
       "2026-08-03-morning",
-      "2026-08-03-afternoon"
+      "2026-08-03-afternoon",
+      "2026-08-03-evening"
     ]
   },
   "nextAssemblyAt": 32,
@@ -1560,6 +1561,18 @@
         "bankcask"
       ],
       "line": "第十次鐘聲響起，裂梭在來源揭曉前把岸匣的河川枯竭鐘與自己的斷層接面鐘並排，先留下判讀：『同一機制不足——河岸儲存能讓抽水影響晚到河道，卻不能單獨解釋斷層兩側的水頭與流量跳躍。』岸匣交出區分觀測：同步量河川水位與河道儲水，再於斷層兩側成對量水頭與法向流量。兩面鐘仍未翻牌，本棒尚未計分。"
+    },
+    {
+      "id": "free-action-011",
+      "sequence": 11,
+      "date": "2026-08-03",
+      "type": "free-action",
+      "actionKind": "challenge-advanced",
+      "characterIds": [
+        "radiflare",
+        "echocycle"
+      ],
+      "line": "第十一次鐘聲響起，散焰在來源揭曉前把熱突破鐘推到回律的週期水位鐘旁，先寫下：『共同的延遲名稱不足——熱鐘可能由速度相依彌散與井筒混合改形，水頭鐘則要把振幅衰減與相位差分開讀。』回律提出區分觀測：改變週期頻率，同時比較不同流速與試驗時長下的熱突破；若只有水頭相位隨頻率換拍，熱羽卻隨流速或時長改形，兩把鑰匙便不能互換。來源仍未翻開，本棒尚未計分。"
     }
   ]
 }
