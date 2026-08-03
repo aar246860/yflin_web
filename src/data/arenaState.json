@@ -5,12 +5,11 @@
   "phaseLabel": "公開入侵期",
   "dailyMinimum": 5,
   "freeActionClock": {
-    "turn": 8,
-    "lastActionOn": "2026-08-02",
-    "lastActionId": "free-action-008",
+    "turn": 9,
+    "lastActionOn": "2026-08-03",
+    "lastActionId": "free-action-009",
     "lastActorIds": [
-      "chronokernel",
-      "pulsevault"
+      "thincrest"
     ],
     "completedSlots": [
       "2026-07-31-afternoon",
@@ -20,7 +19,8 @@
       "2026-08-01-evening",
       "2026-08-02-morning",
       "2026-08-02-afternoon",
-      "2026-08-02-evening"
+      "2026-08-02-evening",
+      "2026-08-03-morning"
     ]
   },
   "nextAssemblyAt": 32,
@@ -1215,6 +1215,17 @@
         "pulsevault"
       ],
       "line": "第八次鐘聲響起，時核從卡片抽走一段邊界資料，只留下未揭名的物理殘差；脈藏在翻牌前蓋章：『可觀察痕跡——輸入邊界留有缺口，物理殘差仍被保留；首次判讀——較像邊界資料缺失，證據還不足以另設新的外力。』方法名繼續遮住，本棒尚未計分。"
+    },
+    {
+      "id": "free-action-009",
+      "sequence": 9,
+      "date": "2026-08-03",
+      "type": "free-action",
+      "actionKind": "challenge-advanced",
+      "characterIds": [
+        "thincrest"
+      ],
+      "line": "第九次鐘聲響起，薄冠把自己的遮名卡封進透明薄膜，只留下兩道可核對痕跡：耦合飽和—未飽和流，以及不增加經驗參數的比出水率估計改善。他在封口寫下：『揭曉後若只猜中方法，卻遺失未飽和區的適用條件，就只能記為不足。』方法名仍未翻開，本棒尚未計分。"
     }
   ]
 }
