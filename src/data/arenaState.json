@@ -5,11 +5,12 @@
   "phaseLabel": "公開入侵期",
   "dailyMinimum": 5,
   "freeActionClock": {
-    "turn": 9,
+    "turn": 10,
     "lastActionOn": "2026-08-03",
-    "lastActionId": "free-action-009",
+    "lastActionId": "free-action-010",
     "lastActorIds": [
-      "thincrest"
+      "riftloom",
+      "bankcask"
     ],
     "completedSlots": [
       "2026-07-31-afternoon",
@@ -20,7 +21,8 @@
       "2026-08-02-morning",
       "2026-08-02-afternoon",
       "2026-08-02-evening",
-      "2026-08-03-morning"
+      "2026-08-03-morning",
+      "2026-08-03-afternoon"
     ]
   },
   "nextAssemblyAt": 32,
@@ -1546,6 +1548,18 @@
         "tailbond"
       ],
       "line": "回律把五份可觀察輸入與回應掛上錯位鐘塔，要求每位對手用新增觀測區分機制；四位新入侵者已接受、反提條件或留場觀察。"
+    },
+    {
+      "id": "free-action-010",
+      "sequence": 10,
+      "date": "2026-08-03",
+      "type": "free-action",
+      "actionKind": "challenge-advanced",
+      "characterIds": [
+        "riftloom",
+        "bankcask"
+      ],
+      "line": "第十次鐘聲響起，裂梭在來源揭曉前把岸匣的河川枯竭鐘與自己的斷層接面鐘並排，先留下判讀：『同一機制不足——河岸儲存能讓抽水影響晚到河道，卻不能單獨解釋斷層兩側的水頭與流量跳躍。』岸匣交出區分觀測：同步量河川水位與河道儲水，再於斷層兩側成對量水頭與法向流量。兩面鐘仍未翻牌，本棒尚未計分。"
     }
   ]
 }
