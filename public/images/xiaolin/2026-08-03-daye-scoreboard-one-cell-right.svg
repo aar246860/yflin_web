@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">大野把計分板沿軌道向右移一格</title>
+  <desc id="desc">深藍遊戲室中，左側A位置只留白卡，右側B位置的計分板在重置第一閃顯示1190，下方記錄大野本回合1317分。</desc>
+  <defs>
+    <linearGradient id="room" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#08172f"/>
+      <stop offset="0.58" stop-color="#102b4b"/>
+      <stop offset="1" stop-color="#071225"/>
+    </linearGradient>
+    <linearGradient id="screen" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#173e58"/>
+      <stop offset="1" stop-color="#091928"/>
+    </linearGradient>
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="10" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="1600" height="900" fill="url(#room)"/>
+  <g stroke="#2f5875" stroke-width="2" opacity="0.42">
+    <path d="M0 170H1600M0 340H1600M0 510H1600M0 680H1600"/>
+    <path d="M220 0V900M440 0V900M660 0V900M880 0V900M1100 0V900M1320 0V900"/>
+  </g>
+  <text x="92" y="92" fill="#d8e8ee" font-family="system-ui, sans-serif" font-size="30" letter-spacing="5">ROOM 02 · COORDINATE TEST</text>
+  <text x="92" y="134" fill="#76cbb7" font-family="system-ui, sans-serif" font-size="24">SCOREBOARD MOVED ONE CELL</text>
+
+  <g stroke="#d6a852" stroke-width="16" stroke-linecap="round">
+    <path d="M290 250H1310"/>
+    <path d="M290 590H1310"/>
+  </g>
+  <g fill="#f1c56f">
+    <circle cx="470" cy="250" r="18"/><circle cx="470" cy="590" r="18"/>
+    <circle cx="1110" cy="250" r="18"/><circle cx="1110" cy="590" r="18"/>
+  </g>
+
+  <g>
+    <rect x="280" y="285" width="380" height="270" rx="18" fill="#d8dde1" stroke="#f7f2e5" stroke-width="8"/>
+    <rect x="312" y="317" width="316" height="206" rx="10" fill="#edf0ee"/>
+    <path d="M312 420H628M470 317V523" stroke="#c4ccd0" stroke-width="3"/>
+    <text x="304" y="240" fill="#f1c56f" font-family="system-ui, sans-serif" font-size="42" font-weight="700">A</text>
+    <text x="342" y="475" fill="#7b8790" font-family="system-ui, sans-serif" font-size="25">OLD POSITION · BLANK</text>
+  </g>
+
+  <g>
+    <rect x="920" y="285" width="380" height="270" rx="18" fill="#183f54" stroke="#83d1bf" stroke-width="9"/>
+    <rect x="952" y="317" width="316" height="206" rx="10" fill="url(#screen)"/>
+    <path d="M952 420H1268M1110 317V523" stroke="#2d6272" stroke-width="3"/>
+    <text x="944" y="240" fill="#f1c56f" font-family="system-ui, sans-serif" font-size="42" font-weight="700">B</text>
+    <text x="1005" y="460" fill="#90f1c6" font-family="ui-monospace, monospace" font-size="82" font-weight="700" letter-spacing="9" filter="url(#glow)">1190</text>
+    <g fill="#e78f51">
+      <path d="M970 337h34v8h-26v26h-8z"/><path d="M1250 337h-34v8h26v26h8z"/>
+      <path d="M970 503h34v-8h-26v-26h-8z"/><path d="M1250 503h-34v-8h26v-26h8z"/>
+    </g>
+  </g>
+
+  <g transform="translate(675 380)">
+    <path d="M0 40H150" stroke="#76cbb7" stroke-width="12" stroke-linecap="round"/>
+    <path d="M120 8l42 32-42 32" fill="none" stroke="#76cbb7" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="12" y="104" fill="#a9c9d2" font-family="system-ui, sans-serif" font-size="22">RIGHT · ONE CELL</text>
+  </g>
+
+  <g transform="translate(90 735)">
+    <rect width="1420" height="112" rx="24" fill="#0a1b2e" stroke="#345c72" stroke-width="3"/>
+    <text x="42" y="47" fill="#a9c9d2" font-family="system-ui, sans-serif" font-size="24" letter-spacing="3">OFFICIAL MATCH · DAYE</text>
+    <text x="1178" y="76" fill="#f1c56f" font-family="ui-monospace, monospace" font-size="72" font-weight="700">1317</text>
+    <text x="42" y="82" fill="#76cbb7" font-family="system-ui, sans-serif" font-size="23">A remained blank · 1190 moved with the display to B</text>
+  </g>
+</svg>

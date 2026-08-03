@@ -34,6 +34,14 @@
   },
   "xiaolinObservations": [
     {
+      "entryId": "2026-08-03-am-1190-did-not-leave-with-film",
+      "detail": "Xiaolin places a marked transparent film directly on the scoreboard; 1190 remains visible through it during the first reset flash, but the film carries no legible trace when removed and the number stays at the display coordinate when the film shifts.",
+      "tensionIds": [
+        "retained-result",
+        "observer-frame"
+      ]
+    },
+    {
       "entryId": "2026-08-02-am-1190-second-window",
       "detail": "Xiaolin splits the scoreboard reset into three paper windows, correctly predicts that 1190 returns only in the second window, and keeps the repeated number separate from the official score without explaining its cause.",
       "tensionIds": [
@@ -136,6 +144,14 @@
   ],
   "rivalPosts": [
     {
+      "entryId": "2026-08-03-2119-daye-scoreboard-one-cell-right",
+      "targetEntry": "2026-08-03-am-1190-did-not-leave-with-film",
+      "action": "constraint-shift",
+      "tensionId": "retained-result",
+      "outcome": "Moving the entire scoreboard one cell right separates a display-bound position from the old wall coordinate: 1190 appears on the moved display while a white card at the original coordinate remains blank; the cause is still left open.",
+      "publishedAt": "2026-08-03T21:19:18+08:00"
+    },
+    {
       "entryId": "2026-08-02-2119-daye-three-seat-1190",
       "targetEntry": "2026-08-02-am-1190-second-window",
       "action": "scale-reversal",
@@ -222,8 +238,8 @@
   ],
   "escalationStrategy": {
     "currentLevel": 3,
-    "lastDecision": "Accept Xiaolin's second-window prediction, rotate the question from time to viewpoint, and narrow the retained score to sight lines connected to the display without explaining why it returns.",
-    "nextMove": "Watch whether Xiaolin changes the display path, the observer position, or the saved record, while keeping the repeated 1190 distinct from an official score.",
+    "lastDecision": "Accept that Xiaolin's transparent film cannot carry 1190 away, then move the emitting scoreboard instead of the receiving surface; the repeated number follows the display to a new wall position while its cause remains unexplained.",
+    "nextMove": "Watch whether Xiaolin tests a component inside the moved display, the reset sequence, or the blank old coordinate, while keeping the repeated 1190 distinct from an official score.",
     "levels": [
       {
         "level": 1,
@@ -240,9 +256,9 @@
     ]
   },
   "lastActivation": {
-    "startedAt": "2026-08-02T21:19:21+08:00",
-    "selectedAction": "scale-reversal",
-    "targetEntry": "2026-08-02-am-1190-second-window",
-    "resultEntry": "2026-08-02-2119-daye-three-seat-1190"
+    "startedAt": "2026-08-03T21:19:18+08:00",
+    "selectedAction": "constraint-shift",
+    "targetEntry": "2026-08-03-am-1190-did-not-leave-with-film",
+    "resultEntry": "2026-08-03-2119-daye-scoreboard-one-cell-right"
   }
 }
