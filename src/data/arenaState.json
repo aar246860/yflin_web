@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "currentDay": "2026-08-02",
+  "currentDay": "2026-08-03",
   "phase": "open-invasion",
   "phaseLabel": "公開入侵期",
   "dailyMinimum": 5,
@@ -73,6 +73,20 @@
         "skinrail",
         "slopejuror",
         "chronokernel"
+      ]
+    },
+    {
+      "id": "incursion-2026-08-03",
+      "date": "2026-08-03",
+      "label": "第四批入侵者",
+      "portraitAtlas": "/images/xiaolin/arena/2026-08-03-roster-atlas.webp",
+      "portraitAtlasAlt": "五格漫畫肖像，依序是回律、岸匣、裂梭、散焰與尾契。",
+      "entrantIds": [
+        "echocycle",
+        "bankcask",
+        "riftloom",
+        "radiflare",
+        "tailbond"
       ]
     }
   ],
@@ -775,6 +789,211 @@
         "generation": 0,
         "currentTrait": "每少一段邊界資料，就增加一次物理殘差與留出區域的交叉核對"
       }
+    },
+    {
+      "id": "echocycle",
+      "nameZh": "回律",
+      "nameEn": "Echocycle",
+      "epithet": "讓振幅與相位各自報時",
+      "role": "challenger",
+      "enteredOn": "2026-08-03",
+      "entryOrder": 18,
+      "status": "active",
+      "intro": "我是回律。同一個週期訊號若用振幅和相位讀出兩個答案，我不會替它們硬湊一只鐘；我會讓快路與慢路各自敲響，再檢查哪一響穿過了房間。",
+      "personality": "沉著、聽覺敏銳、討厭用單一尺度抹平彼此矛盾的週期訊號",
+      "origin": "兩只始終錯開半拍、卻共享同一圈刻度的含水層回聲盤",
+      "ability": "雙鐘解調：把週期水位的振幅衰減與相位延遲拆成兩條可比較的時間路徑。",
+      "signatureMove": "錯拍回環",
+      "portrait": {
+        "src": "/images/xiaolin/arena/2026-08-03-roster-atlas.webp",
+        "alt": "回律戴著薄荷與琥珀雙層圓盤頭環，耳側有同心波紋裝置，身穿深靛藍窄肩披衣。",
+        "atlasPanel": 0
+      },
+      "evidence": {
+        "label": "Periodic hydraulic head signals",
+        "href": "https://www.sciencedirect.com/science/article/pii/S0022169426000107",
+        "kind": "publisher-record",
+        "fact": "公開論文摘要說明，研究以流量延遲與水頭延遲分開描述週期水位訊號，並用兩個不同含水層的多頻觀測處理相位與振幅推得擴散率不一致的問題。"
+      },
+      "inference": {
+        "statement": "角色推論：我猜林穎凡遇到兩種量測摘要互相矛盾時，會先問它們是否看見不同反應時間，而不是立刻挑一個當真值；依據是這篇研究把相位與振幅的差異交給兩種延遲共同檢查。",
+        "basisLabel": "Periodic hydraulic head signals 論文頁",
+        "basisHref": "https://www.sciencedirect.com/science/article/pii/S0022169426000107",
+        "status": "in-story-inference"
+      },
+      "record": {
+        "wins": 0,
+        "losses": 0,
+        "draws": 0
+      },
+      "mutation": {
+        "generation": 0,
+        "currentTrait": "每聽見一個週期答案，就要求振幅與相位各留一份獨立口供"
+      }
+    },
+    {
+      "id": "bankcask",
+      "nameZh": "岸匣",
+      "nameEn": "Bankcask",
+      "epithet": "把河水藏進岸邊的第二層時間",
+      "role": "challenger",
+      "enteredOn": "2026-08-03",
+      "entryOrder": 19,
+      "status": "active",
+      "intro": "我是岸匣。河川不是一條立刻結帳的邊界；河床、河岸與水體都可能暫存一部分回應。我把抽水造成的每一次缺口收進匣裡，等它真正抵達河道再開鎖。",
+      "personality": "穩健、重視收支、凡事先追問訊號暫存在哪裡以及多久才流出",
+      "origin": "一段把河道儲水、河床交換與抽水影響分層收納的岸邊機械匣",
+      "ability": "岸藏分帳：把河川枯竭反應拆成河道儲水、邊界交換與含水層延遲三本帳。",
+      "signatureMove": "遲到水票",
+      "portrait": {
+        "src": "/images/xiaolin/arena/2026-08-03-roster-atlas.webp",
+        "alt": "岸匣戴著圓角米白頭盔，胸前深青儲水匣透出琥珀色礫石與水線，肩後繞著薄荷色水帶。",
+        "atlasPanel": 1
+      },
+      "evidence": {
+        "label": "Stream storage and lagging effects",
+        "href": "https://www.sciencedirect.com/science/article/pii/S0022169425013782",
+        "kind": "publisher-record",
+        "fact": "公開論文頁說明，研究把河川儲水與延遲效應納入抽水引致河川枯竭的解析模型，並以敏感度分析及現地資料檢查預測表現。"
+      },
+      "inference": {
+        "statement": "角色推論：我猜林穎凡會把邊界本身能儲存多少反應列入檢查，而不只把河川當成固定水頭線；依據是這篇研究明確把河川儲水與延遲效應一起放進枯竭預測。",
+        "basisLabel": "Stream storage and lagging effects 論文頁",
+        "basisHref": "https://www.sciencedirect.com/science/article/pii/S0022169425013782",
+        "status": "in-story-inference"
+      },
+      "record": {
+        "wins": 0,
+        "losses": 0,
+        "draws": 0
+      },
+      "mutation": {
+        "generation": 0,
+        "currentTrait": "每看見一筆枯竭量，就先分出河道儲水與含水層傳遞的到帳時間"
+      }
+    },
+    {
+      "id": "riftloom",
+      "nameZh": "裂梭",
+      "nameEn": "Riftloom",
+      "epithet": "在斷層兩側織出不連續",
+      "role": "challenger",
+      "enteredOn": "2026-08-03",
+      "entryOrder": 20,
+      "status": "active",
+      "intro": "我是裂梭。斷層不是一條畫在地圖上的黑線；水頭可以跨不過去，流量也可能沿著損傷帶轉向。我在兩側各留一半面具，誰把接面抹平，我就拆開他的答案。",
+      "personality": "冷峻、講究接面條件、對把薄層直接壓成連續線的近似特別警覺",
+      "origin": "一條被縮成零厚度後仍保留阻水核心與導水損傷帶的各向異性斷層",
+      "ability": "裂面穿梭：同時追蹤跨斷層水頭跳躍與沿斷層方向的剪向流動。",
+      "signatureMove": "雙面斷織",
+      "portrait": {
+        "src": "/images/xiaolin/arena/2026-08-03-roster-atlas.webp",
+        "alt": "裂梭的尖長面罩被鏽色細縫分成薄荷綠與深靛藍兩半，肩後以琥珀節點連成不對稱梭架。",
+        "atlasPanel": 2
+      },
+      "evidence": {
+        "label": "Anisotropic fault-zone interfaces",
+        "href": "https://www.sciencedirect.com/science/article/abs/pii/S0022169425000587",
+        "kind": "publisher-record",
+        "fact": "公開論文頁說明，研究以不完美接面理論表示含水層—斷層—含水層系統，數值測試呈現斷層處水頭與流量不連續，並以斷層附近現地降深資料驗證。"
+      },
+      "inference": {
+        "statement": "角色推論：我猜林穎凡會要求降維後的邊界仍保留原系統最關鍵的不連續，而不是只追求方程變短；依據是這篇研究用接面條件保留斷層核心阻力與損傷帶導流。",
+        "basisLabel": "Anisotropic fault-zone interfaces 論文頁",
+        "basisHref": "https://www.sciencedirect.com/science/article/abs/pii/S0022169425000587",
+        "status": "in-story-inference"
+      },
+      "record": {
+        "wins": 0,
+        "losses": 0,
+        "draws": 0
+      },
+      "mutation": {
+        "generation": 0,
+        "currentTrait": "每壓縮一條薄斷層，就保留一項跨面跳躍與一項沿面流動供人反駁"
+      }
+    },
+    {
+      "id": "radiflare",
+      "nameZh": "散焰",
+      "nameEn": "Radiflare",
+      "epithet": "沿徑向速度把熱羽拆成扇葉",
+      "role": "challenger",
+      "enteredOn": "2026-08-03",
+      "entryOrder": 21,
+      "status": "active",
+      "intro": "我是散焰。熱不會因為你畫了一條直線就照比例散開；靠井與遠井的速度不同，羽流也會換形。我把每段熱突破曲線折成扇葉，看看哪一片其實被線性假設燒掉了。",
+      "personality": "明亮、行動快、喜歡用敏感度與長短試驗交叉檢查漂亮的熱曲線",
+      "origin": "一口單井推拉試驗中隨徑向速度展開、又被井筒混合收束的熱羽",
+      "ability": "徑焰分形：依流速改變熱擴散扇面的開角，辨認線性熱彌散遺漏的路徑。",
+      "signatureMove": "逆風熱扇",
+      "portrait": {
+        "src": "/images/xiaolin/arena/2026-08-03-roster-atlas.webp",
+        "alt": "散焰頭後張開鏽色螺旋扇與薄荷色熱羽，額心與胸前各有一枚琥珀透鏡，披著深靛藍短領外套。",
+        "atlasPanel": 3
+      },
+      "evidence": {
+        "label": "Nonlinear radial thermal dispersion",
+        "href": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2024WR039810",
+        "kind": "publisher-record",
+        "fact": "公開論文摘要說明，研究為含水層熱能儲存的單井推拉試驗建立模型，同時考慮非線性速度相依熱彌散與井筒混合，並以兩個不同持續時間的現地試驗檢查。"
+      },
+      "inference": {
+        "statement": "角色推論：我猜林穎凡會把試驗時間尺度視為模型判讀的一部分，因為短試驗與長試驗可能暴露不同的熱彌散敏感度；依據是這篇研究比較不同時長的現地單井推拉試驗。",
+        "basisLabel": "Nonlinear radial thermal dispersion 論文頁",
+        "basisHref": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2024WR039810",
+        "status": "in-story-inference"
+      },
+      "record": {
+        "wins": 0,
+        "losses": 0,
+        "draws": 0
+      },
+      "mutation": {
+        "generation": 0,
+        "currentTrait": "每比較兩條熱突破曲線，就同時標記流速範圍、試驗時長與井筒混合"
+      }
+    },
+    {
+      "id": "tailbond",
+      "nameZh": "尾契",
+      "nameEn": "Tailbond",
+      "epithet": "替碰撞與附著各留一條尾跡",
+      "role": "challenger",
+      "enteredOn": "2026-08-03",
+      "entryOrder": 22,
+      "status": "active",
+      "intro": "我是尾契。溶質前緣抵達以後，尾巴還在說話：有些顆粒只是晚一步碰撞，有些已和土粒訂下短暫契約。我把兩種拖尾分瓶保存，直到下一個人能指出它們的差別。",
+      "personality": "安靜、耐心、對突破曲線晚期尾巴與被混稱的非平衡機制極度敏感",
+      "origin": "兩只分別收納粒子碰撞與附著延遲的透明溶質瓶，以及連在瓶後的珠鏈尾跡",
+      "ability": "雙尾立約：用兩個鬆弛時間分開質量通量反應與濃度梯度反應。",
+      "signatureMove": "遲附雙瓶",
+      "portrait": {
+        "src": "/images/xiaolin/arena/2026-08-03-roster-atlas.webp",
+        "alt": "尾契披著深青滴狀兜帽，雙肩懸著薄荷與琥珀兩只透明瓶，瓶後各拖一串半透明珠鏈。",
+        "atlasPanel": 4
+      },
+      "evidence": {
+        "label": "Temporally relaxed solute transport",
+        "href": "https://www.sciencedirect.com/science/article/pii/S0022169423003748",
+        "kind": "publisher-record",
+        "fact": "公開論文摘要說明，研究以暫時鬆弛的 Fick 定律引入兩個鬆弛時間，描述溶質粒子碰撞與附著，並用既有土柱試驗估計運移參數。"
+      },
+      "inference": {
+        "statement": "角色推論：我猜林穎凡喜歡用少數可解釋的時間參數對照既有機制模型，而不把所有拖尾都塞進同一個經驗係數；依據是這篇研究將兩個鬆弛時間與既有非平衡運移參數比較。",
+        "basisLabel": "Temporally relaxed solute transport 論文頁",
+        "basisHref": "https://www.sciencedirect.com/science/article/pii/S0022169423003748",
+        "status": "in-story-inference"
+      },
+      "record": {
+        "wins": 0,
+        "losses": 0,
+        "draws": 0
+      },
+      "mutation": {
+        "generation": 0,
+        "currentTrait": "每看見一段晚期拖尾，就先要求碰撞延遲與附著延遲各提出可被推翻的證據"
+      }
     }
   ],
   "challenges": [
@@ -878,6 +1097,16 @@
           "characterId": "thincrest",
           "stance": "counter",
           "line": "我接受並加一條薄膜規則：凡是來源寫明的適用條件都要一起帶進場，不能只摘下結果，把限制留在門外。"
+        },
+        {
+          "characterId": "echocycle",
+          "stance": "accept",
+          "line": "我接受，並交出週期水位來源。相位與振幅的差異是公開事實；我對研究習慣的猜測只會留在角色推論欄。"
+        },
+        {
+          "characterId": "tailbond",
+          "stance": "counter",
+          "line": "我接受，但同一段話若把土柱試驗的結果與對林穎凡的想像黏在一起，就算網址正確也不能得推論分。"
         }
       ]
     },
@@ -1049,6 +1278,73 @@
           "characterId": "chronokernel",
           "stance": "accept",
           "line": "我接受。我會故意留掉一段邊界資料，但保留物理殘差；若答案只靠補點漂亮，留出區域會先拆穿它。"
+        }
+      ]
+    },
+    {
+      "id": "misaligned-clocktower-001",
+      "openedOn": "2026-08-03",
+      "status": "open",
+      "challengerId": "echocycle",
+      "challengedIds": [
+        "bankcask",
+        "riftloom",
+        "radiflare",
+        "tailbond"
+      ],
+      "title": "錯位鐘塔：五種延遲不能共用一把鑰匙",
+      "summary": "回律把五份研究來源各做成一面無方法名的鐘，只留下可觀察的輸入與回應；每位入侵者必須判斷兩面鐘能否由同一機制驅動，並提出一項能讓兩種解釋分家的新增觀測。",
+      "rules": [
+        "每位參賽者只能從自己人物卡的來源提交一組可核對的輸入與回應，卡面不得補入來源沒有的數字。",
+        "接鐘者必須挑另一面鐘比較，先寫兩者是否可能共用機制，再點名流量、儲存、接面、彌散或附著中的具體過程，不能只寫延遲。",
+        "第一次判讀必須提出至少一項能區分兩個候選機制的新增觀測，並在來源揭曉前保存。",
+        "第二回合由原持有者翻開來源，只能把判讀標為相容、不足或衝突，不得改寫對手的第一次答案。",
+        "公開事實與角色推論分欄；來源失效、混寫層級或重算已知結果的鐘面不得分。"
+      ],
+      "scoring": [
+        {
+          "label": "輸入與回應可由綁定來源核對",
+          "points": 2
+        },
+        {
+          "label": "共同或相異機制指認具體",
+          "points": 2
+        },
+        {
+          "label": "新增觀測能區分兩個候選機制",
+          "points": 3
+        },
+        {
+          "label": "揭曉後忠實標記相容、不足或衝突",
+          "points": 2
+        },
+        {
+          "label": "公開事實與角色推論全程分欄",
+          "points": 1
+        }
+      ],
+      "victoryCondition": "兩回合總分最高者獲勝；若同分，由使用較少新增觀測且仍成功區分最多候選機制者勝出，仍相同則記為平手。",
+      "maxTurns": 2,
+      "responses": [
+        {
+          "characterId": "bankcask",
+          "stance": "accept",
+          "line": "我接受。我的鐘面會留下抽水與河川枯竭，新增觀測則查河道儲水；若少了它，我不把岸邊晚到全叫成含水層記憶。"
+        },
+        {
+          "characterId": "riftloom",
+          "stance": "counter",
+          "line": "我接受，但反提一條：水頭或流量在接面跳開時，不能只因時間軸上晚到就歸入延遲；必須保留斷層兩側觀測。"
+        },
+        {
+          "characterId": "radiflare",
+          "stance": "accept",
+          "line": "我接受。我要拿熱突破曲線和週期水位比較；若流速範圍與井筒混合沒有入場，共用機制只能標成不足。"
+        },
+        {
+          "characterId": "tailbond",
+          "stance": "observe",
+          "line": "我先守著晚期尾巴。有人把粒子碰撞、附著與邊界儲存寫成同一種記憶，我會要求第二種濃度或固相觀測拆契。"
         }
       ]
     }
@@ -1226,6 +1522,30 @@
         "thincrest"
       ],
       "line": "第九次鐘聲響起，薄冠把自己的遮名卡封進透明薄膜，只留下兩道可核對痕跡：耦合飽和—未飽和流，以及不增加經驗參數的比出水率估計改善。他在封口寫下：『揭曉後若只猜中方法，卻遺失未飽和區的適用條件，就只能記為不足。』方法名仍未翻開，本棒尚未計分。"
+    },
+    {
+      "date": "2026-08-03",
+      "type": "batch-entered",
+      "characterIds": [
+        "echocycle",
+        "bankcask",
+        "riftloom",
+        "radiflare",
+        "tailbond"
+      ],
+      "line": "第四批五位入侵者帶著週期回聲、河岸儲水、斷層接面、徑向熱羽與溶質雙尾五種儀器進場，活躍角色增至二十二位。"
+    },
+    {
+      "date": "2026-08-03",
+      "type": "challenge-opened",
+      "characterIds": [
+        "echocycle",
+        "bankcask",
+        "riftloom",
+        "radiflare",
+        "tailbond"
+      ],
+      "line": "回律把五份可觀察輸入與回應掛上錯位鐘塔，要求每位對手用新增觀測區分機制；四位新入侵者已接受、反提條件或留場觀察。"
     }
   ]
 }
