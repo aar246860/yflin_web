@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">1190穿過薄片，沒有跟著離開</title>
+  <desc id="desc">三段式遊戲室觀察圖。小林先把透明片貼在計分板上，1190在重置第一閃時穿過薄片；移到檯燈前後，片上只剩四個橘色角標。右下角記錄本回合正式得分1145。</desc>
+  <defs>
+    <linearGradient id="room" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0d2730"/>
+      <stop offset="1" stop-color="#123f45"/>
+    </linearGradient>
+    <linearGradient id="film" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#d9fff5" stop-opacity=".55"/>
+      <stop offset="1" stop-color="#77c7bb" stop-opacity=".15"/>
+    </linearGradient>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <style>
+      .label{font:700 25px system-ui,sans-serif;letter-spacing:.14em;fill:#e8f2e9}
+      .small{font:500 18px system-ui,sans-serif;fill:#9bc5be}
+      .line{stroke:#7ab4ad;stroke-width:3;fill:none;opacity:.45}
+      .digit{font:700 92px ui-monospace,SFMono-Regular,monospace;letter-spacing:.12em;fill:#9ef0c6}
+      .score{font:800 64px ui-monospace,SFMono-Regular,monospace;fill:#f2c078}
+    </style>
+  </defs>
+  <rect width="1600" height="900" fill="#e9f2ed"/>
+  <rect x="42" y="42" width="1516" height="816" rx="30" fill="url(#room)"/>
+  <path d="M547 76v748M1053 76v748" stroke="#dbe9df" stroke-opacity=".22" stroke-width="3"/>
+
+  <g transform="translate(80 88)">
+    <text class="label" x="0" y="0">01 / 貼上以前</text>
+    <rect x="20" y="86" width="406" height="268" rx="20" fill="#071b22" stroke="#47736f" stroke-width="5"/>
+    <path class="line" d="M54 146h338M54 209h338M54 272h338M122 111v220M210 111v220M298 111v220"/>
+    <rect x="67" y="126" width="310" height="176" rx="12" fill="url(#film)" stroke="#bcece0" stroke-width="3"/>
+    <path d="M67 154v-28h28M349 126h28v28M67 274v28h28M349 302h28v-28" fill="none" stroke="#ef9f58" stroke-width="9"/>
+    <g transform="translate(137 398)">
+      <circle cx="54" cy="54" r="38" fill="#d6bd9e"/>
+      <path d="M17 51q37-55 74 0v-18q-37-31-74 0z" fill="#173e45"/>
+      <path d="M20 96q34-22 68 0l22 128H-2z" fill="#e6b660"/>
+      <path d="M13 119l-56-34M95 119l58-45" stroke="#d6bd9e" stroke-width="16" stroke-linecap="round"/>
+      <rect x="-91" y="44" width="71" height="98" rx="6" fill="#85cabc" fill-opacity=".48" stroke="#d4f5eb" stroke-width="3"/>
+    </g>
+    <text class="small" x="22" y="704">四個角標先固定薄片的位置。</text>
+  </g>
+
+  <g transform="translate(588 88)">
+    <text class="label" x="0" y="0">02 / 重置第一閃</text>
+    <rect x="20" y="86" width="406" height="268" rx="20" fill="#071b22" stroke="#47736f" stroke-width="5"/>
+    <path class="line" d="M54 146h338M54 209h338M54 272h338M122 111v220M210 111v220M298 111v220"/>
+    <rect x="67" y="126" width="310" height="176" rx="12" fill="url(#film)" stroke="#bcece0" stroke-width="3"/>
+    <text class="digit" x="82" y="240" filter="url(#glow)">1190</text>
+    <path d="M67 154v-28h28M349 126h28v28M67 274v28h28M349 302h28v-28" fill="none" stroke="#ef9f58" stroke-width="9"/>
+    <path d="M72 380c88 52 199 52 300 0" fill="none" stroke="#8de4c8" stroke-width="5" stroke-dasharray="12 12"/>
+    <text class="small" x="22" y="704">1190穿過薄片；角標沒有滑動。</text>
+  </g>
+
+  <g transform="translate(1096 88)">
+    <text class="label" x="0" y="0">03 / 移開以後</text>
+    <path d="M345 103l42 82h-84z" fill="#f4bd71"/>
+    <path d="M345 185v64" stroke="#f4bd71" stroke-width="16" stroke-linecap="round"/>
+    <path d="M345 203L165 399M345 203l54 212" fill="none" stroke="#f4bd71" stroke-opacity=".25" stroke-width="70"/>
+    <rect x="60" y="266" width="310" height="176" rx="12" fill="url(#film)" stroke="#d5f8ef" stroke-width="3" transform="rotate(-7 215 354)"/>
+    <path d="M72 315l-4-28 28-4M339 249l28-4 4 28M93 421l4 28 28-4M360 384l4 28-28 4" fill="none" stroke="#ef9f58" stroke-width="9"/>
+    <path d="M127 330l175 56M139 362l122 39" stroke="#e8fff8" stroke-opacity=".45" stroke-width="5" stroke-linecap="round"/>
+    <rect x="24" y="516" width="405" height="159" rx="18" fill="#071b22" stroke="#6ca79f" stroke-width="4"/>
+    <text class="small" x="50" y="557">OFFICIAL TURN 08</text>
+    <text class="score" x="50" y="630">1145</text>
+    <text class="small" x="248" y="628">XIAOLIN</text>
+    <text class="small" x="22" y="704">薄片只帶走角標與手指亮痕。</text>
+  </g>
+
+  <text x="80" y="833" font-family="system-ui,sans-serif" font-size="19" fill="#9bc5be">同一個舊數字，一條可見光路，一張沒有留下字形的透明片。</text>
+</svg>

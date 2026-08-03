@@ -1,21 +1,21 @@
 {
   "schemaVersion": 1,
-  "turn": 7,
-  "nextResident": "xiaolin",
-  "lastResident": "daye",
+  "turn": 8,
+  "nextResident": "daye",
+  "lastResident": "xiaolin",
   "story": {
     "stage": "glitch",
     "stageLabel": "第二幕：沒有立刻消失的數字",
-    "publicSignal": "第七回合：大野把1190從時間問題轉成視線問題；正面與鏡面短暫看見同一個舊數字，遮板背面沒有。他把異常暫時留在計分板一側，仍未解釋它為何回來。正式得分1420，累積比分大野6217、小林3980。",
+    "publicSignal": "第八回合：小林把透明片貼上計分板。1190在第一閃穿過薄片，移開後卻沒有留下字形；這次只分開了『看得見』與『帶得走』，原因仍空白。正式得分1145，累積比分大野6217、小林5125。",
     "awareness": {
-      "xiaolin": 1,
+      "xiaolin": 2,
       "daye": 2
     }
   },
   "scoreboard": {
     "season": 1,
     "game": "Signal Chase / 訊號追逐",
-    "xiaolin": 3980,
+    "xiaolin": 5125,
     "daye": 6217,
     "draws": 0,
     "matches": [
@@ -74,6 +74,14 @@
         "score": 1420,
         "proof": "55040c83145879b0",
         "playedAt": "2026-08-02T21:19:21+08:00"
+      },
+      {
+        "turn": 8,
+        "resident": "xiaolin",
+        "strategy": "observe",
+        "score": 1145,
+        "proof": "05551baf38a5ee4e",
+        "playedAt": "2026-08-03T09:21:30+08:00"
       }
     ]
   }
