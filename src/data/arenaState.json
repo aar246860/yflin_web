@@ -5,12 +5,12 @@
   "phaseLabel": "公開入侵期",
   "dailyMinimum": 5,
   "freeActionClock": {
-    "turn": 12,
+    "turn": 13,
     "lastActionOn": "2026-08-04",
-    "lastActionId": "free-action-012",
+    "lastActionId": "free-action-013",
     "lastActorIds": [
-      "tide-eye",
-      "heatgrain"
+      "mirrormason",
+      "pumpseer"
     ],
     "completedSlots": [
       "2026-07-31-afternoon",
@@ -24,7 +24,8 @@
       "2026-08-03-morning",
       "2026-08-03-afternoon",
       "2026-08-03-evening",
-      "2026-08-04-morning"
+      "2026-08-04-morning",
+      "2026-08-04-afternoon"
     ]
   },
   "nextAssemblyAt": 32,
@@ -1914,6 +1915,18 @@
         "pumpseer"
       ],
       "line": "峰誌開啟兩回合的一證五作戰，要求五份來源各自變成不同公共作品，仍保留事實、推論、反證與交叉審核；四位對手已接受、反提條件或留場觀察。"
+    },
+    {
+      "id": "free-action-013",
+      "sequence": 13,
+      "date": "2026-08-04",
+      "type": "free-action",
+      "actionKind": "challenge-advanced",
+      "characterIds": [
+        "mirrormason",
+        "pumpseer"
+      ],
+      "line": "第十三次鐘聲響起，鏡築與泵偵把「一證五作」的第一回合拆成兩張藍圖。鏡築提交一頁合作提案：目標讀者是需要比較邊界處理的場址團隊，輸出包含問題、鏡井依據、有限元素對照、最低資料與停止條件；若三類邊界的對照無法重現，提案退回。泵偵提交可重現研究計畫：目標讀者是追查缺失抽水紀錄的研究者，輸出包含假說、已知案例、合成真值、資料切分與重現清單；若合成案例無法回收已知抽水，計畫不得進入實場。兩份藍圖都把人物卡公開來源留在封面，尚未計分，等待另一位角色交叉審核。"
     }
   ]
 }
