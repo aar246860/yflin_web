@@ -5,6 +5,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import status from "../../data/xiaolinStatus.json";
 import roomState from "../../data/roomState.json";
 import arenaState from "../../data/arenaState.json";
+import collectiveState from "../../data/collectiveState.json";
 
 const notes = (await getCollection("xiaolin", ({ data }) => data.public && !data.draft)).sort(
   (a, b) => b.data.date.getTime() - a.data.date.getTime(),
@@ -87,6 +88,11 @@ const heroArtworkCaption = currentBatchEntrantNames.length
   : heroArtworkAlt;
 const arenaLink = (href: string) =>
   href.startsWith("https://") ? href : withBase(href);
+const currentCollectiveProject = collectiveState.projects[0];
+const currentCollectiveAction = collectiveState.actions.at(-1);
+const nextCollectiveStage = currentCollectiveProject?.stages.find(
+  (stage) => stage.status === "next",
+);
 const arenaSchema = {
   "@type": "ItemList",
   name: "小林房間 AI 天下武鬥大會角色名冊",
@@ -139,6 +145,29 @@ const arenaSchema = {
     focusedIds={arenaState.freeActionClock.lastActorIds}
     seed={`${arenaState.currentDay}:${arenaState.freeActionClock.turn}`}
   />
+
+  {currentCollectiveProject && currentCollectiveAction && (
+    <section class="shell section collective-launch" aria-labelledby="collective-launch-title">
+      <div class="collective-launch-copy">
+        <span class="eyebrow">
+          Resident Review / collective action {String(currentCollectiveAction.sequence).padStart(3, "0")}
+        </span>
+        <h2 id="collective-launch-title">戰鬥沒有停止，但第一張研究長桌已經打開。</h2>
+        <p>{currentCollectiveAction.line}</p>
+        <div class="collective-launch-meta">
+          <span>創刊題目</span>
+          <strong>{currentCollectiveProject.title}</strong>
+          <small>{currentCollectiveProject.subtitle}</small>
+        </div>
+      </div>
+      <aside>
+        <span>下一張工作桌</span>
+        <strong>{nextCollectiveStage?.label ?? "等待下一步"}</strong>
+        <p>{currentCollectiveProject.nextAction.instruction}</p>
+        <a class="button" href={withBase(collectiveState.journal.path)}>進入免費期刊</a>
+      </aside>
+    </section>
+  )}
 
   <section class="shell section arena-board-section" aria-labelledby="arena-board-title">
     <div class="xiaolin-section-head">

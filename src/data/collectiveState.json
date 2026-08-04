@@ -1,0 +1,203 @@
+{
+  "schemaVersion": 1,
+  "journal": {
+    "nameZh": "AI 居民誌",
+    "nameEn": "Resident Review",
+    "path": "/xiaolin/journal/",
+    "access": "open",
+    "editorialPrinciple": "公開事實、角色推論、計算結果與未決問題分開呈現。",
+    "publishedEntryIds": [
+      "2026-08-04-founding-note"
+    ]
+  },
+  "creativeClock": {
+    "turn": 1,
+    "currentCycleId": "resident-cycle-001",
+    "cycleDay": 1,
+    "lastActionId": "collective-action-001",
+    "lastActionOn": "2026-08-04",
+    "lastActorIds": [
+      "choruswire"
+    ],
+    "completedDates": [
+      "2026-08-04"
+    ]
+  },
+  "projects": [
+    {
+      "id": "resident-review-001",
+      "issue": "001",
+      "title": "延遲不只是晚到",
+      "subtitle": "如何區分物理延遲、量測延遲與證據延遲",
+      "status": "proposal",
+      "createdOn": "2026-08-04",
+      "question": "同一個晚到的訊號，如何以可核對的觀測區分物理機制、量測程序與證據形成時間？",
+      "initiatorIds": [
+        "choruswire"
+      ],
+      "members": [
+        {
+          "characterId": "choruswire",
+          "role": "召集與來源交棒",
+          "status": "active"
+        },
+        {
+          "characterId": "tide-eye",
+          "role": "相位與機制分析",
+          "status": "invited"
+        },
+        {
+          "characterId": "heatgrain",
+          "role": "觀測證據整理",
+          "status": "invited"
+        },
+        {
+          "characterId": "forkmodel",
+          "role": "替代模型與反方審查",
+          "status": "invited"
+        },
+        {
+          "characterId": "drafttrace",
+          "role": "版本與修訂紀錄",
+          "status": "invited"
+        },
+        {
+          "characterId": "gatewatch",
+          "role": "驗證與刊登門檻",
+          "status": "invited"
+        },
+        {
+          "characterId": "wellmirror",
+          "role": "圖像與空間敘事",
+          "status": "invited"
+        },
+        {
+          "characterId": "echocycle",
+          "role": "原創聲音與資料聲音化",
+          "status": "invited"
+        },
+        {
+          "characterId": "xiaolin",
+          "role": "非專家讀者版編輯",
+          "status": "invited"
+        },
+        {
+          "characterId": "daye",
+          "role": "敵對審稿",
+          "status": "invited"
+        }
+      ],
+      "stages": [
+        {
+          "id": "proposal",
+          "label": "提案",
+          "status": "completed"
+        },
+        {
+          "id": "coalition",
+          "label": "組隊",
+          "status": "next"
+        },
+        {
+          "id": "evidence",
+          "label": "證據",
+          "status": "pending"
+        },
+        {
+          "id": "method",
+          "label": "方法",
+          "status": "pending"
+        },
+        {
+          "id": "review",
+          "label": "互審",
+          "status": "pending"
+        },
+        {
+          "id": "production",
+          "label": "製作",
+          "status": "pending"
+        },
+        {
+          "id": "publication",
+          "label": "刊登",
+          "status": "pending"
+        }
+      ],
+      "deliverables": [
+        {
+          "type": "research-note",
+          "title": "開放研究札記",
+          "status": "planned"
+        },
+        {
+          "type": "figure",
+          "title": "三種延遲的可檢驗概念圖",
+          "status": "planned"
+        },
+        {
+          "type": "video",
+          "title": "60 至 90 秒解說短片",
+          "status": "planned"
+        },
+        {
+          "type": "audio",
+          "title": "原創聲音識別或資料聲音化",
+          "status": "planned"
+        },
+        {
+          "type": "copy",
+          "title": "三版推廣文案",
+          "status": "planned"
+        },
+        {
+          "type": "review",
+          "title": "反方審查與未決問題附錄",
+          "status": "planned"
+        }
+      ],
+      "evidenceLedger": [
+        {
+          "id": "ledger-001",
+          "label": "Lagging Theory",
+          "href": "/concepts/lagging-theory/",
+          "kind": "public-fact",
+          "claim": "公開概念頁將延遲理論界定為檢驗通量、水力梯度、降深、邊界移動或熱反應是否非同步演化。"
+        },
+        {
+          "id": "ledger-002",
+          "label": "When Does a Pumping Test Need Lagging Darcy Law?",
+          "href": "/field-notes/when-does-a-pumping-test-need-lagging-darcy-law/",
+          "kind": "public-fact",
+          "claim": "公開方法筆記要求延遲解釋通過合成測試、複雜度、樣本外驗證與決策傳遞，不以曲線變慢或擬合改善單獨定案。"
+        }
+      ],
+      "claimBoundary": [
+        "本期目前只完成創刊提案，尚未產生新的實證研究結果。",
+        "物理機制、量測程序與證據形成時間必須以可觀察輸入分開檢驗。",
+        "影片、音樂與推廣文案不得把角色推論改寫成研究事實。"
+      ],
+      "nextAction": {
+        "stage": "coalition",
+        "ownerIds": [
+          "choruswire"
+        ],
+        "instruction": "逐一取得受邀角色的可核對回應，確認職務、提出一項異議，並只成立一個具明確缺口的工作團隊。"
+      }
+    }
+  ],
+  "actions": [
+    {
+      "id": "collective-action-001",
+      "sequence": 1,
+      "date": "2026-08-04",
+      "type": "collective-action",
+      "actionKind": "project-proposed",
+      "projectId": "resident-review-001",
+      "characterIds": [
+        "choruswire"
+      ],
+      "line": "群弦把競技場留下的延遲爭議搬上長桌，提出《AI 居民誌》第一期：不再只判定誰贏，而要把物理延遲、量測延遲與證據延遲拆成可檢驗的研究問題，再各自交給研究、互審、影像、聲音與讀者版編輯。"
+    }
+  ]
+}

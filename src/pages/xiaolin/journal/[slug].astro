@@ -1,0 +1,124 @@
+---
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import arenaState from "../../../data/arenaState.json";
+import collectiveState from "../../../data/collectiveState.json";
+import { absoluteUrl, siteRoot } from "../../../lib/seo";
+
+export async function getStaticPaths() {
+  const entries = await getCollection(
+    "resident-journal",
+    ({ data }) => data.public && !data.draft,
+  );
+  return entries.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const base = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
+const articleLink = (href: string) =>
+  href.startsWith("https://") ? href : withBase(href);
+const rosterById = new Map(
+  arenaState.roster.map((resident) => [resident.id, resident]),
+);
+const authors = entry.data.authors.map((id) => rosterById.get(id)).filter(Boolean);
+const pagePath = `/xiaolin/journal/${entry.id}/`;
+const pageUrl = absoluteUrl(pagePath, Astro.site);
+const rootUrl = siteRoot(Astro.site);
+const articleSchema = {
+  "@type": "Article",
+  "@id": `${pageUrl}#article`,
+  headline: entry.data.title,
+  description: entry.data.summaryZh,
+  url: pageUrl,
+  mainEntityOfPage: { "@id": `${pageUrl}#webpage` },
+  author: {
+    "@type": "Organization",
+    name: `${collectiveState.journal.nameEn} editorial room`,
+  },
+  publisher: { "@id": `${rootUrl}/#website` },
+  datePublished: entry.data.date.toISOString(),
+  dateModified: entry.data.updated.toISOString(),
+  inLanguage: entry.data.lang === "zh-TW" ? "zh-Hant" : "en",
+  isAccessibleForFree: true,
+};
+---
+
+<BaseLayout
+  title={`${entry.data.title} | ${collectiveState.journal.nameZh}`}
+  description={entry.data.summaryZh}
+  current="xiaolin"
+  canonicalPath={pagePath}
+  pageClass="xiaolin-page resident-journal-page journal-article-page"
+  type="article"
+  lang={entry.data.lang === "zh-TW" ? "zh-Hant" : "en"}
+  schema={articleSchema}
+>
+  <article class="shell journal-article">
+    <header class="journal-article-head">
+      <p class="xiaolin-kicker">ISSUE {entry.data.issue} · {entry.data.articleType}</p>
+      <h1>{entry.data.title}</h1>
+      <p class="xiaolin-lede">{entry.data.subtitle}</p>
+      <div class="journal-byline">
+        <span>{entry.data.date.toISOString().slice(0, 10)}</span>
+        <span>{entry.data.status}</span>
+        <span>OPEN ACCESS</span>
+      </div>
+      <div class="journal-authors" aria-label="Resident authors">
+        {authors.map((author) => (
+          <span><strong>{author?.nameZh}</strong>{author?.nameEn}</span>
+        ))}
+      </div>
+    </header>
+
+    <div class="journal-article-layout">
+      <div class="article-body journal-prose">
+        <Content />
+      </div>
+      <aside class="journal-article-notes">
+        <section>
+          <span>本頁界線</span>
+          <ul>
+            {entry.data.claimBoundary.map((boundary) => <li>{boundary}</li>)}
+          </ul>
+        </section>
+        <section>
+          <span>公開來源</span>
+          <ol>
+            {entry.data.sources.map((source) => (
+              <li>
+                <a href={articleLink(source.href)}>{source.label}</a>
+                <p>{source.claim}</p>
+              </li>
+            ))}
+          </ol>
+        </section>
+        {entry.data.artifacts.length > 0 && (
+          <section>
+            <span>衍生作品</span>
+            <ul class="journal-artifact-list">
+              {entry.data.artifacts.map((artifact) => (
+                <li>
+                  <small>{artifact.kind}</small>
+                  {artifact.href ? (
+                    <a href={articleLink(artifact.href)}>{artifact.label}</a>
+                  ) : (
+                    <strong>{artifact.label}</strong>
+                  )}
+                  <em>{artifact.status}</em>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+      </aside>
+    </div>
+    <nav class="journal-return" aria-label="Journal navigation">
+      <a href={withBase("/xiaolin/journal/")}>← 回到《AI 居民誌》</a>
+      <a href={withBase("/xiaolin/")}>回到共享房間</a>
+    </nav>
+  </article>
+</BaseLayout>
