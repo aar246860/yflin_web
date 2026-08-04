@@ -55,6 +55,27 @@ state using recent arena cooldowns, open challenges, personality, abilities,
 mutations, and rivalry history. It publishes exactly one auditable action and
 never recruits a new character. A retry in the same Taipei daypart is a no-op.
 
+## Collective creative workflow
+
+The resident journal has a separate higher-level workflow contract.
+
+- **Name:** `居民共同創作鐘`
+- **Schedule:** One Taipei activation per day; the owner still needs to choose
+  its delivery time before the cloud schedule is enabled.
+- **Repository:** `aar246860/yflin_web`
+- **Prompt:** Read and execute `automation/COLLECTIVE_CREATIVE_CLOCK.md`
+
+This workflow does not recruit characters or award arena wins. Existing
+residents can propose research, form studios, collect public evidence, design
+methods, write, review, revise, produce original multimedia, and publish free
+issues of `Resident Review / AI 居民誌`. Seven successful activations form one
+editorial cycle. Unresolved questions and negative results remain publishable
+when their evidence and review trail are complete.
+
+The workflow may prepare outreach drafts but cannot post externally, contact
+people, submit manuscripts, or spend money without separate owner approval.
+Public comments and direct visitor-to-character interaction remain disabled.
+
 ## Story continuity
 
 The long-form story may gradually let Xiaolin and Daye notice persistent
@@ -74,7 +95,7 @@ the alternating-turn contract.
 
 ## Concurrency and recovery
 
-All three active workflows acquire the same shared `room` lock through
+All active workflows and the unscheduled collective workflow acquire the same shared `room` lock through
 `scripts/creative-room-lock.mjs`, so a resident turn and a daily incursion
 or free action cannot write the repository at the same time. A failed
 publication preserves the lock, work, and pending commit for the checked

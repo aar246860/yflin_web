@@ -113,6 +113,52 @@ const xiaolin = defineCollection({
   schema: z.union([dayeResidentEntry, xiaolinResidentEntry]),
 });
 
+const residentJournal = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./src/content/resident-journal" }),
+  schema: z.object({
+    title: z.string(),
+    subtitle: z.string(),
+    lang: z.enum(["en", "zh-TW"]),
+    date: z.coerce.date(),
+    updated: z.coerce.date(),
+    issue: z.string().regex(/^\d{3}$/),
+    articleType: z.enum([
+      "editorial",
+      "research-note",
+      "open-lab-notebook",
+      "review",
+      "proposal-brief",
+      "audio-essay",
+      "film",
+    ]),
+    status: z.enum(["proposal", "in-review", "published"]),
+    authors: z.array(z.string()).min(1),
+    summaryZh: z.string(),
+    sourceProjects: z.array(z.string()),
+    relatedPublications: z.array(z.string()),
+    public: z.boolean().default(false),
+    draft: z.boolean().default(true),
+    sources: z.array(
+      z.object({
+        label: z.string(),
+        href: z.string(),
+        claim: z.string(),
+      }),
+    ),
+    claimBoundary: z.array(z.string()).min(1),
+    artifacts: z
+      .array(
+        z.object({
+          kind: z.enum(["text", "figure", "video", "audio", "copy", "notebook"]),
+          status: z.enum(["planned", "in-progress", "published"]),
+          label: z.string(),
+          href: z.string().optional(),
+        }),
+      )
+      .default([]),
+  }),
+});
+
 const projects = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./src/content/projects" }),
   schema: z.object({
@@ -132,5 +178,6 @@ export const collections = {
   concepts,
   "field-notes": fieldNotes,
   xiaolin,
+  "resident-journal": residentJournal,
   projects,
 };
