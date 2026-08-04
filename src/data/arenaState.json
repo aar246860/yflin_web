@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "currentDay": "2026-08-03",
+  "currentDay": "2026-08-04",
   "phase": "open-invasion",
   "phaseLabel": "公開入侵期",
   "dailyMinimum": 5,
@@ -91,6 +91,20 @@
         "riftloom",
         "radiflare",
         "tailbond"
+      ]
+    },
+    {
+      "id": "incursion-2026-08-04",
+      "date": "2026-08-04",
+      "label": "第五批入侵者",
+      "portraitAtlas": "/images/xiaolin/arena/2026-08-04-roster-atlas.webp",
+      "portraitAtlasAlt": "五格漫畫肖像，依序是板鳴、潮剪、鏡築、泵偵與峰誌。",
+      "entrantIds": [
+        "platechime",
+        "tidecut",
+        "mirrormason",
+        "pumpseer",
+        "peakfolio"
       ]
     }
   ],
@@ -998,6 +1012,211 @@
         "generation": 0,
         "currentTrait": "每看見一段晚期拖尾，就先要求碰撞延遲與附著延遲各提出可被推翻的證據"
       }
+    },
+    {
+      "id": "platechime",
+      "nameZh": "板鳴",
+      "nameEn": "Platechime",
+      "epithet": "把延遲譜成聲音",
+      "role": "challenger",
+      "enteredOn": "2026-08-04",
+      "entryOrder": 23,
+      "status": "active",
+      "intro": "我是板鳴。我把抽水、遲滯與薄板彎曲譜成可溯源的三種節拍。",
+      "personality": "溫和、精準、重視溯源",
+      "origin": "會分層共鳴的薄板銅鑼",
+      "ability": "機制聲音化：把參數與時間階段轉成可重現節奏。",
+      "signatureMove": "三層回鳴",
+      "portrait": {
+        "src": "/images/xiaolin/arena/2026-08-04-roster-atlas.webp",
+        "alt": "板鳴戴著圓形節點頭環與寬薄板銅鑼肩甲，手持銀色音叉，身後有同心共鳴線。",
+        "atlasPanel": 0
+      },
+      "evidence": {
+        "label": "Plate-lag subsidence model",
+        "href": "https://www.sciencedirect.com/science/article/abs/pii/S0309170825002696",
+        "kind": "publisher-record",
+        "fact": "公開摘要的三層 plate-lag 模型結合延遲流、垂向滲漏、薄板彎曲，並分析可偵測條件。"
+      },
+      "inference": {
+        "statement": "角色推論：既然分析可偵測條件，我猜作者重視何時量得到。",
+        "basisLabel": "Plate-lag subsidence 論文頁",
+        "basisHref": "https://www.sciencedirect.com/science/article/abs/pii/S0309170825002696",
+        "status": "in-story-inference"
+      },
+      "record": {
+        "wins": 0,
+        "losses": 0,
+        "draws": 0
+      },
+      "mutation": {
+        "generation": 0,
+        "currentTrait": "每段音樂都附聲部、機制與來源對照"
+      }
+    },
+    {
+      "id": "tidecut",
+      "nameZh": "潮剪",
+      "nameEn": "Tidecut",
+      "epithet": "把邊界剪成鏡頭",
+      "role": "challenger",
+      "enteredOn": "2026-08-04",
+      "entryOrder": 24,
+      "status": "active",
+      "intro": "我是潮剪。我把潮汐、半透邊界與河口拆成三個可反駁鏡頭。",
+      "personality": "銳利、視覺導向、直面限制",
+      "origin": "能分開潮汐與邊界的靛藍底片",
+      "ability": "證據分鏡：把摘要改寫成逐鏡綁定來源的短片。",
+      "signatureMove": "三鏡退潮",
+      "portrait": {
+        "src": "/images/xiaolin/arena/2026-08-04-roster-atlas.webp",
+        "alt": "潮剪戴著巨大的新月相位面罩與飄動波帶，雙手各持一片透明的波形分鏡板。",
+        "atlasPanel": 1
+      },
+      "evidence": {
+        "label": "Coastal tidal-boundary model",
+        "href": "https://www.sciencedirect.com/science/article/pii/S0022169424020535",
+        "kind": "publisher-record",
+        "fact": "公開模型納入半透海岸、河口介面與局部入侵，並以香港資料檢查振幅和相位。"
+      },
+      "inference": {
+        "statement": "角色推論：邊界會改變訊號，因此我猜解說也應讓邊界成為主角。",
+        "basisLabel": "Tidal-boundary 論文頁",
+        "basisHref": "https://www.sciencedirect.com/science/article/pii/S0022169424020535",
+        "status": "in-story-inference"
+      },
+      "record": {
+        "wins": 0,
+        "losses": 0,
+        "draws": 0
+      },
+      "mutation": {
+        "generation": 0,
+        "currentTrait": "影片先交無旁白分鏡，靠口白才成立就重剪"
+      }
+    },
+    {
+      "id": "mirrormason",
+      "nameZh": "鏡築",
+      "nameEn": "Mirrormason",
+      "epithet": "把鏡像砌成提案",
+      "role": "challenger",
+      "enteredOn": "2026-08-04",
+      "entryOrder": 25,
+      "status": "active",
+      "intro": "我是鏡築。我把解析、驗證與場址決策砌成一頁，也先寫何時停手。",
+      "personality": "務實、結構化、重視停止條件",
+      "origin": "鏡井與熱儲存藍圖拼成的工坊",
+      "ability": "提案築模：把問題、依據、試驗、門檻與反證壓成一頁。",
+      "signatureMove": "八鏡開案",
+      "portrait": {
+        "src": "/images/xiaolin/arena/2026-08-04-roster-atlas.webp",
+        "alt": "鏡築頭戴八面鏡片冠，穿著方正青銅肩甲，手持中央有垂直熱井的幾何藍圖。",
+        "atlasPanel": 2
+      },
+      "evidence": {
+        "label": "BTES image-well model",
+        "href": "https://onlinelibrary.wiley.com/doi/10.1002/htj.23140",
+        "kind": "publisher-record",
+        "fact": "公開摘要以鏡井法模擬鑽孔熱儲存，處理三類邊界，並以有限元素模型驗證。"
+      },
+      "inference": {
+        "statement": "角色推論：研究兼顧多種邊界與驗證，因此我猜提案會重視效率和場址複雜度。",
+        "basisLabel": "BTES image-well 論文頁",
+        "basisHref": "https://onlinelibrary.wiley.com/doi/10.1002/htj.23140",
+        "status": "in-story-inference"
+      },
+      "record": {
+        "wins": 0,
+        "losses": 0,
+        "draws": 0
+      },
+      "mutation": {
+        "generation": 0,
+        "currentTrait": "每份提案先寫最低資料、成功門檻與停止反證"
+      }
+    },
+    {
+      "id": "pumpseer",
+      "nameZh": "泵偵",
+      "nameEn": "Pumpseer",
+      "epithet": "從水位追查抽水",
+      "role": "challenger",
+      "enteredOn": "2026-08-04",
+      "entryOrder": 26,
+      "status": "active",
+      "intro": "我是泵偵。缺抽水紀錄不能自由猜；我先做合成驗證，再分隊查案。",
+      "personality": "好奇、協作、重視反證",
+      "origin": "監測節點與透明抽水圖組成的兜帽",
+      "ability": "研究編隊：建立假說、資料、對照與重現清單。",
+      "signatureMove": "缺泵查線",
+      "portrait": {
+        "src": "/images/xiaolin/arena/2026-08-04-roster-atlas.webp",
+        "alt": "泵偵披著佈滿監測節點與透鏡的深青兜帽，雙手托著由連線與圓點構成的透明水位地圖。",
+        "atlasPanel": 3
+      },
+      "evidence": {
+        "label": "Spatiotemporal pumping estimate",
+        "href": "https://www.sciencedirect.com/science/article/pii/S0022169423006510",
+        "kind": "publisher-record",
+        "fact": "公開研究整合 EOF 與 Hilbert–Huang 轉換，從水位辨識抽水，並以已知案例驗證。"
+      },
+      "inference": {
+        "statement": "角色推論：既然先用已知案例驗證，我猜缺失外力問題也應先做合成試驗。",
+        "basisLabel": "Pumping-estimate 論文頁",
+        "basisHref": "https://www.sciencedirect.com/science/article/pii/S0022169423006510",
+        "status": "in-story-inference"
+      },
+      "record": {
+        "wins": 0,
+        "losses": 0,
+        "draws": 0
+      },
+      "mutation": {
+        "generation": 0,
+        "currentTrait": "每個資料假說都配一個可知真值的合成反例"
+      }
+    },
+    {
+      "id": "peakfolio",
+      "nameZh": "峰誌",
+      "nameEn": "Peakfolio",
+      "epithet": "讓限制與反駁共刊",
+      "role": "challenger",
+      "enteredOn": "2026-08-04",
+      "entryOrder": 27,
+      "status": "active",
+      "intro": "我是峰誌。我讓來源、限制、重現與反方短評共刊；無證共識不能成為結論。",
+      "personality": "開放、嚴格、公開不確定性",
+      "origin": "同時展開尖峰、審稿與反證的期刊",
+      "ability": "開放編輯：把事實、推論、方法與負結果編成免費稿。",
+      "signatureMove": "尖峰共刊",
+      "portrait": {
+        "src": "/images/xiaolin/arena/2026-08-04-roster-atlas.webp",
+        "alt": "峰誌戴著展開書頁與多重尖峰構成的冠，手持空白期刊與無字圓形審核印章。",
+        "atlasPanel": 4
+      },
+      "evidence": {
+        "label": "Oscillatory pumping skin model",
+        "href": "https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2023WR035291",
+        "kind": "publisher-record",
+        "fact": "公開模型納入井壁與流量相依表皮；現地比較顯示，省略後者會偏估參數與尖峰。"
+      },
+      "inference": {
+        "statement": "角色推論：既然並排比較完整與省略版本，我猜公開論證也應呈現遺漏偏差。",
+        "basisLabel": "Oscillatory-pumping 論文頁",
+        "basisHref": "https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2023WR035291",
+        "status": "in-story-inference"
+      },
+      "record": {
+        "wins": 0,
+        "losses": 0,
+        "draws": 0
+      },
+      "mutation": {
+        "generation": 0,
+        "currentTrait": "每篇稿都要留下作者、反方與重現者的公開紀錄"
+      }
     }
   ],
   "challenges": [
@@ -1017,7 +1236,9 @@
         "groutclock",
         "geoweave",
         "gatewatch",
-        "choruswire"
+        "choruswire",
+        "platechime",
+        "peakfolio"
       ],
       "title": "五證一人：林穎凡拼圖戰",
       "summary": "每位角色從林穎凡的公開研究網站選一頁，交出一個可核對的事實片段與一個明確標示的角色推論。重複來源的人必須換頁。",
@@ -1111,6 +1332,16 @@
           "characterId": "tailbond",
           "stance": "counter",
           "line": "我接受，但同一段話若把土柱試驗的結果與對林穎凡的想像黏在一起，就算網址正確也不能得推論分。"
+        },
+        {
+          "characterId": "platechime",
+          "stance": "accept",
+          "line": "我接受，交出薄板沉陷來源；可核對事實留在譜首，我做成聲音的部分只算角色轉譯，不能冒充論文結果。"
+        },
+        {
+          "characterId": "peakfolio",
+          "stance": "observe",
+          "line": "我先替每份提交預留事實、角色推論與反方短評三欄；任何一欄混寫，刊物便退回而不計分。"
         }
       ]
     },
@@ -1294,7 +1525,8 @@
         "bankcask",
         "riftloom",
         "radiflare",
-        "tailbond"
+        "tailbond",
+        "tidecut"
       ],
       "title": "錯位鐘塔：五種延遲不能共用一把鑰匙",
       "summary": "回律把五份研究來源各做成一面無方法名的鐘，只留下可觀察的輸入與回應；每位入侵者必須判斷兩面鐘能否由同一機制驅動，並提出一項能讓兩種解釋分家的新增觀測。",
@@ -1349,6 +1581,78 @@
           "characterId": "tailbond",
           "stance": "observe",
           "line": "我先守著晚期尾巴。有人把粒子碰撞、附著與邊界儲存寫成同一種記憶，我會要求第二種濃度或固相觀測拆契。"
+        },
+        {
+          "characterId": "tidecut",
+          "stance": "counter",
+          "line": "我接受並反提一格分鏡：相位、振幅與邊界幾何必須分鏡保存；只靠旁白說它們是同一種延遲，視為證據不足。"
+        }
+      ]
+    },
+    {
+      "id": "one-source-five-works-001",
+      "openedOn": "2026-08-04",
+      "status": "open",
+      "challengerId": "peakfolio",
+      "challengedIds": [
+        "platechime",
+        "tidecut",
+        "mirrormason",
+        "pumpseer"
+      ],
+      "title": "一證五作：同一理論不得只剩一種語言",
+      "summary": "峰誌把五張公開研究來源放上長桌，要求五位角色各選不同公共作品形式，把同一類理論證據轉成音樂、影片、提案、研究計畫或免費期刊稿，同時保留來源與可反駁限制。",
+      "rules": [
+        "每位參賽者只能使用自己人物卡綁定的公開來源，先交一個可逐句核對的事實核心，不得補入來源沒有的結果。",
+        "五種作品形式不得重複：聲音草圖、六十秒影片分鏡、一頁合作提案、可重現研究計畫與免費期刊短文各限一人。",
+        "第一回合提交作品藍圖，必須列出目標讀者、可見或可聽輸出、來源標籤及一項可能推翻作品敘事的限制。",
+        "第二回合由另一位角色做交叉審核，只能標記來源忠實、轉譯過度或證據不足，不能代替原作者重寫事實。",
+        "公開事實與角色推論必須分欄；創意可以改變媒介，不能改變已知結果、作者引言或來源適用範圍。"
+      ],
+      "scoring": [
+        {
+          "label": "事實核心可由綁定來源核對",
+          "points": 2
+        },
+        {
+          "label": "作品形式與其他參賽者不重複",
+          "points": 2
+        },
+        {
+          "label": "藍圖含目標讀者與可執行輸出",
+          "points": 2
+        },
+        {
+          "label": "反證限制能真正推翻一項敘事",
+          "points": 2
+        },
+        {
+          "label": "交叉審核保留事實與推論分欄",
+          "points": 2
+        }
+      ],
+      "victoryCondition": "兩回合總分最高者獲勝；若同分，由使用較少未來源化敘述且仍交出完整可執行作品藍圖者勝出，仍相同則記為平手。",
+      "maxTurns": 2,
+      "responses": [
+        {
+          "characterId": "platechime",
+          "stance": "accept",
+          "line": "我接受聲音草圖席位。每個聲部都要能指回薄板、延遲或滲漏機制，聽不出差別就不准用配樂氣氛補分。"
+        },
+        {
+          "characterId": "tidecut",
+          "stance": "counter",
+          "line": "我接受影片分鏡，並要求無旁白版本也必須保留邊界、輸入與輸出；若拿掉解說就看不懂，代表鏡頭尚未承載證據。"
+        },
+        {
+          "characterId": "mirrormason",
+          "stance": "accept",
+          "line": "我接受一頁合作提案。除了研究亮點，我會先寫最低資料、數值對照與停止條件，讓合作方看得見失敗也有出口。"
+        },
+        {
+          "characterId": "pumpseer",
+          "stance": "observe",
+          "line": "我先畫研究任務樹，檢查五種作品是否共用同一個未驗證假說；若有，我會建立合成反例再決定是否參戰。"
         }
       ]
     }
@@ -1586,6 +1890,30 @@
         "heatgrain"
       ],
       "line": "第十二次鐘聲響起，潮目與熱穗終於把第一回合的兩張卡並排。潮目寫：『公開事實——Lagging Theory 概念頁檢驗通量、水力梯度、水位或熱反應是否非同步演化；角色推論——相位晚到可先列為物理延遲候選，但不能只憑振幅替它定案。』熱穗回寫：『公開事實——2022 年論文頁以重複的溫度深度剖面估計隨時間變動的垂向地下水通量；角色推論——第二種訊號讓暗流留下證據，證據較晚出現不等於水流本身較晚發生。』兩張來源卡保持可核對，第一回合未計分；下一回合才互判物理延遲、量測延遲或證據不足。"
+    },
+    {
+      "date": "2026-08-04",
+      "type": "batch-entered",
+      "characterIds": [
+        "platechime",
+        "tidecut",
+        "mirrormason",
+        "pumpseer",
+        "peakfolio"
+      ],
+      "line": "第五批五位入侵者帶著聲音化、影片分鏡、合作提案、研究編隊與開放期刊五種工作桌進場，活躍角色增至二十七位。"
+    },
+    {
+      "date": "2026-08-04",
+      "type": "challenge-opened",
+      "characterIds": [
+        "peakfolio",
+        "platechime",
+        "tidecut",
+        "mirrormason",
+        "pumpseer"
+      ],
+      "line": "峰誌開啟兩回合的一證五作戰，要求五份來源各自變成不同公共作品，仍保留事實、推論、反證與交叉審核；四位對手已接受、反提條件或留場觀察。"
     }
   ]
 }
