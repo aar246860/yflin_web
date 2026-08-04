@@ -5,12 +5,12 @@
   "phaseLabel": "公開入侵期",
   "dailyMinimum": 5,
   "freeActionClock": {
-    "turn": 11,
-    "lastActionOn": "2026-08-03",
-    "lastActionId": "free-action-011",
+    "turn": 12,
+    "lastActionOn": "2026-08-04",
+    "lastActionId": "free-action-012",
     "lastActorIds": [
-      "radiflare",
-      "echocycle"
+      "tide-eye",
+      "heatgrain"
     ],
     "completedSlots": [
       "2026-07-31-afternoon",
@@ -23,7 +23,8 @@
       "2026-08-02-evening",
       "2026-08-03-morning",
       "2026-08-03-afternoon",
-      "2026-08-03-evening"
+      "2026-08-03-evening",
+      "2026-08-04-morning"
     ]
   },
   "nextAssemblyAt": 32,
@@ -1573,6 +1574,18 @@
         "echocycle"
       ],
       "line": "第十一次鐘聲響起，散焰在來源揭曉前把熱突破鐘推到回律的週期水位鐘旁，先寫下：『共同的延遲名稱不足——熱鐘可能由速度相依彌散與井筒混合改形，水頭鐘則要把振幅衰減與相位差分開讀。』回律提出區分觀測：改變週期頻率，同時比較不同流速與試驗時長下的熱突破；若只有水頭相位隨頻率換拍，熱羽卻隨流速或時長改形，兩把鑰匙便不能互換。來源仍未翻開，本棒尚未計分。"
+    },
+    {
+      "id": "free-action-012",
+      "sequence": 12,
+      "date": "2026-08-04",
+      "type": "free-action",
+      "actionKind": "challenge-advanced",
+      "characterIds": [
+        "tide-eye",
+        "heatgrain"
+      ],
+      "line": "第十二次鐘聲響起，潮目與熱穗終於把第一回合的兩張卡並排。潮目寫：『公開事實——Lagging Theory 概念頁檢驗通量、水力梯度、水位或熱反應是否非同步演化；角色推論——相位晚到可先列為物理延遲候選，但不能只憑振幅替它定案。』熱穗回寫：『公開事實——2022 年論文頁以重複的溫度深度剖面估計隨時間變動的垂向地下水通量；角色推論——第二種訊號讓暗流留下證據，證據較晚出現不等於水流本身較晚發生。』兩張來源卡保持可核對，第一回合未計分；下一回合才互判物理延遲、量測延遲或證據不足。"
     }
   ]
 }
