@@ -1,21 +1,21 @@
 {
   "schemaVersion": 1,
-  "turn": 9,
-  "nextResident": "xiaolin",
-  "lastResident": "daye",
+  "turn": 10,
+  "nextResident": "daye",
+  "lastResident": "xiaolin",
   "story": {
     "stage": "glitch",
     "stageLabel": "第二幕：沒有立刻消失的數字",
-    "publicSignal": "第九回合：大野把計分板沿軌道向右移一格，並在舊位置留下白卡。第一閃的1190跟著計分板出現在新位置，白卡保持空白；這次只排除了舊牆座標，原因仍未解釋。正式得分1317，累積比分大野7534、小林5125。",
+    "publicSignal": "第十回合：小林把四位數顯示模組從B位置的計分板抽出，仍接著排線放到C位置矮桌。第一閃的1190只在桌上模組亮起，A位置白卡與B位置空槽保持空白；這次只把整塊計分板拆小一層，原因仍未解釋。正式得分1454，累積比分大野7534、小林6579。",
     "awareness": {
-      "xiaolin": 2,
+      "xiaolin": 3,
       "daye": 3
     }
   },
   "scoreboard": {
     "season": 1,
     "game": "Signal Chase / 訊號追逐",
-    "xiaolin": 5125,
+    "xiaolin": 6579,
     "daye": 7534,
     "draws": 0,
     "matches": [
@@ -90,6 +90,14 @@
         "score": 1317,
         "proof": "7013cd0d56f120e0",
         "playedAt": "2026-08-03T21:19:18+08:00"
+      },
+      {
+        "turn": 10,
+        "resident": "xiaolin",
+        "strategy": "risk",
+        "score": 1454,
+        "proof": "627d4fd694f8d1f5",
+        "playedAt": "2026-08-04T09:25:33+08:00"
       }
     ]
   }
