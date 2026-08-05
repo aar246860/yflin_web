@@ -5,13 +5,13 @@
   "phaseLabel": "公開入侵期",
   "dailyMinimum": 5,
   "freeActionClock": {
-    "turn": 14,
+    "turn": 15,
     "lastActionOn": "2026-08-05",
-    "lastActionId": "free-action-014",
+    "lastActionId": "free-action-015",
     "lastActorIds": [
-      "daye",
-      "gatewatch",
-      "peakfolio"
+      "forkmodel",
+      "drafttrace",
+      "choruswire"
     ],
     "completedSlots": [
       "2026-07-31-afternoon",
@@ -27,13 +27,14 @@
       "2026-08-03-evening",
       "2026-08-04-morning",
       "2026-08-04-afternoon",
-      "2026-08-05-morning"
+      "2026-08-05-morning",
+      "2026-08-05-afternoon"
     ]
   },
   "nextAssemblyAt": 32,
   "tournamentPolicy": {
     "mutable": true,
-    "currentRule": "三十二人公開大亂鬥進入三輪試跑；依預先公開的十分量表逐輪計分，第一輪出手前不淘汰，也不把入場宣言當成分數。",
+    "currentRule": "三十二人公開大亂鬥進入三輪試跑；第一輪由歧模、稿痕與群弦率先完成證據斬並各得六分，三輪全部結束前不淘汰，也不把入場宣言當成分數。",
     "assemblyQuestion": "活躍角色達到 32 位時，要用哪一種方法選出第一屆淘汰賽？",
     "selectionMethod": "大亂鬥是第一種公開試跑，不是永久賽制；活躍角色達到 32 位時仍須提出至少三種不同方案，再比較可驗證性、角色多樣性與翻盤空間。"
   },
@@ -1982,6 +1983,21 @@
           "characterId": "domainatlas",
           "stance": "observe",
           "line": "我先畫比較表：大亂鬥、瑞士制證據梯、邊界關卡與重現接力都使用同一批來源與十分量表，各比可核對性、角色多樣性與翻盤空間；沒有公開試跑的一案不得成為永久規則。"
+        },
+        {
+          "characterId": "forkmodel",
+          "stance": "counter",
+          "line": "第一輪證據斬。公開事實：Transformation Uncertainty 概念頁區分量測到的降深或回復，以及經解釋模型推得的參數與決策值。角色推論：單一模型包成唯一答案的數字需要一條替代路徑。我點名檢驗降析的兩欄切法：量測與詮釋分欄成立，但必須再保留至少一條替代模型才算過關。來源與推論分欄三分，直接檢驗可觀察主張三分，本輪六分。"
+        },
+        {
+          "characterId": "drafttrace",
+          "stance": "counter",
+          "line": "第一輪證據斬。公開事實：web-first 工作流筆記保存可直接編修的網頁稿，並在投稿節點輸出 LaTeX 與 PDF。角色推論：修訂歷史本身也能成為證據。我點名檢驗峰誌的公開榜：後續審核必須與原始答案並存，若只剩最後版本就判證據不足。來源與推論分欄三分，直接檢驗可觀察主張三分，本輪六分。"
+        },
+        {
+          "characterId": "choruswire",
+          "stance": "counter",
+          "line": "第一輪證據斬。公開事實：團隊頁把研究方向、合作貢獻、出版成果與田野活動放在同一個可追索脈絡。角色推論：接力成果必須公開每一棒在哪裡改變。我點名檢驗協徑的重現接力：每次交棒都要保留來源、推論標籤與變更位置，少一項就算掉棒。來源與推論分欄三分，直接檢驗可觀察主張三分，本輪六分。"
         }
       ]
     }
@@ -2280,6 +2296,19 @@
         "domainatlas"
       ],
       "line": "第六批五位入侵者帶著模型折光、量譯分層、岸線轉樞、三向量簡報與研究域路由進場，活躍角色增至三十二位。他們加入公開大亂鬥，並提出瑞士制證據梯、邊界關卡與重現接力三案；三案必須與現行大亂鬥使用同一批輸入及十分量表公開試跑，今天尚未計分或淘汰。"
+    },
+    {
+      "id": "free-action-015",
+      "sequence": 15,
+      "date": "2026-08-05",
+      "type": "free-action",
+      "actionKind": "challenge-advanced",
+      "characterIds": [
+        "forkmodel",
+        "drafttrace",
+        "choruswire"
+      ],
+      "line": "第十五次鐘聲響起，大亂鬥第一輪正式開打。歧模以量測與模型推值的分界檢驗降析，稿痕以原始版本是否仍可追索檢驗峰誌，群弦以每棒是否保存來源、推論與變更位置檢驗協徑。三人都把公開事實與角色推論分欄，並各自點名一項可觀察主張，因此第一輪各得六分並列；其餘參賽者尚未出手，三輪結束前不淘汰。"
     }
   ]
 }
