@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "currentDay": "2026-08-04",
+  "currentDay": "2026-08-05",
   "phase": "open-invasion",
   "phaseLabel": "公開入侵期",
   "dailyMinimum": 5,
@@ -33,7 +33,7 @@
   "nextAssemblyAt": 32,
   "tournamentPolicy": {
     "mutable": true,
-    "currentRule": "二十七人公開大亂鬥進入三輪試跑；依預先公開的十分量表逐輪計分，今天只開場，未完成評分前不淘汰。",
+    "currentRule": "三十二人公開大亂鬥進入三輪試跑；依預先公開的十分量表逐輪計分，第一輪出手前不淘汰，也不把入場宣言當成分數。",
     "assemblyQuestion": "活躍角色達到 32 位時，要用哪一種方法選出第一屆淘汰賽？",
     "selectionMethod": "大亂鬥是第一種公開試跑，不是永久賽制；活躍角色達到 32 位時仍須提出至少三種不同方案，再比較可驗證性、角色多樣性與翻盤空間。"
   },
@@ -108,6 +108,20 @@
         "mirrormason",
         "pumpseer",
         "peakfolio"
+      ]
+    },
+    {
+      "id": "incursion-2026-08-05",
+      "date": "2026-08-05",
+      "label": "第六批入侵者",
+      "portraitAtlas": "/images/xiaolin/arena/2026-08-05-roster-atlas.webp",
+      "portraitAtlasAlt": "五格漫畫肖像，依序是證棱、降析、島樞、協徑與域覽。",
+      "entrantIds": [
+        "proofprism",
+        "drawparse",
+        "islehinge",
+        "briefvector",
+        "domainatlas"
       ]
     }
   ],
@@ -1220,6 +1234,211 @@
         "generation": 0,
         "currentTrait": "每篇稿都要留下作者、反方與重現者的公開紀錄"
       }
+    },
+    {
+      "id": "proofprism",
+      "nameZh": "證棱",
+      "nameEn": "Proofprism",
+      "epithet": "把參數折回模型",
+      "role": "challenger",
+      "enteredOn": "2026-08-05",
+      "entryOrder": 28,
+      "status": "active",
+      "intro": "我是證棱。精確數字若不肯說出自己穿過哪一面模型，就只是亮得刺眼；我會把它折回假設再比一次。",
+      "personality": "懷疑、幾何化、拒絕無來源的精確",
+      "origin": "由四種含水層試驗詮釋模型磨成的棱鏡",
+      "ability": "假設折光：把單一參數拆成模型條件下的多面比較。",
+      "signatureMove": "萬景四折",
+      "portrait": {
+        "src": "/images/xiaolin/arena/2026-08-05-roster-atlas.webp",
+        "alt": "證棱戴著深青與靛藍四面晶體面罩，胸前有一道明亮折光。",
+        "atlasPanel": 0
+      },
+      "evidence": {
+        "label": "Transformation Uncertainty",
+        "href": "https://aar246860.github.io/yflin_web/concepts/transformation-uncertainty/",
+        "kind": "public-research",
+        "fact": "公開概念頁記錄一個一萬情境數值基準，對四種含水層試驗詮釋模型提供條件化的轉換模型因子。"
+      },
+      "inference": {
+        "statement": "角色推論：我猜這套公開工作流會先比較模型條件，再讓參數進入決策，而不是把單一估值當成無條件真值。",
+        "basisLabel": "Transformation Uncertainty 概念頁",
+        "basisHref": "https://aar246860.github.io/yflin_web/concepts/transformation-uncertainty/",
+        "status": "in-story-inference"
+      },
+      "record": {
+        "wins": 0,
+        "losses": 0,
+        "draws": 0
+      },
+      "mutation": {
+        "generation": 0,
+        "currentTrait": "每個精確數字都必須帶著生成它的模型面"
+      }
+    },
+    {
+      "id": "drawparse",
+      "nameZh": "降析",
+      "nameEn": "Drawparse",
+      "epithet": "把量測與詮釋分欄",
+      "role": "challenger",
+      "enteredOn": "2026-08-05",
+      "entryOrder": 29,
+      "status": "active",
+      "intro": "我是降析。水位下降是觀測，傳導與儲水是翻譯；誰把兩欄黏成一句，我就從接縫切開。",
+      "personality": "簡短、界線分明、偏愛可追溯的轉換",
+      "origin": "從一條降深曲線與一張參數表之間的空白醒來",
+      "ability": "量譯分層：標出資料、模型與表觀參數各自開始的位置。",
+      "signatureMove": "表觀斷句",
+      "portrait": {
+        "src": "/images/xiaolin/arena/2026-08-05-roster-atlas.webp",
+        "alt": "降析戴著一分為二的銹橙波形面罩，肩甲刻有青色水位曲線。",
+        "atlasPanel": 1
+      },
+      "evidence": {
+        "label": "Drawdown is measured; transmissivity is interpreted",
+        "href": "https://aar246860.github.io/yflin_web/field-notes/drawdown-is-measured-transmissivity-is-interpreted/",
+        "kind": "public-research",
+        "fact": "公開札記區分抽水試驗提供的降深與回復觀測，以及由詮釋模型轉換出的表觀傳導與儲水參數。"
+      },
+      "inference": {
+        "statement": "角色推論：我猜這套研究習慣會追問每個參數由哪一種轉換產生，並保留它不能直接等同量測值的界線。",
+        "basisLabel": "Drawdown field note",
+        "basisHref": "https://aar246860.github.io/yflin_web/field-notes/drawdown-is-measured-transmissivity-is-interpreted/",
+        "status": "in-story-inference"
+      },
+      "record": {
+        "wins": 0,
+        "losses": 0,
+        "draws": 0
+      },
+      "mutation": {
+        "generation": 0,
+        "currentTrait": "任何結論都要標出量測層與詮釋層的接縫"
+      }
+    },
+    {
+      "id": "islehinge",
+      "nameZh": "島樞",
+      "nameEn": "Islehinge",
+      "epithet": "讓複岸繞軸成解",
+      "role": "challenger",
+      "enteredOn": "2026-08-05",
+      "entryOrder": 30,
+      "status": "active",
+      "intro": "我是島樞。海岸不是裝飾線；抽水、補注與複雜邊界一旦換位，我會轉動整座島，直到解答仍能核對。",
+      "personality": "空間化、大膽、對邊界變形敏感",
+      "origin": "複雜海岸與鏡井羅盤交會的一枚轉軸",
+      "ability": "岸線轉樞：改變幾何視角而不偷換抽水、補注與邊界條件。",
+      "signatureMove": "鏡島迴軸",
+      "portrait": {
+        "src": "/images/xiaolin/arena/2026-08-05-roster-atlas.webp",
+        "alt": "島樞頭後展開薄荷色島嶼海岸環，額前嵌著羅盤與鉸鏈。",
+        "atlasPanel": 2
+      },
+      "evidence": {
+        "label": "Publications index",
+        "href": "https://aar246860.github.io/yflin_web/publications/",
+        "kind": "public-research",
+        "fact": "公開出版品索引列出 2025 年 Advances in Water Resources 論文，題名涉及抽水、補注與複雜海岸下的島嶼含水層鏡井解。"
+      },
+      "inference": {
+        "statement": "角色推論：我猜這條公開研究路線習慣把複雜幾何轉成可檢驗的解題結構，而不是先抹平海岸差異。",
+        "basisLabel": "公開出版品索引",
+        "basisHref": "https://aar246860.github.io/yflin_web/publications/",
+        "status": "in-story-inference"
+      },
+      "record": {
+        "wins": 0,
+        "losses": 0,
+        "draws": 0
+      },
+      "mutation": {
+        "generation": 0,
+        "currentTrait": "每次換位都保留原始邊界、輸入與可反駁輸出"
+      }
+    },
+    {
+      "id": "briefvector",
+      "nameZh": "協徑",
+      "nameEn": "Briefvector",
+      "epithet": "用三向量開案",
+      "role": "challenger",
+      "enteredOn": "2026-08-05",
+      "entryOrder": 31,
+      "status": "active",
+      "intro": "我是協徑。合作開始前先給我外力歷史、量到的回應與要做的決策；少一個方向，提案就不准假裝已經抵達。",
+      "personality": "協作、結構化、以決策問題約束範圍",
+      "origin": "由合作簡報上三個尚未填寫的欄位連成的向量",
+      "ability": "三向量簡報：把外力、回應與決策鎖進同一條可執行路徑。",
+      "signatureMove": "三徑合案",
+      "portrait": {
+        "src": "/images/xiaolin/arena/2026-08-05-roster-atlas.webp",
+        "alt": "協徑戴著琥珀色網格頭盔，深藍衣領中央伸出三支方向箭。",
+        "atlasPanel": 3
+      },
+      "evidence": {
+        "label": "Collaborate",
+        "href": "https://aar246860.github.io/yflin_web/collaborate/",
+        "kind": "public-workflow",
+        "fact": "公開合作頁要求先提供外力歷史、量測回應與決策變數，並列出殘差診斷、延遲分析、轉換不確定性檢視及地下水影響熱反應試驗等合作模式。"
+      },
+      "inference": {
+        "statement": "角色推論：我猜公開合作流程偏好以最小證據組連到明確決策，再選擇適合的診斷或試驗。",
+        "basisLabel": "公開合作頁",
+        "basisHref": "https://aar246860.github.io/yflin_web/collaborate/",
+        "status": "in-story-inference"
+      },
+      "record": {
+        "wins": 0,
+        "losses": 0,
+        "draws": 0
+      },
+      "mutation": {
+        "generation": 0,
+        "currentTrait": "每份合作提案都要同時回答外力、回應與決策"
+      }
+    },
+    {
+      "id": "domainatlas",
+      "nameZh": "域覽",
+      "nameEn": "Domainatlas",
+      "epithet": "把四域接成路網",
+      "role": "challenger",
+      "enteredOn": "2026-08-05",
+      "entryOrder": 32,
+      "status": "active",
+      "intro": "我是域覽。我不把研究域排成孤島；含水層試驗、延遲、轉換不確定性與地下能源，都要畫出彼此能交換哪一種證據。",
+      "personality": "廣域、整合、反對用單一標籤抹平方法差異",
+      "origin": "四張研究概念卡繞行後形成的無字星圖",
+      "ability": "研究域路由：替不同問題尋找可共享但不越界的證據接口。",
+      "signatureMove": "四域會流",
+      "portrait": {
+        "src": "/images/xiaolin/arena/2026-08-05-roster-atlas.webp",
+        "alt": "域覽戴著深青軌道面罩，胸前四枚無字圓章由金色路徑相連。",
+        "atlasPanel": 4
+      },
+      "evidence": {
+        "label": "Ying-Fan Lin research website",
+        "href": "https://aar246860.github.io/yflin_web/",
+        "kind": "public-research",
+        "fact": "公開研究網站將含水層試驗詮釋、Lagging Theory、轉換不確定性與受地下水影響的地下能源決策列為主要研究方向。"
+      },
+      "inference": {
+        "statement": "角色推論：我猜這個公開研究計畫正嘗試讓解析模型、時間延遲與決策後果共用可追溯的接口。",
+        "basisLabel": "公開研究網站首頁",
+        "basisHref": "https://aar246860.github.io/yflin_web/",
+        "status": "in-story-inference"
+      },
+      "record": {
+        "wins": 0,
+        "losses": 0,
+        "draws": 0
+      },
+      "mutation": {
+        "generation": 0,
+        "currentTrait": "跨域連線不得刪掉來源、適用邊界或推翻條件"
+      }
     }
   ],
   "challenges": [
@@ -1690,17 +1909,23 @@
         "tidecut",
         "mirrormason",
         "pumpseer",
-        "peakfolio"
+        "peakfolio",
+        "proofprism",
+        "drawparse",
+        "islehinge",
+        "briefvector",
+        "domainatlas"
       ],
-      "title": "二十七人公開大亂鬥：只留一個可驗證勝者",
-      "summary": "大野把二十七位活躍角色與六場未決挑戰的既有證據帶進同一座三輪擂台；閾守守住預先公開的十分量表，峰誌保存每次出手、反駁與同分，不用隱藏投票決定勝負。",
+      "title": "三十二人公開大亂鬥：只留一個可驗證勝者",
+      "summary": "大野把三十二位活躍角色的既有證據帶進同一座三輪擂台；閾守守住預先公開的十分量表，峰誌保存每次出手、反駁與同分。五位新入侵者另交出瑞士制證據梯、邊界關卡與重現接力三案，先用同一批公開輸入比較可核對性、角色多樣性與翻盤空間，不用隱藏投票決定永久賽制。",
       "rules": [
         "每位參賽者每輪只能出手一次，必須引用自己人物卡的公開來源或先前已保存的競技場回應，不得新增未經核對的研究結果。",
         "第一輪是證據斬：公開事實與角色推論分欄，並點名要檢驗或反駁的對手可觀察主張。",
         "第二輪是轉譯擊：把另一位角色已核對的事實移到不同挑戰或媒介，同時保留適用邊界與一項可推翻條件。",
         "第三輪是交叉審核：審核一位較高分對手，只能標記來源忠實、轉譯過度或證據不足，不得替對手改寫第一次答案。",
         "每次出手都要保存來源、時間與原文；缺席該輪記零分，來源失效或事實推論混寫的項目不得補分。",
-        "三輪全部結束前不得淘汰；舊挑戰的已知回應與結果完整保留，不得重算或改寫。"
+        "三輪全部結束前不得淘汰；舊挑戰的已知回應與結果完整保留，不得重算或改寫。",
+        "三十二人集會另比較三案：瑞士制證據梯、邊界關卡與重現接力；三案使用同一批已保存輸入與十分量表做一輪公開試跑，才能決定是否取代大亂鬥。"
       ],
       "scoring": [
         {
@@ -1732,6 +1957,31 @@
           "characterId": "peakfolio",
           "stance": "accept",
           "line": "我接受公開榜席位。每輪保留原始答案、審核標記與同分，不刪負結果，也不把尚未結算的人先寫成淘汰者。"
+        },
+        {
+          "characterId": "proofprism",
+          "stance": "counter",
+          "line": "我接受第一輪，也提出瑞士制證據梯：每輪按目前分數配對，三輪仍用同一個十分量表；若它比全員混戰少丟失模型條件，才取得下一次試跑資格。"
+        },
+        {
+          "characterId": "drawparse",
+          "stance": "accept",
+          "line": "我接受現行大亂鬥試跑。第一輪只切兩欄：可核對量測與角色詮釋；入場宣言不計分，第一份完整出手才進榜。"
+        },
+        {
+          "characterId": "islehinge",
+          "stance": "counter",
+          "line": "我接受並提出邊界關卡：按時間、空間、媒介與決策四種限制分組，各組先留一人再跨界加賽；若換組後原始條件遺失，整案判退。"
+        },
+        {
+          "characterId": "briefvector",
+          "stance": "counter",
+          "line": "我接受並提出重現接力：三人一隊依序交出外力、回應與決策，隊分只能決定晉級，決賽仍以個人可追溯貢獻留下唯一勝者。"
+        },
+        {
+          "characterId": "domainatlas",
+          "stance": "observe",
+          "line": "我先畫比較表：大亂鬥、瑞士制證據梯、邊界關卡與重現接力都使用同一批來源與十分量表，各比可核對性、角色多樣性與翻盤空間；沒有公開試跑的一案不得成為永久規則。"
         }
       ]
     }
@@ -2018,6 +2268,18 @@
         "peakfolio"
       ],
       "line": "第十四次鐘聲響起，大野把二十七位活躍角色與六場未決挑戰的既有證據搬進同一座三輪擂台。閾守鎖定來源、反駁、轉譯與交叉審核四項十分量表；峰誌把每次出手、原始答案與同分留在公開榜。大野宣告三輪後總分最高者獨勝，同分則公開加賽，不用暗判。今天只開場，尚未計分也未淘汰。"
+    },
+    {
+      "date": "2026-08-05",
+      "type": "batch-entered",
+      "characterIds": [
+        "proofprism",
+        "drawparse",
+        "islehinge",
+        "briefvector",
+        "domainatlas"
+      ],
+      "line": "第六批五位入侵者帶著模型折光、量譯分層、岸線轉樞、三向量簡報與研究域路由進場，活躍角色增至三十二位。他們加入公開大亂鬥，並提出瑞士制證據梯、邊界關卡與重現接力三案；三案必須與現行大亂鬥使用同一批輸入及十分量表公開試跑，今天尚未計分或淘汰。"
     }
   ]
 }
