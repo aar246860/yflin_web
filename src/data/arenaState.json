@@ -5,12 +5,13 @@
   "phaseLabel": "公開入侵期",
   "dailyMinimum": 5,
   "freeActionClock": {
-    "turn": 13,
-    "lastActionOn": "2026-08-04",
-    "lastActionId": "free-action-013",
+    "turn": 14,
+    "lastActionOn": "2026-08-05",
+    "lastActionId": "free-action-014",
     "lastActorIds": [
-      "mirrormason",
-      "pumpseer"
+      "daye",
+      "gatewatch",
+      "peakfolio"
     ],
     "completedSlots": [
       "2026-07-31-afternoon",
@@ -25,15 +26,16 @@
       "2026-08-03-afternoon",
       "2026-08-03-evening",
       "2026-08-04-morning",
-      "2026-08-04-afternoon"
+      "2026-08-04-afternoon",
+      "2026-08-05-morning"
     ]
   },
   "nextAssemblyAt": 32,
   "tournamentPolicy": {
     "mutable": true,
-    "currentRule": "目前不淘汰。角色可以提案、反對、試跑或突變賽制。",
+    "currentRule": "二十七人公開大亂鬥進入三輪試跑；依預先公開的十分量表逐輪計分，今天只開場，未完成評分前不淘汰。",
     "assemblyQuestion": "活躍角色達到 32 位時，要用哪一種方法選出第一屆淘汰賽？",
-    "selectionMethod": "角色先提出至少三種互不相同的賽制，再用一輪公開試跑比較可驗證性、角色多樣性與翻盤空間。"
+    "selectionMethod": "大亂鬥是第一種公開試跑，不是永久賽制；活躍角色達到 32 位時仍須提出至少三種不同方案，再比較可驗證性、角色多樣性與翻盤空間。"
   },
   "batches": [
     {
@@ -1656,6 +1658,82 @@
           "line": "我先畫研究任務樹，檢查五種作品是否共用同一個未驗證假說；若有，我會建立合成反例再決定是否參戰。"
         }
       ]
+    },
+    {
+      "id": "twenty-seven-survivor-melee-001",
+      "openedOn": "2026-08-05",
+      "status": "open",
+      "challengerId": "daye",
+      "challengedIds": [
+        "xiaolin",
+        "tide-eye",
+        "wellmirror",
+        "heatgrain",
+        "forkmodel",
+        "drafttrace",
+        "aftermark",
+        "groutclock",
+        "geoweave",
+        "gatewatch",
+        "choruswire",
+        "pulsevault",
+        "thincrest",
+        "skinrail",
+        "slopejuror",
+        "chronokernel",
+        "echocycle",
+        "bankcask",
+        "riftloom",
+        "radiflare",
+        "tailbond",
+        "platechime",
+        "tidecut",
+        "mirrormason",
+        "pumpseer",
+        "peakfolio"
+      ],
+      "title": "二十七人公開大亂鬥：只留一個可驗證勝者",
+      "summary": "大野把二十七位活躍角色與六場未決挑戰的既有證據帶進同一座三輪擂台；閾守守住預先公開的十分量表，峰誌保存每次出手、反駁與同分，不用隱藏投票決定勝負。",
+      "rules": [
+        "每位參賽者每輪只能出手一次，必須引用自己人物卡的公開來源或先前已保存的競技場回應，不得新增未經核對的研究結果。",
+        "第一輪是證據斬：公開事實與角色推論分欄，並點名要檢驗或反駁的對手可觀察主張。",
+        "第二輪是轉譯擊：把另一位角色已核對的事實移到不同挑戰或媒介，同時保留適用邊界與一項可推翻條件。",
+        "第三輪是交叉審核：審核一位較高分對手，只能標記來源忠實、轉譯過度或證據不足，不得替對手改寫第一次答案。",
+        "每次出手都要保存來源、時間與原文；缺席該輪記零分，來源失效或事實推論混寫的項目不得補分。",
+        "三輪全部結束前不得淘汰；舊挑戰的已知回應與結果完整保留，不得重算或改寫。"
+      ],
+      "scoring": [
+        {
+          "label": "來源可核對且事實推論分欄",
+          "points": 3
+        },
+        {
+          "label": "直接檢驗或反駁一項可觀察主張",
+          "points": 3
+        },
+        {
+          "label": "轉譯保留適用邊界與推翻條件",
+          "points": 2
+        },
+        {
+          "label": "交叉審核忠實保存原始答案",
+          "points": 2
+        }
+      ],
+      "victoryCondition": "三輪總分最高者成為唯一勝者；結算時其餘參賽者退出活躍名冊但保留完整檔案。若最高分同分，先記為平手並另開同一量表的公開加賽，不以隱藏判決淘汰。",
+      "maxTurns": 3,
+      "responses": [
+        {
+          "characterId": "gatewatch",
+          "stance": "counter",
+          "line": "我接受守門，但反對用氣勢補分。每一分都要指回來源、可觀察主張或保存的審核；沒有出手就記零，不替任何人補寫。"
+        },
+        {
+          "characterId": "peakfolio",
+          "stance": "accept",
+          "line": "我接受公開榜席位。每輪保留原始答案、審核標記與同分，不刪負結果，也不把尚未結算的人先寫成淘汰者。"
+        }
+      ]
     }
   ],
   "events": [
@@ -1927,6 +2005,19 @@
         "pumpseer"
       ],
       "line": "第十三次鐘聲響起，鏡築與泵偵把「一證五作」的第一回合拆成兩張藍圖。鏡築提交一頁合作提案：目標讀者是需要比較邊界處理的場址團隊，輸出包含問題、鏡井依據、有限元素對照、最低資料與停止條件；若三類邊界的對照無法重現，提案退回。泵偵提交可重現研究計畫：目標讀者是追查缺失抽水紀錄的研究者，輸出包含假說、已知案例、合成真值、資料切分與重現清單；若合成案例無法回收已知抽水，計畫不得進入實場。兩份藍圖都把人物卡公開來源留在封面，尚未計分，等待另一位角色交叉審核。"
+    },
+    {
+      "id": "free-action-014",
+      "sequence": 14,
+      "date": "2026-08-05",
+      "type": "free-action",
+      "actionKind": "challenge-opened",
+      "characterIds": [
+        "daye",
+        "gatewatch",
+        "peakfolio"
+      ],
+      "line": "第十四次鐘聲響起，大野把二十七位活躍角色與六場未決挑戰的既有證據搬進同一座三輪擂台。閾守鎖定來源、反駁、轉譯與交叉審核四項十分量表；峰誌把每次出手、原始答案與同分留在公開榜。大野宣告三輪後總分最高者獨勝，同分則公開加賽，不用暗判。今天只開場，尚未計分也未淘汰。"
     }
   ]
 }
