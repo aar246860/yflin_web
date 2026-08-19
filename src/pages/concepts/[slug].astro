@@ -4,6 +4,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import EvidenceBadge from "../../components/EvidenceBadge.astro";
 import CollaborationCTA from "../../components/CollaborationCTA.astro";
 import LaggingPumpingTestDemo from "../../components/research/LaggingPumpingTestDemo.astro";
+import ScientificScrollStory from "../../components/research/ScientificScrollStory.astro";
 import TransformationUncertaintyDemo from "../../components/research/TransformationUncertaintyDemo.astro";
 import { absoluteUrl, siteRoot } from "../../lib/seo";
 
@@ -66,6 +67,7 @@ const conceptSchema = [
     </div>
   </article>
   {entry.id === "lagging-theory" && <LaggingPumpingTestDemo />}
+  {entry.id === "transformation-uncertainty" && <ScientificScrollStory />}
   {entry.id === "transformation-uncertainty" && <TransformationUncertaintyDemo />}
   <CollaborationCTA />
 </BaseLayout>

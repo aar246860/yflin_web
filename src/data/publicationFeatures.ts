@@ -113,7 +113,7 @@ export const publicationFeatures = [
     evidence: "The animation follows the paper's analytical, numerical, sensitivity, duration, and distributed-TRT evidence map. It uses source-reported values where stated and schematic curves where the paper explains a mechanism.",
     interpretationBoundary: "The reported transition near 42 hours and practical stability around 48 to 50 hours are conditioned on the study's borehole, properties, and model assumptions; they are not universal TRT duration rules.",
     video: "/videos/publications/wang-et-al-2026-grout/grout-heat-storage.mp4",
-    poster: "/videos/publications/wang-et-al-2026-grout/grout-heat-storage_poster.png",
+    poster: "/videos/publications/wang-et-al-2026-grout/grout-heat-storage_poster.webp",
     captions: "/videos/publications/wang-et-al-2026-grout/grout-heat-storage_en.vtt",
   },
 ] as const satisfies readonly PublicationFeature[];
