@@ -4,6 +4,8 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
 import arenaState from "../../../data/arenaState.json";
 import collectiveState from "../../../data/collectiveState.json";
 import { absoluteUrl, siteRoot } from "../../../lib/seo";
+import "../../../styles/xiaolin.css";
+import "../../../styles/resident-journal.css";
 
 export async function getStaticPaths() {
   const entries = await getCollection(

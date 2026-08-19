@@ -54,6 +54,10 @@ const pagePath = canonicalPath ?? routePath(Astro.url.pathname);
 const canonicalUrl = absoluteUrl(pagePath, Astro.site);
 const rootUrl = siteRoot(Astro.site);
 const imageUrl = image ? absoluteUrl(image, Astro.site) : undefined;
+const openGraphLocale = lang === "zh-Hant" ? "zh_TW" : "en_US";
+const alternateLanguage = lang === "en" ? "zh-Hant" : "en";
+const alternateLocale = lang === "en" ? "zh_TW" : "en_US";
+const alternateUrl = translatedPath ? absoluteUrl(translatedPath, Astro.site) : undefined;
 const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [
@@ -73,14 +77,22 @@ const jsonLd = {
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
     <meta name="author" content={authorName} />
-    <meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow, max-snippet:-1, max-image-preview:large"} />
+    <meta name="robots" content={noindex ? "noindex, follow" : "index, follow, max-snippet:-1, max-image-preview:large"} />
     <link rel="canonical" href={canonicalUrl} />
-    {translatedPath && <link rel="alternate" hreflang={lang === "en" ? "zh-Hant" : "en"} href={absoluteUrl(translatedPath, Astro.site)} />}
+    {alternateUrl && (
+      <>
+        <link rel="alternate" hreflang={lang} href={canonicalUrl} />
+        <link rel="alternate" hreflang={alternateLanguage} href={alternateUrl} />
+        <link rel="alternate" hreflang="x-default" href={lang === "en" ? canonicalUrl : alternateUrl} />
+      </>
+    )}
     <link rel="icon" href={`${base}favicon.svg`} type="image/svg+xml" />
     <meta property="og:site_name" content={siteName} />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
-    <meta property="og:type" content={type === "article" ? "article" : "website"} />
+    <meta property="og:type" content={type} />
+    <meta property="og:locale" content={openGraphLocale} />
+    {alternateUrl && <meta property="og:locale:alternate" content={alternateLocale} />}
     <meta property="og:url" content={canonicalUrl} />
     {imageUrl && <meta property="og:image" content={imageUrl} />}
     <meta name="twitter:card" content={imageUrl ? "summary_large_image" : "summary"} />

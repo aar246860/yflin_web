@@ -10,6 +10,7 @@ import publications from "../data/publications.generated.json";
 import { getPlainLanguage, getVisualStatus } from "../data/publicationPresentation";
 import { activityPhotos, studentPublicationIds } from "../data/groupSite";
 import { researchPrograms } from "../data/researchPrograms";
+import { canonicalAnswers } from "../data/canonicalAnswers";
 
 const concepts = (await getCollection("concepts", ({ data }) => !data.draft)).sort(
   (a, b) => a.data.order - b.data.order,
@@ -29,6 +30,7 @@ const selectedPublications = selectedPublicationIds
   .filter(Boolean);
 const publicRecords = publications.filter((publication) => ["published", "accepted"].includes(publication.status));
 const studentPublications = publications.filter((publication) => studentPublicationIds.includes(publication.id));
+const featuredAnswers = [canonicalAnswers[0], canonicalAnswers[1], canonicalAnswers[3]];
 const publicationMediaVersion = "20260721";
 const withMediaVersion = (path: string) => `${withBase(path)}?v=${publicationMediaVersion}`;
 const roleLabel: Record<string, string> = {
@@ -51,18 +53,23 @@ const homeSchema = [
     knowsAbout: researchPrograms.map((program) => program.title),
   },
   {
-    "@type": "WebSite",
-    "@id": `${homeUrl}#website`,
-    url: homeUrl,
-    name: "Lin Groundwater Hydraulics Group",
-    inLanguage: "en",
+    "@type": "DefinedTerm",
+    name: "Lagging Darcy Law",
+    description: canonicalAnswers[0].shortAnswer,
+    url: absoluteUrl(canonicalAnswers[0].evidencePage, Astro.site),
+  },
+  {
+    "@type": "DefinedTerm",
+    name: "Flux-gradient asynchrony",
+    description: canonicalAnswers[1].shortAnswer,
+    url: absoluteUrl(canonicalAnswers[1].evidencePage, Astro.site),
   },
 ];
 ---
 
 <BaseLayout
   title="Lin Groundwater Hydraulics Group"
-  description="Lin Groundwater Hydraulics Group studies analytical well hydraulics, Lagging Theory, transformation uncertainty, and groundwater-informed subsurface energy decisions."
+  description="Research by Ying-Fan Lin on analytical well hydraulics, Lagging Theory, aquifer-test interpretation, transformation uncertainty, and subsurface energy."
   current="home"
   canonicalPath="/"
   image="/media/team-life/jpgu-2026/jpgu-2026-team-selfie.jpg"
@@ -71,6 +78,31 @@ const homeSchema = [
   pageClass="research-home"
 >
   <HomeResearchHero />
+
+  <section class="home-section home-answers" aria-labelledby="home-answers-title">
+    <div class="home-shell">
+      <div class="home-section-heading">
+        <p class="home-kicker">Start with a research question</p>
+        <h2 id="home-answers-title">Three direct routes into the research programme.</h2>
+        <p>Each short answer links to the public evidence, interpretation scope, and stated boundary behind it.</p>
+      </div>
+      <div class="canonical-answer-blocks">
+        <div class="answer-grid">
+          {featuredAnswers.map((answer) => (
+            <article class="canonical-answer-card">
+              <h3>{answer.question}</h3>
+              <p>{answer.shortAnswer}</p>
+              <p class="muted"><strong>Boundary:</strong> {answer.avoid}</p>
+              <a class="home-text-link" href={withBase(answer.evidencePage)}>
+                Evidence and scope <span aria-hidden="true">→</span>
+              </a>
+            </article>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
   <FeaturedResearchFilms />
   <PapersRereviewedFeature />
 
@@ -208,7 +240,7 @@ const homeSchema = [
                   <video
                     controls
                     preload="none"
-                    poster={withMediaVersion(visual.film.poster)}
+                    data-deferred-poster={withMediaVersion(visual.film.poster)}
                     width="1280"
                     height="720"
                     aria-label={`Visual explanation for ${publication.title.en}`}
@@ -274,16 +306,21 @@ const homeSchema = [
 </BaseLayout>
 
 <script>
-  import { gsap } from "gsap";
-
-  let homeRevealContext: gsap.Context | undefined;
   let homeRevealObserver: IntersectionObserver | undefined;
+  let homePosterObserver: IntersectionObserver | undefined;
 
   const clearHomeReveals = () => {
     homeRevealObserver?.disconnect();
-    homeRevealContext?.revert();
+    homePosterObserver?.disconnect();
     homeRevealObserver = undefined;
-    homeRevealContext = undefined;
+    homePosterObserver = undefined;
+  };
+
+  const loadDeferredPoster = (video: HTMLVideoElement) => {
+    const poster = video.dataset.deferredPoster;
+    if (!poster) return;
+    video.poster = poster;
+    delete video.dataset.deferredPoster;
   };
 
   const mountHomeReveals = () => {
@@ -292,22 +329,41 @@ const homeSchema = [
     page.dataset.revealsReady = "true";
 
     clearHomeReveals();
+
+    const videos = Array.from(page.querySelectorAll<HTMLVideoElement>("video[data-deferred-poster]"));
+    if (!("IntersectionObserver" in window)) {
+      videos.forEach(loadDeferredPoster);
+      return;
+    }
+    homePosterObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        loadDeferredPoster(entry.target as HTMLVideoElement);
+        observer.unobserve(entry.target);
+      });
+    }, { rootMargin: "500px 0px", threshold: 0.01 });
+    videos.forEach((video) => homePosterObserver?.observe(video));
+
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     const targets = Array.from(page.querySelectorAll<HTMLElement>(
       ".home-section-heading, .home-team__photos, .home-program, .home-proof__numbers, .home-proof__grid, .home-publication-list article, .home-collaborate__grid",
     ));
 
-    homeRevealContext = gsap.context(() => {
-      homeRevealObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          gsap.from(entry.target, { autoAlpha: 0, y: 18, duration: 0.6, ease: "power2.out", clearProps: "transform,opacity,visibility" });
-          observer.unobserve(entry.target);
-        });
-      }, { rootMargin: "0px 0px -8%", threshold: 0.08 });
-      targets.forEach((target) => homeRevealObserver?.observe(target));
-    }, page);
+    homeRevealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.animate(
+          [
+            { opacity: 0, transform: "translateY(18px)" },
+            { opacity: 1, transform: "translateY(0)" },
+          ],
+          { duration: 600, easing: "cubic-bezier(0.16, 1, 0.3, 1)" },
+        );
+        observer.unobserve(entry.target);
+      });
+    }, { rootMargin: "0px 0px -8%", threshold: 0.08 });
+    targets.forEach((target) => homeRevealObserver?.observe(target));
   };
 
   mountHomeReveals();

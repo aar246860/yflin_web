@@ -2,6 +2,8 @@
 import { getCollection, render } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { absoluteUrl, siteRoot } from "../../lib/seo";
+import "../../styles/xiaolin.css";
+import "../../styles/counterclaw.css";
 
 export async function getStaticPaths() {
   const entries = await getCollection("xiaolin", ({ data }) => data.public && !data.draft);

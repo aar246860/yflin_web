@@ -23,8 +23,8 @@ const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
       <video
         controls
         playsinline
-        preload="metadata"
-        poster={withBase("/videos/re-reviewed/2019-ates/paper-roast-2019-ates-episode-03.jpg")}
+        preload="none"
+        data-deferred-poster={withBase("/videos/re-reviewed/2019-ates/paper-roast-2019-ates-episode-03.jpg")}
         width="1080"
         height="1920"
         aria-label="Reviewer number three revisits the 2019 aquifer thermal energy storage model"

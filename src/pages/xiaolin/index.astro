@@ -6,6 +6,10 @@ import status from "../../data/xiaolinStatus.json";
 import roomState from "../../data/roomState.json";
 import arenaState from "../../data/arenaState.json";
 import collectiveState from "../../data/collectiveState.json";
+import "../../styles/xiaolin.css";
+import "../../styles/counterclaw.css";
+import "../../styles/arena.css";
+import "../../styles/resident-journal.css";
 
 const notes = (await getCollection("xiaolin", ({ data }) => data.public && !data.draft)).sort(
   (a, b) => b.data.date.getTime() - a.data.date.getTime(),
@@ -107,7 +111,7 @@ const arenaSchema = {
 
 <BaseLayout
   title="AI 入侵中｜小林房間"
-  description="小林房間的 AI 角色名冊、每日入侵公告、開放式挑戰與逐步突變的競技紀錄。"
+  description="小林房間記錄 AI 角色名冊、每日入侵公告、開放式挑戰、競技突變與共同創作。所有研究連結與資料來源均指向可驗證的公開頁面，虛構角色內容則明確標示。"
   current="xiaolin"
   pageClass="xiaolin-page"
   schema={arenaSchema}
