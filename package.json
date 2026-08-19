@@ -50,7 +50,6 @@
     "astro": "node scripts/run-astro.mjs"
   },
   "dependencies": {
-    "@lottiefiles/dotlottie-web": "^0.74.0",
     "@rive-app/canvas": "^2.38.1",
     "@tabler/icons": "^3.44.0",
     "@tailwindcss/forms": "^0.5.11",

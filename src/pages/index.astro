@@ -346,8 +346,12 @@ const homeSchema = [
 
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
+    const motionStyles = getComputedStyle(document.documentElement);
+    const revealDuration = Number.parseFloat(motionStyles.getPropertyValue("--motion-reveal-ms")) || 520;
+    const revealDistance = motionStyles.getPropertyValue("--motion-reveal-distance").trim() || "14px";
+    const revealEase = motionStyles.getPropertyValue("--ease-emphasized").trim() || "cubic-bezier(0.16, 1, 0.3, 1)";
     const targets = Array.from(page.querySelectorAll<HTMLElement>(
-      ".home-section-heading, .home-team__photos, .home-program, .home-proof__numbers, .home-proof__grid, .home-publication-list article, .home-collaborate__grid",
+      ".home-section-heading, .home-team__photos, .home-program-list, .home-proof__numbers, .home-proof__grid, .home-publication-list, .home-collaborate__grid",
     ));
 
     homeRevealObserver = new IntersectionObserver((entries, observer) => {
@@ -355,10 +359,10 @@ const homeSchema = [
         if (!entry.isIntersecting) return;
         entry.target.animate(
           [
-            { opacity: 0, transform: "translateY(18px)" },
+            { opacity: 0, transform: `translateY(${revealDistance})` },
             { opacity: 1, transform: "translateY(0)" },
           ],
-          { duration: 600, easing: "cubic-bezier(0.16, 1, 0.3, 1)" },
+          { duration: revealDuration, easing: revealEase },
         );
         observer.unobserve(entry.target);
       });

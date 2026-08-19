@@ -11,7 +11,7 @@ const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
 const rootUrl = siteRoot(Astro.site);
 const pageUrl = absoluteUrl("/explainers/", Astro.site);
 const videoPath = "/videos/explainers/ldl-transformation-uncertainty-short.mp4";
-const posterPath = "/videos/explainers/ldl-transformation-uncertainty-poster.png";
+const posterPath = "/videos/explainers/ldl-transformation-uncertainty-poster.webp";
 const videoUrl = absoluteUrl(videoPath, Astro.site);
 const posterUrl = absoluteUrl(posterPath, Astro.site);
 const explainerSchema = [
@@ -85,7 +85,7 @@ const explainerSchema = [
         controls
         muted
         playsinline
-        preload="metadata"
+        preload="none"
         poster={withBase(posterPath)}
         width="1080"
         height="1920"

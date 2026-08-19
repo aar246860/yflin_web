@@ -82,7 +82,7 @@ const modelCases = [
     aria-label="Narrative animation showing lagging Darcy response interpretation and transformation uncertainty"
   >
     <div class="tu-story__stage">
-      <div class="tu-story__narration" aria-live="polite">
+      <div class="tu-story__narration">
         <span data-story-eyebrow>{scenes[0].eyebrow}</span>
         <h3 data-story-title>{scenes[0].title}</h3>
         <p data-story-body>{scenes[0].body}</p>
@@ -183,7 +183,12 @@ const modelCases = [
 
     <div class="tu-story__controls" aria-label="Animation controls">
       <button class="tu-story__control" type="button" data-story-action="back" aria-label="Previous scene">Back</button>
-      <button class="tu-story__control tu-story__control--primary" type="button" data-story-action="toggle">Pause</button>
+      <button
+        class="tu-story__control tu-story__control--primary"
+        type="button"
+        data-story-action="toggle"
+        aria-pressed="false"
+      >Play</button>
       <button class="tu-story__control" type="button" data-story-action="next" aria-label="Next scene">Next</button>
       <button class="tu-story__control" type="button" data-story-action="replay">Replay</button>
     </div>
@@ -201,6 +206,8 @@ const modelCases = [
         </button>
       ))}
     </div>
+
+    <p class="visually-hidden" data-story-status aria-live="polite"></p>
 
     <div class="tu-story__cards" aria-label="Calculated lagging Darcy cases">
       {modelCases.map((modelCase) => (
@@ -466,10 +473,15 @@ const modelCases = [
 
   const storyCurves = calculateStoryCurves();
 
-  document.querySelectorAll("[data-tu-story]").forEach((root) => {
+  const transformationStoryControllers = new Map();
+
+  function createTransformationStory(root) {
     let sceneIndex = 0;
-    let playing = true;
+    let autoplayRequested = false;
+    let inViewport = !("IntersectionObserver" in window);
     let timer = null;
+    let viewportObserver = null;
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
     Object.entries(storyCurves.paths).forEach(([key, path]) => {
       root.querySelector(`[data-story-model="${key}"]`)?.setAttribute("d", path);
@@ -489,27 +501,62 @@ const modelCases = [
       steps: [...root.querySelectorAll("[data-story-step]")],
       cards: [...root.querySelectorAll("[data-story-card]")],
       decisionNote: root.querySelector("[data-decision-note]"),
+      status: root.querySelector("[data-story-status]"),
     };
 
     if (nodes.decisionNote) {
       nodes.decisionNote.textContent = "LDL shifts threshold timing";
     }
 
-    const setPlaying = (nextPlaying) => {
-      playing = nextPlaying;
-      nodes.toggle.textContent = playing ? "Pause" : "Play";
+    const clearTimer = () => {
       if (timer) {
-        window.clearInterval(timer);
+        window.clearTimeout(timer);
         timer = null;
-      }
-      if (playing) {
-        timer = window.setInterval(() => {
-          setScene((sceneIndex + 1) % storyData.length);
-        }, 4300);
       }
     };
 
-    function setScene(nextIndex) {
+    const canAutoplay = () =>
+      autoplayRequested && inViewport && !document.hidden && !reducedMotion.matches;
+
+    const updateToggle = () => {
+      const motionDisabled = reducedMotion.matches;
+      nodes.toggle.disabled = motionDisabled;
+      nodes.toggle.textContent = motionDisabled ? "Motion off" : autoplayRequested ? "Pause" : "Play";
+      nodes.toggle.setAttribute("aria-pressed", autoplayRequested ? "true" : "false");
+      nodes.toggle.setAttribute(
+        "aria-label",
+        motionDisabled
+          ? "Automatic playback is disabled because reduced motion is enabled"
+          : autoplayRequested
+            ? "Pause automatic scene playback"
+            : "Play scenes automatically",
+      );
+      root.dataset.playing = canAutoplay() ? "true" : "false";
+      root.dataset.motion = motionDisabled ? "reduced" : "full";
+    };
+
+    const syncTimer = () => {
+      clearTimer();
+      updateToggle();
+      if (!canAutoplay()) return;
+      timer = window.setTimeout(() => {
+        timer = null;
+        setScene((sceneIndex + 1) % storyData.length, false);
+        syncTimer();
+      }, 4300);
+    };
+
+    const setAutoplay = (nextPlaying, announce = false) => {
+      autoplayRequested = Boolean(nextPlaying) && !reducedMotion.matches;
+      syncTimer();
+      if (announce && nodes.status) {
+        nodes.status.textContent = autoplayRequested
+          ? "Automatic scene playback started."
+          : "Automatic scene playback paused.";
+      }
+    };
+
+    function setScene(nextIndex, announce = false) {
       sceneIndex = (nextIndex + storyData.length) % storyData.length;
       const scene = storyData[sceneIndex];
       const activeModel = sceneToModel[sceneIndex];
@@ -526,37 +573,89 @@ const modelCases = [
       nodes.cards.forEach((card) => {
         card.toggleAttribute("data-active", card.dataset.storyCard === activeModel);
       });
+      if (announce && nodes.status) {
+        nodes.status.textContent = `${scene.eyebrow}. ${scene.title}`;
+      }
     }
 
-    root.addEventListener("click", (event) => {
-      const target = event.target.closest("button");
+    const handleClick = (event) => {
+      const target = event.target instanceof Element ? event.target.closest("button") : null;
       if (!target) return;
 
       if (target.matches("[data-story-step]")) {
-        setScene(Number(target.dataset.storyStep));
-        setPlaying(false);
+        setAutoplay(false);
+        setScene(Number(target.dataset.storyStep), true);
         return;
       }
 
       const action = target.dataset.storyAction;
       if (action === "back") {
-        setScene(sceneIndex - 1);
-        setPlaying(false);
+        setAutoplay(false);
+        setScene(sceneIndex - 1, true);
       }
       if (action === "next") {
-        setScene(sceneIndex + 1);
-        setPlaying(false);
+        setAutoplay(false);
+        setScene(sceneIndex + 1, true);
       }
       if (action === "replay") {
-        setScene(0);
-        setPlaying(true);
+        setScene(0, true);
+        setAutoplay(!reducedMotion.matches);
       }
       if (action === "toggle") {
-        setPlaying(!playing);
+        setAutoplay(!autoplayRequested, true);
       }
-    });
+    };
 
-    setScene(0);
-    setPlaying(true);
-  });
+    const handleVisibilityChange = () => syncTimer();
+    const handleReducedMotionChange = () => {
+      if (reducedMotion.matches) {
+        autoplayRequested = false;
+        if (nodes.status) {
+          nodes.status.textContent = "Automatic playback stopped because reduced motion is enabled.";
+        }
+      }
+      syncTimer();
+    };
+
+    root.addEventListener("click", handleClick);
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    reducedMotion.addEventListener("change", handleReducedMotionChange);
+
+    if ("IntersectionObserver" in window) {
+      viewportObserver = new IntersectionObserver((entries) => {
+        const entry = entries.find((candidate) => candidate.target === root);
+        if (!entry) return;
+        inViewport = entry.isIntersecting;
+        syncTimer();
+      }, { rootMargin: "120px 0px", threshold: 0.1 });
+      viewportObserver.observe(root);
+    }
+
+    setScene(0, false);
+    setAutoplay(!reducedMotion.matches);
+
+    return () => {
+      clearTimer();
+      viewportObserver?.disconnect();
+      root.removeEventListener("click", handleClick);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+      reducedMotion.removeEventListener("change", handleReducedMotionChange);
+    };
+  }
+
+  function mountTransformationStories() {
+    document.querySelectorAll("[data-tu-story]").forEach((root) => {
+      if (transformationStoryControllers.has(root)) return;
+      transformationStoryControllers.set(root, createTransformationStory(root));
+    });
+  }
+
+  function destroyTransformationStories() {
+    transformationStoryControllers.forEach((destroy) => destroy());
+    transformationStoryControllers.clear();
+  }
+
+  mountTransformationStories();
+  document.addEventListener("astro:page-load", mountTransformationStories);
+  document.addEventListener("astro:before-swap", destroyTransformationStories);
 </script>

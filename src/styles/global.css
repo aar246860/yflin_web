@@ -77,6 +77,13 @@
   --shadow-rgb: 24 24 20;
   --shadow: 0 0 0 1px rgb(var(--shadow-rgb) / 0.08), 0 20px 50px rgb(var(--shadow-rgb) / 0.06);
   --radius: 8px;
+  --motion-fast: 160ms;
+  --motion-base: 260ms;
+  --motion-slow: 420ms;
+  --motion-reveal-ms: 520;
+  --motion-reveal-distance: 14px;
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-emphasized: cubic-bezier(0.16, 1, 0.3, 1);
   --font-serif: Merriweather, Georgia, serif;
   --type-label: 0.72rem;
   --type-caption: 0.82rem;
@@ -152,6 +159,19 @@
 
 * {
   box-sizing: border-box;
+}
+
+.visually-hidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
 }
 
 html {
@@ -1429,6 +1449,10 @@ img {
   display: grid;
   gap: 0.45rem;
   padding: 0.95rem;
+  transition:
+    border-color var(--motion-base) var(--ease-standard),
+    box-shadow var(--motion-base) var(--ease-standard),
+    opacity var(--motion-base) var(--ease-standard);
 }
 
 .scientific-scroll__step span {
@@ -1678,159 +1702,6 @@ img {
   color: var(--text-muted);
   line-height: 1.58;
   margin: 0.2rem 0 0;
-}
-
-.micro-motion {
-  border-top: 1px solid var(--line);
-  display: grid;
-  gap: 1rem;
-}
-
-.micro-motion__head {
-  display: grid;
-  gap: 0.55rem;
-  max-width: 780px;
-}
-
-.micro-motion__player {
-  align-items: center;
-  background:
-    linear-gradient(120deg, rgb(var(--surface-rgb) / 0.9), rgb(var(--surface-strong-rgb) / 0.72)),
-    radial-gradient(circle at 20% 20%, rgb(var(--signal-measured-rgb) / 0.12), transparent 36%),
-    radial-gradient(circle at 84% 42%, rgb(var(--risk-boundary-rgb) / 0.1), transparent 34%);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  box-shadow: 0 16px 42px rgb(var(--shadow-rgb) / 0.06);
-  display: grid;
-  gap: 0.4rem;
-  justify-items: center;
-  margin: 0;
-  min-width: 0;
-  overflow: hidden;
-  padding: 0.8rem;
-}
-
-.micro-motion__player canvas {
-  aspect-ratio: 25 / 11;
-  display: block;
-  max-width: 560px;
-  width: min(100%, 560px);
-}
-
-.micro-motion__player figcaption {
-  color: var(--text-muted);
-  font-size: 0.76rem;
-  line-height: 1.45;
-  text-align: center;
-}
-
-.micro-motion__rail {
-  display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-.micro-motion__item {
-  align-items: center;
-  background: rgb(var(--surface-rgb) / 0.82);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  display: grid;
-  gap: 0.85rem;
-  grid-template-columns: 4.4rem 1fr;
-  min-width: 0;
-  padding: 0.95rem;
-}
-
-.micro-motion__item svg {
-  display: block;
-  height: 4.2rem;
-  width: 4.2rem;
-}
-
-.micro-motion__orbit,
-.micro-motion__pulse,
-.micro-motion__check {
-  fill: none;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.micro-motion__orbit {
-  stroke: rgb(var(--text-muted-rgb) / 0.2);
-  stroke-width: 4;
-}
-
-.micro-motion__pulse {
-  animation: microPulse 1600ms ease-in-out infinite;
-  animation-delay: var(--delay);
-  fill: rgb(var(--signal-measured-rgb) / 0.1);
-  stroke: var(--signal-measured);
-  stroke-width: 5;
-  transform-origin: center;
-}
-
-.micro-motion__check {
-  animation: microDraw 1600ms ease-in-out infinite;
-  animation-delay: var(--delay);
-  stroke: var(--signal-measured-strong);
-  stroke-dasharray: 36;
-  stroke-dashoffset: 36;
-  stroke-width: 5;
-}
-
-.micro-motion__item--field .micro-motion__pulse,
-.micro-motion__item--field .micro-motion__check {
-  stroke: var(--signal-model);
-}
-
-.micro-motion__item--brick .micro-motion__pulse,
-.micro-motion__item--brick .micro-motion__check {
-  stroke: var(--risk-boundary);
-}
-
-.micro-motion__item span {
-  color: var(--signal-measured);
-  font-size: 0.72rem;
-  font-weight: 900;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-.micro-motion__item h3 {
-  color: var(--text);
-  font-family: Merriweather, Georgia, serif;
-  font-size: 1.18rem;
-}
-
-.micro-motion__item p {
-  font-size: 0.86rem;
-  line-height: 1.48;
-}
-
-@keyframes microPulse {
-  0%,
-  100% {
-    opacity: 0.72;
-    transform: scale(0.86);
-  }
-
-  45% {
-    opacity: 1;
-    transform: scale(1.18);
-  }
-}
-
-@keyframes microDraw {
-  0%,
-  18% {
-    stroke-dashoffset: 36;
-  }
-
-  52%,
-  100% {
-    stroke-dashoffset: 0;
-  }
 }
 
 .research-metric {
@@ -2851,7 +2722,10 @@ img {
   stroke-linejoin: round;
   stroke-width: 9;
   transform-origin: center;
-  transition: opacity 420ms ease, stroke-width 420ms ease, filter 420ms ease;
+  transition:
+    opacity var(--motion-slow) var(--ease-standard),
+    stroke-width var(--motion-slow) var(--ease-standard),
+    filter var(--motion-slow) var(--ease-standard);
 }
 
 .tu-story__curve--classical {
@@ -2912,7 +2786,9 @@ img {
 .tu-story__feature {
   opacity: 0;
   transform: translateY(8px);
-  transition: opacity 360ms ease, transform 360ms ease;
+  transition:
+    opacity var(--motion-base) var(--ease-emphasized),
+    transform var(--motion-base) var(--ease-emphasized);
 }
 
 .tu-story__feature path {
@@ -2967,7 +2843,9 @@ img {
 .tu-story__orbit {
   opacity: 0.22;
   transform: translateX(18px);
-  transition: opacity 320ms ease, transform 320ms ease;
+  transition:
+    opacity var(--motion-base) var(--ease-emphasized),
+    transform var(--motion-base) var(--ease-emphasized);
 }
 
 .tu-story__orbit circle {
@@ -3010,7 +2888,9 @@ img {
 .tu-story__decision {
   opacity: 0;
   transform: translateY(16px);
-  transition: opacity 420ms ease, transform 420ms ease;
+  transition:
+    opacity var(--motion-slow) var(--ease-emphasized),
+    transform var(--motion-slow) var(--ease-emphasized);
 }
 
 .tu-story[data-scene="5"] .tu-story__decision {
@@ -3091,6 +2971,10 @@ img {
   font-weight: 900;
   min-height: 2.55rem;
   padding: 0.62rem 0.9rem;
+  transition:
+    background-color var(--motion-fast) var(--ease-standard),
+    border-color var(--motion-fast) var(--ease-standard),
+    color var(--motion-fast) var(--ease-standard);
 }
 
 .tu-story__control:hover {
@@ -3100,6 +2984,11 @@ img {
 .tu-story__control--primary {
   background: var(--text);
   color: var(--paper);
+}
+
+.tu-story__control:disabled {
+  cursor: not-allowed;
+  opacity: 0.58;
 }
 
 .tu-story__timeline {
@@ -3137,7 +3026,7 @@ img {
   inset: 0;
   position: absolute;
   transform: translateX(-102%);
-  transition: transform 260ms ease;
+  transition: transform var(--motion-base) var(--ease-emphasized);
 }
 
 .tu-story__timeline span {
@@ -3169,7 +3058,10 @@ img {
   gap: 0.24rem;
   min-width: 0;
   padding: 0.8rem;
-  transition: border-color 220ms ease, transform 220ms ease, background 220ms ease;
+  transition:
+    border-color var(--motion-fast) var(--ease-standard),
+    transform var(--motion-fast) var(--ease-emphasized),
+    background var(--motion-fast) var(--ease-standard);
 }
 
 .tu-story__card[data-active] {
@@ -5164,7 +5056,6 @@ body.stanford-group-site main {
   .service-levels,
   .team-life__inner,
   .conference-presence__inner,
-  .micro-motion__rail,
   .grid.cols-2,
   .grid.cols-3,
   .grid.cols-4,
@@ -5425,16 +5316,6 @@ body.stanford-group-site main {
     padding: 0.78rem;
   }
 
-  .micro-motion__item {
-    grid-template-columns: 3.8rem 1fr;
-    padding: 0.82rem;
-  }
-
-  .micro-motion__item svg {
-    height: 3.55rem;
-    width: 3.55rem;
-  }
-
   .comments-panel__header {
     display: grid;
   }
@@ -5498,8 +5379,7 @@ body.stanford-group-site main {
   .ldl-xray__copy h2,
   .three-wellfield__content h2,
   .scientific-scroll__copy h2,
-  .rive-asynchrony h2,
-  .micro-motion__head h2 {
+  .rive-asynchrony h2 {
     max-width: 100%;
     overflow-wrap: anywhere;
   }
@@ -5723,15 +5603,6 @@ body.stanford-group-site main {
 
   .three-wellfield__canvas {
     opacity: 0.72;
-  }
-
-  .micro-motion__pulse,
-  .micro-motion__check {
-    animation: none;
-  }
-
-  .micro-motion__check {
-    stroke-dashoffset: 0;
   }
 
   .tu-demo__factor-track i,

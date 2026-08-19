@@ -2,21 +2,27 @@
 const steps = [
   {
     label: "01",
-    title: "Theis reference",
+    title: "Observed response",
     body:
-      "Start with the familiar confined-aquifer interpretation: drawdown is translated through an analytical model into transmissivity and storage.",
+      "Drawdown or recovery is the observation. The curve used here is a normalized teaching record, not a field dataset.",
   },
   {
     label: "02",
-    title: "Lag-aware response",
+    title: "Interpretation model",
     body:
-      "When flux and hydraulic-gradient development are not synchronous, the early and recovery windows can carry structured residuals.",
+      "A Theis reference translates that record into apparent transmissivity and storage under a specific set of assumptions.",
   },
   {
     label: "03",
-    title: "Transformation uncertainty",
+    title: "Alternative translation",
     body:
-      "The decision changes when the same measured response is converted through different model assumptions.",
+      "A normalized lag-aware teaching overlay shows where a second interpretation can depart from the reference.",
+  },
+  {
+    label: "04",
+    title: "Decision propagation",
+    body:
+      "The model difference becomes a decision window only after its assumptions, identifiability, and validation boundary are stated.",
   },
 ];
 ---
@@ -24,12 +30,11 @@ const steps = [
 <section id="scroll-story" class="scientific-scroll" aria-labelledby="scientific-scroll-title" data-scientific-scroll>
   <div class="shell scientific-scroll__inner">
     <div class="scientific-scroll__copy">
-      <span class="eyebrow">Aquifer-test interpretation story</span>
-      <h2 id="scientific-scroll-title">From Theis drawdown to lag-aware decision uncertainty.</h2>
+      <span class="eyebrow">Scroll narrative</span>
+      <h2 id="scientific-scroll-title">How one pumping-test record becomes a groundwater decision.</h2>
       <p>
-        A familiar Theis-style drawdown response gives the reference case. The lag-aware
-        overlay then shows how asynchronous response can change residual structure and
-        the decision window that follows from an analytical interpretation.
+        Scroll through the complete evidence chain. The animation separates what is observed,
+        what is interpreted, where model choice enters, and where a decision can change.
       </p>
       <div class="scientific-scroll__steps">
         {steps.map((step) => (
@@ -42,12 +47,12 @@ const steps = [
       </div>
     </div>
 
-    <figure class="scientific-scroll__figure" aria-label="Scroll-driven aquifer-test interpretation story">
+    <figure class="scientific-scroll__figure" aria-label="Scroll-driven chain from pumping-test response to groundwater decision">
       <svg viewBox="0 0 900 620" role="img" aria-labelledby="scroll-story-title scroll-story-desc">
-        <title id="scroll-story-title">Theis, lag-aware response, and transformation uncertainty</title>
+        <title id="scroll-story-title">Observation, analytical interpretation, model difference, and decision propagation</title>
         <desc id="scroll-story-desc">
-          A calculated Theis reference curve, a normalized lag-aware teaching overlay,
-          and model-to-decision uncertainty bands are animated as the reader scrolls.
+          A normalized teaching record, a calculated Theis reference, a lag-aware teaching
+          overlay, and a model-to-decision window appear in sequence as the reader scrolls.
         </desc>
         <defs>
           <linearGradient id="scientificScrollBand" x1="0" x2="1" y1="0" y2="0">
@@ -89,13 +94,13 @@ const steps = [
         </g>
 
         <g class="scientific-scroll__legend">
-          <text x="112" y="538">Theis reference</text>
-          <text x="348" y="538">lag-aware overlay</text>
-          <text x="606" y="538">measured record</text>
+          <text x="112" y="538">teaching record</text>
+          <text x="350" y="538">Theis reference</text>
+          <text x="596" y="538">lag-aware overlay</text>
         </g>
       </svg>
       <figcaption>
-        Simplified public explainer: not a calibrated field inversion.
+        The Theis reference is calculated. The record and lag-aware line are normalized teaching curves, not field data or a calibrated inversion.
       </figcaption>
     </figure>
   </div>
@@ -229,14 +234,14 @@ const steps = [
       band?.setAttribute("d", bandPath(rows));
 
       paths.forEach(preparePath);
-      gsap.set([ldl, observed, band, threshold], { opacity: 0 });
+      gsap.set([theis, ldl, band, threshold], { opacity: 0 });
       gsap.set(steps.slice(1), { opacity: 0.44 });
 
       if (reduce) {
         paths.forEach((path) => {
           path.style.strokeDashoffset = "0";
         });
-        gsap.set([ldl, observed, band, threshold, steps], { opacity: 1 });
+        gsap.set([theis, ldl, observed, band, threshold, steps], { opacity: 1 });
         return;
       }
 
@@ -247,6 +252,7 @@ const steps = [
           start: "top 72%",
           end: "bottom 42%",
           scrub: 0.75,
+          invalidateOnRefresh: true,
         },
       });
 
@@ -258,14 +264,15 @@ const steps = [
       });
 
       timeline
-        .to(theis, { strokeDashoffset: 0, duration: 0.8 })
+        .to(observed, { strokeDashoffset: 0, duration: 0.8 })
         .to(steps[0], { opacity: 1, duration: 0.2 }, "<")
-        .to(ldl, { opacity: 1, strokeDashoffset: 0, duration: 0.9 })
+        .to(theis, { opacity: 1, strokeDashoffset: 0, duration: 0.9 })
         .to(steps[1], { opacity: 1, duration: 0.2 }, "<")
-        .to(observed, { opacity: 1, strokeDashoffset: 0, duration: 0.9 })
+        .to(ldl, { opacity: 1, strokeDashoffset: 0, duration: 0.9 })
         .to(band, { opacity: 1, duration: 0.55 }, "<")
-        .to(threshold, { opacity: 1, duration: 0.45 }, "<")
-        .to(steps[2], { opacity: 1, duration: 0.2 }, "<");
+        .to(steps[2], { opacity: 1, duration: 0.2 }, "<")
+        .to(threshold, { opacity: 1, duration: 0.45 })
+        .to(steps[3], { opacity: 1, duration: 0.2 }, "<");
     });
   }
 
