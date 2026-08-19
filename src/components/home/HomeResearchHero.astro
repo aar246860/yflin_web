@@ -11,7 +11,7 @@ const imageSrcset = (path: string, extension: "avif" | "webp") =>
 const heroImage = "/media/team-life/jpgu-2026/jpgu-2026-team-selfie.jpg";
 ---
 
-<div class="home-hero-system" data-home-hero>
+<div class="home-hero-system">
 <section class="research-hero" aria-labelledby="home-title">
   <figure class="research-hero__media">
     <picture>
@@ -32,13 +32,13 @@ const heroImage = "/media/team-life/jpgu-2026/jpgu-2026-team-selfie.jpg";
 
   <div class="home-shell research-hero__content">
     <div class="research-hero__copy">
-      <p class="research-hero__kicker" data-hero-reveal>Groundwater hydraulics · memory · decision</p>
-      <h1 id="home-title" data-hero-reveal>Groundwater responses leave traces in time.</h1>
-      <p class="research-hero__lede" data-hero-reveal>
+      <p class="research-hero__kicker">Groundwater hydraulics · memory · decision</p>
+      <h1 id="home-title">Groundwater responses leave traces in time.</h1>
+      <p class="research-hero__lede">
         We interpret aquifer tests, groundwater memory, and subsurface thermal systems for decisions that must
         withstand uncertainty.
       </p>
-      <div class="research-hero__actions" data-hero-reveal>
+      <div class="research-hero__actions">
         <a class="research-hero__button research-hero__button--solid" href={withBase("/projects/")}>
           Explore the research <span aria-hidden="true">→</span>
         </a>
@@ -46,7 +46,7 @@ const heroImage = "/media/team-life/jpgu-2026/jpgu-2026-team-selfie.jpg";
           Discuss a collaboration
         </a>
       </div>
-      <p class="research-hero__note" data-hero-reveal>
+      <p class="research-hero__note">
         Led by Ying-Fan Lin · analytical well hydraulics · transformation uncertainty
       </p>
     </div>
@@ -56,7 +56,7 @@ const heroImage = "/media/team-life/jpgu-2026/jpgu-2026-team-selfie.jpg";
 
 <section class="hydraulic-trace-band" aria-label="From pumping history to groundwater decision">
   <div class="home-shell hydraulic-trace-band__inner">
-    <aside class="hydraulic-trace" aria-labelledby="hydraulic-trace-title" data-hero-reveal>
+    <aside class="hydraulic-trace" aria-labelledby="hydraulic-trace-title">
       <div class="hydraulic-trace__heading">
         <div>
           <p>Conceptual pumping-test trace</p>
@@ -96,48 +96,3 @@ const heroImage = "/media/team-life/jpgu-2026/jpgu-2026-team-selfie.jpg";
   </div>
 </section>
 </div>
-
-<script>
-  import { gsap } from "gsap";
-
-  let heroContext: gsap.Context | undefined;
-  let heroMedia: gsap.MatchMedia | undefined;
-
-  const clearHeroMotion = () => {
-    heroMedia?.revert();
-    heroContext?.revert();
-    heroMedia = undefined;
-    heroContext = undefined;
-  };
-
-  const mountHeroMotion = () => {
-    const hero = document.querySelector<HTMLElement>("[data-home-hero]");
-    if (!hero || hero.dataset.motionReady === "true") return;
-
-    clearHeroMotion();
-    hero.dataset.motionReady = "true";
-    heroContext = gsap.context(() => {
-      heroMedia = gsap.matchMedia();
-      heroMedia.add("(prefers-reduced-motion: no-preference)", () => {
-        const paths = Array.from(hero.querySelectorAll<SVGPathElement>("[data-trace-path]"));
-        paths.forEach((path) => {
-          const length = path.getTotalLength();
-          gsap.set(path, { strokeDasharray: length, strokeDashoffset: length });
-        });
-
-        const timeline = gsap.timeline({ defaults: { ease: "power2.out" } });
-        timeline
-          .from(".research-hero__image", { scale: 1.035, duration: 1.4, ease: "power1.out" })
-          .from("[data-hero-reveal]", { autoAlpha: 0, y: 16, duration: 0.62, stagger: 0.08 }, 0.08)
-          .to(paths, { strokeDashoffset: 0, duration: 0.75, stagger: 0.1, ease: "power1.inOut" }, 0.4)
-          .from(".hydraulic-trace__point", { autoAlpha: 0, scale: 0.5, duration: 0.32, stagger: 0.12 }, 0.95);
-
-        return () => timeline.kill();
-      });
-    }, hero);
-  };
-
-  mountHeroMotion();
-  document.addEventListener("astro:page-load", mountHeroMotion);
-  document.addEventListener("astro:before-swap", clearHeroMotion);
-</script>

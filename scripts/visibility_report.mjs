@@ -70,6 +70,14 @@ function extractMetaDescription(html) {
   return match ? compactWhitespace(match[1]) : "";
 }
 
+function metaDescriptionDisplayUnits(value) {
+  const wideCharacter = /[\u1100-\u115f\u2e80-\ua4cf\uac00-\ud7a3\uf900-\ufaff\ufe10-\ufe6f\uff00-\uff60\uffe0-\uffe6]/;
+  return [...value].reduce(
+    (total, character) => total + (wideCharacter.test(character) ? 2 : 1),
+    0,
+  );
+}
+
 function hasCanonical(html) {
   return /<link\s+rel=["']canonical["']/i.test(html);
 }
@@ -142,6 +150,7 @@ function auditGeneratedSite(config) {
       title: "",
       description: "",
       descriptionLength: 0,
+      descriptionDisplayUnits: 0,
       hasCanonical: false,
       hasJsonLd: false,
       inSitemap: sitemapUrls.includes(expectedUrl)
@@ -156,6 +165,7 @@ function auditGeneratedSite(config) {
     audit.title = extractTitle(html);
     audit.description = extractMetaDescription(html);
     audit.descriptionLength = audit.description.length;
+    audit.descriptionDisplayUnits = metaDescriptionDisplayUnits(audit.description);
     audit.hasCanonical = hasCanonical(html);
     audit.hasJsonLd = hasJsonLd(html);
 
@@ -376,20 +386,20 @@ function buildRecommendations(config, audit, gsc, crossref, openAlex) {
 
   for (const page of audit.pageAudits) {
     if (!page.exists) continue;
-    if (page.descriptionLength > 0 && page.descriptionLength < thresholds.minimumMetaDescriptionCharacters) {
+    if (page.descriptionDisplayUnits > 0 && page.descriptionDisplayUnits < thresholds.minimumMetaDescriptionCharacters) {
       add(
         "P2",
         "metadata",
-        `${page.path} meta description is ${page.descriptionLength} characters.`,
+        `${page.path} meta description is ${page.descriptionDisplayUnits} display units (${page.descriptionLength} characters).`,
         "Expand the description with the page's decision value and canonical keyword.",
         "safe-automation"
       );
     }
-    if (page.descriptionLength > thresholds.maximumMetaDescriptionCharacters) {
+    if (page.descriptionDisplayUnits > thresholds.maximumMetaDescriptionCharacters) {
       add(
         "P2",
         "metadata",
-        `${page.path} meta description is ${page.descriptionLength} characters.`,
+        `${page.path} meta description is ${page.descriptionDisplayUnits} display units (${page.descriptionLength} characters).`,
         "Compress the description so search snippets do not truncate the core claim.",
         "safe-automation"
       );
@@ -559,7 +569,7 @@ function buildReport(config, audit, gsc, crossref, openAlex, recommendations) {
     "## 2. Technical SEO And AI-Search Readiness",
     "",
     markdownTable(
-      ["Page", "Exists", "In sitemap", "Meta chars", "Canonical", "JSON-LD", "Primary role"],
+      ["Page", "Exists", "In sitemap", "Meta chars", "Meta units", "Canonical", "JSON-LD", "Primary role"],
       audit.pageAudits.map((page) => {
         const target = config.targetPages.find((item) => normalizePath(item.path) === page.path);
         return [
@@ -567,6 +577,7 @@ function buildReport(config, audit, gsc, crossref, openAlex, recommendations) {
           page.exists ? "yes" : "no",
           page.inSitemap ? "yes" : "no",
           page.descriptionLength,
+          page.descriptionDisplayUnits,
           page.hasCanonical ? "yes" : "no",
           page.hasJsonLd ? "yes" : "no",
           target?.role ?? ""

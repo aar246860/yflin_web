@@ -1,12 +1,25 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import ResearchLineage from "../../components/ResearchLineage.astro";
+import { absoluteUrl, siteRoot } from "../../lib/seo";
+
+const rootUrl = siteRoot(Astro.site);
+const profileUrl = absoluteUrl("/about/", Astro.site);
+const profileSchema = {
+  "@type": "ProfilePage",
+  "@id": `${profileUrl}#profile`,
+  url: profileUrl,
+  mainEntity: { "@id": `${rootUrl}/#person` },
+};
 ---
 
 <BaseLayout
   title="About Ying-Fan Lin"
-  description="Ying-Fan Lin studies groundwater records whose timing differs from conventional aquifer-test or thermal-response models."
+  description="Profile of Ying-Fan Lin, whose research connects analytical well hydraulics, groundwater memory, Lagging Theory, transformation uncertainty, and subsurface energy."
   current="about"
+  canonicalPath="/about/"
+  type="profile"
+  schema={profileSchema}
 >
   <section class="shell section">
     <span class="eyebrow">About the research program</span>

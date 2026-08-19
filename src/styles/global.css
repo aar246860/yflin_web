@@ -1,9 +1,3 @@
-@import "./xiaolin.css";
-@import "./counterclaw.css";
-@import "./game-room.css";
-@import "./arena.css";
-@import "./resident-journal.css";
-
 :root {
   color-scheme: light;
   --page: #f8faf8;

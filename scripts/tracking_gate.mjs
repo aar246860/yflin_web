@@ -3,6 +3,7 @@ import path from "node:path";
 
 const root = process.cwd();
 const trackingHead = fs.readFileSync(path.join(root, "src/components/TrackingHead.astro"), "utf8");
+const deployWorkflow = fs.readFileSync(path.join(root, ".github/workflows/deploy-pages.yml"), "utf8");
 const packageJson = JSON.parse(fs.readFileSync(path.join(root, "package.json"), "utf8"));
 
 const requiredSnippets = [
@@ -41,6 +42,10 @@ for (const check of requiredSnippets) {
 
 if (!packageJson.scripts?.["tracking:gate"]) {
   failures.push("package.json is missing `tracking:gate` script.");
+}
+
+if (!deployWorkflow.includes("PUBLIC_GA_MEASUREMENT_ID: G-0JHBH3R12D")) {
+  failures.push("GitHub Pages build is missing the public GA4 measurement ID.");
 }
 
 if (failures.length) {

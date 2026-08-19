@@ -3,6 +3,8 @@ import { getCollection } from "astro:content";
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import arenaState from "../../../data/arenaState.json";
 import collectiveState from "../../../data/collectiveState.json";
+import "../../../styles/xiaolin.css";
+import "../../../styles/resident-journal.css";
 
 const entries = (await getCollection(
   "resident-journal",
