@@ -2,7 +2,7 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import publications from "../../data/publications.generated.json";
 import { studentPublicationIds } from "../../data/groupSite";
-import { getPlainLanguage, getPublicationFeature, getVisualStatus } from "../../data/publicationPresentation";
+import { getPlainLanguage, getPublicationDateLabels, getPublicationFeature, getPublicationVenue, getVisualStatus } from "../../data/publicationPresentation";
 
 const isStudentInvolved = (id: string) => studentPublicationIds.includes(id);
 const allPublications = publications.filter((pub) => ["published", "accepted"].includes(pub.status)).sort(
@@ -55,8 +55,8 @@ const retrospectivePublicationId = "2016-07-41";
     <div class="section-head">
       <div>
         <span class="eyebrow">{allPublications.length} records</span>
-        <h2 id="archive-title">Every paper has a visual explanation.</h2>
-        <p>Each entry includes the published paper and a short animation of its main question, method, and result.</p>
+        <h2 id="archive-title">Publications and visual explanations.</h2>
+        <p>Browse the formal publication record. Plain-language summaries and short animations are included where available.</p>
         <p class="archive-status">
           {availableFilmCount === allPublications.length
             ? `Visual explanations are available for all ${allPublications.length} publications listed below.`
@@ -77,11 +77,18 @@ const retrospectivePublicationId = "2016-07-41";
               {getPublicationFeature(pub) ? <a href={withBase(`/publications/${getPublicationFeature(pub)?.id}/`)}>{pub.title.en}</a> : pub.title.en}
             </h3>
             <p class="publication-record__authors">{pub.authors}</p>
-            <div class="publication-record__plain">
+            {getPlainLanguage(pub) && <div class="publication-record__plain">
               <span class="section-label">In plain language</span>
               <p>{getPlainLanguage(pub)}</p>
-            </div>
-            <p class="publication-record__venue">{pub.venue} · {pub.status === "accepted" ? "Accepted" : "Published"}</p>
+            </div>}
+            <p class="publication-record__venue">{getPublicationVenue(pub)} · {pub.status === "accepted" ? "Accepted" : "Published"}</p>
+            {getPublicationDateLabels(pub).length > 0 && (
+              <p class="publication-record__dates">
+                {getPublicationDateLabels(pub).map((date) => (
+                  <span>{date.label}: <time datetime={date.dateTime}>{date.value}</time></span>
+                ))}
+              </p>
+            )}
             <p class="publication-record__meta">
               {pub.publicRecord && <a href={pub.publicRecord} target="_blank" rel="noreferrer">Open DOI record</a>}
               {getPublicationFeature(pub) && <a href={withBase(`/publications/${getPublicationFeature(pub)?.id}/`)}>Read the research note</a>}
@@ -227,6 +234,7 @@ const retrospectivePublicationId = "2016-07-41";
   .publication-record h3 { font-family: var(--font-sans, Inter, sans-serif); font-size: var(--type-record-title); line-height: var(--leading-record-title); margin: var(--space-record-title-top) 0 var(--space-meta-gap); }
   .publication-record h3 a { text-decoration-thickness: 0.08em; text-underline-offset: 0.13em; }
   .publication-record__authors, .publication-record__venue { color: var(--text-muted); font-size: 0.88rem; line-height: 1.5; margin: 0; }
+  .publication-record__dates { color: var(--text-muted); display: flex; flex-wrap: wrap; font-size: 0.88rem; gap: 0.35rem 1rem; line-height: 1.5; margin: 0.5rem 0 0; }
   .publication-record__plain { border-left: 3px solid var(--signal-model); margin: var(--space-6) 0; padding-left: 1rem; }
   .publication-record__plain p { font-size: 1rem; line-height: 1.65; margin: 0.4rem 0 0; max-width: 650px; }
   .section-label { font-size: 0.72rem; font-weight: 750; letter-spacing: 0.06em; text-transform: uppercase; }

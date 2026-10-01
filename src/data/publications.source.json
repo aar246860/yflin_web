@@ -1,0 +1,1166 @@
+{
+  "schemaVersion": 1,
+  "records": {
+    "10.1007/s00477-026-03194-2": {
+      "year": 2026,
+      "month": 2,
+      "venue": "Stochastic Environmental Research and Risk Assessment",
+      "title": {
+        "zh-TW": "A Spatially-Coherent Attribution Framework for Interpreting Black-Box Tropical Cyclone Intensity Forecasts",
+        "en": "A Spatially-Coherent Attribution Framework for Interpreting Black-Box Tropical Cyclone Intensity Forecasts"
+      },
+      "authors": "Ying-Fan Lin* and Shiu-Shin Lin*",
+      "doi": "10.1007/s00477-026-03194-2",
+      "status": "published",
+      "publicationType": "journal-article",
+      "version": "version-of-record",
+      "dates": {
+        "online": null,
+        "issue": null
+      },
+      "provenance": {
+        "source": "existing-published-catalogue",
+        "url": "https://github.com/aar246860/yflin_web/blob/d06119238066c3c673892cc652e4995bc3e4383a/src/data/publications.generated.json",
+        "dateNote": "Legacy year/month retained; online and issue dates not distinguished in the original catalogue."
+      }
+    },
+    "10.1016/j.csite.2026.107695": {
+      "year": 2026,
+      "month": 1,
+      "venue": "Case Studies in Thermal Engineering",
+      "title": {
+        "zh-TW": "Analytical Modeling of Grout Heat Storage Effects in Thermal Response Tests: Toward Faster and More Reliable Parameter Estimation",
+        "en": "Analytical Modeling of Grout Heat Storage Effects in Thermal Response Tests: Toward Faster and More Reliable Parameter Estimation"
+      },
+      "authors": "Hsiang-Wen Wang; Ying-Fan Lin*; Chia-Hao Chang; Bo-Tsen Wang; Hikari Fujii; Yu-Feng Forrest Lin; Kuo-Hsin Yang; Jui-Pin Tsai*",
+      "doi": "10.1016/j.csite.2026.107695",
+      "status": "published",
+      "publicationType": "journal-article",
+      "version": "version-of-record",
+      "dates": {
+        "online": null,
+        "issue": null
+      },
+      "provenance": {
+        "source": "existing-published-catalogue",
+        "url": "https://github.com/aar246860/yflin_web/blob/d06119238066c3c673892cc652e4995bc3e4383a/src/data/publications.generated.json",
+        "dateNote": "Legacy year/month retained; online and issue dates not distinguished in the original catalogue."
+      }
+    },
+    "10.1016/j.jhydrol.2026.134913": {
+      "year": 2026,
+      "month": 1,
+      "venue": "Journal of Hydrology",
+      "title": {
+        "zh-TW": "Lagging Theory for Periodic Hydraulic Head Signals in Aquifers",
+        "en": "Lagging Theory for Periodic Hydraulic Head Signals in Aquifers"
+      },
+      "authors": "Ying-Fan Lin*; Barret L. Kurylyk",
+      "doi": "10.1016/j.jhydrol.2026.134913",
+      "status": "published",
+      "publicationType": "journal-article",
+      "version": "version-of-record",
+      "dates": {
+        "online": null,
+        "issue": null
+      },
+      "provenance": {
+        "source": "existing-published-catalogue",
+        "url": "https://github.com/aar246860/yflin_web/blob/d06119238066c3c673892cc652e4995bc3e4383a/src/data/publications.generated.json",
+        "dateNote": "Legacy year/month retained; online and issue dates not distinguished in the original catalogue."
+      }
+    },
+    "10.1016/j.jhydrol.2025.134525": {
+      "year": 2026,
+      "month": 1,
+      "venue": "Journal of Hydrology",
+      "title": {
+        "zh-TW": "Reply to the Comment by Anderson and Bakker on ``Faulty Assumptions: Groundwater Modeling Through Anisotropic Fault Zones'' by Lin and Lin (2025)",
+        "en": "Reply to the Comment by Anderson and Bakker on ``Faulty Assumptions: Groundwater Modeling Through Anisotropic Fault Zones'' by Lin and Lin (2025)"
+      },
+      "authors": "Jun-Hong Lin, Ying-Fan Lin*",
+      "doi": "10.1016/j.jhydrol.2025.134525",
+      "status": "published",
+      "publicationType": "journal-article",
+      "version": "version-of-record",
+      "dates": {
+        "online": null,
+        "issue": null
+      },
+      "provenance": {
+        "source": "existing-published-catalogue",
+        "url": "https://github.com/aar246860/yflin_web/blob/d06119238066c3c673892cc652e4995bc3e4383a/src/data/publications.generated.json",
+        "dateNote": "Legacy year/month retained; online and issue dates not distinguished in the original catalogue."
+      }
+    },
+    "10.1016/j.advwatres.2025.105155": {
+      "year": 2025,
+      "month": 12,
+      "venue": "Advances in Water Resources",
+      "title": {
+        "zh-TW": "Simplified Theoretical Analyses of Lagging Darcy Flow and Land Subsidence in a Groundwater Pumping System of Three Horizontal Layers: An Elastic Thin Plate Approach",
+        "en": "Simplified Theoretical Analyses of Lagging Darcy Flow and Land Subsidence in a Groundwater Pumping System of Three Horizontal Layers: An Elastic Thin Plate Approach"
+      },
+      "authors": "Jun-Hong Lin, Chih-Yu Liu, Chien-Chung Ke, Ying-Fan Lin*",
+      "doi": "10.1016/j.advwatres.2025.105155",
+      "status": "published",
+      "publicationType": "journal-article",
+      "version": "version-of-record",
+      "dates": {
+        "online": null,
+        "issue": null
+      },
+      "provenance": {
+        "source": "existing-published-catalogue",
+        "url": "https://github.com/aar246860/yflin_web/blob/d06119238066c3c673892cc652e4995bc3e4383a/src/data/publications.generated.json",
+        "dateNote": "Legacy year/month retained; online and issue dates not distinguished in the original catalogue."
+      }
+    },
+    "10.1016/j.jhydrol.2025.133151": {
+      "year": 2025,
+      "month": 10,
+      "venue": "Journal of Hydrology",
+      "title": {
+        "zh-TW": "Rethinking Aquifer Characterization: Insights from Lagging Models",
+        "en": "Rethinking Aquifer Characterization: Insights from Lagging Models"
+      },
+      "authors": "Ying-Fan Lin*, Te-Hsing Chang",
+      "doi": "10.1016/j.jhydrol.2025.133151",
+      "status": "published",
+      "publicationType": "journal-article",
+      "version": "version-of-record",
+      "dates": {
+        "online": null,
+        "issue": null
+      },
+      "provenance": {
+        "source": "existing-published-catalogue",
+        "url": "https://github.com/aar246860/yflin_web/blob/d06119238066c3c673892cc652e4995bc3e4383a/src/data/publications.generated.json",
+        "dateNote": "Legacy year/month retained; online and issue dates not distinguished in the original catalogue."
+      }
+    },
+    "10.1016/j.jhydrol.2025.134040": {
+      "year": 2025,
+      "month": 8,
+      "venue": "Journal of Hydrology",
+      "title": {
+        "zh-TW": "Integrating Stream Storage and Lagging Effects in Analytical Models for Stream Depletion Prediction",
+        "en": "Integrating Stream Storage and Lagging Effects in Analytical Models for Stream Depletion Prediction"
+      },
+      "authors": "Ying-Fan Lin, Bwalya Malama, Meng-Yu Lin*",
+      "doi": "10.1016/j.jhydrol.2025.134040",
+      "status": "published",
+      "publicationType": "journal-article",
+      "version": "version-of-record",
+      "dates": {
+        "online": null,
+        "issue": null
+      },
+      "provenance": {
+        "source": "existing-published-catalogue",
+        "url": "https://github.com/aar246860/yflin_web/blob/d06119238066c3c673892cc652e4995bc3e4383a/src/data/publications.generated.json",
+        "dateNote": "Legacy year/month retained; online and issue dates not distinguished in the original catalogue."
+      }
+    },
+    "10.1016/j.advwatres.2025.104977": {
+      "year": 2025,
+      "month": 7,
+      "venue": "Advances in Water Resources",
+      "title": {
+        "zh-TW": "Image-Well Solution for Island Aquifers with Pumping, Recharge, and Complex Coastlines",
+        "en": "Image-Well Solution for Island Aquifers with Pumping, Recharge, and Complex Coastlines"
+      },
+      "authors": "Ying-Fan Lin∗, Barret L. Kurylyk∗, Adrian D. Werner, Chih-Yu Liu, Cristina Solórzano-Rivas, Jun-Hong Lin",
+      "doi": "10.1016/j.advwatres.2025.104977",
+      "status": "published",
+      "publicationType": "journal-article",
+      "version": "version-of-record",
+      "dates": {
+        "online": null,
+        "issue": null
+      },
+      "provenance": {
+        "source": "existing-published-catalogue",
+        "url": "https://github.com/aar246860/yflin_web/blob/d06119238066c3c673892cc652e4995bc3e4383a/src/data/publications.generated.json",
+        "dateNote": "Legacy year/month retained; online and issue dates not distinguished in the original catalogue."
+      }
+    },
+    "10.1029/2024wr039810": {
+      "year": 2025,
+      "month": 7,
+      "venue": "Water Resources Research",
+      "title": {
+        "zh-TW": "On Radial Heat Transport in Porous Aquifers with Nonlinear Velocity-dependent Thermal Dispersion",
+        "en": "On Radial Heat Transport in Porous Aquifers with Nonlinear Velocity-dependent Thermal Dispersion"
+      },
+      "authors": "Wenguang Shi, Quanrong Wang, Ying-Fan Lin, Aohan Jin, Yingfan Zhao, Yanxin Wang, Chong Ma",
+      "doi": "10.1029/2024WR039810",
+      "status": "published",
+      "publicationType": "journal-article",
+      "version": "version-of-record",
+      "dates": {
+        "online": null,
+        "issue": null
+      },
+      "provenance": {
+        "source": "existing-published-catalogue",
+        "url": "https://github.com/aar246860/yflin_web/blob/d06119238066c3c673892cc652e4995bc3e4383a/src/data/publications.generated.json",
+        "dateNote": "Legacy year/month retained; online and issue dates not distinguished in the original catalogue."
+      }
+    },
+    "10.1016/j.jhydrol.2025.132720": {
+      "year": 2025,
+      "month": 6,
+      "venue": "Journal of Hydrology",
+      "title": {
+        "zh-TW": "Faulty Assumptions: Groundwater Modeling Through Anisotropic Fault Zones",
+        "en": "Faulty Assumptions: Groundwater Modeling Through Anisotropic Fault Zones"
+      },
+      "authors": "Jun-Hong Lin, Ying-Fan Lin*",
+      "doi": "10.1016/j.jhydrol.2025.132720",
+      "status": "published",
+      "publicationType": "journal-article",
+      "version": "version-of-record",
+      "dates": {
+        "online": null,
+        "issue": null
+      },
+      "provenance": {
+        "source": "existing-published-catalogue",
+        "url": "https://github.com/aar246860/yflin_web/blob/d06119238066c3c673892cc652e4995bc3e4383a/src/data/publications.generated.json",
+        "dateNote": "Legacy year/month retained; online and issue dates not distinguished in the original catalogue."
+      }
+    },
+    "10.1016/j.jhydrol.2025.133454": {
+      "year": 2025,
+      "month": 5,
+      "venue": "Journal of Hydrology",
+      "title": {
+        "zh-TW": "Analytical Framework for Fast Identification of Hydrogeological Boundaries and Aquifer Parameters in Confined Aquifers",
+        "en": "Analytical Framework for Fast Identification of Hydrogeological Boundaries and Aquifer Parameters in Confined Aquifers"
+      },
+      "authors": "Fu-Kuo Huang, Ying-Fan Lin*, Hund-Der Yeh*, Grace S. Wang",
+      "doi": "10.1016/j.jhydrol.2025.133454",
+      "status": "published",
+      "publicationType": "journal-article",
+      "version": "version-of-record",
+      "dates": {
+        "online": null,
+        "issue": null
+      },
+      "provenance": {
+        "source": "existing-published-catalogue",
+        "url": "https://github.com/aar246860/yflin_web/blob/d06119238066c3c673892cc652e4995bc3e4383a/src/data/publications.generated.json",
+        "dateNote": "Legacy year/month retained; online and issue dates not distinguished in the original catalogue."
+      }
+    },
+    "10.1016/j.jhydrol.2024.132657": {
+      "year": 2025,
+      "month": 5,
+      "venue": "Journal of Hydrology",
+      "title": {
+        "zh-TW": "Tidal Signal Propagation in Coastal Aquifers Considering Semi-Permeable Boundaries and Partial Penetration Effects",
+        "en": "Tidal Signal Propagation in Coastal Aquifers Considering Semi-Permeable Boundaries and Partial Penetration Effects"
+      },
+      "authors": "Fu-Kuo Huang, Ying-Fan Lin*, Grace S. Wang, Barret L. Kurylyk",
+      "doi": "10.1016/j.jhydrol.2024.132657",
+      "status": "published",
+      "publicationType": "journal-article",
+      "version": "version-of-record",
+      "dates": {
+        "online": null,
+        "issue": null
+      },
+      "provenance": {
+        "source": "existing-published-catalogue",
+        "url": "https://github.com/aar246860/yflin_web/blob/d06119238066c3c673892cc652e4995bc3e4383a/src/data/publications.generated.json",
+        "dateNote": "Legacy year/month retained; online and issue dates not distinguished in the original catalogue."
+      }
+    },
+    "10.1029/2024wr038724": {
+      "year": 2025,
+      "month": 3,
+      "venue": "Water Resources Research",
+      "title": {
+        "zh-TW": "Improving Water Table Kinematic Conditions with Unsaturated Flow Insights",
+        "en": "Improving Water Table Kinematic Conditions with Unsaturated Flow Insights"
+      },
+      "authors": "Jun-Hong Lin, Ying-Fan Lin*",
+      "doi": "10.1029/2024WR038724",
+      "status": "published",
+      "publicationType": "journal-article",
+      "version": "version-of-record",
+      "dates": {
+        "online": null,
+        "issue": null
+      },
+      "provenance": {
+        "source": "existing-published-catalogue",
+        "url": "https://github.com/aar246860/yflin_web/blob/d06119238066c3c673892cc652e4995bc3e4383a/src/data/publications.generated.json",
+        "dateNote": "Legacy year/month retained; online and issue dates not distinguished in the original catalogue."
+      }
+    },
+    "10.1016/j.jhydrol.2025.132955": {
+      "year": 2025,
+      "month": 2,
+      "venue": "Journal of Hydrology",
+      "title": {
+        "zh-TW": "Reply to the discussion by Lv and Qian of “A simple analytical solution for organic contaminant diffusion through a geomembrane to unsaturated soil liner: Considering the sorption effect and Robin-type boundary” by Lin and Yeh (2020)",
+        "en": "Reply to the discussion by Lv and Qian of “A simple analytical solution for organic contaminant diffusion through a geomembrane to unsaturated soil liner: Considering the sorption effect and Robin-type boundary” by Lin and Yeh (2020)"
+      },
+      "authors": "Ying-Fan Lin; Hund-Der Yeh*",
+      "doi": "10.1016/j.jhydrol.2025.132955",
+      "status": "published",
+      "publicationType": "journal-article",
+      "version": "version-of-record",
+      "dates": {
+        "online": null,
+        "issue": null
+      },
+      "provenance": {
+        "source": "existing-published-catalogue",
+        "url": "https://github.com/aar246860/yflin_web/blob/d06119238066c3c673892cc652e4995bc3e4383a/src/data/publications.generated.json",
+        "dateNote": "Legacy year/month retained; online and issue dates not distinguished in the original catalogue."
+      }
+    },
+    "10.3390/math13050725": {
+      "year": 2025,
+      "month": 2,
+      "venue": "Mathematics",
+      "title": {
+        "zh-TW": "Solving Inverse Wave Problems Using Spacetime Radial Basis Functions in Neural Networks",
+        "en": "Solving Inverse Wave Problems Using Spacetime Radial Basis Functions in Neural Networks"
+      },
+      "authors": "Chih-Yu Liu, Cheng-Yu Ku*, Wei-Da Chen, Ying-Fan Lin, Jun-Hong Lin",
+      "doi": "10.3390/math13050725",
+      "status": "published",
+      "publicationType": "journal-article",
+      "version": "version-of-record",
+      "dates": {
+        "online": null,
+        "issue": null
+      },
+      "provenance": {
+        "source": "existing-published-catalogue",
+        "url": "https://github.com/aar246860/yflin_web/blob/d06119238066c3c673892cc652e4995bc3e4383a/src/data/publications.generated.json",
+        "dateNote": "Legacy year/month retained; online and issue dates not distinguished in the original catalogue."
+      }
+    },
+    "10.29974/jtae.202409_70(3).0003": {
+      "year": 2024,
+      "month": 9,
+      "venue": "農業工程學報 / Journal of Taiwan Agricultural Engineering",
+      "title": {
+        "zh-TW": "Re-Derivation of The High-Permeability Wellbore Skin Effect Conditions",
+        "en": "Re-Derivation of The High-Permeability Wellbore Skin Effect Conditions"
+      },
+      "authors": "Ying-Fan Lin*, Jun-Hong Lin, Jui-Pin Tsai, Hwa-Lung Yu",
+      "doi": "10.29974/JTAE.202409_70(3).0003",
+      "status": "published",
+      "publicationType": "journal-article",
+      "version": "version-of-record",
+      "dates": {
+        "online": null,
+        "issue": null
+      },
+      "provenance": {
+        "source": "existing-published-catalogue",
+        "url": "https://github.com/aar246860/yflin_web/blob/d06119238066c3c673892cc652e4995bc3e4383a/src/data/publications.generated.json",
+        "dateNote": "Legacy year/month retained; online and issue dates not distinguished in the original catalogue."
+      }
+    },
+    "10.1016/j.jhydrol.2024.131824": {
+      "year": 2024,
+      "month": 9,
+      "venue": "Journal of Hydrology",
+      "title": {
+        "zh-TW": "Theoretical Evaluation of High-Permeability Wellbore Skin Effect on Aquifer Response under Pumping",
+        "en": "Theoretical Evaluation of High-Permeability Wellbore Skin Effect on Aquifer Response under Pumping"
+      },
+      "authors": "Jun-Hong Lin, Ying-Fan Lin*",
+      "doi": "10.1016/j.jhydrol.2024.131824",
+      "status": "published",
+      "publicationType": "journal-article",
+      "version": "version-of-record",
+      "dates": {
+        "online": null,
+        "issue": null
+      },
+      "provenance": {
+        "source": "existing-published-catalogue",
+        "url": "https://github.com/aar246860/yflin_web/blob/d06119238066c3c673892cc652e4995bc3e4383a/src/data/publications.generated.json",
+        "dateNote": "Legacy year/month retained; online and issue dates not distinguished in the original catalogue."
+      }
+    },
+    "10.1002/htj.23140": {
+      "year": 2024,
+      "month": 7,
+      "venue": "Heat Transfer",
+      "title": {
+        "zh-TW": "Application of the Image-Well Method for Transient Borehole Thermal Energy Storage Systems with Complex Boundaries",
+        "en": "Application of the Image-Well Method for Transient Borehole Thermal Energy Storage Systems with Complex Boundaries"
+      },
+      "authors": "Ying-Fan Lin*, Gabriel Rau, Barret Kurylyk",
+      "doi": "10.1002/htj.23140",
+      "status": "published",
+      "publicationType": "journal-article",
+      "version": "version-of-record",
+      "dates": {
+        "online": null,
+        "issue": null
+      },
+      "provenance": {
+        "source": "existing-published-catalogue",
+        "url": "https://github.com/aar246860/yflin_web/blob/d06119238066c3c673892cc652e4995bc3e4383a/src/data/publications.generated.json",
+        "dateNote": "Legacy year/month retained; online and issue dates not distinguished in the original catalogue."
+      }
+    },
+    "10.1029/2023wr036747": {
+      "year": 2024,
+      "month": 6,
+      "venue": "Water Resources Research",
+      "title": {
+        "zh-TW": "Analysis of Groundwater Time Series with Limited Pumping Information in Unconfined Aquifer: Response Function Based on Lagging Theory",
+        "en": "Analysis of Groundwater Time Series with Limited Pumping Information in Unconfined Aquifer: Response Function Based on Lagging Theory"
+      },
+      "authors": "Ying‐Fan Lin, Hua‐Ting Tseng, Shih‐Yao Lee, Hwa‐Lung Yu*",
+      "doi": "10.1029/2023WR036747",
+      "status": "published",
+      "publicationType": "journal-article",
+      "version": "version-of-record",
+      "dates": {
+        "online": null,
+        "issue": null
+      },
+      "provenance": {
+        "source": "existing-published-catalogue",
+        "url": "https://github.com/aar246860/yflin_web/blob/d06119238066c3c673892cc652e4995bc3e4383a/src/data/publications.generated.json",
+        "dateNote": "Legacy year/month retained; online and issue dates not distinguished in the original catalogue."
+      }
+    },
+    "10.1111/gwat.13425": {
+      "year": 2024,
+      "month": 6,
+      "venue": "Groundwater",
+      "title": {
+        "zh-TW": "Semi-Analytical Modeling of Transient Stream Drawdown and Depletion in Response to Aquifer Pumping",
+        "en": "Semi-Analytical Modeling of Transient Stream Drawdown and Depletion in Response to Aquifer Pumping"
+      },
+      "authors": "Bwalya Malama*, Ying-Fan Lin, Kristopher L. Kuhlman",
+      "doi": "10.1111/gwat.13425",
+      "status": "published",
+      "publicationType": "journal-article",
+      "version": "version-of-record",
+      "dates": {
+        "online": null,
+        "issue": null
+      },
+      "provenance": {
+        "source": "existing-published-catalogue",
+        "url": "https://github.com/aar246860/yflin_web/blob/d06119238066c3c673892cc652e4995bc3e4383a/src/data/publications.generated.json",
+        "dateNote": "Legacy year/month retained; online and issue dates not distinguished in the original catalogue."
+      }
+    },
+    "10.1016/j.advwatres.2024.104692": {
+      "year": 2024,
+      "month": 5,
+      "venue": "Advances in Water Resources",
+      "title": {
+        "zh-TW": "Analytical Methodology for Determining the Extent of Pumped Freshwater Lenses in Recharge-Limited, Circular Islands",
+        "en": "Analytical Methodology for Determining the Extent of Pumped Freshwater Lenses in Recharge-Limited, Circular Islands"
+      },
+      "authors": "Barret L. Kurylyk*, Yin-Fang Lin, Cristina Solórzano-Riva, Adrian D. Werner",
+      "doi": "10.1016/j.advwatres.2024.104692",
+      "status": "published",
+      "publicationType": "journal-article",
+      "version": "version-of-record",
+      "dates": {
+        "online": null,
+        "issue": null
+      },
+      "provenance": {
+        "source": "existing-published-catalogue",
+        "url": "https://github.com/aar246860/yflin_web/blob/d06119238066c3c673892cc652e4995bc3e4383a/src/data/publications.generated.json",
+        "dateNote": "Legacy year/month retained; online and issue dates not distinguished in the original catalogue."
+      }
+    },
+    "10.1029/2023wr035291": {
+      "year": 2024,
+      "month": 2,
+      "venue": "Water Resources Research",
+      "title": {
+        "zh-TW": "Advanced Analytical Model for Interpreting Oscillatory Pumping Tests With Wellbore Skin and Rate-Dependent Skin Effects",
+        "en": "Advanced Analytical Model for Interpreting Oscillatory Pumping Tests With Wellbore Skin and Rate-Dependent Skin Effects"
+      },
+      "authors": "Ali Mahdavi, Barret L. Kurylyk, Yin-Fang Lin*",
+      "doi": "10.1029/2023WR035291",
+      "status": "published",
+      "publicationType": "journal-article",
+      "version": "version-of-record",
+      "dates": {
+        "online": null,
+        "issue": null
+      },
+      "provenance": {
+        "source": "existing-published-catalogue",
+        "url": "https://github.com/aar246860/yflin_web/blob/d06119238066c3c673892cc652e4995bc3e4383a/src/data/publications.generated.json",
+        "dateNote": "Legacy year/month retained; online and issue dates not distinguished in the original catalogue."
+      }
+    },
+    "10.1016/j.jhydrol.2024.130856": {
+      "year": 2024,
+      "month": 2,
+      "venue": "Journal of Hydrology",
+      "title": {
+        "zh-TW": "Estimating Spatiotemporal Pumping Amounts Using Multiple Signal Decomposition Methods",
+        "en": "Estimating Spatiotemporal Pumping Amounts Using Multiple Signal Decomposition Methods"
+      },
+      "authors": "Hua-Ting Tseng, Ying-Fan Lin, Hwa-Lung Yu*",
+      "doi": "10.1016/j.jhydrol.2024.130856",
+      "status": "published",
+      "publicationType": "journal-article",
+      "version": "version-of-record",
+      "dates": {
+        "online": null,
+        "issue": null
+      },
+      "provenance": {
+        "source": "existing-published-catalogue",
+        "url": "https://github.com/aar246860/yflin_web/blob/d06119238066c3c673892cc652e4995bc3e4383a/src/data/publications.generated.json",
+        "dateNote": "Legacy year/month retained; online and issue dates not distinguished in the original catalogue."
+      }
+    },
+    "10.1002/hyp.14976": {
+      "year": 2023,
+      "month": 9,
+      "venue": "Hydrological Processes",
+      "title": {
+        "zh-TW": "Analytical Study of Dual-Porosity Coastal Aquifer with Generalized Nonlinear Water Transfer Term",
+        "en": "Analytical Study of Dual-Porosity Coastal Aquifer with Generalized Nonlinear Water Transfer Term"
+      },
+      "authors": "Kuo-Chen Ma, Mo-Hsiung Chuang, Ya-Chi Chang*, Ying-Fan Lin",
+      "doi": "10.1002/hyp.14976",
+      "status": "published",
+      "publicationType": "journal-article",
+      "version": "version-of-record",
+      "dates": {
+        "online": null,
+        "issue": null
+      },
+      "provenance": {
+        "source": "existing-published-catalogue",
+        "url": "https://github.com/aar246860/yflin_web/blob/d06119238066c3c673892cc652e4995bc3e4383a/src/data/publications.generated.json",
+        "dateNote": "Legacy year/month retained; online and issue dates not distinguished in the original catalogue."
+      }
+    },
+    "10.1016/j.jhydrol.2023.129873": {
+      "year": 2023,
+      "month": 7,
+      "venue": "Journal of Hydrology",
+      "title": {
+        "zh-TW": "Estimating Hydrogeological Parameters at Groundwater Level Observation Wells Without Pumping Well Information",
+        "en": "Estimating Hydrogeological Parameters at Groundwater Level Observation Wells Without Pumping Well Information"
+      },
+      "authors": "Hwa-Lung Yu, Shih-Yao Lee, Hua-Ting Tseng, Ying-Fan Lin*",
+      "doi": "10.1016/j.jhydrol.2023.129873",
+      "status": "published",
+      "publicationType": "journal-article",
+      "version": "version-of-record",
+      "dates": {
+        "online": null,
+        "issue": null
+      },
+      "provenance": {
+        "source": "existing-published-catalogue",
+        "url": "https://github.com/aar246860/yflin_web/blob/d06119238066c3c673892cc652e4995bc3e4383a/src/data/publications.generated.json",
+        "dateNote": "Legacy year/month retained; online and issue dates not distinguished in the original catalogue."
+      }
+    },
+    "10.1016/j.jhydrol.2023.129709": {
+      "year": 2023,
+      "month": 5,
+      "venue": "Journal of Hydrology",
+      "title": {
+        "zh-TW": "A Novel Framework for Spatiotemporal Groundwater Pumping Process Estimation Based on Data-Driven Approaches",
+        "en": "A Novel Framework for Spatiotemporal Groundwater Pumping Process Estimation Based on Data-Driven Approaches"
+      },
+      "authors": "Hwa-Lung Yu*, Hua-Ting Tseng, Ying-Fan Lin, Chun-Hung Chen, Ying-Chang Kuo, Yun-Ta Cheng",
+      "doi": "10.1016/j.jhydrol.2023.129709",
+      "status": "published",
+      "publicationType": "journal-article",
+      "version": "version-of-record",
+      "dates": {
+        "online": null,
+        "issue": null
+      },
+      "provenance": {
+        "source": "existing-published-catalogue",
+        "url": "https://github.com/aar246860/yflin_web/blob/d06119238066c3c673892cc652e4995bc3e4383a/src/data/publications.generated.json",
+        "dateNote": "Legacy year/month retained; online and issue dates not distinguished in the original catalogue."
+      }
+    },
+    "10.1016/j.jhydrol.2023.129432": {
+      "year": 2023,
+      "month": 4,
+      "venue": "Journal of Hydrology",
+      "title": {
+        "zh-TW": "A Temporally Relaxed Theory of Physically or Chemically Non-Equilibrium Solute Transport in Heterogeneous Porous Media",
+        "en": "A Temporally Relaxed Theory of Physically or Chemically Non-Equilibrium Solute Transport in Heterogeneous Porous Media"
+      },
+      "authors": "Ying-Fan Lin, Junqi Huang, Elliot J. Carr, Tung-Chou Hsieh, Hongbin Zhan*, Hwa-Lung Yu*",
+      "doi": "10.1016/j.jhydrol.2023.129432",
+      "status": "published",
+      "publicationType": "journal-article",
+      "version": "version-of-record",
+      "dates": {
+        "online": null,
+        "issue": null
+      },
+      "provenance": {
+        "source": "existing-published-catalogue",
+        "url": "https://github.com/aar246860/yflin_web/blob/d06119238066c3c673892cc652e4995bc3e4383a/src/data/publications.generated.json",
+        "dateNote": "Legacy year/month retained; online and issue dates not distinguished in the original catalogue."
+      }
+    },
+    "10.1111/gwat.13295": {
+      "year": 2023,
+      "month": 1,
+      "venue": "Groundwater",
+      "title": {
+        "zh-TW": "Effects of Soil Type and Thermal Boundary on Predicting Temperature Profiles and Groundwater Fluxes",
+        "en": "Effects of Soil Type and Thermal Boundary on Predicting Temperature Profiles and Groundwater Fluxes"
+      },
+      "authors": "Chia-Hao Chang, Ying-Fan Lin, Yo-Jin Shiau, Yi-Zhih Tsai, Jui-Pin Tsai*",
+      "doi": "10.1111/gwat.13295",
+      "status": "published",
+      "publicationType": "journal-article",
+      "version": "version-of-record",
+      "dates": {
+        "online": null,
+        "issue": null
+      },
+      "provenance": {
+        "source": "existing-published-catalogue",
+        "url": "https://github.com/aar246860/yflin_web/blob/d06119238066c3c673892cc652e4995bc3e4383a/src/data/publications.generated.json",
+        "dateNote": "Legacy year/month retained; online and issue dates not distinguished in the original catalogue."
+      }
+    },
+    "10.29974/jtae.202212_68(4).0002": {
+      "year": 2022,
+      "month": 12,
+      "venue": "農業工程學報 / Journal of Taiwan Agricultural Engineering",
+      "title": {
+        "zh-TW": "Estimation of Rainfall Infiltration Rates by New Heat Transfer Models and Subsurface Temperature Profiles",
+        "en": "Estimation of Rainfall Infiltration Rates by New Heat Transfer Models and Subsurface Temperature Profiles"
+      },
+      "authors": "Cia-Hao Chang, Yi-Zhih Tsai, Shao-Yiu Hsu, Hwa-Lung Yu, Ying-Fan Lin, Sin-Wei Yeh, Jui-Pin Tsai*",
+      "doi": "10.29974/JTAE.202212_68(4).0002",
+      "status": "published",
+      "publicationType": "journal-article",
+      "version": "version-of-record",
+      "dates": {
+        "online": null,
+        "issue": null
+      },
+      "provenance": {
+        "source": "existing-published-catalogue",
+        "url": "https://github.com/aar246860/yflin_web/blob/d06119238066c3c673892cc652e4995bc3e4383a/src/data/publications.generated.json",
+        "dateNote": "Legacy year/month retained; online and issue dates not distinguished in the original catalogue."
+      }
+    },
+    "10.1016/j.jhydrol.2022.128672": {
+      "year": 2022,
+      "month": 12,
+      "venue": "Journal of Hydrology",
+      "title": {
+        "zh-TW": "Well Hydraulics in Wedge-Shaped Aquifer: Unsteady Darcian Flow Model Revisited by Lagging Theory",
+        "en": "Well Hydraulics in Wedge-Shaped Aquifer: Unsteady Darcian Flow Model Revisited by Lagging Theory"
+      },
+      "authors": "Ali Mahdavi*, Ying-Fan Lin, Hwa-Lung Yu",
+      "doi": "10.1016/j.jhydrol.2022.128672",
+      "status": "published",
+      "publicationType": "journal-article",
+      "version": "version-of-record",
+      "dates": {
+        "online": null,
+        "issue": null
+      },
+      "provenance": {
+        "source": "existing-published-catalogue",
+        "url": "https://github.com/aar246860/yflin_web/blob/d06119238066c3c673892cc652e4995bc3e4383a/src/data/publications.generated.json",
+        "dateNote": "Legacy year/month retained; online and issue dates not distinguished in the original catalogue."
+      }
+    },
+    "10.1016/j.jhydrol.2022.127920": {
+      "year": 2022,
+      "month": 7,
+      "venue": "Journal of Hydrology",
+      "title": {
+        "zh-TW": "Analytical Solution for Estimating Transient Vertical Groundwater Flux from Temperature-Depth Profiles",
+        "en": "Analytical Solution for Estimating Transient Vertical Groundwater Flux from Temperature-Depth Profiles"
+      },
+      "authors": "Ying-Fan Lin, Chia-Hao Chang, Jui-PinTsai*",
+      "doi": "10.1016/j.jhydrol.2022.127920",
+      "status": "published",
+      "publicationType": "journal-article",
+      "version": "version-of-record",
+      "dates": {
+        "online": null,
+        "issue": null
+      },
+      "provenance": {
+        "source": "existing-published-catalogue",
+        "url": "https://github.com/aar246860/yflin_web/blob/d06119238066c3c673892cc652e4995bc3e4383a/src/data/publications.generated.json",
+        "dateNote": "Legacy year/month retained; online and issue dates not distinguished in the original catalogue."
+      }
+    },
+    "10.1029/2021wr031368": {
+      "year": 2022,
+      "month": 3,
+      "venue": "Water Resources Research",
+      "title": {
+        "zh-TW": "A Semi-Analytical Solution for Slug Test by Considering Near-Well Formation Damage and Nonlinear Flow",
+        "en": "A Semi-Analytical Solution for Slug Test by Considering Near-Well Formation Damage and Nonlinear Flow"
+      },
+      "authors": "Ying-Fan Lin, Hund-Der Yeh*",
+      "doi": "10.1029/2021WR031368",
+      "status": "published",
+      "publicationType": "journal-article",
+      "version": "version-of-record",
+      "dates": {
+        "online": null,
+        "issue": null
+      },
+      "provenance": {
+        "source": "existing-published-catalogue",
+        "url": "https://github.com/aar246860/yflin_web/blob/d06119238066c3c673892cc652e4995bc3e4383a/src/data/publications.generated.json",
+        "dateNote": "Legacy year/month retained; online and issue dates not distinguished in the original catalogue."
+      }
+    },
+    "10.1029/2020wr029186": {
+      "year": 2021,
+      "month": 7,
+      "venue": "Water Resources Research",
+      "title": {
+        "zh-TW": "An Analytical Model With a Generalized Nonlinear Water Transfer Term for the Flow in Dual-Porosity Media Induced by Constant-Rate Pumping in a Leaky Fractured Aquifer",
+        "en": "An Analytical Model With a Generalized Nonlinear Water Transfer Term for the Flow in Dual-Porosity Media Induced by Constant-Rate Pumping in a Leaky Fractured Aquifer"
+      },
+      "authors": "Ying-Fan Lin, Hund-Der Yeh*",
+      "doi": "10.1029/2020WR029186",
+      "status": "published",
+      "publicationType": "journal-article",
+      "version": "version-of-record",
+      "dates": {
+        "online": null,
+        "issue": null
+      },
+      "provenance": {
+        "source": "existing-published-catalogue",
+        "url": "https://github.com/aar246860/yflin_web/blob/d06119238066c3c673892cc652e4995bc3e4383a/src/data/publications.generated.json",
+        "dateNote": "Legacy year/month retained; online and issue dates not distinguished in the original catalogue."
+      }
+    },
+    "10.1016/j.jhydrol.2020.124873": {
+      "year": 2020,
+      "month": 7,
+      "venue": "Journal of Hydrology",
+      "title": {
+        "zh-TW": "A Simple Analytical Solution for Organic Contaminant Diffusion Through a Geomembrane to Unsaturated Soil Liner: Considering the Sorption Effect and Robin-Type Boundary",
+        "en": "A Simple Analytical Solution for Organic Contaminant Diffusion Through a Geomembrane to Unsaturated Soil Liner: Considering the Sorption Effect and Robin-Type Boundary"
+      },
+      "authors": "Ye-Chen Lin, Hund-Der Yeh*",
+      "doi": "10.1016/j.jhydrol.2020.124873",
+      "status": "published",
+      "publicationType": "journal-article",
+      "version": "version-of-record",
+      "dates": {
+        "online": null,
+        "issue": null
+      },
+      "provenance": {
+        "source": "existing-published-catalogue",
+        "url": "https://github.com/aar246860/yflin_web/blob/d06119238066c3c673892cc652e4995bc3e4383a/src/data/publications.generated.json",
+        "dateNote": "Legacy year/month retained; online and issue dates not distinguished in the original catalogue."
+      }
+    },
+    "10.1029/2019wr026352": {
+      "year": 2020,
+      "month": 3,
+      "venue": "Water Resources Research",
+      "title": {
+        "zh-TW": "New Analytical Models for Flow Induced by Pumping in a Stream-Aquifer System: A New Robin Boundary Condition Reflecting Joint Effect of Streambed Width and Storage",
+        "en": "New Analytical Models for Flow Induced by Pumping in a Stream-Aquifer System: A New Robin Boundary Condition Reflecting Joint Effect of Streambed Width and Storage"
+      },
+      "authors": "Ching‐Sheng Huang, Zicheng Wang, Ye‐Chen Lin, Hund‐Der Yeh*, Tao Yang*",
+      "doi": "10.1029/2019WR026352",
+      "status": "published",
+      "publicationType": "journal-article",
+      "version": "version-of-record",
+      "dates": {
+        "online": null,
+        "issue": null
+      },
+      "provenance": {
+        "source": "existing-published-catalogue",
+        "url": "https://github.com/aar246860/yflin_web/blob/d06119238066c3c673892cc652e4995bc3e4383a/src/data/publications.generated.json",
+        "dateNote": "Legacy year/month retained; online and issue dates not distinguished in the original catalogue."
+      }
+    },
+    "10.1016/j.jhydrol.2019.124395": {
+      "year": 2020,
+      "month": 2,
+      "venue": "Journal of Hydrology",
+      "title": {
+        "zh-TW": "New Analytical Model for Constant-Head Pumping: Considering Rate-Dependent Factor at Well Screen",
+        "en": "New Analytical Model for Constant-Head Pumping: Considering Rate-Dependent Factor at Well Screen"
+      },
+      "authors": "Ye-Chen Lin, Hund-Der Yeh*",
+      "doi": "10.1016/j.jhydrol.2019.124395",
+      "status": "published",
+      "publicationType": "journal-article",
+      "version": "version-of-record",
+      "dates": {
+        "online": null,
+        "issue": null
+      },
+      "provenance": {
+        "source": "existing-published-catalogue",
+        "url": "https://github.com/aar246860/yflin_web/blob/d06119238066c3c673892cc652e4995bc3e4383a/src/data/publications.generated.json",
+        "dateNote": "Legacy year/month retained; online and issue dates not distinguished in the original catalogue."
+      }
+    },
+    "10.1029/2019wr024966": {
+      "year": 2019,
+      "month": 8,
+      "venue": "Water Resources Research",
+      "title": {
+        "zh-TW": "Analytical Model for Heat Transfer Accounting for Both Conduction and Dispersion in Aquifers with a Robin-Type Boundary Condition at the Injection Well",
+        "en": "Analytical Model for Heat Transfer Accounting for Both Conduction and Dispersion in Aquifers with a Robin-Type Boundary Condition at the Injection Well"
+      },
+      "authors": "Ye-Chen Lin, Ting-Fang Hu, Hund-Der Yeh*",
+      "doi": "10.1029/2019WR024966",
+      "status": "published",
+      "publicationType": "journal-article",
+      "version": "version-of-record",
+      "dates": {
+        "online": null,
+        "issue": null
+      },
+      "provenance": {
+        "source": "existing-published-catalogue",
+        "url": "https://github.com/aar246860/yflin_web/blob/d06119238066c3c673892cc652e4995bc3e4383a/src/data/publications.generated.json",
+        "dateNote": "Legacy year/month retained; online and issue dates not distinguished in the original catalogue."
+      }
+    },
+    "10.1029/2018wr023893": {
+      "year": 2019,
+      "month": 4,
+      "venue": "Water Resources Research",
+      "title": {
+        "zh-TW": "Analysis of Unconfined Flow Induced by Constant Rate Pumping Based on the Lagging Theory",
+        "en": "Analysis of Unconfined Flow Induced by Constant Rate Pumping Based on the Lagging Theory"
+      },
+      "authors": "Ye-Chen Lin, Ching-Sheng Huang, Hund-Der Yeh*",
+      "doi": "10.1029/2018WR023893",
+      "status": "published",
+      "publicationType": "journal-article",
+      "version": "version-of-record",
+      "dates": {
+        "online": null,
+        "issue": null
+      },
+      "provenance": {
+        "source": "existing-published-catalogue",
+        "url": "https://github.com/aar246860/yflin_web/blob/d06119238066c3c673892cc652e4995bc3e4383a/src/data/publications.generated.json",
+        "dateNote": "Legacy year/month retained; online and issue dates not distinguished in the original catalogue."
+      }
+    },
+    "10.1002/2017wr021115": {
+      "year": 2017,
+      "month": 9,
+      "venue": "Water Resources Research",
+      "title": {
+        "zh-TW": "A Lagging Model for Describing Drawdown Induced by a Constant-Rate Pumping in a Leaky Confined Aquifer",
+        "en": "A Lagging Model for Describing Drawdown Induced by a Constant-Rate Pumping in a Leaky Confined Aquifer"
+      },
+      "authors": "Ying-Fan Lin, Hund-Der Yeh*",
+      "doi": "10.1002/2017WR021115",
+      "status": "published",
+      "publicationType": "journal-article",
+      "version": "version-of-record",
+      "dates": {
+        "online": null,
+        "issue": null
+      },
+      "provenance": {
+        "source": "existing-published-catalogue",
+        "url": "https://github.com/aar246860/yflin_web/blob/d06119238066c3c673892cc652e4995bc3e4383a/src/data/publications.generated.json",
+        "dateNote": "Legacy year/month retained; online and issue dates not distinguished in the original catalogue."
+      }
+    },
+    "10.1016/j.advwatres.2017.05.018": {
+      "year": 2017,
+      "month": 6,
+      "venue": "Advances in Water Resources",
+      "title": {
+        "zh-TW": "An Analytical Model for Flow Induced by a Constant-Head Pumping in a Leaky Unconfined Aquifer System with Considering Unsaturated Flow",
+        "en": "An Analytical Model for Flow Induced by a Constant-Head Pumping in a Leaky Unconfined Aquifer System with Considering Unsaturated Flow"
+      },
+      "authors": "Ye-Chen Lin, Ming-Hsu Li, Hund-Der Yeh*",
+      "doi": "10.1016/j.advwatres.2017.05.018",
+      "status": "published",
+      "publicationType": "journal-article",
+      "version": "version-of-record",
+      "dates": {
+        "online": null,
+        "issue": null
+      },
+      "provenance": {
+        "source": "existing-published-catalogue",
+        "url": "https://github.com/aar246860/yflin_web/blob/d06119238066c3c673892cc652e4995bc3e4383a/src/data/publications.generated.json",
+        "dateNote": "Legacy year/month retained; online and issue dates not distinguished in the original catalogue."
+      }
+    },
+    "10.1016/j.jhydrol.2016.07.028": {
+      "year": 2016,
+      "month": 7,
+      "venue": "Journal of Hydrology",
+      "title": {
+        "zh-TW": "A General Analytical Model for Pumping Tests in Radial Finite Two-Zone Confined Aquifers with Robin-Type Outer Boundary",
+        "en": "A General Analytical Model for Pumping Tests in Radial Finite Two-Zone Confined Aquifers with Robin-Type Outer Boundary"
+      },
+      "authors": "Ye-Chen Lin, Shaw-Yang Yang, Chiu-Shia Fen, Hund-Der Yeh*",
+      "doi": "10.1016/j.jhydrol.2016.07.028",
+      "status": "published",
+      "publicationType": "journal-article",
+      "version": "version-of-record",
+      "dates": {
+        "online": null,
+        "issue": null
+      },
+      "provenance": {
+        "source": "existing-published-catalogue",
+        "url": "https://github.com/aar246860/yflin_web/blob/d06119238066c3c673892cc652e4995bc3e4383a/src/data/publications.generated.json",
+        "dateNote": "Legacy year/month retained; online and issue dates not distinguished in the original catalogue."
+      }
+    },
+    "10.1007/s00477-026-03356-2": {
+      "year": 2026,
+      "month": 10,
+      "venue": "Stochastic Environmental Research and Risk Assessment",
+      "title": {
+        "en": "An epistemic approach for three-dimensional hydrofacies modeling by Bayesian maximum entropy and support vector machine methods",
+        "zh-TW": "An epistemic approach for three-dimensional hydrofacies modeling by Bayesian maximum entropy and support vector machine methods"
+      },
+      "authors": "Hwa-Lung Yu; Ting-An Lin; Hua-Ting Tseng; Ying-Fan Lin",
+      "doi": "10.1007/s00477-026-03356-2",
+      "status": "published",
+      "publicationType": "journal-article",
+      "version": "version-of-record",
+      "volume": "40",
+      "articleNumber": "230",
+      "dates": {
+        "online": {
+          "value": "2026-09-18",
+          "precision": "day",
+          "source": "publisher",
+          "sourceUrl": "https://link.springer.com/article/10.1007/s00477-026-03356-2"
+        },
+        "issue": {
+          "value": "2026-10",
+          "precision": "month",
+          "source": "crossref",
+          "sourceUrl": "https://api.crossref.org/works/10.1007/s00477-026-03356-2"
+        }
+      },
+      "provenance": {
+        "source": "crossref-and-publisher",
+        "url": "https://link.springer.com/article/10.1007/s00477-026-03356-2",
+        "crossrefUrl": "https://api.crossref.org/works/10.1007/s00477-026-03356-2",
+        "verifiedOn": "2026-10-01",
+        "identity": {
+          "method": "exact-orcid",
+          "orcid": "0000-0002-4853-3944"
+        }
+      },
+      "issue": "10"
+    },
+    "10.1016/j.jhydrol.2026.136291": {
+      "year": 2026,
+      "month": 10,
+      "venue": "Journal of Hydrology",
+      "title": {
+        "en": "Constrained stochastic data sampling for deep learning–based time-lapse hydraulic tomography under reactive-induced permeability evolution",
+        "zh-TW": "Constrained stochastic data sampling for deep learning–based time-lapse hydraulic tomography under reactive-induced permeability evolution"
+      },
+      "authors": "Zi-Yan Chou; Jui-Pin Tsai; Bo-Tsen Wang; Chia-Hao Chang; Ying-Fan Lin; Tian-Chyi Jim Yeh",
+      "doi": "10.1016/j.jhydrol.2026.136291",
+      "status": "published",
+      "publicationType": "journal-article",
+      "version": "version-of-record",
+      "volume": "679",
+      "articleNumber": "136291",
+      "dates": {
+        "online": null,
+        "issue": {
+          "value": "2026-10",
+          "precision": "month",
+          "source": "crossref",
+          "sourceUrl": "https://api.crossref.org/works/10.1016/j.jhydrol.2026.136291"
+        }
+      },
+      "provenance": {
+        "source": "crossref-and-publisher",
+        "url": "https://www.sciencedirect.com/science/article/abs/pii/S0022169426013880",
+        "crossrefUrl": "https://api.crossref.org/works/10.1016/j.jhydrol.2026.136291",
+        "verifiedOn": "2026-10-01",
+        "identity": {
+          "method": "exact-orcid",
+          "orcid": "0000-0002-4853-3944"
+        }
+      },
+      "issue": "Part B"
+    },
+    "10.1016/j.advwatres.2026.105381": {
+      "year": 2026,
+      "month": 9,
+      "venue": "Advances in Water Resources",
+      "title": {
+        "en": "Diagnosing apparent hydraulic memory in pressurized slug tests with a lagging theory framework",
+        "zh-TW": "Diagnosing apparent hydraulic memory in pressurized slug tests with a lagging theory framework"
+      },
+      "authors": "Ying-Fan Lin; Li-Chen Cheng",
+      "doi": "10.1016/j.advwatres.2026.105381",
+      "status": "published",
+      "publicationType": "journal-article",
+      "version": "version-of-record",
+      "volume": "215",
+      "articleNumber": "105381",
+      "dates": {
+        "online": null,
+        "issue": {
+          "value": "2026-09",
+          "precision": "month",
+          "source": "crossref",
+          "sourceUrl": "https://api.crossref.org/works/10.1016/j.advwatres.2026.105381"
+        }
+      },
+      "provenance": {
+        "source": "crossref-and-publisher",
+        "url": "https://www.sciencedirect.com/science/article/pii/S0309170826001764",
+        "crossrefUrl": "https://api.crossref.org/works/10.1016/j.advwatres.2026.105381",
+        "verifiedOn": "2026-10-01",
+        "identity": {
+          "method": "exact-orcid",
+          "orcid": "0000-0002-4853-3944"
+        }
+      }
+    },
+    "10.1016/j.icheatmasstransfer.2026.111572": {
+      "year": 2026,
+      "month": 9,
+      "venue": "International Communications in Heat and Mass Transfer",
+      "title": {
+        "en": "A general analytical model for the vertical heat transfer in subsurface porous media",
+        "zh-TW": "A general analytical model for the vertical heat transfer in subsurface porous media"
+      },
+      "authors": "Chia-Hao Chang; Ying-Fan Lin; Jui-Pin Tsai",
+      "doi": "10.1016/j.icheatmasstransfer.2026.111572",
+      "status": "published",
+      "publicationType": "journal-article",
+      "version": "version-of-record",
+      "volume": "178",
+      "articleNumber": "111572",
+      "dates": {
+        "online": null,
+        "issue": {
+          "value": "2026-09",
+          "precision": "month",
+          "source": "crossref",
+          "sourceUrl": "https://api.crossref.org/works/10.1016/j.icheatmasstransfer.2026.111572"
+        }
+      },
+      "provenance": {
+        "source": "crossref-and-publisher",
+        "url": "https://www.sciencedirect.com/science/article/pii/S0735193326010936",
+        "crossrefUrl": "https://api.crossref.org/works/10.1016/j.icheatmasstransfer.2026.111572",
+        "verifiedOn": "2026-10-01",
+        "identity": {
+          "method": "manual-coauthor-and-bibliography-review",
+          "orcid": null
+        }
+      }
+    },
+    "10.1016/j.ijheatmasstransfer.2026.128817": {
+      "year": 2026,
+      "month": 9,
+      "venue": "International Journal of Heat and Mass Transfer",
+      "title": {
+        "en": "Topology-driven bridging and matrix-dominated blocking in random thermal interfaces: An interpretable framework",
+        "zh-TW": "Topology-driven bridging and matrix-dominated blocking in random thermal interfaces: An interpretable framework"
+      },
+      "authors": "Ying-Fan Lin; Jun-Hong Lin",
+      "doi": "10.1016/j.ijheatmasstransfer.2026.128817",
+      "status": "published",
+      "publicationType": "journal-article",
+      "version": "version-of-record",
+      "volume": "265",
+      "articleNumber": "128817",
+      "dates": {
+        "online": null,
+        "issue": {
+          "value": "2026-09-01",
+          "precision": "day",
+          "source": "publisher",
+          "sourceUrl": "https://www.sciencedirect.com/science/article/abs/pii/S001793102600493X"
+        }
+      },
+      "provenance": {
+        "source": "crossref-and-publisher",
+        "url": "https://www.sciencedirect.com/science/article/abs/pii/S001793102600493X",
+        "crossrefUrl": "https://api.crossref.org/works/10.1016/j.ijheatmasstransfer.2026.128817",
+        "verifiedOn": "2026-10-01",
+        "identity": {
+          "method": "exact-orcid",
+          "orcid": "0000-0002-4853-3944"
+        }
+      }
+    },
+    "10.1016/j.applthermaleng.2026.130490": {
+      "year": 2026,
+      "month": 4,
+      "venue": "Applied Thermal Engineering",
+      "title": {
+        "en": "Non-integer dimension modeling and sensitivity diagnostics for thermal response tests",
+        "zh-TW": "Non-integer dimension modeling and sensitivity diagnostics for thermal response tests"
+      },
+      "authors": "Hao-Chu Chen; Ting-Hsuan Chang; Yueh-Chie Lee; Li-Chen Cheng; Hsiang-Wen Wang; Jui-Pin Tsai; Ying-Fan Lin",
+      "doi": "10.1016/j.applthermaleng.2026.130490",
+      "status": "published",
+      "publicationType": "journal-article",
+      "version": "version-of-record",
+      "volume": "292",
+      "articleNumber": "130490",
+      "dates": {
+        "online": null,
+        "issue": {
+          "value": "2026-04",
+          "precision": "month",
+          "source": "crossref",
+          "sourceUrl": "https://api.crossref.org/works/10.1016/j.applthermaleng.2026.130490"
+        }
+      },
+      "provenance": {
+        "source": "crossref-and-publisher",
+        "url": "https://www.sciencedirect.com/science/article/abs/pii/S1359431126007982",
+        "crossrefUrl": "https://api.crossref.org/works/10.1016/j.applthermaleng.2026.130490",
+        "verifiedOn": "2026-10-01",
+        "identity": {
+          "method": "exact-orcid",
+          "orcid": "0000-0002-4853-3944"
+        }
+      },
+      "issue": "Part 2"
+    }
+  }
+}

@@ -1,0 +1,5 @@
+{
+  "extends": "./tsconfig.json",
+  "include": [".astro/types.d.ts", "src/env.d.ts", "src/pages/index.astro", "src/pages/publications/**/*.astro", "src/data/publicationPresentation.ts"],
+  "exclude": ["_astro", "dist", "node_modules", "pagefind", "src/components/research"]
+}

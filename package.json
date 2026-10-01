@@ -47,7 +47,10 @@
     "test:game:e2e": "node scripts/check-pumping-game.mjs --dist && playwright test --config playwright.game.config.mjs",
     "typecheck": "node scripts/run-astro.mjs check --tsconfig tsconfig.counterclaw.json --minimumSeverity error",
     "preview": "node scripts/run-astro.mjs preview",
-    "astro": "node scripts/run-astro.mjs"
+    "astro": "node scripts/run-astro.mjs",
+    "publication:discover": "node scripts/discover_publications.mjs",
+    "test:publications": "node --test tests/publication-sync.test.mjs tests/publication-discovery.test.mjs",
+    "typecheck:publications": "node scripts/run-astro.mjs check --tsconfig tsconfig.publications-check.json --minimumSeverity error"
   },
   "dependencies": {
     "@rive-app/canvas": "^2.38.1",
