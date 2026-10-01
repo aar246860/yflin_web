@@ -53,7 +53,7 @@ const conceptSchema = [
   schema={conceptSchema}
   type="article"
 >
-  <article class="article">
+  <article class:list={["article", { "lagging-concept": entry.id === "lagging-theory" }]}>
     <header>
       <div class="tag-row">
         <EvidenceBadge level={entry.data.evidenceLevel} />
@@ -62,6 +62,14 @@ const conceptSchema = [
       <h1>{entry.data.title}</h1>
       <p class="lede">{entry.data.subtitle}</p>
     </header>
+    {entry.id === "lagging-theory" && (
+      <nav class="lagging-reading-paths" aria-label="Lagging Theory reading paths">
+        <a href="#model-idea"><span>01 · 60 seconds</span><strong>Physical meaning and Darcy limit</strong></a>
+        <a href="#published-cases"><span>02 · Published cases</span><strong>Evidence and its limits</strong></a>
+        <a href="#lagging-pumping-demo"><span>03 · Teaching calculation</span><strong>Try the pumping demo</strong></a>
+        <p>For field interpretation, start with the <a href="#minimum-tests">technical validation checklist</a>.</p>
+      </nav>
+    )}
     <div class="article-body">
       <Content />
     </div>
@@ -71,3 +79,36 @@ const conceptSchema = [
   {entry.id === "transformation-uncertainty" && <TransformationUncertaintyDemo />}
   <CollaborationCTA />
 </BaseLayout>
+
+<style>
+  .lagging-concept :global(.article-body a) {
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+  }
+  .lagging-reading-paths {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+  .lagging-reading-paths > a {
+    display: grid;
+    align-content: start;
+    gap: 0.5rem;
+    border: 1px solid currentColor;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    text-decoration: none;
+  }
+  .lagging-reading-paths > a:hover,
+  .lagging-reading-paths > a:focus-visible {
+    text-decoration: underline;
+  }
+  .lagging-reading-paths span { font-size: 0.875rem; }
+  .lagging-reading-paths strong { font-weight: 600; }
+  .lagging-reading-paths p { grid-column: 1 / -1; margin: 0; }
+  .lagging-reading-paths p a { text-decoration: underline; }
+  @media (max-width: 640px) {
+    .lagging-reading-paths { grid-template-columns: 1fr; gap: 0.75rem; }
+  }
+</style>
