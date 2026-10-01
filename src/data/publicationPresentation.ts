@@ -14,9 +14,24 @@ export type PublicationRecordLike = {
   readonly publicRecord?: string;
   readonly evidenceBoundary?: string;
   readonly studentContribution?: boolean;
+  readonly volume?: string | number | null;
+  readonly issue?: string | number | null;
+  readonly articleNumber?: string | number | null;
+  readonly dates?: {
+    readonly online?: PublicationDate | null;
+    readonly issue?: PublicationDate | null;
+  };
 };
 
-const featureByDoi = new Map<string, PublicationFeature>(publicationFeatures.map((feature) => [feature.doi, feature]));
+type PublicationDate = {
+  readonly value: string;
+  readonly precision: string;
+  readonly source: string;
+  readonly sourceUrl: string;
+};
+
+const normalizeDoi = (doi: string) => doi.trim().toLowerCase();
+const featureByDoi = new Map<string, PublicationFeature>(publicationFeatures.map((feature) => [normalizeDoi(feature.doi), feature]));
 type PublicationFilm = {
   readonly id: string;
   readonly doi: string;
@@ -27,20 +42,7 @@ type PublicationFilm = {
   readonly poster: string;
   readonly captions?: string;
 };
-const filmByDoi = new Map<string, PublicationFilm>((publicationFilms as PublicationFilm[]).map((film) => [film.doi, film]));
-
-const themeNotes: Record<string, string> = {
-  "analytical-well-hydraulics":
-    "This paper develops or tests an analytical description of groundwater flow, wells, boundaries, or aquifer structure so that a specific hydraulic question can be evaluated without hiding the governing assumptions.",
-  "lagging-theory":
-    "This paper asks whether the hydraulic response can evolve on more than one time scale, and what that means for interpreting a measured groundwater signal.",
-  "transformation-uncertainty":
-    "This paper examines how observations become model-derived quantities, and where the interpretation can change when the analytical or statistical model changes.",
-  "subsurface-energy":
-    "This paper treats the subsurface as a coupled thermal and hydraulic system, asking how groundwater movement, storage, or boundary conditions affect energy interpretation.",
-  "data-ai":
-    "This paper studies how complex environmental data can be converted into an interpretable estimate, attribution, or decision without removing the evidence boundary.",
-};
+const filmByDoi = new Map<string, PublicationFilm>((publicationFilms as PublicationFilm[]).map((film) => [normalizeDoi(film.doi), film]));
 
 const featurePlainLanguage = new Map<string, string>([
   ["10.1002/2017WR021115", "A pumping-test model is used to examine whether radial flux and drawdown gradient need to respond at the same instant."],
@@ -48,7 +50,7 @@ const featurePlainLanguage = new Map<string, string>([
   ["10.1016/j.jhydrol.2022.127920", "Temperature profiles provide time-varying estimates of vertical groundwater flux instead of imposing a constant-flux condition."],
   ["10.1029/2024WR038724", "The water-table condition keeps a time scale for gravity drainage, which helps avoid treating unsaturated flow as instantaneous by default."],
   ["10.1016/j.csite.2026.107695", "The analysis keeps grout heat storage in a thermal response test and separates early-time grout effects from later-time ground-conductivity information."],
-]);
+].map(([doi, summary]) => [normalizeDoi(doi), summary] as const));
 
 const filmPlainLanguageById = new Map<string, string>([
   ["2026-02-1", "The method maps which places and forecast times most influence a tropical-cyclone intensity prediction, helping researchers judge whether the model relies on physically sensible signals."],
@@ -98,13 +100,43 @@ const availableVisualCopy = {
 } as const;
 
 export function getPublicationFeature(publication: PublicationRecordLike): PublicationFeature | undefined {
-  return featureByDoi.get(publication.doi);
+  return featureByDoi.get(normalizeDoi(publication.doi));
 }
 
-export function getPlainLanguage(publication: PublicationRecordLike): string {
-  const film = filmByDoi.get(publication.doi);
-  return featurePlainLanguage.get(publication.doi) ?? (film ? filmPlainLanguageById.get(film.id) ?? film.plainLanguage : undefined) ?? themeNotes[publication.primaryTheme] ??
-    "This paper develops a groundwater-related method and reports the assumptions and evidence needed to interpret its result.";
+export function getPlainLanguage(publication: PublicationRecordLike): string | undefined {
+  const doi = normalizeDoi(publication.doi);
+  const film = filmByDoi.get(doi);
+  return featurePlainLanguage.get(doi) ?? (film ? filmPlainLanguageById.get(film.id) ?? film.plainLanguage : undefined);
+}
+
+export function getPublicationDateLabels(publication: PublicationRecordLike) {
+  const patterns: Record<string, RegExp> = { year: /^\d{4}$/, month: /^\d{4}-\d{2}$/, day: /^\d{4}-\d{2}-\d{2}$/ };
+  return (["online", "issue"] as const).flatMap((kind) => {
+    const date = publication.dates?.[kind];
+    if (!date) return [];
+    const pattern = patterns[date.precision];
+    if (!pattern?.test(date.value)) return [];
+    const fullDate = date.precision === "year" ? `${date.value}-01-01` : date.precision === "month" ? `${date.value}-01` : date.value;
+    const parsed = new Date(`${fullDate}T00:00:00Z`);
+    if (Number.isNaN(parsed.getTime()) || parsed.toISOString().slice(0, 10) !== fullDate) return [];
+    const value = new Intl.DateTimeFormat("en-US", {
+      year: "numeric",
+      ...(date.precision !== "year" ? { month: "short" as const } : {}),
+      ...(date.precision === "day" ? { day: "numeric" as const } : {}),
+      timeZone: "UTC",
+    }).format(parsed);
+    return [{ label: kind === "online" ? "Online" : "Issue", value, dateTime: date.value }];
+  });
+}
+
+export function getPublicationVenue(publication: PublicationRecordLike): string {
+  const details = [
+    publication.venue,
+    publication.volume != null && publication.volume !== "" ? `Vol. ${publication.volume}` : undefined,
+    publication.issue != null && publication.issue !== "" ? `Issue ${publication.issue}` : undefined,
+    publication.articleNumber != null && publication.articleNumber !== "" ? `Article ${publication.articleNumber}` : undefined,
+  ];
+  return details.filter(Boolean).join(" · ");
 }
 
 export function getVisualStatus(publication: PublicationRecordLike) {
@@ -118,7 +150,7 @@ export function getVisualStatus(publication: PublicationRecordLike) {
       evidencePage: `/publications/${feature.id}/`,
     };
   }
-  const film = filmByDoi.get(publication.doi);
+  const film = filmByDoi.get(normalizeDoi(publication.doi));
   if (film) {
     return {
       kind: "available" as const,
@@ -129,9 +161,9 @@ export function getVisualStatus(publication: PublicationRecordLike) {
     };
   }
   return {
-    kind: "pending" as const,
-    label: "Visual explanation in preparation",
-    note: "The paper remains available through its DOI record; the animation will be added when complete.",
+    kind: "unavailable" as const,
+    label: "Publication record",
+    note: "A visual explanation is not currently available for this paper.",
     film: undefined,
     evidencePage: undefined,
   };

@@ -39,7 +39,7 @@ const roleLabel: Record<string, string> = {
   team_role_ra: "Research assistant",
 };
 const visibleMembers = [...members.currentMembers, ...members.alumniMembers];
-const memberRole = (member: (typeof visibleMembers)[number]) =>
+const memberRole = (member: (typeof visibleMembers)[number] & { status?: { en: string } }) =>
   member.status?.en === "Graduated"
     ? "Graduate research contributor"
     : roleLabel[member.roleKey] ?? "Research member";
@@ -227,7 +227,7 @@ const homeSchema = [
               </p>
               <h3>{publication?.title.en}</h3>
               <p class="home-publication-list__citation">{publication?.authors}</p>
-              <p class="home-publication-list__plain">{publication ? getPlainLanguage(publication) : ""}</p>
+              {publication && getPlainLanguage(publication) && <p class="home-publication-list__plain">{getPlainLanguage(publication)}</p>}
               <p class="home-publication-list__links">
                 {publication?.publicRecord && <a href={publication.publicRecord} target="_blank" rel="noreferrer">DOI: {publication.doi}</a>}
                 <a href={withBase("/publications/")}>Publication archive</a>

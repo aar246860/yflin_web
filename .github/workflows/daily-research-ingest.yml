@@ -5,19 +5,56 @@ on:
     - cron: "37 20 * * *"
   workflow_dispatch:
 
+# This is a review-only workflow: no catalog edits, commits, PRs, or deployments.
+concurrency:
+  group: publication-candidate-discovery
+  cancel-in-progress: false
+
 jobs:
   report-only:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: npm
-      - run: npm ci
-      - run: npm run content:sync
-      - run: npm run content:report
-      - uses: actions/upload-artifact@v4
+      # Only the cumulative review queue is cached. Current health is never restored.
+      - name: Restore prior review candidates
+        uses: actions/cache/restore@v4
         with:
-          name: daily-research-content-report
-          path: reports/content_report_2026-06-12.md
+          path: reports/publications/candidates.json
+          key: publication-candidates-v1-${{ github.ref_name }}-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: |
+            publication-candidates-v1-${{ github.ref_name }}-
+      - name: Discover candidates without changing the public catalog
+        id: discover
+        run: npm run publication:discover
+      - name: Preserve the last complete candidate queue
+        if: success() && steps.discover.outcome == 'success'
+        uses: actions/cache/save@v4
+        with:
+          path: reports/publications/candidates.json
+          key: publication-candidates-v1-${{ github.ref_name }}-${{ github.run_id }}-${{ github.run_attempt }}
+      - name: Report approved catalog coverage
+        if: always()
+        run: npm run content:report
+      - name: Ensure setup failures have a health report
+        if: always()
+        shell: bash
+        run: |
+          if [ ! -f reports/publications/latest-report.json ]; then
+            mkdir -p reports/publications
+            printf '{"health":"failed","complete":false,"reviewOnly":true,"error":{"code":"workflow-setup-failure","message":"Discovery did not produce a current report. Check workflow logs; cached candidates are not a successful sync."}}\n' > reports/publications/latest-report.json
+            printf '# Publication candidate discovery\n\nSync health: failed\n\nDiscovery did not produce a current report. Check workflow logs; cached candidates are not a successful sync.\n' > reports/publications/latest-report.md
+          fi
+      - name: Upload review queue and current sync health even on failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: daily-publication-discovery-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            reports/publications/*.json
+            reports/publications/*.md
+          if-no-files-found: error
+          retention-days: 30
