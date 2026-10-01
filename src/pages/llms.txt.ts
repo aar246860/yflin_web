@@ -1,10 +1,11 @@
 import { getCollection } from "astro:content";
+import type { APIContext } from "astro";
 import { absoluteUrl } from "../lib/seo";
 import { glossaryEntries } from "../data/glossary";
 import { canonicalAnswers } from "../data/canonicalAnswers";
 import { openTools } from "../data/openTools";
 
-export async function GET({ site }) {
+export async function GET({ site }: APIContext) {
   const concepts = (await getCollection("concepts", ({ data }) => !data.draft)).sort(
     (a, b) => a.data.order - b.data.order,
   );
@@ -30,7 +31,7 @@ export async function GET({ site }) {
     `- [Glossary](${url("/glossary/")}) - technical definitions for Lagging Darcy Law, hydrologic memory, model equivalence, and decision non-equivalence.`,
     `- [Decision Lab](${url("/decision-lab/")}) - public screening tools for testing when lag-aware aquifer-test interpretation should be considered.`,
     `- [Open Tools](${url("/tools/")}) - selected public demonstrators, research code, archival analytical code, and collaboration routes with stated scope.`,
-    `- [Lagging pumping-test demo](${url("/#lagging-pumping-demo")}) - calculation-backed teaching example for constant-rate pumping response with separated flux and gradient lags.`,
+    `- [Lagging pumping-test demo](${url("/concepts/lagging-theory/#lagging-pumping-demo")}) - calculation-backed teaching example for constant-rate pumping response with separated flux and gradient lags.`,
     `- [When Does a Pumping Test Need Lagging Darcy Law?](${url("/field-notes/when-does-a-pumping-test-need-lagging-darcy-law/")}) - validation checks for deciding when lagging interpretation is necessary.`,
     `- [Delayed Hydraulic Response](${url("/concepts/groundwater-memory/")}) - response persistence and non-instantaneous recovery.`,
     `- [Transformation Uncertainty](${url("/concepts/transformation-uncertainty/")}) - model-to-parameter and model-to-decision uncertainty.`,

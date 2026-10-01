@@ -1,4 +1,5 @@
 import { getCollection } from "astro:content";
+import type { APIContext } from "astro";
 import { absoluteUrl } from "../lib/seo";
 import { glossaryEntries } from "../data/glossary";
 import { canonicalAnswers } from "../data/canonicalAnswers";
@@ -8,7 +9,7 @@ function list(values: string[]) {
   return values.length ? values.join(", ") : "none listed";
 }
 
-export async function GET({ site }) {
+export async function GET({ site }: APIContext) {
   const concepts = (await getCollection("concepts", ({ data }) => !data.draft)).sort(
     (a, b) => a.data.order - b.data.order,
   );
@@ -41,7 +42,7 @@ export async function GET({ site }) {
     "",
     "## Interactive Pumping-Test Demo",
     "",
-    `URL: ${url("/#lagging-pumping-demo")}`,
+    `URL: ${url("/concepts/lagging-theory/#lagging-pumping-demo")}`,
     "Purpose: A calculation-backed teaching example for constant-rate pumping response. It compares a classical line-source leaky confined aquifer curve with a Lagging Darcy curve using separated flux and gradient response lags.",
     "Scope: The demo applies a Lin-Yeh-style first-order lag operator in a simplified Laplace-domain transfer function. It omits wellbore storage and finite well radius and is not a site-specific design calculator.",
     "",

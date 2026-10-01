@@ -90,9 +90,9 @@ export const openTools: OpenTool[] = [
     claimBoundary:
       "Calculation-backed teaching model that omits wellbore storage and finite well radius. Site-specific analysis is required before design use.",
     evidence:
-      "The demonstration is available from the home page and the Lagging Theory page.",
+      "The demonstration is available on the Lagging Theory page.",
     links: [
-      { label: "Open demo", href: "/#lagging-pumping-demo", kind: "demo" },
+      { label: "Open demo", href: "/concepts/lagging-theory/#lagging-pumping-demo", kind: "demo" },
       {
         label: "Validation note",
         href: "/field-notes/when-does-a-pumping-test-need-lagging-darcy-law/",
