@@ -35,6 +35,13 @@ const { thesisGraduates, researchContributors } = Astro.props;
           <div class="thesis-entry__title">
             <p>{member.focus.en}</p>
             <p lang="zh-Hant">{member.focus["zh-TW"]}</p>
+            {member.destination && (
+              <div class="graduate-destination">
+                <p class="graduate-destination__label">After graduation <span lang="zh-Hant">畢業後去向</span></p>
+                <p>{member.destination.en}</p>
+                <p lang="zh-Hant">{member.destination["zh-TW"]}</p>
+              </div>
+            )}
           </div>
         </article>
       ))}
@@ -46,8 +53,18 @@ const { thesisGraduates, researchContributors } = Astro.props;
           <div>
             <p class="team-status">{member.status.en}</p>
             <h3>{member.name.en}</h3>
+            {member.name["zh-TW"] !== member.name.en && <p class="contributor-list__name" lang="zh-Hant">{member.name["zh-TW"]}</p>}
           </div>
-          <p>{member.focus.en}</p>
+          <div class="contributor-list__details">
+            <p>{member.focus.en}</p>
+            {member.destination && (
+              <div class="graduate-destination">
+                <p class="graduate-destination__label">After graduation <span lang="zh-Hant">畢業後去向</span></p>
+                <p>{member.destination.en}</p>
+                <p lang="zh-Hant">{member.destination["zh-TW"]}</p>
+              </div>
+            )}
+          </div>
         </article>
       ))}
     </div>

@@ -28,6 +28,10 @@
         "zh-TW": "考慮延遲理論之振盪抽水解析解建立與應用",
         "en": "Development and Application of an Analytical Solution for Oscillatory Pumping Considering Lagging Theory"
       },
+      "destination": {
+        "zh-TW": "任職於水利工程相關顧問公司。",
+        "en": "Working at a consulting firm in water resources engineering."
+      },
       "photo": "student_tsai.png"
     },
     {
@@ -43,6 +47,10 @@
       "focus": {
         "zh-TW": "應用雙相位延遲理論於地熱能評估之熱響應試驗",
         "en": "Applying Dual-Phase Lag Theory to Thermal Response Test in Thermal Energy Evaluation"
+      },
+      "destination": {
+        "zh-TW": "台積電主管口頭告知面試通過，等待 HR 正式通知。",
+        "en": "Verbally informed by a TSMC hiring manager that the interview was successful; awaiting formal notification from HR."
       },
       "photo": "student_lo.png"
     },
@@ -60,6 +68,10 @@
         "zh-TW": "熱響應試驗、鑽孔回填材料蓄熱與熱參數推估",
         "en": "Thermal response testing, borehole grout heat storage, and thermal-parameter estimation"
       },
+      "destination": {
+        "zh-TW": "就讀國立臺灣大學生物環境系統工程學系碩士班。",
+        "en": "Master's student in the Department of Bioenvironmental Systems Engineering, National Taiwan University."
+      },
       "photo": "student_wang.png"
     },
     {
@@ -75,6 +87,10 @@
       "focus": {
         "zh-TW": "延遲理論與空間參數分布",
         "en": "Lagging Theory and spatial parameter distributions"
+      },
+      "destination": {
+        "zh-TW": "就讀國立陽明交通大學土木工程學系水利組碩士班。",
+        "en": "Master's student in civil engineering (water resources), National Yang Ming Chiao Tung University."
       },
       "photo": "student_chen.png"
     },
