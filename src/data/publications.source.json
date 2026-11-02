@@ -1161,6 +1161,41 @@
         }
       },
       "issue": "Part 2"
+    },
+    "10.1093/jom/ufag030": {
+      "year": 2026,
+      "month": 10,
+      "venue": "Journal of Mechanics",
+      "volume": "42",
+      "pages": "483–497",
+      "title": {
+        "zh-TW": "Transient spherical thermal cloak with imperfect interfaces",
+        "en": "Transient spherical thermal cloak with imperfect interfaces"
+      },
+      "authors": "Jun-Hong Lin; Tungyang Chen*; Pei-Yu Lo; Ying-Fan Lin",
+      "doi": "10.1093/jom/ufag030",
+      "status": "published",
+      "publicationType": "journal-article",
+      "version": "version-of-record",
+      "dates": {
+        "online": {
+          "value": "2026-10-26",
+          "precision": "day",
+          "source": "publisher",
+          "sourceUrl": "https://academic.oup.com/jom/article/doi/10.1093/jom/ufag030/9002207"
+        },
+        "issue": {
+          "value": "2026",
+          "precision": "year",
+          "source": "publisher",
+          "sourceUrl": "https://academic.oup.com/jom/article/doi/10.1093/jom/ufag030/9002207"
+        }
+      },
+      "provenance": {
+        "source": "publisher",
+        "url": "https://academic.oup.com/jom/article/doi/10.1093/jom/ufag030/9002207",
+        "dateNote": "Publisher record verified 2026-11-02; published 26 October 2026. Tungyang Chen is the corresponding author."
+      }
     }
   }
 }

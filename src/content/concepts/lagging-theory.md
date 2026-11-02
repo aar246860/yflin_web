@@ -5,7 +5,7 @@ metaDescription: "Lagging Theory tests flux-gradient asynchrony in groundwater p
 lang: "en"
 translationKey: "concept-lagging-theory"
 date: 2026-06-12
-updated: 2026-10-01
+updated: 2026-11-02
 concept: "Lagging theory"
 tags: ["Lin and Yeh 2017", "generalized Darcy law", "flux-gradient lag"]
 evidenceLevel: "diagnostic"
@@ -17,6 +17,7 @@ relatedPublications:
   - "Analysis of Groundwater Time Series with Limited Pumping Information in Unconfined Aquifer: Response Function Based on Lagging Theory"
   - "Simplified Theoretical Analyses of Lagging Darcy Flow and Land Subsidence"
   - "Lagging Theory for Periodic Hydraulic Head Signals in Aquifers"
+  - "Diagnosing Apparent Hydraulic Memory in Pressurized Slug Tests With a Lagging Theory Framework"
 audience: ["well hydraulics researchers", "reviewers", "method developers"]
 collaborationRelevance: "Use when a team sees timing or amplitude mismatch and needs to know whether it improves prediction beyond curve fit."
 summaryZh: "延遲理論不是把反應曲線簡單平移，而是檢驗通量、梯度、水頭、邊界或自由水面是否存在非同步反應，並追問這種非同步是否改變工程判斷。"
@@ -46,6 +47,8 @@ For the initial conditions used in this demo, equal lags cancel in the transfer 
 - **Constant-rate pumping, 2017.** [Lin, Y.-C., and Yeh, H.-D., Water Resources Research](https://doi.org/10.1002/2017WR021115) formulated lagging flow in a leaky confined aquifer and compared its solution with a fractured-aquifer pumping record from South Dakota. The reported fit was particularly good at early pumping time, and fitted lag behavior varied with observation distance. The [NYCU publication record](https://scholar.nycu.edu.tw/en/publications/a-lagging-model-for-describing-drawdown-induced-by-a-constant-rat/) provides the abstract and published citation.
 - **Periodic hydraulic head, 2026.** [Lin and Kurylyk, Journal of Hydrology](https://doi.org/10.1016/j.jhydrol.2026.134913) examined why diffusivity inferred from amplitude damping can disagree with diffusivity inferred from phase lag. Their two-lag formulation reconciled these signatures in reanalyses of existing Tuolumne Meadows and Meghna River records. See the [publisher record](https://www.sciencedirect.com/science/article/pii/S0022169426000107) for the study and its assumptions.
 
+- **Pressurized slug tests, 2026.** [Lin and Cheng, Advances in Water Resources](https://doi.org/10.1016/j.advwatres.2026.105381) analyzed tabulated Minnelusa aquifer records from three wells near Spearfish, South Dakota. Classical and lagging formulations were compared using residual and Bayesian posterior diagnostics. For repeated pressure-amplitude tests in one well, pressure-block validation withheld a pressure condition: the pressure-trend formulation improved mean prediction error relative to the classical and shared-lag formulations. This is evidence for pressure-dependent *apparent* memory under those test conditions, not a universal aquifer constant or validation at a new site. Material interpretation still requires independent constraints on wellbore response, support scale, and pressure-dependent behavior. The [publisher record](https://www.sciencedirect.com/science/article/pii/S0309170826001764) states that data are available on request; this case is not an open reproduction package.
+
 These comparisons support the model's ability to describe the reported responses under the stated assumptions. Improved calibration fit alone does not establish prediction at a new well, frequency, or site, nor prove which physical mechanism caused a fitted lag. Flow-path adjustment, domain exchange, drainage, leakage, storage, and unresolved heterogeneity remain possible interpretations to distinguish with additional evidence. The [minimum tests below](#minimum-tests) describe validation goals, rather than results established for every application.
 
 ## Concise Definition
@@ -74,6 +77,8 @@ A lagging model should pass more than calibration fit:
 4. Synthetic known-truth coverage is acceptable.
 5. Field prediction improves on held-out time, recovery, or wells.
 6. The difference propagates to an engineering decision variable.
+
+The [pressurized slug-test case above](#published-cases) illustrates residual and posterior checks together with held-out pressure-block prediction. It does not establish all six tests for every lagging model.
 
 For pumping-test applications, see [When Does a Pumping Test Need Lagging Darcy Law?](../../field-notes/when-does-a-pumping-test-need-lagging-darcy-law/).
 

@@ -794,5 +794,25 @@
         "https://api.crossref.org/works/10.1016/j.applthermaleng.2026.130490"
       ]
     }
+  },
+  "10.1093/jom/ufag030": {
+    "id": "2026-transient-spherical-thermal-cloak",
+    "primaryTheme": "subsurface-energy",
+    "secondaryTags": [
+      "thermal cloak",
+      "imperfect interfaces",
+      "transient heat conduction"
+    ],
+    "concepts": [
+      "subsurface-energy"
+    ],
+    "evidenceBoundary": "Analytical weak-invisibility conditions in the quasi-static regime, with transient finite-element validation for the studied spherical cloaks; not complete invisibility at arbitrary frequencies.",
+    "review": {
+      "status": "approved",
+      "basis": "verified-bibliographic-addition",
+      "sources": [
+        "https://academic.oup.com/jom/article/doi/10.1093/jom/ufag030/9002207"
+      ]
+    }
   }
 }
